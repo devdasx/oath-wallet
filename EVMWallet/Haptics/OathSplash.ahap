@@ -1,0 +1,132 @@
+{
+  "Version": 1,
+  "Metadata": {
+    "Project": "Oath",
+    "Created": "2026-09-23",
+    "Description": "Oath splash: inhale (mark shrinks) → seal (mark bursts) → settle (home appears). t=0 is the start of the breathe-in, 350 ms after launch."
+  },
+  "Pattern": [
+    {
+      "Event": {
+        "Time": 0,
+        "EventType": "HapticContinuous",
+        "EventDuration": 0.3,
+        "EventParameters": [
+          {
+            "ParameterID": "HapticIntensity",
+            "ParameterValue": 0.42
+          },
+          {
+            "ParameterID": "HapticSharpness",
+            "ParameterValue": 0.18
+          }
+        ]
+      }
+    },
+    {
+      "ParameterCurve": {
+        "ParameterID": "HapticIntensityControl",
+        "Time": 0,
+        "ParameterCurveControlPoints": [
+          {
+            "Time": 0,
+            "ParameterValue": 0.15
+          },
+          {
+            "Time": 0.22,
+            "ParameterValue": 0.7
+          },
+          {
+            "Time": 0.3,
+            "ParameterValue": 1
+          }
+        ]
+      }
+    },
+    {
+      "ParameterCurve": {
+        "ParameterID": "HapticSharpnessControl",
+        "Time": 0,
+        "ParameterCurveControlPoints": [
+          {
+            "Time": 0,
+            "ParameterValue": -0.1
+          },
+          {
+            "Time": 0.3,
+            "ParameterValue": 0.15
+          }
+        ]
+      }
+    },
+    {
+      "Event": {
+        "Time": 0.3,
+        "EventType": "HapticTransient",
+        "EventParameters": [
+          {
+            "ParameterID": "HapticIntensity",
+            "ParameterValue": 1
+          },
+          {
+            "ParameterID": "HapticSharpness",
+            "ParameterValue": 0.62
+          }
+        ]
+      }
+    },
+    {
+      "Event": {
+        "Time": 0.37,
+        "EventType": "HapticTransient",
+        "EventParameters": [
+          {
+            "ParameterID": "HapticIntensity",
+            "ParameterValue": 0.42
+          },
+          {
+            "ParameterID": "HapticSharpness",
+            "ParameterValue": 0.32
+          }
+        ]
+      }
+    },
+    {
+      "Event": {
+        "Time": 0.4,
+        "EventType": "HapticContinuous",
+        "EventDuration": 0.45,
+        "EventParameters": [
+          {
+            "ParameterID": "HapticIntensity",
+            "ParameterValue": 0.3
+          },
+          {
+            "ParameterID": "HapticSharpness",
+            "ParameterValue": 0.1
+          }
+        ]
+      }
+    },
+    {
+      "ParameterCurve": {
+        "ParameterID": "HapticIntensityControl",
+        "Time": 0.4,
+        "ParameterCurveControlPoints": [
+          {
+            "Time": 0,
+            "ParameterValue": 1
+          },
+          {
+            "Time": 0.15,
+            "ParameterValue": 0.55
+          },
+          {
+            "Time": 0.45,
+            "ParameterValue": 0
+          }
+        ]
+      }
+    }
+  ]
+}

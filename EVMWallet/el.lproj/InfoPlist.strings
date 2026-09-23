@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  el — native translations.
+*/
+
+"NSCameraUsageDescription" = "Επιτρέψτε στο Oath να χρησιμοποιεί την κάμερα για την ασφαλή σάρωση κωδικών QR πορτοφολιού.";
+"NSFaceIDUsageDescription" = "Επιτρέψτε στο Oath να χρησιμοποιεί το Face ID για το ξεκλείδωμα και την προστασία του πορτοφολιού σας.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Επιτρέψτε στο Oath να συνδεθεί απευθείας στο άλλο σας iPhone και να μεταφέρει με ασφάλεια κρυπτογραφημένα δεδομένα πορτοφολιού.";

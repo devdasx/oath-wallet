@@ -1,0 +1,52 @@
+name: RecoveryPhraseCopyFixture
+options:
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    GENERATE_INFOPLIST_FILE: YES
+    TARGETED_DEVICE_FAMILY: "1,2"
+    # Ad-hoc simulator signing keeps repeated runs from reusing an old runner.
+    CODE_SIGNING_ALLOWED: YES
+    CODE_SIGN_IDENTITY: "-"
+targets:
+  RecoveryPhraseCopyFixture:
+    type: application
+    platform: iOS
+    sources:
+      - App
+      # Exercise the shipping screens and haptic gesture, not copies of them.
+      - ../../EVMWallet/SettingsWalletCreationRecoveryScreen.swift
+      - ../../EVMWallet/OnboardingPhysicalEntropyRecoveryScreen.swift
+      - ../../EVMWallet/WalletRecoveryPhraseDisplayScreen.swift
+      - ../../EVMWallet/WalletRecoveryPhraseCopyState.swift
+      - ../../EVMWallet/WalletRecoveryPhraseCopyLabel.swift
+      - ../../EVMWallet/UniHaptic.swift
+      - path: ../../EVMWallet/en.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.recovery-copy-fixture
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+  RecoveryPhraseCopyUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: Tests
+    dependencies:
+      - target: RecoveryPhraseCopyFixture
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.recovery-copy-fixture.uitests
+schemes:
+  RecoveryPhraseCopyFixture:
+    build:
+      targets:
+        RecoveryPhraseCopyFixture: all
+        RecoveryPhraseCopyUITests: [test]
+    test:
+      targets: [RecoveryPhraseCopyUITests]
+      captureScreenshotsAutomatically: false

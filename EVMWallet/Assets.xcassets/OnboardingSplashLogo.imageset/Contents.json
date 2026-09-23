@@ -1,0 +1,22 @@
+{
+  "images": [
+    {
+      "filename": "oath-light.png",
+      "idiom": "universal"
+    },
+    {
+      "filename": "oath-dark.png",
+      "idiom": "universal",
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ]
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}

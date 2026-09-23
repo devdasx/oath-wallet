@@ -1,0 +1,58 @@
+{
+  "pins" : [
+    {
+      "identity" : "ensnormalize.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/adraffy/ENSNormalize.swift.git",
+      "state" : {
+        "revision" : "d848cc56f5ba8a9cb60dc26b61c96ca51509ef52",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "grdb.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/groue/GRDB.swift.git",
+      "state" : {
+        "revision" : "b83108d10f42680d78f23fe4d4d80fc88dab3212",
+        "version" : "7.11.1"
+      }
+    },
+    {
+      "identity" : "qrcodegenerator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BlockchainCommons/QRCodeGenerator",
+      "state" : {
+        "revision" : "57f800f5dcb90942bb49ce0f8458726d1424dc64"
+      }
+    },
+    {
+      "identity" : "swift-asn1",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-asn1.git",
+      "state" : {
+        "revision" : "d9a5b37470adc940d22c3bcd5ca6953a516b727f",
+        "version" : "1.7.2"
+      }
+    },
+    {
+      "identity" : "swift-crypto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-crypto.git",
+      "state" : {
+        "revision" : "da9d28d69ebe3894b18376c8f2395c2f37b8448f",
+        "version" : "4.5.2"
+      }
+    },
+    {
+      "identity" : "swift-secp256k1",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/21-DOT-DEV/swift-secp256k1.git",
+      "state" : {
+        "revision" : "e70a10e036a55fffea31568f0af92d69b6d449cd",
+        "version" : "0.23.2"
+      }
+    }
+  ],
+  "version" : 2
+}

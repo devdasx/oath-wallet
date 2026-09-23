@@ -1,0 +1,56 @@
+{
+  "network": "sui",
+  "verifiedAt": "2026-07-31",
+  "resolution": "128x128",
+  "assets": [
+    {
+      "coinType": "0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC",
+      "symbol": "USDC",
+      "source": "https://circle.com/usdc-icon",
+      "sourceAuthority": "Circle",
+      "sha256": "63c351fc9551dbe91edc389a431452d41b7d12349c52dc1cbef39762f2485262"
+    },
+    {
+      "coinType": "0x375f70cf2ae4c00bf37117d0c85a2c71545e6ee05c4a5c7d282cd66a4504b068::usdt::USDT",
+      "symbol": "USDT",
+      "source": "https://bridge-assets.sui.io/usdt.png",
+      "sourceAuthority": "Sui Bridge",
+      "sha256": "cf72b0d6427911ded2e1fdb991d2ac60773c8128c147ed68540f7513e4800a14"
+    },
+    {
+      "coinType": "0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP",
+      "symbol": "DEEP",
+      "source": "https://images.deepbook.tech/icon.svg",
+      "sourceAuthority": "DeepBook",
+      "sha256": "011cbafe6399301c908b613d48aa940fbc7c64921ac70444e7efee2b97c4d75d"
+    },
+    {
+      "coinType": "0x6864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS",
+      "symbol": "CETUS",
+      "source": "https://uxcdefo3r2uemooidt2kk2stykakvwd2m6nasg5lhbfaxemm4i3a.arweave.net/pcQyFduOqEY5yBz0pWpTwoCq2HpnmgkbqzhKC5GM4jY",
+      "sourceAuthority": "Sui on-chain coin metadata",
+      "sha256": "b08cf6ade69edcc3cc4886616662854a917e2bb5129ea49d729ff407f7225f4e"
+    },
+    {
+      "coinType": "0x35169bc93e1fddfcf3a82a9eae726d349689ed59e4b065369af8789fe59f8608::mmt::MMT",
+      "symbol": "MMT",
+      "source": "https://momentum-statics.s3.us-west-1.amazonaws.com/MMT.png",
+      "sourceAuthority": "Momentum",
+      "sha256": "d940a83537296a418ffb132b705c3d3535633ea9b473e810c48d2820e4a50262"
+    },
+    {
+      "coinType": "0x7016aae72cfc67f2fadf55769c0a7dd54291a583b63051a5ed71081cce836ac6::sca::SCA",
+      "symbol": "SCA",
+      "source": "https://scallop.io/images/logo-192.png",
+      "sourceAuthority": "Scallop",
+      "sha256": "33e0d20a7ce85525d3761202d22be6f1a9fdfb9dfddf8d3c8cf8b1c0da051a62"
+    },
+    {
+      "coinType": "0xa99b8952d4f7d947ea77fe0ecdcc9e5fc0bcab2841d6e2a5aa00c3044e5544b5::navx::NAVX",
+      "symbol": "NAVX",
+      "source": "https://arweave.net/FNGKLRGBS7D4lXxsmz4_F-xkMQs9DIRsTQT_q0Nn-iI",
+      "sourceAuthority": "Sui on-chain coin metadata",
+      "sha256": "cdae26b92c8ec95b33892e1f8b3111c9eb62d362ed3d15214b11635988c37a3a"
+    }
+  ]
+}

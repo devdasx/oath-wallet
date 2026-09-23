@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  sd — native reviewed translations.
+*/
+
+"NSCameraUsageDescription" = "والٽ جا QR ڪوڊ اسڪين ڪرڻ لاءِ ڪيمرا استعمال ڪريو.";
+"NSFaceIDUsageDescription" = "پنهنجو والٽ ان لاڪ ۽ محفوظ ڪرڻ لاءِ Face ID استعمال ڪريو.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "پنهنجي انڪرپٽ ٿيل والٽ ڊيٽا منتقل ڪرڻ لاءِ سڌو پنهنجي ٻئي iPhone سان ڳنڍيو.";

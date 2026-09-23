@@ -1,0 +1,68 @@
+name: SendActivityFixture
+options:
+  deploymentTarget:
+    iOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    GENERATE_INFOPLIST_FILE: YES
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CODE_SIGNING_ALLOWED: NO
+    ASSETCATALOG_COMPILER_APPICON_NAME: ""
+targets:
+  SendActivityFixture:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: ../../EVMWallet/Home/WalletPendingActivityToolbarButton.swift
+      - path: ../../EVMWallet/Home/WalletPendingActivityScreen.swift
+      - path: ../../EVMWallet/Home/WalletHomeQuickActionsPopover.swift
+      - path: ../../EVMWallet/Send/SendActivityStore.swift
+      - path: ../../EVMWallet/Send/SendActivitySwipeGesture.swift
+      - path: ../../EVMWallet/Send/SendActivityGroupCapsule.swift
+      - path: ../../EVMWallet/Send/SendActivityExpandedCapsule.swift
+      - path: ../../EVMWallet/Send/SendActivityRow.swift
+      - path: ../../EVMWallet/Send/SendActivityCountBadge.swift
+      - path: ../../EVMWallet/Send/SendConfirmedActivityDismissal.swift
+      - path: ../../EVMWallet/Send/SendStatusCapsule.swift
+      - path: ../../EVMWallet/Send/SendStatusAssetBadge.swift
+      - path: ../../EVMWallet/en.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.send-activity-fixture
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+  SendActivityUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: Tests
+    dependencies:
+      - target: SendActivityFixture
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.send-activity-fixture.uitests
+  SendActivityLayoutTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: LayoutTests
+    dependencies:
+      - target: SendActivityFixture
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.send-activity-fixture.layout-tests
+schemes:
+  SendActivityFixture:
+    build:
+      targets:
+        SendActivityFixture: all
+        SendActivityUITests: [test]
+        SendActivityLayoutTests: [test]
+    test:
+      targets: [SendActivityUITests, SendActivityLayoutTests]
+      captureScreenshotsAutomatically: false
+      preferredScreenCaptureFormat: screenshots

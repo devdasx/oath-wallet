@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  English source placeholder. Replace the value with a reviewed translation.
+*/
+
+"NSCameraUsageDescription" = "მიეცით საშუალება Oath-ს გამოიყენოს კამერა საფულის QR კოდების უსაფრთხოდ სკანირებისთვის.";
+"NSFaceIDUsageDescription" = "ნება მიეცით Oath-ს გამოიყენოს Face ID თქვენი საფულის განბლოკვისა და დასაცავად.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "მიეცით საშუალება Oath-ს დაუკავშირდეს პირდაპირ თქვენს სხვა iPhone-ს და უსაფრთხოდ გადაიტანოს დაშიფრული საფულის მონაცემები.";

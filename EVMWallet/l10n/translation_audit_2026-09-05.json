@@ -1,0 +1,296 @@
+{
+  "languages": 57,
+  "app_keys_per_language": 1993,
+  "info_keys_per_language": 4,
+  "shortcut_phrases_per_language": 6,
+  "missing_keys": 0,
+  "empty_values": 0,
+  "string_files_parsed": 114,
+  "locales": [
+    {
+      "locale": "am",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ar",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "bn",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "cs",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "da",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "de",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "el",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "en",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "es",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "fa",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "fi",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "fil",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "fr",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "gu",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ha",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "he",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "hi",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "hr",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "hu",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "id",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "it",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ja",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ka",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "km",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "kn",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ko",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ml",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "mr",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ms",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "my",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "nb",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ne",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "nl",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "or",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "pa",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "pl",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "pt-BR",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "pt-PT",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ro",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ru",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "sd",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "si",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "sk",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "sl",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "sv",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "sw",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ta",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "te",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "th",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "tr",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "uk",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "ur",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "uz",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "vi",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "yo",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "zh-Hans",
+      "app_keys": 1993,
+      "info_keys": 4
+    },
+    {
+      "locale": "zh-Hant",
+      "app_keys": 1993,
+      "info_keys": 4
+    }
+  ]
+}

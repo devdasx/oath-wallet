@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  fa — native translations.
+*/
+
+"NSCameraUsageDescription" = "به Oath اجازه دهید برای اسکن امن کدهای QR کیف پول از دوربین استفاده کند.";
+"NSFaceIDUsageDescription" = "به Oath اجازه دهید برای باز کردن قفل و محافظت از کیف پول شما از Face ID استفاده کند.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "به Oath اجازه دهید مستقیماً به iPhone دیگر شما متصل شود و داده‌های رمزگذاری‌شده کیف پول را به‌صورت امن انتقال دهد.";

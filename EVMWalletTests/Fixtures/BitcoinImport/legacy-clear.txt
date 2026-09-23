@@ -1,0 +1,30 @@
+# Wallet dump created by Bitcoin Core v28.3.0
+# * Created on 2026-09-10T09:57:19Z
+# * Best block at time of backup was 0 (000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f),
+#   mined on 2009-01-03T18:15:05Z
+
+# extended private masterkey: xprv9s21ZrQH143K3GvfotNScTXrYYzso5dmyDsDV54K3RfJMdMJyCaVAcPfTQkuuyNBSHj7j5gidvmPYdG7JP2LdoTh8Gov4sm83wnH9drr2Fy
+
+L496Jr9EQrSz4VpGZ1RJuTti1qWHncK94vgKWyNbEjbSEhjh37Vo 2026-09-10T09:57:19Z reserve=1 # addr=bc1qqeh97f0aquh4374g62k20ens0dfhhfcjcvrpqj hdkeypath=m/0'/1'/2'
+L3teNq3vPgyuMpBLdotzWuVi5m6jZDZWkwSgz6EHUbGViEh8ocLu 2026-09-10T09:57:19Z label= # addr=bc1q9hvs49azeajkjpq63etcpffrren5pm0l0d728d hdkeypath=m/0'/0'/2'
+L1oxD6FcMn8DG273PAJSzTHMmF5QuN88JDhbABfLKHB7vNq7vkZt 2026-09-10T09:57:19Z label= # addr=3FFw9JCY7MSSPJtTWn7YcpE4pDcCAUnKtu hdkeypath=m/0'/0'/1'
+Kzhin5EvgpKw5Er9NQU3qFtT2Dxib75t7qXJrY5LbFgEFwCqdSAK 2026-09-10T09:57:19Z reserve=1 # addr=bc1q2tvxj2403gsj7279kvlu3ulpmecmt4dhlud4aa hdkeypath=m/0'/0'/3'
+KyxebKDLz2f6MBu1UG2o9FkUZRv71PepaiB5shLBp4WaEXeFvYn4 2026-09-10T09:57:19Z reserve=1 # addr=bc1q5apshuru965w80d8ercvfce8x5aq7rnl3nvq2p hdkeypath=m/0'/0'/5'
+KwmRcBcnXsPH2cziGByzUdbsuy6pVQukdQP7XDP7YBQJ7Fvf7P2U 2026-09-10T09:57:19Z label= # addr=1JhmftX5hZdWDWCcf4Jrh5Uwu5kpNFz4dD hdkeypath=m/0'/0'/0'
+KzTEGjfZbh6Xz7w8NGKGT1p4SuEoJ2Rcq8yGRDy4hJQn3xBvVZkN 2026-09-10T09:57:19Z reserve=1 # addr=bc1q6ujzkhqe7cpad07vzwayn02f29xuhqupkuetnr hdkeypath=m/0'/1'/1'
+KyDPniSYVbTa6LsHqX1bJhh8ckqzXGQS7Q7S96zAmg7yv1p5tZqb 2026-09-10T09:57:19Z hdseed=1 # addr=bc1qmfe3k3fzqesg89e58d9lv847lsg8zezlqvv29c
+Kx9DxXmsgBU6wGTK3VUFA6cMYXR3b9ATDh7bhCcihTz9Uym8Y9Sj 2026-09-10T09:57:19Z change=1 # addr=bc1qaatqpu9pk37awp9rjdwkyhl5dmu9n5z3jnekes hdkeypath=m/0'/1'/0'
+L5iQsEk1b91o9DcksWJNUGrbPg1EALV3qPcTkg8K9p15pn4T9QU5 2026-09-10T09:57:19Z reserve=1 # addr=bc1qlynlnwyuat92kkejk39lh8zqjcyx8thdesgrgv hdkeypath=m/0'/0'/4'
+
+0014d7242b5c19f603d6bfcc13ba49bd49514dcb8381 0 script=1 # addr=34RkQegRZ1JwV5zCfsmrPCq2LFyf3yHKJY
+0014a7430bf07c2ea8e3bda7c8f0c4e327353a0f0e7f 0 script=1 # addr=373xzJ3RtALhSnGRTZJz6f5ifVG3XvfjEC
+0014376744c36b02ac2dd517f0b9a57306113efa616d 0 script=1 # addr=3FFw9JCY7MSSPJtTWn7YcpE4pDcCAUnKtu
+00142dd90a97a2cf6569041a8e5780a5231e6740edff 0 script=1 # addr=3FKPDrCjA6sGCK8rpoFRiYmtAHGm7PwKjW
+001452d8692aaf8a212f2bc5b33fc8f3e1de71b5d5b7 0 script=1 # addr=3GkTXq9YJ5Kf1wj1B7FXZ9FTPYm6mNpQRP
+0014066e5f25fd072f58faa8d2aca7e6707b537ba712 0 script=1 # addr=3HSNJQ44JvuUQ61VdESt9hZg1p6vbiPSpB
+0014da731b452206608397343b4bf61ebefc1071645f 0 script=1 # addr=3LY9m6MEZdKLb937wSKsmgguuDRjZzWoxi
+0014ef5600f0a1b47dd704a3935d625ff46ef859d051 0 script=1 # addr=3PGGESS6HfiZo4wt6XFcB5LCteatXgcNgc
+0014f927f9b89ceacaab5b32b44bfb9c40960863aeed 0 script=1 # addr=3PhjmwgQZ585FojEq1WDoE3n9iz2P6LBCH
+0014c23010daed689ce8c1789fc7f24742f615fbb198 0 script=1 # addr=3QwiuYtWrrfUfHQts2znYC4rCGiBUorm8M
+
+# End of dump

@@ -1,0 +1,561 @@
+{
+  "purpose": "hard-deny unsafe token identities",
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "networkID": "avalanche",
+      "contractAddress": "0x6C6f910A79639dcC94b4feEF59Ff507c2E843929",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x01731B66dafAc43c7889C6A1c15d094943B75a92",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x5E7e6B602fbd0635018D8d123677F25f9EfAb3C8",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xA200CC29F44Ebf9E0AFcf8dF12628aedbB8A4B34",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x8C2Ce7793d5A986919bc7b77DF5D3b057B570321",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x425C59c641f1D9A24e6665fBDe726434302c4761",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xA73397cE0cCFdE92e7B23F3d0C462eF099E9E978",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xDdE767dC17Ed125e8ec9581EB973af61912A0468",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xEd8c530c01ef6372e87637ABE6e5A7eA980C60ed",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xD0D8bff9335c90bd5FbFa0a06b5403843316fE61",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x3bBDD57E489D25297D517414d664f1eC3bEfb21A",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x987676D03B8066F8c90633442Acf21ee07774AA7",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x33E077cdD0e2Ef89460Ac42307f891D73b1c063d",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x45b152bA7f1FE38300bcCA33C024aaE3DFbF5C10",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xa02e5ee256f6Fe5e9dDCbAB664B70CD7BD116A9f",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x88f170d138D3b3cF2F1AE627c47540c0c3fD7001",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x72169AA0351d2e0d5A427B7531895D39046e0F15",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xC0b34Ed3a535432804D70cd6C355B7d0b79E0Ddd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xd9f5fA1e12B845Ab0210CE4de929a92D7Fca28C8",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x76C5AD12b7529e0c213381FA08D6F613b90F6BaA",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x71A162088C5cD46b908562139812b0f3f47a8Bd8",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x85541741eDb23af33C337148B8E3593CD10F6946",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x9a0541BcB79dbEeae9F351Db32fD21724516e787",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x3Dbd7e1D9219c1A14df602cfbba279b2989532AE",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x9e24D5827966ac9709D8C74a780A72d711637803",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x2c351a6E1d18c3b8Ee5b149E4038724A551e04e4",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x79c9713b9CFcC769F629e3456B32A7B110fEfcD1",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x7101E4EE1A633d7157d889B1b56BE496e8560D23",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x1D64102762E27a329c5b613456E2d664519084fd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xD504Fe794fCd5d0995777c2b88a34A2860879410",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x476A52f4E469C41997CcEE2B15983DbA231B4E51",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x88fa1672164f9957D05798CeE1F98feC5da96178",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xCb9b176dEba144A3B8d7725b651DCfa4423df2cF",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x90335db3700e7cf7Ee64514f04f87d86c389194A",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xCe42C4709AfE5d1c202ad18cb3e7C05eFadae5d3",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x74189cD4d5C5EEdfC94d4CC624c535F2BF464f47",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x5fbF11F9E7c00F4Ba9A1FEd1DE02443688956d56",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x045e8806bb94a0a00a6b5EB2239DeBA56006b693",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xCcB7ec63f225Db8a802d0cFDB77fDaA608F0C2Cf",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x8C5BCF01d1d1806B9Bff2C51D7a3a3c800B9ba30",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x9Cb586909b22E05A25bFeC06427a7b47a32D765e",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xCA527e8c0104A857b261d62771c298730f68a7Df",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xFBdf3936DA819F475dB655A5660fEB5242d3e9b4",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xB3c0BAC05ac75B341511598c5b9eBBD45fEe51f8",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x14d2689232E10cE57228380b463b722D729BFE11",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xFa4c6FE224c271B9279856A9d363690D40f4977e",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x9310efD902f49111678c3c888058de7b6a8619B5",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x62FB91D60592455066c9798eaD81deDC93649fCB",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x2106752D23D9f7fEBD000332C8F0BaC5731E5F7d",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xD25Ac8cBFc2a4599EC21b7bC9edBc1d31CfBA7f0",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x667E313809295AD0060FfC8e10Cd128AD3c3634a",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xC99654cb18085CA406B98E2527EA089DcaF2FFB9",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x2E8f25fA4d1BCEa59bc8664e5ddeDC0b2F56dded",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x81367D260F0dEDAE614Fded6350a4c0aC5C77cd8",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xa73Cb050e073cC5B2394af61e154C02690a31a37",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x0c198F2A922801E4Bdf6fEA6Ef2A0396288eaa1D",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x134E5a995Af5DE7584e535c24b0f120c28AdBC7E",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xfD72f865E4F31D664de656b552D0D4808Bc825A4",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xC1690474001bD7303bFE7167Fa4525f32430BD2c",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x4968085C06E0001D48c589E900427DAf9e309a82",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xb931baB01b637C6bcB426C6f9d6f65298ACBe198",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xF5A45e3d44cCc86EB7eFf646Ab56301835f36c73",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x200aEaBf6605d9E1cBFC5A6B9e9c66421E162344",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xED54E5966770928f0d7Dc3aC927109c02a018ddf",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x70102982B80211D61aCb623b6F7E27AF2045C1BB",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xb61e38077FC10f3633321b3d0F150ea37439FeA4",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xc23a5423fC23C4aA295A18B071c571ade913E358",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "optimism",
+      "contractAddress": "0xdb0482cfad4789798623e64b15eeba01b16e917c",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "optimism",
+      "contractAddress": "0xa90424d5d3e770e8644103ab503ed775dd1318fd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "optimism",
+      "contractAddress": "0x3557ba345b01efa20a1bddc61f573bfd87195081",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "polygon",
+      "contractAddress": "0xc4e82ba0fe6763cbe5e9cbca0ba7cbd6f91c6018",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "polygon",
+      "contractAddress": "0x7cef6ed1e07079e174601d39066ad0856cb47988",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xBa00437Bb4f8b50Cc95a10C7b13D587D9781E9fa",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xA666bB1C177983BF59b78777fdfb3236aF129d71",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0x5F4BD598BE52813C3D66b095441aa9477Ab1a0E4",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xb931baB01b637C6bcB426C6f9d6f65298ACBe198",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xF3eBFB22D3eA6E6d57824181D481604B694F06f7",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x0735215757F4bf495B87FaC8164054344978DB9B",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x46c7dB8BD76Feb2f1525dbC696D14D835Fb32ecC",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x8f864121161B6bd4736AFeD840f4DF18171e7A26",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x896b7f457e016Ce81721acD5c70506f06abaD7Cd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x7de906Db8F72D313AcB7DEDA522bdF339f1350a0",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x90E213097f71203aA4427C88FA302c69672b0871",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xf9cf03F5E2C23e747b140E68E9EFa4b5B7C23bfC",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xC20Be17fcfcda9bBA6009Ea05A88378b3AA1FBD1",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x9750EeC077E9308CE337026f146Bba72750C4a67",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xa362B885671b3d1eCE6a11C91998F1CCB14f0be4",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x3BEF12dd7E04Dd26Beb9902793C358B73DDEacA5",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xca750d1461158f78ED2921DB1659bd7d6A984107",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x1cd426F38CDDe563e66630Fc9e6ff39A5225b9e7",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "telos",
+      "contractAddress": "0x5B10aE182C297ec76fE6fe0E3Da7c4797ceDE02D",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "telos",
+      "contractAddress": "0x6592578F00bf088ba357C721D342eD030ED51a99",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "telos",
+      "contractAddress": "0x071DAE7e08091A9a389571aa6B27eD3b36633182",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "xlayer",
+      "contractAddress": "0x3557ba345b01efa20a1bddc61f573bfd87195081",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKfjV9RNKJJCqPvBtK8L7Knykh7DNWvnYt",
+      "reason": "solicitation_or_domain_metadata"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TAt4ufXFaHZAEV44ev7onThjTnF61SEaEM",
+      "reason": "solicitation_or_domain_metadata"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TEfg1LnM3yApCjAgax35wDg6SRpmZFuQS3",
+      "reason": "solicitation_or_domain_metadata"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVh4nokXoSxQGxh7T6Tn6NTb2uSUhAhLwb",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TFefZs7uDTW2hnWAzJA3xxSVjWKJdbiG9e",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TWxt3jw2qm7kocH7agXtVqL7AJTPkC29rR",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TTQBdfP6zNmk2n6HN5poCMVfzr7j9DSdsy",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TTkyV7LtApRjacGDXQ2K4aitwxH32dumcZ",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVDKMkVYr4EqBkgyWRPjL285BRHFrWNmct",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "ABAq2R9gSpDDGguQxBk4u13s4ZYW6zbwKVBx15mCMG8",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "CLQsDGoGibdNPnVCFp8BAsN2unvyvb41Jd5USYwAnzAg",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "3KzAE8dPyJRgZ36Eh81v7WPwi6dm7bDhdMb8EAus2RAf",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "CP4w2B3og2TaFUpye1kr8pdeJwwahtESKppZnffN9n9d",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "9wX6Qz1Y5YQe71dfnFYFfZYXZhKqjYKQwdqfrRkmYUSX",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "7Zhxshgt7Ft6pHFYMrHE1epWdWre7sJ1Af1GhEUnitas",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "tarvmkuvslpxnwtspysc8vkh5u3hy1hbrn",
+      "reason": "emergency_hard_denylist"
+    }
+  ]
+}

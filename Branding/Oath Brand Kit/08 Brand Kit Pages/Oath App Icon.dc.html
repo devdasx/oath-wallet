@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script src="oath-icons.js"></script>
+<style>body{margin:0;background:#F2F2F0;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:#141416}a:hover{color:#3D6FF0}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 14px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 'Geist',system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 'Geist',system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 'Geist',system-ui,sans-serif;color:rgba(0,0,0,.5)}</style>
+</helmet>
+<section class="dv-turn" id="t5" data-screen-label="05 30 one-off marks">
+  <div class="dv-thd"><a class="dv-tid" href="#t5">5</a><span class="dv-tname">30 one-off marks — no shared parts, one colourway each</span></div>
+  <p style="max-width:760px;margin:0 0 28px;font:400 13.5px/1.55 'Geist',sans-serif;color:#56565C;text-wrap:pretty">Every mark here is its own drawing: no reused outlines, no swapped cut-outs, no recolours. What they share is only the language — one black form, colour bleeding in from its edges, a grey tile. Ids run 5-1 to 5-30.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;max-width:1720px">
+    <sc-for list="{{ oneoff }}" as="it" hint-placeholder-count="30">
+      <div id="{{ it.oid }}" style="display:flex;flex-direction:column;gap:14px;padding:18px;background:#FFFFFF;border:1px solid rgba(0,0,0,.07);border-radius:12px;scroll-margin-top:16px">
+        <div style="aspect-ratio:1;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 18px 34px -22px rgba(0,0,0,.4)">
+          <img src="{{ it.src }}" alt="{{ it.name }}" style="display:block;width:100%;height:100%">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+            <span style="font:600 16px/1.1 'Geist',sans-serif;letter-spacing:-.015em;color:#141416">{{ it.name }}</span>
+            <span style="font:500 10.5px/1 'Geist Mono',monospace;color:#8A8A90">{{ it.oid }}</span>
+          </div>
+          <p style="margin:0;font:400 12.5px/1.45 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">{{ it.copy }}</p>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button onClick="{{ it.dlPng }}" style="flex:1;height:28px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG 1024</button>
+          <button onClick="{{ it.dlSvg }}" style="flex:1;height:28px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <p class="dv-next">Try next: “take 5-7 and 5-17 to final” · “30 more one-offs” · “show my top 5 on a home screen”</p>
+</section>
+<section class="dv-turn" id="t3" data-screen-label="03 Different shapes">
+  <div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Six new shapes — diamond, crescent, hexagon, quadrants, arch, triangle</span></div>
+  <p style="max-width:760px;margin:0 0 28px;font:400 13.5px/1.55 'Geist',sans-serif;color:#56565C;text-wrap:pretty">Moving away from the plain circle. The rules don’t change: one black form lit at its edges, one cut-out.</p>
+  <div class="dv-opts">
+    <div class="dv-opt" id="3a">
+      <div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>Prism — the O set in a diamond</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ prism.light }}" alt="Oath app icon, Prism" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Prism</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A cut gem with the O at its centre — rare, hard, valuable.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ prism.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ prism.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="3b">
+      <div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a>Eclipse — the O in shadow</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ eclipse.light }}" alt="Oath app icon, Eclipse" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Eclipse</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A crescent with one bright coin at its edge — private by default.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ eclipse.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ eclipse.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="3c">
+      <div class="dv-olabel"><a class="dv-oid" href="#3c">3c</a>Hex — the O as a block</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ hex.light }}" alt="Oath app icon, Hex" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Hex</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A hexagon cell, the building unit of every chain, hollowed into an O.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ hex.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ hex.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="3d">
+      <div class="dv-olabel"><a class="dv-oid" href="#3d">3d</a>Quadrant — the O in four parts</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ quad.light }}" alt="Oath app icon, Quadrant" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Quadrant</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">One ring split into four keys that only work together, with a core of light.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ quad.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ quad.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="3e">
+      <div class="dv-olabel"><a class="dv-oid" href="#3e">3e</a>Arch — the O as a gateway</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ arch.light }}" alt="Oath app icon, Arch" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Arch</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A doorway with a round top: the way into your money, and only yours.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ arch.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ arch.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="3f">
+      <div class="dv-olabel"><a class="dv-oid" href="#3f">3f</a>Delta — the O rising</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ delta.light }}" alt="Oath app icon, Delta" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Delta</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A sharp triangle carrying the O — change, growth, and the A in Oath.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ delta.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ delta.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="dv-next">Try next: “three riffs on <a class="dv-oid" href="#3c">3c</a>” · “<a class="dv-oid" href="#3a">3a</a> with the keyhole from <a class="dv-oid" href="#1a">1a</a>” · “show my favourites on an iPhone home screen”</p>
+</section>
+<section class="dv-turn" id="t2" data-screen-label="02 More Oath logos">
+  <div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Six more marks — same language as <a class="dv-oid" href="#1a">1a</a></span></div>
+  <p style="max-width:760px;margin:0 0 28px;font:400 13.5px/1.55 'Geist',sans-serif;color:#56565C;text-wrap:pretty">Same rules: one black form, four coloured lights at its corners, one cut-out symbol, grey tile. Each explores a different wallet idea.</p>
+  <div class="dv-opts">
+    <div class="dv-opt" id="2a">
+      <div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Coin — the O as money</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ coin.light }}" alt="Oath app icon, Coin" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Coin</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A solid disc with a square cut from its heart — the oldest coin shape, rebuilt as a modern mark.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ coin.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ coin.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="2b">
+      <div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a>Shield — the O on guard</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ shield.light }}" alt="Oath app icon, Shield" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Shield</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A shield carrying the O, with a single key slot standing inside it.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ shield.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ shield.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="2c">
+      <div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a>Ledger — the O as a chain of blocks</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ ledger.light }}" alt="Oath app icon, Ledger" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Ledger</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">One disc sliced into three stacked blocks — every transaction added to the record.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ ledger.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ ledger.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="2d">
+      <div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a>Key — the O as your private key</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ key.light }}" alt="Oath app icon, Key" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Key</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">The O becomes the bow of a key. Your keys, your coins.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ key.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ key.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="2e">
+      <div class="dv-olabel"><a class="dv-oid" href="#2e">2e</a>Orbit — the O holding a coin</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ orbit.light }}" alt="Oath app icon, Orbit" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Orbit</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">A heavy ring with one coin set into it, lit from within.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ orbit.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ orbit.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="2f">
+      <div class="dv-olabel"><a class="dv-oid" href="#2f">2f</a>Lock — the O as a padlock</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ lock.light }}" alt="Oath app icon, Lock" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Lock</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">The O’s curve lifts into a shackle over a solid body — locked by default.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ lock.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ lock.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="dv-next">Try next: “combine <a class="dv-oid" href="#2d">2d</a> with the glow of <a class="dv-oid" href="#1b">1b</a>” · “three riffs on <a class="dv-oid" href="#2e">2e</a>” · “<a class="dv-oid" href="#2b">2b</a> with the keyhole from <a class="dv-oid" href="#1a">1a</a>”</p>
+</section>
+<section class="dv-turn" id="t1" data-screen-label="01 Oath icon directions">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Oath — app icon, three directions</span></div>
+  <div class="dv-opts">
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Vault — the O as a lock</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ vault.light }}" alt="Oath app icon, Vault" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Vault</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">The O of Oath punched through a solid slab, a keyhole resting inside.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ vault.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ vault.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Vow — two rings, one promise</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ vow.light }}" alt="Oath app icon, Vow" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Vow</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">Two O’s linked into one bond — the oldest sign of a vow.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ vow.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ vow.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Pact — the O as a handshake</div>
+      <div class="dv-card" style="width:320px">
+        <div style="display:flex;justify-content:center;padding:40px 0 32px">
+          <div style="width:220px;height:220px;border-radius:22.5%;overflow:hidden;background:#E3E3E4;box-shadow:0 0 0 1px rgba(0,0,0,.05),0 24px 44px -24px rgba(0,0,0,.4)">
+            <img src="{{ pact.light }}" alt="Oath app icon, Pact" style="display:block;width:100%;height:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;padding:0 24px 24px">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font:600 19px/1.1 'Geist',sans-serif;letter-spacing:-.02em;color:#141416">Pact</span>
+            <p style="margin:0;font:400 13px/1.5 'Geist',sans-serif;color:#5C5C62;text-wrap:pretty">One O split and shifted: two halves meeting like a handshake.</p>
+          </div>
+          <div style="display:flex;gap:6px;padding-top:16px;border-top:1px solid rgba(0,0,0,.07)"><button onClick="{{ pact.dlLight }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">PNG</button><button onClick="{{ pact.dlSvg }}" style="height:28px;padding:0 10px;border-radius:7px;border:1px solid rgba(0,0,0,.12);background:#FFFFFF;font:500 11px/1 'Geist Mono',monospace;color:#141416;cursor:pointer" style-hover="background:#141416;color:#FFFFFF;border-color:#141416">SVG</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Prism&quot;,&quot;Aurora&quot;,&quot;Gold&quot;],&quot;default&quot;:&quot;Prism&quot;,&quot;tsType&quot;:&quot;'Prism' | 'Aurora' | 'Gold'&quot;,&quot;section&quot;:&quot;Icon&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0.4,&quot;max&quot;:1.4,&quot;step&quot;:0.05,&quot;default&quot;:1.4,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Icon&quot;},&quot;lights&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Four&quot;,&quot;Two&quot;],&quot;default&quot;:&quot;Four&quot;,&quot;tsType&quot;:&quot;'Four' | 'Two'&quot;,&quot;section&quot;:&quot;Icon&quot;}}">
+class Component extends DCLogic {
+  state = { ready: typeof window !== 'undefined' && !!window.OathIcons };
+
+  componentDidMount() {
+    const tick = () => {
+      if (window.OathIcons) this.setState({ ready: true });
+      else this._t = setTimeout(tick, 40);
+    };
+    if (!this.state.ready) tick();
+  }
+
+  componentWillUnmount() { clearTimeout(this._t); }
+
+  opts() {
+    return {
+      palette: this.props.palette ?? 'Prism',
+      glow: this.props.glow ?? 1,
+      lights: this.props.lights ?? 'Four',
+    };
+  }
+
+  save(blob, name) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+
+  // Full-bleed 1024 master (iOS applies its own corner mask). Tinted exports as grayscale, per Apple.
+  exportIcon(id, mode, fmt) {
+    const I = window.OathIcons;
+    if (!I) return;
+    const svg = I.build(id, mode, Object.assign({}, this.opts(), { tint: '#FFFFFF' }));
+    const name = 'oath-' + id + '-' + mode;
+    if (fmt === 'svg') return this.save(new Blob([svg], { type: 'image/svg+xml' }), name + '.svg');
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = c.height = 1024;
+      c.getContext('2d').drawImage(img, 0, 0, 1024, 1024);
+      c.toBlob(b => b && this.save(b, name + '-1024.png'), 'image/png');
+    };
+    img.src = I.url(svg);
+  }
+
+  renderVals() {
+    const I = this.state.ready && window.OathIcons;
+    const o = this.opts();
+    const BLANK = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2F%3E';
+    const pack = id => {
+      const u = (mode, extra) => (I ? I.url(I.build(id, mode, Object.assign({}, o, extra))) : BLANK);
+      return {
+        light: u('light'),
+        dark: u('dark'),
+        tinted: u('tinted', { tint: '#F0C36A' }),
+        markLight: u('light', { mark: true }),
+        markDark: u('dark', { mark: true }),
+        dlLight: () => this.exportIcon(id, 'light', 'png'),
+        dlDark: () => this.exportIcon(id, 'dark', 'png'),
+        dlTinted: () => this.exportIcon(id, 'tinted', 'png'),
+        dlSvg: () => this.exportIcon(id, 'light', 'svg'),
+      };
+    };
+    const oneoff = (I ? I.oneoff : []).map(it => ({
+      oid: '5-' + it.n,
+      name: it.name,
+      copy: it.copy,
+      src: I.url(I.build(it.id, 'light', o)),
+      dlPng: () => this.exportIcon(it.id, 'light', 'png'),
+      dlSvg: () => this.exportIcon(it.id, 'light', 'svg'),
+    }));
+    return { oneoff, vault: pack('vault'), vow: pack('vow'), pact: pack('pact'), coin: pack('coin'), shield: pack('shield'), ledger: pack('ledger'), key: pack('key'), orbit: pack('orbit'), lock: pack('lock'), prism: pack('prism'), eclipse: pack('eclipse'), hex: pack('hex'), quad: pack('quad'), arch: pack('arch'), delta: pack('delta') };
+  }
+}
+</script>
+</body>
+</html>

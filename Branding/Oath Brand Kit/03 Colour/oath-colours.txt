@@ -1,0 +1,36 @@
+OATH — COLOUR
+
+BRAND
+  Ink              #0B0B0D   RGB 11 11 13
+  Paper            #F4F4F2   RGB 244 244 242
+  Tile             #E3E3E4   RGB 227 227 228
+  Mist             #8A8A90   RGB 138 138 144
+
+ACCENTS
+  Amber            #D98A12   RGB 217 138 18
+  Signal           #3D6FF0   RGB 61 111 240
+  Oath Red         #E3124F   RGB 227 18 79
+  Teal             #12A88E   RGB 18 168 142
+
+LIGHT
+  background       #F4F4F2   RGB 244 244 242
+  surface          #FFFFFF   RGB 255 255 255
+  border           #E6E6E4   RGB 230 230 228
+  text             #0B0B0D   RGB 11 11 13
+  text-muted       #6A6A70   RGB 106 106 112
+  primary-button   #0B0B0D   RGB 11 11 13
+  positive         #0E7A67   RGB 14 122 103
+  negative         #B00E3E   RGB 176 14 62
+
+DARK
+  background       #0B0B0D   RGB 11 11 13
+  surface          #161619   RGB 22 22 25
+  border           #26262B   RGB 38 38 43
+  text             #EDEDEF   RGB 237 237 239
+  text-muted       #9A9AA0   RGB 154 154 160
+  primary-button   #EDEDEF   RGB 237 237 239
+  positive         #2FD1B2   RGB 47 209 178
+  negative         #FF5C8A   RGB 255 92 138
+
+The four accents appear together only in the glow (mark, app icon, hero and social grounds).
+Alone, they are functional: Amber = pending, Signal = links/focus, Oath Red = loss/destructive, Teal = gain/success.

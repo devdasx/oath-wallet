@@ -1,0 +1,58 @@
+{
+  "addr_history": {
+    "1HFxLkPTtMZeo5mDpZn6CF9sh4h2ycknwr": [],
+    "1Q1pE5vPGEEMqRcVRMbtBK842Y6Pzo6nK9": [],
+    "3PFpzMLrKWsphFtc8BesF3MGPnimKMuF4x": [],
+    "bc1ql3e9pgs3mmwuwrh95fecme0s0qtn2880lsvsd5": []
+  },
+  "addresses": {
+    "1HFxLkPTtMZeo5mDpZn6CF9sh4h2ycknwr": {
+      "pubkey": "04466d7fcae563e5cb09a0d1870bb580344804617879a14949cf22285f1bae3f276728176c3c6431f8eeda4538dc37c865e2784f3a9e77d044f33e407797e1278a",
+      "type": "p2pkh"
+    },
+    "1Q1pE5vPGEEMqRcVRMbtBK842Y6Pzo6nK9": {
+      "pubkey": "034f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa",
+      "type": "p2pkh"
+    },
+    "3PFpzMLrKWsphFtc8BesF3MGPnimKMuF4x": {
+      "pubkey": "034f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa",
+      "type": "p2wpkh-p2sh"
+    },
+    "bc1ql3e9pgs3mmwuwrh95fecme0s0qtn2880lsvsd5": {
+      "pubkey": "034f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa",
+      "type": "p2wpkh"
+    }
+  },
+  "db_metadata": {
+    "creation_timestamp": 1789102116,
+    "first_electrum_version_used": "4.8.1"
+  },
+  "fiat_value": {},
+  "frozen_coins": {},
+  "gap_limit": 27,
+  "gap_limit_for_change": 9,
+  "genesis_blockhash": "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
+  "invoices": {},
+  "keystore": {
+    "keypairs": {
+      "034f355bdcb7cc0af728ef3cceb9615d90684bb5b2ca5f859ab0f0b704075871aa": "xthhTMo23bMmei+K97YbLWWzoihpjNCRYAp37SDGNJUwEs7m1k6VdXdGq6Yi6MJn33HzHu9g9nArHxL1gP36hxtkmpW+KyODRrRijjVzUMA=",
+      "04466d7fcae563e5cb09a0d1870bb580344804617879a14949cf22285f1bae3f276728176c3c6431f8eeda4538dc37c865e2784f3a9e77d044f33e407797e1278a": "ec4XUMfH+uLoxvfrmUAroq3Gkp3scYTfv9IpC6WhL34BTmEAXdhxMoPUgrs97BOO89WOyZkeix5vaU4I850m5Or7w+HaYg//oFB3ooy5VxQ="
+    },
+    "pw_hash_version": 1,
+    "type": "imported"
+  },
+  "labels": {},
+  "num_parents": {},
+  "payment_requests": {},
+  "prevouts_by_scripthash": {},
+  "seed_version": 71,
+  "spent_outpoints": {},
+  "transactions": {},
+  "tx_batches": {},
+  "tx_fees": {},
+  "txi": {},
+  "txo": {},
+  "use_encryption": true,
+  "verified_tx3": {},
+  "wallet_type": "imported"
+}

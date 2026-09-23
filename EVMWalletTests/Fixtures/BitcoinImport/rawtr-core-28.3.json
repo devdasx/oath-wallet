@@ -1,0 +1,58 @@
+[
+  {
+    "index": 1,
+    "descriptor": "rawtr(KxtzNrvNoYwgviHWKZo2rvwmTv3cfw6AJHVVXngZJjsjMCv4GFBu)#yum3jdq9",
+    "address": "bc1pynkztuwtt70dx44045jgmtygc8t44exf3c6wr967z9jau20uhzxqle6vu7",
+    "script": "512024ec25f1cb5f9ed356afad248dac88c1d75ae4c98e34e1975e1165de29fcb88c",
+    "bip86": "bc1p97aysqgalumyfxzs2deppgf9adth37mr4mszmpvrkpsdujkcm9esedw3ka"
+  },
+  {
+    "index": 2,
+    "descriptor": "rawtr(L4p2JzBK1JF4qDYRWkUXCktztwQLqjhbVkSh4cfiSn33By3fVeVy)#gzjnga8u",
+    "address": "bc1papqhke5df69wu30qpf5klyy03slpctd73l8hyuk34gux8sf6uhfqe2vteg",
+    "script": "5120e8417b668d4e8aee45e00a696f908f8c3e1c2dbe8fcf7272d1aa3863c13ae5d2",
+    "bip86": "bc1pyf72yrs7en803qwky470ghlwgt0aqkmxgvx7wwcy8m2fvsxd6z4q889v95"
+  },
+  {
+    "index": 3,
+    "descriptor": "rawtr(L2c6kmTutKSqqzTSVHcGsKS3XysRG2J4PeamQmyNmV1h1WnKaPCz)#46rn4kul",
+    "address": "bc1pxjle9f5ylpfkl28y8vep5jsg2xs3slfgqhy7ggayevyzxyhqzzgq43cakq",
+    "script": "512034bf92a684f8536fa8e43b321a4a0851a1187d2805c9e423a4cb082312e01090",
+    "bip86": "bc1pn5huhv7vq8fhcprgau7c5sepp6wg4deq9tkcw2ccln7r79htqxrqsyn9jr"
+  },
+  {
+    "index": 4,
+    "descriptor": "rawtr(L4uBc6o2zNHkNGDDB6GLCTT235QdFayax5iNC2a3oVCRX34f72hN)#kh9383mc",
+    "address": "bc1p5nswcg9antgjnrje36637mq3hr96hln9ve6xshat0cz040ntyuvs3jrg87",
+    "script": "5120a4e0ec20bd9ad1298e598eb51f6c11b8cbabfe656674685fab7e04fabe6b2719",
+    "bip86": "bc1psrpk8rc7j3jmjqjlcpjjknu9h70ar3qlg80z0xs583ujylsqtk6q6vn3lk"
+  },
+  {
+    "index": 5,
+    "descriptor": "rawtr(L5Eh9cbJ4Wr7gv8RwuQJmjSseMDbJ49wyWivvNDKAxp6u4ysnwxP)#yw8uueys",
+    "address": "bc1ppzg9je0l7shljrc9hnmgz2s4pfvqcnakm7gnmy8p3gtpc4ath45srpkpla",
+    "script": "512008905965fff42ff90f05bcf6812a150a580c4fb6df913d90e18a161c57abbd69",
+    "bip86": "bc1pkt9h6djjzaatn4wtulgsma9yqqc6pkgtwucshe2wctpeqlr9w9sqazyvcl"
+  },
+  {
+    "index": 6,
+    "descriptor": "rawtr(Kwm3VmpCfcGYdj1fp7bwHhKYbGX3Deod16DZqvB6owvifEB2LPir)#rxasxanc",
+    "address": "bc1p9r4u9rznmw5qgkh68km4vsa9r3efvkrgmyv4nqqa3uq2tsmhfses7qedwg",
+    "script": "512028ebc28c53dba8045afa3db75643a51c72965868d91959801d8f00a5c3774c33",
+    "bip86": "bc1pm5lqzznczmg2v05vkslxn6kd9nd6f0svpg5y3cqaw3c0v6any67sfkd2cy"
+  },
+  {
+    "index": 7,
+    "descriptor": "rawtr(L4Q4dDA4nALJZbq6FqCQBVxi9W4bZ5cUtq3Q2hbaecdSb32mjDZg)#9d6yzmt3",
+    "address": "bc1p65nqur5wt2juaxxevvty32vhsk74a9vykw3x9xw6d84tq6dyl5zqna3z2j",
+    "script": "5120d5260e0e8e5aa5ce98d9631648a99785bd5e9584b3a26299da69eab069a4fd04",
+    "bip86": "bc1p2v0qujkmc0d4vhjeqnzjzvcaen9arm7kdcspk2p43t62xywa74wsn7f86l"
+  },
+  {
+    "index": 8,
+    "descriptor": "rawtr(Ky89kFJYgk6ftojKYuErzq727UAEr13Q8CPoEgqdUjLG5gpZ5eGR)#27x5rksa",
+    "address": "bc1p64l8u6f5fj6tgqntcp06k3akqvkhmnmypxek7v6z7p85vwjvzkzqdnu94x",
+    "script": "5120d57e7e69344cb4b4026bc05fab47b6032d7dcf6409b36f3342f04f463a4c1584",
+    "bip86": "bc1pqqfdm3tpszannup7thyv0wwxxqhvvh6fmpt0hdpya66fr8e56h2qhqa8ft"
+  }
+]

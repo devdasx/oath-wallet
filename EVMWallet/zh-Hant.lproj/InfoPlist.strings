@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  zh-Hant — native translations.
+*/
+
+"NSCameraUsageDescription" = "允許 Oath 使用相機，以安全掃描錢包 QR 碼。";
+"NSFaceIDUsageDescription" = "允許 Oath 使用 Face ID 解鎖並保護你的錢包。";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "允許 Oath 直接連線至你的另一部 iPhone，並安全傳輸加密錢包資料。";

@@ -1,0 +1,5151 @@
+[
+  {
+    "name": "custom-0-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1EEL73Y4eVNh24dAxyyTzJZxAPDJJd58o7",
+        "wif": "p2pkh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "18kRRSUpPRGytH6fLCyHS27fnfPzPKL7DZ",
+        "wif": "p2pkh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "18CSz4KRjFmbPArL6mX3Zd3vsE7CHigNVR",
+        "wif": "p2pkh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "13CkJ1qorqba4cZotdqRY4XdEb55yPtKRH",
+        "wif": "p2pkh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "14JUaN8NRCodXqPbEgijquZNzqA9cTMmnu",
+        "wif": "p2pkh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1FnzpeLRcY3KiW4wuriAE2cSJXz3d5zDPH",
+        "wif": "p2pkh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1PPV9jCimNfyx9vqVAmSjCJFBa34t8Fxko",
+        "wif": "p2pkh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1KnV6rfxNekMgjvgEM8eUEGfMiomv9wcvM",
+        "wif": "p2pkh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1FLpJ3TV5ZTqANFGgALgWgriYsbTpT6jYC",
+        "wif": "p2pkh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "12CAnAszCg5PbarrK3irsDceLfgPM24wzh",
+        "wif": "p2pkh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "13tr8D9j11tqTLF1imbKdYZyj8g9ziL8Nj",
+        "wif": "p2pkh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "19foykcCJLBUwwaiWdXsZC8aK418J4GAaN",
+        "wif": "p2pkh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1EEL73Y4eVNh24dAxyyTzJZxAPDJJd58o7",
+        "wif": "p2pkh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "18kRRSUpPRGytH6fLCyHS27fnfPzPKL7DZ",
+        "wif": "p2pkh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "18CSz4KRjFmbPArL6mX3Zd3vsE7CHigNVR",
+        "wif": "p2pkh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "13CkJ1qorqba4cZotdqRY4XdEb55yPtKRH",
+        "wif": "p2pkh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "14JUaN8NRCodXqPbEgijquZNzqA9cTMmnu",
+        "wif": "p2pkh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1FnzpeLRcY3KiW4wuriAE2cSJXz3d5zDPH",
+        "wif": "p2pkh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1PPV9jCimNfyx9vqVAmSjCJFBa34t8Fxko",
+        "wif": "p2pkh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1KnV6rfxNekMgjvgEM8eUEGfMiomv9wcvM",
+        "wif": "p2pkh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1FLpJ3TV5ZTqANFGgALgWgriYsbTpT6jYC",
+        "wif": "p2pkh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "12CAnAszCg5PbarrK3irsDceLfgPM24wzh",
+        "wif": "p2pkh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "13tr8D9j11tqTLF1imbKdYZyj8g9ziL8Nj",
+        "wif": "p2pkh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "19foykcCJLBUwwaiWdXsZC8aK418J4GAaN",
+        "wif": "p2pkh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1EEL73Y4eVNh24dAxyyTzJZxAPDJJd58o7",
+        "wif": "p2pkh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "18kRRSUpPRGytH6fLCyHS27fnfPzPKL7DZ",
+        "wif": "p2pkh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "18CSz4KRjFmbPArL6mX3Zd3vsE7CHigNVR",
+        "wif": "p2pkh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "13CkJ1qorqba4cZotdqRY4XdEb55yPtKRH",
+        "wif": "p2pkh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "14JUaN8NRCodXqPbEgijquZNzqA9cTMmnu",
+        "wif": "p2pkh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1FnzpeLRcY3KiW4wuriAE2cSJXz3d5zDPH",
+        "wif": "p2pkh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1PPV9jCimNfyx9vqVAmSjCJFBa34t8Fxko",
+        "wif": "p2pkh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1KnV6rfxNekMgjvgEM8eUEGfMiomv9wcvM",
+        "wif": "p2pkh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1FLpJ3TV5ZTqANFGgALgWgriYsbTpT6jYC",
+        "wif": "p2pkh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "12CAnAszCg5PbarrK3irsDceLfgPM24wzh",
+        "wif": "p2pkh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "13tr8D9j11tqTLF1imbKdYZyj8g9ziL8Nj",
+        "wif": "p2pkh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "19foykcCJLBUwwaiWdXsZC8aK418J4GAaN",
+        "wif": "p2pkh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-p2wpkh-p2sh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3BFPTHZverAxaiSJGQoErxvVj28wLg1RnV",
+        "wif": "p2wpkh-p2sh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3Dx9Rzxpds119E5Ack5czb58X8RqLxXTaQ",
+        "wif": "p2wpkh-p2sh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "3HhXmw8mfpVCFKdVG7UBoEPuhyKqCTvgZL",
+        "wif": "p2wpkh-p2sh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3Ax3YBu1EH22wW7oY3x88Yegf9eBkbv9E7",
+        "wif": "p2wpkh-p2sh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3ESTotLDgPHdYSbWtivujsa4kryMjmNnv5",
+        "wif": "p2wpkh-p2sh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3CTQvVBTAy6V82Qt6V4252sPQnzUUUDPww",
+        "wif": "p2wpkh-p2sh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "375V8MmCvHaaWUU3jKTyvw5oNVXpmW4w1J",
+        "wif": "p2wpkh-p2sh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "389wDbE5Rx4FheJ887rsuW9PASSqqyFX9q",
+        "wif": "p2wpkh-p2sh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "33QP5tnvk4is3aNuoLHKAXTouKjjyJmzyF",
+        "wif": "p2wpkh-p2sh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "3CvYb27ZB2LHatEq8nfB6Ldmh4N3uWy874",
+        "wif": "p2wpkh-p2sh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3Ned6chMnoLNyt6hF5ZWfbYLtiBFGhBAk9",
+        "wif": "p2wpkh-p2sh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3EWp5aFNv3T61HpWA28ZeXmFKJCbrtsmpZ",
+        "wif": "p2wpkh-p2sh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-p2wpkh-p2sh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3BFPTHZverAxaiSJGQoErxvVj28wLg1RnV",
+        "wif": "p2wpkh-p2sh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3Dx9Rzxpds119E5Ack5czb58X8RqLxXTaQ",
+        "wif": "p2wpkh-p2sh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "3HhXmw8mfpVCFKdVG7UBoEPuhyKqCTvgZL",
+        "wif": "p2wpkh-p2sh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3Ax3YBu1EH22wW7oY3x88Yegf9eBkbv9E7",
+        "wif": "p2wpkh-p2sh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3ESTotLDgPHdYSbWtivujsa4kryMjmNnv5",
+        "wif": "p2wpkh-p2sh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3CTQvVBTAy6V82Qt6V4252sPQnzUUUDPww",
+        "wif": "p2wpkh-p2sh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "375V8MmCvHaaWUU3jKTyvw5oNVXpmW4w1J",
+        "wif": "p2wpkh-p2sh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "389wDbE5Rx4FheJ887rsuW9PASSqqyFX9q",
+        "wif": "p2wpkh-p2sh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "33QP5tnvk4is3aNuoLHKAXTouKjjyJmzyF",
+        "wif": "p2wpkh-p2sh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "3CvYb27ZB2LHatEq8nfB6Ldmh4N3uWy874",
+        "wif": "p2wpkh-p2sh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3Ned6chMnoLNyt6hF5ZWfbYLtiBFGhBAk9",
+        "wif": "p2wpkh-p2sh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3EWp5aFNv3T61HpWA28ZeXmFKJCbrtsmpZ",
+        "wif": "p2wpkh-p2sh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-p2wpkh-p2sh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3BFPTHZverAxaiSJGQoErxvVj28wLg1RnV",
+        "wif": "p2wpkh-p2sh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3Dx9Rzxpds119E5Ack5czb58X8RqLxXTaQ",
+        "wif": "p2wpkh-p2sh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "3HhXmw8mfpVCFKdVG7UBoEPuhyKqCTvgZL",
+        "wif": "p2wpkh-p2sh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3Ax3YBu1EH22wW7oY3x88Yegf9eBkbv9E7",
+        "wif": "p2wpkh-p2sh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3ESTotLDgPHdYSbWtivujsa4kryMjmNnv5",
+        "wif": "p2wpkh-p2sh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3CTQvVBTAy6V82Qt6V4252sPQnzUUUDPww",
+        "wif": "p2wpkh-p2sh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "375V8MmCvHaaWUU3jKTyvw5oNVXpmW4w1J",
+        "wif": "p2wpkh-p2sh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "389wDbE5Rx4FheJ887rsuW9PASSqqyFX9q",
+        "wif": "p2wpkh-p2sh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "33QP5tnvk4is3aNuoLHKAXTouKjjyJmzyF",
+        "wif": "p2wpkh-p2sh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "3CvYb27ZB2LHatEq8nfB6Ldmh4N3uWy874",
+        "wif": "p2wpkh-p2sh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3Ned6chMnoLNyt6hF5ZWfbYLtiBFGhBAk9",
+        "wif": "p2wpkh-p2sh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3EWp5aFNv3T61HpWA28ZeXmFKJCbrtsmpZ",
+        "wif": "p2wpkh-p2sh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-p2wpkh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qjy006ad3d62zs8cn6nywdqmwgqpmymkcmpue8v",
+        "wif": "p2wpkh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1q2nljw8p4tu9s38xkll2dpstmgv2zf3sqg6rvjx",
+        "wif": "p2wpkh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qfmej2mdq0v7hdpq65vwpza5z4jhxkkrdmk0vfu",
+        "wif": "p2wpkh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qrq50waz4fzqzxwht4etwg9cytm4e69dxlhf4kh",
+        "wif": "p2wpkh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qysm80fxzv7x8garvjg6tpypsp6zjwz7dzshug8",
+        "wif": "p2wpkh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1q5fzt7py36we2halw03vjljue2cx8rv3t74tfpe",
+        "wif": "p2wpkh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q7kfk45q9ffm8z7yllfvv4ax2tzhvjv4pvcaqf9",
+        "wif": "p2wpkh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qecx8p8feuk98fvvnf8s95dk73qer28ltefl8c2",
+        "wif": "p2wpkh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qn4gjffvdtd59nsuuk85qah88hj3jcsvnu5asej",
+        "wif": "p2wpkh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qp52d6sjcfj4smvdj7urpex8eqnaf5kue6acknt",
+        "wif": "p2wpkh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qr7l83acul78lsy5sepu9undn6jacea6p6ue253",
+        "wif": "p2wpkh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qtuvqwjjay05duvsm9qq72xemq6gc749l7adnfk",
+        "wif": "p2wpkh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-p2wpkh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qjy006ad3d62zs8cn6nywdqmwgqpmymkcmpue8v",
+        "wif": "p2wpkh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1q2nljw8p4tu9s38xkll2dpstmgv2zf3sqg6rvjx",
+        "wif": "p2wpkh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qfmej2mdq0v7hdpq65vwpza5z4jhxkkrdmk0vfu",
+        "wif": "p2wpkh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qrq50waz4fzqzxwht4etwg9cytm4e69dxlhf4kh",
+        "wif": "p2wpkh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qysm80fxzv7x8garvjg6tpypsp6zjwz7dzshug8",
+        "wif": "p2wpkh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1q5fzt7py36we2halw03vjljue2cx8rv3t74tfpe",
+        "wif": "p2wpkh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q7kfk45q9ffm8z7yllfvv4ax2tzhvjv4pvcaqf9",
+        "wif": "p2wpkh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qecx8p8feuk98fvvnf8s95dk73qer28ltefl8c2",
+        "wif": "p2wpkh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qn4gjffvdtd59nsuuk85qah88hj3jcsvnu5asej",
+        "wif": "p2wpkh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qp52d6sjcfj4smvdj7urpex8eqnaf5kue6acknt",
+        "wif": "p2wpkh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qr7l83acul78lsy5sepu9undn6jacea6p6ue253",
+        "wif": "p2wpkh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qtuvqwjjay05duvsm9qq72xemq6gc749l7adnfk",
+        "wif": "p2wpkh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-0-p2wpkh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qjy006ad3d62zs8cn6nywdqmwgqpmymkcmpue8v",
+        "wif": "p2wpkh:KypcYP6FM484hQ56tzYT21K4TzC4LMXAsHy8ZEJHkFu3331reRjp"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1q2nljw8p4tu9s38xkll2dpstmgv2zf3sqg6rvjx",
+        "wif": "p2wpkh:L5iWrqtLPDH1NnXmBQRoxPWLjSC5P6FKA6PVkRPzvLsWWL4egtTu"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qfmej2mdq0v7hdpq65vwpza5z4jhxkkrdmk0vfu",
+        "wif": "p2wpkh:L4tY8gLd9TAbfR5bpNoHXQ4sAYuUUg1wVUyjdubMZeie3uvqnDUZ"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qrq50waz4fzqzxwht4etwg9cytm4e69dxlhf4kh",
+        "wif": "p2wpkh:L1KN1ZaGdHYTDbJKeUkCk7UwV7drgSoxatP9cPHVgohNwfQt3ikT"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qysm80fxzv7x8garvjg6tpypsp6zjwz7dzshug8",
+        "wif": "p2wpkh:L3w3ZipvY1rWbnvDbpxbMTgERkf8CCAnGFQ66KFgMEpTpqmraLUe"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1q5fzt7py36we2halw03vjljue2cx8rv3t74tfpe",
+        "wif": "p2wpkh:L4EoK55YcEHdQycBTSpsE1tMEAGsoycU81i3HhySBbgLqFhFzBjn"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q7kfk45q9ffm8z7yllfvv4ax2tzhvjv4pvcaqf9",
+        "wif": "p2wpkh:L3SkXa8CjheR5NLJmiihFUZQgMq3jCPPVQPpyYTbs3CV3trNUL11"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qecx8p8feuk98fvvnf8s95dk73qer28ltefl8c2",
+        "wif": "p2wpkh:Kzo3piKqQHsLfNct8wvwjq1rFxewd8chuF954nzyuHe6NQL5aueN"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qn4gjffvdtd59nsuuk85qah88hj3jcsvnu5asej",
+        "wif": "p2wpkh:L4auppXmPxshsMkfoXdNe524GgyLAAwU3XV9voBNiZTP8nZhbJHG"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qp52d6sjcfj4smvdj7urpex8eqnaf5kue6acknt",
+        "wif": "p2wpkh:L52uz5MNs9UwdqZhiBuY6y5kgGDt1rycNCAQsQ9GdunTf9tp2M1K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qr7l83acul78lsy5sepu9undn6jacea6p6ue253",
+        "wif": "p2wpkh:L35XAdY3ZgTTxw5AKSZiTyBiEgFAZrgTK4z71EKwi1bYUsCGvL7N"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qtuvqwjjay05duvsm9qq72xemq6gc749l7adnfk",
+        "wif": "p2wpkh:KwDvepdss8McDn1xmqk2zth9JKo7t1Nb3ESegipFbd8qSJjc2uNa"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "178WhGGSQVEM5zL1yoMvxwm7yHPT783aos",
+        "wif": "p2pkh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1368N5yvgQ2V4YD2DsSKPMz9TPpWDSAFER",
+        "wif": "p2pkh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1NuoQQEVjkwyBWNQynrGTiv4NrJXVYrA9V",
+        "wif": "p2pkh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1MMA61SuSM6149TbhafqP8rWGskQkiVGpy",
+        "wif": "p2pkh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1Q7ukdQX4qBBmm7iX85xwwP2cfb4RVpwJM",
+        "wif": "p2pkh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1AdPqSgX98GuiUemVAma2WXPhVeyAVvg5j",
+        "wif": "p2pkh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "176fc4BJ57DT5kZ8cBkwUvUaTPFukJBaDv",
+        "wif": "p2pkh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1NRwTUUdpjX76ztPNgzAnGYpipZgttj9xD",
+        "wif": "p2pkh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "12qKc8x9qWbYrEWtU32cEk28TCm1R79SBX",
+        "wif": "p2pkh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "15atXgZxCagxRQSqi6M5yP7c8GYbtK8DbG",
+        "wif": "p2pkh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1LEh9EF2C4gnTiZRScpJGfegLSui4wM7rk",
+        "wif": "p2pkh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "18hHToBvd4Ai4kJGLAtz9uhSmpebBJWCEa",
+        "wif": "p2pkh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "178WhGGSQVEM5zL1yoMvxwm7yHPT783aos",
+        "wif": "p2pkh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1368N5yvgQ2V4YD2DsSKPMz9TPpWDSAFER",
+        "wif": "p2pkh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1NuoQQEVjkwyBWNQynrGTiv4NrJXVYrA9V",
+        "wif": "p2pkh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1MMA61SuSM6149TbhafqP8rWGskQkiVGpy",
+        "wif": "p2pkh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1Q7ukdQX4qBBmm7iX85xwwP2cfb4RVpwJM",
+        "wif": "p2pkh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1AdPqSgX98GuiUemVAma2WXPhVeyAVvg5j",
+        "wif": "p2pkh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "176fc4BJ57DT5kZ8cBkwUvUaTPFukJBaDv",
+        "wif": "p2pkh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1NRwTUUdpjX76ztPNgzAnGYpipZgttj9xD",
+        "wif": "p2pkh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "12qKc8x9qWbYrEWtU32cEk28TCm1R79SBX",
+        "wif": "p2pkh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "15atXgZxCagxRQSqi6M5yP7c8GYbtK8DbG",
+        "wif": "p2pkh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1LEh9EF2C4gnTiZRScpJGfegLSui4wM7rk",
+        "wif": "p2pkh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "18hHToBvd4Ai4kJGLAtz9uhSmpebBJWCEa",
+        "wif": "p2pkh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "178WhGGSQVEM5zL1yoMvxwm7yHPT783aos",
+        "wif": "p2pkh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1368N5yvgQ2V4YD2DsSKPMz9TPpWDSAFER",
+        "wif": "p2pkh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1NuoQQEVjkwyBWNQynrGTiv4NrJXVYrA9V",
+        "wif": "p2pkh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1MMA61SuSM6149TbhafqP8rWGskQkiVGpy",
+        "wif": "p2pkh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1Q7ukdQX4qBBmm7iX85xwwP2cfb4RVpwJM",
+        "wif": "p2pkh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1AdPqSgX98GuiUemVAma2WXPhVeyAVvg5j",
+        "wif": "p2pkh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "176fc4BJ57DT5kZ8cBkwUvUaTPFukJBaDv",
+        "wif": "p2pkh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1NRwTUUdpjX76ztPNgzAnGYpipZgttj9xD",
+        "wif": "p2pkh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "12qKc8x9qWbYrEWtU32cEk28TCm1R79SBX",
+        "wif": "p2pkh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "15atXgZxCagxRQSqi6M5yP7c8GYbtK8DbG",
+        "wif": "p2pkh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1LEh9EF2C4gnTiZRScpJGfegLSui4wM7rk",
+        "wif": "p2pkh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "18hHToBvd4Ai4kJGLAtz9uhSmpebBJWCEa",
+        "wif": "p2pkh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-p2wpkh-p2sh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3MYEvekYb8MsVZju8zkY8MNJzkk1smo6jN",
+        "wif": "p2wpkh-p2sh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "39d2MQ1XjRZXprsWn3NzJRbvMpfsSFL4Uz",
+        "wif": "p2wpkh-p2sh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "3DHbHt3tmx6DVi1EY4ry5SbRmSCuHV7Bif",
+        "wif": "p2wpkh-p2sh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "39D1bduVxZPsp2PwBKfESaxDC1oe15SmpT",
+        "wif": "p2wpkh-p2sh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3NDTPHWtxxNeTNnPWyoPMXw9gGwFDyriaU",
+        "wif": "p2wpkh-p2sh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "398QQeVDiQQBxLpszQrEk3QVe9Vi6xuW5U",
+        "wif": "p2wpkh-p2sh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "3HhvW2MiTcqdWU2K5rXb1vuqsLWJEQYBrP",
+        "wif": "p2wpkh-p2sh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "33AmuRpJSgCttziUcr4CWd77LyjBWckRF5",
+        "wif": "p2wpkh-p2sh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "3LtzMdgxSoYYyf1qqYHDF7xoxx8XY2vgEe",
+        "wif": "p2wpkh-p2sh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "33enZrQpuxzCpzqJtnpG4LdgUQDrCiC5a7",
+        "wif": "p2wpkh-p2sh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "36QNnAbYzyu9d9JfSDQ14eF9pQ6iuc1yuT",
+        "wif": "p2wpkh-p2sh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3GMtPmEtwX4UeTibChAjS53MUoxVHc6a8J",
+        "wif": "p2wpkh-p2sh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-p2wpkh-p2sh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3MYEvekYb8MsVZju8zkY8MNJzkk1smo6jN",
+        "wif": "p2wpkh-p2sh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "39d2MQ1XjRZXprsWn3NzJRbvMpfsSFL4Uz",
+        "wif": "p2wpkh-p2sh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "3DHbHt3tmx6DVi1EY4ry5SbRmSCuHV7Bif",
+        "wif": "p2wpkh-p2sh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "39D1bduVxZPsp2PwBKfESaxDC1oe15SmpT",
+        "wif": "p2wpkh-p2sh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3NDTPHWtxxNeTNnPWyoPMXw9gGwFDyriaU",
+        "wif": "p2wpkh-p2sh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "398QQeVDiQQBxLpszQrEk3QVe9Vi6xuW5U",
+        "wif": "p2wpkh-p2sh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "3HhvW2MiTcqdWU2K5rXb1vuqsLWJEQYBrP",
+        "wif": "p2wpkh-p2sh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "33AmuRpJSgCttziUcr4CWd77LyjBWckRF5",
+        "wif": "p2wpkh-p2sh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "3LtzMdgxSoYYyf1qqYHDF7xoxx8XY2vgEe",
+        "wif": "p2wpkh-p2sh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "33enZrQpuxzCpzqJtnpG4LdgUQDrCiC5a7",
+        "wif": "p2wpkh-p2sh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "36QNnAbYzyu9d9JfSDQ14eF9pQ6iuc1yuT",
+        "wif": "p2wpkh-p2sh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3GMtPmEtwX4UeTibChAjS53MUoxVHc6a8J",
+        "wif": "p2wpkh-p2sh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-p2wpkh-p2sh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3MYEvekYb8MsVZju8zkY8MNJzkk1smo6jN",
+        "wif": "p2wpkh-p2sh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "39d2MQ1XjRZXprsWn3NzJRbvMpfsSFL4Uz",
+        "wif": "p2wpkh-p2sh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "3DHbHt3tmx6DVi1EY4ry5SbRmSCuHV7Bif",
+        "wif": "p2wpkh-p2sh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "39D1bduVxZPsp2PwBKfESaxDC1oe15SmpT",
+        "wif": "p2wpkh-p2sh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3NDTPHWtxxNeTNnPWyoPMXw9gGwFDyriaU",
+        "wif": "p2wpkh-p2sh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "398QQeVDiQQBxLpszQrEk3QVe9Vi6xuW5U",
+        "wif": "p2wpkh-p2sh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "3HhvW2MiTcqdWU2K5rXb1vuqsLWJEQYBrP",
+        "wif": "p2wpkh-p2sh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "33AmuRpJSgCttziUcr4CWd77LyjBWckRF5",
+        "wif": "p2wpkh-p2sh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "3LtzMdgxSoYYyf1qqYHDF7xoxx8XY2vgEe",
+        "wif": "p2wpkh-p2sh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "33enZrQpuxzCpzqJtnpG4LdgUQDrCiC5a7",
+        "wif": "p2wpkh-p2sh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "36QNnAbYzyu9d9JfSDQ14eF9pQ6iuc1yuT",
+        "wif": "p2wpkh-p2sh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3GMtPmEtwX4UeTibChAjS53MUoxVHc6a8J",
+        "wif": "p2wpkh-p2sh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-p2wpkh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qgv78gvkpztfn2djm4quw0pc5ud7rtx9gnczqfu",
+        "wif": "p2wpkh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qzm5856y4gusvzcdlqm95yww27zg0tfk3mfdt9m",
+        "wif": "p2wpkh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1q7ptsr5e2ssxzs4vlq9a3jjcv74y039fy6ydnhe",
+        "wif": "p2wpkh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qmuexk7rrylpd9gqgkt3x5vzacmuggzl5e4shve",
+        "wif": "p2wpkh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qlkvkeyh67nvh80ktvkxemvxvfw0u7hfjlcurq9",
+        "wif": "p2wpkh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qdxdjkfkxua42xmtjdcgrtnxkyarf0fvh3tcrf2",
+        "wif": "p2wpkh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qgt3s75t8kgzsqahpp4s5xf2epg9wvn4uetvzry",
+        "wif": "p2wpkh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qavfp28342qq8g0nf7zgrrlcrxk5wauny8znz6j",
+        "wif": "p2wpkh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qzsdelyyf2usaaj5wkjt940gtg2fqs6z8aelncs",
+        "wif": "p2wpkh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qxfynul4fzvrymv0zq9kr4vtma5tlj6ww3c2frp",
+        "wif": "p2wpkh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q6vq5uhckrvh2ayan6v286fgxrwaanz929q5r3m",
+        "wif": "p2wpkh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q23n59srvy357kxmvhly7052vjex85rg28y77ra",
+        "wif": "p2wpkh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-p2wpkh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qgv78gvkpztfn2djm4quw0pc5ud7rtx9gnczqfu",
+        "wif": "p2wpkh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qzm5856y4gusvzcdlqm95yww27zg0tfk3mfdt9m",
+        "wif": "p2wpkh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1q7ptsr5e2ssxzs4vlq9a3jjcv74y039fy6ydnhe",
+        "wif": "p2wpkh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qmuexk7rrylpd9gqgkt3x5vzacmuggzl5e4shve",
+        "wif": "p2wpkh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qlkvkeyh67nvh80ktvkxemvxvfw0u7hfjlcurq9",
+        "wif": "p2wpkh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qdxdjkfkxua42xmtjdcgrtnxkyarf0fvh3tcrf2",
+        "wif": "p2wpkh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qgt3s75t8kgzsqahpp4s5xf2epg9wvn4uetvzry",
+        "wif": "p2wpkh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qavfp28342qq8g0nf7zgrrlcrxk5wauny8znz6j",
+        "wif": "p2wpkh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qzsdelyyf2usaaj5wkjt940gtg2fqs6z8aelncs",
+        "wif": "p2wpkh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qxfynul4fzvrymv0zq9kr4vtma5tlj6ww3c2frp",
+        "wif": "p2wpkh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q6vq5uhckrvh2ayan6v286fgxrwaanz929q5r3m",
+        "wif": "p2wpkh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q23n59srvy357kxmvhly7052vjex85rg28y77ra",
+        "wif": "p2wpkh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-1-p2wpkh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qgv78gvkpztfn2djm4quw0pc5ud7rtx9gnczqfu",
+        "wif": "p2wpkh:KxjNs5qMo7G4G5cakg1aYS8rWzLRMSs4ugezo3phwVRwC6fphz5r"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qzm5856y4gusvzcdlqm95yww27zg0tfk3mfdt9m",
+        "wif": "p2wpkh:L1aVesjjQb34PYLCAbipqvDKY1XYhdUnop1Dux2zk3tBbhPRyzv3"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1q7ptsr5e2ssxzs4vlq9a3jjcv74y039fy6ydnhe",
+        "wif": "p2wpkh:KyHtEcitq7XRA6kk2CWcem8ygECoKx9TtXsow36AFYQ95qJKaZ8u"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qmuexk7rrylpd9gqgkt3x5vzacmuggzl5e4shve",
+        "wif": "p2wpkh:Kz9HFquYdQKHUNgbHhbxNXTueskNtV8eqQ8FYnKQohgdAf7cDJn9"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qlkvkeyh67nvh80ktvkxemvxvfw0u7hfjlcurq9",
+        "wif": "p2wpkh:L3w6TKQnpDZfhBaRLZDENU52R58FfBYrHSxy1RJPnpHst9X78apb"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qdxdjkfkxua42xmtjdcgrtnxkyarf0fvh3tcrf2",
+        "wif": "p2wpkh:L4fS2yxsfxHKvm7ahrimXvURxeUYt1CHN3GDxr1bJ4MqMHi8ugbo"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qgt3s75t8kgzsqahpp4s5xf2epg9wvn4uetvzry",
+        "wif": "p2wpkh:L2yoKiSJLpSf5mqKndBDoSdcxL3u1AwyTEr24sLJcXMbZCJqCNWQ"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qavfp28342qq8g0nf7zgrrlcrxk5wauny8znz6j",
+        "wif": "p2wpkh:L3uME3Kn7bEyR7K9Ac4uVcyX43MFzZoHnF2LxzG4dsjqU6DNvRM5"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qzsdelyyf2usaaj5wkjt940gtg2fqs6z8aelncs",
+        "wif": "p2wpkh:KzTPGiGDBo8GY4FvNMEdQLDvjLyjAnbx74UxsUUu68ZQvUcqN3hP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qxfynul4fzvrymv0zq9kr4vtma5tlj6ww3c2frp",
+        "wif": "p2wpkh:KzzrgMmzUL9xRo6Y5agMUkQkWqfb2PEYDehuAszmZ2Jd5Gk15e1P"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q6vq5uhckrvh2ayan6v286fgxrwaanz929q5r3m",
+        "wif": "p2wpkh:L33FS5n2FUrhKtTAbSHMCGPMWqsS8vKrGFeMZtcBg3WuJ4Gmf97p"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q23n59srvy357kxmvhly7052vjex85rg28y77ra",
+        "wif": "p2wpkh:Kx8yYfYCMmZaLZndb4Y3f9dkddJeMoqSX2Z8Q5Q7tVdAU8H6SDUR"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "18yRBuNpoqtoEX7b5UEtPJhBVqxryLrSLx",
+        "wif": "p2pkh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1B8zBvwiV5iEXW4GxFQtPQsMTXWtEVvQEs",
+        "wif": "p2pkh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1PphQvy1fYnYJEMeLhvceES9qFhgvzNxW3",
+        "wif": "p2pkh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1GeHPZonowtPLysFPYrrKQFAGod8EPEZD6",
+        "wif": "p2pkh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1FyzryqYum1pJAyAFRLq1TMBEtv453eFco",
+        "wif": "p2pkh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1H3xWAmaTWpJpcGh5pHmdr22utwcR4dpfq",
+        "wif": "p2pkh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1Fxkcsd984yBMoyXyc4rEekFkgwhKy3Sa7",
+        "wif": "p2pkh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1PMNdu2tkDiVi9z23TuBFh3jfpEGcEP2v6",
+        "wif": "p2pkh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1AeDcHhL6mPrYXgFUwSZDP5k1dPzHJvAm9",
+        "wif": "p2pkh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1D89VNtP5UqgPxwRD5tgPu9cEYCbQPa9EW",
+        "wif": "p2pkh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "18Mjn7XPD4MhLQre53U1vDhe8XQTFTLUxR",
+        "wif": "p2pkh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "152N5PamKmAMYkzZMXcduTgtCMnLc25Z29",
+        "wif": "p2pkh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "18yRBuNpoqtoEX7b5UEtPJhBVqxryLrSLx",
+        "wif": "p2pkh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1B8zBvwiV5iEXW4GxFQtPQsMTXWtEVvQEs",
+        "wif": "p2pkh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1PphQvy1fYnYJEMeLhvceES9qFhgvzNxW3",
+        "wif": "p2pkh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1GeHPZonowtPLysFPYrrKQFAGod8EPEZD6",
+        "wif": "p2pkh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1FyzryqYum1pJAyAFRLq1TMBEtv453eFco",
+        "wif": "p2pkh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1H3xWAmaTWpJpcGh5pHmdr22utwcR4dpfq",
+        "wif": "p2pkh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1Fxkcsd984yBMoyXyc4rEekFkgwhKy3Sa7",
+        "wif": "p2pkh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1PMNdu2tkDiVi9z23TuBFh3jfpEGcEP2v6",
+        "wif": "p2pkh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1AeDcHhL6mPrYXgFUwSZDP5k1dPzHJvAm9",
+        "wif": "p2pkh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1D89VNtP5UqgPxwRD5tgPu9cEYCbQPa9EW",
+        "wif": "p2pkh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "18Mjn7XPD4MhLQre53U1vDhe8XQTFTLUxR",
+        "wif": "p2pkh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "152N5PamKmAMYkzZMXcduTgtCMnLc25Z29",
+        "wif": "p2pkh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "18yRBuNpoqtoEX7b5UEtPJhBVqxryLrSLx",
+        "wif": "p2pkh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1B8zBvwiV5iEXW4GxFQtPQsMTXWtEVvQEs",
+        "wif": "p2pkh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1PphQvy1fYnYJEMeLhvceES9qFhgvzNxW3",
+        "wif": "p2pkh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1GeHPZonowtPLysFPYrrKQFAGod8EPEZD6",
+        "wif": "p2pkh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1FyzryqYum1pJAyAFRLq1TMBEtv453eFco",
+        "wif": "p2pkh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1H3xWAmaTWpJpcGh5pHmdr22utwcR4dpfq",
+        "wif": "p2pkh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1Fxkcsd984yBMoyXyc4rEekFkgwhKy3Sa7",
+        "wif": "p2pkh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1PMNdu2tkDiVi9z23TuBFh3jfpEGcEP2v6",
+        "wif": "p2pkh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1AeDcHhL6mPrYXgFUwSZDP5k1dPzHJvAm9",
+        "wif": "p2pkh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1D89VNtP5UqgPxwRD5tgPu9cEYCbQPa9EW",
+        "wif": "p2pkh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "18Mjn7XPD4MhLQre53U1vDhe8XQTFTLUxR",
+        "wif": "p2pkh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "152N5PamKmAMYkzZMXcduTgtCMnLc25Z29",
+        "wif": "p2pkh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-p2wpkh-p2sh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3QbvaK3RthLBG73nUspGoRroJYMDTH8abP",
+        "wif": "p2wpkh-p2sh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "387KzADBEv3x9QiUXGdKwJrnPwyscUpHta",
+        "wif": "p2wpkh-p2sh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "37nnWcRYqNYM9SPV2GKpmxMc5p3EiCwbwA",
+        "wif": "p2wpkh-p2sh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3BhURouXZqCuFBVhT9vBbLgdegtJouE3RL",
+        "wif": "p2wpkh-p2sh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3JFT8MdGPPCYpmxGiRmtxkhj8oSMCxK99V",
+        "wif": "p2wpkh-p2sh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "38UTt4bpLRrEMXM8oQPtfbik5ABzGjr8Sj",
+        "wif": "p2wpkh-p2sh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "32ForSNyvdV3Kx5rvSiUw2MC4iXBngWGQh",
+        "wif": "p2wpkh-p2sh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "38spY1U7y93PPsxiifoMTg6M8dqhsTuF93",
+        "wif": "p2wpkh-p2sh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "36AD19b2Bxp5uTv2cG6bQrMbBFPxcwoCWk",
+        "wif": "p2wpkh-p2sh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "3NbaHjEFyE3r92MofqhEZ9pgWhYT2W2BvP",
+        "wif": "p2wpkh-p2sh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3B8z6EYVnsM6GgHcSoSNuY671iM8oek5pE",
+        "wif": "p2wpkh-p2sh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "36PeR73HoN58eYA1py2r5MUHASvuErCWbW",
+        "wif": "p2wpkh-p2sh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-p2wpkh-p2sh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3QbvaK3RthLBG73nUspGoRroJYMDTH8abP",
+        "wif": "p2wpkh-p2sh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "387KzADBEv3x9QiUXGdKwJrnPwyscUpHta",
+        "wif": "p2wpkh-p2sh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "37nnWcRYqNYM9SPV2GKpmxMc5p3EiCwbwA",
+        "wif": "p2wpkh-p2sh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3BhURouXZqCuFBVhT9vBbLgdegtJouE3RL",
+        "wif": "p2wpkh-p2sh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3JFT8MdGPPCYpmxGiRmtxkhj8oSMCxK99V",
+        "wif": "p2wpkh-p2sh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "38UTt4bpLRrEMXM8oQPtfbik5ABzGjr8Sj",
+        "wif": "p2wpkh-p2sh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "32ForSNyvdV3Kx5rvSiUw2MC4iXBngWGQh",
+        "wif": "p2wpkh-p2sh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "38spY1U7y93PPsxiifoMTg6M8dqhsTuF93",
+        "wif": "p2wpkh-p2sh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "36AD19b2Bxp5uTv2cG6bQrMbBFPxcwoCWk",
+        "wif": "p2wpkh-p2sh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "3NbaHjEFyE3r92MofqhEZ9pgWhYT2W2BvP",
+        "wif": "p2wpkh-p2sh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3B8z6EYVnsM6GgHcSoSNuY671iM8oek5pE",
+        "wif": "p2wpkh-p2sh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "36PeR73HoN58eYA1py2r5MUHASvuErCWbW",
+        "wif": "p2wpkh-p2sh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-p2wpkh-p2sh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3QbvaK3RthLBG73nUspGoRroJYMDTH8abP",
+        "wif": "p2wpkh-p2sh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "387KzADBEv3x9QiUXGdKwJrnPwyscUpHta",
+        "wif": "p2wpkh-p2sh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "37nnWcRYqNYM9SPV2GKpmxMc5p3EiCwbwA",
+        "wif": "p2wpkh-p2sh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3BhURouXZqCuFBVhT9vBbLgdegtJouE3RL",
+        "wif": "p2wpkh-p2sh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3JFT8MdGPPCYpmxGiRmtxkhj8oSMCxK99V",
+        "wif": "p2wpkh-p2sh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "38UTt4bpLRrEMXM8oQPtfbik5ABzGjr8Sj",
+        "wif": "p2wpkh-p2sh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "32ForSNyvdV3Kx5rvSiUw2MC4iXBngWGQh",
+        "wif": "p2wpkh-p2sh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "38spY1U7y93PPsxiifoMTg6M8dqhsTuF93",
+        "wif": "p2wpkh-p2sh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "36AD19b2Bxp5uTv2cG6bQrMbBFPxcwoCWk",
+        "wif": "p2wpkh-p2sh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "3NbaHjEFyE3r92MofqhEZ9pgWhYT2W2BvP",
+        "wif": "p2wpkh-p2sh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3B8z6EYVnsM6GgHcSoSNuY671iM8oek5pE",
+        "wif": "p2wpkh-p2sh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "36PeR73HoN58eYA1py2r5MUHASvuErCWbW",
+        "wif": "p2wpkh-p2sh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-p2wpkh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q2a69mr4w0d0t6mcry5e307mw5c5ll8nf8pvcwa",
+        "wif": "p2wpkh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qdue7s7ptcp8gmqftxg4dc5rsdj0y2gj7mm4mfy",
+        "wif": "p2wpkh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qlfvq6k7823c0uksuxgvryhu3x5matlhsqnzre4",
+        "wif": "p2wpkh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q4wt02nmsvcrgvualn5q4acr32nr0jgxwh5y09c",
+        "wif": "p2wpkh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1q53v4472e0x03t89twwyjfkdm20g43v65zndvdw",
+        "wif": "p2wpkh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qkqgj6zmpkkd5pydat87a0ymycv4mrl87kg3zru",
+        "wif": "p2wpkh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q5swse08at9385vszy0zkapjc7pk55ezaj6z2at",
+        "wif": "p2wpkh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q75kjt03smpqr3sf9xqn4p5z5u7ad3f7awlg28w",
+        "wif": "p2wpkh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qd8pscvz22pdztsp4t9fc82fr9mdsr097gzwlam",
+        "wif": "p2wpkh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qsnacru63e65p7r8h4sthmauty89hycrdgnp8xw",
+        "wif": "p2wpkh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q2z6w32fl32cd2fgefgvvpdax9fz4dultum489d",
+        "wif": "p2wpkh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q9s3gx845zsgqyl0samq8gujkz87c47zekrqe2q",
+        "wif": "p2wpkh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-p2wpkh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q2a69mr4w0d0t6mcry5e307mw5c5ll8nf8pvcwa",
+        "wif": "p2wpkh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qdue7s7ptcp8gmqftxg4dc5rsdj0y2gj7mm4mfy",
+        "wif": "p2wpkh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qlfvq6k7823c0uksuxgvryhu3x5matlhsqnzre4",
+        "wif": "p2wpkh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q4wt02nmsvcrgvualn5q4acr32nr0jgxwh5y09c",
+        "wif": "p2wpkh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1q53v4472e0x03t89twwyjfkdm20g43v65zndvdw",
+        "wif": "p2wpkh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qkqgj6zmpkkd5pydat87a0ymycv4mrl87kg3zru",
+        "wif": "p2wpkh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q5swse08at9385vszy0zkapjc7pk55ezaj6z2at",
+        "wif": "p2wpkh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q75kjt03smpqr3sf9xqn4p5z5u7ad3f7awlg28w",
+        "wif": "p2wpkh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qd8pscvz22pdztsp4t9fc82fr9mdsr097gzwlam",
+        "wif": "p2wpkh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qsnacru63e65p7r8h4sthmauty89hycrdgnp8xw",
+        "wif": "p2wpkh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q2z6w32fl32cd2fgefgvvpdax9fz4dultum489d",
+        "wif": "p2wpkh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q9s3gx845zsgqyl0samq8gujkz87c47zekrqe2q",
+        "wif": "p2wpkh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-2-p2wpkh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q2a69mr4w0d0t6mcry5e307mw5c5ll8nf8pvcwa",
+        "wif": "p2wpkh:L2qvLCg2V1svJLbHmDjXQ8murahDFBhyrr7mfRq6YnyRJuWT6NEm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qdue7s7ptcp8gmqftxg4dc5rsdj0y2gj7mm4mfy",
+        "wif": "p2wpkh:KxnEabRtnLc9VhfLvCUJhTTGfmuzsKgHAsFXSBMyK8L3P2spu5s8"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qlfvq6k7823c0uksuxgvryhu3x5matlhsqnzre4",
+        "wif": "p2wpkh:L4mmzKgvwELH7jakVR1J6g2GWiTVdFjB6vY4qP86z8YVtXypKoHh"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q4wt02nmsvcrgvualn5q4acr32nr0jgxwh5y09c",
+        "wif": "p2wpkh:KyiuZ75SXDF5fTMbatakzus7nWMHXnnLnpR37msTFeu5sbtj1fZD"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1q53v4472e0x03t89twwyjfkdm20g43v65zndvdw",
+        "wif": "p2wpkh:KxDRUF8ZQ7X2zZ2BbhnLcDBmLRoz7qWRbSCSm7GTwZzMEPiTUh27"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qkqgj6zmpkkd5pydat87a0ymycv4mrl87kg3zru",
+        "wif": "p2wpkh:Kyj9g76Z33uogNFUtXHHp8s7wwT5JtuRrZoCLZyixRgKTMywdKux"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q5swse08at9385vszy0zkapjc7pk55ezaj6z2at",
+        "wif": "p2wpkh:L4DMjQ6jcfXhTqdgEHhbotphANnPzEBV1FY3yuTkiXE79rJsBHid"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q75kjt03smpqr3sf9xqn4p5z5u7ad3f7awlg28w",
+        "wif": "p2wpkh:L2LZSuSLWXDFimkiWcLSyESZXruUamuufYmTNTpzq97MzjNWjfXq"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qd8pscvz22pdztsp4t9fc82fr9mdsr097gzwlam",
+        "wif": "p2wpkh:Kyip86iAhsEcVS8zwAyonXmMPgoEiNn51D31ozeJ68BSCygcXJbY"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qsnacru63e65p7r8h4sthmauty89hycrdgnp8xw",
+        "wif": "p2wpkh:Kzh8VUSDRzuCh3tvwBNVFe8fQAaouaD4CXHSxgAaemYbCgpoBZvv"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q2z6w32fl32cd2fgefgvvpdax9fz4dultum489d",
+        "wif": "p2wpkh:L1H2kThPRMnT41L3yKohephtDgy7kh5UjaYJTvzYx3A4kucqrdTa"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q9s3gx845zsgqyl0samq8gujkz87c47zekrqe2q",
+        "wif": "p2wpkh:KxyFbRMGxmzegUSoiZP1PshNt3Lb1NjPYqebTWfsBUhGBRYF11ya"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "192iBz4qAyQAB1TYKzKRa78KgeV2hYD38t",
+        "wif": "p2pkh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1AgHai9GqUngs9mQEYfJrRM9AnG1Fmtybc",
+        "wif": "p2pkh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "17mdUnm1DbqtFjXUS4TXVQsdgoWn4vGQcU",
+        "wif": "p2pkh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "17r8cmH3f3G4FbKw43W6zUEv84U8nasLFK",
+        "wif": "p2pkh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1BZyAbBeVNg895W9XzBo1iuZbQiM4cJ39Y",
+        "wif": "p2pkh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1MFYe4MSnUdGU3j2Rne8K1qn2qTWTjYveH",
+        "wif": "p2pkh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "16hg6AZaEbCdmKm9DAkFs7x7xvqAZgAUWZ",
+        "wif": "p2pkh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1w9DQ7i18dnzzRXjk9q1LfQeUppzdzL7H",
+        "wif": "p2pkh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1N5v2wWvY4p1PcXXTnuqHN2NwB9dg2V4a9",
+        "wif": "p2pkh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "112esqEh8jEqViMqFiD8Ea7EA1KzMPtMXh",
+        "wif": "p2pkh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "17nZSuRH9tdbH5biqN4GGPeQkEjFUjf8o9",
+        "wif": "p2pkh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1FtQAk5fXiU4KX5DWMQUfJxkYuyDXDYg4m",
+        "wif": "p2pkh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "192iBz4qAyQAB1TYKzKRa78KgeV2hYD38t",
+        "wif": "p2pkh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1AgHai9GqUngs9mQEYfJrRM9AnG1Fmtybc",
+        "wif": "p2pkh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "17mdUnm1DbqtFjXUS4TXVQsdgoWn4vGQcU",
+        "wif": "p2pkh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "17r8cmH3f3G4FbKw43W6zUEv84U8nasLFK",
+        "wif": "p2pkh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1BZyAbBeVNg895W9XzBo1iuZbQiM4cJ39Y",
+        "wif": "p2pkh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1MFYe4MSnUdGU3j2Rne8K1qn2qTWTjYveH",
+        "wif": "p2pkh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "16hg6AZaEbCdmKm9DAkFs7x7xvqAZgAUWZ",
+        "wif": "p2pkh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1w9DQ7i18dnzzRXjk9q1LfQeUppzdzL7H",
+        "wif": "p2pkh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1N5v2wWvY4p1PcXXTnuqHN2NwB9dg2V4a9",
+        "wif": "p2pkh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "112esqEh8jEqViMqFiD8Ea7EA1KzMPtMXh",
+        "wif": "p2pkh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "17nZSuRH9tdbH5biqN4GGPeQkEjFUjf8o9",
+        "wif": "p2pkh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1FtQAk5fXiU4KX5DWMQUfJxkYuyDXDYg4m",
+        "wif": "p2pkh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "192iBz4qAyQAB1TYKzKRa78KgeV2hYD38t",
+        "wif": "p2pkh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1AgHai9GqUngs9mQEYfJrRM9AnG1Fmtybc",
+        "wif": "p2pkh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "17mdUnm1DbqtFjXUS4TXVQsdgoWn4vGQcU",
+        "wif": "p2pkh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "17r8cmH3f3G4FbKw43W6zUEv84U8nasLFK",
+        "wif": "p2pkh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1BZyAbBeVNg895W9XzBo1iuZbQiM4cJ39Y",
+        "wif": "p2pkh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1MFYe4MSnUdGU3j2Rne8K1qn2qTWTjYveH",
+        "wif": "p2pkh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "16hg6AZaEbCdmKm9DAkFs7x7xvqAZgAUWZ",
+        "wif": "p2pkh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1w9DQ7i18dnzzRXjk9q1LfQeUppzdzL7H",
+        "wif": "p2pkh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1N5v2wWvY4p1PcXXTnuqHN2NwB9dg2V4a9",
+        "wif": "p2pkh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "112esqEh8jEqViMqFiD8Ea7EA1KzMPtMXh",
+        "wif": "p2pkh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "17nZSuRH9tdbH5biqN4GGPeQkEjFUjf8o9",
+        "wif": "p2pkh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1FtQAk5fXiU4KX5DWMQUfJxkYuyDXDYg4m",
+        "wif": "p2pkh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-p2wpkh-p2sh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "37tDFGBgBWsKLp1Apikm5dot2VFRPDsUu4",
+        "wif": "p2wpkh-p2sh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3EYtpyayz5qaGWCgBh4eVKYeCoL4BgTtSh",
+        "wif": "p2wpkh-p2sh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "32aKuZVRCjYwuCZgRrvXzjVth6dMouhh63",
+        "wif": "p2wpkh-p2sh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3BJ5MEpWK3MFwZk5shSgiUwSAFDokvdQ5j",
+        "wif": "p2wpkh-p2sh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3GtGSrqFHd8q6LT7gTHZoadT7FPZTFTYb3",
+        "wif": "p2wpkh-p2sh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "38UQNPyDWQR96rbCMVDZCQHKhvAB2etnMT",
+        "wif": "p2wpkh-p2sh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "3CGyCh6qFnuhzaMxx7rpoWYrEomWR7FoqU",
+        "wif": "p2wpkh-p2sh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "35TSXtAYb4TB1bjN7om6z1pvP5fVNjBKvn",
+        "wif": "p2wpkh-p2sh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "3Db2qBjUas4mBbeSuXKstWmCEUmP8Z17YV",
+        "wif": "p2wpkh-p2sh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "34aErfx9cXeJa11tCgynKNoBgjD32L3Mt6",
+        "wif": "p2wpkh-p2sh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3B2g8Aynp3tRTi8Uz7yjkqHMFTKqv7qwVW",
+        "wif": "p2wpkh-p2sh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3MFpzrDNgu5DTEfmBeiUDeoKHeGPMzz6M8",
+        "wif": "p2wpkh-p2sh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-p2wpkh-p2sh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "37tDFGBgBWsKLp1Apikm5dot2VFRPDsUu4",
+        "wif": "p2wpkh-p2sh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3EYtpyayz5qaGWCgBh4eVKYeCoL4BgTtSh",
+        "wif": "p2wpkh-p2sh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "32aKuZVRCjYwuCZgRrvXzjVth6dMouhh63",
+        "wif": "p2wpkh-p2sh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3BJ5MEpWK3MFwZk5shSgiUwSAFDokvdQ5j",
+        "wif": "p2wpkh-p2sh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3GtGSrqFHd8q6LT7gTHZoadT7FPZTFTYb3",
+        "wif": "p2wpkh-p2sh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "38UQNPyDWQR96rbCMVDZCQHKhvAB2etnMT",
+        "wif": "p2wpkh-p2sh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "3CGyCh6qFnuhzaMxx7rpoWYrEomWR7FoqU",
+        "wif": "p2wpkh-p2sh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "35TSXtAYb4TB1bjN7om6z1pvP5fVNjBKvn",
+        "wif": "p2wpkh-p2sh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "3Db2qBjUas4mBbeSuXKstWmCEUmP8Z17YV",
+        "wif": "p2wpkh-p2sh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "34aErfx9cXeJa11tCgynKNoBgjD32L3Mt6",
+        "wif": "p2wpkh-p2sh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3B2g8Aynp3tRTi8Uz7yjkqHMFTKqv7qwVW",
+        "wif": "p2wpkh-p2sh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3MFpzrDNgu5DTEfmBeiUDeoKHeGPMzz6M8",
+        "wif": "p2wpkh-p2sh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-p2wpkh-p2sh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "37tDFGBgBWsKLp1Apikm5dot2VFRPDsUu4",
+        "wif": "p2wpkh-p2sh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3EYtpyayz5qaGWCgBh4eVKYeCoL4BgTtSh",
+        "wif": "p2wpkh-p2sh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "32aKuZVRCjYwuCZgRrvXzjVth6dMouhh63",
+        "wif": "p2wpkh-p2sh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3BJ5MEpWK3MFwZk5shSgiUwSAFDokvdQ5j",
+        "wif": "p2wpkh-p2sh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3GtGSrqFHd8q6LT7gTHZoadT7FPZTFTYb3",
+        "wif": "p2wpkh-p2sh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "38UQNPyDWQR96rbCMVDZCQHKhvAB2etnMT",
+        "wif": "p2wpkh-p2sh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "3CGyCh6qFnuhzaMxx7rpoWYrEomWR7FoqU",
+        "wif": "p2wpkh-p2sh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "35TSXtAYb4TB1bjN7om6z1pvP5fVNjBKvn",
+        "wif": "p2wpkh-p2sh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "3Db2qBjUas4mBbeSuXKstWmCEUmP8Z17YV",
+        "wif": "p2wpkh-p2sh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "34aErfx9cXeJa11tCgynKNoBgjD32L3Mt6",
+        "wif": "p2wpkh-p2sh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "3B2g8Aynp3tRTi8Uz7yjkqHMFTKqv7qwVW",
+        "wif": "p2wpkh-p2sh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3MFpzrDNgu5DTEfmBeiUDeoKHeGPMzz6M8",
+        "wif": "p2wpkh-p2sh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-p2wpkh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qtqfuut3eawhpdl899l9j63e2mpt2h4zplr2w28",
+        "wif": "p2wpkh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qdgnnygegkdv23snv9h3wd2jx22hcvedjxx7d65",
+        "wif": "p2wpkh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qffqcy8fp5zk0u0d9tzg4f5l4lq6kd4kwj0yyhn",
+        "wif": "p2wpkh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qfvdhath8jrlxc3lyn8slj0kvze96m5czqeg08r",
+        "wif": "p2wpkh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qw0kh8l948xefmrp6wjgvgs9y3g9k0km3sc3uxc",
+        "wif": "p2wpkh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qmc3tllet0sdu5jkh2v8fp3npj9egy8vmvyvg6r",
+        "wif": "p2wpkh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q86y7tdyppuwg7fjhhpy4m36jpsftj0ychvvf9g",
+        "wif": "p2wpkh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qpg74rpv60tf2v5vqz9g98xt28hqnn2sulwu3n7",
+        "wif": "p2wpkh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1quayfxn2nh0zrteqgnl9efmqu9qg53g9sq7rs63",
+        "wif": "p2wpkh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qqpgq3xdt59sd3sau5zr84xnr9v6rp0g8wkztef",
+        "wif": "p2wpkh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qffhgah9wyjuzaulxxr8mm5fgx2cvadaays22qf",
+        "wif": "p2wpkh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q5d99prk26krlup63hp6077vd5s75jpjzgfd8td",
+        "wif": "p2wpkh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-p2wpkh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qtqfuut3eawhpdl899l9j63e2mpt2h4zplr2w28",
+        "wif": "p2wpkh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qdgnnygegkdv23snv9h3wd2jx22hcvedjxx7d65",
+        "wif": "p2wpkh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qffqcy8fp5zk0u0d9tzg4f5l4lq6kd4kwj0yyhn",
+        "wif": "p2wpkh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qfvdhath8jrlxc3lyn8slj0kvze96m5czqeg08r",
+        "wif": "p2wpkh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qw0kh8l948xefmrp6wjgvgs9y3g9k0km3sc3uxc",
+        "wif": "p2wpkh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qmc3tllet0sdu5jkh2v8fp3npj9egy8vmvyvg6r",
+        "wif": "p2wpkh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q86y7tdyppuwg7fjhhpy4m36jpsftj0ychvvf9g",
+        "wif": "p2wpkh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qpg74rpv60tf2v5vqz9g98xt28hqnn2sulwu3n7",
+        "wif": "p2wpkh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1quayfxn2nh0zrteqgnl9efmqu9qg53g9sq7rs63",
+        "wif": "p2wpkh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qqpgq3xdt59sd3sau5zr84xnr9v6rp0g8wkztef",
+        "wif": "p2wpkh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qffhgah9wyjuzaulxxr8mm5fgx2cvadaays22qf",
+        "wif": "p2wpkh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q5d99prk26krlup63hp6077vd5s75jpjzgfd8td",
+        "wif": "p2wpkh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-3-p2wpkh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qtqfuut3eawhpdl899l9j63e2mpt2h4zplr2w28",
+        "wif": "p2wpkh:L2qqLjk5bEETpLXukkbfFMyfvsq1dKTAy6b76ry2xEuME6GNUGwB"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qdgnnygegkdv23snv9h3wd2jx22hcvedjxx7d65",
+        "wif": "p2wpkh:L4EdudBkaxs8Mq9SdW34xwN9Se415qFpKW1iTzjWsr7u4qSawTjn"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qffqcy8fp5zk0u0d9tzg4f5l4lq6kd4kwj0yyhn",
+        "wif": "p2wpkh:L2prtyBx37YCWYDKibdfcT6iPQjUeDPHfNyh6sZX6Y8E9E9wJypL"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qfvdhath8jrlxc3lyn8slj0kvze96m5czqeg08r",
+        "wif": "p2wpkh:Kyn22KWrU8xN6wrtMLJBCvZ1tscNgY3tu3k4PKCCt8EprT3JUKH6"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qw0kh8l948xefmrp6wjgvgs9y3g9k0km3sc3uxc",
+        "wif": "p2wpkh:L2GksKrEq48dxqTVLrzM5BttRM3YSbdiSNTqXYK5Z9zaaa2X2zQs"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qmc3tllet0sdu5jkh2v8fp3npj9egy8vmvyvg6r",
+        "wif": "p2wpkh:KzcgeANz7aodixoQ3e2ymYh5LY2Z9FsmmRbSfVZxFQ2vzPprMiVh"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1q86y7tdyppuwg7fjhhpy4m36jpsftj0ychvvf9g",
+        "wif": "p2wpkh:L1y7L5xveYqVVXKjdGdZkUs7niqhKWPdN4nSDLQbCs3rapcdpRGn"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qpg74rpv60tf2v5vqz9g98xt28hqnn2sulwu3n7",
+        "wif": "p2wpkh:L3qpkvMoh53qmpBWfSU7pijcPSUvvoi95G4wcTzPd2AARhzuDnGF"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1quayfxn2nh0zrteqgnl9efmqu9qg53g9sq7rs63",
+        "wif": "p2wpkh:L2wRN7wkF1GLgZCpg1Xxsaht2qfgzR4piSdRaYbJXQbkT5cX5gjP"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qqpgq3xdt59sd3sau5zr84xnr9v6rp0g8wkztef",
+        "wif": "p2wpkh:L3LjYk2ZH5S5DURFhRMac4HE572rxX2VRNchrG6uAjuqC7wy4j12"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qffhgah9wyjuzaulxxr8mm5fgx2cvadaays22qf",
+        "wif": "p2wpkh:L4Df6BN4VeLJCPrUJt59ooZKTsy1FRQ6RK91XJJ22BSFbSirAMdc"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1q5d99prk26krlup63hp6077vd5s75jpjzgfd8td",
+        "wif": "p2wpkh:L2WjsFuMcorUK2TMEcreSMotkpxhWJiZMFGBC9HHGhDZx7fzaWFJ"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1L7agLBcwRngP5q88WXsMMNrCPtCz9xRny",
+        "wif": "p2pkh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "15SNQobrRrL5i8B9yB4rhfkzdXQXDnZ9Yj",
+        "wif": "p2pkh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1EutjsYeNkBohLB98kDWoGZSbi6Y6vcK6X",
+        "wif": "p2pkh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "17QgXTxxmbkBkNJjhVxykcNMTNL2x43wdV",
+        "wif": "p2pkh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1FUdKvEGzCrsHEdJKsEW5KxAtDjSQTyNhr",
+        "wif": "p2pkh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1BsfExuB239KZAtHJDZ3m7bwhCkd5MbDHp",
+        "wif": "p2pkh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1qZL2oS3cgPhzaJsFaTYH36FGjSPUXNMb",
+        "wif": "p2pkh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "14eoYckQHqSncczYdrTKvbbXjgmy4t85Y7",
+        "wif": "p2pkh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1EAdTF7kF8bmTj7FZKFhRAAv9L3EQo9Pis",
+        "wif": "p2pkh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1rCqEYxpHFaSR2Cs465KvpYpC7k7bpCTP",
+        "wif": "p2pkh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1LAig8HjdzEptSLxyaorL42bSNCxLM8WSS",
+        "wif": "p2pkh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1KZjSCJ9CDroybBj1u76A1fKo5Z318QPGb",
+        "wif": "p2pkh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1L7agLBcwRngP5q88WXsMMNrCPtCz9xRny",
+        "wif": "p2pkh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "15SNQobrRrL5i8B9yB4rhfkzdXQXDnZ9Yj",
+        "wif": "p2pkh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1EutjsYeNkBohLB98kDWoGZSbi6Y6vcK6X",
+        "wif": "p2pkh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "17QgXTxxmbkBkNJjhVxykcNMTNL2x43wdV",
+        "wif": "p2pkh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1FUdKvEGzCrsHEdJKsEW5KxAtDjSQTyNhr",
+        "wif": "p2pkh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1BsfExuB239KZAtHJDZ3m7bwhCkd5MbDHp",
+        "wif": "p2pkh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1qZL2oS3cgPhzaJsFaTYH36FGjSPUXNMb",
+        "wif": "p2pkh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "14eoYckQHqSncczYdrTKvbbXjgmy4t85Y7",
+        "wif": "p2pkh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1EAdTF7kF8bmTj7FZKFhRAAv9L3EQo9Pis",
+        "wif": "p2pkh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1rCqEYxpHFaSR2Cs465KvpYpC7k7bpCTP",
+        "wif": "p2pkh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1LAig8HjdzEptSLxyaorL42bSNCxLM8WSS",
+        "wif": "p2pkh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1KZjSCJ9CDroybBj1u76A1fKo5Z318QPGb",
+        "wif": "p2pkh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1L7agLBcwRngP5q88WXsMMNrCPtCz9xRny",
+        "wif": "p2pkh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "15SNQobrRrL5i8B9yB4rhfkzdXQXDnZ9Yj",
+        "wif": "p2pkh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1EutjsYeNkBohLB98kDWoGZSbi6Y6vcK6X",
+        "wif": "p2pkh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "17QgXTxxmbkBkNJjhVxykcNMTNL2x43wdV",
+        "wif": "p2pkh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1FUdKvEGzCrsHEdJKsEW5KxAtDjSQTyNhr",
+        "wif": "p2pkh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1BsfExuB239KZAtHJDZ3m7bwhCkd5MbDHp",
+        "wif": "p2pkh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1qZL2oS3cgPhzaJsFaTYH36FGjSPUXNMb",
+        "wif": "p2pkh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "14eoYckQHqSncczYdrTKvbbXjgmy4t85Y7",
+        "wif": "p2pkh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1EAdTF7kF8bmTj7FZKFhRAAv9L3EQo9Pis",
+        "wif": "p2pkh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1rCqEYxpHFaSR2Cs465KvpYpC7k7bpCTP",
+        "wif": "p2pkh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1LAig8HjdzEptSLxyaorL42bSNCxLM8WSS",
+        "wif": "p2pkh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1KZjSCJ9CDroybBj1u76A1fKo5Z318QPGb",
+        "wif": "p2pkh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-p2wpkh-p2sh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3CHBByoQ43Ew8p7V9WCuKuhnty8rSZ9564",
+        "wif": "p2wpkh-p2sh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "38bVBHur9zXmQDtfkoU68Q2vqkyCjkg11y",
+        "wif": "p2wpkh-p2sh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "36bZDNoFQiv9kmLwwsJ2rfy1F8HLCg5fHA",
+        "wif": "p2wpkh-p2sh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "39d5vheYBycayoQSWsZgxX5vyps9Ddgsij",
+        "wif": "p2wpkh-p2sh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3QabQ7NymktcMaXscZ5WvBNzH4mZAiYCP9",
+        "wif": "p2wpkh-p2sh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3PN8FsGNz9BwXCob1NH5558Y8axmr5yyHX",
+        "wif": "p2wpkh-p2sh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "344iwoMUDsgQcyzJohHacv9RAnViyMmrFm",
+        "wif": "p2wpkh-p2sh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "3GdvUevN6awmUfT9K8NKgB2A149KMqTAR1",
+        "wif": "p2wpkh-p2sh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "33zGLkjXKtJBfLLwBYGJx5mwQ5EFXADkiT",
+        "wif": "p2wpkh-p2sh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "36fuQEXFQhZt2DhU7spfJiLsYqsomqUuyW",
+        "wif": "p2wpkh-p2sh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "369qtnxiUqEAn4za3oYGcaEtd3bcEK8Gr9",
+        "wif": "p2wpkh-p2sh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3D1gFMBHpqsJbYe4mXtKRSX3UzuYdHgeE6",
+        "wif": "p2wpkh-p2sh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-p2wpkh-p2sh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3CHBByoQ43Ew8p7V9WCuKuhnty8rSZ9564",
+        "wif": "p2wpkh-p2sh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "38bVBHur9zXmQDtfkoU68Q2vqkyCjkg11y",
+        "wif": "p2wpkh-p2sh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "36bZDNoFQiv9kmLwwsJ2rfy1F8HLCg5fHA",
+        "wif": "p2wpkh-p2sh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "39d5vheYBycayoQSWsZgxX5vyps9Ddgsij",
+        "wif": "p2wpkh-p2sh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3QabQ7NymktcMaXscZ5WvBNzH4mZAiYCP9",
+        "wif": "p2wpkh-p2sh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3PN8FsGNz9BwXCob1NH5558Y8axmr5yyHX",
+        "wif": "p2wpkh-p2sh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "344iwoMUDsgQcyzJohHacv9RAnViyMmrFm",
+        "wif": "p2wpkh-p2sh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "3GdvUevN6awmUfT9K8NKgB2A149KMqTAR1",
+        "wif": "p2wpkh-p2sh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "33zGLkjXKtJBfLLwBYGJx5mwQ5EFXADkiT",
+        "wif": "p2wpkh-p2sh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "36fuQEXFQhZt2DhU7spfJiLsYqsomqUuyW",
+        "wif": "p2wpkh-p2sh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "369qtnxiUqEAn4za3oYGcaEtd3bcEK8Gr9",
+        "wif": "p2wpkh-p2sh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3D1gFMBHpqsJbYe4mXtKRSX3UzuYdHgeE6",
+        "wif": "p2wpkh-p2sh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-p2wpkh-p2sh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3CHBByoQ43Ew8p7V9WCuKuhnty8rSZ9564",
+        "wif": "p2wpkh-p2sh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "38bVBHur9zXmQDtfkoU68Q2vqkyCjkg11y",
+        "wif": "p2wpkh-p2sh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "36bZDNoFQiv9kmLwwsJ2rfy1F8HLCg5fHA",
+        "wif": "p2wpkh-p2sh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "39d5vheYBycayoQSWsZgxX5vyps9Ddgsij",
+        "wif": "p2wpkh-p2sh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "3QabQ7NymktcMaXscZ5WvBNzH4mZAiYCP9",
+        "wif": "p2wpkh-p2sh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3PN8FsGNz9BwXCob1NH5558Y8axmr5yyHX",
+        "wif": "p2wpkh-p2sh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "344iwoMUDsgQcyzJohHacv9RAnViyMmrFm",
+        "wif": "p2wpkh-p2sh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "3GdvUevN6awmUfT9K8NKgB2A149KMqTAR1",
+        "wif": "p2wpkh-p2sh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "33zGLkjXKtJBfLLwBYGJx5mwQ5EFXADkiT",
+        "wif": "p2wpkh-p2sh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "36fuQEXFQhZt2DhU7spfJiLsYqsomqUuyW",
+        "wif": "p2wpkh-p2sh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "369qtnxiUqEAn4za3oYGcaEtd3bcEK8Gr9",
+        "wif": "p2wpkh-p2sh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "3D1gFMBHpqsJbYe4mXtKRSX3UzuYdHgeE6",
+        "wif": "p2wpkh-p2sh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-p2wpkh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q6x50lt2w0udwg82hdjz06sdm5xqy7ltu2en59g",
+        "wif": "p2wpkh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qxzkvv5w2zrmx8x43cyezrypqhwu087euxp66ge",
+        "wif": "p2wpkh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qnzd8gucszkpj0ptd5wehxjv2pkgz7xrh02rqxu",
+        "wif": "p2wpkh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qge94pk6h9hcexzjunyrvfepuues8juwhrceqhv",
+        "wif": "p2wpkh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qnm94p3yvwkg6g3plv8u2j2uuql268ug0hp2xgk",
+        "wif": "p2wpkh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qwazl5j4t0mv02cdkad65wxx6aqvadvczd2mw6w",
+        "wif": "p2wpkh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qpyh08jm2ukey27j5ns5wkxhn2z07wmr2jy3lyt",
+        "wif": "p2wpkh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q9q8f7vx2mu683s6zdsvm64fvry5nkn8jgn7pel",
+        "wif": "p2wpkh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qjp4uannqj6chyv3cx0dk5wv3kptcltd4vvc9me",
+        "wif": "p2wpkh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qp98yydad9q7xx4gah2587wjz2hl46fw5smdny6",
+        "wif": "p2wpkh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q6fqwhak76z338y4mww37ec5t73xe3arhtklvmq",
+        "wif": "p2wpkh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qew3075f8yv9kmmf5vt66zy9jg37652e36f9vfp",
+        "wif": "p2wpkh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-p2wpkh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q6x50lt2w0udwg82hdjz06sdm5xqy7ltu2en59g",
+        "wif": "p2wpkh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qxzkvv5w2zrmx8x43cyezrypqhwu087euxp66ge",
+        "wif": "p2wpkh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qnzd8gucszkpj0ptd5wehxjv2pkgz7xrh02rqxu",
+        "wif": "p2wpkh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qge94pk6h9hcexzjunyrvfepuues8juwhrceqhv",
+        "wif": "p2wpkh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qnm94p3yvwkg6g3plv8u2j2uuql268ug0hp2xgk",
+        "wif": "p2wpkh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qwazl5j4t0mv02cdkad65wxx6aqvadvczd2mw6w",
+        "wif": "p2wpkh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qpyh08jm2ukey27j5ns5wkxhn2z07wmr2jy3lyt",
+        "wif": "p2wpkh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q9q8f7vx2mu683s6zdsvm64fvry5nkn8jgn7pel",
+        "wif": "p2wpkh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qjp4uannqj6chyv3cx0dk5wv3kptcltd4vvc9me",
+        "wif": "p2wpkh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qp98yydad9q7xx4gah2587wjz2hl46fw5smdny6",
+        "wif": "p2wpkh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q6fqwhak76z338y4mww37ec5t73xe3arhtklvmq",
+        "wif": "p2wpkh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qew3075f8yv9kmmf5vt66zy9jg37652e36f9vfp",
+        "wif": "p2wpkh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-4-p2wpkh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q6x50lt2w0udwg82hdjz06sdm5xqy7ltu2en59g",
+        "wif": "p2wpkh:L25pBWm8pvDErtqtqAe6tiTL7jZei39y2oXgG87G4AQTyUSNyyCb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qxzkvv5w2zrmx8x43cyezrypqhwu087euxp66ge",
+        "wif": "p2wpkh:Kxi2STHreLh6rxmSHgpksWJBW5inYdMExMmsMzxjcK2RhNiyqYnk"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qnzd8gucszkpj0ptd5wehxjv2pkgz7xrh02rqxu",
+        "wif": "p2wpkh:Kz4g2qG51XpDcJKD17Ah4FpuuZ9NqSg9zD7qRfZLGPCbNB46b7kK"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qge94pk6h9hcexzjunyrvfepuues8juwhrceqhv",
+        "wif": "p2wpkh:L1uU9euvpejWcw9JJ4CQRTJw8MdyjfMW8KwwnxkF5UYKNEZXcJNb"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qnm94p3yvwkg6g3plv8u2j2uuql268ug0hp2xgk",
+        "wif": "p2wpkh:L26Msbjr3ixULg1HNKivmuRuCvfohCQVGAavCnSzZUsfGY2bDSwy"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qwazl5j4t0mv02cdkad65wxx6aqvadvczd2mw6w",
+        "wif": "p2wpkh:L1FBzb6i83DCmHaQ99WxkPro9pvW96GWAMJB4B89kqdbri94xtSY"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qpyh08jm2ukey27j5ns5wkxhn2z07wmr2jy3lyt",
+        "wif": "p2wpkh:L1PDo33MxPQPNJZWuvJXPYcU61cxjGMVKJhnokcrcKpPfz7dBVvW"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q9q8f7vx2mu683s6zdsvm64fvry5nkn8jgn7pel",
+        "wif": "p2wpkh:L3fd8zissbrEMef94mwS1EpfitokWy35yAWBKJ9Fr7mq4BSxq1B3"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qjp4uannqj6chyv3cx0dk5wv3kptcltd4vvc9me",
+        "wif": "p2wpkh:L1Cb4ce9MerAH4KrhcnSF3hrX41ZXom9p5FzqLXr8mu7g5aTWb4q"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qp98yydad9q7xx4gah2587wjz2hl46fw5smdny6",
+        "wif": "p2wpkh:L2mhNhbrduzjwDfq4L5V9T9a7ch9B88nq7Fdj7s5ZVypNMarwpwq"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q6fqwhak76z338y4mww37ec5t73xe3arhtklvmq",
+        "wif": "p2wpkh:Ky6P1NJixaMbnQ5JASfZ5uJobR9dFXjv4dpWWsofSUH2gThMkhpK"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qew3075f8yv9kmmf5vt66zy9jg37652e36f9vfp",
+        "wif": "p2wpkh:Kwhf2HZHEG6LeKc7RTJv9pxAojA7rW38jizjV622qPk56ZWjzXhg"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1DEiKnxggArNd9ubqZrxc3zJc4B87eV6Ug",
+        "wif": "p2pkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "17R7hyqnKk1chV8V2ezKppoqyUPuL9Peyf",
+        "wif": "p2pkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "15vu99p9N2ZtnL2f5mk3vFFcaftxzzmxvF",
+        "wif": "p2pkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "18mvHd5Fo7wYFcqp4XK9DifMC4gyJKkugK",
+        "wif": "p2pkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "13SyZKvuFLsKSVwV83ttjZFDi31zShz8Js",
+        "wif": "p2pkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1JTpAiWTvoT97tFMaR8bx2pVEcZBV5pcHN",
+        "wif": "p2pkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1MfRPWcTtYAvM6NfyJuXQy5E1CQfUJAEAC",
+        "wif": "p2pkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1HCTtWXyNGLS5Y4EeB3chAkG71qUfefwDK",
+        "wif": "p2pkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "186UrSkFc5PkUh6Nrs6onMD7uBA53oTfT7",
+        "wif": "p2pkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1GQzMDhUnBXZ1tvcG1VeMjwLuZzR1uaSK3",
+        "wif": "p2pkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1FmJUxzFnUeow7v35r2E8SspSTPTRpkfgR",
+        "wif": "p2pkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1BL9bR8uCE9Nph15yX33HSuvn6TR4ZwGAK",
+        "wif": "p2pkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1DEiKnxggArNd9ubqZrxc3zJc4B87eV6Ug",
+        "wif": "p2pkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "17R7hyqnKk1chV8V2ezKppoqyUPuL9Peyf",
+        "wif": "p2pkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "15vu99p9N2ZtnL2f5mk3vFFcaftxzzmxvF",
+        "wif": "p2pkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "18mvHd5Fo7wYFcqp4XK9DifMC4gyJKkugK",
+        "wif": "p2pkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "13SyZKvuFLsKSVwV83ttjZFDi31zShz8Js",
+        "wif": "p2pkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1JTpAiWTvoT97tFMaR8bx2pVEcZBV5pcHN",
+        "wif": "p2pkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1MfRPWcTtYAvM6NfyJuXQy5E1CQfUJAEAC",
+        "wif": "p2pkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1HCTtWXyNGLS5Y4EeB3chAkG71qUfefwDK",
+        "wif": "p2pkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "186UrSkFc5PkUh6Nrs6onMD7uBA53oTfT7",
+        "wif": "p2pkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1GQzMDhUnBXZ1tvcG1VeMjwLuZzR1uaSK3",
+        "wif": "p2pkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1FmJUxzFnUeow7v35r2E8SspSTPTRpkfgR",
+        "wif": "p2pkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1BL9bR8uCE9Nph15yX33HSuvn6TR4ZwGAK",
+        "wif": "p2pkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1DEiKnxggArNd9ubqZrxc3zJc4B87eV6Ug",
+        "wif": "p2pkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "17R7hyqnKk1chV8V2ezKppoqyUPuL9Peyf",
+        "wif": "p2pkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "15vu99p9N2ZtnL2f5mk3vFFcaftxzzmxvF",
+        "wif": "p2pkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "18mvHd5Fo7wYFcqp4XK9DifMC4gyJKkugK",
+        "wif": "p2pkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "13SyZKvuFLsKSVwV83ttjZFDi31zShz8Js",
+        "wif": "p2pkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1JTpAiWTvoT97tFMaR8bx2pVEcZBV5pcHN",
+        "wif": "p2pkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1MfRPWcTtYAvM6NfyJuXQy5E1CQfUJAEAC",
+        "wif": "p2pkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1HCTtWXyNGLS5Y4EeB3chAkG71qUfefwDK",
+        "wif": "p2pkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "186UrSkFc5PkUh6Nrs6onMD7uBA53oTfT7",
+        "wif": "p2pkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1GQzMDhUnBXZ1tvcG1VeMjwLuZzR1uaSK3",
+        "wif": "p2pkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1FmJUxzFnUeow7v35r2E8SspSTPTRpkfgR",
+        "wif": "p2pkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1BL9bR8uCE9Nph15yX33HSuvn6TR4ZwGAK",
+        "wif": "p2pkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-p2wpkh-p2sh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "31kAoMPCCW1f7zMBrJHD5ihF5i7eGGq3ii",
+        "wif": "p2wpkh-p2sh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3Gjmt9YQX8m5ujJM2pyTfjv1nBpG8RD25g",
+        "wif": "p2wpkh-p2sh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "36iKA2Q9UdbFzc8ww5nwiDaxDT4KNMZqBL",
+        "wif": "p2wpkh-p2sh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3N7rkfe2k11XmoYrGVDX6jBoYXvsZhHvwZ",
+        "wif": "p2wpkh-p2sh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "39GZRHbavDebMw93JvKjyC2nPPsqyvZaiC",
+        "wif": "p2wpkh-p2sh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3PJsnmdwrB5ZUjGzjh2FFFekjfEtwxccbr",
+        "wif": "p2wpkh-p2sh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "32D7zRSATGnuTULZwmmiyx2PdHs2DFgqxY",
+        "wif": "p2wpkh-p2sh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "3CPYGZV6JkZi7fa2NwGiGQyG6sMvRjEzr3",
+        "wif": "p2wpkh-p2sh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "34G8Qaf1xFarJjzowzrFQAYRJ9fmggG6Qu",
+        "wif": "p2wpkh-p2sh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "37odZaF2ZsJVaCQEkGcMar19DWCTmgaKBq",
+        "wif": "p2wpkh-p2sh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "36QeTJsD9en3ayYJoRHCuBGJkGwdBpnDp1",
+        "wif": "p2wpkh-p2sh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "32qMqGYfkTmxc5umsQM7AG4Go4bJjSEi5A",
+        "wif": "p2wpkh-p2sh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-p2wpkh-p2sh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "31kAoMPCCW1f7zMBrJHD5ihF5i7eGGq3ii",
+        "wif": "p2wpkh-p2sh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3Gjmt9YQX8m5ujJM2pyTfjv1nBpG8RD25g",
+        "wif": "p2wpkh-p2sh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "36iKA2Q9UdbFzc8ww5nwiDaxDT4KNMZqBL",
+        "wif": "p2wpkh-p2sh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3N7rkfe2k11XmoYrGVDX6jBoYXvsZhHvwZ",
+        "wif": "p2wpkh-p2sh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "39GZRHbavDebMw93JvKjyC2nPPsqyvZaiC",
+        "wif": "p2wpkh-p2sh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3PJsnmdwrB5ZUjGzjh2FFFekjfEtwxccbr",
+        "wif": "p2wpkh-p2sh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "32D7zRSATGnuTULZwmmiyx2PdHs2DFgqxY",
+        "wif": "p2wpkh-p2sh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "3CPYGZV6JkZi7fa2NwGiGQyG6sMvRjEzr3",
+        "wif": "p2wpkh-p2sh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "34G8Qaf1xFarJjzowzrFQAYRJ9fmggG6Qu",
+        "wif": "p2wpkh-p2sh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "37odZaF2ZsJVaCQEkGcMar19DWCTmgaKBq",
+        "wif": "p2wpkh-p2sh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "36QeTJsD9en3ayYJoRHCuBGJkGwdBpnDp1",
+        "wif": "p2wpkh-p2sh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "32qMqGYfkTmxc5umsQM7AG4Go4bJjSEi5A",
+        "wif": "p2wpkh-p2sh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-p2wpkh-p2sh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "31kAoMPCCW1f7zMBrJHD5ihF5i7eGGq3ii",
+        "wif": "p2wpkh-p2sh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "3Gjmt9YQX8m5ujJM2pyTfjv1nBpG8RD25g",
+        "wif": "p2wpkh-p2sh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "36iKA2Q9UdbFzc8ww5nwiDaxDT4KNMZqBL",
+        "wif": "p2wpkh-p2sh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "3N7rkfe2k11XmoYrGVDX6jBoYXvsZhHvwZ",
+        "wif": "p2wpkh-p2sh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "39GZRHbavDebMw93JvKjyC2nPPsqyvZaiC",
+        "wif": "p2wpkh-p2sh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "3PJsnmdwrB5ZUjGzjh2FFFekjfEtwxccbr",
+        "wif": "p2wpkh-p2sh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "32D7zRSATGnuTULZwmmiyx2PdHs2DFgqxY",
+        "wif": "p2wpkh-p2sh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "3CPYGZV6JkZi7fa2NwGiGQyG6sMvRjEzr3",
+        "wif": "p2wpkh-p2sh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "34G8Qaf1xFarJjzowzrFQAYRJ9fmggG6Qu",
+        "wif": "p2wpkh-p2sh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "37odZaF2ZsJVaCQEkGcMar19DWCTmgaKBq",
+        "wif": "p2wpkh-p2sh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "36QeTJsD9en3ayYJoRHCuBGJkGwdBpnDp1",
+        "wif": "p2wpkh-p2sh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "32qMqGYfkTmxc5umsQM7AG4Go4bJjSEi5A",
+        "wif": "p2wpkh-p2sh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-p2wpkh-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qscukn9n7p4f6mrg4cajc43lw6tfzca0rhg6yqp",
+        "wif": "p2wpkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qges9vrx4feha8w7pxy89mvayvg2gslws85vdlq",
+        "wif": "p2wpkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qxcfp9e7jeyrc0aluaq4e8w75kce6q6744dv3yd",
+        "wif": "p2wpkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q24r65zt3mptj2u9v2pfnxfl7fmh0spr2hlrxmq",
+        "wif": "p2wpkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qrtvaesr3uh032dd8k0yl4pka3tgte00j4t39u6",
+        "wif": "p2wpkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qh7x982zyl03w2p7rrxh26uu4vsrfdcl3xterw2",
+        "wif": "p2wpkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qu2n2utjme8z8mfz2ljy8chxreeh5z532fvc2td",
+        "wif": "p2wpkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qkxkssldyfh4jdyj5q63er78xga2289tcgwszll",
+        "wif": "p2wpkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qfhfrtkevd0w4qs7k2cd7w3x5vx8vtuzky6t59x",
+        "wif": "p2wpkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1q4yf4x70umg7cyv8dymjdrkxcsenz976dk38rwa",
+        "wif": "p2wpkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q58e2sxer2qy2jyp7rpk5wflaaguqpvvgzna2d0",
+        "wif": "p2wpkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qw9g9tg3g6thhe50pdqwna7034rmpgds5rx9emx",
+        "wif": "p2wpkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-p2wpkh-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qscukn9n7p4f6mrg4cajc43lw6tfzca0rhg6yqp",
+        "wif": "p2wpkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qges9vrx4feha8w7pxy89mvayvg2gslws85vdlq",
+        "wif": "p2wpkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qxcfp9e7jeyrc0aluaq4e8w75kce6q6744dv3yd",
+        "wif": "p2wpkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q24r65zt3mptj2u9v2pfnxfl7fmh0spr2hlrxmq",
+        "wif": "p2wpkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qrtvaesr3uh032dd8k0yl4pka3tgte00j4t39u6",
+        "wif": "p2wpkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qh7x982zyl03w2p7rrxh26uu4vsrfdcl3xterw2",
+        "wif": "p2wpkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qu2n2utjme8z8mfz2ljy8chxreeh5z532fvc2td",
+        "wif": "p2wpkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qkxkssldyfh4jdyj5q63er78xga2289tcgwszll",
+        "wif": "p2wpkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qfhfrtkevd0w4qs7k2cd7w3x5vx8vtuzky6t59x",
+        "wif": "p2wpkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1q4yf4x70umg7cyv8dymjdrkxcsenz976dk38rwa",
+        "wif": "p2wpkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q58e2sxer2qy2jyp7rpk5wflaaguqpvvgzna2d0",
+        "wif": "p2wpkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qw9g9tg3g6thhe50pdqwna7034rmpgds5rx9emx",
+        "wif": "p2wpkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "custom-5-p2wpkh-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qscukn9n7p4f6mrg4cajc43lw6tfzca0rhg6yqp",
+        "wif": "p2wpkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qges9vrx4feha8w7pxy89mvayvg2gslws85vdlq",
+        "wif": "p2wpkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qxcfp9e7jeyrc0aluaq4e8w75kce6q6744dv3yd",
+        "wif": "p2wpkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q24r65zt3mptj2u9v2pfnxfl7fmh0spr2hlrxmq",
+        "wif": "p2wpkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qrtvaesr3uh032dd8k0yl4pka3tgte00j4t39u6",
+        "wif": "p2wpkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qh7x982zyl03w2p7rrxh26uu4vsrfdcl3xterw2",
+        "wif": "p2wpkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qu2n2utjme8z8mfz2ljy8chxreeh5z532fvc2td",
+        "wif": "p2wpkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qkxkssldyfh4jdyj5q63er78xga2289tcgwszll",
+        "wif": "p2wpkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qfhfrtkevd0w4qs7k2cd7w3x5vx8vtuzky6t59x",
+        "wif": "p2wpkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1q4yf4x70umg7cyv8dymjdrkxcsenz976dk38rwa",
+        "wif": "p2wpkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q58e2sxer2qy2jyp7rpk5wflaaguqpvvgzna2d0",
+        "wif": "p2wpkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qw9g9tg3g6thhe50pdqwna7034rmpgds5rx9emx",
+        "wif": "p2wpkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "journal.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1qscukn9n7p4f6mrg4cajc43lw6tfzca0rhg6yqp",
+        "wif": "p2wpkh:L4tyhhmkGXUJnfcGZDaqr8VP6EPnMw6Fv3Vx5pKHqkw8YAZxakgP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1qges9vrx4feha8w7pxy89mvayvg2gslws85vdlq",
+        "wif": "p2wpkh:KxeSwBZ9oP66GJmRkhyPYa5SPJThjcQzwGfgngVuqBgsX92vQgPr"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qxcfp9e7jeyrc0aluaq4e8w75kce6q6744dv3yd",
+        "wif": "p2wpkh:KxBgd2Xvp5sQGwWu1Je7HjkADYYUUdQCqHJrCweBdPSH4JTvrDU4"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1q24r65zt3mptj2u9v2pfnxfl7fmh0spr2hlrxmq",
+        "wif": "p2wpkh:KxA6kabJwTAnEZixwjThhQvXbzPUsSBPURPHYCxDwsbRzwbEY2wN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1qrtvaesr3uh032dd8k0yl4pka3tgte00j4t39u6",
+        "wif": "p2wpkh:L1VeZwYfqm9YET5gidQiJ2krYsFJtREu22DubZSVizt8Dc39CUY1"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qh7x982zyl03w2p7rrxh26uu4vsrfdcl3xterw2",
+        "wif": "p2wpkh:L52t26cTx1AQALUkXY9KQn7hozxDixPZb5doff4vusv9a45EM5VF"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qu2n2utjme8z8mfz2ljy8chxreeh5z532fvc2td",
+        "wif": "p2wpkh:Kzdcjr17deJFWvUH21ygsqXecyAXXPbifpt5M9ZhCNbkKR9mmUpT"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1qkxkssldyfh4jdyj5q63er78xga2289tcgwszll",
+        "wif": "p2wpkh:Kz2eERjhz8Qgw41ewqwVJCoou1d1EneicwGtpNbYvUfEf92KbxCQ"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qfhfrtkevd0w4qs7k2cd7w3x5vx8vtuzky6t59x",
+        "wif": "p2wpkh:Kx55uBcesr9nL6jU5GzUnxmuuNdD6DgQ1Zw75FHhk9fFYwkFwXkR"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1q4yf4x70umg7cyv8dymjdrkxcsenz976dk38rwa",
+        "wif": "p2wpkh:L4QtgWYEDkNkwjnp4vBC2d7eVwwXn81vAgeJz3chNk3FJaxq9tRP"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1q58e2sxer2qy2jyp7rpk5wflaaguqpvvgzna2d0",
+        "wif": "p2wpkh:L583dd9mJVvTH7LUE5ieCSvyoa9s8Y7dryzx8YyzuoPcycH17LNR"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qw9g9tg3g6thhe50pdqwna7034rmpgds5rx9emx",
+        "wif": "p2wpkh:L3Bz91rGJvPwiYyLdhfTw38d4vyJbx31Uxwy8bd5SNTH1VtSUKkE"
+      }
+    ]
+  },
+  {
+    "name": "electrum-standard-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1NNkttn1YvVGdqBW4PR6zvc3Zx3H5owKRf",
+        "wif": "p2pkh:L4xstkeBfS6RbE6FezmKsHheFqktMMHQMsK7D1Hr5dvFbNhnekHM"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "18KCZB4y7SKPmTGN2rDQuUsNxyVBX7CAbG",
+        "wif": "p2pkh:KxERQEvau1865MuqPa1HdhKGMHAgsQJUq5XczC4rijEp7xj56hui"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "17Nroj6DBN2c8rhKJWoTiEa9oVehPqVybx",
+        "wif": "p2pkh:L1ThLmwFaHzBckiWjatcXHo49Z7nPZzpCmxNQUKAXQkjb7vWA8ks"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1JR6LAy75X8N6a68ncVN1hua6jUdA3DXUR",
+        "wif": "p2pkh:L5nQbL3h9VaHZS2W5oa3RaQbhXn8yoKSJ7AQdY5qz74Hiax5WVWp"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "19Hs8y1nSKyNssRXG3R2RcM7DmqqKZpVSr",
+        "wif": "p2pkh:KzqMwNdisaTjvATAWswGUgEzUgRMHNpJKSjsdwAM5MdnhQ5b5VhW"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1gvzJGoZXVqhbvWstiB8iXg6STQ58AQH8",
+        "wif": "p2pkh:L5QPdd2gCg78bQAxXet4saHtunB7QNedZLgu5WnTzTLxPqrbzy6Z"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1KSezYMhAJMWqFbVFB2JshYg69UpmEXR4D",
+        "wif": "p2pkh:L3eak2Wbw2MVgJBTcjZwNz7Ty6nw9YbDEbzAXpPxfUEfpLfXbVkA"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1GSmpT2UWuELEMEv6GmoAYZwmUY1oFsypn",
+        "wif": "p2pkh:L35MWQyAYLjURUPcSYvFnVj4KwxXXL1PKkqdnPwrfT95a5QtFMhv"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1D8haCAyEAvnWp1mYpvHdCoeULkuxbTruZ",
+        "wif": "p2pkh:L537YtVc1cw9F1EhVamRKqkq6H7RJwXyBhjx9nbhfdhcNpsWU9ua"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1NTzz8RtPADUUSseS7uSfv613uMhBgKns4",
+        "wif": "p2pkh:KwkakyoMz3rT85jFZRSLQa951anj9DxEsLtbXf9rkwbaoxM8HTno"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "13nrcBV1NnopGzv8jQv1AyZBGVaQY3i3eQ",
+        "wif": "p2pkh:KxhS7GoBwYNU3EAGLWTRZUKG244hshLLUyCvDBMWj8FFXMEHmLBs"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "12L968JZd5FFWAMZHYT2SZYyZ4TmYgosVE",
+        "wif": "p2pkh:L3edpHdQMf73fSzi4aoLCixiMPVWKVGd1mSc5gBP2mfeKMoHWJBy"
+      }
+    ]
+  },
+  {
+    "name": "electrum-standard-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1NNkttn1YvVGdqBW4PR6zvc3Zx3H5owKRf",
+        "wif": "p2pkh:L4xstkeBfS6RbE6FezmKsHheFqktMMHQMsK7D1Hr5dvFbNhnekHM"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "18KCZB4y7SKPmTGN2rDQuUsNxyVBX7CAbG",
+        "wif": "p2pkh:KxERQEvau1865MuqPa1HdhKGMHAgsQJUq5XczC4rijEp7xj56hui"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "17Nroj6DBN2c8rhKJWoTiEa9oVehPqVybx",
+        "wif": "p2pkh:L1ThLmwFaHzBckiWjatcXHo49Z7nPZzpCmxNQUKAXQkjb7vWA8ks"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1JR6LAy75X8N6a68ncVN1hua6jUdA3DXUR",
+        "wif": "p2pkh:L5nQbL3h9VaHZS2W5oa3RaQbhXn8yoKSJ7AQdY5qz74Hiax5WVWp"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "19Hs8y1nSKyNssRXG3R2RcM7DmqqKZpVSr",
+        "wif": "p2pkh:KzqMwNdisaTjvATAWswGUgEzUgRMHNpJKSjsdwAM5MdnhQ5b5VhW"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1gvzJGoZXVqhbvWstiB8iXg6STQ58AQH8",
+        "wif": "p2pkh:L5QPdd2gCg78bQAxXet4saHtunB7QNedZLgu5WnTzTLxPqrbzy6Z"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1KSezYMhAJMWqFbVFB2JshYg69UpmEXR4D",
+        "wif": "p2pkh:L3eak2Wbw2MVgJBTcjZwNz7Ty6nw9YbDEbzAXpPxfUEfpLfXbVkA"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1GSmpT2UWuELEMEv6GmoAYZwmUY1oFsypn",
+        "wif": "p2pkh:L35MWQyAYLjURUPcSYvFnVj4KwxXXL1PKkqdnPwrfT95a5QtFMhv"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1D8haCAyEAvnWp1mYpvHdCoeULkuxbTruZ",
+        "wif": "p2pkh:L537YtVc1cw9F1EhVamRKqkq6H7RJwXyBhjx9nbhfdhcNpsWU9ua"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1NTzz8RtPADUUSseS7uSfv613uMhBgKns4",
+        "wif": "p2pkh:KwkakyoMz3rT85jFZRSLQa951anj9DxEsLtbXf9rkwbaoxM8HTno"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "13nrcBV1NnopGzv8jQv1AyZBGVaQY3i3eQ",
+        "wif": "p2pkh:KxhS7GoBwYNU3EAGLWTRZUKG244hshLLUyCvDBMWj8FFXMEHmLBs"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "12L968JZd5FFWAMZHYT2SZYyZ4TmYgosVE",
+        "wif": "p2pkh:L3edpHdQMf73fSzi4aoLCixiMPVWKVGd1mSc5gBP2mfeKMoHWJBy"
+      }
+    ]
+  },
+  {
+    "name": "electrum-standard-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1NNkttn1YvVGdqBW4PR6zvc3Zx3H5owKRf",
+        "wif": "p2pkh:L4xstkeBfS6RbE6FezmKsHheFqktMMHQMsK7D1Hr5dvFbNhnekHM"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "18KCZB4y7SKPmTGN2rDQuUsNxyVBX7CAbG",
+        "wif": "p2pkh:KxERQEvau1865MuqPa1HdhKGMHAgsQJUq5XczC4rijEp7xj56hui"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "17Nroj6DBN2c8rhKJWoTiEa9oVehPqVybx",
+        "wif": "p2pkh:L1ThLmwFaHzBckiWjatcXHo49Z7nPZzpCmxNQUKAXQkjb7vWA8ks"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1JR6LAy75X8N6a68ncVN1hua6jUdA3DXUR",
+        "wif": "p2pkh:L5nQbL3h9VaHZS2W5oa3RaQbhXn8yoKSJ7AQdY5qz74Hiax5WVWp"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "19Hs8y1nSKyNssRXG3R2RcM7DmqqKZpVSr",
+        "wif": "p2pkh:KzqMwNdisaTjvATAWswGUgEzUgRMHNpJKSjsdwAM5MdnhQ5b5VhW"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1gvzJGoZXVqhbvWstiB8iXg6STQ58AQH8",
+        "wif": "p2pkh:L5QPdd2gCg78bQAxXet4saHtunB7QNedZLgu5WnTzTLxPqrbzy6Z"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1KSezYMhAJMWqFbVFB2JshYg69UpmEXR4D",
+        "wif": "p2pkh:L3eak2Wbw2MVgJBTcjZwNz7Ty6nw9YbDEbzAXpPxfUEfpLfXbVkA"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1GSmpT2UWuELEMEv6GmoAYZwmUY1oFsypn",
+        "wif": "p2pkh:L35MWQyAYLjURUPcSYvFnVj4KwxXXL1PKkqdnPwrfT95a5QtFMhv"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1D8haCAyEAvnWp1mYpvHdCoeULkuxbTruZ",
+        "wif": "p2pkh:L537YtVc1cw9F1EhVamRKqkq6H7RJwXyBhjx9nbhfdhcNpsWU9ua"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1NTzz8RtPADUUSseS7uSfv613uMhBgKns4",
+        "wif": "p2pkh:KwkakyoMz3rT85jFZRSLQa951anj9DxEsLtbXf9rkwbaoxM8HTno"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "13nrcBV1NnopGzv8jQv1AyZBGVaQY3i3eQ",
+        "wif": "p2pkh:KxhS7GoBwYNU3EAGLWTRZUKG244hshLLUyCvDBMWj8FFXMEHmLBs"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "12L968JZd5FFWAMZHYT2SZYyZ4TmYgosVE",
+        "wif": "p2pkh:L3edpHdQMf73fSzi4aoLCixiMPVWKVGd1mSc5gBP2mfeKMoHWJBy"
+      }
+    ]
+  },
+  {
+    "name": "electrum-segwit-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q3g5tmkmlvxryhh843v4dz026avatc0zzr6h3af",
+        "wif": "p2wpkh:L15oxP24NMNAXxq5r2aom24pHPtt3Fet8ZutgL155Bad93GSubM2"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1q9pzjpjq4nqx5ycnywekcmycqz0wjp2nq604y2n",
+        "wif": "p2wpkh:L4rYY5QpfN6wJEF4SEKDpcGhTPnCe9zcGs6hiSnhpprZqVywFifN"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qk5aacce576txljxpkvkwq9wejtqlqfsl9xgtxq",
+        "wif": "p2wpkh:L3epDZc91yrUN2bXEn5NJt4hxP6ESFZkDEtNXVtT4Ne9pKtao321"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qgr5su7eak6kuttsy39kyfvspp0ktrj8d2l0pxh",
+        "wif": "p2wpkh:L4mmzwdvQpcQBRj2fHh75s451bWTahXSALeNXTdDUy2bZQUMPMJK"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1ql6m8hpkst40p5g3fp6vkc69fysn8w9cpanuh09",
+        "wif": "p2wpkh:L22PSAugAVSzd99VPBtaTfJ7eaQwAAoKpAx9wxqtGP5EXAU8L5eX"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qnwjsaurz8urd7xatj7x7ewwlt92njylp2769pm",
+        "wif": "p2wpkh:L4u7tGBudpj7kpZ9pmUU5jNn4dw88KSkFf8ifSok5k3WCH7W9pG7"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qdy94n2q5qcp0kg7v9yzwe6wvfkhnvyzje7nx2p",
+        "wif": "p2wpkh:KzGkhpK5pURCGUx8dZoEK8qLZh3g8XahjL8RTwQLGwz8g39iu7bq"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q6xwxcw6m9ga35687tnu5tstmsvmzjwdnzktemv",
+        "wif": "p2wpkh:Kxo1qwVFoK7e6UcsQNob29THkUUu5PeFBRaRrhSUyMzUDmidNLcf"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qx0ktttafed5skep8jckajq0ttxccnp447h0y42",
+        "wif": "p2wpkh:L47KMPuwUEoNFMcnUuhLH2urxYpad85zz7athq7G3t7qQXZfkGkw"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qpgzjl4mevlry8qcshxdk3u3lnpvxdlgtlznpsj",
+        "wif": "p2wpkh:L5PkLQw86MFxPLKNUgBeTREtMGzF6BGhxKPkiADvzYro2c2vsGXJ"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qvy3l3tptxves7rvhptfxspkht7hgpn5t979aqk",
+        "wif": "p2wpkh:KzQpQ7e56AoDknB1xifU1Hr7seZFFJX33XgKTVHQgencMHaZPyNZ"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qa9n37yy7ulpzhutvkc2kk5z9klm33lx3q0c2yf",
+        "wif": "p2wpkh:Kx361qJkh5m5xKPFEhAqB2PzJgsh52BNjHFxvURs9yswNHmrDW8U"
+      }
+    ]
+  },
+  {
+    "name": "electrum-segwit-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q3g5tmkmlvxryhh843v4dz026avatc0zzr6h3af",
+        "wif": "p2wpkh:L15oxP24NMNAXxq5r2aom24pHPtt3Fet8ZutgL155Bad93GSubM2"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1q9pzjpjq4nqx5ycnywekcmycqz0wjp2nq604y2n",
+        "wif": "p2wpkh:L4rYY5QpfN6wJEF4SEKDpcGhTPnCe9zcGs6hiSnhpprZqVywFifN"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qk5aacce576txljxpkvkwq9wejtqlqfsl9xgtxq",
+        "wif": "p2wpkh:L3epDZc91yrUN2bXEn5NJt4hxP6ESFZkDEtNXVtT4Ne9pKtao321"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qgr5su7eak6kuttsy39kyfvspp0ktrj8d2l0pxh",
+        "wif": "p2wpkh:L4mmzwdvQpcQBRj2fHh75s451bWTahXSALeNXTdDUy2bZQUMPMJK"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1ql6m8hpkst40p5g3fp6vkc69fysn8w9cpanuh09",
+        "wif": "p2wpkh:L22PSAugAVSzd99VPBtaTfJ7eaQwAAoKpAx9wxqtGP5EXAU8L5eX"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qnwjsaurz8urd7xatj7x7ewwlt92njylp2769pm",
+        "wif": "p2wpkh:L4u7tGBudpj7kpZ9pmUU5jNn4dw88KSkFf8ifSok5k3WCH7W9pG7"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qdy94n2q5qcp0kg7v9yzwe6wvfkhnvyzje7nx2p",
+        "wif": "p2wpkh:KzGkhpK5pURCGUx8dZoEK8qLZh3g8XahjL8RTwQLGwz8g39iu7bq"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q6xwxcw6m9ga35687tnu5tstmsvmzjwdnzktemv",
+        "wif": "p2wpkh:Kxo1qwVFoK7e6UcsQNob29THkUUu5PeFBRaRrhSUyMzUDmidNLcf"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qx0ktttafed5skep8jckajq0ttxccnp447h0y42",
+        "wif": "p2wpkh:L47KMPuwUEoNFMcnUuhLH2urxYpad85zz7athq7G3t7qQXZfkGkw"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qpgzjl4mevlry8qcshxdk3u3lnpvxdlgtlznpsj",
+        "wif": "p2wpkh:L5PkLQw86MFxPLKNUgBeTREtMGzF6BGhxKPkiADvzYro2c2vsGXJ"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qvy3l3tptxves7rvhptfxspkht7hgpn5t979aqk",
+        "wif": "p2wpkh:KzQpQ7e56AoDknB1xifU1Hr7seZFFJX33XgKTVHQgencMHaZPyNZ"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qa9n37yy7ulpzhutvkc2kk5z9klm33lx3q0c2yf",
+        "wif": "p2wpkh:Kx361qJkh5m5xKPFEhAqB2PzJgsh52BNjHFxvURs9yswNHmrDW8U"
+      }
+    ]
+  },
+  {
+    "name": "electrum-segwit-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1q3g5tmkmlvxryhh843v4dz026avatc0zzr6h3af",
+        "wif": "p2wpkh:L15oxP24NMNAXxq5r2aom24pHPtt3Fet8ZutgL155Bad93GSubM2"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "bc1q9pzjpjq4nqx5ycnywekcmycqz0wjp2nq604y2n",
+        "wif": "p2wpkh:L4rYY5QpfN6wJEF4SEKDpcGhTPnCe9zcGs6hiSnhpprZqVywFifN"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "bc1qk5aacce576txljxpkvkwq9wejtqlqfsl9xgtxq",
+        "wif": "p2wpkh:L3epDZc91yrUN2bXEn5NJt4hxP6ESFZkDEtNXVtT4Ne9pKtao321"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "bc1qgr5su7eak6kuttsy39kyfvspp0ktrj8d2l0pxh",
+        "wif": "p2wpkh:L4mmzwdvQpcQBRj2fHh75s451bWTahXSALeNXTdDUy2bZQUMPMJK"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "bc1ql6m8hpkst40p5g3fp6vkc69fysn8w9cpanuh09",
+        "wif": "p2wpkh:L22PSAugAVSzd99VPBtaTfJ7eaQwAAoKpAx9wxqtGP5EXAU8L5eX"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "bc1qnwjsaurz8urd7xatj7x7ewwlt92njylp2769pm",
+        "wif": "p2wpkh:L4u7tGBudpj7kpZ9pmUU5jNn4dw88KSkFf8ifSok5k3WCH7W9pG7"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "bc1qdy94n2q5qcp0kg7v9yzwe6wvfkhnvyzje7nx2p",
+        "wif": "p2wpkh:KzGkhpK5pURCGUx8dZoEK8qLZh3g8XahjL8RTwQLGwz8g39iu7bq"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "bc1q6xwxcw6m9ga35687tnu5tstmsvmzjwdnzktemv",
+        "wif": "p2wpkh:Kxo1qwVFoK7e6UcsQNob29THkUUu5PeFBRaRrhSUyMzUDmidNLcf"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "bc1qx0ktttafed5skep8jckajq0ttxccnp447h0y42",
+        "wif": "p2wpkh:L47KMPuwUEoNFMcnUuhLH2urxYpad85zz7athq7G3t7qQXZfkGkw"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "bc1qpgzjl4mevlry8qcshxdk3u3lnpvxdlgtlznpsj",
+        "wif": "p2wpkh:L5PkLQw86MFxPLKNUgBeTREtMGzF6BGhxKPkiADvzYro2c2vsGXJ"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "bc1qvy3l3tptxves7rvhptfxspkht7hgpn5t979aqk",
+        "wif": "p2wpkh:KzQpQ7e56AoDknB1xifU1Hr7seZFFJX33XgKTVHQgencMHaZPyNZ"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "bc1qa9n37yy7ulpzhutvkc2kk5z9klm33lx3q0c2yf",
+        "wif": "p2wpkh:Kx361qJkh5m5xKPFEhAqB2PzJgsh52BNjHFxvURs9yswNHmrDW8U"
+      }
+    ]
+  },
+  {
+    "name": "electrum-old-clear.wallet",
+    "password": "",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1FJEEB8ihPMbzs2SkLmr37dHyRFzakqUmo",
+        "wif": "p2pkh:5JuecQZ1nH4VCQRQJTQjB4yu93BU6NmnAkDoGRdHX2PyH2E8QVX"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1JnNwHaztEa181EnG6qur1WALRJe1f3WLn",
+        "wif": "p2pkh:5JoSYQqSCqcD7TNHRPzzNjJqxgir9Rg9SdmTckwxGrwmVP3ytig"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1H8hheghizJz9exm76tToRQJENgwpnUVvY",
+        "wif": "p2pkh:5KPkrkBNma5Kq6TfwubkDQ7wYC4p5kxMTG4TtpfefCzs222gWXN"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1AisqPzn5FZyNK7t91nq7FKTzUyRFpKUQU",
+        "wif": "p2pkh:5KBpaKhS8yDoup9D7DpPQPSDAV1JhZ1KpCvFRqQojku25esXuTN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1BVLm2Z9FpPfeC2khod5aSNAtR97Gi4Y4F",
+        "wif": "p2pkh:5Jonc8zCJ4HnXpWVgLgxugLifDUwuEKfQ6wvMQb7iBkcUF5HgMS"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1DiqUELPwd5pRDQpautv9auEqA5CLaPRwE",
+        "wif": "p2pkh:5J39cpFKRffSi165d8Yp7ESZpz8hNpCfFCutdFrHUHU5cGhnmXP"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1KRW8pH6HFHZh889VDq6fEKvmrsmApwNfe",
+        "wif": "p2pkh:5KR5zcjvqzcFePf3cKsmezZdxsyn5sHiQkR4Y5sXoWpD96FY3pp"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1DWmSqT8NTK9ehmEuaAzK5pgghGXPKjEHE",
+        "wif": "p2pkh:5JRQH37fZsRTXEZimZ7hBdZV1kJuRXFuvdVgjBuWDSbyMgZzSgg"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1MTaVs6dJfHU2tY5Je3zh8Nffr6t1ZzpzW",
+        "wif": "p2pkh:5K4Ms7CEXcqg6L5xuJsjGFa9s7ydpb4iezcmyG4zcRqXk6756W9"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1Dwv7WEW9yx5x6Q6neX9E8z26Q4c4mWN6n",
+        "wif": "p2pkh:5Hw8G1zEopyB362YisX6FaHu46gz5gE7zr3q6vDqmb6766qi5G9"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "18UNSXatjZ3J2nMvJX9Yh9Eu7i8ammBs29",
+        "wif": "p2pkh:5JYs9fTXoTr5LUGhku4j6GrdCtQbjUWdq5LrnLXrRPtNBtHS2kd"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1N2rvWf6m1wc6qYcH7sacco6rVPXfJho57",
+        "wif": "p2pkh:5JX5GJiimHTgQKLtnHHi7SNFhwLAtNCRA9DHU1mHW1K2jAebfHp"
+      }
+    ]
+  },
+  {
+    "name": "electrum-old-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1FJEEB8ihPMbzs2SkLmr37dHyRFzakqUmo",
+        "wif": "p2pkh:5JuecQZ1nH4VCQRQJTQjB4yu93BU6NmnAkDoGRdHX2PyH2E8QVX"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1JnNwHaztEa181EnG6qur1WALRJe1f3WLn",
+        "wif": "p2pkh:5JoSYQqSCqcD7TNHRPzzNjJqxgir9Rg9SdmTckwxGrwmVP3ytig"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1H8hheghizJz9exm76tToRQJENgwpnUVvY",
+        "wif": "p2pkh:5KPkrkBNma5Kq6TfwubkDQ7wYC4p5kxMTG4TtpfefCzs222gWXN"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1AisqPzn5FZyNK7t91nq7FKTzUyRFpKUQU",
+        "wif": "p2pkh:5KBpaKhS8yDoup9D7DpPQPSDAV1JhZ1KpCvFRqQojku25esXuTN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1BVLm2Z9FpPfeC2khod5aSNAtR97Gi4Y4F",
+        "wif": "p2pkh:5Jonc8zCJ4HnXpWVgLgxugLifDUwuEKfQ6wvMQb7iBkcUF5HgMS"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1DiqUELPwd5pRDQpautv9auEqA5CLaPRwE",
+        "wif": "p2pkh:5J39cpFKRffSi165d8Yp7ESZpz8hNpCfFCutdFrHUHU5cGhnmXP"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1KRW8pH6HFHZh889VDq6fEKvmrsmApwNfe",
+        "wif": "p2pkh:5KR5zcjvqzcFePf3cKsmezZdxsyn5sHiQkR4Y5sXoWpD96FY3pp"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1DWmSqT8NTK9ehmEuaAzK5pgghGXPKjEHE",
+        "wif": "p2pkh:5JRQH37fZsRTXEZimZ7hBdZV1kJuRXFuvdVgjBuWDSbyMgZzSgg"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1MTaVs6dJfHU2tY5Je3zh8Nffr6t1ZzpzW",
+        "wif": "p2pkh:5K4Ms7CEXcqg6L5xuJsjGFa9s7ydpb4iezcmyG4zcRqXk6756W9"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1Dwv7WEW9yx5x6Q6neX9E8z26Q4c4mWN6n",
+        "wif": "p2pkh:5Hw8G1zEopyB362YisX6FaHu46gz5gE7zr3q6vDqmb6766qi5G9"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "18UNSXatjZ3J2nMvJX9Yh9Eu7i8ammBs29",
+        "wif": "p2pkh:5JYs9fTXoTr5LUGhku4j6GrdCtQbjUWdq5LrnLXrRPtNBtHS2kd"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1N2rvWf6m1wc6qYcH7sacco6rVPXfJho57",
+        "wif": "p2pkh:5JX5GJiimHTgQKLtnHHi7SNFhwLAtNCRA9DHU1mHW1K2jAebfHp"
+      }
+    ]
+  },
+  {
+    "name": "electrum-old-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "standard",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1FJEEB8ihPMbzs2SkLmr37dHyRFzakqUmo",
+        "wif": "p2pkh:5JuecQZ1nH4VCQRQJTQjB4yu93BU6NmnAkDoGRdHX2PyH2E8QVX"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1JnNwHaztEa181EnG6qur1WALRJe1f3WLn",
+        "wif": "p2pkh:5JoSYQqSCqcD7TNHRPzzNjJqxgir9Rg9SdmTckwxGrwmVP3ytig"
+      },
+      {
+        "branch": 0,
+        "index": 8,
+        "address": "1H8hheghizJz9exm76tToRQJENgwpnUVvY",
+        "wif": "p2pkh:5KPkrkBNma5Kq6TfwubkDQ7wYC4p5kxMTG4TtpfefCzs222gWXN"
+      },
+      {
+        "branch": 0,
+        "index": 26,
+        "address": "1AisqPzn5FZyNK7t91nq7FKTzUyRFpKUQU",
+        "wif": "p2pkh:5KBpaKhS8yDoup9D7DpPQPSDAV1JhZ1KpCvFRqQojku25esXuTN"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1BVLm2Z9FpPfeC2khod5aSNAtR97Gi4Y4F",
+        "wif": "p2pkh:5Jonc8zCJ4HnXpWVgLgxugLifDUwuEKfQ6wvMQb7iBkcUF5HgMS"
+      },
+      {
+        "branch": 0,
+        "index": 1000,
+        "address": "1DiqUELPwd5pRDQpautv9auEqA5CLaPRwE",
+        "wif": "p2pkh:5J39cpFKRffSi165d8Yp7ESZpz8hNpCfFCutdFrHUHU5cGhnmXP"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1KRW8pH6HFHZh889VDq6fEKvmrsmApwNfe",
+        "wif": "p2pkh:5KR5zcjvqzcFePf3cKsmezZdxsyn5sHiQkR4Y5sXoWpD96FY3pp"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1DWmSqT8NTK9ehmEuaAzK5pgghGXPKjEHE",
+        "wif": "p2pkh:5JRQH37fZsRTXEZimZ7hBdZV1kJuRXFuvdVgjBuWDSbyMgZzSgg"
+      },
+      {
+        "branch": 1,
+        "index": 8,
+        "address": "1MTaVs6dJfHU2tY5Je3zh8Nffr6t1ZzpzW",
+        "wif": "p2pkh:5K4Ms7CEXcqg6L5xuJsjGFa9s7ydpb4iezcmyG4zcRqXk6756W9"
+      },
+      {
+        "branch": 1,
+        "index": 26,
+        "address": "1Dwv7WEW9yx5x6Q6neX9E8z26Q4c4mWN6n",
+        "wif": "p2pkh:5Hw8G1zEopyB362YisX6FaHu46gz5gE7zr3q6vDqmb6766qi5G9"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "18UNSXatjZ3J2nMvJX9Yh9Eu7i8ammBs29",
+        "wif": "p2pkh:5JYs9fTXoTr5LUGhku4j6GrdCtQbjUWdq5LrnLXrRPtNBtHS2kd"
+      },
+      {
+        "branch": 1,
+        "index": 1000,
+        "address": "1N2rvWf6m1wc6qYcH7sacco6rVPXfJho57",
+        "wif": "p2pkh:5JX5GJiimHTgQKLtnHHi7SNFhwLAtNCRA9DHU1mHW1K2jAebfHp"
+      }
+    ]
+  },
+  {
+    "name": "imported-mixed-clear.wallet",
+    "password": "",
+    "kind": "imported",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1HFxLkPTtMZeo5mDpZn6CF9sh4h2ycknwr",
+        "wif": "p2pkh:5J5KUK3VXP8HUefNVYPxwxVRokScZdWXpu1Tj8LfaAXMqHzMmbk"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Q1pE5vPGEEMqRcVRMbtBK842Y6Pzo6nK9",
+        "wif": "p2pkh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3PFpzMLrKWsphFtc8BesF3MGPnimKMuF4x",
+        "wif": "p2wpkh-p2sh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1ql3e9pgs3mmwuwrh95fecme0s0qtn2880lsvsd5",
+        "wif": "p2wpkh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      }
+    ]
+  },
+  {
+    "name": "imported-mixed-keys-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "imported",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1HFxLkPTtMZeo5mDpZn6CF9sh4h2ycknwr",
+        "wif": "p2pkh:5J5KUK3VXP8HUefNVYPxwxVRokScZdWXpu1Tj8LfaAXMqHzMmbk"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Q1pE5vPGEEMqRcVRMbtBK842Y6Pzo6nK9",
+        "wif": "p2pkh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3PFpzMLrKWsphFtc8BesF3MGPnimKMuF4x",
+        "wif": "p2wpkh-p2sh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1ql3e9pgs3mmwuwrh95fecme0s0qtn2880lsvsd5",
+        "wif": "p2wpkh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      }
+    ]
+  },
+  {
+    "name": "imported-mixed-file-encrypted.wallet",
+    "password": "ElectrumFixture-\u00e9-\u6d4b\u8bd5",
+    "kind": "imported",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1HFxLkPTtMZeo5mDpZn6CF9sh4h2ycknwr",
+        "wif": "p2pkh:5J5KUK3VXP8HUefNVYPxwxVRokScZdWXpu1Tj8LfaAXMqHzMmbk"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Q1pE5vPGEEMqRcVRMbtBK842Y6Pzo6nK9",
+        "wif": "p2pkh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "3PFpzMLrKWsphFtc8BesF3MGPnimKMuF4x",
+        "wif": "p2wpkh-p2sh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "bc1ql3e9pgs3mmwuwrh95fecme0s0qtn2880lsvsd5",
+        "wif": "p2wpkh:KwntMbt59tTsj8xqpqYqRRWufyjGunvhSyeMo3NTYpFYzZbXJ5Hp"
+      }
+    ]
+  }
+]

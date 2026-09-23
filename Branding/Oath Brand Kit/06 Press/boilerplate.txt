@@ -1,0 +1,5 @@
+About Oath
+
+Oath is a self-custody crypto wallet, available now on the App Store for iPhone, with Android coming soon. Keys are generated and stored on the user's device — Oath never holds them and cannot move funds. The app lets people hold, send, receive and swap digital assets with plain-language security built in.
+
+Tagline: Your keys. Your word.

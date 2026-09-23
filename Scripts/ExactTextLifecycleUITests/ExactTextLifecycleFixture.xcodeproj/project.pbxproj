@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2630816250F0E5850085D09D /* ExactTextLifecycleFixtureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307862F8C6AB85C1BC6E493 /* ExactTextLifecycleFixtureScreen.swift */; };
+		606F867CD39E588A9320E31F /* WalletTextWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480DB672C81C96E416D05326 /* WalletTextWrapping.swift */; };
+		67213029264D6AF31ACF54BE /* ExactTextLifecycleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823DD0609743F3F7CBADF3D2 /* ExactTextLifecycleUITests.swift */; };
+		6FA493CD0EACE403B9112C39 /* ExactTextDetailFixtureScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D37D4D95E40B198C5000B5 /* ExactTextDetailFixtureScreen.swift */; };
+		904DB4494774BE8286FB482C /* WalletNativeTextPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75F77A7A773400939FD3C22 /* WalletNativeTextPrivacy.swift */; };
+		A74F1C11E8846409EAA74197 /* ExactTextLifecycleFixtureApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB60A3DF670BA03AA6D477DE /* ExactTextLifecycleFixtureApp.swift */; };
+		D23B06A90FCE645DFBFFF5F9 /* ExactTextRenderingProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411697362A96450CEC40FD2C /* ExactTextRenderingProbe.swift */; };
+		D5A2065A21064603D24D0864 /* WalletExactText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9F944C811D989D0A70ED31 /* WalletExactText.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EF1C38FA36F38761A2BEB9B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8DF30B9DEA67627B66225CBA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 11CE507E1DA1EFCE4F58FF4E;
+			remoteInfo = ExactTextLifecycleFixture;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		411697362A96450CEC40FD2C /* ExactTextRenderingProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExactTextRenderingProbe.swift; sourceTree = "<group>"; };
+		4307862F8C6AB85C1BC6E493 /* ExactTextLifecycleFixtureScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExactTextLifecycleFixtureScreen.swift; sourceTree = "<group>"; };
+		480DB672C81C96E416D05326 /* WalletTextWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTextWrapping.swift; sourceTree = "<group>"; };
+		5E9F944C811D989D0A70ED31 /* WalletExactText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletExactText.swift; sourceTree = "<group>"; };
+		823DD0609743F3F7CBADF3D2 /* ExactTextLifecycleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExactTextLifecycleUITests.swift; sourceTree = "<group>"; };
+		AC644EFE861929A84F682CF3 /* ExactTextLifecycleUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ExactTextLifecycleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75F77A7A773400939FD3C22 /* WalletNativeTextPrivacy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNativeTextPrivacy.swift; sourceTree = "<group>"; };
+		CDC0DDF7010E944587ACDCEB /* ExactTextLifecycleFixture.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ExactTextLifecycleFixture.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0D37D4D95E40B198C5000B5 /* ExactTextDetailFixtureScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExactTextDetailFixtureScreen.swift; sourceTree = "<group>"; };
+		FB60A3DF670BA03AA6D477DE /* ExactTextLifecycleFixtureApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExactTextLifecycleFixtureApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1C99F24925F6DA558F17A58E = {
+			isa = PBXGroup;
+			children = (
+				60AD6B593CD295811BD8BF9F /* App */,
+				6039D65D11C0514A79DA8157 /* Components */,
+				7B25A12B64AE43FFFCC6DA4C /* Tests */,
+				62C9A752D870C8BFF0300CB2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6039D65D11C0514A79DA8157 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5E9F944C811D989D0A70ED31 /* WalletExactText.swift */,
+				B75F77A7A773400939FD3C22 /* WalletNativeTextPrivacy.swift */,
+				480DB672C81C96E416D05326 /* WalletTextWrapping.swift */,
+			);
+			name = Components;
+			path = ../../EVMWallet/Components;
+			sourceTree = "<group>";
+		};
+		60AD6B593CD295811BD8BF9F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E0D37D4D95E40B198C5000B5 /* ExactTextDetailFixtureScreen.swift */,
+				FB60A3DF670BA03AA6D477DE /* ExactTextLifecycleFixtureApp.swift */,
+				4307862F8C6AB85C1BC6E493 /* ExactTextLifecycleFixtureScreen.swift */,
+				411697362A96450CEC40FD2C /* ExactTextRenderingProbe.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		62C9A752D870C8BFF0300CB2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDC0DDF7010E944587ACDCEB /* ExactTextLifecycleFixture.app */,
+				AC644EFE861929A84F682CF3 /* ExactTextLifecycleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B25A12B64AE43FFFCC6DA4C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				823DD0609743F3F7CBADF3D2 /* ExactTextLifecycleUITests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11CE507E1DA1EFCE4F58FF4E /* ExactTextLifecycleFixture */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BEC331CA3C0862D92576F39 /* Build configuration list for PBXNativeTarget "ExactTextLifecycleFixture" */;
+			buildPhases = (
+				E4E3C9BA8481DA4A31A7F6EF /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ExactTextLifecycleFixture;
+			packageProductDependencies = (
+			);
+			productName = ExactTextLifecycleFixture;
+			productReference = CDC0DDF7010E944587ACDCEB /* ExactTextLifecycleFixture.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3FE7EAD4D6A2A0D1E2F2240C /* ExactTextLifecycleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 059030AB6710DF8380B23C30 /* Build configuration list for PBXNativeTarget "ExactTextLifecycleUITests" */;
+			buildPhases = (
+				034DD49E7F8FF10545C9FF33 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5B1EC2118EFFD24368CD84A /* PBXTargetDependency */,
+			);
+			name = ExactTextLifecycleUITests;
+			packageProductDependencies = (
+			);
+			productName = ExactTextLifecycleUITests;
+			productReference = AC644EFE861929A84F682CF3 /* ExactTextLifecycleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8DF30B9DEA67627B66225CBA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					3FE7EAD4D6A2A0D1E2F2240C = {
+						TestTargetID = 11CE507E1DA1EFCE4F58FF4E;
+					};
+				};
+			};
+			buildConfigurationList = 792A10FDFA3DCFB5FCDC5CFB /* Build configuration list for PBXProject "ExactTextLifecycleFixture" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 1C99F24925F6DA558F17A58E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 62C9A752D870C8BFF0300CB2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11CE507E1DA1EFCE4F58FF4E /* ExactTextLifecycleFixture */,
+				3FE7EAD4D6A2A0D1E2F2240C /* ExactTextLifecycleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		034DD49E7F8FF10545C9FF33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67213029264D6AF31ACF54BE /* ExactTextLifecycleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4E3C9BA8481DA4A31A7F6EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FA493CD0EACE403B9112C39 /* ExactTextDetailFixtureScreen.swift in Sources */,
+				A74F1C11E8846409EAA74197 /* ExactTextLifecycleFixtureApp.swift in Sources */,
+				2630816250F0E5850085D09D /* ExactTextLifecycleFixtureScreen.swift in Sources */,
+				D23B06A90FCE645DFBFFF5F9 /* ExactTextRenderingProbe.swift in Sources */,
+				D5A2065A21064603D24D0864 /* WalletExactText.swift in Sources */,
+				904DB4494774BE8286FB482C /* WalletNativeTextPrivacy.swift in Sources */,
+				606F867CD39E588A9320E31F /* WalletTextWrapping.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5B1EC2118EFFD24368CD84A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 11CE507E1DA1EFCE4F58FF4E /* ExactTextLifecycleFixture */;
+			targetProxy = EF1C38FA36F38761A2BEB9B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		384F5C7AEA09C79ED5D66C24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aperture.exact-text-lifecycle-fixture.uitests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ExactTextLifecycleFixture;
+			};
+			name = Debug;
+		};
+		48FAD48ACD6C5A274D291FC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aperture.exact-text-lifecycle-fixture";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		597DB4A957AF1BCA5E206D3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5D9A284A65760B23557B201F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D60AA9FDEC6646899D4010A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aperture.exact-text-lifecycle-fixture";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E0A10323D159A26FD2EE55F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aperture.exact-text-lifecycle-fixture.uitests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ExactTextLifecycleFixture;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		059030AB6710DF8380B23C30 /* Build configuration list for PBXNativeTarget "ExactTextLifecycleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384F5C7AEA09C79ED5D66C24 /* Debug */,
+				E0A10323D159A26FD2EE55F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		792A10FDFA3DCFB5FCDC5CFB /* Build configuration list for PBXProject "ExactTextLifecycleFixture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				597DB4A957AF1BCA5E206D3F /* Debug */,
+				5D9A284A65760B23557B201F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9BEC331CA3C0862D92576F39 /* Build configuration list for PBXNativeTarget "ExactTextLifecycleFixture" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D60AA9FDEC6646899D4010A7 /* Debug */,
+				48FAD48ACD6C5A274D291FC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8DF30B9DEA67627B66225CBA /* Project object */;
+}

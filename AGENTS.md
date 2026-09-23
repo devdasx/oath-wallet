@@ -1,15 +1,26 @@
-# Codex Agent Rules
+# Oath Wallet source release
 
-These rules are project-specific and apply to every Codex session in this repository.
+Display/product name: **Oath Wallet**. The Swift target/module remains `Aperture`,
+the source directory is `EVMWallet/`, and the bundle ID is `com.aperture.wallet`.
+Do not change shipped Keychain service names, backup identifiers, or migration names.
 
-1. Start from the exact screen, component, or file named by the user. Do not search the whole repository when the relevant file is known. Expand outward only when the local code does not explain the behavior.
-2. For a screenshot-based UI fix with a known component, use no more than two narrowly scoped searches and inspect no more than 200 relevant lines before the first edit, unless those results prove that a dependency must be inspected.
-3. Test the simplest local explanation first. Check existing modifiers, semantic tokens, state branches, and component parameters before investigating global architecture or introducing new abstractions.
-4. Read only the target file and its direct dependency when required. Do not inspect unrelated screens, services, tests, or project-wide matches for a localized change.
-5. Keep command output bounded and useful. Scope `rg` to the smallest relevant path and pattern, request narrow line ranges, and never repeat overlapping searches that return the same context.
-6. Keep edits proportional to the request. Do not broaden a one-screen fix to sibling screens or perform unrelated cleanup without explicit evidence that the same defect affects them.
-7. Verify with the smallest relevant check. For a small SwiftUI edit, prefer a quiet incremental compile of the affected target; do not run the full test suite, resolve unnecessary packages, install the app, or launch a simulator/device unless the user explicitly requests it or the change cannot otherwise be verified.
-8. Stop when the requested behavior is implemented and the focused verification passes. Do not continue exploring hypothetical issues after the acceptance condition is satisfied.
-9. If the scope must expand, state the concrete evidence and the next file before reading it. Do not silently turn a localized task into an audit.
-10. **Localize new English strings before finishing an edit.** Whenever you add or change user-facing English copy (SwiftUI `Text("…")`, `LocalizedStringKey`, `String(localized:)`, `String.apertureLocalized`, accessibility labels/hints, button titles, empty states, alerts, section headers/footers, etc.), you must add those strings as **full keys** in `Aperture/Resources/Localizable.xcstrings` in the same turn — do not leave them as English-only in code with no catalog entry. Match existing catalog format (`extractionState: "manual"`, `localizations` with `stringUnit` / `state: "translated"`). At minimum seed the **`en`** localization with the exact source string as the key (and value). Prefer filling **all locales already present in the catalog** (same set as fully translated keys such as `Wallet icon`) when the string is new UI copy; if a full multi-locale pass is too large for the change, still add the key with complete `en` (and never ship a new string with zero catalog entry). Never invent placeholder keys — the English source string is the key. Do not skip this step to “do translations later”; missing keys are a defect. Verbatim developer/debug strings and pure format placeholders that are not shown to users are exempt.
-11. Git/GitHub is allowed when the user asks (status, commit, push, PR). Prefer the user’s explicit request; never force-push to main/master unless they ask. Respect `.gitignore`.
+Use the checked-in `EVMWallet.xcodeproj`. Xcode 27 and iOS 26+ are required.
+Select simulators by UUID. Use a separate DerivedData directory and capture build
+logs, preserving the xcodebuild exit status. Tests use Swift Testing with hosted,
+serialized UI suites. A simulator build alone does not validate wallet behavior.
+
+Security requirements:
+- Wallet secrets are local Keychain values; database rows contain opaque references.
+- Private keys and recovery phrases must never reach HTTP, telemetry, diagnostics,
+  feedback, or operator-controlled storage. Signing is local.
+- Optional backup/paired-device transfer must encrypt before leaving the device.
+- Credential entry disallows third-party keyboards and Writing Tools.
+- The bundled token catalog has no authentication or upload operation.
+- Never commit credentials, signing files, user wallet data, or user-provided phrases.
+  Only documented public test vectors may appear in tests.
+- Run `python3 Scripts/validate_source_release.py` and the documented secret scan.
+
+Use theme tokens, native SwiftUI navigation and lists, shared button components,
+and localization keys. Add new UI strings to all 57 `.lproj` folders and run
+`Scripts/validate_infoplist_localizations.py`. Do not introduce live-mainnet test
+calls into the default test suite. See `SECURITY.md` and `docs/AUDIT_SCOPE.md`.

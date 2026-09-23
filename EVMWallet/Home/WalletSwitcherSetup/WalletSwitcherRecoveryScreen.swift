@@ -1,0 +1,191 @@
+import SwiftUI
+import UIKit
+import UniformTypeIdentifiers
+
+struct WalletSwitcherRecoveryScreen: View {
+    let words: [String]
+    let hasPassphrase: Bool
+    let isSaving: Bool
+    let generationFailure: WalletPersistenceFailure?
+    let onPrepare: () async -> Void
+    let onManagePassphrase: () -> Void
+    let onViewWordList: () -> Void
+    let onContinue: () -> Void
+
+    @Environment(\.walletSensitiveValuesProtected)
+    private var sensitiveValuesProtected
+    @State private var copyFeedback = WalletClipboardCopyFeedback()
+    @State private var generationAttempt = 0
+
+    @State private var backgroundExpiry = WalletSensitiveContentLifecycleState()
+
+    var body: some View {
+        List {
+            Group {
+                if words.isEmpty {
+                    Section {
+                        if let generationFailure {
+                            Text(LocalizedStringKey(generationFailure.messageKey))
+                                .foregroundStyle(WalletTheme.danger)
+                            Text(verbatim: generationFailure.diagnosticCode)
+                                .font(.caption.monospaced())
+                                .foregroundStyle(WalletTheme.secondaryLabel)
+                            Button("common.retry", action: UniHaptic.action {
+                                generationAttempt += 1
+                            })
+                        } else {
+                            Text("wallet.launch.loading.accessibility")
+                                .foregroundStyle(WalletTheme.secondaryLabel)
+                        }
+                    }
+                } else {
+                    Section {
+                        ForEach(0..<rowCount, id: \.self) { rowIndex in
+                            wordRow(rowIndex)
+                        }
+
+                        Button(action: UniHaptic.action(copyPhrase)) {
+                            WalletRecoveryPhraseCopyLabel(
+                                state: copyFeedback.state
+                            )
+                        }
+                    } header: {
+                        Text("wallet.creation.recovery.title")
+                    } footer: {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("wallet.creation.recovery.message")
+
+                            Text("wallet.creation.recovery.warning")
+                                .foregroundStyle(WalletTheme.danger)
+                        }
+                    }
+                }
+            }
+            .walletListRowSurface()
+        }
+        .walletListAppearance()
+        .listStyle(.insetGrouped)
+        .walletSecretScreenExpiry(lifecycle: $backgroundExpiry)
+        .navigationTitle("wallet.creation.commit.navigation")
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(isSaving)
+        .interactiveDismissDisabled(isSaving)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Menu {
+                    Button(action: UniHaptic.action(nil, perform: onManagePassphrase)) {
+                        Text(
+                            LocalizedStringKey(
+                                hasPassphrase
+                                    ? "wallet.creation.passphrase.edit"
+                                    : "wallet.creation.passphrase.add"
+                            )
+                        )
+                    }
+
+                    Button(
+                        "import.recovery.word_list.menu",
+                        action: UniHaptic.action(nil, perform: onViewWordList)
+                    )
+                } label: {
+                    Image(systemName: "ellipsis")
+                }
+                .accessibilityLabel(
+                    Text("wallet.creation.options.toolbar")
+                )
+                .disabled(words.isEmpty || isSaving)
+            }
+        }
+        .onChange(of: words) { _, _ in
+            copyFeedback.reset()
+        }
+        .onDisappear {
+            copyFeedback.reset()
+        }
+        .walletSafeAreaBar(edge: .bottom, spacing: 0) {
+            PrimaryWalletButton(
+                title: "common.continue",
+                hapticPolicy: .silent,
+                action: onContinue
+            )
+            .disabled(![12, 24].contains(words.count) || isSaving)
+            .accessibilityIdentifier("walletSwitcherCreationContinue")
+            .walletActionScreenMargins()
+            .padding(.top, 12)
+            .padding(.bottom, 8)
+        }
+        .task(id: generationAttempt) {
+            await onPrepare()
+        }
+    }
+
+    private var rowCount: Int {
+        (words.count + 1) / 2
+    }
+
+    private func wordRow(_ rowIndex: Int) -> some View {
+        let leadingIndex = rowIndex * 2
+        let trailingIndex = leadingIndex + 1
+
+        return HStack(alignment: .firstTextBaseline, spacing: 20) {
+            wordCell(leadingIndex)
+
+            if words.indices.contains(trailingIndex) {
+                wordCell(trailingIndex)
+            } else {
+                Color.clear
+                    .frame(maxWidth: .infinity)
+                    .accessibilityHidden(true)
+            }
+        }
+    }
+
+    private func wordCell(_ index: Int) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 10) {
+            Text(verbatim: EnglishNumbers.integer(Int64(index + 1)))
+                .font(.footnote.monospacedDigit())
+                .foregroundStyle(WalletTheme.secondaryLabel)
+                .frame(minWidth: 24, alignment: .trailing)
+
+            Text(verbatim: words[index])
+                .font(.body.weight(.medium))
+                .walletSensitiveValue()
+
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel(index))
+    }
+
+    private func accessibilityLabel(_ index: Int) -> Text {
+        guard !sensitiveValuesProtected else {
+            return Text("wallet.home.balance.hidden")
+        }
+        return Text(
+            verbatim: EnglishNumbers.localized(
+                "wallet.creation.recovery.word.accessibility",
+                index + 1,
+                words[index]
+            )
+        )
+    }
+
+    private func copyPhrase() {
+        UIPasteboard.general.setItems(
+            [
+                [
+                    UTType.utf8PlainText.identifier:
+                        words.joined(separator: " ")
+                ]
+            ],
+            options: [
+                .localOnly: true,
+                .expirationDate: Date().addingTimeInterval(120)
+            ]
+        )
+        copyFeedback.markCopied()
+        // Keep feedback in the button action, not in a competing row gesture.
+        UniHaptic.play(.successQuiet)
+    }
+}

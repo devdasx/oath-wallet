@@ -1,0 +1,19 @@
+FOR IMMEDIATE RELEASE
+
+[Headline of the announcement]
+[Optional sub-headline]
+
+[City], [Date] — [Opening paragraph: who, what, when, and why it matters.]
+
+[Second paragraph: detail, context, what's new for users.]
+
+"[Quote from spokesperson.]" — [Name], [Role], Oath
+
+Availability
+Oath is available now on the App Store for iPhone. Android is coming soon.
+
+About Oath
+Oath is a self-custody crypto wallet. Keys are generated and stored on the user's device — Oath never holds them and cannot move funds.
+
+Media contact
+[Name] · press@oath.app

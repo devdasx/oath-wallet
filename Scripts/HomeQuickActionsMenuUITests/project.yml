@@ -1,0 +1,85 @@
+name: HomeQuickActionsMenuFixture
+options:
+  deploymentTarget:
+    iOS: "18.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    GENERATE_INFOPLIST_FILE: YES
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CODE_SIGNING_ALLOWED: NO
+targets:
+  HomeQuickActionsMenuFixture:
+    type: application
+    platform: iOS
+    info:
+      path: App/Info.plist
+      properties:
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    sources:
+      - path: App
+        excludes: [Info.plist]
+      - path: ../../EVMWallet/Home/WalletHomeQuickActionsMenu.swift
+      - path: ../../EVMWallet/Home/WalletHomeQuickActionsPopover.swift
+      - path: ../../EVMWallet/Home/WalletHomeQuickActionsFlow.swift
+      - path: ../../EVMWallet/Home/WalletHomeQuickActionsRootScreen.swift
+      - path: ../../EVMWallet/Home/WalletHomeCurrencyQuickActionScreen.swift
+      - path: ../../EVMWallet/Home/WalletHomeCurrencyNavigationContainer.swift
+      - path: ../../EVMWallet/Settings/CurrencySettingsView.swift
+      - path: ../../EVMWallet/WalletTextInputDirection.swift
+      - path: ../../EVMWallet/WalletTextInputReturnKey.swift
+      - path: ../../EVMWallet/WalletTextInputPresentationFocus.swift
+      - path: ../../EVMWallet/en.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/fa.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/he.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/sd.lproj/Localizable.strings
+        buildPhase: resources
+      - path: ../../EVMWallet/ur.lproj/Localizable.strings
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.home-quick-actions-fixture
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+  HomeQuickActionsLayoutTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: LayoutTests
+    dependencies:
+      - target: HomeQuickActionsMenuFixture
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.home-quick-actions-fixture.layout-tests
+  HomeQuickActionsMenuUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: Tests
+    dependencies:
+      - target: HomeQuickActionsMenuFixture
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.home-quick-actions-fixture.uitests
+schemes:
+  HomeQuickActionsMenuFixture:
+    build:
+      targets:
+        HomeQuickActionsMenuFixture: all
+        HomeQuickActionsMenuUITests: [test]
+        HomeQuickActionsLayoutTests: [test]
+    test:
+      targets: [HomeQuickActionsMenuUITests, HomeQuickActionsLayoutTests]
+      captureScreenshotsAutomatically: false
+      preferredScreenCaptureFormat: screenshots

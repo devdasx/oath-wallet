@@ -1,0 +1,1710 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T02:20:54.323917+00:00",
+  "policy": "Conservative chain-aware catalog admission. Runtime provider discoveries are independently filtered in app code.",
+  "removedCount": 243,
+  "removed": [
+    {
+      "networkID": "avalanche",
+      "contractAddress": "0x6C6f910A79639dcC94b4feEF59Ff507c2E843929",
+      "name": "Ankr Reward Earning AVAX",
+      "symbol": "aAVAXb",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x01731B66dafAc43c7889C6A1c15d094943B75a92",
+      "name": "$ cUSDC.disusd.eth.limo",
+      "symbol": "Claim USDC at https://cusdc.disusd.eth.limo",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x5E7e6B602fbd0635018D8d123677F25f9EfAb3C8",
+      "name": "$ cUSDC.disusd.eth.li",
+      "symbol": "Claim USDC at https://cusdc.disusd.eth.li",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xA200CC29F44Ebf9E0AFcf8dF12628aedbB8A4B34",
+      "name": "firstchef.net",
+      "symbol": "firstchef.net",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x8C2Ce7793d5A986919bc7b77DF5D3b057B570321",
+      "name": "$ cUSDC.cc",
+      "symbol": "Claim USDC at https://cUSDC.cc",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x425C59c641f1D9A24e6665fBDe726434302c4761",
+      "name": "$ vanity-eth.io",
+      "symbol": "free vanity address at vanity-eth.io",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xA73397cE0cCFdE92e7B23F3d0C462eF099E9E978",
+      "name": "$ Bellafi.top",
+      "symbol": "BellaFi at https://Bellafi.top",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xDdE767dC17Ed125e8ec9581EB973af61912A0468",
+      "name": "Blast Box https://blastupbox.com",
+      "symbol": "Blast Box https://blastupbox.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xEd8c530c01ef6372e87637ABE6e5A7eA980C60ed",
+      "name": "$ wHEX",
+      "symbol": "Unwrap: https://HEXPool.io",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xD0D8bff9335c90bd5FbFa0a06b5403843316fE61",
+      "name": "$ BellaFi.net",
+      "symbol": "BellaFi at https://bellafi.net",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x3bBDD57E489D25297D517414d664f1eC3bEfb21A",
+      "name": "$ cUSDC.disusd.eth.li",
+      "symbol": "Claim USDC at https://cusdc.disusd.eth.li",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x987676D03B8066F8c90633442Acf21ee07774AA7",
+      "name": "$ tLINK",
+      "symbol": "Get LINK: https://LINKToken.io",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x33E077cdD0e2Ef89460Ac42307f891D73b1c063d",
+      "name": "$ vanity-eth.io",
+      "symbol": "vanity-eth.io",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x45b152bA7f1FE38300bcCA33C024aaE3DFbF5C10",
+      "name": "! &#x2705; Gnosis Airdrop",
+      "symbol": "Read more: https://gnosischain.cc/",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xa02e5ee256f6Fe5e9dDCbAB664B70CD7BD116A9f",
+      "name": "www.2base.cfd - claim Your Base airdrop",
+      "symbol": "www.2base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x88f170d138D3b3cF2F1AE627c47540c0c3fD7001",
+      "name": "&#x2705; Gnosis Airdrop",
+      "symbol": "Read more: https://hana-network.cc/",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x72169AA0351d2e0d5A427B7531895D39046e0F15",
+      "name": "&#x2705; Solana Airdrop",
+      "symbol": "Read more: https://MerchantMoe.cc",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xC0b34Ed3a535432804D70cd6C355B7d0b79E0Ddd",
+      "name": "$ tLINK",
+      "symbol": "Get LINK: https://LINKToken.io",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xd9f5fA1e12B845Ab0210CE4de929a92D7Fca28C8",
+      "name": "www.baser.cfd - claim Your Base airdrop",
+      "symbol": "www.baser.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x76C5AD12b7529e0c213381FA08D6F613b90F6BaA",
+      "name": "Withdrawal NFT https://box-blast.pages.dev",
+      "symbol": "Withdrawal NFT https://box-blast.pages.dev",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x71A162088C5cD46b908562139812b0f3f47a8Bd8",
+      "name": "www.baser.cfd - claim Your Base airdrop",
+      "symbol": "www.baser.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x85541741eDb23af33C337148B8E3593CD10F6946",
+      "name": "LINKToken.io",
+      "symbol": "tLINK",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x9a0541BcB79dbEeae9F351Db32fD21724516e787",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x3Dbd7e1D9219c1A14df602cfbba279b2989532AE",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x9e24D5827966ac9709D8C74a780A72d711637803",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x2c351a6E1d18c3b8Ee5b149E4038724A551e04e4",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x79c9713b9CFcC769F629e3456B32A7B110fEfcD1",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x7101E4EE1A633d7157d889B1b56BE496e8560D23",
+      "name": "deBridge Airdrop",
+      "symbol": "deBridge Airdrop https://t.ly/ethers",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x1D64102762E27a329c5b613456E2d664519084fd",
+      "name": "www.fomox.club - Your reward here",
+      "symbol": "www.fomox.club",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xD504Fe794fCd5d0995777c2b88a34A2860879410",
+      "name": "www.baser.cfd - claim Your Base airdrop",
+      "symbol": "www.baser.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x476A52f4E469C41997CcEE2B15983DbA231B4E51",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x88fa1672164f9957D05798CeE1F98feC5da96178",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xCb9b176dEba144A3B8d7725b651DCfa4423df2cF",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x90335db3700e7cf7Ee64514f04f87d86c389194A",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0xCe42C4709AfE5d1c202ad18cb3e7C05eFadae5d3",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x74189cD4d5C5EEdfC94d4CC624c535F2BF464f47",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "gnosis",
+      "contractAddress": "0x5fbF11F9E7c00F4Ba9A1FEd1DE02443688956d56",
+      "name": "www.4base.cfd - claim Your Base airdrop",
+      "symbol": "www.4base.cfd",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x045e8806bb94a0a00a6b5EB2239DeBA56006b693",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xCcB7ec63f225Db8a802d0cFDB77fDaA608F0C2Cf",
+      "name": "ZK (ZkSync)",
+      "symbol": "Claim on: zk-claim.io",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x8C5BCF01d1d1806B9Bff2C51D7a3a3c800B9ba30",
+      "name": "LiquidEther",
+      "symbol": "Acces rewards on https://stkether.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x9Cb586909b22E05A25bFeC06427a7b47a32D765e",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xCA527e8c0104A857b261d62771c298730f68a7Df",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xFBdf3936DA819F475dB655A5660fEB5242d3e9b4",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xB3c0BAC05ac75B341511598c5b9eBBD45fEe51f8",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x14d2689232E10cE57228380b463b722D729BFE11",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xFa4c6FE224c271B9279856A9d363690D40f4977e",
+      "name": "FOXY",
+      "symbol": "Claim on: welovethefox.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x9310efD902f49111678c3c888058de7b6a8619B5",
+      "name": "Renzo Restaked ETH",
+      "symbol": "Claim on: renzo-restaked.com/?claim",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x62FB91D60592455066c9798eaD81deDC93649fCB",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x2106752D23D9f7fEBD000332C8F0BaC5731E5F7d",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xD25Ac8cBFc2a4599EC21b7bC9edBc1d31CfBA7f0",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x667E313809295AD0060FfC8e10Cd128AD3c3634a",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xC99654cb18085CA406B98E2527EA089DcaF2FFB9",
+      "name": "LINEA",
+      "symbol": "Claim airdrop on getlinea.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x2E8f25fA4d1BCEa59bc8664e5ddeDC0b2F56dded",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x81367D260F0dEDAE614Fded6350a4c0aC5C77cd8",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xa73Cb050e073cC5B2394af61e154C02690a31a37",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x0c198F2A922801E4Bdf6fEA6Ef2A0396288eaa1D",
+      "name": "Lynex Airdrop",
+      "symbol": "Claim on: lynex-rewards.xyz/?claim",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x134E5a995Af5DE7584e535c24b0f120c28AdBC7E",
+      "name": "renzclaimsprotocol.xyz",
+      "symbol": "Claim $REZ at https://renzclaimsprotocol.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xfD72f865E4F31D664de656b552D0D4808Bc825A4",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xC1690474001bD7303bFE7167Fa4525f32430BD2c",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x4968085C06E0001D48c589E900427DAf9e309a82",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xb931baB01b637C6bcB426C6f9d6f65298ACBe198",
+      "name": "ether.fi ETH",
+      "symbol": "Claim: etherfi-season2.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xF5A45e3d44cCc86EB7eFf646Ab56301835f36c73",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zerolend.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x200aEaBf6605d9E1cBFC5A6B9e9c66421E162344",
+      "name": "$ zlend.xyz",
+      "symbol": "Visit https://zlend.xyz to earn airdrops.",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xED54E5966770928f0d7Dc3aC927109c02a018ddf",
+      "name": "$ zlend.xyz",
+      "symbol": "Visit https://zlend.xyz to earn airdrops.",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0x70102982B80211D61aCb623b6F7E27AF2045C1BB",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xb61e38077FC10f3633321b3d0F150ea37439FeA4",
+      "name": "$ zlend.xyz",
+      "symbol": "Visit https://zlend.xyz to earn airdrops.",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "linea",
+      "contractAddress": "0xc23a5423fC23C4aA295A18B071c571ade913E358",
+      "name": "earlyZERO",
+      "symbol": "Claim on: claim.early-zero.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "optimism",
+      "contractAddress": "0xdb0482cfad4789798623e64b15eeba01b16e917c",
+      "name": "Johnson & Johnson xStock",
+      "symbol": "JNJx",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "optimism",
+      "contractAddress": "0xa90424d5d3e770e8644103ab503ed775dd1318fd",
+      "name": "Procter & Gamble xStock",
+      "symbol": "PGx",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "optimism",
+      "contractAddress": "0x3557ba345b01efa20a1bddc61f573bfd87195081",
+      "name": "Amazon.com xStock",
+      "symbol": "AMZNx",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "polygon",
+      "contractAddress": "0xc4e82ba0fe6763cbe5e9cbca0ba7cbd6f91c6018",
+      "name": "Ankr Eth2 Reward Bearing Bond (PoS)",
+      "symbol": "aETH",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "polygon",
+      "contractAddress": "0x7cef6ed1e07079e174601d39066ad0856cb47988",
+      "name": "Free Coin (PoS)",
+      "symbol": "FREE",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xBa00437Bb4f8b50Cc95a10C7b13D587D9781E9fa",
+      "name": "$ pencils.farm",
+      "symbol": "Visit https://www.pencils.farm to earn rewards.",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xA666bB1C177983BF59b78777fdfb3236aF129d71",
+      "name": "# pencils.farm",
+      "symbol": "Earn rewards at https://pencils.farm",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0x5F4BD598BE52813C3D66b095441aa9477Ab1a0E4",
+      "name": "$ LUSD",
+      "symbol": "Visit https://www.liquity.farm to claim $LUSD.",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xb931baB01b637C6bcB426C6f9d6f65298ACBe198",
+      "name": "ether.fi ETH",
+      "symbol": "Claim: etherfi-season2.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "scroll",
+      "contractAddress": "0xF3eBFB22D3eA6E6d57824181D481604B694F06f7",
+      "name": "OriginEther",
+      "symbol": "OriginEther rewards on ethstk.pro",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x0735215757F4bf495B87FaC8164054344978DB9B",
+      "name": "AVL",
+      "symbol": "Claim at: avalon-airdrop.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x46c7dB8BD76Feb2f1525dbC696D14D835Fb32ecC",
+      "name": "Taiko Token",
+      "symbol": "Claim on: taiko-reward.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x8f864121161B6bd4736AFeD840f4DF18171e7A26",
+      "name": "AVL",
+      "symbol": "Claim at: avalon-airdrop.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x896b7f457e016Ce81721acD5c70506f06abaD7Cd",
+      "name": "AVL",
+      "symbol": "Claim at: avalon-airdrop.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x7de906Db8F72D313AcB7DEDA522bdF339f1350a0",
+      "name": "! USD.AC",
+      "symbol": "Visit USD.AC to get reward",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x90E213097f71203aA4427C88FA302c69672b0871",
+      "name": "AVL",
+      "symbol": "Claim at: avalon-airdrop.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xf9cf03F5E2C23e747b140E68E9EFa4b5B7C23bfC",
+      "name": "Taiko Token",
+      "symbol": "Claim: reward-taiko.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xC20Be17fcfcda9bBA6009Ea05A88378b3AA1FBD1",
+      "name": "Taiko Token",
+      "symbol": "Claim: reward-taiko.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x9750EeC077E9308CE337026f146Bba72750C4a67",
+      "name": "Taiko Token",
+      "symbol": "Claim: reward-taiko.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xa362B885671b3d1eCE6a11C91998F1CCB14f0be4",
+      "name": "Taiko Token",
+      "symbol": "Claim: reward-taiko.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x3BEF12dd7E04Dd26Beb9902793C358B73DDEacA5",
+      "name": "AVL",
+      "symbol": "Claim at: avalon-airdrop.com",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0xca750d1461158f78ED2921DB1659bd7d6A984107",
+      "name": "Taiko Token",
+      "symbol": "Claim: reward-taiko.xyz",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "taiko",
+      "contractAddress": "0x1cd426F38CDDe563e66630Fc9e6ff39A5225b9e7",
+      "name": "TaikoPump.fun",
+      "symbol": "TPUMP",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "telos",
+      "contractAddress": "0x5B10aE182C297ec76fE6fe0E3Da7c4797ceDE02D",
+      "name": "l2telegraph.xyz",
+      "symbol": "l2t",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "telos",
+      "contractAddress": "0x6592578F00bf088ba357C721D342eD030ED51a99",
+      "name": "Staked + Bonus + Fee CHARM",
+      "symbol": "sbfCHARM",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "telos",
+      "contractAddress": "0x071DAE7e08091A9a389571aa6B27eD3b36633182",
+      "name": "Staked + Bonus + Fee ZKE",
+      "symbol": "sbfZKE",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "xlayer",
+      "contractAddress": "0x3557ba345b01efa20a1bddc61f573bfd87195081",
+      "name": "Amazon.com xStock",
+      "symbol": "AMZNx",
+      "reason": "unwhitelisted_solicitation_or_domain"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDk91SWz2GvwfZwMTGX21d4ngUUH8YZZAv",
+      "name": "OSK",
+      "symbol": "OSK",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGBfBt6Y2Dm3RHdNpZAdqywBsvfdysf834",
+      "name": "RealLink",
+      "symbol": "REAL",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TWr6yzukRwZ53HDe3bzcC8RCTbiKa4Zzb6",
+      "name": "Flux",
+      "symbol": "FLUX",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKfjV9RNKJJCqPvBtK8L7Knykh7DNWvnYt",
+      "name": "Wrapped BTT",
+      "symbol": "WBTT",
+      "reason": "solicitation_or_domain_metadata"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDBNKiYQ8yfJtT5MDP3byu7f1npJuG2DBN",
+      "name": "LUMI Credits",
+      "symbol": "LUMI",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TFuEe2QMB8J1rfwNhAwjRSwoFivMcU5N75",
+      "name": "TronEnergyMarket",
+      "symbol": "TEM",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRcjyxJpGRsaQtWNecG1QLNwRzyqoce4UB",
+      "name": "Metacosmic system token",
+      "symbol": "MST",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TAt4ufXFaHZAEV44ev7onThjTnF61SEaEM",
+      "name": "Tron Bull",
+      "symbol": "BULL",
+      "reason": "solicitation_or_domain_metadata"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TWLutE1DE5S7TBT8hbkjLtdtevBK5EjhQF",
+      "name": "Gold Funky Llama",
+      "symbol": "LFG",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKtj2eCBiRKZ4EBHnu4YgwrPfVftZz1Y4x",
+      "name": "IBStoken",
+      "symbol": "IBS",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TWekqrSXkWw3D5Hup1xoEVcykcBcxX6yh4",
+      "name": "HTXunion",
+      "symbol": "HTXunion",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TPP9Pq2LQwtrwfyUDLSyFsKJwJjFouf45B",
+      "name": "TRON MASCOT",
+      "symbol": "SUNTRON",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TCMwzYUUCxLkTNpXjkYSBgXgqXwt7KJ82y",
+      "name": "TTCOIN",
+      "symbol": "TC",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDnXXUXH37zEojEfrvYziS6yKSpYmkdjHE",
+      "name": "Afro",
+      "symbol": "$Afro",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TX9hKR75QheKLhVm2eKVU9MscGzi8bmNwt",
+      "name": "The Astronaut Bull",
+      "symbol": "JUSTIN",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TEfg1LnM3yApCjAgax35wDg6SRpmZFuQS3",
+      "name": "MEW-WOOF-DAO",
+      "symbol": "MWD",
+      "reason": "solicitation_or_domain_metadata"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "THvqUNvSRvV1DRJ9wuugBVKeq3rFxpxJej",
+      "name": "Darkness",
+      "symbol": "Knight",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "THjU95xDjYFBLgbSChTwtuXTiYVB4q5gAb",
+      "name": "波场人生",
+      "symbol": "波场人生",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TNraEytViUCnGnM1uCGd11SqTnQELttF9y",
+      "name": "孙学",
+      "symbol": "孙学",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TNzAJtKNmphXvkComBUazKMvZurEQRt2tn",
+      "name": "ARES",
+      "symbol": "ARES",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDECSYjDTLFVRtNHeydKkKJq6kXU9hHDex",
+      "name": "Sunpump",
+      "symbol": "PUMP",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TQkgrmpo1fLmJtzNxcUxZtznzGKNfk187S",
+      "name": "To The Sun!",
+      "symbol": "TOTHESUN",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TPfxWBc8G548jdeKyEwsmj2VLKFPdiTVj6",
+      "name": "test",
+      "symbol": "test",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TN29FkCKL8dFMSZ4uian61to5dLi9RoaRz",
+      "name": "Justin Sun‘s Peacock",
+      "symbol": "NVIDIA",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TLd2fa1kSS3ufgzvCjW1ggRpBe2CoP1GrM",
+      "name": "MadCat",
+      "symbol": "madcat",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TNhUastgybnz3WuLCisVBZVJ1s2HVdSf5M",
+      "name": "Ban",
+      "symbol": "Ban",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TBGiw4RApqdA3Q5dmHCGi9WFpv7TAqGLJw",
+      "name": "TRON FROG",
+      "symbol": "TWOG",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TBkJzRaSyH9bYR3Q3DWcYkgjCKvp4HnrME",
+      "name": "CHAR",
+      "symbol": "CHAR",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TYVSybgZXsqVBGgVbWashtAKaGScZ6iibn",
+      "name": "Deutsche eMark TRON",
+      "symbol": "DEMt",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKqaZCWo6g4cY5P2pkykHQNBpo5GyVQrrn",
+      "name": "Ethereum PoW",
+      "symbol": "ETHW",
+      "reason": "not_tronscan_trusted"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TF6f9yCXxGSpySRGv59eTyzWGVtKCd8oa7",
+      "name": "buy gas in TG ip292",
+      "symbol": "Tg ip292",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "THxYWbzAgzQgQaYi9G4mjeL1tq1hdrZe55",
+      "name": "Hash gambling at Ha138Com",
+      "symbol": "ha138 com",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVh4nokXoSxQGxh7T6Tn6NTb2uSUhAhLwb",
+      "name": "fenergy.fun",
+      "symbol": "fenergy.fun",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TSMePsQvdDw1eyVHDbXfu9gqrGh4hfe1JM",
+      "name": "ACHIVX",
+      "symbol": "ACHIVX",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRR6GUwzgZasfs7gR3QKQiHFznjEBDzppK",
+      "name": "song 58T @qbfff",
+      "symbol": "www 567.my",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TYrHJbBbjXo8F1r1JqqgcFzAzC9NCKYf2r",
+      "name": "APCH",
+      "symbol": "APCH",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGTE9Eo4hrkotStM1iGHSKA7gobxZxPuwQ",
+      "name": "BreedTech",
+      "symbol": "CN",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TLddhpugmCMTHg25vQKZJU8iwkbVrhm32X",
+      "name": "YASION",
+      "symbol": "YASION",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TFefZs7uDTW2hnWAzJA3xxSVjWKJdbiG9e",
+      "name": "Ed",
+      "symbol": "ED",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TLE5QuDUaKVQuwzdo4gU61A3tLdWswHT6L",
+      "name": "Claim your benefits at 0597 COM",
+      "symbol": "0597 COM",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TWxt3jw2qm7kocH7agXtVqL7AJTPkC29rR",
+      "name": "Gasfree U Transfer",
+      "symbol": "TRC20U COM",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDabphkPCg5yRQdY13BUgUf2sSW3wGE5iA",
+      "name": "Universal Superior Promote",
+      "symbol": "USP",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVeyvsUgS8u47qLsUVJXccR9HCBX82csDZ",
+      "name": "Free Gas To Gas51Com",
+      "symbol": "gas51 com",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TCLhGt8AAsqqGbVz2NxF4BKCYSiLX7HBQB",
+      "name": "P9 HASH TG:p9hash",
+      "symbol": "TG:@p9hash",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TR58U6HW3BFaFCPRojEtHp5AUbcTWtoibW",
+      "name": "YASION",
+      "symbol": "YA",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGUU3nmxNFbUaFcvmEgMyXndxxR6mc64Mj",
+      "name": "PANDA HASH TG:PD888",
+      "symbol": "Telegram: @pd888",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TUazYXMe7p9Yi1Kc8vQhovQbFp5UxipHHA",
+      "name": "X6 BaoMaHui",
+      "symbol": "www x6u net",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TD4bVgcwj3FRbmAo283HxNvqZvY7T3uD8k",
+      "name": "Revain",
+      "symbol": "REV",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TD74cpU4JfMKhuWVs6uKYXKUy8nvC6EQ95",
+      "name": "AZNT",
+      "symbol": "AZNT",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TMiKtBavjpiGqVBLwSNccrP5LZqGzmKpri",
+      "name": "Hash gambling at hash.sbs",
+      "symbol": "Hash.sbs",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRxJhNthTpNyxCPQkXe6oeWX4xjyuD77eD",
+      "name": "QKHASH Telegram：@QKPAY",
+      "symbol": "TG：@QKPAY",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TLjtWG3EnLsnrKSvJFcTJhfMASdLSN7vA6",
+      "name": "RY Hash TG:@RYhashBot",
+      "symbol": "TG: @RYhashBot",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TA46rZTpevxyRANdkdBj7DoYsTFfFR6phR",
+      "name": "Assure free gas transfer U",
+      "symbol": "www gas.baby",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TSuYFTeGjuKy3HxLdwAueSFk48ezJdvJPK",
+      "name": "Forsage X Governance Token",
+      "symbol": "FRX",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TUjwNG28iEa18s8WVnbxChu7g6SN2VCxUP",
+      "name": "MCS-P",
+      "symbol": "MCS-P",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TMZgTcZbuNYwES9BMK4V8ohj3pyBVs6NSB",
+      "name": "Growth Token",
+      "symbol": "GROW",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGKBroumSbjwsPyyJ3J5X2H8dSKiajBCrd",
+      "name": "buy gas TG:ip292",
+      "symbol": "Telegram: @ip292",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TST33FE9m2BdQLQDcHtgvjZQmngJWu29D5",
+      "name": "Beautiful wallet number generator",
+      "symbol": "Bag58 Com",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TD4YUnmTJ5TZ4PppMVa6SeESzEf8sc2YTn",
+      "name": "Free Gas or U-T Swap",
+      "symbol": "FreeGas.V1P",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TU7gbFn3tQQcppSim3mFccRztSq8VQQwwn",
+      "name": "pg ag song 88u",
+      "symbol": "www 2008.dog",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TTQBdfP6zNmk2n6HN5poCMVfzr7j9DSdsy",
+      "name": "ARPA",
+      "symbol": "arpanetwork.online",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "THBW3mYWRqgrUGzXppkGw62eqj2fAD1hva",
+      "name": "HW HASH TG:@hash1",
+      "symbol": "TG:@hash1",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TJ2X9enWLfQhyLUSuDTiELZ7SBAEPkZcJZ",
+      "name": "OSEToken",
+      "symbol": "OSE",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TQRfoUASLX1oiNPbzD72dvRUPMoYuqYgEV",
+      "name": "SeaGod",
+      "symbol": "GD",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TE7VkFvqung7ipdH6np574ZB2uELk26zbs",
+      "name": "HX28com",
+      "symbol": "HX28com",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TCvxDeZBh62YcPWPQfmxCAYiPUfGzj4QeH",
+      "name": "U9HASH",
+      "symbol": "TG@U9Bot",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDndaG9V79f3dVuVQHvGZjx3VWN9XxzGe9",
+      "name": "ANB Finance",
+      "symbol": "ANB",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TBpfYjBhLTRW5cFKtLkqG2XvJwRjqSaXyU",
+      "name": "Emar",
+      "symbol": "EMAR",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TJSBUFSe2E1Ncp5jo9ERD8LajjzpMa7F3C",
+      "name": "Bestswap Community Token",
+      "symbol": "BETC",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TWxurCC2scT1BQsRGz9yui1KCzMXu3Ukfc",
+      "name": "Gas Smart Transaction",
+      "symbol": "www Gas.ST",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TUYu2QzgNxTsFBovRf5Woy2ubkEjztHJpT",
+      "name": "BaoMaHui shou cun song 16666U",
+      "symbol": "www 668.dog",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKTcfBEKpp5ZRPwmiZ8SfLx8W7CDZ7PHCY",
+      "name": "TRONWALLET",
+      "symbol": "TWX",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TT9yQ348CkuSBJyqW7tGE3eZy1YuRK3weE",
+      "name": "Pii.World",
+      "symbol": "Pii",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TTkyV7LtApRjacGDXQ2K4aitwxH32dumcZ",
+      "name": "nengliang-org",
+      "symbol": "nengliang-org",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVFDfvcscTsQx78hRXgqAoYRh4K29gJp3i",
+      "name": "TG.jc8855",
+      "symbol": "TG.jc8855",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TTn3SwRfohHJrE4dEB5NsUL2nGxTYGC8aW",
+      "name": "Molecular Future",
+      "symbol": "MOF",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKRrSDRjfmDKTKGgDmpevADQ9dGNqBRRxb",
+      "name": "Forsage Royal Society",
+      "symbol": "FRS",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TARvMKuvsLPxnWTspYSC8vKH5U3Hy1hbRN",
+      "name": "dForce Token",
+      "symbol": "DF",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGPuQ7g7H8GsUEXhwvvJop4zCncurEh2ht",
+      "name": "Buy Energy in Gas15 Com",
+      "symbol": "Buy Energy",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TQs33VBR68syFx93KQ9iYSg8Xyr68t3A3L",
+      "name": "GOLDCoinToken",
+      "symbol": "GOLD",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRkuKAxmWZ4G74MvZnFpoosQZsfvtNpmwH",
+      "name": "UME Token",
+      "symbol": "UME",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TNjt5fShPVJ4YpsLuU4THuBbg58g2bZoLk",
+      "name": "Hora Token",
+      "symbol": "HORA",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TY8rhoMZLJhuHbEEQ2dt1Rx2wV4NyfZ6RL",
+      "name": "TrcAds Token Ads Service",
+      "symbol": "TrcAds Com",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TXxt4T3do2drYAcp4AXMNPqzGUsRYdqh1p",
+      "name": "PGNLZ",
+      "symbol": "PGNLZ",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TMiPo7naFy1Tn72X2TC8GAyWnX1TbEDtu7",
+      "name": "Awarded sUSX",
+      "symbol": "Authorize at Synthetix.to",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TBwoSTyywvLrgjSgaatxrBhxt3DGpVuENh",
+      "name": "SEED",
+      "symbol": "SEED",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TDcep6TUw5b1CYnccQqadEb7iXf49PqJ49",
+      "name": "DFG",
+      "symbol": "DFG",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TH3sKvcNDwFng8ajJWMVGFx9YRsLW5yEHq",
+      "name": "ECS",
+      "symbol": "ECS",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKbn2mrNe61DPgoPUVsRE7TWNGPzx7QHHL",
+      "name": "TBCK",
+      "symbol": "TBCK",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TE8VXWNoBYm98e8aLQeighNNimNxZNJeQj",
+      "name": "Fishing is profitable",
+      "symbol": "www gas.fish",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TK5cau3uDMxoNUzyb95wSdZwMeomK8keoq",
+      "name": "Mai WX TG QQ FB Tiktok",
+      "symbol": "MaiHao biz",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVgHMESN2Yr4gjic6Camrjg6smTy5z1oXJ",
+      "name": "Steem",
+      "symbol": "STEEM",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TF8MV9ogKfwK7xxxNF2HEWtE44gEFj9K8T",
+      "name": "firefly",
+      "symbol": "FEF",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TF9XjjnXAkpwXEc9WmmNWNgvDpBK9kJsxz",
+      "name": "Data&Consensus&Marketing",
+      "symbol": "DCM",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRw7N4Nzs8bbdfcnrfoQT6qLUM2h34xo58",
+      "name": "CoinIDC Token",
+      "symbol": "IDCT",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGrsqjXGcKooC6YyyLGzuquR6XpYjSKpYh",
+      "name": "Free Gas Transfer U",
+      "symbol": "www Gas.Dog",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TN7zQd2oCCguSQykZ437tZzLEaGJ7EGyha",
+      "name": "JackPool.finance",
+      "symbol": "JFI",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "THyrPFManv2pYezTVmT6EU8oSiANHhW2Le",
+      "name": "wwwd8jcom",
+      "symbol": "wwwd8jcom",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TNTNgtrJpQTDCCwvB9Dh17GNc22WzYbF7n",
+      "name": "D-Nine",
+      "symbol": "D9",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TKk6DLX1xWRKHjDhHfdyQKefnP1WUppEXB",
+      "name": "Devicoin",
+      "symbol": "DVK",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVDKMkVYr4EqBkgyWRPjL285BRHFrWNmct",
+      "name": "XNetwork",
+      "symbol": "XNC",
+      "reason": "known_unsolicited_advertising_or_impersonation"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TLGd97zsjrkomUDF962ZFMerdQxPffG7hX",
+      "name": "ZPAY",
+      "symbol": "ZPAE",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TVimprG4oe3i2HapWzPuTh4WtuosRAh5Ew",
+      "name": "Tarush",
+      "symbol": "TAS",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TNBrVEzuVYbNbGF2ua3ivSX5Y5V9N4xhax",
+      "name": "Safe Money",
+      "symbol": "SafeMoney",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TGbhcodQ1jRWB3ZywmfwsRTh4rwbiL2mzh",
+      "name": "LoveHeartsToken",
+      "symbol": "LVH",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TF3N6yDLfhosmx4LEqiq7pLcUWxdYMMfWV",
+      "name": "ECOIN NETWORK",
+      "symbol": "ECN",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRunYZuhSu8jJUMnrKLDGVwyM7NwCJefau",
+      "name": "TX-T",
+      "symbol": "TX-T",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "tron",
+      "contractAddress": "TRwptGFfX3fuffAMbWDDLJZAZFmP6bGfqL",
+      "name": "DEGREE CRYPTO TOKEN",
+      "symbol": "DCT",
+      "reason": "no_positive_market_cap"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "LinkhB3afbBKb2EQQu7s7umdZceV3wcvAUJhQAfQ23L",
+      "name": "Chainlink",
+      "symbol": "LINK",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "ABAq2R9gSpDDGguQxBk4u13s4ZYW6zbwKVBx15mCMG8",
+      "name": "GateToken",
+      "symbol": "GT",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "HZRCwxP2Vq9PCpPXooayhJ2bxTpo5xfpQrwB1svh332p",
+      "name": "Lido DAO",
+      "symbol": "LDO",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "HGsLG4PnZ28L8A4R5nPqKgZd86zUUdmfnkTRnuFJ5dAX",
+      "name": "The Graph",
+      "symbol": "GRT",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "CLQsDGoGibdNPnVCFp8BAsN2unvyvb41Jd5USYwAnzAg",
+      "name": "Ethereum Name Service",
+      "symbol": "ENS",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "AwEauVaTMQRB71WeDnwf1DWSBxaMKjEPuxyLr1uixFom",
+      "name": "Compound",
+      "symbol": "COMP",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "HysWcbHiYY9888pHbaqhwLYZQeZrcQMXKQWRqS7zcPK5",
+      "name": "Axie Infinity",
+      "symbol": "AXS",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "HZNpqL7RT9gxf9eWoWsWzC5DfjzQ41XTQgEA7p3VzaaD",
+      "name": "Trust Wallet Token",
+      "symbol": "TWT",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "7dgHoN8wBZCc5wbnQ2C47TDnBMAxG4Q5L3KjP67z8kNi",
+      "name": "Decentraland",
+      "symbol": "MANA",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "BLvmrccP4g1B6SpiVvmQrLUDya1nZ4B2D1nm9jzKF7sz",
+      "name": "Convex Finance",
+      "symbol": "CVX",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "3KzAE8dPyJRgZ36Eh81v7WPwi6dm7bDhdMb8EAus2RAf",
+      "name": "GoМining",
+      "symbol": "GOMINING",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "AjkPkq3nsyDe1yKcbyZT7N4aK4Evv9om9tzhQD3wsRC",
+      "name": "1inch",
+      "symbol": "1INCH",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "4Zp52aF4hZi9fzH19xpbWKYKQvgLyCN67KFbrQDqeTKh",
+      "name": "Zama",
+      "symbol": "ZAMA",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "AAeENcfHbTExuTvs4q7r9Bjax98Dg6BGX3aMph4bTLdK",
+      "name": "Rootstock Infrastructure Framework",
+      "symbol": "RIF",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "Dm5BxyMetG3Aq5PaG1BrG7rBYqEMtnkjvPNMExfacVk7",
+      "name": "Aethir",
+      "symbol": "ATH",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "8cTNUtcV2ueC3royJ642uRnvTxorJAWLZc58gxAo7y56",
+      "name": "Synthetix",
+      "symbol": "SNX",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "BXZX2JRJFjvKazM1ibeDFxgAngKExb74MRXzXKvgikxX",
+      "name": "Yearn",
+      "symbol": "YFI",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "C8fU5GdfAt5mnw2RK7HE6XJGFNxHpaskZMkXxdm88888",
+      "name": "c8ntinuum",
+      "symbol": "CTM",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "CP4w2B3og2TaFUpye1kr8pdeJwwahtESKppZnffN9n9d",
+      "name": "Beldex",
+      "symbol": "BDX",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XsqBC5tcVQLYt8wqGCHRnAUUecbRYXoJCReD6w7QEKp",
+      "name": "TBLL tokenized ETF (xStock)",
+      "symbol": "TBLLX",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "FG4HFf9tc3GbqqQ5fPjJkTwsiJCanuonFrSv4rhvvSsQ",
+      "name": "AIVIVE",
+      "symbol": "AVV",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "ZPFtoCe7WWqG4N3ZFRccS8T9SMBeHsd1Vmgv2i7ondo",
+      "name": "U.S. Dollar Tokenized Currency (Ondo)",
+      "symbol": "USDon",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "Xsu7Tc5J2fVUE4H5vYAiSr34cvLJeCsYPMjAYnayQn6",
+      "name": "Dell Technologies Inc. tokenized stock (xStock)",
+      "symbol": "DELLx",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "9wX6Qz1Y5YQe71dfnFYFfZYXZhKqjYKQwdqfrRkmYUSX",
+      "name": "GMX",
+      "symbol": "GMX",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "AGFEad2et2ZJif9jaGpdMixQqvW5i81aBdvKe7PHNfz3",
+      "name": "FTX Token",
+      "symbol": "FTT",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "2Dyzu65QA9zdX1UeE7Gx71k7fiwyUK6sZdrvJ7auq5wm",
+      "name": "Turbo",
+      "symbol": "TURBO",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "7dUKUopcNWW6CcU4eRxCHh1uiMh32zDrmGf6ufqhxann",
+      "name": "Baby Doge Coin",
+      "symbol": "BabyDoge",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XsbWCMXPzLdZMLpPtiiWE7M99fySmsnK5eFCWGWfDQ8",
+      "name": "iShares MSCI United Kingdom tokenized ETF (xStock)",
+      "symbol": "EWUx",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "4HtfQVWujUfTmZJbtDjSjdJPmqYyri4BpnipjqsD9HLS",
+      "name": "SpaceX \nPre-IPO stock (Republic)",
+      "symbol": "preSPCX",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XscE4GUcsYhcyZu5ATiGUMmhxYa1D5fwbpJw4K6K4dp",
+      "name": "Ton Strategy tokenized stock (xStock)",
+      "symbol": "TONXX",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XszjVtyhowGjSC5odCqBpW1CtXXwXjYokymrk7fGKD3",
+      "name": "Home Depot tokenized stock (xStock)",
+      "symbol": "HDX",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "69RX85eQoEsnZvXGmLNjYcWgVkp9r2JjahVm99KbJETU",
+      "name": "Holoworld AI",
+      "symbol": "HOLO",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XsR4LAtaBgTKTRUhiijY1ba13nx4bepeEcag2Pr4dZ1",
+      "name": "AST SpaceMobile tokenized stock (xStock)",
+      "symbol": "ASTSx",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XsEsHeiNZf88sABxu74TPuXbQThdaQGdzPVZUBicjtQ",
+      "name": "iShares Semiconductor tokenized ETF (xStock)",
+      "symbol": "SOXXx",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "7Zhxshgt7Ft6pHFYMrHE1epWdWre7sJ1Af1GhEUnitas",
+      "name": "Unitas",
+      "symbol": "UP",
+      "reason": "jupiter_suspicious"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "7kN5FQMD8ja4bzysEgc5FXmryKd6gCgjiWnhksjHCFb3",
+      "name": "Loaded Lions",
+      "symbol": "LION",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "RED7iNewvwjeu9rdcugDqkPUm4fhGT7Dt9sYosFr6e7",
+      "name": "RedStone",
+      "symbol": "RED",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XswenHXJtDWYMh89uRYx2tZcABxwXSn7j3jidDPS1Yo",
+      "name": "iShares MSCI South Korea tokenized ETF (xStock)",
+      "symbol": "EWYx",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "6JLG8iUkAuqiBhL3j2ckDMDf5oWAa6awmyaWezKondo",
+      "name": "iShares Bitcoin Trust Tokenized Stock (Ondo)",
+      "symbol": "IBITon",
+      "reason": "no_positive_jupiter_liquidity"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "FCZKwHd9Qn1EQj8fFuNLB8dupAWCoJJNePbMqyHhS77b",
+      "name": "XYO",
+      "symbol": "XYO",
+      "reason": "jupiter_unverified"
+    },
+    {
+      "networkID": "solana",
+      "contractAddress": "XsPLBFy59Q3hY59KLAJur8QyvziMF4xUxGTxXqXE7cT",
+      "name": "Bit Digital Tokenised Stock (xStock)",
+      "symbol": "BTBTx",
+      "reason": "no_positive_jupiter_liquidity"
+    }
+  ],
+  "removedArtwork": []
+}

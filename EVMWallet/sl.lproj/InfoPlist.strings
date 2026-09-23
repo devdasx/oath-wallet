@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  Slovenian localization.
+*/
+
+"NSCameraUsageDescription" = "Dovolite aplikaciji Oath uporabo kamere za varno optično branje kod QR denarnice.";
+"NSFaceIDUsageDescription" = "Dovolite aplikaciji Oath uporabo funkcije Face ID za odklepanje in zaščito denarnice.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Dovolite aplikaciji Oath neposredno povezavo z drugim telefonom iPhone in varen prenos šifriranih podatkov denarnice.";

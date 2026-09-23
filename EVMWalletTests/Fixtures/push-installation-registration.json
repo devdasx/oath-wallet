@@ -1,0 +1,58 @@
+{
+  "apnsToken": "0101010101010101010101010101010101010101010101010101010101010101",
+  "appVersion": "1.0",
+  "bootstrapCredential": "QkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkI",
+  "currencyCode": "USD",
+  "currencyRatePerUSDBase10": "1",
+  "deviceModel": "iPhone",
+  "environment": "sandbox",
+  "installationID": "00000000-0000-4000-8000-000000000001",
+  "locale": "en",
+  "osVersion": "26.0",
+  "preferences": {
+    "admin": true,
+    "master": true,
+    "received": true,
+    "sent": false
+  },
+  "remoteUserID": "00000000-0000-4000-8000-000000000002",
+  "wallets": [
+    {
+      "accounts": [
+        {
+          "accountID": "account-ethereum",
+          "chainID": "1",
+          "monitoredAddresses": [
+            {
+              "address": "0x1111111111111111111111111111111111111111",
+              "normalizedAddress": "0x1111111111111111111111111111111111111111",
+              "role": "evm_owner"
+            }
+          ],
+          "networkID": "eth"
+        },
+        {
+          "accountID": "account-solana",
+          "chainID": "-501",
+          "monitoredAddresses": [
+            {
+              "address": "Vote111111111111111111111111111111111111111",
+              "normalizedAddress": "Vote111111111111111111111111111111111111111",
+              "role": "solana_owner"
+            },
+            {
+              "address": "Stake11111111111111111111111111111111111111",
+              "normalizedAddress": "Stake11111111111111111111111111111111111111",
+              "role": "solana_token_account"
+            }
+          ],
+          "networkID": "solana"
+        }
+      ],
+      "kind": "created",
+      "name": "Fixture Wallet",
+      "notificationMonitoringEnabled": true,
+      "walletID": "wallet-fixture"
+    }
+  ]
+}

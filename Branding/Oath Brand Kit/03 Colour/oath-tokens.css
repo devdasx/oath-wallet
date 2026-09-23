@@ -1,0 +1,30 @@
+:root {
+  --oath-ink: #0B0B0D;
+  --oath-paper: #F4F4F2;
+  --oath-tile: #E3E3E4;
+  --oath-mist: #8A8A90;
+  --oath-amber: #D98A12;
+  --oath-signal: #3D6FF0;
+  --oath-oath-red: #E3124F;
+  --oath-teal: #12A88E;
+  --background: #F4F4F2;
+  --surface: #FFFFFF;
+  --border: #E6E6E4;
+  --text: #0B0B0D;
+  --text-muted: #6A6A70;
+  --primary-button: #0B0B0D;
+  --positive: #0E7A67;
+  --negative: #B00E3E;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0B0B0D;
+    --surface: #161619;
+    --border: #26262B;
+    --text: #EDEDEF;
+    --text-muted: #9A9AA0;
+    --primary-button: #EDEDEF;
+    --positive: #2FD1B2;
+    --negative: #FF5C8A;
+  }
+}

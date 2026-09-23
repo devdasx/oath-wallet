@@ -1,0 +1,12 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  si — native translations. Keys preserved.
+*/
+
+"NSCameraUsageDescription" = "පසුම්බි QR කේත ආරක්ෂිතව ස්කෑන් කිරීමට Oath හට කැමරාව භාවිත කිරීමට ඉඩ දෙන්න.";
+"NSFaceIDUsageDescription" = "ඔබේ පසුම්බිය අගුළු හැර එය ආරක්ෂා කිරීමට Oath හට Face ID භාවිත කිරීමට ඉඩ දෙන්න.";
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "ඔබේ අනෙක් iPhone එකට සෘජුව සම්බන්ධ වී සංකේතනය කළ පසුම්බි දත්ත ආරක්ෂිතව මාරු කිරීමට Oath හට ඉඩ දෙන්න.";

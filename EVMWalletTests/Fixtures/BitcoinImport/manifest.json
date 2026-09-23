@@ -1,0 +1,44 @@
+[
+  {
+    "name": "descriptor-clear",
+    "addresses": [
+      "1GCvHRq2QSnChWQCG7xBBY6tyszkKJ2FVp",
+      "39ejh2UuBALJtofkVzBivT5YYjYW9TMWrt",
+      "bc1q4rtvaxejua6a0xyvl8lcvyg2k2vku9g4ys3w3y",
+      "bc1psyxvh4rpa0z7zanwfdlyflvn42k7dlmla5mzcth29w6qfaef9xas4eg4c9"
+    ],
+    "change": "bc1qjylh3wl7s89g5gfrksy48q0kk4a77f7qtcegtr",
+    "password": ""
+  },
+  {
+    "name": "descriptor-encrypted",
+    "addresses": [
+      "13oZ5n3ANrEom95PuE8eeGxxyC55efAbyx",
+      "394xmgbQSz4t15D1ALt4Ui2qfmk4vk6c8y",
+      "bc1qpta3pymz289fnlne4j2uc6pmze8vq4ukuc8a9z",
+      "bc1p7uy5twh2m23c6ynppuq36k8au6t84u9d69xeuk3t7r0d8p56e3lqdevtrp"
+    ],
+    "change": "bc1qnxt3zxcgl9pgvyfgz2zkqkuu3lrewdjyf3tyw0",
+    "password": "CoreTestPassword"
+  },
+  {
+    "name": "legacy-clear",
+    "addresses": [
+      "1JhmftX5hZdWDWCcf4Jrh5Uwu5kpNFz4dD",
+      "3FFw9JCY7MSSPJtTWn7YcpE4pDcCAUnKtu",
+      "bc1q9hvs49azeajkjpq63etcpffrren5pm0l0d728d"
+    ],
+    "change": "bc1qaatqpu9pk37awp9rjdwkyhl5dmu9n5z3jnekes",
+    "password": ""
+  },
+  {
+    "name": "legacy-encrypted",
+    "addresses": [
+      "129zWgwmDVx8YDiHMEe33sUYLgUDu9YUmL",
+      "38r5LEmGmnPzjpJJEFR9tDqg4T6ENQ5MNY",
+      "bc1qvxm05exhjzjwc90hy7qzhxnyekedskfjn0p8gc"
+    ],
+    "change": "bc1qdcykpk7qaxg5mk6c4wrva9uccqx46vs099h46v",
+    "password": "CoreTestPassword"
+  }
+]

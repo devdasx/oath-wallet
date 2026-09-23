@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<script src="oath-icons.js"></script>
+<style>html,body{margin:0;background:#F4F4F2;color:#0B0B0D;font-family:'Geist',system-ui,sans-serif;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#0B0B0D;text-decoration:none}a:hover{color:#3D6FF0}button{font-family:inherit}</style>
+</helmet>
+
+<div style="position:sticky;top:0;z-index:10;background:rgba(244,244,242,.86);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,11,13,.08)">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="{{ m.light }}" alt="" style="display:block;height:18px;width:27px">
+      <span style="font:600 18px/1 'Geist',sans-serif;letter-spacing:-.04em">Oath</span>
+      <span style="font:400 13px/1 'Geist',sans-serif;color:#8A8A90;padding-left:10px;border-left:1px solid rgba(11,11,13,.12)">Brand &amp; Press Kit</span>
+    </div>
+    <nav style="display:flex;flex-wrap:wrap;gap:20px;font:500 12.5px/1 'Geist',sans-serif">
+      <a href="#logo">Logo</a><a href="#color">Colour</a><a href="#type">Type</a><a href="#app">App</a><a href="#web">Web</a><a href="#social">Social</a><a href="#templates">Templates</a><a href="#press">Press</a>
+    </nav>
+  </div>
+</div>
+
+<section data-screen-label="01 Cover" style="padding:40px 0 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px">
+    <div style="position:relative;border-radius:28px;overflow:hidden;min-height:620px;display:flex;flex-direction:column;justify-content:space-between;padding:40px;background:radial-gradient(60% 90% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(60% 90% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(60% 90% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(60% 90% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D">
+      <div style="display:flex;justify-content:space-between;gap:20px;font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#FFFFFF">
+        <span>Oath — Identity v1.0</span><span>September 2026</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:36px;padding:40px 0">
+        <img src="{{ m.white }}" alt="Oath mark" style="display:block;width:min(420px,70%);aspect-ratio:860/580">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+          <span style="font:600 clamp(64px,10vw,128px)/.9 'Geist',sans-serif;letter-spacing:-.05em;color:#FFFFFF">Oath</span>
+          <span style="font:400 clamp(18px,2vw,24px)/1.3 'Geist',sans-serif;color:#FFFFFF">Your keys. Your word.</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;font:400 13px/1.4 'Geist',sans-serif;color:#FFFFFF">
+        <span>A self-custody crypto wallet.</span><span style="font-family:'Geist Mono',monospace">App Store · Android coming soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logo" data-screen-label="02 The mark" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">01 — The mark</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Two rings,<br>one promise.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Vow is two O’s interlocked — the oldest sign of a bond, and a chain drawn in one gesture. Each ring passes over and under the other, so neither can be pulled free. That is the promise of a self-custody wallet: you and your keys, bound together.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+      <div style="aspect-ratio:4/3;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center">
+        <img src="{{ m.light }}" alt="Oath mark on light" style="display:block;width:58%;aspect-ratio:860/580">
+      </div>
+      <div style="aspect-ratio:4/3;border-radius:20px;background:#0B0B0D;display:flex;align-items:center;justify-content:center">
+        <img src="{{ m.dark }}" alt="Oath mark on dark" style="display:block;width:58%;aspect-ratio:860/580">
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="aspect-ratio:1;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center">
+          <div style="width:62%;aspect-ratio:1;border-radius:22.5%;overflow:hidden;box-shadow:0 22px 40px -22px rgba(0,0,0,.45)"><img src="{{ icon.light }}" alt="App icon light" style="display:block;width:100%;height:100%"></div>
+        </div>
+        <span style="font:500 12px/1.3 'Geist Mono',monospace;color:#6A6A70">App icon — light</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="aspect-ratio:1;border-radius:20px;background:#161619;display:flex;align-items:center;justify-content:center">
+          <div style="width:62%;aspect-ratio:1;border-radius:22.5%;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 22px 40px -22px rgba(0,0,0,.8)"><img src="{{ icon.dark }}" alt="App icon dark" style="display:block;width:100%;height:100%"></div>
+        </div>
+        <span style="font:500 12px/1.3 'Geist Mono',monospace;color:#6A6A70">App icon — dark</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="aspect-ratio:1;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center">
+          <div style="width:62%;aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 22px 40px -22px rgba(0,0,0,.45)"><img src="{{ icon.light }}" alt="Avatar" style="display:block;width:100%;height:100%"></div>
+        </div>
+        <span style="font:500 12px/1.3 'Geist Mono',monospace;color:#6A6A70">Avatar — circle crop</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="aspect-ratio:1;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:flex-end;justify-content:center;gap:18px;padding-bottom:30%">
+          <div style="width:60px;height:60px;border-radius:22.5%;overflow:hidden"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+          <div style="width:40px;height:40px;border-radius:22.5%;overflow:hidden"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+          <div style="width:29px;height:29px;border-radius:22.5%;overflow:hidden"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+          <div style="width:20px;height:20px;border-radius:22.5%;overflow:hidden"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+        </div>
+        <span style="font:500 12px/1.3 'Geist Mono',monospace;color:#6A6A70">60 · 40 · 29 · 20 pt</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="03 Lockups" style="padding:112px 0 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">02 — Lockups</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Mark and name.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">The wordmark is Geist Semibold, tracked tight at −4%. Use the horizontal lockup by default; stacked for square spaces; the mark alone once the name is already on screen.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+      <div style="height:260px;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center;gap:18px">
+        <img src="{{ m.light }}" alt="" style="display:block;height:64px;width:95px"><span style="font:600 88px/1 'Geist',sans-serif;letter-spacing:-.045em;color:#0B0B0D">Oath</span>
+      </div>
+      <div style="height:260px;border-radius:20px;background:#0B0B0D;display:flex;align-items:center;justify-content:center;gap:18px">
+        <img src="{{ m.dark }}" alt="" style="display:block;height:64px;width:95px"><span style="font:600 88px/1 'Geist',sans-serif;letter-spacing:-.045em;color:#F4F4F2">Oath</span>
+      </div>
+      <div style="height:260px;border-radius:20px;background:#E3E3E4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
+        <img src="{{ m.light }}" alt="" style="display:block;height:84px;width:125px"><span style="font:600 56px/1 'Geist',sans-serif;letter-spacing:-.045em;color:#0B0B0D">Oath</span>
+      </div>
+      <div style="height:260px;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center">
+        <div style="position:relative;padding:34px;border:1.5px dashed #3D6FF0;border-radius:4px">
+          <div style="position:absolute;inset:0 auto 0 0;width:34px;background:rgba(61,111,240,.08);display:flex;align-items:center;justify-content:center;font:500 11px/1 'Geist Mono',monospace;color:#1E3A8A">x</div>
+          <div style="position:absolute;inset:0 0 auto 0;height:34px;background:rgba(61,111,240,.08);display:flex;align-items:center;justify-content:center;font:500 11px/1 'Geist Mono',monospace;color:#1E3A8A">x</div>
+          <img src="{{ m.light }}" alt="" style="display:block;height:100px;width:148px">
+        </div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;font:400 14px/1.5 'Geist',sans-serif;color:#48484E">
+      <p style="margin:0"><strong style="font-weight:600;color:#0B0B0D">Clear space.</strong> Keep one ring-thickness (x) empty on every side of the mark.</p>
+      <p style="margin:0"><strong style="font-weight:600;color:#0B0B0D">Minimum size.</strong> Mark 20 px / 6 mm wide. Below 16 px, use the solid version.</p>
+      <p style="margin:0"><strong style="font-weight:600;color:#0B0B0D">Mark height.</strong> In a lockup the mark matches the wordmark’s cap height ×1.0.</p>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="04 Mono and misuse" style="padding:112px 0 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">03 — Solid &amp; misuse</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">When colour can’t travel.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">For print, embossing, favicons and partner lockups, use the solid mark in Ink or white. Never rebuild the glow by hand — use the supplied files.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="aspect-ratio:3/2;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center"><img src="{{ m.black }}" alt="" style="display:block;width:46%;aspect-ratio:860/580"></div>
+      <div style="aspect-ratio:3/2;border-radius:20px;background:#0B0B0D;display:flex;align-items:center;justify-content:center"><img src="{{ m.white }}" alt="" style="display:block;width:46%;aspect-ratio:860/580"></div>
+      <div style="aspect-ratio:3/2;border-radius:20px;background:#3D6FF0;display:flex;align-items:center;justify-content:center"><img src="{{ m.white }}" alt="" style="display:block;width:46%;aspect-ratio:860/580"></div>
+      <div style="aspect-ratio:3/2;border-radius:20px;background:#D98A12;display:flex;align-items:center;justify-content:center"><img src="{{ m.black }}" alt="" style="display:block;width:46%;aspect-ratio:860/580"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:3/2;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ m.light }}" alt="" style="display:block;width:46%;aspect-ratio:860/580;transform:rotate(-24deg)"></div>
+        <span style="font:500 12.5px/1.3 'Geist',sans-serif;color:#B00E3E">✕ Don’t rotate</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:3/2;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ m.light }}" alt="" style="display:block;width:46%;aspect-ratio:860/580;transform:scaleX(1.45)"></div>
+        <span style="font:500 12.5px/1.3 'Geist',sans-serif;color:#B00E3E">✕ Don’t stretch</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:3/2;border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ m.light }}" alt="" style="display:block;width:46%;aspect-ratio:860/580;filter:hue-rotate(130deg) saturate(1.6)"></div>
+        <span style="font:500 12.5px/1.3 'Geist',sans-serif;color:#B00E3E">✕ Don’t recolour the glow</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:3/2;border-radius:20px;background:#2A2A2E;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ m.light }}" alt="" style="display:block;width:46%;aspect-ratio:860/580"></div>
+        <span style="font:500 12.5px/1.3 'Geist',sans-serif;color:#B00E3E">✕ Don’t use the light mark on dark</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="color" data-screen-label="05 Colour" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">04 — Colour</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Ink first.<br>Light at the edges.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Oath is mostly Ink and Paper. The four lights — Amber, Signal, Oath Red and Teal — appear together in the glow, and alone as functional colour in the product.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#0B0B0D"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Ink</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#0B0B0D · 11 11 13</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Mark, text, dark UI</span></div></div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#F4F4F2;border-bottom:1px solid rgba(11,11,13,.07)"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Paper</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#F4F4F2 · 244 244 242</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Light backgrounds</span></div></div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#E3E3E4"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Tile</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#E3E3E4 · 227 227 228</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">App icon ground</span></div></div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#8A8A90"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Mist</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#8A8A90 · 138 138 144</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Secondary text</span></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#D98A12"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Amber</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#D98A12 · 217 138 18</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Pending, Bitcoin</span></div></div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#3D6FF0"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Signal</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#3D6FF0 · 61 111 240</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Links, focus, primary action</span></div></div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#E3124F"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Oath Red</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#E3124F · 227 18 79</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Loss, destructive</span></div></div>
+      <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.07);background:#FFFFFF"><div style="height:150px;background:#12A88E"></div><div style="padding:14px 16px;display:flex;flex-direction:column;gap:5px"><span style="font:600 15px/1.2 'Geist',sans-serif">Teal</span><span style="font:400 12px/1.4 'Geist Mono',monospace;color:#6A6A70">#12A88E · 18 168 142</span><span style="font:400 12px/1.4 'Geist',sans-serif;color:#6A6A70">Gain, success</span></div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:14px">
+        <span style="font:600 15px/1 'Geist',sans-serif">Light mode tokens</span>
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 14px;align-items:center;font:400 13px/1.2 'Geist',sans-serif">
+          <span style="width:22px;height:22px;border-radius:6px;background:#F4F4F2;box-shadow:inset 0 0 0 1px rgba(11,11,13,.12)"></span><span>background</span><span style="font-family:'Geist Mono',monospace;color:#6A6A70">#F4F4F2</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#FFFFFF;box-shadow:inset 0 0 0 1px rgba(11,11,13,.12)"></span><span>surface</span><span style="font-family:'Geist Mono',monospace;color:#6A6A70">#FFFFFF</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#E6E6E4"></span><span>border</span><span style="font-family:'Geist Mono',monospace;color:#6A6A70">#E6E6E4</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#0B0B0D"></span><span>text</span><span style="font-family:'Geist Mono',monospace;color:#6A6A70">#0B0B0D</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#6A6A70"></span><span>text-muted</span><span style="font-family:'Geist Mono',monospace;color:#6A6A70">#6A6A70</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#0B0B0D"></span><span>primary button</span><span style="font-family:'Geist Mono',monospace;color:#6A6A70">#0B0B0D</span>
+        </div>
+      </div>
+      <div style="border-radius:20px;background:#0B0B0D;padding:24px;display:flex;flex-direction:column;gap:14px;color:#EDEDEF">
+        <span style="font:600 15px/1 'Geist',sans-serif">Dark mode tokens</span>
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px 14px;align-items:center;font:400 13px/1.2 'Geist',sans-serif">
+          <span style="width:22px;height:22px;border-radius:6px;background:#0B0B0D;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)"></span><span>background</span><span style="font-family:'Geist Mono',monospace;color:#9A9AA0">#0B0B0D</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#161619;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)"></span><span>surface</span><span style="font-family:'Geist Mono',monospace;color:#9A9AA0">#161619</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#26262B"></span><span>border</span><span style="font-family:'Geist Mono',monospace;color:#9A9AA0">#26262B</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#EDEDEF"></span><span>text</span><span style="font-family:'Geist Mono',monospace;color:#9A9AA0">#EDEDEF</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#9A9AA0"></span><span>text-muted</span><span style="font-family:'Geist Mono',monospace;color:#9A9AA0">#9A9AA0</span>
+          <span style="width:22px;height:22px;border-radius:6px;background:#EDEDEF"></span><span>primary button</span><span style="font-family:'Geist Mono',monospace;color:#9A9AA0">#EDEDEF</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="type" data-screen-label="06 Typography" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">05 — Typography</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Geist for words.<br>Geist Mono for money.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">One family, two voices. Geist carries headlines and interface; Geist Mono sets balances, addresses and hashes, so every digit lines up and nothing can hide. Both are free under the SIL Open Font License.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:320px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#8A8A90">Geist — 400 / 500 / 600</span>
+        <span style="font:600 120px/.9 'Geist',sans-serif;letter-spacing:-.05em">Aa</span>
+        <span style="font:400 15px/1.5 'Geist',sans-serif;color:#48484E">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz</span>
+      </div>
+      <div style="border-radius:20px;background:#0B0B0D;color:#EDEDEF;padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;min-height:320px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#9A9AA0">Geist Mono — 400 / 500</span>
+        <span style="font:500 56px/1 'Geist Mono',monospace;letter-spacing:-.03em">$24,318.52</span>
+        <span style="font:400 14px/1.5 'Geist Mono',monospace;color:#9A9AA0">0x7a3F…c91E<br>0123456789 +−×÷ ₿ Ξ</span>
+      </div>
+    </div>
+    <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:8px 28px">
+      <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(11,11,13,.07)"><span style="font:400 12px/1.3 'Geist Mono',monospace;color:#8A8A90">Display<br>64 / 600 / −4%</span><span style="font:600 64px/1 'Geist',sans-serif;letter-spacing:-.04em">Your keys.</span></div>
+      <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(11,11,13,.07)"><span style="font:400 12px/1.3 'Geist Mono',monospace;color:#8A8A90">Title<br>32 / 600 / −3%</span><span style="font:600 32px/1.1 'Geist',sans-serif;letter-spacing:-.03em">Send to a saved address</span></div>
+      <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(11,11,13,.07)"><span style="font:400 12px/1.3 'Geist Mono',monospace;color:#8A8A90">Body<br>17 / 400 / 0</span><span style="font:400 17px/1.5 'Geist',sans-serif">Your recovery phrase never leaves this device. Oath can’t see it, and neither can anyone else.</span></div>
+      <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid rgba(11,11,13,.07)"><span style="font:400 12px/1.3 'Geist Mono',monospace;color:#8A8A90">Label<br>13 / 500 / 0</span><span style="font:500 13px/1.3 'Geist',sans-serif">Network fee</span></div>
+      <div style="display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;align-items:baseline;padding:22px 0"><span style="font:400 12px/1.3 'Geist Mono',monospace;color:#8A8A90">Figures<br>Mono 15 / 500</span><span style="font:500 15px/1.3 'Geist Mono',monospace">0.284 100 BTC  ≈ $18,204.10</span></div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="07 Voice" style="padding:112px 0 0">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">06 — Voice</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Say it like a promise.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Short, certain, plain. We state what’s true and what we won’t do. No hype, no moon talk, no jargon a first-time owner wouldn’t know.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:14px"><span style="font:500 12px/1 'Geist Mono',monospace;color:#0E7A67">✓ Say</span><span style="font:600 22px/1.25 'Geist',sans-serif;letter-spacing:-.02em">“Your keys stay on this phone.”</span><span style="font:400 12px/1 'Geist Mono',monospace;color:#B00E3E">✕ “Military-grade decentralised security.”</span></div>
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:14px"><span style="font:500 12px/1 'Geist Mono',monospace;color:#0E7A67">✓ Say</span><span style="font:600 22px/1.25 'Geist',sans-serif;letter-spacing:-.02em">“Sent. It’ll arrive in about a minute.”</span><span style="font:400 12px/1 'Geist Mono',monospace;color:#B00E3E">✕ “Transaction broadcast to mempool!”</span></div>
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:14px"><span style="font:500 12px/1 'Geist Mono',monospace;color:#0E7A67">✓ Say</span><span style="font:600 22px/1.25 'Geist',sans-serif;letter-spacing:-.02em">“We can’t recover this for you.”</span><span style="font:400 12px/1 'Geist Mono',monospace;color:#B00E3E">✕ “Oops! Something went wrong 😅”</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="app" data-screen-label="08 App" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">07 — In the app</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Light, dark,<br>and the moment between.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">The glow lives on the launch screen only. Inside the wallet, the interface steps back: Ink and Paper, figures in Mono, colour reserved for gain, loss and state.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:36px;padding:48px 20px;border-radius:28px;background:#E3E3E4">
+
+      <div style="width:300px;height:640px;border-radius:50px;padding:10px;background:#0B0B0D;box-shadow:0 40px 70px -40px rgba(0,0,0,.6)">
+        <div style="position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:radial-gradient(70% 50% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(70% 50% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(70% 50% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(70% 50% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D">
+          <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:14px;background:#000000"></div>
+          <img src="{{ m.white }}" alt="" style="display:block;width:132px;height:89px">
+          <span style="font:600 40px/1 'Geist',sans-serif;letter-spacing:-.045em;color:#FFFFFF">Oath</span>
+          <span style="position:absolute;bottom:40px;font:400 12px/1 'Geist Mono',monospace;color:#FFFFFF">Your keys. Your word.</span>
+        </div>
+      </div>
+
+      <div style="width:300px;height:640px;border-radius:50px;padding:10px;background:#0B0B0D;box-shadow:0 40px 70px -40px rgba(0,0,0,.6)">
+        <div style="position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:#F4F4F2;display:flex;flex-direction:column">
+          <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:14px;background:#000000"></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font:600 13px/1 'Geist',sans-serif;color:#0B0B0D"><span>9:41</span><span style="font:500 11px/1 'Geist Mono',monospace">5G ▮▮▮</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 18px 0">
+            <div style="display:flex;align-items:center;gap:8px"><img src="{{ m.light }}" alt="" style="display:block;width:24px;height:16px"><span style="font:600 14px/1 'Geist',sans-serif;color:#0B0B0D">Main wallet ▾</span></div>
+            <div style="width:30px;height:30px;border-radius:50%;background:#E3E3E4;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Geist',sans-serif;color:#0B0B0D">AK</div>
+          </div>
+          <div style="padding:26px 18px 0;display:flex;flex-direction:column;gap:6px">
+            <span style="font:500 12px/1 'Geist',sans-serif;color:#6A6A70">Total balance</span>
+            <span style="font:500 34px/1 'Geist Mono',monospace;letter-spacing:-.04em;color:#0B0B0D">$24,318.52</span>
+            <span style="font:500 12px/1 'Geist Mono',monospace;color:#0E7A67">+$572.10 · 2.4% today</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:22px 18px 0">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:500 18px/1 'Geist',sans-serif">↑</div><span style="font:500 11px/1 'Geist',sans-serif;color:#0B0B0D">Send</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:500 18px/1 'Geist',sans-serif">↓</div><span style="font:500 11px/1 'Geist',sans-serif;color:#0B0B0D">Receive</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:500 18px/1 'Geist',sans-serif">⇄</div><span style="font:500 11px/1 'Geist',sans-serif;color:#0B0B0D">Swap</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#FFFFFF;color:#0B0B0D;box-shadow:inset 0 0 0 1px #E6E6E4;display:flex;align-items:center;justify-content:center;font:500 20px/1 'Geist',sans-serif">+</div><span style="font:500 11px/1 'Geist',sans-serif;color:#0B0B0D">Buy</span></div>
+          </div>
+          <div style="margin:22px 12px 0;border-radius:18px;background:#FFFFFF;padding:4px 12px;display:flex;flex-direction:column">
+            <sc-for list="{{ assets }}" as="a" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #EFEFED">
+                <div style="width:32px;height:32px;border-radius:50%;background:{{ a.color }};color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Geist',sans-serif">{{ a.glyph }}</div>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px"><span style="font:600 13px/1 'Geist',sans-serif;color:#0B0B0D">{{ a.name }}</span><span style="font:400 11px/1 'Geist Mono',monospace;color:#6A6A70">{{ a.qty }}</span></div>
+                <span style="font:500 12.5px/1 'Geist Mono',monospace;color:#0B0B0D">{{ a.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:auto;height:70px;border-top:1px solid #E6E6E4;background:#FFFFFF;display:grid;grid-template-columns:repeat(4,1fr);align-items:start;padding-top:12px;font:500 10px/1 'Geist',sans-serif;text-align:center;color:#8A8A90">
+            <span style="color:#0B0B0D">● Wallet</span><span>Swap</span><span>Activity</span><span>Settings</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="width:300px;height:640px;border-radius:50px;padding:10px;background:#26262B;box-shadow:0 40px 70px -40px rgba(0,0,0,.6)">
+        <div style="position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:#0B0B0D;display:flex;flex-direction:column">
+          <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:92px;height:26px;border-radius:14px;background:#000000"></div>
+          <div style="height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 26px;font:600 13px/1 'Geist',sans-serif;color:#EDEDEF"><span>9:41</span><span style="font:500 11px/1 'Geist Mono',monospace">5G ▮▮▮</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 18px 0">
+            <div style="display:flex;align-items:center;gap:8px"><img src="{{ m.dark }}" alt="" style="display:block;width:24px;height:16px"><span style="font:600 14px/1 'Geist',sans-serif;color:#EDEDEF">Main wallet ▾</span></div>
+            <div style="width:30px;height:30px;border-radius:50%;background:#26262B;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Geist',sans-serif;color:#EDEDEF">AK</div>
+          </div>
+          <div style="padding:26px 18px 0;display:flex;flex-direction:column;gap:6px">
+            <span style="font:500 12px/1 'Geist',sans-serif;color:#9A9AA0">Total balance</span>
+            <span style="font:500 34px/1 'Geist Mono',monospace;letter-spacing:-.04em;color:#EDEDEF">$24,318.52</span>
+            <span style="font:500 12px/1 'Geist Mono',monospace;color:#2FD1B2">+$572.10 · 2.4% today</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:22px 18px 0">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#EDEDEF;color:#0B0B0D;display:flex;align-items:center;justify-content:center;font:500 18px/1 'Geist',sans-serif">↑</div><span style="font:500 11px/1 'Geist',sans-serif;color:#EDEDEF">Send</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#EDEDEF;color:#0B0B0D;display:flex;align-items:center;justify-content:center;font:500 18px/1 'Geist',sans-serif">↓</div><span style="font:500 11px/1 'Geist',sans-serif;color:#EDEDEF">Receive</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#EDEDEF;color:#0B0B0D;display:flex;align-items:center;justify-content:center;font:500 18px/1 'Geist',sans-serif">⇄</div><span style="font:500 11px/1 'Geist',sans-serif;color:#EDEDEF">Swap</span></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:7px"><div style="width:48px;height:48px;border-radius:50%;background:#161619;color:#EDEDEF;box-shadow:inset 0 0 0 1px #26262B;display:flex;align-items:center;justify-content:center;font:500 20px/1 'Geist',sans-serif">+</div><span style="font:500 11px/1 'Geist',sans-serif;color:#EDEDEF">Buy</span></div>
+          </div>
+          <div style="margin:22px 12px 0;border-radius:18px;background:#161619;padding:4px 12px;display:flex;flex-direction:column">
+            <sc-for list="{{ assets }}" as="a" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #222226">
+                <div style="width:32px;height:32px;border-radius:50%;background:{{ a.color }};color:#FFFFFF;display:flex;align-items:center;justify-content:center;font:600 11px/1 'Geist',sans-serif">{{ a.glyph }}</div>
+                <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px"><span style="font:600 13px/1 'Geist',sans-serif;color:#EDEDEF">{{ a.name }}</span><span style="font:400 11px/1 'Geist Mono',monospace;color:#9A9AA0">{{ a.qty }}</span></div>
+                <span style="font:500 12.5px/1 'Geist Mono',monospace;color:#EDEDEF">{{ a.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:auto;height:70px;border-top:1px solid #26262B;background:#111113;display:grid;grid-template-columns:repeat(4,1fr);align-items:start;padding-top:12px;font:500 10px/1 'Geist',sans-serif;text-align:center;color:#6A6A70">
+            <span style="color:#EDEDEF">● Wallet</span><span>Swap</span><span>Activity</span><span>Settings</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="web" data-screen-label="09 Website" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">08 — On the web</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Website, both modes.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">The site follows the system theme. The hero carries the only glow on the page; everything below is flat.</p>
+    </div>
+
+    <div style="border-radius:18px;overflow:hidden;border:1px solid rgba(11,11,13,.1);box-shadow:0 30px 60px -40px rgba(0,0,0,.4);background:#F4F4F2">
+      <div style="height:38px;background:#E6E6E4;display:flex;align-items:center;gap:7px;padding:0 14px"><span style="width:11px;height:11px;border-radius:50%;background:#C9C9C7"></span><span style="width:11px;height:11px;border-radius:50%;background:#C9C9C7"></span><span style="width:11px;height:11px;border-radius:50%;background:#C9C9C7"></span><span style="margin-left:14px;flex:1;max-width:360px;height:22px;border-radius:6px;background:#F4F4F2;display:flex;align-items:center;padding:0 10px;font:400 11px/1 'Geist Mono',monospace;color:#6A6A70">oath.app</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 40px">
+        <div style="display:flex;align-items:center;gap:9px"><img src="{{ m.light }}" alt="" style="display:block;width:30px;height:20px"><span style="font:600 20px/1 'Geist',sans-serif;letter-spacing:-.04em">Oath</span></div>
+        <div style="display:flex;align-items:center;gap:26px;font:500 13.5px/1 'Geist',sans-serif;color:#48484E"><span>Wallet</span><span>Security</span><span>Developers</span><span style="height:36px;padding:0 16px;border-radius:999px;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center">Download</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:center;padding:56px 40px 72px">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#6A6A70">Self-custody wallet</span>
+          <h3 style="margin:0;font:600 clamp(44px,5.6vw,76px)/.96 'Geist',sans-serif;letter-spacing:-.045em;text-wrap:balance">Your keys.<br>Your word.</h3>
+          <p style="margin:0;max-width:440px;font:400 18px/1.5 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Oath keeps your keys on your device and nowhere else. Hold, send and swap crypto — sworn to you alone.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px"><span style="height:48px;padding:0 22px;border-radius:999px;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center;font:500 15px/1 'Geist',sans-serif">Download on the App Store</span><span style="height:48px;padding:0 22px;border-radius:999px;background:#FFFFFF;color:#0B0B0D;box-shadow:inset 0 0 0 1px #DADAD8;display:flex;align-items:center;font:500 15px/1 'Geist',sans-serif">Android — coming soon</span></div>
+        </div>
+        <div style="aspect-ratio:1;border-radius:26px;display:flex;align-items:center;justify-content:center;background:radial-gradient(60% 60% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(60% 60% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(60% 60% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(60% 60% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D">
+          <div style="width:44%;aspect-ratio:1;border-radius:22.5%;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-radius:18px;overflow:hidden;border:1px solid #26262B;box-shadow:0 30px 60px -40px rgba(0,0,0,.6);background:#0B0B0D;color:#EDEDEF">
+      <div style="height:38px;background:#161619;display:flex;align-items:center;gap:7px;padding:0 14px"><span style="width:11px;height:11px;border-radius:50%;background:#3A3A40"></span><span style="width:11px;height:11px;border-radius:50%;background:#3A3A40"></span><span style="width:11px;height:11px;border-radius:50%;background:#3A3A40"></span><span style="margin-left:14px;flex:1;max-width:360px;height:22px;border-radius:6px;background:#0B0B0D;display:flex;align-items:center;padding:0 10px;font:400 11px/1 'Geist Mono',monospace;color:#9A9AA0">oath.app</span></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 40px">
+        <div style="display:flex;align-items:center;gap:9px"><img src="{{ m.dark }}" alt="" style="display:block;width:30px;height:20px"><span style="font:600 20px/1 'Geist',sans-serif;letter-spacing:-.04em">Oath</span></div>
+        <div style="display:flex;align-items:center;gap:26px;font:500 13.5px/1 'Geist',sans-serif;color:#9A9AA0"><span>Wallet</span><span>Security</span><span>Developers</span><span style="height:36px;padding:0 16px;border-radius:999px;background:#EDEDEF;color:#0B0B0D;display:flex;align-items:center">Download</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:center;padding:56px 40px 72px">
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#9A9AA0">Self-custody wallet</span>
+          <h3 style="margin:0;font:600 clamp(44px,5.6vw,76px)/.96 'Geist',sans-serif;letter-spacing:-.045em;text-wrap:balance">Your keys.<br>Your word.</h3>
+          <p style="margin:0;max-width:440px;font:400 18px/1.5 'Geist',sans-serif;color:#9A9AA0;text-wrap:pretty">Oath keeps your keys on your device and nowhere else. Hold, send and swap crypto — sworn to you alone.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px"><span style="height:48px;padding:0 22px;border-radius:999px;background:#EDEDEF;color:#0B0B0D;display:flex;align-items:center;font:500 15px/1 'Geist',sans-serif">Download on the App Store</span><span style="height:48px;padding:0 22px;border-radius:999px;background:#161619;color:#EDEDEF;box-shadow:inset 0 0 0 1px #26262B;display:flex;align-items:center;font:500 15px/1 'Geist',sans-serif">Android — coming soon</span></div>
+        </div>
+        <div style="aspect-ratio:1;border-radius:26px;display:flex;align-items:center;justify-content:center;background:radial-gradient(60% 60% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(60% 60% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(60% 60% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(60% 60% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #161619">
+          <div style="width:44%;aspect-ratio:1;border-radius:22.5%;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 60px -20px rgba(0,0,0,.8)"><img src="{{ icon.dark }}" alt="" style="display:block;width:100%;height:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#8A8A90">Favicon &amp; browser tab</span>
+        <div style="display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border-radius:9px 9px 0 0;background:#E6E6E4;width:220px"><img src="{{ m.black }}" alt="" style="display:block;width:18px;height:12px"><span style="font:400 12px/1 'Geist',sans-serif;color:#0B0B0D">Oath — Your keys…</span></div>
+      </div>
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#8A8A90">Buttons</span>
+        <div style="display:flex;flex-wrap:wrap;gap:8px"><span style="height:40px;padding:0 18px;border-radius:999px;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center;font:500 14px/1 'Geist',sans-serif">Primary</span><span style="height:40px;padding:0 18px;border-radius:999px;background:#FFFFFF;box-shadow:inset 0 0 0 1px #DADAD8;display:flex;align-items:center;font:500 14px/1 'Geist',sans-serif">Secondary</span><span style="height:40px;padding:0 18px;border-radius:999px;background:#FDE7EE;color:#B00E3E;display:flex;align-items:center;font:500 14px/1 'Geist',sans-serif">Remove</span></div>
+      </div>
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:24px;display:flex;flex-direction:column;gap:16px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#8A8A90">Radius &amp; spacing</span>
+        <span style="font:400 13px/1.6 'Geist Mono',monospace;color:#48484E">radius 8 · 14 · 20 · pill<br>space 4 · 8 · 12 · 16 · 24 · 40 · 64</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="social" data-screen-label="10 Social" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">09 — Social</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">X, Instagram, LinkedIn.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Profiles use the app icon as avatar and the glow as header. Posts are Ink with one idea each. Every asset below downloads at platform size.</p>
+    </div>
+
+    <div style="border-radius:20px;overflow:hidden;background:#FFFFFF;border:1px solid rgba(11,11,13,.08);max-width:760px">
+      <div style="aspect-ratio:3/1;display:flex;align-items:center;justify-content:center;background:radial-gradient(40% 120% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(40% 120% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(40% 120% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(40% 120% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D"><img src="{{ m.white }}" alt="" style="display:block;width:17%;aspect-ratio:860/580"></div>
+      <div style="padding:0 20px 20px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-end">
+          <div style="width:112px;height:112px;margin-top:-56px;border-radius:50%;border:4px solid #FFFFFF;overflow:hidden;background:#E3E3E4"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+          <span style="height:36px;padding:0 18px;border-radius:999px;background:#0F1419;color:#FFFFFF;display:flex;align-items:center;font:700 14px/1 'Geist',sans-serif">Follow</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px"><span style="font:700 20px/1.2 'Geist',sans-serif">Oath</span><span style="font:400 14px/1.2 'Geist',sans-serif;color:#536471">@oathwallet</span></div>
+        <p style="margin:0;font:400 15px/1.45 'Geist',sans-serif;color:#0F1419">Your keys. Your word. A self-custody crypto wallet. Now on the App Store — Android coming soon.</p>
+        <span style="font:400 14px/1 'Geist',sans-serif;color:#536471">oath.app</span>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;align-items:start">
+      <div style="border-radius:18px;background:#FFFFFF;border:1px solid rgba(11,11,13,.08);padding:16px;display:flex;gap:12px">
+        <div style="width:42px;height:42px;flex:none;border-radius:50%;overflow:hidden"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:10px">
+          <div style="font:400 14px/1.2 'Geist',sans-serif;color:#536471"><strong style="font-weight:700;color:#0F1419">Oath</strong> @oathwallet · 1h</div>
+          <p style="margin:0;font:400 15px/1.45 'Geist',sans-serif;color:#0F1419">Two rings. One promise.<br>Oath is live on iPhone — a wallet where your keys never leave your device.</p>
+          <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:radial-gradient(55% 100% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(55% 100% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(55% 100% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(55% 100% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D"><img src="{{ m.white }}" alt="" style="display:block;width:26%;aspect-ratio:860/580"><span style="font:600 18px/1 'Geist',sans-serif;letter-spacing:-.02em;color:#FFFFFF">Now on iPhone</span></div>
+          <div style="display:flex;gap:26px;font:400 12.5px/1 'Geist Mono',monospace;color:#536471"><span>↩ 214</span><span>⟲ 1.2K</span><span>♡ 6.8K</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="aspect-ratio:1;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:radial-gradient(60% 60% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(60% 60% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(60% 60% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(60% 60% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D"><img src="{{ m.white }}" alt="" style="display:block;width:36%;aspect-ratio:860/580"><span style="font:600 26px/1 'Geist',sans-serif;letter-spacing:-.03em;color:#FFFFFF">Your keys. Your word.</span></div>
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">Instagram post · 1080 × 1080</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+        <div style="width:220px;aspect-ratio:9/16;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(80% 45% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(80% 45% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(80% 45% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(80% 45% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D"><img src="{{ m.white }}" alt="" style="display:block;width:44%;aspect-ratio:860/580"><span style="font:600 32px/1 'Geist',sans-serif;letter-spacing:-.045em;color:#FFFFFF">Oath</span><span style="font:400 12px/1 'Geist',sans-serif;color:#FFFFFF">Your keys. Your word.</span></div>
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">Story · 1080 × 1920</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="aspect-ratio:4/1;border-radius:18px;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:radial-gradient(30% 140% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(30% 140% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(30% 140% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), radial-gradient(30% 140% at 0% 100%, #12A88E 0%, rgba(18,168,142,0) 70%), #0B0B0D">
+        <span style="font:600 clamp(20px,3vw,40px)/1 'Geist',sans-serif;letter-spacing:-.035em;color:#FFFFFF">Your keys. Your word.</span>
+        <div style="display:flex;align-items:center;gap:12px"><img src="{{ m.white }}" alt="" style="display:block;width:clamp(36px,5vw,64px);aspect-ratio:860/580"><span style="font:600 clamp(24px,3.4vw,48px)/1 'Geist',sans-serif;letter-spacing:-.045em;color:#FFFFFF">Oath</span></div>
+      </div>
+      <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">LinkedIn cover · 1584 × 396</span>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <button onClick="{{ dl.xHeader }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(11,11,13,.14);background:#FFFFFF;font:500 13px/1 'Geist',sans-serif;color:#0B0B0D;cursor:pointer" style-hover="background:#0B0B0D;color:#FFFFFF">↓ X header 1500×500</button>
+      <button onClick="{{ dl.avatar }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(11,11,13,.14);background:#FFFFFF;font:500 13px/1 'Geist',sans-serif;color:#0B0B0D;cursor:pointer" style-hover="background:#0B0B0D;color:#FFFFFF">↓ Avatar 400×400</button>
+      <button onClick="{{ dl.xPost }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(11,11,13,.14);background:#FFFFFF;font:500 13px/1 'Geist',sans-serif;color:#0B0B0D;cursor:pointer" style-hover="background:#0B0B0D;color:#FFFFFF">↓ X post image 1600×900</button>
+      <button onClick="{{ dl.igPost }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(11,11,13,.14);background:#FFFFFF;font:500 13px/1 'Geist',sans-serif;color:#0B0B0D;cursor:pointer" style-hover="background:#0B0B0D;color:#FFFFFF">↓ Instagram 1080×1080</button>
+      <button onClick="{{ dl.story }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(11,11,13,.14);background:#FFFFFF;font:500 13px/1 'Geist',sans-serif;color:#0B0B0D;cursor:pointer" style-hover="background:#0B0B0D;color:#FFFFFF">↓ Story 1080×1920</button>
+      <a href="Oath Social Templates.dc.html" style="height:38px;padding:0 16px;border-radius:999px;background:#0B0B0D;color:#FFFFFF;display:flex;align-items:center;font:500 13px/1 'Geist',sans-serif">Open post templates →</a>
+      <button onClick="{{ dl.linkedin }}" style="height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(11,11,13,.14);background:#FFFFFF;font:500 13px/1 'Geist',sans-serif;color:#0B0B0D;cursor:pointer" style-hover="background:#0B0B0D;color:#FFFFFF">↓ LinkedIn 1584×396</button>
+    </div>
+  </div>
+</section>
+
+<section id="templates" data-screen-label="11 Templates" style="padding:112px 0 0;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">10 — Templates</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">Card, deck, letter, email.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Starting points for everyday material. Bracketed fields are yours to fill.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px">
+      <div style="padding:36px;border-radius:20px;background:#E3E3E4;display:flex;flex-direction:column;align-items:center;gap:16px">
+        <div style="width:100%;max-width:350px;aspect-ratio:1.75;border-radius:10px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(50% 90% at 0% 0%, #D98A12 0%, rgba(217,138,18,0) 70%), radial-gradient(50% 90% at 100% 100%, #3D6FF0 0%, rgba(61,111,240,0) 70%), #0B0B0D;box-shadow:0 20px 40px -24px rgba(0,0,0,.6)">
+          <img src="{{ m.white }}" alt="" style="display:block;width:48px;height:32px"><span style="font:600 26px/1 'Geist',sans-serif;letter-spacing:-.045em;color:#FFFFFF">Oath</span>
+        </div>
+        <div style="width:100%;max-width:350px;aspect-ratio:1.75;border-radius:10px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;background:#FFFFFF;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)">
+          <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 16px/1.2 'Geist',sans-serif;letter-spacing:-.01em">[Full Name]</span><span style="font:400 12px/1.2 'Geist',sans-serif;color:#6A6A70">[Role]</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:10px"><span style="font:400 10.5px/1.5 'Geist Mono',monospace;color:#48484E">[name]@oath.app<br>oath.app</span><img src="{{ m.light }}" alt="" style="display:block;width:30px;height:20px"></div>
+        </div>
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">Business card · 85 × 55 mm</span>
+      </div>
+      <div style="padding:36px;border-radius:20px;background:#E3E3E4;display:flex;flex-direction:column;align-items:center;gap:16px">
+        <div style="width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;padding:5%;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(50% 90% at 100% 0%, #3D6FF0 0%, rgba(61,111,240,0) 70%), radial-gradient(50% 90% at 100% 100%, #E3124F 0%, rgba(227,18,79,0) 70%), #0B0B0D;box-shadow:0 20px 40px -24px rgba(0,0,0,.6)">
+          <div style="display:flex;align-items:center;gap:7px"><img src="{{ m.white }}" alt="" style="display:block;width:22px;height:15px"><span style="font:600 13px/1 'Geist',sans-serif;letter-spacing:-.03em;color:#FFFFFF">Oath</span></div>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font:600 clamp(20px,2.6vw,30px)/1 'Geist',sans-serif;letter-spacing:-.035em;color:#FFFFFF">[Presentation title]</span><span style="font:400 11px/1 'Geist Mono',monospace;color:#FFFFFF">[Speaker] · [Date]</span></div>
+        </div>
+        <div style="width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;padding:5%;display:flex;flex-direction:column;justify-content:space-between;background:#F4F4F2;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)">
+          <span style="font:500 9px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#6A6A70">02 — [Section]</span>
+          <span style="font:600 clamp(16px,2vw,22px)/1.1 'Geist',sans-serif;letter-spacing:-.03em;max-width:70%">[One idea per slide, stated as a sentence.]</span>
+          <div style="display:flex;justify-content:space-between;align-items:center"><img src="{{ m.light }}" alt="" style="display:block;width:18px;height:12px"><span style="font:400 9px/1 'Geist Mono',monospace;color:#8A8A90">2</span></div>
+        </div>
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">Slides · 16:9 title + content</span>
+      </div>
+      <div style="padding:36px;border-radius:20px;background:#E3E3E4;display:flex;flex-direction:column;align-items:center;gap:16px">
+        <div style="width:100%;max-width:300px;aspect-ratio:1/1.414;border-radius:4px;padding:26px;display:flex;flex-direction:column;gap:22px;background:#FFFFFF;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)">
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:6px"><img src="{{ m.light }}" alt="" style="display:block;width:21px;height:14px"><span style="font:600 13px/1 'Geist',sans-serif;letter-spacing:-.04em">Oath</span></div><span style="font:400 7.5px/1 'Geist Mono',monospace;color:#8A8A90">[Date]</span></div>
+          <div style="display:flex;flex-direction:column;gap:8px;font:400 8.5px/1.6 'Geist',sans-serif;color:#48484E"><span style="font-weight:600;color:#0B0B0D">For immediate release</span><span style="font:600 14px/1.15 'Geist',sans-serif;letter-spacing:-.02em;color:#0B0B0D">[Headline of the announcement]</span><span>[City] — [Opening paragraph: who, what, when, why it matters.]</span><span>[Quote from spokesperson.]</span><span>[Availability and pricing.]</span></div>
+          <span style="margin-top:auto;font:400 7.5px/1.5 'Geist Mono',monospace;color:#8A8A90;border-top:1px solid #EFEFED;padding-top:8px">press@oath.app · oath.app/press</span>
+        </div>
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">Press release · A4 / Letter</span>
+      </div>
+      <div style="padding:36px;border-radius:20px;background:#E3E3E4;display:flex;flex-direction:column;justify-content:center;gap:16px">
+        <div style="border-radius:12px;background:#FFFFFF;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 40px -24px rgba(0,0,0,.4)">
+          <span style="font:400 13px/1.5 'Geist',sans-serif;color:#48484E">Best,</span>
+          <div style="display:flex;gap:14px;align-items:center;padding-top:14px;border-top:1px solid #EFEFED">
+            <div style="width:44px;height:44px;flex:none;border-radius:22.5%;overflow:hidden"><img src="{{ icon.light }}" alt="" style="display:block;width:100%;height:100%"></div>
+            <div style="display:flex;flex-direction:column;gap:3px"><span style="font:600 13.5px/1.2 'Geist',sans-serif">[Full Name]</span><span style="font:400 12px/1.2 'Geist',sans-serif;color:#6A6A70">[Role], Oath</span><span style="font:400 11px/1.2 'Geist Mono',monospace;color:#3D6FF0">oath.app</span></div>
+          </div>
+        </div>
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#6A6A70">Email signature</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="press" data-screen-label="12 Press" style="padding:112px 0 120px;scroll-margin-top:60px">
+  <div style="max-width:1200px;margin:0 auto;padding:0 40px;display:flex;flex-direction:column;gap:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;align-items:end">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8A8A90">11 — Press</span>
+        <h2 style="margin:0;font:600 clamp(36px,4.4vw,56px)/1.02 'Geist',sans-serif;letter-spacing:-.035em">For journalists.</h2>
+      </div>
+      <p style="margin:0;max-width:520px;font:400 17px/1.55 'Geist',sans-serif;color:#48484E;text-wrap:pretty">Everything needed to write about Oath. Please use the supplied files as-is.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:28px;display:flex;flex-direction:column;gap:14px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#8A8A90">Boilerplate</span>
+        <p style="margin:0;font:400 16px/1.6 'Geist',sans-serif;color:#0B0B0D;text-wrap:pretty">Oath is a self-custody crypto wallet, available now on the App Store for iPhone, with Android coming soon. Keys are generated and stored on the user’s device — Oath never holds them and cannot move funds. The app lets people hold, send, receive and swap digital assets with plain-language security built in.</p>
+      </div>
+      <div style="border-radius:20px;background:#FFFFFF;border:1px solid rgba(11,11,13,.07);padding:28px;display:flex;flex-direction:column;gap:14px">
+        <span style="font:500 12px/1 'Geist Mono',monospace;color:#8A8A90">Fact sheet</span>
+        <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px 24px;font:400 14px/1.35 'Geist',sans-serif">
+          <span style="color:#6A6A70">Product</span><span>Oath — self-custody wallet</span>
+          <span style="color:#6A6A70">Platforms</span><span>iOS (App Store) · Android coming soon</span>
+          <span style="color:#6A6A70">Founded</span><span>[Year], [City]</span>
+          <span style="color:#6A6A70">Founders</span><span>[Names]</span>
+          <span style="color:#6A6A70">Tagline</span><span>Your keys. Your word.</span>
+          <span style="color:#6A6A70">Press contact</span><span style="font-family:'Geist Mono',monospace">press@oath.app</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-radius:20px;background:#0B0B0D;color:#EDEDEF;padding:28px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px"><span style="font:600 22px/1 'Geist',sans-serif;letter-spacing:-.02em">Downloads</span><span style="font:400 12px/1 'Geist Mono',monospace;color:#9A9AA0">PNG at full resolution · SVG vector</span></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px">
+        <sc-for list="{{ files }}" as="f" hint-placeholder-count="12">
+          <button onClick="{{ f.go }}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;height:54px;padding:0 16px;border-radius:12px;border:1px solid #26262B;background:#161619;color:#EDEDEF;cursor:pointer;text-align:left" style-hover="background:#EDEDEF;color:#0B0B0D;border-color:#EDEDEF">
+            <span style="font:500 13.5px/1.2 'Geist',sans-serif">{{ f.label }}</span>
+            <span style="font:500 11px/1 'Geist Mono',monospace;opacity:.7">{{ f.fmt }} ↓</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:28px;border-top:1px solid rgba(11,11,13,.1)">
+      <div style="display:flex;align-items:center;gap:9px"><img src="{{ m.light }}" alt="" style="display:block;width:27px;height:18px"><span style="font:600 18px/1 'Geist',sans-serif;letter-spacing:-.04em">Oath</span></div>
+      <span style="font:400 12px/1 'Geist Mono',monospace;color:#8A8A90">Brand &amp; Press Kit v1.0 · © 2026 Oath</span>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;glow&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0.4,&quot;max&quot;:1.4,&quot;step&quot;:0.05,&quot;default&quot;:1.15,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Mark&quot;},&quot;lights&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Four&quot;,&quot;Two&quot;],&quot;default&quot;:&quot;Four&quot;,&quot;tsType&quot;:&quot;'Four' | 'Two'&quot;,&quot;section&quot;:&quot;Mark&quot;}}">
+class Component extends DCLogic {
+  state = { ready: typeof window !== 'undefined' && !!window.OathIcons };
+
+  componentDidMount() {
+    const tick = () => { if (window.OathIcons) this.setState({ ready: true }); else this._t = setTimeout(tick, 40); };
+    if (!this.state.ready) tick();
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+
+  opts(extra) {
+    return Object.assign({ palette: 'Prism', glow: this.props.glow ?? 1.15, lights: this.props.lights ?? 'Four' }, extra || {});
+  }
+  svg(mode, extra) { return window.OathIcons.build('vow', mode, this.opts(extra)); }
+  url(mode, extra) { return window.OathIcons.url(this.svg(mode, extra)); }
+
+  save(blob, name) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  }
+  saveSvg(svg, name) { this.save(new Blob([svg], { type: 'image/svg+xml' }), name); }
+  img(src) { return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; }); }
+
+  async png(w, h, name, draw) {
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    try { await document.fonts.load('600 100px Geist'); await document.fonts.load('400 100px Geist'); } catch (e) {}
+    await draw(ctx, w, h);
+    c.toBlob(b => b && this.save(b, name), 'image/png');
+  }
+  glow(ctx, w, h) {
+    ctx.fillStyle = '#0B0B0D'; ctx.fillRect(0, 0, w, h);
+    const r = Math.hypot(w, h) * 0.46;
+    [[0, 0, '217,138,18'], [w, 0, '61,111,240'], [w, h, '227,18,79'], [0, h, '18,168,142']].forEach(([x, y, c]) => {
+      const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, `rgba(${c},1)`); g.addColorStop(.45, `rgba(${c},.42)`); g.addColorStop(1, `rgba(${c},0)`);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+    });
+  }
+  async mark(ctx, mode, extra, cx, cy, mh) {
+    const i = await this.img(this.url(mode, Object.assign({ mark: true }, extra)));
+    const mw = mh * 860 / 580; ctx.drawImage(i, cx - mw / 2, cy - mh / 2, mw, mh);
+  }
+  text(ctx, s, size, weight, color, x, y, align) {
+    ctx.font = `${weight} ${size}px Geist, system-ui, sans-serif`;
+    if ('letterSpacing' in ctx) ctx.letterSpacing = (weight >= 600 ? -size * 0.045 : 0) + 'px';
+    ctx.fillStyle = color; ctx.textAlign = align || 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(s, x, y);
+  }
+  async icon(size, mode, name) {
+    const i = await this.img(this.url(mode));
+    await this.png(size, size, name, ctx => ctx.drawImage(i, 0, 0, size, size));
+  }
+  async lockup(dark) {
+    await this.png(1800, 600, 'oath-lockup-' + (dark ? 'dark' : 'light') + '.png', async (ctx, w, h) => {
+      const fs = 300, mh = 210, gap = 64;
+      ctx.font = `600 ${fs}px Geist, system-ui, sans-serif`;
+      if ('letterSpacing' in ctx) ctx.letterSpacing = (-fs * 0.045) + 'px';
+      const tw = ctx.measureText('Oath').width, mw = mh * 860 / 580, x0 = (w - (mw + gap + tw)) / 2;
+      await this.mark(ctx, dark ? 'dark' : 'light', {}, x0 + mw / 2, h / 2, mh);
+      this.text(ctx, 'Oath', fs, 600, dark ? '#F4F4F2' : '#0B0B0D', x0 + mw + gap, h / 2 + 8, 'left');
+    });
+  }
+  async banner(w, h, name, cfg) {
+    await this.png(w, h, name, async ctx => {
+      this.glow(ctx, w, h);
+      await this.mark(ctx, 'light', { solid: '#FFFFFF' }, cfg.mx ?? w / 2, cfg.my ?? h / 2, cfg.mh);
+      (cfg.texts || []).forEach(t => this.text(ctx, t[0], t[1], t[2], '#FFFFFF', t[3], t[4], t[5]));
+    });
+  }
+
+  renderVals() {
+    const I = this.state.ready && window.OathIcons;
+    const BLANK = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2F%3E';
+    const u = (mode, extra) => (I ? this.url(mode, extra) : BLANK);
+    const m = { light: u('light', { mark: true }), dark: u('dark', { mark: true }), black: u('light', { mark: true, solid: '#0B0B0D' }), white: u('light', { mark: true, solid: '#FFFFFF' }) };
+    const icon = { light: u('light'), dark: u('dark') };
+    const dl = {
+      xHeader: () => this.banner(1500, 500, 'oath-x-header.png', { mh: 150 }),
+      avatar: () => this.icon(400, 'light', 'oath-avatar-400.png'),
+      xPost: () => this.banner(1600, 900, 'oath-x-post.png', { mh: 230, my: 400, texts: [['Now on iPhone', 64, 600, 800, 640]] }),
+      igPost: () => this.banner(1080, 1080, 'oath-instagram.png', { mh: 260, my: 470, texts: [['Your keys. Your word.', 64, 600, 540, 720]] }),
+      story: () => this.banner(1080, 1920, 'oath-story.png', { mh: 320, my: 820, texts: [['Oath', 150, 600, 540, 1100], ['Your keys. Your word.', 46, 400, 540, 1210]] }),
+      linkedin: () => this.banner(1584, 396, 'oath-linkedin.png', { mh: 110, mx: 1180, texts: [['Your keys. Your word.', 64, 600, 110, 198, 'left'], ['Oath', 112, 600, 1270, 206, 'left']] }),
+    };
+    const files = [
+      { label: 'App icon — light', fmt: 'PNG 1024', go: () => this.icon(1024, 'light', 'oath-app-icon-light-1024.png') },
+      { label: 'App icon — dark', fmt: 'PNG 1024', go: () => this.icon(1024, 'dark', 'oath-app-icon-dark-1024.png') },
+      { label: 'App icon — light', fmt: 'SVG', go: () => this.saveSvg(this.svg('light'), 'oath-app-icon-light.svg') },
+      { label: 'App icon — dark', fmt: 'SVG', go: () => this.saveSvg(this.svg('dark'), 'oath-app-icon-dark.svg') },
+      { label: 'Mark — for light backgrounds', fmt: 'SVG', go: () => this.saveSvg(this.svg('light', { mark: true }), 'oath-mark-light.svg') },
+      { label: 'Mark — for dark backgrounds', fmt: 'SVG', go: () => this.saveSvg(this.svg('dark', { mark: true }), 'oath-mark-dark.svg') },
+      { label: 'Mark — solid Ink', fmt: 'SVG', go: () => this.saveSvg(this.svg('light', { mark: true, solid: '#0B0B0D' }), 'oath-mark-ink.svg') },
+      { label: 'Mark — solid white', fmt: 'SVG', go: () => this.saveSvg(this.svg('light', { mark: true, solid: '#FFFFFF' }), 'oath-mark-white.svg') },
+      { label: 'Lockup — light', fmt: 'PNG', go: () => this.lockup(false) },
+      { label: 'Lockup — dark', fmt: 'PNG', go: () => this.lockup(true) },
+      { label: 'X header', fmt: 'PNG', go: dl.xHeader },
+      { label: 'Instagram post', fmt: 'PNG', go: dl.igPost },
+    ];
+    const assets = [
+      { name: 'Bitcoin', glyph: '₿', qty: '0.2841 BTC', value: '$18,204.10', color: '#D98A12' },
+      { name: 'Ethereum', glyph: 'Ξ', qty: '1.52 ETH', value: '$4,112.33', color: '#3D6FF0' },
+      { name: 'USD Coin', glyph: '$', qty: '1,500.00 USDC', value: '$1,500.00', color: '#12A88E' },
+      { name: 'Solana', glyph: 'S', qty: '3.10 SOL', value: '$502.09', color: '#E3124F' },
+    ];
+    return { m, icon, dl, files, assets };
+  }
+}
+</script>
+</body>
+</html>

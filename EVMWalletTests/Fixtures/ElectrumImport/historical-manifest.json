@@ -1,0 +1,857 @@
+[
+  {
+    "name": "client_1_9_8_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1DjtUCcQwwzA3GSPA7Kd79PMnri7tLDPYC",
+        "wif": "p2pkh:5HxD8jiJuhqcDnnWiHJNdiwhf42xzBLw6W9DhYQyrjxnnDkMn4d"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1PAgpPxnL42Hp3cWxmSfdChPqqGiM8g7zj",
+        "wif": "p2pkh:5JkLMEqawMRsStv8oGEm8t6ozm3AqBQEDPqzJ2rWcmjwapEgjrr"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "16M8FBLrVuG8SpBW7ezmNCjQspdEZwZ2EY",
+        "wif": "p2pkh:5KTMRtABCaAcW4RGBrj6B5jZyorv9J4MtdbLCkqFzfd9ouU1wba"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1NyjUjrmTLVoH1VRpLTjx8iaksKwnt5HVw",
+        "wif": "p2pkh:5Jo4uq4BQfi6i93hmehywoRitD2iYCb7u5bMFaV3icezrQdmoTf"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1H3mPXHFzA8UbvhQVabcDjYw3CPb3djvxs",
+        "wif": "p2pkh:5JGCD7kYJLinztnky9VaKZPfiUMNbhbTxv9usBSjFSd7SQtDNbG"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1HocPduHmQUJerpdaLG8DnmxvnDCVQwWsa",
+        "wif": "p2pkh:5KHiZbDBFdGvQUkNtvCudnkNfRsHJKEuYhkZF7RkfNC5naY1h6t"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1P5FNSXmrd4XzgQweCmvGP8xUGJrxy64K9",
+        "wif": "p2pkh:5KVywyfwpa1is92qT8tBX4CYn4PEcf1ErcsNxrPex3RzhqpDh2K"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1Meo6FJqsqP6N4sRoWZbx6TXWCRMk7DTwa",
+        "wif": "p2pkh:5KZwLqnnRjEFH9DBvqfz5pURtibmpQQu8AwxPiAmQ5jyEnwTZxd"
+      }
+    ]
+  },
+  {
+    "name": "client_2_0_4_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1BmDjfkgY7igHBqfUG53Z96NBk9WG5CfW9",
+        "wif": "p2pkh:L32VR5ZNVNUQNtbHwnBEwVMnEsnFcswZbMNy5GMCjgV2mr4qXptP"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1DSfJKusZA9t4fpNuTWBn22NLmaJQ1bZkw",
+        "wif": "p2pkh:L1aCaE9JrDZhcyMpdGDs6doVdifWZchmzM5dzcP1Tukv99U6XoEG"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "1EAJ32fpGCDqPsu8yzFtjfCKVo6sz3395p",
+        "wif": "p2pkh:Kzde1tbY34z4MxeiDUn37fqkrEv9EeyshhZ29xAY3Xfp2oneegXL"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1Jh3ZTZNWFMrbi8k1i4KvksTfkJenmXMGa",
+        "wif": "p2pkh:KxBWWrTjGwVCAg33vRdgKY3oMeBRuGXnkvSvTE1rFwXX2zPyvYgR"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1AfHc26TAD4kgCnncW4nzPciYJCuV6UYwm",
+        "wif": "p2pkh:KxQrUVT641Uxxz5onGyUE64WLYirkEFZFLLYHPmG2f4uSXFyec1r"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1KJpRDnVVuZXarsT6bDZbe7Wc8tmHA2p7J",
+        "wif": "p2pkh:L2u5UdGQe2yQfZAd8XnGDxuB9BTiJrHQ1ex7LMhgZS3JDaRaaDYa"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1QAZvqCSmdpEYQKLEQNS6aNiCkd9EsRqFD",
+        "wif": "p2pkh:L4bkcEqWrqTFbFejJhE5xanmorttvxHfMafrw6adpEKY3trhUiqN"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "19HXk9KmjU5tXyL8AnZS97w2DgRsxfyFeg",
+        "wif": "p2pkh:KyKPh87DG9eNkL11dbM53wNp9HHfXqA26mbtgLhNVMDSDwXS2RGm"
+      }
+    ]
+  },
+  {
+    "name": "client_2_0_4_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_1_1_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1PNcYGno7dKDxPQ6ozEHS1xER2Tt1UuG4n",
+        "wif": "p2pkh:Kz8oPv6py6y4wyny71UP37286zKWYA9oNzKKLMUmmQn9GBURj8LQ"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "13QYrKr7xssT1aABRzQFGkUvwUfdi8sfGT",
+        "wif": "p2pkh:L2YnqQf2jLfNXVLQjP8WWDGQ6vGnWt2USCbkidhKF8LajXY3rBTM"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "1JgN4PynNm5rfZFgf2rUTQi5NHKQqYJgvz",
+        "wif": "p2pkh:L4t6NbK5hRuHKYWEd3Aegz6BZkoww6XTo3r3eqNkP6iBVrrNQpS3"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "163bo6fKxeBHWJt8ij8hjdsJC7cTVwV59D",
+        "wif": "p2pkh:L57znDBcSssDtc4dhZg6ciBRTdTvDmEzKdBj2RvCuCz9xD33LH9s"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "16U1KdZEnbLUdze2WFJu8vHX9pGjAnj1X6",
+        "wif": "p2pkh:L1YNKcnQu4qh2q7NjwGQehQwU9AKCbDru1V2kw3wy7WRLsQ1Fny5"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "195eqqqEqEPNXnYs7gPfbNep7tYFyZvXYR",
+        "wif": "p2pkh:KxXVUTfHSq6DoW4N54W5BA3s1zC1YUReexMQhigkcfWtJHHFygr1"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "136dfPUNfZSY8y5oq3HfmadbX1gZYbZhH8",
+        "wif": "p2pkh:L1BakkGyaWYzgFBxpbE8mJ4HHrjQ394suFosvyaQ2xYqj8fFnDPS"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "17eQi944n4xQNaeUYzEZdJCCSUnuFHQtG2",
+        "wif": "p2pkh:KwdPA9iZMSyNY1HgUzUSN5hSezYEBJgaexasyhP2jbTTmV5fcJaZ"
+      }
+    ]
+  },
+  {
+    "name": "client_2_1_1_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_2_0_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1BmbJZtB3puNES5Wjht5e68oe4o6GMgram",
+        "wif": "p2pkh:L3ZfdAbFLSgoQWVMZs4uLetzCfmjPTdK9Cfh4VTLQkjUxsf8oYGj"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "165GNY2t9zqVQnCk6MfsuiTZezaH13enY9",
+        "wif": "p2pkh:L55Syoaj3L7DKN6b9ucz2Nwv8Gd4uo5ctQKod7TvBCqpifWdmQRr"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "14yiiHXwMJDyuUrUM3PJVdkujiYJoGLTNy",
+        "wif": "p2pkh:KyfJteAQwqj1GsnttH7dSkjBxC3WJUxyZWD2sTXk5r8bLHB422ae"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "14ki7kWapQy4Ysk4yThVgoAfMf9Am79bZe",
+        "wif": "p2pkh:KwNZsZFfvEJX1ZvUM7Hz7JcSRwdV3bYGGggxPejM7u2fcowNBM7s"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1AyuihzWhZ3GqTYhXfHxuPvFDfqSfikGA1",
+        "wif": "p2pkh:L2SjUFQjSFEVdsexXbee3xTohfL5uFh47SpShEzgVbkkyKmevnE7"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "19bgwVfV3amUwj6amnyoYXpQsiTLHN6a82",
+        "wif": "p2pkh:L27VGT4b1XQky2LPH8zAFpuNTKheukxw3ngWa99mHYZeTdiUPnfH"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1JdZSvo1ubBAdcr3HJEpVysmR1d2r7JVBx",
+        "wif": "p2pkh:Kz4ED3gvS7Aeknc3iHWjhHYtgfSHYuybzxfqwortHecZQLojffqx"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1N6CoEwwQPBzTSnB5HXSyGvVTst9FTE6nY",
+        "wif": "p2pkh:L5dbmcypgPc1ce65R359oUysPDCG4r9dEUsjEcVvVJy3M1fXEMkx"
+      }
+    ]
+  },
+  {
+    "name": "client_2_2_0_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_3_2_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1NTrtk1i3mv25acWHHNx3pQfmtejg3ns3w",
+        "wif": "p2pkh:L3htTwCP1qJ3s18fH3TXtTeEHHLwSQGJeupR5bmAjWSh6C2axNXd"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "134wdPcy595bFWCg55oAbDZM34NNsBShpp",
+        "wif": "p2pkh:L3kAiRw5FzR1Mrd6Rk9LCRzz3pxh7wMtSYthowF9PjTGVFpocXYg"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "127Y8P7oteFTBEziCh8UN2GqdToZpQTefR",
+        "wif": "p2pkh:L2MSzPTeuS1qCiLQiKdoPiVCJBmDEo4kaXDDEsbRDS4Ytbb7uvzK"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "17bCuX14HNXfWRFATiJHYxrwZvMqVjHpws",
+        "wif": "p2pkh:L2o9qemteK29cQ1NEmTvVdpBQPsW7i73RXEANLMN2N3cmF7EcVFH"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1DdLxRzX7QmsrsLuvkv5cd5PdskPc8WjkJ",
+        "wif": "p2pkh:L57DADiorigsTLLFRBud4bRskH88KaWqv24jSrDK8wHraS8xVDBm"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1GtgSpxNUD3VjQybeJwnzfGtFwgVfHYsFR",
+        "wif": "p2pkh:Kwn9frU6QQCyG3j5c6AY9LkiiLSoa1uyYE3VUDtZuo7eBG5SzYs6"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1BFmUnE4QqFzf7LbDyq6AqmEE9zcLgAJuC",
+        "wif": "p2pkh:KxkQZYBZyEjLzpuAhwYH9rMutJUL1JxEH5yVG4peC98A9Sw2iqNh"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1XjW3vaSKGufwVWKGbjEAcNCy5G8Yokh1",
+        "wif": "p2pkh:L5f6mY27MisdxywKRFAJvK3ru2veDokHKHw8Zq6DLRC2GFxfDqsk"
+      }
+    ]
+  },
+  {
+    "name": "client_2_3_2_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_4_3_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "17VU2MDYAjxbDQAHDqBXK7PS1zKQ7SHyP9",
+        "wif": "p2pkh:L3uDSpmhwDPwspRVhnbkU7CC94ZFUJcjG8obqreMG32nqdJA6XAm"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1CuZCNRvdMJYgW72iWxDF5VTUg3MAFdkPJ",
+        "wif": "p2pkh:KzMWWdEFCkazXAYXUSVnsWzMLPCsNtNimBjddPVzb5Jj2xD8eyzr"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "1LQF8NzCSeEeLVU1ksMa8XE6o2AkCqgQ3T",
+        "wif": "p2pkh:Kx32o6Dh4boNA1M9q9d3PbPBZJRnL5HdJ9N97D9m27ZitAE5SH1b"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1Bii2VKUYnnkjVT2Ua4yMzYEGV4vocSqKD",
+        "wif": "p2pkh:KwpSqrGqaWwP3uiuecHPMKntB7d3y5feYSLQePYh47PrAacX3C9p"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1n1hJHt4FHDJL8MeqLBEYS5SyrMfks7NS",
+        "wif": "p2pkh:KwwJNgT5KGACPxB8MBxqjEuWBkAtTH68fu32dTwvrVjVLFXqFDNr"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "13qXS3ateBnQSm1F4CfLV8o32tBRR5PAaL",
+        "wif": "p2pkh:L5CTq5shsx44h6GzcMUgWTRAecYrfvQkKukZf3hKiqxg6wD6hW9K"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "18ALFMiYBB7nNSksJ5KS64XbbddG3hozFz",
+        "wif": "p2pkh:L2jMz5NTJeRJetV1vNbhGKbgiSDNuctyVzucuQAQ8N2gCn7wXwYD"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "15852tQYupZ58WHkhsECcGheRZQDwC7dLQ",
+        "wif": "p2pkh:L3ZEBeoxEDbtYRYtsvWmTfQrkxGnwr5MfTYWKTDqmBSLhk4JhYeu"
+      }
+    ]
+  },
+  {
+    "name": "client_2_4_3_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_5_4_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15MpWMUasNVPTpzC5hK2AuVFwQ3AHd8fkv",
+        "wif": "p2pkh:KzhY334inwRiyL7CmN7eVoKpZtP5vqg94KTar1fTMvVQRjG6qaWh"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1D4bgjc4MDtEPWNTVfqG5bAodVu3D1Gjft",
+        "wif": "p2pkh:L4NMpzd5bZTjwM38uMcXKYeVKMjy3uHQ3YBzyE1BqXAGcf56LSCQ"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "18eyxJw24DUuQHJikRADt2RGwJCzXXcLrd",
+        "wif": "p2pkh:L2GNAy2WS5RQegCDSZceCDoZFfxcugqGEFEmtbEEnnGkFFffB9xz"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1P8FcDRUrfmjxqEuZBqAirvzFZPnZtA9MW",
+        "wif": "p2pkh:KwGnb1TC4qpJkmUMhY9h17Ymsb45RcMM2gRHsCWnb26U4TouMeTf"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1HnWq29dPuDRA7gx9HQLySGdwGWiNx4UP1",
+        "wif": "p2pkh:L3AExTMjHbiDzPd5VqUn4YejMpNg2erHKkUqPK4YTLtjVLKB3FYz"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "17nmvao3F84ebPrcv1LUxPUSS94U9EvCUt",
+        "wif": "p2pkh:Kz6LGEjEhaHR6z1v9T2dKNm33R4YWioQkTohjti5gNdiJYWygjFq"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1NPeLhxXe76TSd2L9YUyQGmmW2mgBiYaXW",
+        "wif": "p2pkh:L2jYfgfhpxaCCgiWKPTqbjpCVATkeXWiaPwZoEuvSJAgtPeNWAsX"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1FXnp1n14oQTHgnmMgBewkay1dQKTfE9ym",
+        "wif": "p2pkh:L31frwsZeuwA5tA9fm8okZ3yJiHCRUL5nCmyAGBuEZhj7x2kFChB"
+      }
+    ]
+  },
+  {
+    "name": "client_2_5_4_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_6_4_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1JgaekD2ETMJm6oRNnwTWRK9ZxXeUcbi18",
+        "wif": "p2pkh:L4VkNbkmYgYYFTMVCY2dVkVEqkNTAMrFo5MW6YmurkXGLbm8BeEb"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "16wjKZ1CWAMEzSR4UxQTWqXRm9jcJ9Dbuf",
+        "wif": "p2pkh:KwGUq3ZS8s7C3J3ax8UW2G3qxxp7DG8UzGssbDck8TCmwkvMSyuT"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "18E7mpXvDtax9W7iL9S8kQLiB1N2QaytA6",
+        "wif": "p2pkh:KzE7PihsZmW7hHkexXFyB7Foj6seQgHC6kZmFTZMENhGmriKqAqV"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1J3eHYeZmYdngGC3LmS4zRsSoUkNVqSscR",
+        "wif": "p2pkh:L1AYENibg2FLbi4agpd2DqjYXD4VrGEkyPyAbjjS33aZ4DASx3tp"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "16VGRwtZwp4yapQN5fS8CprK6mmnEicCEj",
+        "wif": "p2pkh:KyxiLuKwNd1ZWcY9XTcSEBzuuZDrEj4uzvHNrYgFPKaU8SQpnNAX"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "14gB2wLy2DMkBVtuU6HHP3kQYNFYPzAguU",
+        "wif": "p2pkh:KxqXCgESJ4ugVha3uH71gHeSsPR6VNQLKpX4zY4nrwivwZVoRxHH"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1PGXtMB9Lhp5oZ2H4FuWuPbYGUFAa7VLMw",
+        "wif": "p2pkh:L5n48VPcfWx7CGKojd1D1426e47QQw1udfvEQX44i29mFBQXmYse"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1AzZ6fRCMKi3y5ehtFec36492FD6psA64G",
+        "wif": "p2pkh:Kwm8UoURzaVqzqhAavAHoLtsuNsU6TCCAYjYmaRMy55sx86z9QAj"
+      }
+    ]
+  },
+  {
+    "name": "client_2_6_4_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_7_18_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "16oyPjLM4R96aZCnSHqBBkDMgbE2ehDWFe",
+        "wif": "p2pkh:KzyKrc8EXmmrdvHHLPFCCZumhju8ofagQUttoejBPYLpusY22mpT"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1BfhL8ZPcaZkXTZKASQYcFJsPfXNwCwVMV",
+        "wif": "p2pkh:L5bo6eDDSpRuNqD7FfxoChu8j8QMVHNU6b7frR7Y798zwnqgTSjF"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "1BzwvDXyw6dWnYzoDXxLMUvJL3sqBXZ1kr",
+        "wif": "p2pkh:L2HCLP7kVFH1nDtHu3SvLo4pjwFmUDU6ZGQPcVUL2qvvCPDU5WV2"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1H1qG1e3tNdX9JUVb1fwdW8GUPUcQ8zfzi",
+        "wif": "p2pkh:L3Uy8B3rojm5gLa89t579J5bt69B6fdK8GTVcFBpNa3c5GKpz55r"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "13sapXcP5Wq25PiXh5Zr9mLhyjdfrppWyi",
+        "wif": "p2pkh:L14fbgiBameqU1ntvX4yukENhWSBmhrcQPpeuBtYkaWJXGzUYciL"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1BvXCwXAdaSTES4ENALv3Tw6TJcZbMzu5o",
+        "wif": "p2pkh:KwmCHPqSs44seydfPm7rBbxqteG193NZzZvvodgC5iBCdGmTWPkG"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "1NMwgL8XFdDVvsYvCutzapvwdCwH1N4yY5",
+        "wif": "p2pkh:Kx5tYsg3DqkpFQuvsms3Z6rJAhMCJLisjpSipxQXUrwtLfqtL9aw"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1CzM7CeWUdAFe8zsi194ggFKdT4LN7ZFay",
+        "wif": "p2pkh:L2kRDoncDd5LpY5Xe8fpjruQfhjG1qh7YCb3ZaYnotbV4e5Sa72y"
+      }
+    ]
+  },
+  {
+    "name": "client_2_7_18_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_8_3_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1KMDUXdqpthH1XZU4q5kdSoMZmCW9yDMcN",
+        "wif": "p2pkh:KyJ2LDY7sHgF4oKcHRxXpKTeyPvhuewEy4ZenPDb3u2kAoKoeoBS"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "1HkbtbyocwHWjKBmzKmq8szv3cFgSGy7dL",
+        "wif": "p2pkh:L2b6b3qVjc1C16sGaPztZcmTU5qbQhpUoxA73KJYdiPJo1xph5oC"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "149x1V8aoAJiLzhHnymgN16EMnyHHvJGSC",
+        "wif": "p2pkh:KxtEALfKmBfMVc6Mi9TFaphgx3kD5xiQBTDkNKi4ncc6YxcEopEA"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "185LK9MVppvWSQwfYwqPU3sr6wVibaSA7J",
+        "wif": "p2pkh:L4cCoQjvSQfjuCbp42SXHKZRviCeuAJLVHJEnmUaAnGAMfCgLYC9"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1K5CWjgZEYcKTsJWeQrH6NcMPzFUAikD8z",
+        "wif": "p2pkh:L1XyytLUJajXz4z2ZWCsNHL3GCgEbZrPFDhjKf3hB6iQeqWUGe1G"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "19snysSPZEbgjmeMtuT7qDMTLH2fa7zrWW",
+        "wif": "p2pkh:KyFtsY3qYWHnQnZ1SVrKmUVyjsXpV8bV6uEoLTRN6CZVc2FfbGdf"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "15yK7TnRN4zLdRdWNDcBV15NBKtePTQyXU",
+        "wif": "p2pkh:Kzvj6Y6s5q2xNTpRT42f3ne9SEzK1YqphvvA97ZLNapPFHCq9DwZ"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1McUVszpAqmhHP32R11e7rvAV1NVscsBBL",
+        "wif": "p2pkh:KxcWb2K6rfBjoLNNPs2PUFdpanng2UcseiDAQUdrHjYF8JCpvyra"
+      }
+    ]
+  },
+  {
+    "name": "client_2_8_3_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  },
+  {
+    "name": "client_2_9_3_seeded.wallet",
+    "kind": "standard",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "14gmBxYV97mzYwWdJSJ3MTLbTHVegaKrcA",
+        "wif": "p2pkh:L53pE7P5taNxwhh4Aa1qpkfFW162XpFbNFnCQzJpDXd5qSGUuw8E"
+      },
+      {
+        "branch": 0,
+        "index": 1,
+        "address": "13HT1pfWctsSXVFzF76uYuVdQvcAQ2MAgB",
+        "wif": "p2pkh:L46uaJNp3BDK8Mdo7xYvtjjSU3vzTC3NHydma1KZfaGZoad2xVDx"
+      },
+      {
+        "branch": 0,
+        "index": 20,
+        "address": "1LbMCi8ZHAL2v9i8a4bBQHE5MoBRY5K24a",
+        "wif": "p2pkh:KxWKvHxVJUcLCD8zBYRrR9qqrUB1z5RXYqbwTfqH1y9TLEturz4N"
+      },
+      {
+        "branch": 0,
+        "index": 100,
+        "address": "1QEQD4qZxKvvXCYe58mnyo84u77xB2yGaH",
+        "wif": "p2pkh:L4d9NyzZcGR2AKFYKDNiqPnPTopithM1nJzpoMykT4FEVupjFXTK"
+      },
+      {
+        "branch": 1,
+        "index": 0,
+        "address": "1GhmpwqSF5cqNgdr9oJMZx8dKxPRo4pYPP",
+        "wif": "p2pkh:L5KzkMFpLDeZMuUjcLXv5jXYqLaMfYLMCL819kMvsJQCr1CAUWtC"
+      },
+      {
+        "branch": 1,
+        "index": 1,
+        "address": "1GTDSjkVc9vaaBBBGNVqTANHJBcoT5VW9z",
+        "wif": "p2pkh:KxvSqyaG23fMK3L5DNew37NrVTmB82jkMUbXk4t5BHDTaV8dHexM"
+      },
+      {
+        "branch": 1,
+        "index": 20,
+        "address": "19j9nAfTMDxQ73YhibvFX8GUJYMxELLjBh",
+        "wif": "p2pkh:L3wggUjpL212sBnMqHkrQasLpYBrvQ3BU66px86HgmuXtZ9wiqvi"
+      },
+      {
+        "branch": 1,
+        "index": 100,
+        "address": "1PSPUP7gUqBccXWxZiEJsFTnf1Zz6Jkm1e",
+        "wif": "p2pkh:Kxdd8srdpeeEE2peRirgVkiPQ4M1vZXUdwf4nnuLighTtY8LkRDP"
+      }
+    ]
+  },
+  {
+    "name": "client_2_9_3_importedkeys.wallet",
+    "kind": "imported",
+    "password": "",
+    "references": [
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1364Js2VG66BwRdkaoxAaFtdPb1eQgn8Dr",
+        "wif": "p2pkh:L2sED74axVXC4H8szBJ4rQJrkfem7UMc6usLCPUoEWxDCFGUaGUM"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "15CyDgLffJsJgQrhcyooFH4gnVDG82pUrA",
+        "wif": "p2pkh:5JyVyXU1LiRXATvRTQvR9Kp8Rx1X84j2x49iGkjSsXipydtByUq"
+      },
+      {
+        "branch": 0,
+        "index": 0,
+        "address": "1Exet2BhHsFxKTwhnfdsBMkPYLGvobxuW6",
+        "wif": "p2pkh:L3Gi6EQLvYw8gEEUckmqawkevfj9s8hxoQDFveQJGZHTfyWnbk1U"
+      }
+    ]
+  }
+]

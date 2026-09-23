@@ -1,5 +1,0 @@
-{"agent": "agent02", "key": "Tip: leave it on \\u{201C}Letter\\u{201D} to auto-use the wallet\\u{2019}s initial.", "lang": "da", "reason": "placeholder_mismatch_with_en", "en_ph": ["{2019}"], "new_ph": []}
-{"agent": "agent02", "key": "Tip: leave it on \\u{201C}Letter\\u{201D} to auto-use the wallet\\u{2019}s initial.", "lang": "de", "reason": "placeholder_mismatch_with_en", "en_ph": ["{2019}"], "new_ph": []}
-{"agent": "agent02", "key": "Tip: leave it on \\u{201C}Letter\\u{201D} to auto-use the wallet\\u{2019}s initial.", "lang": "el", "reason": "placeholder_mismatch_with_en", "en_ph": ["{2019}"], "new_ph": []}
-{"agent": "agent05", "key": "iCloud backup isn't set up for this build yet. In Xcode → Signing & Capabilities, add iCloud → CloudKit and the iCloud.com.aperture.wallet container, then try again.", "lang": "is", "reason": "key not found"}
-{"agent": "agent10", "key": "Tip: leave it on \\u{201C}Letter\\u{201D} to auto-use the wallet\\u{2019}s initial.", "lang": "uk", "reason": "placeholder_mismatch_with_en", "en_ph": ["{2019}"], "new_ph": []}

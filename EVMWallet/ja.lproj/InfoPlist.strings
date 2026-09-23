@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  EVMWallet
+
+  ja — native translations.
+*/
+
+"NSCameraUsageDescription" = "Oathがカメラを使用して、ウォレットのQRコードを安全にスキャンできるようにします。";
+"NSFaceIDUsageDescription" = "OathがFace IDを使用して、ウォレットのロックを解除し保護できるようにします。";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Oathがお使いの別のiPhoneへ直接接続し、暗号化済みウォレットデータを安全に転送できるようにします。";
