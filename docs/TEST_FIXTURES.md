@@ -8,7 +8,7 @@ credentials or user wallet backups. Never send funds to addresses derived from t
 - `BIP39MultilingualMnemonicTests`: deterministic entropy bytes 0 through 15.
 - Bitcoin Silent Payments: published BIP352 cryptographic test vectors.
 - Bitcoin Core/Electrum imports: offline-generated wallets documented under
-  `EVMWalletTests/Fixtures/BitcoinImport` and `ElectrumImport`, with generator scripts.
+  `OathTests/Fixtures/BitcoinImport` and `ElectrumImport`, with generator scripts.
 - Other signing tests use documented protocol vectors or ephemeral generated keys.
 
 `.gitleaksignore` lists exact reviewed locations for public token addresses,

@@ -15,21 +15,21 @@ targets:
     platform: iOS
     sources:
       - path: App
-      - path: ../../EVMWallet/Home/WalletPendingActivityToolbarButton.swift
-      - path: ../../EVMWallet/Home/WalletPendingActivityScreen.swift
-      - path: ../../EVMWallet/Home/WalletHomeQuickActionsPopover.swift
-      - path: ../../EVMWallet/Send/SendActivityStore.swift
-      - path: ../../EVMWallet/Send/SendActivitySwipeGesture.swift
-      - path: ../../EVMWallet/Send/SendActivityGroupCapsule.swift
-      - path: ../../EVMWallet/Send/SendActivityExpandedCapsule.swift
-      - path: ../../EVMWallet/Send/SendActivityRow.swift
-      - path: ../../EVMWallet/Send/SendActivityCountBadge.swift
-      - path: ../../EVMWallet/Send/SendConfirmedActivityDismissal.swift
-      - path: ../../EVMWallet/Send/SendStatusCapsule.swift
-      - path: ../../EVMWallet/Send/SendStatusAssetBadge.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - path: ../../Oath/Home/WalletPendingActivityToolbarButton.swift
+      - path: ../../Oath/Home/WalletPendingActivityScreen.swift
+      - path: ../../Oath/Home/WalletHomeQuickActionsPopover.swift
+      - path: ../../Oath/Send/SendActivityStore.swift
+      - path: ../../Oath/Send/SendActivitySwipeGesture.swift
+      - path: ../../Oath/Send/SendActivityGroupCapsule.swift
+      - path: ../../Oath/Send/SendActivityExpandedCapsule.swift
+      - path: ../../Oath/Send/SendActivityRow.swift
+      - path: ../../Oath/Send/SendActivityCountBadge.swift
+      - path: ../../Oath/Send/SendConfirmedActivityDismissal.swift
+      - path: ../../Oath/Send/SendStatusCapsule.swift
+      - path: ../../Oath/Send/SendStatusAssetBadge.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

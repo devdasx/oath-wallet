@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  id — native translations.
+*/
+
+"NSCameraUsageDescription" = "Izinkan Oath menggunakan kamera untuk memindai kode QR dompet dengan aman.";
+"NSFaceIDUsageDescription" = "Izinkan Oath menggunakan Face ID untuk membuka kunci dan melindungi dompet Anda.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Izinkan Oath terhubung langsung ke iPhone Anda yang lain dan mentransfer data dompet terenkripsi dengan aman.";

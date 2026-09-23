@@ -11,7 +11,7 @@ import re
 import unittest
 
 
-APP = Path(__file__).resolve().parents[2] / "EVMWallet"
+APP = Path(__file__).resolve().parents[2] / "Oath"
 PRIMARY = "primaryLabel"
 SECONDARY = "secondaryLabel"
 TERTIARY = "tertiaryLabel"

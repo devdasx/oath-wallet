@@ -15,15 +15,15 @@ targets:
     platform: iOS
     sources:
       - App
-      - ../../EVMWallet/Components/RecoveryPhraseEditor.swift
-      - ../../EVMWallet/Components/RecoveryPhraseEditorState.swift
-      - ../../EVMWallet/Components/RecoveryPhraseInlineInput.swift
-      - ../../EVMWallet/Components/RecoveryPhraseWordLayout.swift
-      - ../../EVMWallet/Components/RecoveryPhraseWordLabel.swift
-      - ../../EVMWallet/WalletTextInputReturnKey.swift
-      - ../../EVMWallet/WalletTextInputDirection.swift
-      - ../../EVMWallet/Components/WalletTextWrapping.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - ../../Oath/Components/RecoveryPhraseEditor.swift
+      - ../../Oath/Components/RecoveryPhraseEditorState.swift
+      - ../../Oath/Components/RecoveryPhraseInlineInput.swift
+      - ../../Oath/Components/RecoveryPhraseWordLayout.swift
+      - ../../Oath/Components/RecoveryPhraseWordLabel.swift
+      - ../../Oath/WalletTextInputReturnKey.swift
+      - ../../Oath/WalletTextInputDirection.swift
+      - ../../Oath/Components/WalletTextWrapping.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

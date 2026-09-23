@@ -34,7 +34,7 @@ Aperture app.
 
 ## Complementary checks
 
-- `EVMWalletTests/NativeKeyboardReturnTests.swift` exercises UIKit's delegate
+- `OathTests/NativeKeyboardReturnTests.swift` exercises UIKit's delegate
   contracts, validation forwarding, selections, deletion, secure entry,
   coordinator replacement, and weak ownership. Its native SwiftUI host covers
   phone/tablet portrait and landscape, both appearances, Dynamic Type, and RTL.

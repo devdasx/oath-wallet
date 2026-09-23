@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  English source placeholder. Replace the value with a reviewed translation.
+*/
+
+"NSCameraUsageDescription" = "Permita que o Oath utilize a câmara para ler códigos QR de carteiras em segurança.";
+"NSFaceIDUsageDescription" = "Permita que o Oath utilize o Face ID para desbloquear e proteger a sua carteira.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Permita que o Oath estabeleça uma ligação direta ao seu outro iPhone e transfira em segurança os dados encriptados da carteira.";

@@ -2,7 +2,7 @@
 
 This isolated simulator fixture compiles the production options control,
 popover, in-place flow, currency screen, native navigation container, currency
-catalog, and text-input helpers directly from `EVMWallet/`. Settings and rates
+catalog, and text-input helpers directly from `Oath/`. Settings and rates
 use in-memory substitutes, so these tests contain no wallet secrets, database,
 or networking. Automatic screenshot capture is disabled. When explicitly
 authorized, record the simulator with `simctl io recordVideo` and inspect its

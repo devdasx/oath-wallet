@@ -28,13 +28,13 @@ targets:
     sources:
       - path: App
         excludes: [Info.plist]
-      - path: ../../EVMWallet/WalletManagement/WalletAppearanceColor.swift
-      - path: ../../EVMWallet/Home/WalletHomeBalanceCard.swift
-      - path: ../../EVMWallet/Home/WalletHomeBalanceCardStyle.swift
-      - path: ../../EVMWallet/Home/WalletAnimatedCurrencyBalance.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - path: ../../Oath/WalletManagement/WalletAppearanceColor.swift
+      - path: ../../Oath/Home/WalletHomeBalanceCard.swift
+      - path: ../../Oath/Home/WalletHomeBalanceCardStyle.swift
+      - path: ../../Oath/Home/WalletAnimatedCurrencyBalance.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

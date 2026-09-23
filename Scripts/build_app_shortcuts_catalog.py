@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 WORKSPACE = Path(__file__).resolve().parents[1]
-APP_DIRECTORY = WORKSPACE / "EVMWallet"
+APP_DIRECTORY = WORKSPACE / "Oath"
 OUTPUT_PATH = APP_DIRECTORY / "AppShortcuts.xcstrings"
 APPLICATION_NAME_TOKEN = "${applicationName}"
 

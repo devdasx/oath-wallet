@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  cs — native translations.
+*/
+
+"NSCameraUsageDescription" = "Povolte aplikaci Oath používat fotoaparát k bezpečnému skenování QR kódů peněženky.";
+"NSFaceIDUsageDescription" = "Povolte aplikaci Oath používat Face ID k odemykání a ochraně peněženky.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Povolte aplikaci Oath přímé připojení k vašemu druhému iPhonu a bezpečný přenos zašifrovaných dat peněženky.";

@@ -15,9 +15,9 @@ targets:
     platform: iOS
     sources:
       - App
-      - ../../EVMWallet/Components/WalletExactText.swift
-      - ../../EVMWallet/Components/WalletTextWrapping.swift
-      - ../../EVMWallet/Components/WalletNativeTextPrivacy.swift
+      - ../../Oath/Components/WalletExactText.swift
+      - ../../Oath/Components/WalletTextWrapping.swift
+      - ../../Oath/Components/WalletNativeTextPrivacy.swift
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.aperture.exact-text-lifecycle-fixture

@@ -68,11 +68,12 @@ Requirements: Xcode 27, Swift 6 and an iOS 26+ simulator or compatible device.
 ```sh
 git clone https://github.com/devdasx/oath-wallet.git
 cd oath-wallet
-git checkout v4.0.0
-open EVMWallet.xcodeproj
+open Oath.xcodeproj
 ```
 
-Select the `Aperture` scheme. It builds the product named **Oath Wallet**.
+Select the `Oath` scheme. It builds the product named **Oath Wallet**.
+Application sources are in `Oath/` and tests are in `OathTests/`. The internal
+Swift module and wallet storage identifiers retain their compatibility names.
 The checked-in Xcode project is authoritative; do not regenerate it with XcodeGen.
 Swift Package Manager downloads the pinned dependencies, including Wallet Core
 binary frameworks. A build does not require a bundled provider API key. Public
@@ -82,7 +83,7 @@ iCloud/APNs capabilities require a developer's own Apple signing configuration.
 For a simulator build, choose its UUID with `xcrun simctl list devices available`:
 
 ```sh
-xcodebuild build -project EVMWallet.xcodeproj -scheme Aperture \
+xcodebuild build -project Oath.xcodeproj -scheme Oath \
   -destination 'platform=iOS Simulator,id=SIMULATOR_UUID' \
   -derivedDataPath /tmp/oath-wallet-derived-data
 ```

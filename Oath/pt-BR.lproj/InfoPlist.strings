@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  Native translations.
+*/
+
+"NSCameraUsageDescription" = "Permita que o Oath use a câmera para escanear códigos QR de carteiras com segurança.";
+"NSFaceIDUsageDescription" = "Permita que o Oath use o Face ID para desbloquear e proteger sua carteira.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Permita que o Oath se conecte diretamente ao seu outro iPhone e transfira os dados criptografados da carteira com segurança.";

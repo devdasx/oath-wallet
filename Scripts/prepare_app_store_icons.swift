@@ -67,7 +67,7 @@ do {
             throw IconExportError(description: "Oath app icon must be opaque and 1024 pixels: \(appearance)")
         }
         let destination = root.appendingPathComponent(
-            "EVMWallet/Assets.xcassets/AppIcon.appiconset/icon-\(appearance).png"
+            "Oath/Assets.xcassets/AppIcon.appiconset/icon-\(appearance).png"
         )
         if !checkOnly { try canonical.write(to: destination, options: .atomic) }
         guard try Data(contentsOf: destination) == canonical else {

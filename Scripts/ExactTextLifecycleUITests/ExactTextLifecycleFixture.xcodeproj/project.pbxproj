@@ -59,7 +59,7 @@
 				480DB672C81C96E416D05326 /* WalletTextWrapping.swift */,
 			);
 			name = Components;
-			path = ../../EVMWallet/Components;
+			path = ../../Oath/Components;
 			sourceTree = "<group>";
 		};
 		60AD6B593CD295811BD8BF9F /* App */ = {

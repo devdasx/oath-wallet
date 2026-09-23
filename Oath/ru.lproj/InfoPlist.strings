@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  ru — native translations.
+*/
+
+"NSCameraUsageDescription" = "Разрешите Oath использовать камеру для безопасного сканирования QR-кодов кошелька.";
+"NSFaceIDUsageDescription" = "Разрешите Oath использовать Face ID для разблокировки и защиты кошелька.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Разрешите Oath напрямую подключиться к другому iPhone и безопасно перенести зашифрованные данные кошелька.";

@@ -1,6 +1,6 @@
 # Official Network Logo Sources
 
-The network-selection artwork in `EVMWallet/Assets.xcassets/NetworkLogo*.imageset`
+The network-selection artwork in `Oath/Assets.xcassets/NetworkLogo*.imageset`
 was downloaded from each network's official website or official brand repository.
 The assets are bundled with the application so network filters render immediately,
 work offline, and do not depend on a third-party URL remaining available.
@@ -45,11 +45,11 @@ The EVM top-token catalogs contain 1,856 admitted contract identities across
 the 13
 supported ANKR Advanced API mainnets. `Scripts/vendor_evm_token_logos.py`
 validates every published artwork URL with an HTTP 200 response, decodes it,
-converts it to a bounded PNG, and stores it in `EVMWallet/TokenLogos` using the
+converts it to a bounded PNG, and stores it in `Oath/TokenLogos` using the
 blockchain plus normalized contract address as the filename.
 
 The current deterministic audit is stored in
-`EVMWallet/EVMTopTokenCatalogs/LogoAudit.json`: 1,422 identities have verified
+`Oath/EVMTopTokenCatalogs/LogoAudit.json`: 1,422 identities have verified
 bundled artwork and 434 identities have no usable published contract-bound
 artwork. Those entries intentionally use the neutral non-logo fallback instead
 of a symbol-derived or cross-contract image. ANKR thumbnails remain permitted
@@ -63,13 +63,13 @@ folder-relative path to SwiftUI as an asset-catalog name.
 
 ## Solana token catalog
 
-`EVMWallet/SolanaTokenCatalog.json` contains 109 admitted Solana-ecosystem
+`Oath/SolanaTokenCatalog.json` contains 109 admitted Solana-ecosystem
 assets captured from CoinMarketCap. Every SPL mint in the
 catalog was validated against Solana mainnet through ANKR, including its
 on-chain decimal precision, and then required to be Jupiter-verified,
 non-suspicious, and backed by positive liquidity. Its 108 contract-token logos
 are bundled in
-`EVMWallet/TokenLogos`; native SOL uses the bundled official Solana brand mark.
+`Oath/TokenLogos`; native SOL uses the bundled official Solana brand mark.
 The bundled runtime catalog contains only the identity, ranking, decimal, and
 logo fields the app reads. The complete provider response and validation
 metadata are retained outside the app bundle in
@@ -80,7 +80,7 @@ metadata are retained outside the app bundle in
 Catalog size is a maximum candidate count, not a trust signal. The build tools
 apply chain-specific safety rules and record every exclusion in
 `CatalogSources/TokenCatalogRemovalAudit.json`. Strong scam signals are also
-written to `EVMWallet/TokenCatalogDenylist.json` so the app can reject them at
+written to `Oath/TokenCatalogDenylist.json` so the app can reject them at
 decode, provider, custom-token, and persistence boundaries.
 
 TRON catalog entries are limited to TRC-20 assets with positive market cap and

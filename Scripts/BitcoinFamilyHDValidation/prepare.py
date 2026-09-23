@@ -38,7 +38,7 @@ if not (c_headers / 'WalletCore.h').exists():
     shutil.copytree(framework / 'WalletCoreCommon.framework/Headers', c_headers, dirs_exist_ok=True)
     shutil.copy(SDK / 'Sources/Generated/WalletCore.h', c_headers / 'WalletCore.h')
 write_if_changed(c_headers.parent / 'module.modulemap', 'module CWalletCore { umbrella header "include/WalletCore.h" export * }\n')
-grdb = next((pathlib.Path.home() / 'Library/Developer/Xcode/DerivedData').glob('EVMWallet-*/SourcePackages/checkouts/GRDB.swift'))
+grdb = next((pathlib.Path.home() / 'Library/Developer/Xcode/DerivedData').glob('Oath-*/SourcePackages/checkouts/GRDB.swift'))
 write_if_changed(PACKAGE / 'Package.swift', f'''// swift-tools-version: 6.0
 import PackageDescription
 let package = Package(name: "FamilyHDValidation", platforms: [.macOS(.v14)],
@@ -52,7 +52,7 @@ SOURCES.mkdir(parents=True, exist_ok=True)
 expected_files = set()
 
 def source(file):
-    return (ROOT / 'EVMWallet' / file).read_text()
+    return (ROOT / 'Oath' / file).read_text()
 
 def slice_source(file, start, end=None):
     text = source(file)

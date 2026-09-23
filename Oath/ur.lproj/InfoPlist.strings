@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  ur — native reviewed translations.
+*/
+
+"NSCameraUsageDescription" = "Oath کو کیمرہ استعمال کرنے کی اجازت دیں تاکہ والیٹ کے QR کوڈز محفوظ طریقے سے اسکین کیے جا سکیں۔";
+"NSFaceIDUsageDescription" = "Oath کو Face ID استعمال کرنے کی اجازت دیں تاکہ آپ کا والیٹ ان لاک اور محفوظ رکھا جا سکے۔";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Oath کو اپنے دوسرے iPhone سے براہ راست منسلک ہونے اور انکرپٹ شدہ والیٹ ڈیٹا محفوظ طریقے سے منتقل کرنے کی اجازت دیں۔";

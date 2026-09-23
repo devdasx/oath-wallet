@@ -14,11 +14,11 @@ targets:
     platform: iOS
     sources:
       - path: App
-      - path: ../../EVMWallet/Home/WalletHomeAssetPinAction.swift
-      - path: ../../EVMWallet/Home/WalletHomeSwipeCompletion.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - path: ../../Oath/Home/WalletHomeAssetPinAction.swift
+      - path: ../../Oath/Home/WalletHomeSwipeCompletion.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

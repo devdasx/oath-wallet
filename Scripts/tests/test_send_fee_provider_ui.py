@@ -5,7 +5,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SEND = ROOT / "EVMWallet" / "Send"
+SEND = ROOT / "Oath" / "Send"
 
 
 class SendFeeProviderUITests(unittest.TestCase):
@@ -33,7 +33,7 @@ class SendFeeProviderUITests(unittest.TestCase):
         self.assertNotIn("quote.provider", source[start:end])
 
     def test_submission_reference_is_never_rendered(self):
-        for path in sorted((ROOT / "EVMWallet").rglob("*.swift")):
+        for path in sorted((ROOT / "Oath").rglob("*.swift")):
             source = path.read_text(encoding="utf-8")
             if "import SwiftUI" not in source:
                 continue

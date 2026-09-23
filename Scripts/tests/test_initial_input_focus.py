@@ -2,7 +2,7 @@
 from pathlib import Path
 import unittest
 
-APP = Path(__file__).resolve().parents[2] / "EVMWallet"
+APP = Path(__file__).resolve().parents[2] / "Oath"
 
 class InitialInputFocusInventoryTests(unittest.TestCase):
     def test_presentation_focus_is_limited_to_requested_screens(self):

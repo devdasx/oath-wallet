@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  tr — native translations.
+*/
+
+"NSCameraUsageDescription" = "Oath'un cüzdan QR kodlarını güvenle taramak için kamerayı kullanmasına izin verin.";
+"NSFaceIDUsageDescription" = "Oath'un cüzdanınızın kilidini açıp korumak için Face ID'yi kullanmasına izin verin.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Oath'un diğer iPhone'unuza doğrudan bağlanıp şifrelenmiş cüzdan verilerini güvenle aktarmasına izin verin.";

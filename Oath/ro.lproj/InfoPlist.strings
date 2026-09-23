@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  ro — native translations.
+*/
+
+"NSCameraUsageDescription" = "Permite aplicației Oath să folosească camera pentru a scana în siguranță codurile QR ale portofelului.";
+"NSFaceIDUsageDescription" = "Permite aplicației Oath să folosească Face ID pentru a-ți debloca și proteja portofelul.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Permite aplicației Oath să se conecteze direct la celălalt iPhone al tău și să transfere în siguranță datele criptate ale portofelului.";

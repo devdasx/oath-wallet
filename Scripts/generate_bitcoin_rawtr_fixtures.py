@@ -31,7 +31,7 @@ try:
   body='rawtr('+wif(key)+')'; info=rpc('getdescriptorinfo',body);desc=body+'#'+info['checksum']
   address=rpc('deriveaddresses',desc)[0]; tr='tr('+wif(key)+')';trinfo=rpc('getdescriptorinfo',tr)
   fixtures.append(dict(index=n,descriptor=desc,address=address,script=rpc('validateaddress',address)['scriptPubKey'],bip86=rpc('deriveaddresses',tr+'#'+trinfo['checksum'])[0]))
- Path('EVMWalletTests/Fixtures/BitcoinImport/rawtr-core-28.3.json').write_text(json.dumps(fixtures,indent=2)+'\n')
+ Path('OathTests/Fixtures/BitcoinImport/rawtr-core-28.3.json').write_text(json.dumps(fixtures,indent=2)+'\n')
  print('Bitcoin Core 28.3 independently derived 8 rawtr and 8 tr addresses (mainnet format, unfunded keys, networking disabled).')
 finally:
  subprocess.run([str(binary/'bitcoin-cli')]+args+['stop'],capture_output=True)

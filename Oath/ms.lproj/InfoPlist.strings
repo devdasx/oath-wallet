@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  English source placeholder. Replace the value with a reviewed translation.
+*/
+
+"NSCameraUsageDescription" = "Benarkan Oath menggunakan kamera untuk mengimbas kod QR dompet dengan selamat.";
+"NSFaceIDUsageDescription" = "Benarkan Oath menggunakan Face ID untuk membuka kunci dan melindungi dompet anda.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Benarkan Oath menyambung terus ke iPhone anda yang lain dan memindahkan data dompet yang disulitkan dengan selamat.";

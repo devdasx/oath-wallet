@@ -143,77 +143,77 @@ CatalogSources/SolanaTokenCatalogAudit.json:generic-api-key:9861
 CatalogSources/SolanaTokenCatalogAudit.json:generic-api-key:9991
 
 # Swift type declaration P256.KeyAgreement.PrivateKey, no literal credential.
-EVMWallet/DeviceMigration/DeviceMigrationCryptography.swift:generic-api-key:7
+Oath/DeviceMigration/DeviceMigrationCryptography.swift:generic-api-key:7
 
 # Literal UserDefaults cache names, no API credentials.
-EVMWallet/Markets/MarketDiscovery.swift:generic-api-key:105
-EVMWallet/Markets/MarketDiscovery.swift:generic-api-key:120
-EVMWallet/Markets/MarketDiscovery.swift:generic-api-key:87
-EVMWallet/Markets/MarketDiscovery.swift:generic-api-key:89
+Oath/Markets/MarketDiscovery.swift:generic-api-key:105
+Oath/Markets/MarketDiscovery.swift:generic-api-key:120
+Oath/Markets/MarketDiscovery.swift:generic-api-key:87
+Oath/Markets/MarketDiscovery.swift:generic-api-key:89
 
 # Swift private-key type declaration, no literal credential.
-EVMWallet/Networking/BitcoinFamily/MuunRecoveryCode.swift:generic-api-key:76
+Oath/Networking/BitcoinFamily/MuunRecoveryCode.swift:generic-api-key:76
 
 # Swift private-key type declaration, no literal credential.
-EVMWallet/Networking/Stellar/StellarTransactionXDRBuilder.swift:generic-api-key:79
+Oath/Networking/Stellar/StellarTransactionXDRBuilder.swift:generic-api-key:79
 
 # Public catalog token identifiers, each derived from a public contract or mint address.
-EVMWallet/Resources/asset-catalog.json:generic-api-key:24928
-EVMWallet/Resources/asset-catalog.json:generic-api-key:24970
-EVMWallet/Resources/asset-catalog.json:generic-api-key:24991
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25012
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25033
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25054
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25075
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25096
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25117
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25138
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25159
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25222
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25243
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25264
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25285
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25306
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25327
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25348
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25369
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25390
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25411
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25453
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25474
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25495
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25516
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25537
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25558
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25579
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25600
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25621
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25642
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25684
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25705
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25726
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25747
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25768
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25789
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25810
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25831
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25852
-EVMWallet/Resources/asset-catalog.json:generic-api-key:25873
+Oath/Resources/asset-catalog.json:generic-api-key:24928
+Oath/Resources/asset-catalog.json:generic-api-key:24970
+Oath/Resources/asset-catalog.json:generic-api-key:24991
+Oath/Resources/asset-catalog.json:generic-api-key:25012
+Oath/Resources/asset-catalog.json:generic-api-key:25033
+Oath/Resources/asset-catalog.json:generic-api-key:25054
+Oath/Resources/asset-catalog.json:generic-api-key:25075
+Oath/Resources/asset-catalog.json:generic-api-key:25096
+Oath/Resources/asset-catalog.json:generic-api-key:25117
+Oath/Resources/asset-catalog.json:generic-api-key:25138
+Oath/Resources/asset-catalog.json:generic-api-key:25159
+Oath/Resources/asset-catalog.json:generic-api-key:25222
+Oath/Resources/asset-catalog.json:generic-api-key:25243
+Oath/Resources/asset-catalog.json:generic-api-key:25264
+Oath/Resources/asset-catalog.json:generic-api-key:25285
+Oath/Resources/asset-catalog.json:generic-api-key:25306
+Oath/Resources/asset-catalog.json:generic-api-key:25327
+Oath/Resources/asset-catalog.json:generic-api-key:25348
+Oath/Resources/asset-catalog.json:generic-api-key:25369
+Oath/Resources/asset-catalog.json:generic-api-key:25390
+Oath/Resources/asset-catalog.json:generic-api-key:25411
+Oath/Resources/asset-catalog.json:generic-api-key:25453
+Oath/Resources/asset-catalog.json:generic-api-key:25474
+Oath/Resources/asset-catalog.json:generic-api-key:25495
+Oath/Resources/asset-catalog.json:generic-api-key:25516
+Oath/Resources/asset-catalog.json:generic-api-key:25537
+Oath/Resources/asset-catalog.json:generic-api-key:25558
+Oath/Resources/asset-catalog.json:generic-api-key:25579
+Oath/Resources/asset-catalog.json:generic-api-key:25600
+Oath/Resources/asset-catalog.json:generic-api-key:25621
+Oath/Resources/asset-catalog.json:generic-api-key:25642
+Oath/Resources/asset-catalog.json:generic-api-key:25684
+Oath/Resources/asset-catalog.json:generic-api-key:25705
+Oath/Resources/asset-catalog.json:generic-api-key:25726
+Oath/Resources/asset-catalog.json:generic-api-key:25747
+Oath/Resources/asset-catalog.json:generic-api-key:25768
+Oath/Resources/asset-catalog.json:generic-api-key:25789
+Oath/Resources/asset-catalog.json:generic-api-key:25810
+Oath/Resources/asset-catalog.json:generic-api-key:25831
+Oath/Resources/asset-catalog.json:generic-api-key:25852
+Oath/Resources/asset-catalog.json:generic-api-key:25873
 
 # Documented offline-generated, deliberately unfunded public Bitcoin Core fixture.
-EVMWalletTests/Fixtures/BitcoinImport/legacy-clear.txt:generic-api-key:6
+OathTests/Fixtures/BitcoinImport/legacy-clear.txt:generic-api-key:6
 
 # Documented offline-generated, deliberately unfunded public Bitcoin Core fixture.
-EVMWalletTests/Fixtures/BitcoinImport/legacy-encrypted.txt:generic-api-key:6
+OathTests/Fixtures/BitcoinImport/legacy-encrypted.txt:generic-api-key:6
 
 # Public Substrate storage lookup key, not a signing key.
-EVMWalletTests/PolkadotAnkrTests.swift:generic-api-key:23
+OathTests/PolkadotAnkrTests.swift:generic-api-key:23
 
 # Public XRP example account address.
-EVMWalletTests/SendSelfTransferTests.swift:generic-api-key:238
+OathTests/SendSelfTransferTests.swift:generic-api-key:238
 
 # Public TRON token metadata fixture.
-EVMWalletTests/TronHistoryAdaptiveProviderTests.swift:generic-api-key:181
+OathTests/TronHistoryAdaptiveProviderTests.swift:generic-api-key:181
 
 # Provider identifier strings, not credentials.
 Scripts/TokenPriceRoutingTests/Regression.swift:generic-api-key:70

@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  pl — native translations.
+*/
+
+"NSCameraUsageDescription" = "Oath używa aparatu do bezpiecznego skanowania kodów QR portfela.";
+"NSFaceIDUsageDescription" = "Oath używa Face ID do odblokowywania i ochrony Twojego portfela.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Oath łączy się bezpośrednio z Twoim drugim iPhonem, aby bezpiecznie przesyłać zaszyfrowane dane portfela.";

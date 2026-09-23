@@ -15,11 +15,11 @@ targets:
     sources:
       - App
       # Compile the production policy, not a copied or simplified substitute.
-      - ../../EVMWallet/WalletTextInputDirection.swift
-      - ../../EVMWallet/WalletTextInputReturnKey.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - ../../Oath/WalletTextInputDirection.swift
+      - ../../Oath/WalletTextInputReturnKey.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

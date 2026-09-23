@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  ko — native translations.
+*/
+
+"NSCameraUsageDescription" = "Oath가 카메라를 사용해 지갑 QR 코드를 안전하게 스캔하도록 허용합니다.";
+"NSFaceIDUsageDescription" = "Oath가 Face ID를 사용해 지갑을 잠금 해제하고 보호하도록 허용합니다.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Oath가 다른 iPhone에 직접 연결해 암호화된 지갑 데이터를 안전하게 전송하도록 허용합니다.";

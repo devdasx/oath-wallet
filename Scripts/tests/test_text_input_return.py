@@ -10,7 +10,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-APP = ROOT / "EVMWallet"
+APP = ROOT / "Oath"
 NON_CODE = re.compile(r'//[^\n]*|/\*.*?\*/|"(?:\\.|[^"\\])*"', re.DOTALL)
 INPUT = re.compile(r"\b(?:TextField|SecureField|TextEditor)\s*\(|\.searchable\s*\(")
 NATIVE_INPUT = re.compile(r"\b(?:UITextField|UITextView|UISearchBar|UISearchTextField)\s*\(")
@@ -98,7 +98,7 @@ class TextInputReturnTests(unittest.TestCase):
                 self.assertNotRegex(code, r"\.onSubmit\b|\.submitLabel\b")
 
     def test_root_covers_native_search_and_alert_fields(self):
-        root = (APP / "EVMWalletApp.swift").read_text(encoding="utf-8")
+        root = (APP / "OathApp.swift").read_text(encoding="utf-8")
         policy = (APP / "WalletTextInputReturnKey.swift").read_text(encoding="utf-8")
         self.assertIn(".walletTextInputConfiguration(appLayoutDirection)", root)
         for notification in (

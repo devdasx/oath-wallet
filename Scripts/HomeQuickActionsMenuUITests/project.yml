@@ -27,27 +27,27 @@ targets:
     sources:
       - path: App
         excludes: [Info.plist]
-      - path: ../../EVMWallet/Home/WalletHomeQuickActionsMenu.swift
-      - path: ../../EVMWallet/Home/WalletHomeQuickActionsPopover.swift
-      - path: ../../EVMWallet/Home/WalletHomeQuickActionsFlow.swift
-      - path: ../../EVMWallet/Home/WalletHomeQuickActionsRootScreen.swift
-      - path: ../../EVMWallet/Home/WalletHomeCurrencyQuickActionScreen.swift
-      - path: ../../EVMWallet/Home/WalletHomeCurrencyNavigationContainer.swift
-      - path: ../../EVMWallet/Settings/CurrencySettingsView.swift
-      - path: ../../EVMWallet/WalletTextInputDirection.swift
-      - path: ../../EVMWallet/WalletTextInputReturnKey.swift
-      - path: ../../EVMWallet/WalletTextInputPresentationFocus.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - path: ../../Oath/Home/WalletHomeQuickActionsMenu.swift
+      - path: ../../Oath/Home/WalletHomeQuickActionsPopover.swift
+      - path: ../../Oath/Home/WalletHomeQuickActionsFlow.swift
+      - path: ../../Oath/Home/WalletHomeQuickActionsRootScreen.swift
+      - path: ../../Oath/Home/WalletHomeCurrencyQuickActionScreen.swift
+      - path: ../../Oath/Home/WalletHomeCurrencyNavigationContainer.swift
+      - path: ../../Oath/Settings/CurrencySettingsView.swift
+      - path: ../../Oath/WalletTextInputDirection.swift
+      - path: ../../Oath/WalletTextInputReturnKey.swift
+      - path: ../../Oath/WalletTextInputPresentationFocus.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/fa.lproj/Localizable.strings
+      - path: ../../Oath/fa.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/he.lproj/Localizable.strings
+      - path: ../../Oath/he.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/sd.lproj/Localizable.strings
+      - path: ../../Oath/sd.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ur.lproj/Localizable.strings
+      - path: ../../Oath/ur.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

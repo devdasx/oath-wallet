@@ -16,7 +16,7 @@ EXPECTED_BUNDLE_IDENTIFIER = "com.aperture.wallet"
 EXPECTED_ACCESS_GROUP = (
     "$(AppIdentifierPrefix)com.aperture.wallet"
 )
-EXPECTED_ENTITLEMENTS_PATH = "EVMWallet/EVMWallet.entitlements"
+EXPECTED_ENTITLEMENTS_PATH = "Oath/Oath.entitlements"
 
 
 class ConfigurationError(ValueError):
@@ -109,7 +109,7 @@ def validate_build(
     )
     validate_swift_configuration(
         source_root
-        / "EVMWallet/Security/WalletKeychainConfiguration.swift"
+        / "Oath/Security/WalletKeychainConfiguration.swift"
     )
 
 

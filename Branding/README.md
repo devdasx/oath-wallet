@@ -18,7 +18,7 @@
 - Receive QR centers use the full-color light `OnboardingSplashLogo` in a rounded
   square, with a small clear border. Keep the light icon in both app appearances.
 
-Asset names are centralized in `EVMWallet/AppBrandArtwork.swift`. Appearance variants
+Asset names are centralized in `Oath/AppBrandArtwork.swift`. Appearance variants
 are selected by the asset catalog. Keep the supplied brand-kit files unchanged.
 The kit is a project design source, not an extra bundled app resource.
 

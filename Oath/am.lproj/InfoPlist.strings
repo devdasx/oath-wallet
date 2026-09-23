@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  am — native Amharic.
+*/
+
+"NSCameraUsageDescription" = "Oath የዋሌት QR ኮዶችን በደህንነት ለመቃኘት ካሜራውን እንዲጠቀም ይፍቀዱ።";
+"NSFaceIDUsageDescription" = "Oath ዋሌትዎን ለመክፈትና ለመጠበቅ Face IDን እንዲጠቀም ይፍቀዱ።";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Oath ከሌላው iPhoneዎ ጋር በቀጥታ ተገናኝቶ የተመሰጠረውን የዋሌት ውሂብ በደህንነት እንዲያስተላልፍ ይፍቀዱ።";

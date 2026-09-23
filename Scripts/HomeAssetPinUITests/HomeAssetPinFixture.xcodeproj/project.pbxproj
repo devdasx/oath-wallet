@@ -63,7 +63,7 @@
 				81F0D91E7B11427E3F6B474C /* WalletHomeSwipeCompletion.swift */,
 			);
 			name = Home;
-			path = ../../EVMWallet/Home;
+			path = ../../Oath/Home;
 			sourceTree = "<group>";
 		};
 		970E83438E52C27DFB87FDAF /* en.lproj */ = {
@@ -72,7 +72,7 @@
 				882F663E7ACDF3B5085B6B56 /* Localizable.strings */,
 			);
 			name = en.lproj;
-			path = ../../EVMWallet/en.lproj;
+			path = ../../Oath/en.lproj;
 			sourceTree = "<group>";
 		};
 		BB14303462BAA4621FA2DC35 /* Products */ = {
@@ -102,7 +102,7 @@
 				DE1A41BD8ABFBE84785E3054 /* Localizable.strings */,
 			);
 			name = ar.lproj;
-			path = ../../EVMWallet/ar.lproj;
+			path = ../../Oath/ar.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

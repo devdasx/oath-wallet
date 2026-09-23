@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  ha — native Hausa.
+*/
+
+"NSCameraUsageDescription" = "Ba wa Oath damar amfani da kyamara domin sken lambobin QR na walat cikin aminci.";
+"NSFaceIDUsageDescription" = "Ba wa Oath damar amfani da Face ID domin buɗe da kare walat ɗinka.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Ba wa Oath damar haɗawa kai tsaye da ɗayan iPhone ɗinka domin canja bayanan walat da aka ɓoye cikin aminci.";

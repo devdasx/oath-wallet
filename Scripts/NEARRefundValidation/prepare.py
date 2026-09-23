@@ -11,7 +11,7 @@ let package = Package(name: "NEARRefundValidation", platforms: [.macOS(.v14)],
 targets: [.testTarget(name: "NEARTests")], swiftLanguageModes: [.v5])
 """)
 def read(path):
-    return (root / "EVMWallet" / path).read_text()
+    return (root / "Oath" / path).read_text()
 def save(name, source):
     (target / name).write_text(source)
 def part(text, start, end):
@@ -35,7 +35,7 @@ enum NEARAddress { static func isValid(_ address: String) -> Bool { true } }
 struct TokenFixture { let decimals: Int; let name: String; let symbol: String; let rank: Int }
 enum NEARTokenCatalog { static let byContract: [String: TokenFixture] = [:] }
 """)
-save("NEARRefundHistoryTests.swift", (root / "EVMWalletTests/NEARRefundHistoryTests.swift").read_text().replace("@testable import Aperture", ""))
+save("NEARRefundHistoryTests.swift", (root / "OathTests/NEARRefundHistoryTests.swift").read_text().replace("@testable import Aperture", ""))
 public_fixture = root / "Reports/near-refund-history-2026-09-20/reported-transaction.json"
 # Replay the exact read-only mainnet response from the user's reported hash.
 save("LiveTransactionRegression.swift", """import Foundation
@@ -62,7 +62,7 @@ print(package)
 # Exercise real GRDB transaction upserts and cleanup using a minimal DB schema.
 # Only asset metadata registration and localization are fixtures.
 import re
-grdb = next((Path.home() / "Library/Developer/Xcode/DerivedData").glob("EVMWallet-*/SourcePackages/checkouts/GRDB.swift"))
+grdb = next((Path.home() / "Library/Developer/Xcode/DerivedData").glob("Oath-*/SourcePackages/checkouts/GRDB.swift"))
 (package / "Package.swift").write_text(f"""// swift-tools-version: 6.0
 import PackageDescription
 let package = Package(name: "NEARRefundValidation", platforms: [.macOS(.v14)],

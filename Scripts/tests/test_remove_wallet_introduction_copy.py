@@ -6,8 +6,8 @@ import unittest
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-SCREEN = ROOT / "EVMWallet/WalletManagement/RemoveWalletIntroductionScreen.swift"
-ENGLISH = ROOT / "EVMWallet/en.lproj/Localizable.strings"
+SCREEN = ROOT / "Oath/WalletManagement/RemoveWalletIntroductionScreen.swift"
+ENGLISH = ROOT / "Oath/en.lproj/Localizable.strings"
 
 
 class RemoveWalletIntroductionCopyTests(unittest.TestCase):

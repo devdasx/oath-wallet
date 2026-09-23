@@ -5,7 +5,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[2]
-APP = ROOT / "EVMWallet"
+APP = ROOT / "Oath"
 ENGLISH = APP / "en.lproj" / "Localizable.strings"
 WRITE_MARKERS = (
     "UIPasteboard.general.setItems(",

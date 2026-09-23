@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  gu — native translations.
+*/
+
+"NSCameraUsageDescription" = "વૉલેટના QR કોડ સુરક્ષિત રીતે સ્કેન કરવા Oathને કેમેરાનો ઉપયોગ કરવાની મંજૂરી આપો.";
+"NSFaceIDUsageDescription" = "તમારું વૉલેટ અનલૉક અને સુરક્ષિત રાખવા Oathને Face ID વાપરવાની મંજૂરી આપો.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "એન્ક્રિપ્ટેડ વૉલેટ ડેટા સુરક્ષિત રીતે ટ્રાન્સફર કરવા Oathને તમારા બીજા iPhone સાથે સીધું કનેક્ટ થવાની મંજૂરી આપો.";

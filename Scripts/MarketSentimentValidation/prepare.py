@@ -9,10 +9,10 @@ import PackageDescription
 let package = Package(name: "MarketSentimentTests", platforms: [.macOS(.v14)],
 targets: [.testTarget(name: "SentimentTests")], swiftLanguageModes: [.v5])
 """)
-(target / "MarketSentiment.swift").write_text((root / "EVMWallet/Markets/MarketSentiment.swift").read_text())
-transport = (root / "EVMWallet/Markets/MarketProvider.swift").read_text().split("/// No wallet addresses")[0]
+(target / "MarketSentiment.swift").write_text((root / "Oath/Markets/MarketSentiment.swift").read_text())
+transport = (root / "Oath/Markets/MarketProvider.swift").read_text().split("/// No wallet addresses")[0]
 (target / "Transport.swift").write_text(transport)
-tests = (root / "EVMWalletTests/MarketTests.swift").read_text().split("@MainActor\nstruct MarketSentimentTests")[1]
+tests = (root / "OathTests/MarketTests.swift").read_text().split("@MainActor\nstruct MarketSentimentTests")[1]
 (target / "Tests.swift").write_text("import Foundation\nimport Testing\n@MainActor\nstruct MarketSentimentTests" + tests)
 print(package)
 (target / "LiveProviderTests.swift").write_text("""
@@ -27,7 +27,7 @@ import Testing
     }
 }
 """.replace("REPORT", '"' + str(root / "Reports/market-wide-sentiment-2026-09-20/live-api.json") + '"'))
-(target / "MarketDiscovery.swift").write_text((root / "EVMWallet/Markets/MarketDiscovery.swift").read_text())
+(target / "MarketDiscovery.swift").write_text((root / "Oath/Markets/MarketDiscovery.swift").read_text())
 (target / "LiveTrendingTests.swift").write_text("""
 import Foundation
 import Testing

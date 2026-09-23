@@ -15,20 +15,20 @@ targets:
     platform: iOS
     sources:
       - path: App
-      - path: ../../EVMWallet/Send/SendSlideControl.swift
-      - path: ../../EVMWallet/Send/SendSlideCompletionCheckmark.swift
-      - path: ../../EVMWallet/Send/SendSlideLabel.swift
-      - path: ../../EVMWallet/Send/SendSlideGuidanceCycle.swift
-      - path: ../../EVMWallet/Send/SendSlideShimmerRenderer.swift
-      - path: ../../EVMWallet/Send/SendSlideGesture.swift
-      - path: ../../EVMWallet/Send/SendSlideDragTracking.swift
-      - path: ../../EVMWallet/Send/SendSlideTrack.swift
-      - path: ../../EVMWallet/Send/SendSlideDirectionIndicator.swift
-      - path: ../../EVMWallet/UniHaptic.swift
-      - path: ../../EVMWallet/UniHapticActionFeedback.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - path: ../../Oath/Send/SendSlideControl.swift
+      - path: ../../Oath/Send/SendSlideCompletionCheckmark.swift
+      - path: ../../Oath/Send/SendSlideLabel.swift
+      - path: ../../Oath/Send/SendSlideGuidanceCycle.swift
+      - path: ../../Oath/Send/SendSlideShimmerRenderer.swift
+      - path: ../../Oath/Send/SendSlideGesture.swift
+      - path: ../../Oath/Send/SendSlideDragTracking.swift
+      - path: ../../Oath/Send/SendSlideTrack.swift
+      - path: ../../Oath/Send/SendSlideDirectionIndicator.swift
+      - path: ../../Oath/UniHaptic.swift
+      - path: ../../Oath/UniHapticActionFeedback.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

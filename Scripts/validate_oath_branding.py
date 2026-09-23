@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-APP = ROOT / 'EVMWallet'
+APP = ROOT / 'Oath'
 ASSETS = APP / 'Assets.xcassets'
 KIT = ROOT / 'Branding/Oath Brand Kit'
 # These are existing, real destinations, not display branding.
@@ -78,17 +78,17 @@ def validate(product=None):
     check(info['CFBundleDisplayName'] == 'Oath Wallet', 'Wrong base app name')
     check(info['NSUbiquitousContainers']['iCloud.com.aperture.wallet']['NSUbiquitousContainerName'] == 'Oath Wallet', 'Wrong iCloud display label')
     check('_aperture-xfer._tcp' in info['NSBonjourServices'], 'Existing transfer compatibility changed')
-    entitlements = plistlib.loads((APP / 'EVMWallet.entitlements').read_bytes())
+    entitlements = plistlib.loads((APP / 'Oath.entitlements').read_bytes())
     check(entitlements['keychain-access-groups'] == ['$(AppIdentifierPrefix)com.aperture.wallet'], 'Existing Keychain access group changed')
     check('document.applicationName == "Aperture"' in (APP / 'WalletICloudDriveBackupStore.swift').read_text(), 'Existing backup read compatibility changed')
     check('applicationName = "Aperture"' in (APP / 'WalletAutomaticCloudBackupService.swift').read_text(), 'Encrypted backup identity changed')
-    project = (ROOT / 'EVMWallet.xcodeproj/project.pbxproj').read_text()
+    project = (ROOT / 'Oath.xcodeproj/project.pbxproj').read_text()
     check(project.count('PRODUCT_BUNDLE_IDENTIFIER = com.aperture.wallet;') == 2, 'App bundle identifier changed')
     check(project.count('PRODUCT_NAME = "Oath Wallet";') == 2, 'Wrong product name')
     check(project.count('PRODUCT_MODULE_NAME = Aperture;') == 2, 'Existing Swift/App Intent identity changed')
-    for scheme in (ROOT / 'EVMWallet.xcodeproj').rglob('*.xcscheme'):
+    for scheme in (ROOT / 'Oath.xcodeproj').rglob('*.xcscheme'):
         for ref in ET.parse(scheme).iter('BuildableReference'):
-            if ref.get('BlueprintName') == 'Aperture':
+            if ref.get('BlueprintName') == 'Oath':
                 check(ref.get('BuildableName') == 'Oath Wallet.app', f'Wrong app product in {scheme.name}')
 
     if product:

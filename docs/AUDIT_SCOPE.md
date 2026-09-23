@@ -82,6 +82,9 @@ Validation includes:
   protection, catalog installation and local database secret exclusion.
 - A final 63-test run across five suites after the last fixes, covering Bitcoin
   refresh and coin selection, migration, backup discovery and credential inputs.
+- After renaming the source, tests and Xcode project to Oath, a simulator build
+  through the `Oath` scheme and 19 tests across four suites passed, covering
+  bundled resources, wallet persistence, backup discovery and credential inputs.
 - Branding validation and localization validation across all 57 locales.
 - The publication gate in `Scripts/validate_source_release.py` and a redacted
   Gitleaks scan with zero unresolved findings. Exact reviewed exclusions are

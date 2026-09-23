@@ -110,7 +110,7 @@
 				FDFC883D25A3CBB045225539 /* Localizable.strings */,
 			);
 			name = ar.lproj;
-			path = ../../EVMWallet/ar.lproj;
+			path = ../../Oath/ar.lproj;
 			sourceTree = "<group>";
 		};
 		5460F51DAFD9EA200B41F5F6 /* Tests */ = {
@@ -138,7 +138,7 @@
 				0B785461DB5DA74BF86D6709 /* App */,
 				50A50B9CE4FF3DBA4316012C /* ar.lproj */,
 				7EA3A630482D0D8578938233 /* en.lproj */,
-				CAAEDEAAC29DE1573DA65D36 /* EVMWallet */,
+				CAAEDEAAC29DE1573DA65D36 /* Oath */,
 				15F2765E9A982D7D3F5591FD /* LayoutTests */,
 				C6CFD38CA47D6E838FB4D9FD /* Send */,
 				5460F51DAFD9EA200B41F5F6 /* Tests */,
@@ -152,7 +152,7 @@
 				63B3FD0C77528762F634B7BB /* Localizable.strings */,
 			);
 			name = en.lproj;
-			path = ../../EVMWallet/en.lproj;
+			path = ../../Oath/en.lproj;
 			sourceTree = "<group>";
 		};
 		C6CFD38CA47D6E838FB4D9FD /* Send */ = {
@@ -169,17 +169,17 @@
 				94784ABD09ADE87B00E2F80F /* SendSlideTrack.swift */,
 			);
 			name = Send;
-			path = ../../EVMWallet/Send;
+			path = ../../Oath/Send;
 			sourceTree = "<group>";
 		};
-		CAAEDEAAC29DE1573DA65D36 /* EVMWallet */ = {
+		CAAEDEAAC29DE1573DA65D36 /* Oath */ = {
 			isa = PBXGroup;
 			children = (
 				0CB6E12314A85D06F816A12B /* UniHaptic.swift */,
 				693591E3CE0319746AD4E7A3 /* UniHapticActionFeedback.swift */,
 			);
-			name = EVMWallet;
-			path = ../../EVMWallet;
+			name = Oath;
+			path = ../../Oath;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

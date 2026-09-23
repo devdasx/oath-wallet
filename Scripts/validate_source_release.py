@@ -42,7 +42,7 @@ for path in ROOT.rglob("*"):
         if pattern.search(text):
             failures.append((str(relative), rule))
 
-catalog = json.loads((ROOT / "EVMWallet/Resources/asset-catalog.json").read_text())
+catalog = json.loads((ROOT / "Oath/Resources/asset-catalog.json").read_text())
 rows = catalog["entries"]
 if catalog["entry_count"] != len(rows) or len({r["asset_identity"] for r in rows}) != len(rows):
     failures.append(("asset-catalog.json", "invalid count or duplicate identity"))
@@ -56,11 +56,11 @@ for row in rows:
             or not re.fullmatch(r"[a-f0-9]{64}\.png", name)):
         failures.append(("asset-catalog.json", "non-bundled artwork"))
         continue
-    file = ROOT / "EVMWallet/Resources/CatalogLogos" / name
+    file = ROOT / "Oath/Resources/CatalogLogos" / name
     if not file.is_file() or file.read_bytes()[:8] != b"\x89PNG\r\n\x1a\n":
         failures.append((str(file.relative_to(ROOT)), "missing or invalid bundled PNG"))
 
-scanner = (ROOT / "EVMWallet/Networking/BitcoinFamily/BitcoinSilentPaymentScanClient.swift").read_text()
+scanner = (ROOT / "Oath/Networking/BitcoinFamily/BitcoinSilentPaymentScanClient.swift").read_text()
 for prohibited in ("import Network", "NWConnection", "URLSession", "scanPrivateKey.hexString", "blockchain.silentpayments.subscribe"):
     if prohibited in scanner:
         failures.append(("BitcoinSilentPaymentScanClient.swift", "private scanning is not local"))

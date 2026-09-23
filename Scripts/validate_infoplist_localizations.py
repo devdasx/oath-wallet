@@ -12,7 +12,7 @@ from collections import Counter
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-APP_DIRECTORY = ROOT / "EVMWallet"
+APP_DIRECTORY = ROOT / "Oath"
 INFO_PLIST = APP_DIRECTORY / "Info.plist"
 EN_AUDIT = runpy.run_path(
     str(APP_DIRECTORY / "l10n" / "audit_en_keys.py")
@@ -602,7 +602,7 @@ def shortcut_catalog_defects(
 
 
 def validate_shortcut_catalog(supported: set[str]) -> list[str]:
-    source = (APP_DIRECTORY / "ApertureAppIntents.swift").read_text(encoding="utf-8")
+    source = (APP_DIRECTORY / "OathAppIntents.swift").read_text(encoding="utf-8")
     source_phrases = {
         phrase.replace(r"\(.applicationName)", "${applicationName}")
         for phrase in re.findall(r'"([^"\n]*\\\(\.applicationName\)[^"\n]*)"', source)

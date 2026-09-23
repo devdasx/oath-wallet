@@ -1,10 +1,12 @@
 # Oath Wallet source release
 
-Display/product name: **Oath Wallet**. The Swift target/module remains `Aperture`,
-the source directory is `EVMWallet/`, and the bundle ID is `com.aperture.wallet`.
+Display/product name: **Oath Wallet**. The Xcode target and scheme are `Oath`,
+the source directory is `Oath/`, and tests are in `OathTests/`.
+The internal Swift module remains `Aperture` to preserve App Intent identity;
+the bundle ID remains `com.aperture.wallet`.
 Do not change shipped Keychain service names, backup identifiers, or migration names.
 
-Use the checked-in `EVMWallet.xcodeproj`. Xcode 27 and iOS 26+ are required.
+Use the checked-in `Oath.xcodeproj`. Xcode 27 and iOS 26+ are required.
 Select simulators by UUID. Use a separate DerivedData directory and capture build
 logs, preserving the xcodebuild exit status. Tests use Swift Testing with hosted,
 serialized UI suites. A simulator build alone does not validate wallet behavior.

@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 WORKSPACE = Path(__file__).resolve().parents[2]
-APP_DIRECTORY = WORKSPACE / "EVMWallet"
+APP_DIRECTORY = WORKSPACE / "Oath"
 WEBSITE_DIRECTORY = WORKSPACE / "Website"
 APPLICATION_NAME_TOKEN = "${applicationName}"
 
@@ -97,7 +97,7 @@ class AgentAppIntentContractTests(unittest.TestCase):
             / ".well-known/apple-app-site-association"
         )
         cls.intent_source = (
-            APP_DIRECTORY / "ApertureAppIntents.swift"
+            APP_DIRECTORY / "OathAppIntents.swift"
         ).read_text(encoding="utf-8")
         cls.deep_link_source = (
             APP_DIRECTORY / "WalletEntropyEventDeepLink.swift"
@@ -203,11 +203,11 @@ class AgentAppIntentContractTests(unittest.TestCase):
         self.assertTrue((WEBSITE_DIRECTORY / "app/index.php").is_file())
 
         project = (
-            WORKSPACE / "EVMWallet.xcodeproj/project.pbxproj"
+            WORKSPACE / "Oath.xcodeproj/project.pbxproj"
         ).read_text(encoding="utf-8")
         self.assertIn("AppShortcuts.xcstrings in Resources", project)
         for source_file in (
-            "ApertureAppIntents.swift",
+            "OathAppIntents.swift",
             "AppRootAgentDeepLinkRouting.swift",
         ):
             self.assertIn(f"{source_file} in Sources", project)

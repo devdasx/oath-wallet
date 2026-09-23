@@ -1,0 +1,12 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  my — native translations. Keys preserved.
+*/
+
+"NSCameraUsageDescription" = "ပိုက်ဆံအိတ် QR ကုဒ်များကို လုံခြုံစွာ စကင်ဖတ်ရန် Oath ကို ကင်မရာအသုံးပြုခွင့် ပြုပါ။";
+"NSFaceIDUsageDescription" = "သင့်ပိုက်ဆံအိတ်ကို သော့ဖွင့်၍ ကာကွယ်ရန် Oath ကို Face ID အသုံးပြုခွင့် ပြုပါ။";
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "သင့်အခြား iPhone သို့ တိုက်ရိုက်ချိတ်ဆက်၍ ကုဒ်ဝှက်ထားသော ပိုက်ဆံအိတ်ဒေတာကို လုံခြုံစွာ လွှဲပြောင်းရန် Oath ကို ခွင့်ပြုပါ။";

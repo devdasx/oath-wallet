@@ -17,15 +17,15 @@ targets:
     sources:
       - App
       # Exercise the shipping screens and haptic gesture, not copies of them.
-      - ../../EVMWallet/SettingsWalletCreationRecoveryScreen.swift
-      - ../../EVMWallet/OnboardingPhysicalEntropyRecoveryScreen.swift
-      - ../../EVMWallet/WalletRecoveryPhraseDisplayScreen.swift
-      - ../../EVMWallet/WalletRecoveryPhraseCopyState.swift
-      - ../../EVMWallet/WalletRecoveryPhraseCopyLabel.swift
-      - ../../EVMWallet/UniHaptic.swift
-      - path: ../../EVMWallet/en.lproj/Localizable.strings
+      - ../../Oath/SettingsWalletCreationRecoveryScreen.swift
+      - ../../Oath/OnboardingPhysicalEntropyRecoveryScreen.swift
+      - ../../Oath/WalletRecoveryPhraseDisplayScreen.swift
+      - ../../Oath/WalletRecoveryPhraseCopyState.swift
+      - ../../Oath/WalletRecoveryPhraseCopyLabel.swift
+      - ../../Oath/UniHaptic.swift
+      - path: ../../Oath/en.lproj/Localizable.strings
         buildPhase: resources
-      - path: ../../EVMWallet/ar.lproj/Localizable.strings
+      - path: ../../Oath/ar.lproj/Localizable.strings
         buildPhase: resources
     settings:
       base:

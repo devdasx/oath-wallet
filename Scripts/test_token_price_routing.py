@@ -27,7 +27,7 @@ def without_body(source, signature):
 
 
 def migration_test():
-    source = (ROOT / 'EVMWallet/Persistence/WalletTokenDEXPriceMigration.swift').read_text()
+    source = (ROOT / 'Oath/Persistence/WalletTokenDEXPriceMigration.swift').read_text()
     sql = source.split('sql: """', 1)[1].split('"""', 1)[0]
     db = sqlite3.connect(':memory:')
     db.executescript('''
@@ -56,24 +56,24 @@ def main():
     with tempfile.TemporaryDirectory(prefix='aperture-token-price-tests-') as directory:
         target = Path(directory)
         for name in ['AssetPriceProviderRouter.swift', 'AssetPriceProviderConfiguration.swift', 'AssetTokenPriceRouting.swift']:
-            (target / name).write_text((ROOT / 'EVMWallet' / name).read_text())
-        router = (ROOT / 'EVMWallet/Networking/ProviderReliability/AdaptiveProviderRouter.swift').read_text()
+            (target / name).write_text((ROOT / 'Oath' / name).read_text())
+        router = (ROOT / 'Oath/Networking/ProviderReliability/AdaptiveProviderRouter.swift').read_text()
         router = router.replace('import GRDB\n', '')
         router = without_body(router, '    private func loadIfPossible(')
         router = without_body(router, '    private func persist(')
         (target / 'AdaptiveProviderRouter.swift').write_text(router)
-        client = (ROOT / 'EVMWallet/AssetPriceClient.swift').read_text()
+        client = (ROOT / 'Oath/AssetPriceClient.swift').read_text()
         declarations = client[:client.index('/// Resolves exact USD prices')].replace('import GRDB\n', '')
         constants = client[client.index('    private static let freshLifetime'):client.index('    private let session:')]
         methods = client[client.index('    static func priceContractAddress('):client.index('    /// The provider market identity')]
         (target / 'AssetPriceClient.swift').write_text(declarations + 'actor AssetPriceClient {\n' + constants + methods + '\n}\n')
-        model = (ROOT / 'EVMWallet/WalletHomeModels.swift').read_text()
+        model = (ROOT / 'Oath/WalletHomeModels.swift').read_text()
         model = model[model.index('enum WalletBlockchain:'):model.index('    init?(ankrIdentifier:')]
         model = model.replace('Hashable, Sendable', 'Hashable, Sendable, CaseIterable') + '}\n'
         (target / 'WalletBlockchain.swift').write_text(model)
         for path in (ROOT / 'Scripts/TokenPriceRoutingTests').glob('*.swift'):
             (target / path.name).write_text(path.read_text())
-        design = (ROOT / 'EVMWallet/DesignSystem.swift').read_text()
+        design = (ROOT / 'Oath/DesignSystem.swift').read_text()
         currency = design[design.index('struct WalletCurrencyContext:'):design.index('private struct WalletCurrencyContextKey:')]
         numbers = design[design.index('enum EnglishNumbers {'):design.index('enum WalletTheme {')]
         (target / 'EnglishNumbers.swift').write_text('import Foundation\n' + currency + numbers + """

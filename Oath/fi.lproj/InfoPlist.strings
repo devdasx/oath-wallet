@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  fi — native translations.
+*/
+
+"NSCameraUsageDescription" = "Salli Oathn käyttää kameraa lompakon QR-koodien turvalliseen skannaamiseen.";
+"NSFaceIDUsageDescription" = "Salli Oathn käyttää Face ID:tä lompakkosi avaamiseen ja suojaamiseen.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Salli Oathn muodostaa suora yhteys toiseen iPhoneesi ja siirtää salatut lompakkotietosi turvallisesti.";

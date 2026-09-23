@@ -1,0 +1,13 @@
+/*
+  InfoPlist.strings
+  Oath
+
+  sw — native translations.
+*/
+
+"NSCameraUsageDescription" = "Ruhusu Oath kutumia kamera kuchanganua misimbo ya QR ya pochi kwa usalama.";
+"NSFaceIDUsageDescription" = "Ruhusu Oath kutumia Face ID kufungua na kulinda pochi yako.";
+
+"CFBundleDisplayName" = "Oath Wallet";
+
+"NSLocalNetworkUsageDescription" = "Ruhusu Oath kuunganisha moja kwa moja na iPhone yako nyingine na kuhamisha data iliyosimbwa ya pochi kwa usalama.";
