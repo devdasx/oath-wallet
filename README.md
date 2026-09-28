@@ -102,8 +102,9 @@ unless explicitly enabled.
 
 ## Contact and license
 
-Website: [oathwallet.org](https://oathwallet.org). Support/security:
+Website: [oathwallet.org](https://oathwallet.org). Product support:
 [care@oathwallet.org](mailto:care@oathwallet.org) (mailbox activation is pending).
+Security vulnerabilities: use [GitHub private reporting](https://github.com/devdasx/oath-wallet/security/advisories/new) and follow [SECURITY.md](SECURITY.md).
 Do not send recovery phrases or private keys to support or post them in issues.
 
 MIT licensed; see [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
