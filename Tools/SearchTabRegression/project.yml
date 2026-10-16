@@ -1,0 +1,36 @@
+name: OathSearchTabRegression
+options:
+  deploymentTarget:
+    iOS: '26.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    GENERATE_INFOPLIST_FILE: YES
+    CODE_SIGNING_ALLOWED: NO
+targets:
+  SearchFixture:
+    type: application
+    platform: iOS
+    sources:
+      - path: ${OATH_SEARCH_SOURCE_ROOT}/Tools/SearchTabRegression/App.swift
+      - path: ${OATH_SEARCH_SOURCE_ROOT}/OathAtmosphere/Home/OathHomeBottomSearch.swift
+      - path: ${OATH_SEARCH_SOURCE_ROOT}/OathAtmosphere/Localization/OathTypography.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.oathwallet.tests.search
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+  SearchTests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: ${OATH_SEARCH_SOURCE_ROOT}/Tools/SearchTabRegression/SearchTests.swift
+    dependencies:
+      - target: SearchFixture
+schemes:
+  SearchFixture:
+    build:
+      targets:
+        SearchFixture: all
+    test:
+      targets: [SearchTests]

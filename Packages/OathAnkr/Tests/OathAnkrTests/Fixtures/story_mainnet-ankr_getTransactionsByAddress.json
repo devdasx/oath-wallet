@@ -1,0 +1,1 @@
+{"id":1,"jsonrpc":"2.0","result":{"transactions":[],"syncStatus":{"timestamp":1791744343,"blockNumber":23230072,"lag":"-6s","status":"synced"}},"_fixtureNote":"Public response from read-only Ankr probe, October 11 2026."}

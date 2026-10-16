@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Aptos USD1",
+    "url": "https://assets.panora.exchange/tokens/aptos/USD1.png"
+  },
+  {
+    "name": "Aptos USDC",
+    "url": "https://assets.panora.exchange/tokens/aptos/USDC.svg"
+  },
+  {
+    "name": "TON USDT original",
+    "url": "https://tether.to/images/logoCircle.png"
+  },
+  {
+    "name": "TON cached WebP",
+    "url": "https://cache.tonapi.io/imgproxy/T3PB4s7oprNVaJkwqbGg54nexKE0zzKhcrPv8jcWYzU/rs:fill:200:200:1/g:no/aHR0cHM6Ly90ZXRoZXIudG8vaW1hZ2VzL2xvZ29DaXJjbGUucG5n.webp"
+  },
+  {
+    "name": "arbitrum provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/arbitrum/assets/0x912CE59144191C1204E64559FE8253a0e49E6548/logo.png"
+  },
+  {
+    "name": "avalanche provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/avalanchec/assets/0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7/logo.png"
+  },
+  {
+    "name": "base provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/base/assets/0xf43eB8De897Fbc7F2502483B2Bef7Bb9EA179229/logo.png"
+  },
+  {
+    "name": "bsc provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c/logo.png"
+  },
+  {
+    "name": "eth provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png"
+  },
+  {
+    "name": "fantom provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/fantom/assets/0x5Cc61A78F164885776AA610fb0FE1257df78E59B/logo.png"
+  },
+  {
+    "name": "gnosis provider artwork",
+    "url": "https://ankrscan.io/assets/tokens/xdai.svg"
+  },
+  {
+    "name": "linea provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/linea/assets/0x1789e0043623282D5DCc7F213d703C6D8BAfBB04/logo.png"
+  },
+  {
+    "name": "optimism provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/optimism/assets/0x4200000000000000000000000000000000000042/logo.png"
+  },
+  {
+    "name": "polygon provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x3845badAde8e6dFF049820680d1F14bD3903a5d0/logo.png"
+  },
+  {
+    "name": "scroll provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/scroll/assets/0xf55BEC9cafDbE8730f096Aa55dad6D22d44099Df/logo.png"
+  },
+  {
+    "name": "xlayer provider artwork",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/plasma/assets/0xB8CE59FC3717ada4C02eaDF9682A9e934F625ebb/logo.png"
+  },
+  {
+    "name": "TRON USDT",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/tron/assets/TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t/logo.png"
+  },
+  {
+    "name": "Solana USDC",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/solana/assets/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v/logo.png"
+  }
+]

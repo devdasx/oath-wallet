@@ -1,0 +1,585 @@
+{
+  "version": 1,
+  "files": [
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json",
+      "sha256": "0d2312170d61b732458576ea2555e89c39896269dbb56d88c4814e5441c1a2f3",
+      "reason": "Public blockchain authentication-key identifiers and state hashes in RPC response fixtures; not signing keys.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18175",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18190",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18195",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18375",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18412",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18416",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18439",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18445",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18467",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18506",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18517",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18531",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18537",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18569",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18591",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18605",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18627",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18633",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18652",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18657",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18686",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18690",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18713",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18778",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:18800",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:216",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:264",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:277",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:292",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:315",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:326",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:355",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36327",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36347",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:367",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36745",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36752",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36796",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36811",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36833",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36838",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36873",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36887",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36892",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36907",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36929",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36961",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36973",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:36989",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37010",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37021",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37025",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37047",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37125",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37146",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37152",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:37162",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:373",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:387",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:421",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:441",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:454",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:457",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:473",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:494",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:524",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54695",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54698",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54732",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54822",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54869",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54874",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54898",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54920",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54925",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54970",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54974",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:54979",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55011",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55026",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55031",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55063",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55068",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55090",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55101",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55116",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55144",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55166",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55171",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55254",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:55259",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:590",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:605",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:608",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:631",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:660",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:72776",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:72791",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73294",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73340",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73345",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73360",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73375",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73397",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73410",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73430",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73450",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73465",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73499",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73502",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73524",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73536",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73551",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73573",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73602",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73605",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73683",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73687",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73708",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73719",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:73741",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:91268",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/live-history.json:generic-api-key:91290"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/receipt.json",
+      "sha256": "eedc907cdff2c6aef5d6e5fedbd1015b31e3786644ca489f70ca8d5cea15ffaf",
+      "reason": "Public blockchain authentication-key identifiers and state hashes in RPC response fixtures; not signing keys.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Aptos/receipt.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Near/catalog.json",
+      "sha256": "40b950c96d74f07c7df01b473203da8d58e97e82937cb117d711db2f4521e0dd",
+      "reason": "Public token contract identifiers in catalog response fixtures; token names trigger the generic credential heuristic.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Near/catalog.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/catalog.json",
+      "sha256": "2d7fc0e198486b076fd8cca851dab1777a9bdc8fd548e6a94359b7aaebbd1638",
+      "reason": "Public token contract identifiers in catalog response fixtures; token names trigger the generic credential heuristic.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/catalog.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/large_classic.json",
+      "sha256": "6c2b146c5cd169f65757314c6693e7f0bc1d44e6943b50b1acbce4840ab2132a",
+      "reason": "Public ledger entry identifiers and pagination cursors in Stellar response fixtures.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/large_classic.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/sdf.json",
+      "sha256": "10ac91c8eb6ca4efd83ada77a13dcd638a69d3b6df8c7923f08d9ffe1fbcd6d7",
+      "reason": "Public ledger entry identifiers and pagination cursors in Stellar response fixtures.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/sdf.json:generic-api-key:77",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Stellar/sdf.json:generic-api-key:84"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Sui/catalog.json",
+      "sha256": "f3f9b5988f9bc9e41d654b2c45535f85fe1cef21b96e9d73638f09875479c7cd",
+      "reason": "Public token contract identifiers in catalog response fixtures; token names trigger the generic credential heuristic.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Sui/catalog.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json",
+      "sha256": "7bd66d0b63de884c7f80ed76860950f27651c1aa95520639018ebe386939bc58",
+      "reason": "Public transaction authInfoBytes fixture; encoded signing metadata, not private key material.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:186",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:195",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:288",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:297",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:390",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:399",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:84",
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/ThorchainWalletConnect/vectors.json:generic-api-key:93"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Xrpl/mpt-holder-objects.json",
+      "sha256": "8d38c0a30b18a827a18f6e49b96f9f166af27d6f72dfe84d81275ca3f0df86ba",
+      "reason": "Public MPTokenIssuanceID identifiers in ledger response fixtures.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/Xrpl/mpt-holder-objects.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/XrplSend/closure-sdk-vector.json",
+      "sha256": "c8fd30625ab7539da392d427eec465baa698e1206233951e601b96bf2b9fa500",
+      "reason": "Synthetic SDK signing vector derived from fixed public entropy (16 bytes filled with 7); see Tools/GenerateXrplSendVectors.cjs. Never fund.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/XrplSend/closure-sdk-vector.json:generic-api-key:2"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/XrplSend/sdk-vector.json",
+      "sha256": "dbdab0fcabbc058ad95a0977522d6a76035bc3ac7549547c3cca29998b1538ef",
+      "reason": "Synthetic SDK signing vector derived from fixed public entropy (16 bytes filled with 7); see Tools/GenerateXrplSendVectors.cjs. Never fund.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/XrplSend/sdk-vector.json:generic-api-key:2"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/arbitrum-ankr_getTokenTransfers.json",
+      "sha256": "a90e0fb4f2097b6ee50099e4723d2784666ea40c8f0d846dc1ce0390c9fa0fa4",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/arbitrum-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/arbitrum-ankr_getTransactionsByAddress.json",
+      "sha256": "a71ed11af6ce429baf2d33a47e74ae83b9b283f445c277d5cb098dd201cd6823",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/arbitrum-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/avalanche-ankr_getTokenTransfers.json",
+      "sha256": "9c93c66c04a205399385a83897de43839b97507a2fa47d3f01b5c6539afe10c6",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/avalanche-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/base-ankr_getTokenTransfers.json",
+      "sha256": "4700562e95fa948af984f89ca03e141b90492b7cf9cc39ee0db8be9d9e91c0a8",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/base-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/base-ankr_getTransactionsByAddress.json",
+      "sha256": "4068800eed436387c309439dfdf3ef7acd981719e7a305b5072086df6b6bc1f9",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/base-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/bsc-ankr_getTokenTransfers.json",
+      "sha256": "205748b237c40c658a428136c701b78173fba725a6b6343dc7abbf9e68b32899",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/bsc-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/bsc-ankr_getTransactionsByAddress.json",
+      "sha256": "042449be281da0fecda12613d562d3e66e6a654e5779e951742dbb52107525be",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/bsc-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/eth-ankr_getTokenTransfers.json",
+      "sha256": "25fd0ba209ebf50fa0f8685189c9c39c5f45a548107e7d521c0869fc9ac2904a",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/eth-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/eth-ankr_getTransactionsByAddress.json",
+      "sha256": "3b30fce2d685d537b9fbcf127c638db904e059f863923a59ef5920ef7be83f1d",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/eth-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/fantom-ankr_getTokenTransfers.json",
+      "sha256": "c3c14a375fc9fbc279d3b2f4beab2f3975917bca9784fd01a5c5bdfb534d794a",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/fantom-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/fantom-ankr_getTransactionsByAddress.json",
+      "sha256": "0cc6ff9712c4336d43430fd92247da85eb9d77745bbd6cbbf89e6ef7f27deff5",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/fantom-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/flare-ankr_getTokenTransfers.json",
+      "sha256": "125a4c0fe16b840f0a2535f0ea9708072f432ccaf027fcafc4f61e455453e825",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/flare-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/gnosis-ankr_getTokenTransfers.json",
+      "sha256": "f11313e2c6717ea0e1e313d9a288270c3db0f246ca332cb00438440ead630705",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/gnosis-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/linea-ankr_getTokenTransfers.json",
+      "sha256": "8250918b220016f1fe5ad3d6486d93977ca40a144a52bacf817ccc720af4a34a",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/linea-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/linea-ankr_getTransactionsByAddress.json",
+      "sha256": "525d70d9c4ee912712f1806ae003e5f2a55c7a75116a93dfdae700c1fd00c391",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/linea-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/optimism-ankr_getTokenTransfers.json",
+      "sha256": "9cb6e350dca63ecb6808589caa22f53d64ffc8ace3f8eff82f45b34e1c4b9a67",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/optimism-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/optimism-ankr_getTransactionsByAddress.json",
+      "sha256": "57450d5613b25f41c919d3b05e50ce44a31010fc0939d352eb0e5f96cb1ddd13",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/optimism-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/polygon-ankr_getTokenTransfers.json",
+      "sha256": "e5685c47d8de1657674d2c30aaee3f4d14c2cd5d6a52ff70cb11e72fefa1d5a7",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/polygon-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/polygon-ankr_getTransactionsByAddress.json",
+      "sha256": "01dd396050765aeb1c246cae193263fee94a8d541994a0877dd5975adc252d40",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/polygon-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/scroll-ankr_getTokenTransfers.json",
+      "sha256": "9fefffa035eca503132d63931df8e00813fae566c836d3caca885bca8afb83e9",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/scroll-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/scroll-ankr_getTransactionsByAddress.json",
+      "sha256": "f9ead4629584d2154b27161853a06f5489519228dfa2d2a1fb70eb2e827f771c",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/scroll-ankr_getTransactionsByAddress.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/taiko-ankr_getTokenTransfers.json",
+      "sha256": "cd5cf1e4845e7fa45331e2612a81b04f134ada13f9a949828a9731b5a42db28a",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/taiko-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/xlayer-ankr_getTokenTransfers.json",
+      "sha256": "eddf04c78c4c72ffcf1e3cdf2360fe84dd28f6e26010765ed6dcdc701f062a00",
+      "reason": "Pagination cursor from a public chain response fixture; not an API credential.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/xlayer-ankr_getTokenTransfers.json:generic-api-key:1"
+      ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/SolanaTests.swift",
+      "sha256": "8bc654c460e481a5cdf1fac86e235f6208afd5c79bfa0f1e1d4e86595ca97266",
+      "reason": "Public Solana mint addresses assigned to token-named fixture variables.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/SolanaTests.swift:generic-api-key:8"
+      ]
+    },
+    {
+      "path": "Packages/OathBitcoin/Tests/OathBitcoinTests/AlchemyUTXOTests.swift",
+      "sha256": "1bae059c4e4f066d0178bf7bc0c5e84a539cdf63c9e88df09bf443466b338c4b",
+      "reason": "Explicit fake provider key used to test redaction and request routing; not issued by a provider.",
+      "fingerprints": [
+        "Packages/OathBitcoin/Tests/OathBitcoinTests/AlchemyUTXOTests.swift:generic-api-key:84"
+      ]
+    },
+    {
+      "path": "Packages/OathBitcoin/Tests/OathBitcoinTests/BitcoinCashTests.swift",
+      "sha256": "3b4c3687acf5c176fd1b87e341b846c74b56b78b887b54566b87c9e9a9694176",
+      "reason": "BIP38 format description in a test error string, not an encrypted private key.",
+      "fingerprints": [
+        "Packages/OathBitcoin/Tests/OathBitcoinTests/BitcoinCashTests.swift:generic-api-key:81"
+      ]
+    },
+    {
+      "path": "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift",
+      "sha256": "bba804672c8adfc4f4a16eaf247fd8755ae82d8ff2471230947859ed8c256700",
+      "reason": "SQL ON CONFLICT expression containing conflictKeys; no credential value.",
+      "fingerprints": [
+        "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:68"
+      ]
+    },
+    {
+      "path": "Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift",
+      "sha256": "d4cb0203905aa76939197286b3505b1b4c013c90a5f6447dddc6f843ab7a00c3",
+      "reason": "Public Solana mint addresses assigned to token-named fixture variables.",
+      "fingerprints": [
+        "Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift:generic-api-key:12",
+        "Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift:generic-api-key:13"
+      ]
+    },
+    {
+      "path": "Tools/CheckWalletConnectDEXLive.cjs",
+      "sha256": "465c2e66e11fc1937606d82e08f119fcb1bee7479d618b2d81586d4ed325346d",
+      "reason": "Public address of a testnet token contract, not an API token.",
+      "fingerprints": [
+        "Tools/CheckWalletConnectDEXLive.cjs:generic-api-key:12"
+      ]
+    },
+    {
+      "path": "Tools/CheckXrplLive.py",
+      "sha256": "2143299be9aaac0e2f5020d7cfc72403e43fd56af361a368fba6480049b89fb0",
+      "reason": "Temporary build-directory name containing token; no credential value.",
+      "fingerprints": [
+        "Tools/CheckXrplLive.py:generic-api-key:34"
+      ]
+    },
+    {
+      "path": "Tools/GenerateBitcoinCashVectors.py",
+      "sha256": "0bf8349f834ba031d079a90b138dfbcc86e1a44535b9fa29c00f6a39406707b1",
+      "reason": "Public address-encoding alphabet constant named TOKENS.",
+      "fingerprints": [
+        "Tools/GenerateBitcoinCashVectors.py:generic-api-key:14"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Sources/ReownAppKit/Core/AppKit.swift",
+      "sha256": "54b7654220225ad0986e897b66c4f488e2f671589bc62f5b70b35eeaa01433f5",
+      "reason": "Swift property declarations or initializer expressions for key/interactor types; no embedded credential.",
+      "fingerprints": [
+        "Vendor/Reown/Sources/ReownAppKit/Core/AppKit.swift:generic-api-key:143",
+        "Vendor/Reown/Sources/ReownAppKit/Core/AppKit.swift:generic-api-key:178"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Sources/ReownAppKit/Sheets/Web3ModalViewModel.swift",
+      "sha256": "4cc659ce2b2ddc6872060ec2a95bfbb75b876abad206b181a520cb01fe2caaff",
+      "reason": "Swift property declarations or initializer expressions for key/interactor types; no embedded credential.",
+      "fingerprints": [
+        "Vendor/Reown/Sources/ReownAppKit/Sheets/Web3ModalViewModel.swift:generic-api-key:12",
+        "Vendor/Reown/Sources/ReownAppKit/Sheets/Web3ModalViewModel.swift:generic-api-key:29"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/AgreementCryptoKit.swift",
+      "sha256": "36762bde9265473f1cfd538125f16564e5f6757765402e417539cd97d3a3edbe",
+      "reason": "Swift property declarations or initializer expressions for key/interactor types; no embedded credential.",
+      "fingerprints": [
+        "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/AgreementCryptoKit.swift:generic-api-key:71"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/SigningKeyCryptoKit.swift",
+      "sha256": "8dd070bb9dbd365872921ecdf60776b70a298e40aff442193b5bf941a50c290d",
+      "reason": "Swift property declarations or initializer expressions for key/interactor types; no embedded credential.",
+      "fingerprints": [
+        "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/SigningKeyCryptoKit.swift:generic-api-key:64"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/NotifyTests/Stubs/NotifySubscription.swift",
+      "sha256": "b66e9a0dc2cea6b6011da5ad2f9a571a7f19256ef90f24dd668df6d3ac84a6e0",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/NotifyTests/Stubs/NotifySubscription.swift:generic-api-key:19"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/RelayerTests/AuthTests/ClientIdStorageTests.swift",
+      "sha256": "2bd4da6e35032021ae2261b9f01f1c3b41f25deff047eee437aecb9bad9ef644",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/ClientIdStorageTests.swift:generic-api-key:39"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/RelayerTests/AuthTests/DIDKeyFactory.swift",
+      "sha256": "91cdb684f9e3b360ba83a08c4871daaa977e72557355a22c334429c10431f685",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/DIDKeyFactory.swift:generic-api-key:10",
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/DIDKeyFactory.swift:generic-api-key:8"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/RelayerTests/AuthTests/JWTTests.swift",
+      "sha256": "0400c84fff6c98c493a3247295a97babae229d240cc85cd375795c6acb32b705",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/JWTTests.swift:generic-api-key:31",
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/JWTTests.swift:generic-api-key:7",
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/JWTTests.swift:jwt:7"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/RelayerTests/AuthTests/SocketAuthenticatorTests.swift",
+      "sha256": "f12b774c2d0c52dc21bff23d03b213715b32c18327d8f594e4694d04335a3f54",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/SocketAuthenticatorTests.swift:generic-api-key:9",
+        "Vendor/Reown/Tests/RelayerTests/AuthTests/SocketAuthenticatorTests.swift:jwt:9"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/RelayerTests/CosmosTVFCollectorTests.swift",
+      "sha256": "58515bc6c56a6f080f3432963e6e696b58bf13a669af16ea52f138d19ab4702a",
+      "reason": "Public transaction authInfoBytes fixture; encoded signing metadata, not private key material.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/RelayerTests/CosmosTVFCollectorTests.swift:generic-api-key:41"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/VerifyTests/AttestationJWTVerifier.swift",
+      "sha256": "6a61ed0f3eea4a83a92afee6db5d28e772caabc2e2a666e3bdb2eb998776e377",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/VerifyTests/AttestationJWTVerifier.swift:jwt:16",
+        "Vendor/Reown/Tests/VerifyTests/AttestationJWTVerifier.swift:jwt:24"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/WalletConnectKMSTests/KeychainStorageTests.swift",
+      "sha256": "08dc6e63e05ff0f93e03a5e059c97a8e85feb7a47262a537250a43160e845bf4",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/WalletConnectKMSTests/KeychainStorageTests.swift:generic-api-key:56",
+        "Vendor/Reown/Tests/WalletConnectKMSTests/KeychainStorageTests.swift:generic-api-key:91"
+      ]
+    },
+    {
+      "path": "Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swift",
+      "sha256": "c205b27df0fe0d986da8ef14c4cebdbe9b93a9cf14603ad4700e6c495ef3df0c",
+      "reason": "Upstream Reown public unit-test fixture: synthetic cryptographic key, invalid or expired JWT, or SIWE test input. Not an Oath deployment credential; never fund test keys.",
+      "fingerprints": [
+        "Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swift:generic-api-key:273",
+        "Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swift:generic-api-key:283"
+      ]
+    }
+  ]
+}

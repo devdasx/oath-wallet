@@ -1,0 +1,8 @@
+{
+  "version": "4.8.4",
+  "release": "https://github.com/trustwallet/wallet-core/releases/tag/4.8.4",
+  "registry_url": "https://raw.githubusercontent.com/trustwallet/wallet-core/4.8.4/registry.json",
+  "registry_sha256": "9b6d3202e009dc5634531b84b4590d3d3fe6d08f1205f93f8eaae98444017240",
+  "package_manifest_sha256": "d42da244cc010a3247fc9af80057dd2ec7c9d22989f8d36124d5aa15f66e4e4e",
+  "defaults": "Account zero, first external address, empty BIP39 passphrase; all EVM networks use the Ethereum path. No network calls are required to create addresses."
+}

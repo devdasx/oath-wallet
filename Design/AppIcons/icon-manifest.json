@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "brand": "Oath",
+  "purpose": "Installed app icon and Settings app icon choices",
+  "default_icon_id": "signal-blue",
+  "alternate_icon_ids": [
+    "obsidian",
+    "porcelain",
+    "verdant",
+    "ultraviolet",
+    "electric-lime",
+    "ember",
+    "titanium",
+    "glacier",
+    "champagne"
+  ],
+  "png_export": {
+    "width": 1024,
+    "height": 1024,
+    "color_space": "sRGB",
+    "alpha_channel": false,
+    "background_shape": "full square"
+  },
+  "icons": [
+    {
+      "id": "signal-blue",
+      "display_name": "Signal Blue",
+      "is_default": true,
+      "order": 1,
+      "description": "Cobalt gradient / white",
+      "assets": {
+        "png": {
+          "path": "png/01-oath-signal-blue.png",
+          "sha256": "15b54756e3cfca52c70e1f9d1c873a4ddf0c5101b9ebd36761cbc739ac514236"
+        },
+        "svg": {
+          "path": "svg/01-oath-signal-blue.svg",
+          "sha256": "0704900e2dd3a159fecee59159f68b62aabf6248127295f1f056ee71d787e25a"
+        }
+      }
+    },
+    {
+      "id": "obsidian",
+      "display_name": "Obsidian",
+      "is_default": false,
+      "order": 2,
+      "description": "Matte black / pure white",
+      "assets": {
+        "png": {
+          "path": "png/02-oath-obsidian.png",
+          "sha256": "62e0f0461721f4e2d9a4a9645cf1f9d56f9060309c728f152795b553bea3fb97"
+        },
+        "svg": {
+          "path": "svg/02-oath-obsidian.svg",
+          "sha256": "ae14b64ae43a14b138f9179322b2a47821c0df9616b467b84df334af20a7ed31"
+        }
+      }
+    },
+    {
+      "id": "porcelain",
+      "display_name": "Porcelain",
+      "is_default": false,
+      "order": 3,
+      "description": "Warm ivory / deep ink",
+      "assets": {
+        "png": {
+          "path": "png/03-oath-porcelain.png",
+          "sha256": "a6e242bf9c609c9ec66351d006b2020e60e8a2029cf63ccc85e8bf74d34ee3bc"
+        },
+        "svg": {
+          "path": "svg/03-oath-porcelain.svg",
+          "sha256": "b3cf22882c1a18db509604c4f2e900713c0ae73dbf83e36451a51e9ec61224c1"
+        }
+      }
+    },
+    {
+      "id": "verdant",
+      "display_name": "Verdant",
+      "is_default": false,
+      "order": 4,
+      "description": "Forest gradient / soft mint",
+      "assets": {
+        "png": {
+          "path": "png/04-oath-verdant.png",
+          "sha256": "90c9991e705e0724236e6b993f52ed89346715bc7bc5a09a1216861c45f7e186"
+        },
+        "svg": {
+          "path": "svg/04-oath-verdant.svg",
+          "sha256": "2f366e26d7d5ebe3eed88b7464b894c444df1e04a492ce963fa57d08422e0846"
+        }
+      }
+    },
+    {
+      "id": "ultraviolet",
+      "display_name": "Ultraviolet",
+      "is_default": false,
+      "order": 5,
+      "description": "Violet glow / pale lavender",
+      "assets": {
+        "png": {
+          "path": "png/05-oath-ultraviolet.png",
+          "sha256": "9ca16fee4336524544cb1d599ac7956f48febe19f66028fb13eae435437ba31c"
+        },
+        "svg": {
+          "path": "svg/05-oath-ultraviolet.svg",
+          "sha256": "57d21a2479da790c6803eeedf57ef957ac6bfe188789841e2521d0d3037b3df0"
+        }
+      }
+    },
+    {
+      "id": "electric-lime",
+      "display_name": "Electric Lime",
+      "is_default": false,
+      "order": 6,
+      "description": "Acid lime / midnight ink",
+      "assets": {
+        "png": {
+          "path": "png/06-oath-electric-lime.png",
+          "sha256": "5d0eb68a6871daa3e06c2126bf347b96bb1d0f4dab87c43d5869a465c4204695"
+        },
+        "svg": {
+          "path": "svg/06-oath-electric-lime.svg",
+          "sha256": "fbc3589ba43cc2230ac77a44631d473db96220b1430d33e81c9dc07cbc09ce39"
+        }
+      }
+    },
+    {
+      "id": "ember",
+      "display_name": "Ember",
+      "is_default": false,
+      "order": 7,
+      "description": "Apricot to coral / warm white",
+      "assets": {
+        "png": {
+          "path": "png/07-oath-ember.png",
+          "sha256": "9e382c5a77921278c347f76f2d631488212c2494aef46728d6be2896401aa2aa"
+        },
+        "svg": {
+          "path": "svg/07-oath-ember.svg",
+          "sha256": "22bb8946431624a5129da053e36f6eb5b99a652858fc464d3603df8cd844a24e"
+        }
+      }
+    },
+    {
+      "id": "titanium",
+      "display_name": "Titanium",
+      "is_default": false,
+      "order": 8,
+      "description": "Graphite satin / brushed silver",
+      "assets": {
+        "png": {
+          "path": "png/08-oath-titanium.png",
+          "sha256": "6c8dc037c5c2993eff7a69b8e848139930a4ef9a226d76212c413cd43b7cfc7c"
+        },
+        "svg": {
+          "path": "svg/08-oath-titanium.svg",
+          "sha256": "c8195419895cd1c462c9616111ac4501cac5ea4384efcfac505a0854c0278803"
+        }
+      }
+    },
+    {
+      "id": "glacier",
+      "display_name": "Glacier",
+      "is_default": false,
+      "order": 9,
+      "description": "Ice blue / sculpted cobalt",
+      "assets": {
+        "png": {
+          "path": "png/09-oath-glacier.png",
+          "sha256": "e31457704ef904023dd98b811e005470642c10bc742d09ab03231b7927543ea5"
+        },
+        "svg": {
+          "path": "svg/09-oath-glacier.svg",
+          "sha256": "6067be9f71dc1baeb076f1b6041009bad3f20568e76b60d974ba075654d78e74"
+        }
+      }
+    },
+    {
+      "id": "champagne",
+      "display_name": "Champagne",
+      "is_default": false,
+      "order": 10,
+      "description": "Espresso / champagne gold",
+      "assets": {
+        "png": {
+          "path": "png/10-oath-champagne.png",
+          "sha256": "b3dbfc5f23abb0c04c99e7bbd6dc98be4f8d1ab22f8256350ee2ffc006653134"
+        },
+        "svg": {
+          "path": "svg/10-oath-champagne.svg",
+          "sha256": "005a8536c3d1b84c1d8016e26a40774e5721f0677dd2e1a4f6787cfdc8fb9ea2"
+        }
+      }
+    }
+  ]
+}

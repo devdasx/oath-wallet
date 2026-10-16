@@ -1,13 +1,13 @@
 # Security
 
-Oath Wallet 4.0.0 is a self-custody source release prepared for independent audit.
+Oath Wallet 4.0.3 is a self-custody source release prepared for independent audit.
 No independent audit or absolute security guarantee is claimed.
 
 The core invariant is that an operator cannot obtain a wallet's private keys or
 recovery phrase through this application's network services. Secrets are created,
 imported, decrypted and used for signing on the device. User-authorized export,
-client-encrypted iCloud backup and encrypted paired-device transfer are explicit
-boundaries; see [the audit scope](docs/AUDIT_SCOPE.md).
+and client-encrypted iCloud backup are explicit
+boundaries; see [public build configuration](Documentation/PublicBuild.md).
 
 ## Report a vulnerability privately
 

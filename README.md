@@ -1,110 +1,85 @@
-# Oath Wallet
+# Oath Wallet 4.0.3
 
-**An open-source, self-custody wallet for iPhone and iPad.**
+A native multichain wallet for iPhone and iPad.
 
-This repository contains the **4.0.0 source release (build 73)**, with the Oath Wallet
-name and official interlocking-rings identity. It is prepared for independent audit.
-The statements below describe this source tree; they do not establish a match to a
-separately distributed App Store binary.
+This repository contains the **4.0.3 source release, build 77**. The new app
+replaces the previous source layout with `OathApp`, `OathAtmosphere`, and local
+Swift packages. The application bundle identifier remains `com.aperture.wallet`.
 
-[Website](https://oathwallet.org) · [Security](SECURITY.md) · [Audit scope](docs/AUDIT_SCOPE.md) · [MIT license](LICENSE)
+[Release notes](releases/4.0.3.md) · [Website](https://oathwallet.org) ·
+[Security](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
+[MIT license](LICENSE)
 
-## Features
+## What's new
 
-- On-device wallet creation, recovery-phrase and private-key import, local signing,
-  multiple wallets and network-specific address validation.
-- Bitcoin-family wallets, account discovery, transaction history, fee selection,
-  send/receive flows, coin control and supported wallet-backup import formats.
-- Optional BIP-39 passphrases and physical-entropy wallet creation.
-- Optional passkey-protected encrypted iCloud backup and encrypted nearby-device
-  transfer, with explicit user authorization for sensitive operations.
-- App locking, protected secret screens, timed authorization and clipboard expiry.
-- Native iPhone/iPad navigation, light/dark appearance, accessibility and 57 localizations.
-- A packaged catalog of 2,348 assets, local token artwork, custom-token support,
-  market information, asset families including bStocks, and optional notifications.
-- Credential-entry protection against third-party keyboards and system Writing Tools.
+- A redesigned native interface, new app icons, and refined send and receive flows.
+- Multichain asset discovery, token artwork, pricing, and transaction history.
+- WalletConnect transaction review and network-aware signing integrations.
+- Network-grouped permissions and batch access revocation.
+- Multiple wallets, encrypted local storage, app locking, and Recently Deleted.
+- Legacy-wallet upgrade handling and improved refresh and scrolling behavior.
 
-## Supported mainnets
+Capabilities vary by network, asset, provider, and configuration. Listing a
+capability does not claim that every network or transaction has been tested.
 
-**Bitcoin family:** Bitcoin, Bitcoin Cash, Litecoin and Dogecoin.
+## Public source boundaries
 
-**EVM:** Ethereum, BNB Smart Chain, Arbitrum One, Base, Polygon, OP Mainnet,
-Avalanche C-Chain, Gnosis, Linea, Scroll, Taiko, Telos, X Layer and Arc.
+This source distribution includes the app, bundled assets, local packages, patched
+Reown dependency, and tests. It excludes private backend deployments, backend
+credentials, provider API keys, signing material, personal data, and local
+validation outputs. Remote recovery-phrase collection and its upload integration
+are absent. Recovery input stays local; signing happens on the device.
 
-**Other networks:** Solana, TRON, TON, Sui, Aptos, NEAR, Stellar and XRP Ledger.
+Diagnostics retain the shared privacy filter and bounded local outbox. This public
+build has no diagnostic upload transport or operator endpoint. Optional encrypted
+iCloud backup is separate from diagnostics and requires your own Apple capability
+configuration. Never put real wallet material in tests, issues, or support reports.
 
-Silent Payments receiving and discovery are unavailable in this release pending
-a reviewed local scanner. Existing discovered outputs can be exported and spent;
-restores cannot discover unseen Silent Payments. Direct device transfer is blocked
-when known Silent Payments outputs exist; retain the source device and export
-the output keys before restoring elsewhere. Standard Bitcoin receiving and
-local signing remain supported.
-
-Capabilities and supported import formats vary by network. Token listings and
-market data are informational; verify asset identity and transaction details.
-
-## Custody and network boundaries
-
-Wallet credentials are generated or imported on the device and held in
-non-synchronizing, this-device-only Keychain items. The wallet database stores
-references to those items. Signing runs locally; network providers receive public
-queries and signed transactions. There is no operator-held recovery credential in
-this source design.
-
-Optional iCloud backup encrypts the wallet payload before upload and protects the
-backup key with the user's passkey PRF. Nearby-device transfer encrypts to a paired
-peer. Users remain responsible for their recovery material and passkeys.
-
-Public RPC, price and history services still learn the public data queried through
-them. Optional push registration sends public wallet addresses, wallet names,
-notification tokens and device metadata. User-requested feedback opens an email
-draft to `care@oathwallet.org` for review and sending in the user's mail app.
-See [the audit scope](docs/AUDIT_SCOPE.md) for the relevant code and limitations.
+The source release is not a claim of reproducible equivalence to an App Store
+binary, an App Store submission, or an independent security audit.
 
 ## Build
 
-Requirements: Xcode 27, Swift 6 and an iOS 26+ simulator or compatible device.
+Use Xcode 27 and Swift 6. The app deployment target is iOS 17; individual visual
+features use availability checks for newer system versions.
 
 ```sh
 git clone https://github.com/devdasx/oath-wallet.git
 cd oath-wallet
-open Oath.xcodeproj
+sh Tools/PreparePublicBuild.sh
+open OathAtmosphere.xcodeproj
 ```
 
-Select the `Oath` scheme. It builds the product named **Oath Wallet**.
-Application sources are in `Oath/` and tests are in `OathTests/`. The internal
-Swift module and wallet storage identifiers retain their compatibility names.
-The checked-in Xcode project is authoritative; do not regenerate it with XcodeGen.
-Swift Package Manager downloads the pinned dependencies, including Wallet Core
-binary frameworks. A build does not require a bundled provider API key. Public
-provider proxy URLs are configuration, not credentials. Device installation and
-iCloud/APNs capabilities require a developer's own Apple signing configuration.
+Select the **OathAtmosphere** scheme, which builds **Oath Wallet**. Dependencies are
+pinned by package manifests and `Package.resolved`. The checked-in project can be
+regenerated with XcodeGen using `project.yml`.
 
-For a simulator build, choose its UUID with `xcrun simctl list devices available`:
+The preparation script only creates an empty, ignored local provider configuration.
+No API key is needed to compile. Network-backed features and WalletConnect require
+your own provider configuration; see [PublicBuild.md](Documentation/PublicBuild.md).
+Device signing and iCloud require your own Apple development team.
+
+Compile without launching a simulator or installing on a device:
 
 ```sh
-xcodebuild build -project Oath.xcodeproj -scheme Oath \
-  -destination 'platform=iOS Simulator,id=SIMULATOR_UUID' \
-  -derivedDataPath /tmp/oath-wallet-derived-data
+xcodebuild -project OathAtmosphere.xcodeproj -scheme OathAtmosphere \
+  -configuration Release -destination 'generic/platform=iOS' \
+  -derivedDataPath /tmp/oath-public-build CODE_SIGNING_ALLOWED=NO build
 ```
 
-## Review and validation
+## Validation
 
-Run `python3 Scripts/validate_source_release.py` for the source-publication gates.
-Run `gitleaks dir . --redact` for credential detection with the reviewed public
-fixture exclusions in `.gitleaksignore`. These checks supplement manual review;
-they do not certify security.
+```sh
+python3 Tools/ValidatePublicRelease.py --scan
+python3 Tools/CheckDiagnosticsCoverage.py
+swift test --package-path Packages/OathDiagnostics
+python3 Tools/CheckMultiWallet.py --lifecycle
+```
 
-The audit entry points and validation results are recorded in
-[`docs/AUDIT_SCOPE.md`](docs/AUDIT_SCOPE.md). No independent security audit is
-claimed. Contributions should include focused tests and avoid live-mainnet calls
-unless explicitly enabled.
+Secret-scanner exceptions are restricted to reviewed public fixtures and syntax
+false positives. Their file hashes are checked by the release validator; changes
+require renewed review. Live network tests are opt-in. Simulator, device, and
+App Store results must be reported separately from source and host tests.
 
-## Contact and license
-
-Website: [oathwallet.org](https://oathwallet.org). Product support:
-[care@oathwallet.org](mailto:care@oathwallet.org) (mailbox activation is pending).
-Security vulnerabilities: use [GitHub private reporting](https://github.com/devdasx/oath-wallet/security/advisories/new) and follow [SECURITY.md](SECURITY.md).
-Do not send recovery phrases or private keys to support or post them in issues.
-
-MIT licensed; see [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+For security issues, use [private vulnerability reporting](https://github.com/devdasx/oath-wallet/security/advisories/new).
+See the bundled third-party notices and dependency licenses for attribution.

@@ -1,0 +1,102 @@
+{
+  "spanish": [
+    {
+      "entropy": "6ce0eafa872326fba1795902f002f925f32e0f97",
+      "mnemonic": "hogar ajeno puño anual cinta leopardo maestro careta acoso lince puma empleo cisne alarma folio"
+    },
+    {
+      "entropy": "e96ad1f8ca2bc8f951ffa82429ce1b80246ade39fd65881151e93f16",
+      "mnemonic": "tobillo fax letra móvil propio lector duque válido bufanda envío malo abeja dos huida timo pasta manjar matar lámina letra hueso"
+    }
+  ],
+  "english": [
+    {
+      "entropy": "7b89f1278ddde026cb381a0803875454514f919b",
+      "mnemonic": "knee exhibit enemy brick task beach coconut addict amount bring steak post belt silver hire"
+    },
+    {
+      "entropy": "a2206b03a6a36f43e52dc58faa0334977095299f6109b0237670ac06",
+      "mnemonic": "peasant addict science essence dad peanut net reward moral exotic snake confirm announce network laugh cancel rabbit brick order fix hello"
+    }
+  ],
+  "korean": [
+    {
+      "entropy": "262423c6f1d857361ccc505b0be3cf163c087a1f",
+      "mnemonic": "낱말 기업 할머니 통증 알루미늄 왼발 수출 언어 비밀 사업 해설 단어 제작 모습 실망"
+    },
+    {
+      "entropy": "255e563b035a57092c37305150b89a6f8de05a1b2017bc1c043ee1a4",
+      "mnemonic": "남대문 항구 연결 개방 이달 안과 자존심 판결 보너스 암컷 내일 큰길 코미디 단편 소득 간장 점심 킬로 골목 종로 바닷가"
+    }
+  ],
+  "japanese": [
+    {
+      "entropy": "447f5cc39545be7973ce5b8584e7a24a9e6de41c",
+      "mnemonic": "けつじょ　るりがわら　きくらげ　かくご　ざっし　くださる　びょうき　ひそむ　たいちょう　おんちゅう　むしば　ちぬき　みんか　ゆちゃく　すやき"
+    },
+    {
+      "entropy": "e3eac096ce58814876bca74816129ae65fcbfc45c1c82b0839eff3bf",
+      "mnemonic": "みかん　こわもて　おもたい　ていおん　たいわん　てんない　へんたい　ちてき　けんえつ　にくまん　とかす　ぴったり　れんぞく　ろめん　うねる　きんかくじ　かたい　げきだん　ぜんら　むかい　れんしゅう"
+    }
+  ],
+  "chinese_simplified": [
+    {
+      "entropy": "34db9ff5843b6c31940944f72f03c8700272e698",
+      "mnemonic": "劳 棱 钩 着 敬 文 创 务 罩 胡 冯 岗 白 居 湖"
+    },
+    {
+      "entropy": "90850a1c58c79aff07c44ff6fd277e7a87a4de5b9c150b6146156a9c",
+      "mnemonic": "揭 例 献 扫 炉 润 干 吨 泼 迈 谐 铒 奏 补 磁 麦 体 理 份 炒 纠"
+    }
+  ],
+  "french": [
+    {
+      "entropy": "c9deb616c4c9edc88d6a034c782e6c3d1d9c7a34",
+      "mnemonic": "réformer vaincre ivresse kimono morceau suiveur colline déductif échelle prince métier hiberner semaine cumuler ruiner"
+    },
+    {
+      "entropy": "65c894ec5345eaa0e502d11b9dc9c10abb14dce88d7311cc234e483a",
+      "mnemonic": "feutre détester crier notifier exact éligible maintien espoir bénéfice toxine géant augurer paniquer fureur nappe orque arracher exprimer rugueux livreur nomade"
+    }
+  ],
+  "chinese_traditional": [
+    {
+      "entropy": "8cebd869c29a8ac2874f6ccbd39df68106087089",
+      "mnemonic": "傾 校 老 遇 泰 媽 角 姻 趨 賀 康 我 預 毛 油"
+    },
+    {
+      "entropy": "bd8897792368daf08a03087733524331007a999ec1dd9fbe0ca5fe3c",
+      "mnemonic": "恰 供 吐 葉 購 款 身 穩 玉 耳 殘 揮 得 夠 鎮 適 尾 胺 走 沫 泉"
+    }
+  ],
+  "italian": [
+    {
+      "entropy": "c0998d7d74b338be1f49d0f878b3372245e16344",
+      "mnemonic": "sarcasmo sfarzoso giurato tortora creato gittata merlo derapata vessillo scippo sfratto elmo gilda remoto asola"
+    },
+    {
+      "entropy": "5a23e4a9c08299d9a8eca18a8ad7a14e9caf61ca60b1ffdee2179ec6",
+      "mnemonic": "gaffe bosco cesoia mittente cenone triturato podismo osare nomina frana tomo perdonato serbato regalato cenone avanzato zulu venato murale disfare incluso"
+    }
+  ],
+  "portuguese": [
+    {
+      "entropy": "41d7334bfef5246530bd76cb9769cd8fbc4bb936",
+      "mnemonic": "credor pergunta risada volumoso duvidoso casebre primata oponente rebolar piedade genoma banir publicar sensual sedento"
+    },
+    {
+      "entropy": "6e8a41b4d7834cc5b7a46462a2a64861b6f673bc538c425a08890839",
+      "mnemonic": "fuligem duquesa freira oposto cercar externo sincero lapso expulsar arcada liquidez processo gabarito clicar trindade gasoduto criada resgatar bendito ampola lorde"
+    }
+  ],
+  "czech": [
+    {
+      "entropy": "55616b6ec7321e661eb96b6a0916d593556ff9e7",
+      "mnemonic": "kronika bolest ulovit otisk dosah hledat norek fukar minomet kedluben rozpad ekonomie kryt zplodit polibek"
+    },
+    {
+      "entropy": "bdc1622570670360b048b5c3620469960df4b9e166c7588f1fa46e26",
+      "mnemonic": "skafandr bojovat omeleta varhany muset reklama slib chvilka smrtka buvol daleko flanel uzdravit lehkost odtok tygr kurzor nesoulad vrba upadnout mrtvola"
+    }
+  ]
+}

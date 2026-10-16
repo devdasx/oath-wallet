@@ -1,0 +1,982 @@
+{
+  "english": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "legal winner thank year wave sausage worth useful legal winner thank yellow"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "letter advice cage absurd amount doctor acoustic avoid letter advice cage above"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon agent"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth useful legal will"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "letter advice cage absurd amount doctor acoustic avoid letter advice cage absurd amount doctor acoustic avoid letter always"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo when"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth useful legal winner thank year wave sausage worth title"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "letter advice cage absurd amount doctor acoustic avoid letter advice cage absurd amount doctor acoustic avoid letter advice cage absurd amount doctor acoustic bless"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo vote"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "ozone drill grab fiber curtain grace pudding thank cruise elder eight picnic"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "gravity machine north sort system female filter attitude volume fold club stay feature office ecology stable narrow fog"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "hamster diagram private dutch cause delay private meat slide toddler razor book happy fancy gospel tennis maple dilemma loan word shrug inflict delay length"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "scheme spot photo card baby mountain device kick cradle pact join borrow"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "horn tenant knee talent sponsor spell gate clip pulse soap slush warm silver nephew swap uncle crack brave"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "panda eyebrow bullet gorilla call smoke muffin taste mesh discover soft ostrich alcohol speed nation flash devote level hobby quick inner drive ghost inside"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "cat swing flag economy stadium alone churn speed unique patch report train"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "light rule cinnamon wrap drastic word pride squirrel upgrade then income fatal apart sustain crack supply proud access"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "all hour make first leader extend hole alien behind guard gospel lava path output census museum junior mass reopen famous sing advance salt reform"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "vessel ladder alter error federal sibling chat ability sun glass valve picture"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "scissors invite lock maple supreme raw rapid void congress muscle digital elegant little brisk hair mango congress clump"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "void come effort suffer camp survey warrior heavy shoot primary clutch crush open amazing screen patrol group space point ten exist slush involve unfold"
+    }
+  ],
+  "japanese": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あおぞら"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "そつう　れきだい　ほんやく　わかす　りくつ　ばいか　ろせん　やちん　そつう　れきだい　ほんやく　わかめ"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "そとづら　あまど　おおう　あこがれる　いくぶん　けいけん　あたえる　いよく　そとづら　あまど　おおう　あかちゃん"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　ろんぶん"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あらいぐま"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "そつう　れきだい　ほんやく　わかす　りくつ　ばいか　ろせん　やちん　そつう　れきだい　ほんやく　わかす　りくつ　ばいか　ろせん　やちん　そつう　れいぎ"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "そとづら　あまど　おおう　あこがれる　いくぶん　けいけん　あたえる　いよく　そとづら　あまど　おおう　あこがれる　いくぶん　けいけん　あたえる　いよく　そとづら　いきなり"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　りんご"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　あいこくしん　いってい"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "そつう　れきだい　ほんやく　わかす　りくつ　ばいか　ろせん　やちん　そつう　れきだい　ほんやく　わかす　りくつ　ばいか　ろせん　やちん　そつう　れきだい　ほんやく　わかす　りくつ　ばいか　ろせん　まんきつ"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "そとづら　あまど　おおう　あこがれる　いくぶん　けいけん　あたえる　いよく　そとづら　あまど　おおう　あこがれる　いくぶん　けいけん　あたえる　いよく　そとづら　あまど　おおう　あこがれる　いくぶん　けいけん　あたえる　うめる"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　われる　らいう"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "ておくれ　げざん　しねま　こりる　きぼう　しねん　ななおし　ほんやく　きない　けむり　けまり　てんない"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "しはつ　たいちょう　ちめいど　ひりつ　ほくろ　こやく　こんかい　いひん　よろしい　さくら　がはく　ふっかつ　こまる　つごう　けぬき　ふすま　ちから　さくし"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "しやくしょ　くちこみ　どんぶり　けつじょ　おとしもの　くうぐん　どんぶり　たずさわる　ひたむき　みうち　にほん　うわさ　しゃけん　このよ　じどう　ほめる　たいよう　くふう　そんちょう　ろくが　はんこ　せあぶら　くうぐん　そっこう"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "はいち　ふかい　てんすう　おさない　いろえんぴつ　だんち　くださる　せんちょう　きさらぎ　てきとう　せもたれ　うんどう"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "すいえい　ほとんど　せんやく　ほしい　ふうふ　ひんそう　ざんしょ　がちょう　なにわ　ひはん　ひつじゅひん　られつ　はんぼうき　ちそう　ほいく　めだつ　きさま　えがお"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "てそう　こつこつ　えんちょう　じてん　おおや　ぴっちり　だんねつ　ほそく　たなばた　くらべる　ひまん　ていき　あんい　ひんしゅ　ちきん　ざいげん　くたびれる　そなえる　しんか　にいがた　せきむ　けしょう　しあさって　せたい"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "おたく　ほうりつ　さいかい　げねつ　ふせい　いいだす　かいてん　ひんしゅ　もえる　てのひら　ねいき　むいか"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "そむく　のぞく　かいふく　ろてん　げきやく　ろくが　ともだち　ふじみ　やおや　まかせる　すらすら　こぼれる　いぜん　へんたい　きさま　へきが　なたでここ　あさひ"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "あんぜん　すうじつ　たいふう　こんぽん　そこそこ　こたつ　しんせいじ　あんこ　うしなう　しまる　じどう　そうり　てはい　ていし　おめでとう　たんまつ　せんげん　たおる　ぬめり　このまま　ひいき　あまい　のらねこ　にんそう"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "ようきゅう　そあく　いきおい　こうつう　こもじ　はんだん　おんしゃ　あいさつ　へいたく　しすう　ゆうびんきょく　てんぷら"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "はえる　せっさたくま　そんみん　たいよう　へこむ　になう　にっさん　よゆう　きあつ　だんぼう　くねくね　けらい　そんけい　えほうまき　しゃうん　たいむ　きあつ　かぶか"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "よゆう　かんけい　けぶかい　へいこう　おかず　べんごし　りえき　じゆう　はんい　ともる　かほご　きぬごし　つみき　いきる　はかる　てふだ　しほう　ひろう　とくてん　ほったん　こさめ　ひつじゅひん　せつぞく　めんどう"
+    }
+  ],
+  "korean": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가능"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "실장 활동 큰절 흔적 형제 제대로 훈련 한글 실장 활동 큰절 흔히"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "실현 감소 기법 가상 걱정 무슨 가족 공간 실현 감소 기법 가득"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 흑백"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 강도"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "실장 활동 큰절 흔적 형제 제대로 훈련 한글 실장 활동 큰절 흔적 형제 제대로 훈련 한글 실장 환갑"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "실현 감소 기법 가상 걱정 무슨 가족 공간 실현 감소 기법 가상 걱정 무슨 가족 공간 실현 거액"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 화살"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 가격 계단"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "실장 활동 큰절 흔적 형제 제대로 훈련 한글 실장 활동 큰절 흔적 형제 제대로 훈련 한글 실장 활동 큰절 흔적 형제 제대로 훈련 통로"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "실현 감소 기법 가상 걱정 무슨 가족 공간 실현 감소 기법 가상 걱정 무슨 가족 공간 실현 감소 기법 가상 걱정 무슨 가족 구속"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 힘껏 허용"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "원고 물질 생일 부산 마요네즈 생활 일찍 큰절 동화책 반성 반드시 의식"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "서비스 알코올 오로지 착각 카운터 부근 부정 고양이 허락 비디오 단맛 체온 본인 완전 바람 철학 영하 비닐"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "설렁탕 모범 일곱 민간 낙엽 매스컴 일곱 언어 지진 통장 잠시 국제 설문 복도 생방송 큰딸 약수 목소리 아직 횡단보도 중독 수필 매스컴 실컷"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "제주도 처음 의견 김밥 공부 연출 모델 시장 대합실 원래 시금치 군인"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "소음 큰길 식당 커튼 책임 창구 사흘 다양성 일행 질병 진급 혈액 증가 예산 치약 하룻밤 대한민국 그날"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "월급 보너스 금고 생물 기분 진리 열매 콘서트 에어컨 몸무게 집중 우체국 강제 창고 영혼 분필 모든 심리 소나기 자랑 순서 미디어 삼십 술집"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "나들이 침대 분야 바이러스 첫날 개선 논문 창고 하필 윗사람 저고리 팩스"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "씨름 정도 놀이 훨씬 물결 횡단보도 인천 철저히 학비 킬로 수염 본격적 결심 취업 대한민국 출연 일정 가운데"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "개구리 속담 액수 북한 실내 병아리 소망 같이 관찰 선물 생방송 신용 유난히 운반 남대문 열차 시설 양주 재판 보편적 증세 감기 정오 장미"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "해결 식초 거실 백성 볼펜 중세 냄새 가끔 출근 상인 한번 의심"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "제한 스위치 아프리카 약수 출입 잠수함 잔디 향상 당장 열정 목록 반장 아시아 그토록 선풍기 약간 당장 단순"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "향상 담배 박수 추측 기술 충분히 협력 성적 줄무늬 인체 단위 딸아이 왼손 거짓 조깅 유명 석사 참석 이야기 크림 변동 진급 스케이트 하지만"
+    }
+  ],
+  "spanish": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco abierto"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "ligero vista talar yogur venta queso yacer trozo ligero vista talar zafiro"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "lino admitir bolero abrir álbum dejar acelga aprender lino admitir bolero abogado"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo yodo"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco afición"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "ligero vista talar yogur venta queso yacer trozo ligero vista talar yogur venta queso yacer trozo ligero violín"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "lino admitir bolero abrir álbum dejar acelga aprender lino admitir bolero abrir álbum dejar acelga aprender lino alacrán"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo viejo"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ábaco ancla"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "ligero vista talar yogur venta queso yacer trozo ligero vista talar yogur venta queso yacer trozo ligero vista talar yogur venta queso yacer teatro"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "lino admitir bolero abrir álbum dejar acelga aprender lino admitir bolero abrir álbum dejar acelga aprender lino admitir bolero abrir álbum dejar acelga aumento"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo zurdo varón"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "obra diadema gorila farmacia colgar gorra pausa talar cocina duda dragón optar"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "gráfico madera muro rutina suelo falso favor añadir variar firma casco semana fácil neón don sección morder fingir"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "guion culebra parcela diluir buitre crecer parcela marzo roce tejado picar azafrán guitarra exilio goloso tabla mando curar loco voto reparto insecto crecer lince"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "ración sapo opción brinco árbol mismo cueva lamer cigarro obrero júpiter azufre"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "honor tabique lata sultán sanidad salón gafas carga payaso rostro rojizo vena retrato móvil soplar trabajo cifra balde"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "océano eterno bestia golfo bomba ron moda sur médula danza rueda núcleo agrio salmón morir ficha cuidar linterna higiene pensar iris diario ganso jamón"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "bucle sótano fibra donar seco aire campo salmón trato odio poco tierra"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "llaga pudor candil yate detalle voto papá saxofón tribu talla infiel exponer altivo sonoro cifra solapa pata abuso"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "águila hoyo maldad fértil libertad estilo historia agudo asilo grosor goloso leopardo odisea nueve butaca molde lacio mañana plomo exento rey adicto puño piña"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "urbe lección ajuste enero faena reptil caimán abdomen sobre genio túnel óptica"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "rama jeringa logro mando soldado pezuña pésimo vampiro cerrar mojar cupón dueño llover barro guerra mambo cerrar casero"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "vampiro célula dos simio bono sondeo vencer haz remar papel castor codo nivel alarma rapaz ofensa gripe sagaz otro tabaco esfuerzo rojizo jinete traje"
+    }
+  ],
+  "chinese_simplified": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "的 的 的 的 的 的 的 的 的 的 的 在"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "枪 疫 霉 尝 俩 闹 饿 贤 枪 疫 霉 卿"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "壤 对 据 人 三 谈 我 表 壤 对 据 不"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 逻"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 动"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "枪 疫 霉 尝 俩 闹 饿 贤 枪 疫 霉 尝 俩 闹 饿 贤 枪 殿"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "壤 对 据 人 三 谈 我 表 壤 对 据 人 三 谈 我 表 壤 民"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 裕"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 性"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "枪 疫 霉 尝 俩 闹 饿 贤 枪 疫 霉 尝 俩 闹 饿 贤 枪 疫 霉 尝 俩 闹 饿 搭"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "壤 对 据 人 三 谈 我 表 壤 对 据 人 三 谈 我 表 壤 对 据 人 三 谈 我 五"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 佳"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "蒙 台 脱 纪 构 硫 浆 霉 感 仅 鱼 汤"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "父 泥 炼 胁 鞋 控 载 政 惨 逐 整 碗 环 惯 案 棒 订 移"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "宁 照 违 材 交 养 违 野 悉 偷 梅 设 贵 帝 鲜 仰 圈 首 荷 钩 隙 抓 养 熟"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "伐 旱 泡 口 线 揭 县 杨 断 芳 额 件"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "福 惜 怀 叔 筋 酵 货 科 牙 冒 辈 罩 悬 耕 浇 呵 连 级"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "仪 未 九 茶 队 梯 妇 孤 托 病 泉 贺 产 绘 吹 测 局 碳 征 墨 晶 帮 息 延"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "济 扶 块 言 穗 定 万 绘 姻 逃 颗 焰"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "虑 铺 目 祸 英 钩 尤 添 醇 嘛 触 独 起 赋 连 剪 邦 中"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "而 怕 夏 客 盖 古 松 面 解 谓 鲜 唯 障 烯 共 吴 永 丁 赤 副 醒 分 猛 埔"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "昏 途 所 够 请 乃 风 一 雕 缺 垫 阀"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "瓶 顾 床 圈 倡 励 炭 柄 且 招 价 紧 折 将 乎 硬 且 空"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "柄 需 固 姆 色 斥 霍 握 宾 琴 况 团 抵 经 摸 郭 沙 鸣 拖 妙 阳 辈 掉 迁"
+    }
+  ],
+  "chinese_traditional": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "的 的 的 的 的 的 的 的 的 的 的 在"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "槍 疫 黴 嘗 倆 鬧 餓 賢 槍 疫 黴 卿"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "壤 對 據 人 三 談 我 表 壤 對 據 不"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 邏"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 動"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "槍 疫 黴 嘗 倆 鬧 餓 賢 槍 疫 黴 嘗 倆 鬧 餓 賢 槍 殿"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "壤 對 據 人 三 談 我 表 壤 對 據 人 三 談 我 表 壤 民"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 裕"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 的 性"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "槍 疫 黴 嘗 倆 鬧 餓 賢 槍 疫 黴 嘗 倆 鬧 餓 賢 槍 疫 黴 嘗 倆 鬧 餓 搭"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "壤 對 據 人 三 談 我 表 壤 對 據 人 三 談 我 表 壤 對 據 人 三 談 我 五"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 歇 佳"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "蒙 台 脫 紀 構 硫 漿 黴 感 僅 魚 湯"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "父 泥 煉 脅 鞋 控 載 政 慘 逐 整 碗 環 慣 案 棒 訂 移"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "寧 照 違 材 交 養 違 野 悉 偷 梅 設 貴 帝 鮮 仰 圈 首 荷 鉤 隙 抓 養 熟"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "伐 旱 泡 口 線 揭 縣 楊 斷 芳 額 件"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "福 惜 懷 叔 筋 酵 貨 科 牙 冒 輩 罩 懸 耕 澆 呵 連 級"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "儀 未 九 茶 隊 梯 婦 孤 托 病 泉 賀 產 繪 吹 測 局 碳 徵 墨 晶 幫 息 延"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "濟 扶 塊 言 穗 定 萬 繪 姻 逃 顆 焰"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "慮 鋪 目 禍 英 鉤 尤 添 醇 嘛 觸 獨 起 賦 連 剪 邦 中"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "而 怕 夏 客 蓋 古 松 面 解 謂 鮮 唯 障 烯 共 吳 永 丁 赤 副 醒 分 猛 埔"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "昏 途 所 夠 請 乃 風 一 雕 缺 墊 閥"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "瓶 顧 床 圈 倡 勵 炭 柄 且 招 價 緊 折 將 乎 硬 且 空"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "柄 需 固 姆 色 斥 霍 握 賓 琴 況 團 抵 經 摸 郭 沙 鳴 拖 妙 陽 輩 掉 遷"
+    }
+  ],
+  "french": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abeille"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "implorer visage sonnette voyage véloce pourpre volaille tribunal implorer visage sonnette voyelle"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "indexer acompte bolide abrasif agréable dédale abusif appuyer indexer acompte bolide abolir"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie voter"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser adéquat"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "implorer visage sonnette voyage véloce pourpre volaille tribunal implorer visage sonnette voyage véloce pourpre volaille tribunal implorer vinaigre"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "indexer acompte bolide abrasif agréable dédale abusif appuyer indexer acompte bolide abrasif agréable dédale abusif appuyer indexer agencer"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie viande"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser abaisser anaphore"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "implorer visage sonnette voyage véloce pourpre volaille tribunal implorer visage sonnette voyage véloce pourpre volaille tribunal implorer visage sonnette voyage véloce pourpre volaille studieux"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "indexer acompte bolide abrasif agréable dédale abusif appuyer indexer acompte bolide abrasif agréable dédale abusif appuyer indexer acompte bolide abrasif agréable dédale abusif axiome"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie zoologie valable"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "monument dépenser féroce entasser comédie ferveur optique sonnette codifier discuter dioxyde nerveux"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "fiasco ivoire mardi révulsif signal enlever envahir anormal vaisseau essayer céleste sagesse engager mener différer ruisseau lutter esprit"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "flatteur cultiver oisillon destrier brusque crainte oisillon labourer remède substrat parfumer banquier flèche enclave fémur sombre jongler damier insigne voguer rasage gomme crainte incendie"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "prélude routine négation brasier arlequin logique cuivre hiberner cirque moqueur halte barque"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "froid soluble horde sinistre rouge rocheux exiler causer orbite résineux renfort vaste récolter maison serrure tonique cirer bélier"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "mouche embryon bison femme bondir renvoi louer social largeur déborder rétablir miracle adresse rivière machine époque culminer indice frégate ouvrage gourmand déposer exulter grappin"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "brochure sextuple épisode digérer ruser affecter cantine rivière torse muscle permuter talisman"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "informer poivre capable volcan dénicher voguer offenser ruiner tragique sortir glace enduire allouer serein cirer semaine opportun abriter"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "adverbe fuite jaune épaule imbiber éluder frémir adulte attentif filou fémur idylle muséum mobile bureau loyal hélium jugement péplum encadrer rédiger acier posséder pavillon"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "ultrason hublot agacer éclore englober ravin caféine abandon séduire farfelu tropical nettoyer"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "prétexte grogner instinct jongler sembler paresse papier vaillant chenille louve cynique dissiper inoculer besogne flairer jeunesse chenille cellule"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "vaillant chance dimanche sécable bonus séparer vecteur forcer raideur officier censurer cohésion meuble agiter prison mutation filière rincer novice solitude élargir renfort gronder tornade"
+    }
+  ],
+  "italian": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abete"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "mimosa vita sussurro zinco vero saltare zattera ulisse mimosa vita sussurro zircone"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "misurare afoso bravura accadere alogeno dottore acrilico arazzo misurare afoso bravura abisso"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zerbino"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco agitare"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "mimosa vita sussurro zinco vero saltare zattera ulisse mimosa vita sussurro zinco vero saltare zattera ulisse mimosa virulento"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "misurare afoso bravura accadere alogeno dottore acrilico arazzo misurare afoso bravura accadere alogeno dottore acrilico arazzo misurare allievo"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa vile"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco abaco angelo"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "mimosa vita sussurro zinco vero saltare zattera ulisse mimosa vita sussurro zinco vero saltare zattera ulisse mimosa vita sussurro zinco vero saltare zattera tarpare"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "misurare afoso bravura accadere alogeno dottore acrilico arazzo misurare afoso bravura accadere alogeno dottore acrilico arazzo misurare afoso bravura accadere alogeno dottore acrilico baco"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa zuppa vedetta"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "pesista educare imballo formica curvo imbevuto raddoppio sussurro croce eppure epilogo poligono"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "immolato mummia oviparo sigla stirpe fonetico fosso appetito vasca galoppo cigno solubile foderato pargolo enduro sociale ormeggio galateo"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "infatti dire pudica elica camola deposito pudica nobile servire taverna restauro baritono inflitto flacone ilare suonare nastrare dito montato vulcano scrutinio lisca deposito mirtillo"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "sarto smottato podismo burlone aria omissione dipolo marmo coricato peso malto basso"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "italia sultano meccanico strappo smeraldo sipario gommone chimera raffica sforzato sfamato vendemmia segnalato oscurare staffa trio cordata benda"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "piacere feudo bisonte ignorato brevetto sfida onorevole stufo nulla docente sfuso perbene albo sinusoide orologio fulmine diradare mitezza iride rata londra egoismo gravoso luce"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "calmo statuto fucsia energia sodale aliante cedibile sinusoide trovare pila rinnovo tiro"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "modulo rubizzo cefalo zavorra economia vulcano prudente soccorso tuta svedese limitare fluente amico srotolato cordata sportivo querela accusato"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "alcolico lacrima muto frigo michele fessura irrigato alce ateismo incendio ilare metallo pilifero pergamena canotto opposto manovra nemmeno rimorchio fisico selettivo aforisma sabotato riciclato"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "utopia melodia allegro evoluto folata scuola carisma abbaglio spillato guanto unificato pollice"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "satira lusinga mordere nastrare sposo responso replica varcato colza opinione distanza erario monetario bici india narice colza cilindro"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "varcato codice enzima spessore brillante squillo vento insieme scoprire prugna circa cruciale peccato allusivo savio pilota inarcare simulato precluso sugo fegato sfamato lusso trono"
+    }
+  ],
+  "czech": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace agrese"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "obrazec znak uznat zubovina zeman skupina zrcadlo vzchopit obrazec znak uznat zubr"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "obvinit bageta doma amputace bidlo jedle arogance butik obvinit bageta doma akce"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zticha"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace balonek"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "obrazec znak uznat zubovina zeman skupina zrcadlo vzchopit obrazec znak uznat zubovina zeman skupina zrcadlo vzchopit obrazec zmije"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "obvinit bageta doma amputace bidlo jedle arogance butik obvinit bageta doma amputace bidlo jedle arogance butik obvinit bezinka"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zlehka"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace abdikace branka"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "obrazec znak uznat zubovina zeman skupina zrcadlo vzchopit obrazec znak uznat zubovina zeman skupina zrcadlo vzchopit obrazec znak uznat zubovina zeman skupina zrcadlo veskrze"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "obvinit bageta doma amputace bidlo jedle arogance butik obvinit bageta doma amputace bidlo jedle arogance butik obvinit bageta doma amputace bidlo jedle arogance cihla"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zvyk zavolat"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "pokoj jogurt malovat kroupa holub malvice rachot uznat hnout kasa karamel potupa"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "masakr odtok pijavice tajga upravit krmelec krvinka buditel zavinit lakomec flirt traktor kresba plevel kapitola tlupa paseka ladnost"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "migrace iluze pukavec kaktus drogerie hrobka pukavec onehdy suchar veterina rorejs cukr mihule koza makovice uvozovka oklika inzerce odhadce zprudka spousta namluvit hrobka obsluha"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "sledovat ticho potkan dotaz carevna pahorek ihned nikterak hematom pokrok neochota cvik"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "most uvolnit novota usmrtit terapie tehdy litovat filozof radon svrab surovina zdivo stanice pejsek ukrojit vymizet helma decibel"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "poloha koruna dobytek makak domluvit svatba paluba utahovat orlice jakost sypat podvod barva technika pastelka kurt ikona obvod mokro recept napnout kabel lord nasadit"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "drak uniforma kuna kapka tmel bedna evoluce technika vypustit popadat rychlost vodstvo"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "ochladit silnice exkurze zrnitost jiskra zprudka pstruh tlukot vytasit valoun najisto kralovat bobek uklidnit helma ubytovna pysk andulka"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "bavlna mozaika ofsajd kukla obliba kormidlo monarcha batoh chmura mdloba makovice obilnice popel pohnutka duchovno panika neuron okupant rukavice kouzlo stehno badatel sklenice rozchod"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "zajet nutrie beton kobyla kriket sranda elektron abeceda uboze lump vzorek potvora"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "slezina navzdory odjinud oklika ucho ropucha rohovka zavalit graf panenka invalida katedra odebrat deska metoda ohryzek graf flotila"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "zavalit genetika kapusta tvrdost dopad ujmout zdobit mistr splav ptactvo fosfor hoch pocit beztak slon poplach mazivo tancovat pravda uvalit konkurs surovina nazvat vypadat"
+    }
+  ],
+  "portuguese": [
+    {
+      "entropy": "00000000000000000000000000000000",
+      "mnemonic": "abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abater"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "imitador vinheta sogro xerife veleiro pomar volumoso tratador imitador vinheta sogro xingar"
+    },
+    {
+      "entropy": "80808080808080808080808080808080",
+      "mnemonic": "inalador acirrar barulho abotoar afivelar coruja abutre amostra inalador acirrar barulho abduzir"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffff",
+      "mnemonic": "zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido xeque"
+    },
+    {
+      "entropy": "000000000000000000000000000000000000000000000000",
+      "mnemonic": "abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate acumular"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "imitador vinheta sogro xerife veleiro pomar volumoso tratador imitador vinheta sogro xerife veleiro pomar volumoso tratador imitador viga"
+    },
+    {
+      "entropy": "808080808080808080808080808080808080808080808080",
+      "mnemonic": "inalador acirrar barulho abotoar afivelar coruja abutre amostra inalador acirrar barulho abotoar afivelar coruja abutre amostra inalador afastar"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido viaduto"
+    },
+    {
+      "entropy": "0000000000000000000000000000000000000000000000000000000000000000",
+      "mnemonic": "abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate abacate alinhar"
+    },
+    {
+      "entropy": "7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f",
+      "mnemonic": "imitador vinheta sogro xerife veleiro pomar volumoso tratador imitador vinheta sogro xerife veleiro pomar volumoso tratador imitador vinheta sogro xerife veleiro pomar volumoso sucata"
+    },
+    {
+      "entropy": "8080808080808080808080808080808080808080808080808080808080808080",
+      "mnemonic": "inalador acirrar barulho abotoar afivelar coruja abutre amostra inalador acirrar barulho abotoar afivelar coruja abutre amostra inalador acirrar barulho abotoar afivelar coruja abutre asilado"
+    },
+    {
+      "entropy": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "mnemonic": "zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido zumbido validade"
+    },
+    {
+      "entropy": "9e885d952ad362caeb4efe34a8e91bd2",
+      "mnemonic": "mexicano crosta farpa empolgar chatice fartura olaria sogro centeio defesa dedal multar"
+    },
+    {
+      "entropy": "6610b25967cdcca9d59875f5cb50b0ea75433311869e930b",
+      "mnemonic": "fazenda invasor magreza repolho separado emenda enchente amassar valente enxerto cachorro roteiro eliminar marinho deboche rodovia locutor envolver"
+    },
+    {
+      "entropy": "68a79eaca2324873eacc50cb9c6eca8cc68ea5d936f98787c60c7ebc74e6ce7c",
+      "mnemonic": "filho comentar obrigado cunhado biologia clone obrigado julgador rebolar sufixo pacote atingir filtrar edital fardado siri janta conhecer inibido vogal quiosque genoma clone impor"
+    },
+    {
+      "entropy": "c0ba5a8e914111210f2bd131f3d5e08d",
+      "mnemonic": "pote ringue muda benzer andaime levitar comando guloso carreira micro grilo atracar"
+    },
+    {
+      "entropy": "6d9be1ee6ebd27a258115aad99b7317b9c8d28b6d76431c3",
+      "mnemonic": "frieza sirene hibernar setembro rigidez retalho exagero cabana oliveira refugiar recrutar vazar ramal lousa segmento tocha carpete autoria"
+    },
+    {
+      "entropy": "9f6a2878b2520799a44ef18bc7df394e7061a224d2c33cd015b157d746869863",
+      "mnemonic": "mimado drible baioneta fantoche bastante redonda ligeiro simpatia lamber copeiro reitor mensagem adeus resumir lombo enraizar combinar inapto fosco orfanato gincana cubano exibir global"
+    },
+    {
+      "entropy": "23db8160a31d3e0dca3688ed941adbf3",
+      "mnemonic": "bifocal semanal enlatar debulhar roedor adquirir branco resumir tora modular patrono tangente"
+    },
+    {
+      "entropy": "8197a4a47f0425faeaa69deebc05ca29c0a5b5cc76ceacc0",
+      "mnemonic": "indeciso pires braveza vontade criada vogal nutrir rodeio toxina soletrar gelo elaborar ajudar sediado carpete sarjeta oficina abreviar"
+    },
+    {
+      "entropy": "066dca1a2bb7e8a1db2832148ce9933eea0f3ac9548d793112d9a95c9407efad",
+      "mnemonic": "adjetivo fugir irritado engenho iluminar dourado fralda aditivo aprovar ferrugem fardado ignorado moeda mesada bisneto linda guache jejum pastel ecologia rapel acionado pneu palmada"
+    },
+    {
+      "entropy": "f30f8c1da665478f49b001d94c5fc452",
+      "mnemonic": "turbo hoje aeronave diagrama embargo rachar bochecha abaixo sanidade extinto tridente mundial"
+    },
+    {
+      "entropy": "c10ec20dc3cd9f652c7fac2f1230f7a3c828389a14392f05",
+      "mnemonic": "povoar gorjeta injetar janta saturar paciente ovelha vaidoso cancelar limpador confuso degelo inflamar avisar ficheiro italiano cancelar cacique"
+    },
+    {
+      "entropy": "f585c11aec520db57dd353c69554b21a89b20fb0650966fa0a9d6f74fd989d8f",
+      "mnemonic": "vaidoso calota decote sambar batida seda vazio flora queda nuvem cadeado certeiro matinal afetivo praxe moinho feno resgatar nervoso sintonia dobrador recrutar gorro tonel"
+    }
+  ]
+}

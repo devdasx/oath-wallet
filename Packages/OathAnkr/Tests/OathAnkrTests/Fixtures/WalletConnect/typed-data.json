@@ -1,0 +1,194 @@
+[
+  {
+    "name": "official-mail",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Person\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"wallet\",\"type\":\"address\"}],\"Mail\":[{\"name\":\"from\",\"type\":\"Person\"},{\"name\":\"to\",\"type\":\"Person\"},{\"name\":\"contents\",\"type\":\"string\"}]},\"primaryType\":\"Mail\",\"domain\":{\"name\":\"Ether Mail\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"from\":{\"name\":\"Cow\",\"wallet\":\"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826\"},\"to\":{\"name\":\"Bob\",\"wallet\":\"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB\"},\"contents\":\"Hello, Bob!\"}}",
+    "digest": "0xbe609aee343fb3c4b28e1df9e632fca64fcfaede20f02e86244efddf30957bd2",
+    "signature": "0xbf1f6c2e4894fbba878ab2bfb313e30cbd0dc307d26c0d168198463565a43fcd3b715279d6147d0d20e94815f93542219be9f880fc2c145f3913e2028ee5ccf21b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "uint8",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"uint8\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"255\"}}",
+    "digest": "0x1fb80a80e1788104600fa86bd09d6575a3ab0475c1681be3a4f21be8c09948cf",
+    "signature": "0x9cb7f3d64bf4f06e6c53ffffb7276c524e56ab9442675e7f3e7dba040de66fbc7a3c4a5e129748cb6f9e581f814fec86fbcd6fa684d8c29be80c14a7afee7dd41c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int8-min",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int8\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"-128\"}}",
+    "digest": "0x491067bc40015f20e412b458d153cc4a90681cf365a7aade6500f47621762099",
+    "signature": "0x71caae9cda870c6de0f4d179f8183fc0e60f4b4b0336f154cc2b7b5d77a0c251517278179c4dc3160d697fb00df66aa0fb2b6fe41c24c6a97f349b711b043b471b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int8-max",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int8\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"127\"}}",
+    "digest": "0x606d9c24a09e00820e9e4f7b59f67a19c4a0feac79fea9b925dbb85396dd8799",
+    "signature": "0x87191c047c14b9d89274614530cb1e3daa2dce166fbd41a68ba1754e166c8d285ebdf46072174bfdce0fc89518b0e6988248f6c8c4b0ab136625442272c05c451c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "uint16",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"uint16\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"65535\"}}",
+    "digest": "0x259e87ee24c2543391a76ca96fa18cd9f8e69fa133ef3dc5fa01de7e01785ac5",
+    "signature": "0xa5c5ca75a52b15e2ef30395476b17c6281dc3a313700dd01e93c4e16b98efb816268ccf13bf275f0991c1d85d69c0645f720d517d2e5ec4fa2a14623f77a25ee1c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int16-min",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int16\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"-32768\"}}",
+    "digest": "0x0626192e2749084aea527000eb61fd16e84354420e5b326c66e2da33f200a024",
+    "signature": "0x960b8927c657850699c5408043dc24fb8b34597cf8ec4d6484fb851dcc4365ec06e256833aef6d5bd6bac8ca3f550feabff8dfbd29094152fc7560ef1ac3c8211b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int16-max",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int16\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"32767\"}}",
+    "digest": "0x27659e71984dc956dd3a5016a8a383d3be37ecc892fd2d4a24135ef26c2f5bbe",
+    "signature": "0x4ed0e96fedaf9cf5a4049dc0c46c21b07f6ce0eed3a14fb8cd65e4671a3ddc553b96ff0b17471fd9bebd7cf73eab1bf3320cf500669ca3f5a9e8b3a86c69a43c1c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "uint48",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"uint48\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"281474976710655\"}}",
+    "digest": "0x5907cc84318f9f2d02e8e06f3fdd245b637c5972330676bb79d44aef4dc1896e",
+    "signature": "0x4184f8d6defe8fd26ffbf81fbded1ed8b6b4bdf0d42dc439417ed99834b7cd7d7361c01d02ea132fae50ab4bfdb9693cd90147bb4c1d138c8d590c9c0a8ae0eb1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int48-min",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int48\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"-140737488355328\"}}",
+    "digest": "0x2d38d7bc51117eb586597d57cab3b9e3e73087a5211a2f72b3f8c277045a4d2b",
+    "signature": "0x14bb8d5b807edf7b51aa0cb08f95b9b3cfaec7d0a2c954520ec29fe7f7024a6e7f109c3d5250bf7e12b1869cc70bcf1d1bbe4b9a190ca31099ef9ff6b1c5a13d1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int48-max",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int48\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"140737488355327\"}}",
+    "digest": "0x5e723fc18864f87e995236bbe3c761b106e18099bd7f5cd31138f88077dfba28",
+    "signature": "0x76666889f70d70217b1f0cf6006c475e4be349c716e80ede7280b8850df3ca6255f8ce62fffb0f476782972df83e95a8e54adab1ab06d70f841060b12f3a49db1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "uint160",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"uint160\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"1461501637330902918203684832716283019655932542975\"}}",
+    "digest": "0x15524adcd9878e9b9f2ba5292c891cc7fffe56edd03838b31d51b75f354802b4",
+    "signature": "0x297d736f2225b3bc5859e8618ae1f4c25d09d79195d8bdc3eb909bb72f05d4e50a26aeeedd505580d4259fce61f848e5a5b4f1fecd24187b78221cbe2b3144041c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int160-min",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int160\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"-730750818665451459101842416358141509827966271488\"}}",
+    "digest": "0x6a11e6b16c3deee0b9f9dee9b96e15d05821bf2589e2d307aa4541fbf69fa79e",
+    "signature": "0xdc2fb0cd14783b31952289684a2811226d2127ee30ab0cafa28229f7b154f6f41b665dc4285787fd6d52caa0dc99256c70e3d79e2f307f7abfc7c2f46813f7981c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int160-max",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int160\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"730750818665451459101842416358141509827966271487\"}}",
+    "digest": "0xb660b0d6f6c523cc8713bf55d7eda74f7c18e5d4ccff90f33ef8b1b1b8a0475e",
+    "signature": "0x0a336f893d7bcf25aedc91f04a47ca6352e34c69033a9dd4fd41fdf899db685c5dee741083f3b6d16d235e6164a6d9bdb868581685012f2b05b9fe8080dcc1b01b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "uint256",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"uint256\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"115792089237316195423570985008687907853269984665640564039457584007913129639935\"}}",
+    "digest": "0x0d5221e795f138d1ea65f5cd5dc99b765d8cd97859a61fc814dcf8a446b51426",
+    "signature": "0x559cae41987c1728cbdcfafd4574154746b9d6fe6e2b064cac2f95cb031162964544383fa213fa5bf0bbb952d3a4a23c1b026f296f172c047e1e0f9a58bbd6bd1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int256-min",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int256\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"-57896044618658097711785492504343953926634992332820282019728792003956564819968\"}}",
+    "digest": "0x6cf1ae05b44f802900eacdf22690905a326dc36ecaff6b6a1d83c8c3b468f176",
+    "signature": "0xe359f8b9cd29997e688c472aba2e37430b0627d752cea25e9c77f176a9676bc94193c6a0bff91a7885835a1b3c1515188892c93515142bdd689debbbe98217821c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "int256-max",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"int256\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":\"57896044618658097711785492504343953926634992332820282019728792003956564819967\"}}",
+    "digest": "0x7e040d133a75cedcd5e0b13c4e521110d2d0abb00ac27d80d8cc8a9db89c58d5",
+    "signature": "0x02c665c59620f8e33b61d11b5ce8c3b08699467ef7af9254d07333fe4b84361d7ed5e70c78183d81be1beca351aadec675d04ae339c922538126fe52df5d316a1c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "uint256-json-literal",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"value\",\"type\":\"uint256\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"value\":115792089237316195423570985008687907853269984665640564039457584007913129639935}}",
+    "digest": "0x0d5221e795f138d1ea65f5cd5dc99b765d8cd97859a61fc814dcf8a446b51426",
+    "signature": "0x559cae41987c1728cbdcfafd4574154746b9d6fe6e2b064cac2f95cb031162964544383fa213fa5bf0bbb952d3a4a23c1b026f296f172c047e1e0f9a58bbd6bd1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "atomic",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Value\":[{\"name\":\"binary\",\"type\":\"bytes\"},{\"name\":\"empty\",\"type\":\"bytes\"},{\"name\":\"fixed\",\"type\":\"bytes4\"},{\"name\":\"flag\",\"type\":\"bool\"},{\"name\":\"other\",\"type\":\"bool\"},{\"name\":\"text\",\"type\":\"string\"}]},\"primaryType\":\"Value\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"binary\":\"0x1234ff\",\"empty\":\"0x\",\"fixed\":\"0x01020304\",\"flag\":true,\"other\":false,\"text\":\"عربي 🌍‮content\"}}",
+    "digest": "0x7745abf90edb5566c8364e15d0390b4d2686f243960ad9bae6ee34d110579502",
+    "signature": "0x317f44cb8106b11876bb97664325fe53c94409a7b1237fb94bcac8497e458896360a9c5b6638fc19a98eb580e9d9582cc8bcfbcf061f259be9b2207ac0ca053c1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "arrays",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Item\":[{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"label\",\"type\":\"string\"}],\"Basket\":[{\"name\":\"items\",\"type\":\"Item[]\"},{\"name\":\"grid\",\"type\":\"int16[2][]\"},{\"name\":\"labels\",\"type\":\"string[]\"},{\"name\":\"empty\",\"type\":\"bytes32[]\"}]},\"primaryType\":\"Basket\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"items\":[{\"value\":\"123\",\"label\":\"First\"},{\"value\":\"456\",\"label\":\"Second\"}],\"grid\":[[-32768,32767],[0,-1]],\"labels\":[\"one\",\"two\"],\"empty\":[]}}",
+    "digest": "0xc3370fa4aa650fe38e8078e9f2d089f7599058c30970e895e47757e0ff7fa344",
+    "signature": "0xa5937b46d993f537ad6ae875df54f66a6c6be7e7aa9c76bda7e40a99d235611f008625b832695caa395e11e39ae4262be12ce21514244ad203a25251c30193da1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "empty-domain",
+    "json": "{\"types\":{\"EIP712Domain\":[],\"Value\":[{\"name\":\"value\",\"type\":\"uint256\"}]},\"primaryType\":\"Value\",\"domain\":{},\"message\":{\"value\":\"5\"}}",
+    "digest": "0xcf0e1c1810d2da765c3fa1e64057f4052cc64b9fd019a6d33e529a321def0919",
+    "signature": "0x4b9913d3c3f86296a4a3a35c0fe332609833eab7d5f8dbd3c53a4c787dd89a0a74a689c33fc25f8f9349174f2c2540e24e1d75ecb008b490eb515401ff7e0d6c1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "salt",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"salt\",\"type\":\"bytes32\"}],\"Value\":[{\"name\":\"value\",\"type\":\"address\"}]},\"primaryType\":\"Value\",\"domain\":{\"chainId\":1,\"salt\":\"0xabababababababababababababababababababababababababababababababab\"},\"message\":{\"value\":\"0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1\"}}",
+    "digest": "0x3ca1b4dff1ea2656bdf468823f950a17db530900300a695d61ac52c4481d8e01",
+    "signature": "0x35b5422229e32b896a5fac7b8e9739664ec81f56eac6eb08ea31e4dfe87c7d022a12afd12503a40148858eee31b58d7fd19772ddf291328de72bced6efbde12d1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "permit",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"version\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"Oath EIP712 Tests\",\"version\":\"1\",\"chainId\":1,\"verifyingContract\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\"},\"message\":{\"owner\":\"0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1\",\"spender\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\",\"value\":\"100000000\",\"nonce\":\"7\",\"deadline\":\"2000000000\"}}",
+    "digest": "0xe5e48ae61d64fd7eedbef07e846b8337a68cc50166a958272e7a261247fdaee4",
+    "signature": "0x44fd84f7f8496236ad81ebbc7bd10e25f5c7327675a26cf7226e9f4c4592808765b2888ad0cab6f1406c09060de4795195ff37d13a3c0aeb67aada6f0871bc221c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "permit2-allowance",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"PermitDetails\":[{\"name\":\"token\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint160\"},{\"name\":\"expiration\",\"type\":\"uint48\"},{\"name\":\"nonce\",\"type\":\"uint48\"}],\"PermitSingle\":[{\"name\":\"details\",\"type\":\"PermitDetails\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"sigDeadline\",\"type\":\"uint256\"}]},\"primaryType\":\"PermitSingle\",\"domain\":{\"name\":\"Permit2\",\"chainId\":1,\"verifyingContract\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"message\":{\"details\":{\"token\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\",\"amount\":\"1000000\",\"expiration\":\"2000000100\",\"nonce\":\"4\"},\"spender\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\",\"sigDeadline\":\"2000000000\"}}",
+    "digest": "0xc4ba947dc0a745c7317f38c8459c7662ef62e55629af12fa625b3ab07d57b86a",
+    "signature": "0x9664e269812c4344b5ec0500b2f8351bcf3f00e1a95fd27cb09d9961edcee92e30cd939b41e4074f13e3571e107a6db24474e5fc01d550ecb2d0a2ab1e5455ef1b",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  },
+  {
+    "name": "permit2-transfer",
+    "json": "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"TokenPermissions\":[{\"name\":\"token\",\"type\":\"address\"},{\"name\":\"amount\",\"type\":\"uint256\"}],\"PermitTransferFrom\":[{\"name\":\"permitted\",\"type\":\"TokenPermissions\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"PermitTransferFrom\",\"domain\":{\"name\":\"Permit2\",\"chainId\":1,\"verifyingContract\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"message\":{\"permitted\":{\"token\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\",\"amount\":\"1000000\"},\"spender\":\"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC\",\"nonce\":\"4\",\"deadline\":\"2000000000\"}}",
+    "digest": "0x1fd231cfcc87b71fef3833119b9a007a52ab2f4530cb7b5468c83c2bed7e4215",
+    "signature": "0x41916bd2de513b34031616116ae8ca738a78d43b867b5a9e6ba262364f6f6e102d08c2f63a62ee240e067975d56692b3fc1abcf8f755bc229cf22b6970492c081c",
+    "account": "0x1a642f0E3c3aF545E7AcBD38b07251B3990914F1",
+    "chainId": 1
+  }
+]

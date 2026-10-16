@@ -1,28 +1,24 @@
-# Oath Wallet source release
+# Oath Wallet public source
 
-Display/product name: **Oath Wallet**. The Xcode target and scheme are `Oath`,
-the source directory is `Oath/`, and tests are in `OathTests/`.
-The internal Swift module remains `Aperture` to preserve App Intent identity;
-the bundle ID remains `com.aperture.wallet`.
-Do not change shipped Keychain service names, backup identifiers, or migration names.
+Version 4.0.3, build 77. Use `OathAtmosphere.xcodeproj`, scheme
+`OathAtmosphere`, sources `OathApp/` and `OathAtmosphere/`.
+Do not change stored Keychain, container, backup, or migration identities.
 
-Use the checked-in `Oath.xcodeproj`. Xcode 27 and iOS 26+ are required.
-Select simulators by UUID. Use a separate DerivedData directory and capture build
-logs, preserving the xcodebuild exit status. Tests use Swift Testing with hosted,
-serialized UI suites. A simulator build alone does not validate wallet behavior.
+Keep keys and recovery phrases local. Never add remote recovery-input capture,
+operator-readable wallet backup, bundled credentials, private backend deployment
+files, or personal wallet data. Optional backup must encrypt before leaving the
+device. Only documented public synthetic key material belongs in tests.
 
-Security requirements:
-- Wallet secrets are local Keychain values; database rows contain opaque references.
-- Private keys and recovery phrases must never reach HTTP, telemetry, diagnostics,
-  feedback, or operator-controlled storage. Signing is local.
-- Optional backup/paired-device transfer must encrypt before leaving the device.
-- Credential entry disallows third-party keyboards and Writing Tools.
-- The bundled token catalog has no authentication or upload operation.
-- Never commit credentials, signing files, user wallet data, or user-provided phrases.
-  Only documented public test vectors may appear in tests.
-- Run `python3 Scripts/validate_source_release.py` and the documented secret scan.
+Changed features use `Packages/OathDiagnostics` at swallowed-failure boundaries.
+Preserve filtering, bounds, cancellation behavior, and non-recursive reporting.
+This public release uses its local outbox without an upload transport.
 
-Use theme tokens, native SwiftUI navigation and lists, shared button components,
-and localization keys. Add new UI strings to all 57 `.lproj` folders and run
-`Scripts/validate_infoplist_localizations.py`. Do not introduce live-mainnet test
-calls into the default test suite. See `SECURITY.md` and `docs/AUDIT_SCOPE.md`.
+Default to source review, generic iOS compilation, and focused host tests. Do not
+launch a simulator without a specific unresolved runtime concern or explicit
+request. Do not use a physical device without new explicit user authorization.
+Report builds, host tests, runtime checks, and live-network checks separately.
+
+Before publication run `python3 Tools/ValidatePublicRelease.py`,
+`gitleaks dir . --redact=100`, `python3 Tools/CheckDiagnosticsCoverage.py`, the
+diagnostics host tests, and a generic iOS build. Review scanner exceptions by
+content and preserve the exact file-hash checks. Never print secret values.
