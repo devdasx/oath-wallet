@@ -35,8 +35,24 @@ build has no diagnostic upload transport or operator endpoint. Optional encrypte
 iCloud backup is separate from diagnostics and requires your own Apple capability
 configuration. Never put real wallet material in tests, issues, or support reports.
 
-The source release is not a claim of reproducible equivalence to an App Store
-binary, an App Store submission, or an independent security audit.
+## App Store source correspondence
+
+As of October 19, 2026, Oath's maintainers confirm that the App Store release
+corresponds to the source published in this repository. This is a maintainer
+statement about source correspondence; the public-source boundaries and
+configuration requirements documented above and below still apply.
+
+This statement is distinct from an independently reproduced, byte-for-byte
+comparison of an App Store download. No new binary comparison, independent
+reproducibility report, or security audit is supplied by this README update.
+A successful source build, Apple approval, or GitHub's Verified signature badge
+is not by itself proof of source-to-store equivalence. Archived release notes
+retain the scope of the checks documented when those releases were published.
+
+For an independently verifiable claim, look for the exact app version and build,
+source commit, toolchain, compared artifacts, method, exclusions, and result.
+Read the [Reproducible Builds definition](https://reproducible-builds.org/docs/definition/)
+for the distinction between source availability and reproducible output.
 
 ## Build
 
