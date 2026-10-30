@@ -42,6 +42,10 @@ This source release has no operator endpoint for wallet credentials, recovery ty
 
 Source: [local EVM signing](https://github.com/devdasx/oath-wallet/blob/e98eba14186da8afe21c46fb9466afd464f498e1/OathAtmosphere/Wallet/OathEVMSigning.swift), [send service](https://github.com/devdasx/oath-wallet/blob/e98eba14186da8afe21c46fb9466afd464f498e1/OathAtmosphere/Send/OathEVMSendService.swift), and [WalletConnect details](https://github.com/devdasx/oath-wallet/blob/e98eba14186da8afe21c46fb9466afd464f498e1/Documentation/WalletConnectReadableDetails.md).
 
+## Copying recovery material
+
+Explicit copies of recovery phrases, private keys and passphrases stay on the current device and expire from the system clipboard after 60 seconds. Information already pasted into another app is outside that expiry. Ordinary address and transaction-ID copies keep standard clipboard behavior. [Clipboard policy](https://github.com/devdasx/oath-wallet/blob/main/OathAtmosphere/Shared/OathSensitiveClipboard.swift).
+
 ## Recovery limits
 
 The 4.1.14 source does not provide Silent Payments receiving or discovery, the former nearby-iPhone transfer flow, or dice/coin/digit wallet creation. Its Bitcoin receive options depend on the imported material. Aezeed recovery covers supported on-chain Bitcoin branches, not Lightning channels or arbitrary custom LND accounts. Do not erase an older wallet until a supported recovery method reproduces its intended accounts. Never fund a public tutorial phrase or an example address.

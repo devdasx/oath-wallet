@@ -38,7 +38,7 @@ Source: [backup format](https://github.com/devdasx/oath-wallet/blob/dd334ee70f32
 
 ## Explicit clipboard copies
 
-Version 4.1.5 keeps deliberately copied values on the system clipboard until they are replaced. Copies no longer expire after 60 seconds. This does not copy wallet secrets automatically; export and Copy remain explicit user actions. Replace sensitive clipboard contents after use.
+Recovery phrases, private keys and passphrases are copied only after an explicit user action. These secret copies stay on the current device and use the system pasteboard’s 60-second expiry; they are excluded from Universal Clipboard. Public addresses and transaction identifiers retain ordinary clipboard behavior. Expiry cannot revoke information already pasted into another app.
 
 ## Network and diagnostic boundaries
 

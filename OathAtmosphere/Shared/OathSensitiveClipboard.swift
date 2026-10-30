@@ -3,8 +3,7 @@ import UIKit
 @MainActor enum OathClipboard {
     static func copy(_ value: String) {
         guard !value.isEmpty else { return }
-        // Explicit copies participate in Apple's Universal Clipboard (Handoff).
-        // Oath never expires or clears copied content, including during reset.
+        // Public addresses and transaction identifiers can use Universal Clipboard.
         UIPasteboard.general.setItems([[UIPasteboard.typeAutomatic: value]], options: [.localOnly: false])
         OathHaptics.shared.play(.copy)
     }
@@ -19,9 +18,14 @@ import UIKit
     }
 }
 
-/// Secret copies follow the same user-controlled lifetime as every other copy.
+/// Explicit secret copies stay on this device and expire through the system pasteboard.
 @MainActor enum OathSensitiveClipboard {
     static func copy(_ value: String) {
-        OathClipboard.copy(value)
+        guard !value.isEmpty else { return }
+        UIPasteboard.general.setItems(
+            [[UIPasteboard.typeAutomatic: value]],
+            options: [.localOnly: true, .expirationDate: Date.now.addingTimeInterval(60)]
+        )
+        OathHaptics.shared.play(.copy)
     }
 }

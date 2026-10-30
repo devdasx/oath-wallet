@@ -37,10 +37,16 @@ import UIKit
         for value in ["synthetic-not-a-recovery-phrase", "synthetic-not-a-private-key", "  Synthetic Passphrase\t "] {
             let reads = board.reads
             let feedbackCount = OathHaptics.shared.events.count
+            let beforeCopy = Date.now
             OathSensitiveClipboard.copy(value)
+            let afterCopy = Date.now
             check(board.items.first?[UIPasteboard.typeAutomatic] as? String == value, "Sensitive text was modified")
-            check(board.options[.localOnly] as? Bool == false, "Sensitive copy blocks Handoff")
-            check(board.options[.expirationDate] == nil, "Sensitive copy must not expire")
+            check(board.options[.localOnly] as? Bool == true, "Sensitive copy must stay on this device")
+            guard let expiry = board.options[.expirationDate] as? Date else {
+                preconditionFailure("Sensitive copy requires system expiry")
+            }
+            check(expiry >= beforeCopy.addingTimeInterval(60) && expiry <= afterCopy.addingTimeInterval(60),
+                  "Sensitive copy must expire 60 seconds after copying")
             check(!board.contains(pasteboardTypes: [marker]), "Sensitive copy must not carry a reset-clearing marker")
             check(board.reads == reads, "Copy read existing clipboard text")
             check(OathHaptics.shared.events.count == feedbackCount + 1 && OathHaptics.shared.events.last == .copy, "Sensitive copy feedback duplicated or missing")
@@ -55,6 +61,7 @@ import UIKit
         OathClipboard.copy(publicValue)
         check(board.items.first?[UIPasteboard.typeAutomatic] as? String == publicValue, "Explicit copy did not replace previous content")
         check(board.options[.expirationDate] == nil, "Public copy inherited previous expiry")
+        check(board.options[.localOnly] as? Bool == false, "Public copy inherited secret device restriction")
 
         board.items = [[UIPasteboard.typeAutomatic: "synthetic-copy-from-another-app"]]
 

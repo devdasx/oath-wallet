@@ -11,7 +11,7 @@ import tempfile
 root = Path(__file__).resolve().parents[1]
 clipboard = root / "OathAtmosphere/Shared/OathSensitiveClipboard.swift"
 
-# Every explicit app copy must inherit the shared non-expiring Handoff policy.
+# Every explicit app copy must pass through a reviewed clipboard policy.
 for folder in (root / "OathAtmosphere", root / "OathApp", root / "Packages"):
     for path in folder.rglob("*.swift"):
         if path == clipboard or path.name.startswith("._") or any(part in path.parts for part in (".build", "Tests")):
@@ -22,7 +22,12 @@ for folder in (root / "OathAtmosphere", root / "OathApp", root / "Packages"):
         )
 
 source = clipboard.read_text()
-assert "expirationDate" not in source and "clearIfOwned" not in source
+# Secrets must never be routed through the public cross-device copy helper.
+for name in ("OathRecoveryPhrasePages.swift", "OathPrivateKeyPages.swift"):
+    screen = (root / "OathAtmosphere/Home" / name).read_text()
+    assert "OathSensitiveClipboard.copy(" in screen, f"Missing secret-copy policy: {name}"
+    assert "OathClipboard.copy(" not in screen, f"Public-copy policy used on secret screen: {name}"
+assert "clearIfOwned" not in source, "Use system expiry rather than a timer that could clear a newer copy"
 assert "general.items =" not in source and "general.string =" not in source
 reset = (root / "OathAtmosphere/Wallet/OathResetEnvironment.swift").read_text()
 assert "Clipboard" not in reset and "Pasteboard" not in reset, "Reset must leave the clipboard alone"

@@ -851,7 +851,7 @@
         "Anyone with the full recovery phrase and any required passphrase can control the wallet. View it only in a private place and do not send it to support.",
         "The screenshots in this guide deliberately stop at the protective screen. They never show a populated recovery phrase.",
         "Treat the backup as usable only when the relevant operation has completed and you retain the correct recovery material or file password. Loading, preparing and unavailable states are not successful backups.",
-        "In 4.1.14, an explicit Copy action leaves the copied value on the system clipboard until it is replaced. The app no longer expires that copy after 60 seconds. Copy only when you intend to use it, and replace clipboard contents when finished."
+        "Recovery phrases, private keys and passphrases copied in Oath stay on this device and expire from the system clipboard after 60 seconds. They are not shared through Universal Clipboard. Public addresses and transaction identifiers keep ordinary copy behavior. Copy only when needed; expiry cannot remove information you have already pasted into another app."
       ],
       "note": "Never share the words with support, websites or other people. Avoid screenshots. Private-key imports do not have a recovery phrase to display. For a passphrase wallet, recovery also requires the exact BIP-39 passphrase.",
       "screenshot": "guide-help-wallet-details",

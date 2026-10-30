@@ -12,6 +12,8 @@ Swift packages. The application bundle identifier remains `com.aperture.wallet`.
 
 ## What's new
 
+- Recovery phrases, private keys and passphrases copy only to this device and expire from the system clipboard after 60 seconds.
+
 - Clearer WalletConnect access and THORChain swap reviews, with stable request-to-result presentation.
 - Direct asset QR scanning, expanded payment formats, and editable memo/tag details.
 - Native-fee funding guidance and safe retry preparation; verified block inclusion shown before finality.

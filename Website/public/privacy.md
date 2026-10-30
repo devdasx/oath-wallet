@@ -20,6 +20,8 @@ In the 4.1.14 public source, recovery material is sealed in an authenticated loc
 
 Optional encrypted iCloud backup can store eligible wallet material at your request. Manual export can also reveal or copy recovery material under your control. Do not interpret on-device storage as a promise that a user-authorized export never leaves the device.
 
+Explicit copies of recovery phrases, private keys and passphrases stay on the current device and expire from the system clipboard after 60 seconds. Information already pasted into another app is outside that expiry.
+
 Face ID and Touch ID are handled by iOS; Oath does not receive your biometric templates. Public source publication does not independently establish a match to a distributed App Store binary. See [the security evidence and version scope](https://oathwallet.org/security).
 
 ## 4. Password-encrypted backup and WalletConnect
