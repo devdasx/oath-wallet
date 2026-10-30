@@ -189,3 +189,43 @@ public actor SuiSendClient {
         guard let text = value.text, !text.isEmpty, text.utf8.allSatisfy({(48...57).contains($0)}),let n = UInt64(text) else { throw SuiSendError.malformed }; return n
     }
 }
+
+extension SuiSendClient {
+    public func walletConnectReview(_ request:WalletConnectSuiRequest) async throws -> WalletConnectSuiReview {
+        guard request.network == network, let bytes = request.transaction else { throw SuiSendError.wrongNetwork }
+        let parsed = try WalletConnectSuiTransaction(bytes,network:network,account:request.account,executing:request.broadcasts)
+        let data = try await query("""
+            query($tx:JSON!){chainIdentifier epoch{epochId}
+              simulateTransaction(transaction:$tx,checksEnabled:true,doGasSelection:false){effects{
+                status executionError{message} gasEffects{gasSummary{computationCost storageCost storageRebate}}
+                balanceChanges(first:50){nodes{owner{address} coinType{repr} amount} pageInfo{hasNextPage}}
+              }}
+            }
+            """,["tx":.object(["bcs":.object(["value":.string(bytes.base64EncodedString())])])],stage:"wc_simulate")
+        let epoch = try number(data["epoch"]["epochId"])
+        guard parsed.minimumEpoch.map({epoch >= $0}) ?? true, parsed.maximumEpoch.map({epoch <= $0}) ?? true else { throw SuiSendError.expired }
+        let effects = data["simulateTransaction"]["effects"]
+        guard effects["status"].string == "SUCCESS" else { reportExecution(effects,stage:"wc_simulate"); throw SuiSendError.simulationFailed }
+        guard effects["balanceChanges"]["pageInfo"]["hasNextPage"] == .bool(false),
+              let changes = effects["balanceChanges"]["nodes"].array else { throw SuiSendError.malformed }
+        let gas = effects["gasEffects"]["gasSummary"]
+        let total = try SuiSendFunds.sum([number(gas["computationCost"]),number(gas["storageCost"])])
+        let rebate = try number(gas["storageRebate"])
+        let rows = try changes.map { row -> String in
+            guard let owner = row["owner"]["address"].string, let type = row["coinType"]["repr"].string,
+                  let amount = row["amount"].text, amount.count <= 80, !amount.isEmpty,
+                  !amount.dropFirst(amount.hasPrefix("-") ? 1:0).isEmpty,
+                  amount.dropFirst(amount.hasPrefix("-") ? 1:0).utf8.allSatisfy({(48...57).contains($0)}) else { throw SuiSendError.malformed }
+            return try SuiIdentity.address(owner) + "\n" + amount + " atomic " + SuiIdentity.coinType(type)
+        }
+        var review = WalletConnectSuiReview(request:request,changes:rows.sorted(),details:parsed.inputs + parsed.commands,gasOwner:parsed.gasOwner,gasBudget:parsed.gasBudget,estimatedFee:total > rebate ? total-rebate:0,createdAt:.now)
+        let types = try changes.map { try SuiIdentity.reference($0["coinType"]["repr"].string ?? "") }
+        review.tokens = try await SuiClient(network:network,transport:transport).metadata(references:types)
+        return review
+    }
+    public func walletConnectPreflight(_ review:WalletConnectSuiReview) async throws {
+        guard (0...120).contains(Date.now.timeIntervalSince(review.createdAt)) else { throw SuiSendError.expired }
+        let current = try await walletConnectReview(review.request)
+        guard current.changes == review.changes, current.estimatedFee <= review.estimatedFee else { throw SuiSendError.changed }
+    }
+}

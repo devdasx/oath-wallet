@@ -498,3 +498,130 @@ public actor XrplSendClient {
     }
 
 }
+
+public extension XrplSendClient {
+    func walletConnectReview(_ request: WalletConnectXrplRequest) async throws -> WalletConnectXrplReview {
+        guard request.network == network else { throw XrplSendError.wrongNetwork }
+        for (index, endpoint) in endpoints.enumerated() {
+            do {
+                async let state = state(endpoint: endpoint)
+                async let fees = rpc("fee", endpoint: endpoint)
+                let s = try await state
+                let source = request.transaction["Account"].string!
+                guard let root = try await account(source, state: s) else { throw XrplSendError.recipientUnfunded }
+                var tx = request.transaction.fields!
+                let f = try await fees
+                let members = (tx["Signers"]?.array?.count ?? 0) + (request.multisign ? 1 : 0)
+                if request.autofill {
+                    if tx["Sequence"] == nil {
+                        tx["Sequence"] = tx["TicketSequence"] == nil ? root["Sequence"] : .number("0")
+                    }
+                    if tx["LastLedgerSequence"] == nil { tx["LastLedgerSequence"] = .number(String(s.ledger + 20)) }
+                    if tx["Fee"] == nil {
+                        guard let open = f["drops"]["open_ledger_fee"].text.flatMap(UInt64.init),
+                              let minimum = f["drops"]["minimum_fee"].text.flatMap(UInt64.init),
+                              open > 0, minimum > 0, max(open, minimum) <= XrplSendPlan.maximumFee else { throw XrplSendError.feeTooHigh }
+                        tx["Fee"] = .string(String(((max(open, minimum) * 12 + 9) / 10) * UInt64(members + 1)))
+                    }
+                }
+                let review = WalletConnectXrplReview(request: request, transaction: .object(tx), firstLedger: s.ledger, createdAt: .now)
+                try review.validate()
+                try await walletConnectCheck(review, state: s, root: root)
+                return review
+            } catch {
+                if error is CancellationError || Task.isCancelled { throw CancellationError() }
+                OathDiagnostics.record(error, component: "walletconnect", operation: "xrpl_review", context: ["chain": "xrpl"])
+                guard index < endpoints.count - 1, Self.retryable(error) else { throw error }
+            }
+        }
+        throw XrplSendError.transport
+    }
+    func walletConnectPreflight(_ review: WalletConnectXrplReview) async throws {
+        try review.validate()
+        guard review.request.network == network, (0...120).contains(Date.now.timeIntervalSince(review.createdAt)) else { throw XrplSendError.expired }
+        let s = try await state(endpoint: endpoints[0])
+        guard let source = review.transaction["Account"].string,
+              let root = try await account(source, state: s) else { throw XrplSendError.wrongOwner }
+        try await walletConnectCheck(review, state: s, root: root)
+    }
+    private func walletConnectCheck(_ review: WalletConnectXrplReview, state s: State, root: XrplJSON) async throws {
+        let tx = review.transaction, request = review.request
+        guard s.ledger < review.lastLedger else { throw XrplSendError.expired }
+        guard let balance = root["Balance"].text.flatMap(UInt64.init), balance >= review.fee else { throw SendFeeFundingError.insufficientNativeBalance }
+        if tx["TicketSequence"].isNull {
+            guard tx["Sequence"].integer == root["Sequence"].integer else { throw XrplSendError.changed }
+        } else {
+            guard tx["Sequence"].integer == 0, let ticket = tx["TicketSequence"].integer, ticket > 0, ticket <= UInt32.max else { throw XrplSendError.malformed }
+            let entry = try await rpc("ledger_entry", ["ticket": .object(["account": tx["Account"], "ticket_seq": .number(String(ticket))]), "ledger_hash": .string(s.hash)], endpoint: s.endpoint)
+            guard entry["validated"] == .bool(true), entry["node"]["Account"] == tx["Account"], entry["node"]["TicketSequence"].integer == ticket else { throw XrplSendError.changed }
+        }
+        if request.multisign {
+            let lists = try await rpc("account_objects", ["account": tx["Account"], "type": .string("signer_list"), "ledger_hash": .string(s.hash), "limit": .number("400")], endpoint: s.endpoint)
+            guard lists["validated"] == .bool(true), lists["ledger_hash"].string?.uppercased() == s.hash,
+                  lists["marker"].isNull, let values = lists["account_objects"].array, values.count == 1,
+                  let entries = values[0]["SignerEntries"].array, let quorum = values[0]["SignerQuorum"].integer, quorum > 0 else { throw XrplSendError.unsupportedAccount }
+            let members = [request.account] + (tx["Signers"].array ?? []).compactMap { $0["Signer"]["Account"].string }
+            var weight: UInt64 = 0
+            for member in members {
+                guard let match = entries.first(where: { $0["SignerEntry"]["Account"].string == member }),
+                      let w = match["SignerEntry"]["SignerWeight"].integer, (1...65535).contains(w) else { throw XrplSendError.wrongOwner }
+                weight += w
+                if let signer = try await account(member, state: s, optional: true) {
+                    guard let flags = signer["Flags"].integer, flags & 0x100000 == 0 else { throw XrplSendError.unsupportedAccount }
+                }
+            }
+            if request.broadcasts { guard weight >= quorum else { throw XrplSendError.unsupportedAccount } }
+        } else {
+            guard let flags = root["Flags"].integer, flags & 0x100000 == 0 else { throw XrplSendError.unsupportedAccount }
+        }
+        var simulation = tx.fields!
+        simulation.removeValue(forKey: "Signers")
+        simulation.removeValue(forKey: "SigningPubKey")
+        let result = try await rpc("simulate", ["tx_json": .object(simulation), "binary": .bool(false)], endpoint: s.endpoint)
+        guard result["engine_result"].string == "tesSUCCESS" else {
+            let code = Self.safeCode(result["engine_result"].string)
+            throw XrplSendError.simulation(code)
+        }
+        var returned = result["tx_json"].fields ?? [:]
+        if returned["Amount"] == nil, let deliver = returned.removeValue(forKey: "DeliverMax") { returned["Amount"] = deliver }
+        for (key, value) in simulation { guard returned[key] == value else { throw XrplSendError.changed } }
+    }
+    func walletConnectSubmit(_ signed: WalletConnectXrplSigned, review: WalletConnectXrplReview) async throws -> XrplSendReceipt.Outcome {
+        guard review.request.network == network, review.request.broadcasts else { throw XrplSendError.wrongNetwork }
+        try review.request.verify(signed, review: review)
+        for endpoint in endpoints {
+            do {
+                let s = try await state(endpoint: endpoint)
+                let r = try await rpc("tx", ["transaction": .string(signed.hash), "binary": .bool(false),
+                    "min_ledger": .number(String(review.firstLedger)), "max_ledger": .number(String(review.lastLedger))], endpoint: endpoint, optional: ["txnNotFound"])
+                if r["error"].string == "txnNotFound" {
+                    if s.ledger > review.lastLedger { return r["searched_all"] == .bool(true) ? .expired : .unknown }
+                } else if r["validated"] == .bool(true) {
+                    guard r["hash"].string?.uppercased() == signed.hash,
+                          r["tx_json"]["Account"] == review.transaction["Account"], r["tx_json"]["Sequence"] == review.transaction["Sequence"],
+                          r["tx_json"]["Fee"] == review.transaction["Fee"], let ledger = r["ledger_index"].integer,
+                          (UInt64(review.firstLedger)...UInt64(review.lastLedger)).contains(ledger),
+                          let code = r["meta"]["TransactionResult"].string else { throw XrplSendError.changed }
+                    if code == "tesSUCCESS" { return .confirmed }
+                    guard code.hasPrefix("tec") else { throw XrplSendError.malformed }
+                    OathDiagnostics.record(XrplSendError.execution(Self.safeCode(code)), component: "walletconnect", operation: "xrpl_validated_failure", context: ["chain": "xrpl"])
+                    return .failed
+                }
+                guard s.ledger <= review.lastLedger else { return .unknown }
+                let result = try await rpc("submit", ["tx_blob": .string(XrplSendCrypto.hex(signed.bytes)), "fail_hard": .bool(false)], endpoint: endpoint)
+                guard result["accepted"] == .bool(true) else {
+                    OathDiagnostics.record(XrplSendError.execution(Self.safeCode(result["engine_result"].string)), component: "walletconnect", operation: "xrpl_submit_result", context: ["chain": "xrpl"])
+                    return .unknown
+                }
+                guard result["tx_blob"].string?.uppercased() == XrplSendCrypto.hex(signed.bytes),
+                      result["tx_json"]["hash"].string?.uppercased() == signed.hash else { throw XrplSendError.changed }
+                return .accepted
+            } catch {
+                if error is CancellationError || Task.isCancelled { throw CancellationError() }
+                OathDiagnostics.record(error, component: "walletconnect", operation: "xrpl_submit", context: ["chain": "xrpl"])
+                if error as? XrplSendError == .wrongNetwork { throw error }
+            }
+        }
+        return .unknown
+    }
+}

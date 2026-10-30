@@ -1,6 +1,6 @@
 # OathMarketData
 
-Current release: [4.1.14 (98) verification record](../../releases/4.1.14.md). Historical checks below describe their original scope; they are not an independent audit of this release.
+Current release: [4.1.15 (99) verification record](../../releases/4.1.15.md). Historical checks below describe their original scope; they are not an independent audit of this release.
 
 
 Public market data shared by Home, token discovery and asset details. Requests contain only public network/token identities, never a wallet account, name, secret or transaction.

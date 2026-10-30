@@ -1,16 +1,20 @@
-# Oath Wallet 4.1.14
+# Oath Wallet 4.1.15
 
 A native multichain wallet for iPhone and iPad.
 
-This repository contains the **4.1.14 source release, build 98**. The new app
+This repository contains the **4.1.15 source release, build 99**. The new app
 replaces the previous source layout with `OathApp`, `OathAtmosphere`, and local
 Swift packages. The application bundle identifier remains `com.aperture.wallet`.
 
-[Release notes](releases/4.1.14.md) · [Website](https://oathwallet.org) ·
+[Release notes](releases/4.1.15.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
 
 ## What's new
+
+- WalletConnect support for Bitcoin, TON, TRON, Polkadot, Sui, NEAR, Stellar and XRP Ledger, with network-specific review and signing rules.
+- Durable transaction recovery and account reservations for supported WalletConnect submissions.
+- Network-aware scanner review and refreshed network artwork.
 
 - Recovery phrases, private keys and passphrases copy only to this device and expire from the system clipboard after 60 seconds.
 
@@ -55,12 +59,12 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-Version 4.1.14 (98) is a source release for manual App Store Connect upload.
+Version 4.1.15 (99) is a source release for manual App Store Connect upload.
 No Apple upload or review submission was started for this release.
-See the [release record](releases/4.1.14.md) for completed validation.
+See the [release record](releases/4.1.15.md) for completed validation.
 
-This release improves WalletConnect reviews, payment scanning, fee-funding recovery,
-and transaction history. Requests still require review and signing authorization.
+This release expands WalletConnect signing and transaction review to Bitcoin, TON,
+TRON, Polkadot, Sui, NEAR, Stellar and XRP Ledger, with local recovery journals. Requests still require review and signing authorization.
 Diagnostics remain local.
 
 Source review, secret scanning, compilation and focused tests are performed during

@@ -299,3 +299,5 @@ Vendor/Reown/Tests/WalletConnectKMSTests/KeychainStorageTests.swift:generic-api-
 Vendor/Reown/Tests/WalletConnectKMSTests/KeychainStorageTests.swift:generic-api-key:91
 Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swift:generic-api-key:273
 Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swift:generic-api-key:283
+Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/WalletConnectTron/vectors.json:generic-api-key:6
+Tools/GenerateWalletConnectTronVectors.cjs:generic-api-key:4

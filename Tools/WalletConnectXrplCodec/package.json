@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "esbuild index.js --bundle --platform=browser --format=iife --global-name=OathXrplCodec --target=safari17 --minify --outfile=../../Packages/OathAnkr/Sources/OathAnkr/Resources/XrplCodec.js --banner:js=\"var window = globalThis;\" --metafile=/tmp/oath-xrpl-codec-meta.json"
+  },
+  "dependencies": {
+    "xrpl": "5.3.0",
+    "ripple-binary-codec": "2.11.0",
+    "ripple-keypairs": "3.1.0",
+    "fast-text-encoding": "1.0.6"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}

@@ -24,6 +24,7 @@ extension OathDatabase {
                   account.networkID == "sui", try SuiIdentity.address(account.address) == plan.sender,
                   let asset = try AssetRecord.fetchOne(db,key:send.assetID), asset.networkID == "sui", asset.reference == plan.reference,
                   send.recipient == plan.recipient, send.amountAtomic == String(plan.amount) else { throw SuiSendError.changed }
+            guard try Int.fetchOne(db, sql:"SELECT COUNT(*) FROM walletConnectSuiSubmissions WHERE owner=? AND chain='sui:mainnet' AND state IN ('signed','unknown')", arguments:[plan.sender]) == 0 else { throw SuiSendError.busy }
             let others = try SendRecord.fetchAll(db,sql:"SELECT * FROM sends WHERE networkID='sui' AND state IN ('queued','signed','broadcast')")
             guard try !others.contains(where:{ try SuiIdentity.address($0.senderAddress) == plan.sender }) else { throw SuiSendError.busy }
             try db.execute(sql:"INSERT INTO suiSendPlans(sendID,plan) VALUES(?,?)",arguments:[sendID,try JSONEncoder().encode(plan)])

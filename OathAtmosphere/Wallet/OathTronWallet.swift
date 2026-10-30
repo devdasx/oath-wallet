@@ -38,3 +38,28 @@ extension OathWalletEngine {
         return try TronSendCrypto.sign(plan,privateKey:bytes)
     }
 }
+
+extension OathWalletEngine {
+    static func signWalletConnectTron(_ request: WalletConnectTronRequest, review: WalletConnectTronReview?, secret: OathWalletSecret, account: AccountRecord) throws -> TronJSON {
+        try Task.checkCancellation()
+        guard account.walletID == secret.id.uuidString, account.networkID == "tron", secret.tronMultisig == nil,
+              try TronIdentity.address(account.address) == request.account else { throw TronSendError.wrongOwner }
+        if request.message == nil {
+            guard let review, review.request == request else { throw TronSendError.changed }
+            try review.validate()
+        }
+        var key: Data
+        if let material = secret.privateKey {
+            guard material.isValidStructure, material.networks == [.tron], account.derivationPath == "imported" else { throw TronSendError.wrongOwner }
+            key = material.bytes
+        } else {
+            let passphrase = try secret.bip39Passphrase
+            guard OathMnemonicValidator.bundled?.verifiedPhrase(secret.mnemonic) != nil,
+                  let wallet = HDWallet(mnemonic:secret.mnemonic, passphrase:passphrase, check:false),
+                  let derived = wallet.getKey(coin:.tron, derivationPath:account.derivationPath) else { throw OathWalletError.derivationFailed }
+            key = derived.data
+        }
+        defer { key.resetBytes(in:0..<key.count) }
+        return try request.sign(privateKey:key)
+    }
+}

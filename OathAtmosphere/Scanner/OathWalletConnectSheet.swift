@@ -2,6 +2,7 @@ import SwiftUI
 import OathDatabase
 import OathDiagnostics
 import OathAnkr
+import OathBitcoin
 @preconcurrency import WalletConnectSign
 
 struct OathWalletConnectSheet: View {
@@ -84,6 +85,18 @@ struct OathWalletConnectSheet: View {
                     if completion.selectedChain != nil {
                         OathWCStatePage(title: .wcNetworkChanged, detail: .wcSwitchNetworkDetail,
                             symbol: "checkmark.circle.fill", identity: identity(completion.peer.peer), primary: close)
+                    } else if let bitcoin = completion.bitcoin {
+                        OathWCBitcoinCompletion(submission: bitcoin, identity: identity(completion.peer.peer), close: close)
+                    } else if let xrpl = completion.xrpl {
+                        OathWCXrplCompletion(submission:xrpl,identity:identity(completion.peer.peer),close:close)
+                    } else if let stellar = completion.stellar {
+                        OathWCStellarCompletion(submission:stellar,identity:identity(completion.peer.peer),close:close)
+                    } else if let near = completion.near {
+                        OathWCNearCompletion(submission:near,identity:identity(completion.peer.peer),close:close)
+                    } else if let sui = completion.sui {
+                        OathWCSuiCompletion(submission:sui,identity:identity(completion.peer.peer),close:close)
+                    } else if let ton = completion.ton {
+                        OathWCTonCompletion(submission: ton, identity: identity(completion.peer.peer), close: close)
                     } else if let solana = completion.solana {
                         OathWCSolanaCompletion(submission: solana, identity: identity(completion.peer.peer), close: close)
                     } else if let transaction = completion.transaction {
@@ -196,7 +209,7 @@ struct OathWalletConnectSheet: View {
             let solana = SolanaSendNetwork(walletConnectChain: group.id)
             guard let chain = OathWalletConnectService.chain(for: group.id),
                   let account = accounts.first(where: { $0.networkID == chain.id }) else { return nil }
-            return .init(selection: group, name: solana?.walletConnectName ?? chain.name, logo: "network-" + chain.id,
+            return .init(selection: group, name: NearSendNetwork(walletConnectChain:group.id)?.walletConnectName ?? SuiSendNetwork(walletConnectChain:group.id)?.walletConnectName ?? PolkadotConnectNetwork(chain: group.id)?.name ?? BitcoinConnectNetwork(chain: group.id)?.name ?? TronSendNetwork(walletConnectChain: group.id)?.walletConnectName ?? TonSendNetwork(walletConnectChain: group.id)?.walletConnectName ?? solana?.walletConnectName ?? chain.name, logo: "network-" + chain.id,
                 address: account.address)
         }
         let methods = (negotiated ?? [:]).keys.sorted().map { key in
@@ -210,9 +223,10 @@ struct OathWalletConnectSheet: View {
             networks: networks, methods: methods, supported: negotiated != nil, loadingAccounts: loadingAccounts,
             working: service.working, failed: service.failed, walletID: walletID, selected: $selected,
             acknowledged: $acknowledged, approve: {
-                Task { await service.approve(accounts: accounts, selected: selected, walletID: walletID, acknowledged: acknowledged) }
+                sign(nil)
             }, reject: close, close: close,
-            unavailableMethods: Set(proposal.value.requiredNamespaces.values.flatMap(\.methods)))
+            unavailableMethods: Set(proposal.value.requiredNamespaces.values.flatMap(\.methods)),
+            includesSignIn: proposal.value.requests?.authentication?.isEmpty == false)
     }
     private func dismissSheet() {
         service.presentationWillDismiss(presentationID)
@@ -272,6 +286,15 @@ struct OathWalletConnectSheet: View {
         return switch item.payload {
         case .message(_, let signIn): signIn == nil ? .scannerWCSign : .wcSignInTitle
         case .typedData(let data): data.permission == nil ? .wcSignData : .wcApproveSignature
+        case .bitcoin(let request, _, _): request.method == "signMessage" ? .scannerWCSign : request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
+        case .xrpl(let request, _): request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
+        case .stellar(let request, _): request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
+        case .near: .wcSignTransaction
+        case .nearAccess: .wcSubmitTransaction
+        case .sui(let request, _): request.message != nil ? .scannerWCSign : request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
+        case .polkadot(let request, _): request.message == nil ? .wcSignTransaction : .scannerWCSign
+        case .tron(let request, _): request.message == nil ? .wcSignTransaction : .scannerWCSign
+        case .ton(let request, _): request.broadcasts ? .wcSubmitTransaction : .wcSignData
         case .solana(let request, _): request.message != nil ? .scannerWCSign : request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
         case .thorchain(_, let review): review.swap == nil ? .wcSignTransaction : .wcConfirmSwap
         case .evm(let request, _): OathWCEVMReview.isAccessReview(request) ? .wcReviewApproval : .wcSubmitTransaction
@@ -292,6 +315,7 @@ struct OathWalletConnectSheet: View {
         case .unavailable: (.wcInterruptedTitle, .wcInterruptedDetail)
         case .changed: (.wcChangedTitle, .wcChangedDetail)
         case .gas: (.wcNeedGas, .wcNeedGasDetail)
+        case .bitcoinFunds: (.sendInsufficient, .sendFeeNotIncluded)
         case .simulation: (.wcSimulationFailed, .wcSimulationFailedDetail)
         case .declined: (.wcRequestDeclined, .wcRequestDeclinedDetail)
         }
@@ -318,6 +342,24 @@ struct OathWalletConnectSheet: View {
                         saveLimit: { try await service.reviseApproval(amount: $0) },
                         walletName: requestWalletName(item), tokenSymbol: requestTokenSymbol(item, request: request))
                 }
+            case .bitcoin(let request, let plan, _):
+                OathWCBitcoinReview(request: request, plan: plan)
+            case .xrpl(let request, let review):
+                OathWCXrplReview(request:request,review:review)
+            case .stellar(let request, let review):
+                OathWCStellarReview(request:request,review:review)
+            case .nearAccess(_, let review):
+                OathWCNearReview(request:review.request,review:review)
+            case .near(let request, let review):
+                OathWCNearReview(request:request,review:review)
+            case .sui(let request, let review):
+                OathWCSuiReview(request:request,review:review,close:close)
+            case .polkadot(let request, let review):
+                OathWCPolkadotReview(request:request, review:review, close:close)
+            case .tron(let request, let review):
+                OathWCTronReview(request:request, review:review, close:close)
+            case .ton(let request, let plan):
+                OathWCTonReview(request: request, plan: plan)
             case .solana(let request, let reviews):
                 OathWCSolanaReview(request: request, reviews: reviews, close: close)
             case .thorchain(let request, let review):
@@ -379,7 +421,9 @@ struct OathWalletConnectSheet: View {
                 await OathDiagnostics.$operationID.withValue(service.pendingRequest?.operationID ?? UUID()) {
                     defer { signing = false; digits = [] }
                     do {
-                        try await service.sign(digits: input, reason: strings.text(service.pendingRequest?.isTransaction == true ? .wcSignTransaction : .scannerWCSign)); passcode = false
+                        if service.proposal != nil {
+                            try await service.approve(accounts: accounts, selected: selected, walletID: walletID, acknowledged: acknowledged, digits: input, reason: strings.text(.wcSignInTitle))
+                        } else { try await service.sign(digits: input, reason: strings.text(service.pendingRequest?.isTransaction == true ? .wcSignTransaction : .scannerWCSign)) }; passcode = false
                     } catch is CancellationError { }
                     catch {
                         if let review = error as? OathWalletConnectService.ReviewFailure {
@@ -391,6 +435,102 @@ struct OathWalletConnectSheet: View {
                         else if error is SendFeeFundingError {
                             passcode = false; notice = .wcNeedGasDetail
                             OathDiagnostics.record(error, component:"walletconnect", operation:"sign_fee")
+                        }
+                        else if let failure = error as? BitcoinConnectError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .unsupported: service.invalidateRequest(.unsupported)
+                            case .wrongAccount, .invalidRequest, .invalidPSBT, .wrongInput: service.invalidateRequest(.invalid)
+                            case .insufficientFunds: notice = .sendInsufficient
+                            case .busy: notice = .wcTransactionBusy
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error,component:"walletconnect",operation:"sign_bitcoin",context:["chain":"bitcoin"])
+                        }
+                        else if let failure = error as? XrplSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .wrongNetwork, .wrongOwner, .malformed: service.invalidateRequest(.invalid)
+                            case .insufficientFunds, .reserve: notice = .sendInsufficient
+                            case .simulation: notice = .wcSimulationFailedDetail
+                            case .busy: notice = .wcTransactionBusy
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error,component:"walletconnect",operation:"sign_xrpl",context:["chain":"xrpl"])
+                        }
+                        else if let failure = error as? StellarSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .wrongNetwork, .wrongOwner, .malformed: service.invalidateRequest(.invalid)
+                            case .insufficientFunds, .reserve: notice = .sendInsufficient
+                            case .simulation: notice = .wcSimulationFailedDetail
+                            case .busy: notice = .wcTransactionBusy
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error,component:"walletconnect",operation:"sign_stellar",context:["chain":"stellar"])
+                        }
+                        else if let failure = error as? NearSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .unsupportedAccount: service.invalidateRequest(.unsupported)
+                            case .wrongNetwork, .wrongOwner, .malformed: service.invalidateRequest(.invalid)
+                            case .insufficientFunds, .storageFunds: notice = .sendInsufficient
+                            case .busy: notice = .wcTransactionBusy
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error,component:"walletconnect",operation:"sign_near",context:["chain":"near"])
+                        }
+                        else if let failure = error as? SuiSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .wrongNetwork, .wrongOwner, .malformed: service.invalidateRequest(.invalid)
+                            case .insufficientFunds: notice = .sendInsufficient
+                            case .insufficientGas: notice = .wcNeedGasDetail
+                            case .simulationFailed: notice = .wcSimulationFailedDetail
+                            case .busy: notice = .wcTransactionBusy
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error,component:"walletconnect",operation:"sign_sui",context:["chain":"sui"])
+                        }
+                        else if let failure = error as? PolkadotSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .runtimeUnsupported: service.invalidateRequest(.unsupported)
+                            case .wrongNetwork, .wrongOwner, .malformed: service.invalidateRequest(.invalid)
+                            case .insufficientFunds: notice = .sendInsufficient
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error, component:"walletconnect", operation:"sign_polkadot", context:["chain":"polkadot"])
+                        }
+                        else if let failure = error as? TronSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .wrongNetwork, .wrongOwner, .malformed, .changed: service.invalidateRequest(.invalid)
+                            case .unsupportedAccount: service.invalidateRequest(.unsupported)
+                            case .insufficientFunds: notice = .wcNeedGasDetail
+                            case .simulation, .execution: notice = .wcSimulationFailedDetail
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error, component:"walletconnect", operation:"sign_tron", context:["chain":"tron"])
+                        }
+                        else if let failure = error as? TonSendError {
+                            passcode = false
+                            switch failure {
+                            case .expired: service.invalidateRequest(.expired)
+                            case .wrongNetwork, .wrongOwner, .malformed: service.invalidateRequest(.invalid)
+                            case .insufficientFunds: notice = .wcNeedGasDetail
+                            case .simulationFailed, .execution: notice = .wcSimulationFailedDetail
+                            case .busy: notice = .wcTransactionBusy
+                            default: notice = .sendRefreshNeeded
+                            }
+                            OathDiagnostics.record(error, component: "walletconnect", operation: "sign_ton", context: ["chain": "ton"])
                         }
                         else if let failure = error as? SolanaSendError {
                             passcode = false

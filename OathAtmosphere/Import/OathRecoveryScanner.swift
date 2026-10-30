@@ -327,7 +327,7 @@ struct OathScanner: View {
             if handoff != nil { completeHandoff() }
             else if model.active { resumeScanning() }
         }) { review in
-            sheet(title: reviewTitle(review)) { reviewBody(review) }
+            sheet(review: review) { reviewBody(review) }
         }
     }
 
@@ -402,15 +402,16 @@ struct OathScanner: View {
                 .frame(maxWidth: .infinity, minHeight: 64).contentShape(Rectangle())
         }.buttonStyle(.plain).accessibilityLabel(strings.text(title))
     }
-    private func sheet<Content: View>(title: OathStringKey, @ViewBuilder content: () -> Content) -> some View {
-        NavigationStack {
+    private func sheet<Content: View>(review: OathScannerModel.Review, @ViewBuilder content: () -> Content) -> some View {
+        let detents: Set<PresentationDetent> = if case .recipient? = review.payload { [.large] } else { [.medium, .large] }
+        return NavigationStack {
             content().frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(Color(uiColor: OathSurfaceColors.canvas))
-                .navigationTitle(strings.text(title)).navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(strings.text(reviewTitle(review))).navigationBarTitleDisplayMode(.inline)
                 .toolbar { ToolbarItem(placement: .topBarTrailing) { OathCloseButton { model.review = nil } } }
                 .oathNativeLocalization()
         }.oathLanguage(strings.language)
-            .presentationDetents([.medium, .large]).presentationDragIndicator(.visible)
+            .presentationDetents(detents).presentationDragIndicator(.visible)
     }
     private func reviewTitle(_ review: OathScannerModel.Review) -> OathStringKey {
         if let message = review.message { return message }
@@ -477,13 +478,17 @@ struct OathScanner: View {
         if isPrivateKeyContext { accept(.deliver { onPayload(value) }) }
         else if let session { accept(.importWallet(session, nil, value)) }
     }
-    private func resultCard<Extra: View>(icon: String, title: OathStringKey, detail: OathStringKey,
+    private func resultCard<Extra: View>(icon: String, network: OathImportChain? = nil, title: OathStringKey, detail: OathStringKey,
         primary: OathStringKey?, secondary: OathStringKey? = nil,
         action: @escaping () -> Void, @ViewBuilder extra: () -> Extra) -> some View {
         ScrollView {
             VStack(spacing: 20) {
-                Image(systemName: icon).font(.system(size: 32)).foregroundStyle(.secondary)
-                    .frame(width: 72, height: 72).background(Color(uiColor: .secondarySystemBackground), in: Circle())
+                if let network {
+                    OathNetworkLogo(asset: network.logoAsset, size: 72)
+                } else {
+                    Image(systemName: icon).font(.system(size: 32)).foregroundStyle(.secondary)
+                        .frame(width: 72, height: 72).background(Color(uiColor: .secondarySystemBackground), in: Circle())
+                }
                 Text(strings.text(title)).oathFont(.title2, weight: .semibold)
                 Text(strings.text(detail)).oathFont(.body).foregroundStyle(.secondary).multilineTextAlignment(.center)
                 extra()
@@ -503,7 +508,8 @@ struct OathScanner: View {
     }
     @ViewBuilder private func recipientReview(_ result: OathScannedRecipient) -> some View {
         if case .asset(let chain, _, _) = context {
-            resultCard(icon: "exclamationmark.triangle", title: result.networks.contains(chain) ? .scannerPayment : .scannerMismatch,
+            resultCard(icon: "network", network: result.networks.count == 1 ? result.networks.first : nil,
+                title: result.networks.contains(chain) ? .scannerPayment : .scannerMismatch,
                 detail: .scannerAssetMismatchDetail, primary: .continueAction, secondary: .cancel, action: {
                     guard let onSelectAsset else { return }
                     accept(.deliver { onSelectAsset(result) })
@@ -537,7 +543,12 @@ struct OathScanner: View {
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 if mismatch {
-                    Label(strings.text(.scannerMismatch), systemImage: "arrow.triangle.swap").oathFont(.headline)
+                    HStack {
+                        if result.networks.count == 1, let scannedNetwork = result.networks.first {
+                            OathNetworkLogo(asset: scannedNetwork.logoAsset, size: 32)
+                        }
+                        Text(strings.text(.scannerMismatch)).oathFont(.headline)
+                    }
                     Text(strings.text(.scannerMismatchDetail)).oathFont(.body).foregroundStyle(.secondary)
                 } else if !acceptsPayment {
                     Text(strings.text(.scannerPaymentUnsupported)).oathFont(.body).foregroundStyle(.secondary)

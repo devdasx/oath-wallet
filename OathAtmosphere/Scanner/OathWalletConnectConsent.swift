@@ -49,6 +49,7 @@ struct OathWalletConnectConsent: View {
     let reject: () -> Void
     let close: @MainActor () -> Void
     var unavailableMethods: Set<String> = []
+    var includesSignIn: Bool = false
     @Environment(\.oathLocalizer) private var strings
 
     private var selectedWallet: OathWCWalletChoice? { wallets.first { $0.id == walletID } }
@@ -64,6 +65,7 @@ struct OathWalletConnectConsent: View {
                 Text(identity.domain).oathFont(.subheadline).foregroundStyle(.secondary)
                     .environment(\.layoutDirection, .leftToRight)
             }.multilineTextAlignment(.center).frame(maxWidth: .infinity).padding(24)
+            if includesSignIn { OathSettingsFooter { Text(strings.text(.wcSignInDetail)) } }
             OathSettingsRow(title: selectedWallet?.name ?? strings.text(.wcWalletUnavailable),
                 accessory: .none, walletIcon: OathWalletListIcon(colorHex: selectedWallet?.colorHex))
                 .accessibilityIdentifier("walletconnect.wallet")

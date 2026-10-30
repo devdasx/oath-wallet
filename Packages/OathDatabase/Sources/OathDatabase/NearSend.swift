@@ -32,6 +32,7 @@ extension OathDatabase {
                   account.networkID == "near", try NearIdentity.address(account.address) == plan.sender,
                   let asset = try AssetRecord.fetchOne(db,key:send.assetID), asset.networkID == "near", asset.reference == plan.reference, asset.decimals == plan.decimals,
                   send.recipient == plan.recipient, send.amountAtomic == String(plan.amount) else { throw NearSendError.changed }
+            guard try Int.fetchOne(db,sql:"SELECT COUNT(*) FROM walletConnectNearSubmissions WHERE owner=? AND chain='near:mainnet' AND state IN ('signed','unknown','accepted')",arguments:[plan.sender]) == 0 else { throw NearSendError.busy }
             let others = try SendRecord.fetchAll(db,sql:"SELECT * FROM sends WHERE networkID='near' AND state IN ('queued','signed','broadcast')")
             guard try !others.contains(where:{ try NearIdentity.address($0.senderAddress) == plan.sender }) else { throw NearSendError.busy }
             try db.execute(sql:"INSERT INTO nearSendPlans(sendID,plan) VALUES(?,?)",arguments:[sendID,try JSONEncoder().encode(plan)])

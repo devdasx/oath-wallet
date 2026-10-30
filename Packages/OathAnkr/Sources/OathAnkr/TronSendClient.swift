@@ -446,3 +446,125 @@ extension TronSendClient {
         };throw PermissionError.unavailable
     }
 }
+
+extension TronSendClient {
+    public func walletConnectReview(_ request: WalletConnectTronRequest) async throws -> WalletConnectTronReview {
+        guard request.network == network, request.message == nil else { throw TronSendError.wrongNetwork }
+        try request.validateTime()
+        return try await OathDiagnostics.$chain.withValue("tron") {
+            try await OathDiagnostics.$operationID.withValue(OathDiagnostics.operationID ?? UUID()) {
+                for (index, base) in endpoints.enumerated() {
+                    do { return try await walletConnectReview(request, base: base) }
+                    catch {
+                        if error is CancellationError || Task.isCancelled { throw CancellationError() }
+                        OathDiagnostics.record(error, component: "tron_walletconnect", operation: "review", context: ["chain":"tron"])
+                        if index == endpoints.count - 1 || !Self.retryable(error) { throw error }
+                    }
+                }
+                throw TronSendError.transport
+            }
+        }
+    }
+    public func walletConnectPreflight(_ review: WalletConnectTronReview) async throws {
+        try review.validate()
+        let current = try await walletConnectReview(review.request)
+        guard current.maximumFee == review.maximumFee, current.decimals == review.decimals,
+              current.symbol == review.symbol else { throw TronSendError.changed }
+    }
+    private func walletConnectReview(_ request: WalletConnectTronRequest, base: URL) async throws -> WalletConnectTronReview {
+        try await verifyNetwork(base)
+        async let ownerValue = account(base, request.account)
+        async let headValue = post(base, "wallet/getnowblock")
+        async let parameterValue = post(base, "wallet/getchainparameters")
+        async let tokenValue = walletConnectToken(request, base: base)
+        async let simulationValue = walletConnectSimulate(request, base: base)
+        let (owner, head, parameters, token, energy) = try await (ownerValue, headValue, parameterValue, tokenValue, simulationValue)
+        try Self.validateOwner(owner, sender: request.account)
+        guard let height = head["block_header"]["raw_data"]["number"].integer,
+              let time = head["block_header"]["raw_data"]["timestamp"].integer,
+              abs(Double(time) / 1000 - Date.now.timeIntervalSince1970) < 60 else { throw TronSendError.malformed }
+        // TRON does not encode chain ID in a transaction. Bind its TAPOS block
+        // to the approved network instead of trusting the request namespace.
+        let referenceHeight = try WalletConnectTronRequest.referenceHeight(head: height, bytes: request.refBytes)
+        let block = try await post(base, "wallet/getblockbynum", ["num":.number(String(referenceHeight))])
+        guard let id = block["blockID"].string, let bytes = try? TronIdentity.hex(id), bytes.count == 32,
+              block["block_header"]["raw_data"]["number"].integer == referenceHeight,
+              bytes[8..<16] == request.refHash else { throw TronSendError.wrongNetwork }
+        guard let rows = parameters["chainParameter"].array else { throw TronSendError.malformed }
+        func parameter(_ key: String) throws -> UInt64 {
+            guard let row = rows.first(where: { $0["key"].string == key }) else { throw TronSendError.malformed }
+            let value = try Self.n(row["value"], zero: true)
+            guard value <= TronSendPlan.maximumFee else { throw TronSendError.feeTooHigh }
+            return value
+        }
+        if energy > 0 {
+            let energyPrice = try parameter("getEnergyFee")
+            guard energyPrice > 0, energy <= request.feeLimit / energyPrice else { throw TronSendError.feeTooHigh }
+        }
+        let price = try parameter("getTransactionFee")
+        guard (1...1_000_000).contains(price) else { throw TronSendError.feeTooHigh }
+        // Bound fees without assuming that shared Energy/Bandwidth remains
+        // available between consent and the dApp broadcasting the signature.
+        var maximumFee = request.feeLimit + UInt64(request.raw.count + 140) * price
+        if !request.memo.isEmpty { maximumFee += try parameter("getMemoFee") }
+        if request.calldata.isEmpty {
+            let target = try await account(base, request.destination)
+            if target.fields?.isEmpty == true {
+                maximumFee += try parameter("getCreateNewAccountFeeInSystemContract") + parameter("getCreateAccountFee")
+            }
+            if request.reference != "native" {
+                let available = try TronIdentity.quantity(owner["assetV2"].array?.first(where: { $0["key"].string == request.reference })?["value"] ?? .number("0"))
+                guard !XrplSendAmount.less(available, request.amount) else { throw TronSendError.insufficientFunds }
+            }
+        }
+        guard maximumFee <= TronSendPlan.maximumFee else { throw TronSendError.feeTooHigh }
+        let balance = try Self.n(owner["balance"], zero: true)
+        guard request.nativeValue <= balance, maximumFee <= balance - request.nativeValue else { throw TronSendError.insufficientFunds }
+        try request.validateTime()
+        return .init(request: request, maximumFee: maximumFee, symbol: token.0, decimals: token.1, createdAt: .now)
+    }
+    private func walletConnectToken(_ request: WalletConnectTronRequest, base: URL) async throws -> (String, Int) {
+        if request.reference == "native" || request.action == .contract { return ("TRX", 6) }
+        if TronIdentity.isTRC10(request.reference) {
+            let token = try await post(base, "wallet/getassetissuebyid", ["value":.string(request.reference)])
+            guard token["id"].string == request.reference,
+                  let raw = token["abbr"].string, let symbol = String(data: try TronIdentity.hex(raw), encoding:.utf8),
+                  let decimals = Int(exactly: try Self.n(token["precision"], zero: true)), decimals <= 255 else { throw TronSendError.malformed }
+            return (try TronIdentity.clean(symbol, limit:64), decimals)
+        }
+        async let decimalsValue = contractNumber(base, sender:request.account, contract:request.reference, selector:"decimals()")
+        async let symbolValue = constant(base, sender:request.account, contract:request.reference, selector:"symbol()", parameter:"")
+        let (units, symbol) = try await (decimalsValue, symbolValue)
+        guard let decimals = Int(units), (0...255).contains(decimals),
+              let word = symbol["constant_result"].array?.first?.string else { throw TronSendError.malformed }
+        return (try TronIdentity.clean(TronIdentity.abiString(word), limit:64), decimals)
+    }
+    private func walletConnectSimulate(_ request: WalletConnectTronRequest, base: URL) async throws -> UInt64 {
+        if request.calldata.isEmpty { return 0 }
+        let response = try await post(base, "wallet/triggerconstantcontract", [
+            "owner_address":.string(TronSendCrypto.hex(try TronIdentity.bytes(request.account))),
+            "contract_address":.string(TronSendCrypto.hex(try TronIdentity.bytes(request.reference))),
+            "data":.string(TronSendCrypto.hex(request.calldata)), "call_value":.number(String(request.nativeValue)), "visible":.bool(false)])
+        guard response["result"]["result"] == .bool(true), response["result"]["message"].isNull,
+              !(response["transaction"]["ret"].array ?? []).contains(where: {
+                  (!$0["ret"].isNull && !["SUCCESS","SUCESS"].contains($0["ret"].string ?? "")) ||
+                  (!$0["contractRet"].isNull && $0["contractRet"].string != "SUCCESS")
+              }) else { throw TronSendError.simulation }
+        let energy = try Self.n(response["energy_used"])
+        guard energy > 0 else { throw TronSendError.simulation }
+        if request.action == .transfer {
+            try Self.validateTransfer(response, network:network, sender:request.account, recipient:request.destination, reference:request.reference, amount:request.amount)
+        } else if request.action == .approval {
+            let logs = response["logs"].array ?? response["log"].array ?? []
+            guard try logs.contains(where: { log in
+                guard let topics = log["topics"].array, topics.count == 3,
+                      topics[0].string == String(PermissionDiscovery.approval.dropFirst(2)) else { return false }
+                return try TronIdentity.address(log["address"].string ?? "") == request.reference &&
+                    TronIdentity.address(topics[1].string ?? "") == request.account &&
+                    TronIdentity.address(topics[2].string ?? "") == request.destination &&
+                    TronIdentity.uint256(log["data"].string ?? "") == request.amount
+            }) else { throw TronSendError.simulation }
+        }
+        return energy
+    }
+}

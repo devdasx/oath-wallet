@@ -47,3 +47,15 @@ for (const [approved, namespaces] of Object.entries(thorchain)) {
   }
 }
 console.log('Browser request validator: THORChain identifiers retain exact chain and method permissions.');
+
+const bitcoin = JSON.parse(fs.readFileSync(process.argv[2] + '.bitcoin', 'utf8'));
+for (const [approved, namespaces] of Object.entries(bitcoin)) {
+  for (const chain of Object.keys(bitcoin)) {
+    for (const method of ['getAccountAddresses', 'sendTransfer', 'signPsbt', 'signMessage']) {
+      assert.equal(isValidNamespacesRequest(namespaces, chain, method), chain === approved);
+    }
+    assert.equal(isValidNamespacesRequest(namespaces, chain, 'eth_sendTransaction'), false);
+    assert.equal(isValidNamespacesRequest(namespaces, chain, 'wallet_sendCalls'), false);
+  }
+}
+console.log('Browser request validator: Bitcoin networks retain exact chain and method permissions.');

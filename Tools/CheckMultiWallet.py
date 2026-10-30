@@ -664,6 +664,21 @@ extension OathPostSendBalanceRefresh { func submitted(walletID: String, networkI
     shutil.copyfile(root / "Tools/CheckUTXOWallets.swift", sources / "CheckUTXOWallets.swift")
     shutil.copyfile(root / "Tools/CheckWalletLifecycle.swift", sources / "CheckWalletLifecycle.swift")
     shutil.copyfile(root / "Tools/CheckLastWalletReset.swift", sources / "CheckLastWalletReset.swift")
+    # Unselected chain signers must never execute in this authentication harness.
+    # Real request/signature behavior is exercised by each chain's package tests.
+    generated = "\n".join(file.read_text() for file in sources.glob("*.swift"))
+    unavailable = ["import Foundation", "import OathAnkr", "import OathBitcoin", "import OathDatabase"]
+    import re
+    for chain in ["Bitcoin", "Ton", "Tron", "Polkadot", "Sui", "Near", "Stellar", "Xrpl"]:
+        code = (root / ("OathAtmosphere/Wallet/Oath" + chain + "Wallet.swift")).read_text()
+        for match in re.finditer(r"(?:@concurrent )?static func (signWalletConnect\w+|suiPublicKey)\([^{}]+?\) (?:async )?throws -> [^{]+\{", code):
+            if "static func " + match.group(1) + "(" not in generated:
+                unavailable.append("extension OathWalletEngine { " + match.group(0) + ' preconditionFailure("Unselected chain signer is outside this host harness") } }')
+        for name in ["OathBitcoinConnectSignature", "OathTonWalletConnectSignature"]:
+            if "enum " + name not in generated:
+                match = re.search(r"enum " + name + r"[^}]+}", code)
+                if match: unavailable.append(match.group(0))
+    (sources / "UnselectedSigningAdapters.swift").write_text("\n".join(unavailable))
     (work / "Package.swift").write_text('''// swift-tools-version: 6.1
 import PackageDescription
 let package = Package(

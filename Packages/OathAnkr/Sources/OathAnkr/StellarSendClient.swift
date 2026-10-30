@@ -389,3 +389,97 @@ public actor StellarSendClient {
         return .init(hash:signed.hash,outcome:r["successful"] == .bool(true) ? .confirmed:.failed,fee:fee,ledger:ledger)
     }
 }
+
+public extension StellarSendClient {
+    func walletConnectReview(_ input: WalletConnectStellarRequest) async throws -> WalletConnectStellarReview {
+        guard input.network == network else { throw StellarSendError.wrongNetwork }
+        let envelope = try StellarConnectEnvelope(input.bytes, network: network)
+        try envelope.validateTime(.now)
+        var last: Error = StellarSendError.transport
+        for base in horizons {
+            do {
+                async let stateWork = state(base, fees: false)
+                async let payerWork = account(base, input.account)
+                async let sourceWork = account(base, envelope.tx.sourceAccount.ed25519AccountId)
+                let (state, payer, source) = try await (stateWork, payerWork, sourceWork)
+                guard let payer, let source, let sequence = source["sequence"].text.flatMap(Int64.init),
+                      sequence < Int64.max, envelope.details.sequence == sequence + 1,
+                      let signers = payer["signers"].array,
+                      signers.contains(where: { $0["key"].string == input.account && ($0["weight"].integer ?? 0) > 0 }) else { throw StellarSendError.wrongOwner }
+                if case .v2(let condition) = envelope.tx.cond, let ledger = condition.ledgerBounds {
+                    guard state.ledger >= ledger.minLedger, ledger.maxLedger == 0 || state.ledger < ledger.maxLedger else { throw StellarSendError.expired }
+                }
+                guard let native = payer["balances"].array?.first(where: { $0["asset_type"].string == "native" }),
+                      let entries = payer["subentry_count"].integer else { throw StellarSendError.malformed }
+                let balance = try Self.atomic(native, "balance")
+                let sponsoring = payer["num_sponsoring"].integer ?? 0, sponsored = payer["num_sponsored"].integer ?? 0
+                guard entries <= 1_000_000, sponsoring <= 1_000_000, sponsored <= entries + sponsoring + 2 else { throw StellarSendError.malformed }
+                let reserve = (2 + entries + sponsoring - sponsored) * UInt64(state.reserve)
+                let liabilities = try Self.atomic(native, "selling_liabilities")
+                guard balance >= reserve, liabilities <= balance - reserve,
+                      envelope.details.fee <= balance - reserve - liabilities else { throw StellarSendError.insufficientFunds }
+                if case .sorobanTransactionData = envelope.tx.ext {
+                    let result = try await rpc("simulateTransaction", ["transaction": .string(input.bytes.base64EncodedString())], endpoint: rpcEndpoints[0])
+                    guard result["error"].isNull else { throw StellarSendError.simulation }
+                }
+                return .init(request: input, details: envelope.details, firstLedger: state.ledger, createdAt: .now)
+            } catch {
+                if error is CancellationError || Task.isCancelled { throw CancellationError() }
+                last = error
+                if !Self.retryable(error) { throw error }
+                OathDiagnostics.record(error, component: "stellar_walletconnect", operation: "review_provider", context: ["chain": "stellar"])
+            }
+        }
+        throw last
+    }
+    func walletConnectPreflight(_ review: WalletConnectStellarReview) async throws {
+        guard (0...120).contains(Date.now.timeIntervalSince(review.createdAt)) else { throw StellarSendError.expired }
+        let current = try await walletConnectReview(review.request)
+        guard current.details == review.details else { throw StellarSendError.changed }
+    }
+    func walletConnectSubmit(_ signed: WalletConnectStellarSigned, review: WalletConnectStellarReview) async throws -> StellarSendReceipt.Outcome {
+        guard review.request.broadcasts, review.request.network == network else { throw StellarSendError.wrongNetwork }
+        try review.request.verify(signed)
+        for base in horizons {
+            do {
+                let state = try await state(base, fees: false)
+                if let receipt = try await get(base, "transactions/" + signed.hash, absent: true) {
+                    guard receipt["hash"].string == signed.hash,
+                          receipt["successful"] == .bool(true) || receipt["successful"] == .bool(false),
+                          let encoded = receipt["envelope_xdr"].string, let bytes = Data(base64Encoded: encoded),
+                          try StellarConnectEnvelope(bytes, network: network).digest == StellarConnectEnvelope(signed.bytes, network: network).digest else { throw StellarSendError.changed }
+                    if receipt["successful"] == .bool(false) {
+                        OathDiagnostics.record(StellarSendError.execution, component: "stellar_walletconnect", operation: "execution", context: ["chain": "stellar"])
+                    }
+                    return receipt["successful"] == .bool(true) ? .confirmed : .failed
+                }
+                // Stop rebroadcasting after expiry, but keep reconciling until Horizon's
+                // indexed ledger time proves the complete validity window has passed.
+                let envelope = try StellarConnectEnvelope(signed.bytes, network: network)
+                if envelope.details.maxTime > 0, Date.now.timeIntervalSince1970 >= Double(envelope.details.maxTime) {
+                    let ledger = try await get(base, "ledgers", query: [.init(name: "order", value: "desc"), .init(name: "limit", value: "1")])
+                    let closed = ledger?["_embedded"]["records"].array?.first?["closed_at"].string.flatMap { ISO8601DateFormatter().date(from: $0) }
+                    return state.oldest <= review.firstLedger && (closed?.timeIntervalSince1970 ?? 0) >= Double(envelope.details.maxTime) ? .expired : .unknown
+                }
+                var request = URLRequest(url: base.appendingPathComponent("transactions_async"))
+                request.httpMethod = "POST"; request.timeoutInterval = 12
+                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                let encoded = signed.bytes.base64EncodedString().addingPercentEncoding(withAllowedCharacters: .alphanumerics)!
+                request.httpBody = Data(("tx=" + encoded).utf8)
+                let reply = try await self.request(request, operation: "walletconnect_broadcast", acceptedStatuses: [201, 409, 400])
+                guard reply?["hash"].string == signed.hash else { throw StellarSendError.changed }
+                if ["PENDING", "DUPLICATE"].contains(reply?["tx_status"].string ?? "") { return .accepted }
+                if reply?["tx_status"].string == "ERROR" {
+                    OathDiagnostics.record(StellarSendError.execution, component: "stellar_walletconnect", operation: "broadcast_rejected", context: ["chain": "stellar"])
+                    return try WalletConnectStellarRequest.rejectionOutcome(reply?["error_result_xdr"].string)
+                }
+                throw StellarSendError.malformed
+            } catch {
+                if error is CancellationError || Task.isCancelled { throw CancellationError() }
+                OathDiagnostics.record(error, component: "stellar_walletconnect", operation: "broadcast", context: ["chain": "stellar"])
+                if error as? StellarSendError == .wrongNetwork { throw error }
+            }
+        }
+        return .unknown
+    }
+}

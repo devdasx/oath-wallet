@@ -230,3 +230,63 @@ public actor TonSendClient {
         return .init(hash:signed.hash,outcome:.unknown)
     }
 }
+
+extension TonSendClient {
+    public func walletConnectReview(_ request: WalletConnectTonRequest, publicKey: Data) async throws -> WalletConnectTonPlan {
+        let rebuilt = try WalletConnectTonRequest(method:request.method, chain:request.network.walletConnectChain, account:request.account, domain:request.domain, params:JSONEncoder().encode(request.params))
+        guard request == rebuilt else { throw TonSendError.changed }
+        guard request.network == network, request.broadcasts, try TonSendCrypto.address(publicKey:publicKey) == request.account else { throw TonSendError.wrongOwner }
+        let a=try await account(request.account); try validateWallet(a,publicKey:publicKey)
+        let now=Date.now, expiration=min(request.expiration ?? UInt32.max,UInt32(now.timeIntervalSince1970)+300)
+        func plan(_ fee: UInt64, _ reserve: UInt64) -> WalletConnectTonPlan {
+            .init(request:request,publicKey:publicKey,sequence:a.sequence,expiration:expiration,deploy:!a.active,fee:fee,feeReserve:reserve,createdAt:now)
+        }
+        guard request.amount < a.balance else { throw SendFeeFundingError.insufficientNativeBalance }
+        let estimate=try await walletConnectSimulate(plan(1,1)), reserve=try Self.reserve(estimate.walletFee)
+        guard reserve <= a.balance-request.amount else { throw SendFeeFundingError.insufficientNativeBalance }
+        let result=plan(estimate.fee,reserve); try result.validate(); return result
+    }
+    private func walletConnectSimulate(_ plan: WalletConnectTonPlan) async throws -> WalletConnectTonProof {
+        let bytes=try WalletConnectTonCrypto.unsigned(plan)
+        let trace=try await index("traces/emulate",body:.object(["boc":.string(bytes.base64EncodedString())]),query:"?ignore_signature_check=true")!
+        let proof=try WalletConnectTonProof.decode(trace,plan:plan,bytes:bytes,emulated:true)
+        guard proof.complete, proof.success else { throw TonSendError.simulationFailed }; return proof
+    }
+    public func walletConnectPreflight(_ plan: WalletConnectTonPlan) async throws {
+        try plan.validate(); guard plan.request.network == network else { throw TonSendError.wrongNetwork }
+        async let simulation=walletConnectSimulate(plan)
+        let a=try await account(plan.request.account); try validateWallet(a,publicKey:plan.publicKey)
+        guard a.sequence==plan.sequence, a.active != plan.deploy, a.balance >= plan.request.amount,
+              plan.feeReserve <= a.balance-plan.request.amount else { throw TonSendError.changed }
+        guard try await simulation.walletFee <= plan.feeReserve else { throw TonSendError.feeTooHigh }
+    }
+    public func walletConnectSubmit(_ signed: TonSignedSend, plan: WalletConnectTonPlan) async throws -> TonSendReceipt.Outcome {
+        try WalletConnectTonCrypto.verify(signed,plan:plan); guard plan.request.network==network else { throw TonSendError.wrongNetwork }
+        if Date.now.timeIntervalSince1970 >= Double(plan.expiration) { return try await walletConnectStatus(signed,plan:plan) }
+        do {
+            let accepted=try await rpc("sendBoc",["boc":.string(signed.bytes.base64EncodedString())])
+            guard accepted["@type"].string=="ok" else { throw TonSendError.malformed }; return .accepted
+        } catch {
+            if error is CancellationError || Task.isCancelled { throw CancellationError() }
+            OathDiagnostics.record(error,component:"walletconnect",operation:"ton_broadcast",context:["chain":"ton"])
+            return try await walletConnectStatus(signed,plan:plan)
+        }
+    }
+    public func walletConnectStatus(_ signed: TonSignedSend, plan: WalletConnectTonPlan) async throws -> TonSendReceipt.Outcome {
+        try WalletConnectTonCrypto.verify(signed,plan:plan); guard plan.request.network==network else { throw TonSendError.wrongNetwork }
+        if let trace=try await index("traces/"+signed.hash,optional:true) {
+            let proof=try WalletConnectTonProof.decode(trace,plan:plan,bytes:signed.bytes,emulated:false)
+            return proof.complete ? (proof.success ? .confirmed:.failed):.accepted
+        }
+        if Date.now.timeIntervalSince1970 > Double(plan.expiration)+60 {
+            let head=try await rpc("getMasterchainInfo"), block=head["last"], seqno=try Self.uint(block["seqno"])
+            guard let shard=block["shard"].text else { throw TonSendError.malformed }
+            let header=try await rpc("getBlockHeader",["workchain":.number("-1"),"shard":.string(shard),"seqno":.number(String(seqno))])
+            if try Self.uint(header["gen_utime"]) > UInt64(plan.expiration)+60 {
+                let state=try await account(plan.request.account,seqno:seqno); try validateWallet(state,publicKey:plan.publicKey)
+                if state.sequence==plan.sequence { return .expired }
+            }
+        }
+        return .unknown
+    }
+}

@@ -776,6 +776,22 @@
       "fingerprints": [
         "Tools/GenerateThorchainDepositVectors.cjs:generic-api-key:18"
       ]
+    },
+    {
+      "path": "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/WalletConnectTron/vectors.json",
+      "sha256": "18651b8404adc6ad81d7bd56bc48656648d840f8f939757dd50c6a40b7e95c9d",
+      "reason": "Public TRON token contract address in deterministic unfunded TronWeb signing fixtures, not an API credential. Generator uses fixed 0x07 and 0x08 synthetic keys.",
+      "fingerprints": [
+        "Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/WalletConnectTron/vectors.json:generic-api-key:6"
+      ]
+    },
+    {
+      "path": "Tools/GenerateWalletConnectTronVectors.cjs",
+      "sha256": "95897dafd63ba810ffc8c2490a181d1380ffd267d18334baa56e6680fc37e905",
+      "reason": "Public TRON token contract address used to generate deterministic signing fixtures; no API credentials. Signing keys are fixed repeated bytes.",
+      "fingerprints": [
+        "Tools/GenerateWalletConnectTronVectors.cjs:generic-api-key:4"
+      ]
     }
   ]
 }

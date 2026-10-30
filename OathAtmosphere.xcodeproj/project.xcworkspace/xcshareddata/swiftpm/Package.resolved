@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "stellarsdk",
+        "repositoryURL": "https://github.com/Soneso/stellar-ios-mac-sdk.git",
+        "state": {
+          "branch": null,
+          "revision": "b5dac0a6e8ff312d597c9a3b4269b03131d66e0d",
+          "version": "3.12.0"
+        }
+      },
+      {
         "package": "SwiftDocCPlugin",
         "repositoryURL": "https://github.com/apple/swift-docc-plugin",
         "state": {

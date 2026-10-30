@@ -41,16 +41,16 @@ private func unavailableHostLinkOpen(completion: (Bool) -> Void) {
     sdk = '.package(name: "Reown", path: %s)' % json.dumps(str(host_sdk))
     (work / "Package.swift").write_text('''// swift-tools-version: 6.1
 import PackageDescription
-let package = Package(name: "NamespaceChecks", platforms: [.macOS(.v14)],
-    dependencies: [%s, .package(path: %s)],
+let package = Package(name: "NamespaceChecks", platforms: [.macOS("15.5")],
+    dependencies: [%s, .package(path: %s), .package(path: %s)],
     targets: [.testTarget(name: "NamespaceChecks", dependencies: [
-        .product(name: "WalletConnect", package: "Reown"), "OathAnkr"
+        .product(name: "WalletConnect", package: "Reown"), "OathAnkr", "OathBitcoin"
     ])], swiftLanguageModes: [.v6])
-''' % (sdk, json.dumps(str(root / "Packages/OathAnkr"))))
+''' % (sdk, json.dumps(str(root / "Packages/OathAnkr")), json.dumps(str(root / "Packages/OathBitcoin"))))
     fixture = work / "namespaces.json"
     env = os.environ.copy()
     env["OATH_NAMESPACE_FIXTURE"] = str(fixture)
     subprocess.run(["swift", "test", "--build-system", "native", "--package-path", str(work),
-                    "--scratch-path", "/tmp/oath-wc-namespace-host-build",
+                    "--scratch-path", os.environ.get("OATH_NAMESPACE_SCRATCH", "/tmp/oath-wc-namespace-host-build"),
                     "--filter", "WalletConnectNamespaceTests"], check=True, env=env)
     subprocess.run(["node", str(root / "Tools/CheckWalletConnectNamespaces.cjs"), str(fixture)], check=True)

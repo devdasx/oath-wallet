@@ -1481,6 +1481,24 @@ enum Schema {
             try db.execute(sql:"ALTER TABLE polkadotSendPlans ADD COLUMN ledgerID TEXT")
             try db.execute(sql:"CREATE INDEX polkadotSendLedgerIdentity ON polkadotSendPlans(ledgerID)")
         }
+        migrations.registerMigration("v84_walletconnect_ton") { db in
+            try OathDatabase.migrateWalletConnectTon(db)
+        }
+        migrations.registerMigration("v85_walletconnect_bitcoin") { db in
+            try OathDatabase.migrateWalletConnectBitcoin(db)
+        }
+        migrations.registerMigration("v86_walletconnect_sui") { db in
+            try OathDatabase.migrateWalletConnectSui(db)
+        }
+        migrations.registerMigration("v87_walletconnect_near") { db in
+            try OathDatabase.migrateWalletConnectNear(db)
+        }
+        migrations.registerMigration("v88_walletconnect_stellar") { db in
+            try OathDatabase.migrateWalletConnectStellar(db)
+        }
+        migrations.registerMigration("v89_walletconnect_xrpl") { db in
+            try OathDatabase.migrateWalletConnectXrpl(db)
+        }
         return migrations
     }
 }

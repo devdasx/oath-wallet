@@ -29,6 +29,7 @@ extension OathDatabase {
                   account.networkID == "stellar", try StellarIdentity.address(account.address) == plan.sender,
                   let asset = try AssetRecord.fetchOne(db,key:send.assetID), asset.networkID == "stellar", asset.reference == (plan.configuresAccount ? "native" : plan.reference), asset.decimals == plan.decimals,
                   send.recipient == plan.recipient, send.amountAtomic == String(plan.amount) else { throw StellarSendError.changed }
+            guard try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM walletConnectStellarSubmissions WHERE owner=? AND chain='stellar:pubnet' AND state IN ('signed','unknown','accepted')", arguments: [plan.sender]) == 0 else { throw StellarSendError.busy }
             let others = try SendRecord.fetchAll(db,sql:"SELECT * FROM sends WHERE networkID='stellar' AND state IN ('queued','signed','broadcast')")
             guard try !others.contains(where:{ try StellarIdentity.address($0.senderAddress) == plan.sender }) else { throw StellarSendError.busy }
             try db.execute(sql:"INSERT INTO stellarSendPlans(sendID,plan) VALUES(?,?)",arguments:[sendID,try JSONEncoder().encode(plan)])

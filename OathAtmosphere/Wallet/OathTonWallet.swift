@@ -46,3 +46,31 @@ extension OathWalletEngine {
         return try TonSendCrypto.sign(plan,privateKey:bytes)
     }
 }
+
+
+enum OathTonWalletConnectSignature: Sendable {
+    case transaction(TonSignedSend)
+    case data(TonJSON)
+}
+extension OathWalletEngine {
+    static func signWalletConnectTon(_ request: WalletConnectTonRequest, plan: WalletConnectTonPlan?, secret: OathWalletSecret, account: AccountRecord) throws -> OathTonWalletConnectSignature {
+        guard secret.tonMultisig == nil, try TonIdentity.raw(account.address) == request.account else { throw TonSendError.wrongOwner }
+        var bytes = try tonKey(secret: secret, account: account)
+        defer { bytes.resetBytes(in: 0..<bytes.count) }
+        if request.broadcasts {
+            guard let plan, plan.request == request else { throw TonSendError.changed }
+            return .transaction(try WalletConnectTonCrypto.sign(plan, privateKey: bytes))
+        }
+        guard plan == nil else { throw TonSendError.changed }
+        return .data(try WalletConnectTonCrypto.signData(request, privateKey: bytes, timestamp: UInt64(Date.now.timeIntervalSince1970)))
+    }
+}
+
+extension OathWalletEngine {
+    static func signWalletConnectTonProof(_ request: WalletConnectTonProofRequest, timestamp: UInt64, secret: OathWalletSecret, account: AccountRecord) throws -> Data {
+        guard secret.tonMultisig == nil, try TonIdentity.raw(account.address) == request.account else { throw TonSendError.wrongOwner }
+        var bytes = try tonKey(secret:secret, account:account)
+        defer { bytes.resetBytes(in:0..<bytes.count) }
+        return try WalletConnectTonCrypto.signProof(request, privateKey:bytes, timestamp:timestamp)
+    }
+}

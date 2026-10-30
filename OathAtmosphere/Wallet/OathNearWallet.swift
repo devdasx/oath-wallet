@@ -33,6 +33,11 @@ extension OathWalletEngine {
         }
         return pub
     }
+    static func signWalletConnectNear(_ request:WalletConnectNearRequest,review:WalletConnectNearReview,secret:OathWalletSecret,account:AccountRecord) throws -> NearJSON {
+        guard secret.nearMultisig == nil, account.walletID == secret.id.uuidString, account.networkID == "near", account.address == request.account else { throw NearSendError.wrongOwner }
+        var key = try nearKey(secret:secret,account:account); defer { key.resetBytes(in:0..<key.count) }
+        return try request.sign(privateKey:key,review:review)
+    }
     static func signNear(_ plan:NearSendPlan,secret:OathWalletSecret,account:AccountRecord) throws -> NearSignedSend {
         guard try NearIdentity.address(account.address)==plan.sender else { throw NearSendError.wrongOwner }
         if let material=secret.nearMultisig {

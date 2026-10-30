@@ -252,7 +252,7 @@ struct OathTokenRPCConfiguration: Sendable {
     func makeSuiSendClient() throws -> SuiSendClient {
         try SuiSendClient(network:.mainnet,apiKey:ankrKey)
     }
-    func makeTonSendClient() throws -> TonSendClient { try TonSendClient(network:.mainnet,apiKey:ankrKey) }
+    func makeTonSendClient(network: TonSendNetwork = .mainnet) throws -> TonSendClient { try TonSendClient(network:network,apiKey:ankrKey) }
     func makeSuiSynchronizer(database: OathDatabase) throws -> SuiSynchronizer {
         try SuiSynchronizer(database: database, apiKey: ankrKey)
     }

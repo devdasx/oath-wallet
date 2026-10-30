@@ -554,7 +554,7 @@ struct OathWCGasPage: View {
                 Text(strings.text(.wcNeedGas)).oathFont(.title2, weight: .semibold)
                 Text(strings.text(.wcNeedGasDetail)).oathFont(.body).foregroundStyle(.secondary)
             }.multilineTextAlignment(.center).padding(24)
-            OathWCValue(title: strings.text(.tokenNetwork), value: OathImportChain(rawValue: network)?.name ?? network, leftToRight: true)
+            OathWCValue(title: strings.text(.tokenNetwork), value: TronSendNetwork(walletConnectChain: network)?.walletConnectName ?? TonSendNetwork(walletConnectChain: network)?.walletConnectName ?? OathImportChain(rawValue: network)?.name ?? network, leftToRight: true)
             NavigationLink {
                 OathWCReceiveGas(network: network, address: address, close: close)
             } label: { OathSettingsRow(title: strings.text(.receive), icon: "arrow.down.left") }
@@ -576,11 +576,11 @@ private struct OathWCReceiveGas: View {
     @Environment(\.oathLocalizer) private var strings
     var body: some View {
         OathWCContent {
-            OathWCValue(title: strings.text(.tokenNetwork), value: OathImportChain(rawValue: network)?.name ?? network, leftToRight: true)
+            OathWCValue(title: strings.text(.tokenNetwork), value: TronSendNetwork(walletConnectChain: network)?.walletConnectName ?? TonSendNetwork(walletConnectChain: network)?.walletConnectName ?? OathImportChain(rawValue: network)?.name ?? network, leftToRight: true)
             if let image {
                 ZStack {
                     Image(decorative: image, scale: 1).resizable().interpolation(.none)
-                    OathNetworkLogo(asset: "network-" + network, size: OathReceiveQRCode.displaySide * OathReceiveQRCode.logoFraction)
+                    OathNetworkLogo(asset: "network-" + (TronSendNetwork(walletConnectChain: network) != nil ? "tron" : TonSendNetwork(walletConnectChain: network) == nil ? network : "ton"), size: OathReceiveQRCode.displaySide * OathReceiveQRCode.logoFraction)
                 }.frame(width: OathReceiveQRCode.displaySide, height: OathReceiveQRCode.displaySide)
                     .padding(24).frame(maxWidth: .infinity)
             }

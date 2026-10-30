@@ -795,6 +795,191 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
 
     /// Exact reviewed Solana request; the CAIP cluster is validated before this
     /// boundary. Fresh authentication and selected derivation are checked again.
+    func signWalletConnectXrpl(walletID: String, accountID: String, request: WalletConnectXrplRequest,
+        review: WalletConnectXrplReview, digits: [UInt8]?, reason: String) async throws -> WalletConnectXrplSigned {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw XrplSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try await OathWalletEngine.signWalletConnectXrpl(request,review:review,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func signWalletConnectStellar(walletID: String, accountID: String, request: WalletConnectStellarRequest,
+        review: WalletConnectStellarReview, digits: [UInt8]?, reason: String) async throws -> WalletConnectStellarSigned {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw StellarSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectStellar(request,review:review,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func signWalletConnectNear(walletID: String, accountID: String, request: WalletConnectNearRequest,
+        review: WalletConnectNearReview, digits: [UInt8]?, reason: String) async throws -> NearJSON {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw NearSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectNear(request,review:review,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func signWalletConnectSui(walletID: String, accountID: String, request: WalletConnectSuiRequest,
+        review: WalletConnectSuiReview?, digits: [UInt8]?, reason: String) async throws -> WalletConnectSuiSignature {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw SuiSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectSui(request,review:review,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func suiPublicKey(walletID:String,accountID:String) async throws -> Data {
+        guard encryptionKey != nil, let contents, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration, db = try await database()
+        guard let wallet = contents.activeWallets.first(where:{$0.id.uuidString == walletID}),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw SuiSendError.wrongOwner }
+        try checkAuthentication(token)
+        return try OathWalletEngine.suiPublicKey(secret:wallet,account:account)
+    }
+
+    func signWalletConnectPolkadot(walletID: String, accountID: String, request: WalletConnectPolkadotRequest,
+        review: PolkadotConnectReview?, digits: [UInt8]?, reason: String) async throws -> TronJSON {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw PolkadotSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectPolkadot(request,review:review,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func signWalletConnectTron(walletID: String, accountID: String, request: WalletConnectTronRequest,
+        review: WalletConnectTronReview?, digits: [UInt8]?, reason: String) async throws -> TronJSON {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw TronSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectTron(request,review:review,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func signWalletConnectBitcoin(walletID: String, accountID: String, request: BitcoinConnectRequest,
+        plan: BitcoinConnectPlan?, address: BitcoinDerivedAddress?, digits: [UInt8]?, reason: String) async throws -> OathBitcoinConnectSignature {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits,now:.now).2 }
+            else { opened = try await openWithBiometrics(reason:reason).2 }
+        } else { guard let contents else { throw OathWalletError.locked }; opened = contents }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where:{ $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw BitcoinConnectError.wrongAccount }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectBitcoin(request,plan:plan,address:address,secret:wallet,account:account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    /// Sign the reviewed TON request after fresh authentication and ownership checks.
+    func signWalletConnectTon(walletID: String, accountID: String, request: WalletConnectTonRequest,
+                              plan: WalletConnectTonPlan?, digits: [UInt8]?, reason: String) async throws -> OathTonWalletConnectSignature {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits, now: .now).2 }
+            else { opened = try await openWithBiometrics(reason: reason).2 }
+        } else {
+            guard let contents else { throw OathWalletError.locked }; opened = contents
+        }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where: { $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw TonSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectTon(request, plan: plan, secret: wallet, account: account)
+        try checkAuthentication(token)
+        return result
+    }
+
+    func signWalletConnectTonProof(walletID: String, accountID: String, request: WalletConnectTonProofRequest,
+                              timestamp: UInt64, digits: [UInt8]?, reason: String) async throws -> Data {
+        guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let token = authenticationGeneration
+        let opened: OathVaultContents
+        if envelope.passcodeEnabled {
+            if let digits { opened = try openWithPasscode(digits, now: .now).2 }
+            else { opened = try await openWithBiometrics(reason: reason).2 }
+        } else {
+            guard let contents else { throw OathWalletError.locked }; opened = contents
+        }
+        try checkAuthentication(token)
+        let db = try await database()
+        guard let wallet = opened.activeWallets.first(where: { $0.id.uuidString == walletID }),
+              let account = try await db.account(accountID), account.walletID == walletID else { throw TonSendError.wrongOwner }
+        try checkAuthentication(token)
+        let result = try OathWalletEngine.signWalletConnectTonProof(request, timestamp: timestamp, secret: wallet, account: account)
+        try checkAuthentication(token)
+        return result
+    }
+
     func signWalletConnectSolana(walletID: String, accountID: String, request: WalletConnectSolanaRequest,
                                  digits: [UInt8]?, reason: String) async throws -> WalletConnectSolanaSigned {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }

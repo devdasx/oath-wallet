@@ -25,6 +25,7 @@ extension OathDatabase {
                   send.recipient==plan.recipient,send.amountAtomic==String(plan.amount) else { throw TonSendError.changed }
             let others=try SendRecord.fetchAll(db,sql:"SELECT * FROM sends WHERE networkID='ton' AND state IN ('queued','signed','broadcast')")
             guard try !others.contains(where:{try TonIdentity.raw($0.senderAddress)==plan.sender}) else { throw TonSendError.busy }
+            guard try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM walletConnectTonSubmissions WHERE owner=? AND chain='ton:-239' AND state IN ('signed','accepted','unknown')", arguments: [plan.sender]) == 0 else { throw TonSendError.busy }
             try db.execute(sql:"INSERT INTO tonSendPlans(sendID,plan) VALUES(?,?)",arguments:[sendID,try JSONEncoder().encode(plan)])
             send.state="queued";send.updatedAt=Date.now.timeIntervalSince1970;try send.update(db)
         }

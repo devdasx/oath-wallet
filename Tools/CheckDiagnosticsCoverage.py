@@ -68,6 +68,10 @@ for root in roots:
                 continue  # Exact local mnemonic/password/version validation; no provider or storage failures.
             if file.name == 'Permissions.swift' and 'diagnostics: permission-form-validation' in body:
                 continue  # PermissionCheckInput only validates user fields locally; account/RPC failures remain outside this boundary.
+            if file.relative_to(ROOT).as_posix() == 'Packages/OathBitcoin/Sources/OathBitcoin/BitcoinConnectRequest.swift' and 'diagnostics: bitcoin-connect-parameter-validation' in body and 'throw BitcoinConnectError.invalidRequest' in body:
+                continue  # Rejected peer JSON only; service boundaries report provider and storage failures.
+            if file.name == 'PolkadotConnectClient.swift' and 'diagnostics: polkadot-connect-permit-cleanup' in body and 'await permits.release(); throw error' in body:
+                continue  # Cleanup rethrows unchanged; rpc reports the original failure.
             if file.name == 'BitcoinMultisig.swift' and 'diagnostics: multisig-form-validation' in body and label.strip() in (
                 'let error as BitcoinMultisigError',
                 'let error as BitcoinError where error == .invalidKey || error == .unsupportedKeyScope'):

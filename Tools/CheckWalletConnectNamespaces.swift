@@ -2,10 +2,114 @@ import Foundation
 import XCTest
 @testable import WalletConnectSign
 import OathAnkr
+import OathBitcoin
 
 /// Tests the exact policy used by consent and approval, and the SDK's own
 /// required-namespace validator. All identities are synthetic public fixtures.
 final class WalletConnectNamespaceTests: XCTestCase {
+    func testXrplNamespaces() throws {
+        for chain in ["xrpl:0", "xrpl:1"] {
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let approved = try build(proposal(["xrpl":namespace([chain],WalletConnectXrplRequest.methods)]),[chain])
+            XCTAssertEqual(approved["xrpl"]?.methods,WalletConnectXrplRequest.methods)
+            XCTAssertEqual(approved["xrpl"]?.events,[])
+            XCTAssertEqual(Set(approved["xrpl"]!.accounts.map { $0.blockchain.absoluteString }),[chain])
+            XCTAssertThrowsError(try build(proposal(["xrpl":namespace([chain],["eth_sendTransaction"])]),[chain]))
+        }
+        XCTAssertFalse(OathWalletConnectPolicy.supportsConnection("xrpl:2"))
+        XCTAssertFalse(OathWalletConnectPolicy.approvalMethods.contains("xrpl_signMessage"))
+    }
+
+    func testBitcoinNetworksMethodsAndEventsKeepExactPermissions() throws {
+        let networks = BitcoinConnectNetwork.allCases.map(\.chain)
+        var fixtures: [String: [String: SessionNamespace]] = [:]
+        for chain in networks {
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let input = proposal(["bip122": namespace([chain], BitcoinConnectRequest.methods, events: Set(BitcoinConnectRequest.events))])
+            let approved = try build(input, [chain])
+            let value = try XCTUnwrap(approved["bip122"])
+            XCTAssertEqual(value.methods, BitcoinConnectRequest.methods)
+            XCTAssertEqual(value.events, Set(BitcoinConnectRequest.events))
+            XCTAssertEqual(Set(value.accounts.map { $0.blockchain.absoluteString }), [chain])
+            for method in ["eth_sendTransaction", "cosmos_signDirect", "wallet_sendCalls"] {
+                XCTAssertThrowsError(try build(proposal(["bip122": namespace([chain], [method])]), [chain]))
+            }
+            fixtures[chain] = approved
+        }
+        XCTAssertTrue(BitcoinConnectRequest.signingMethods.isSubset(of: OathWalletConnectPolicy.approvalMethods))
+        XCTAssertFalse(OathWalletConnectPolicy.approvalMethods.contains("getAccountAddresses"))
+        let groups = OathWalletConnectPolicy.networkGroups(requested: Set(networks), required: [networks[0]])
+        XCTAssertEqual(groups.count, 4)
+        XCTAssertEqual(groups.filter(\.required).count, 1)
+        if let path = ProcessInfo.processInfo.environment["OATH_NAMESPACE_FIXTURE"] {
+            try JSONEncoder().encode(fixtures).write(to: URL(fileURLWithPath: path + ".bitcoin"))
+        }
+    }
+    func testStellarNamespacesAndExactMethods() throws {
+        for chain in ["stellar:pubnet","stellar:testnet"] {
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let approved = try build(proposal(["stellar":namespace([chain],WalletConnectStellarRequest.methods)]),[chain])
+            XCTAssertEqual(approved["stellar"]?.methods,WalletConnectStellarRequest.methods)
+            XCTAssertEqual(approved["stellar"]?.events,[])
+            XCTAssertEqual(Set(approved["stellar"]!.accounts.map { $0.blockchain.absoluteString }),[chain])
+            XCTAssertThrowsError(try build(proposal(["stellar":namespace([chain],["eth_sendTransaction"])]),[chain]))
+        }
+        XCTAssertFalse(OathWalletConnectPolicy.supportsConnection("stellar:devnet"))
+        XCTAssertFalse(OathWalletConnectPolicy.approvalMethods.contains("stellar_signMessage"))
+        XCTAssertTrue(WalletConnectStellarRequest.signingMethods.isSubset(of:OathWalletConnectPolicy.approvalMethods))
+    }
+    func testNearNamespacesAndAccessPermissions() throws {
+        for chain in ["near:mainnet","near:testnet"] {
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let approved = try build(proposal(["near":namespace([chain],WalletConnectNearRequest.methods)]),[chain])
+            XCTAssertEqual(approved["near"]?.methods,WalletConnectNearRequest.methods)
+            XCTAssertEqual(approved["near"]?.events,[])
+            XCTAssertEqual(Set(approved["near"]!.accounts.map { $0.blockchain.absoluteString }),[chain])
+            XCTAssertThrowsError(try build(proposal(["near":namespace([chain],["eth_sendTransaction"])]),[chain]))
+        }
+        XCTAssertFalse(OathWalletConnectPolicy.supportsConnection("near:devnet"))
+        XCTAssertFalse(OathWalletConnectPolicy.approvalMethods.contains("near_getAccounts"))
+        XCTAssertTrue(WalletConnectNearRequest.signingMethods.isSubset(of:OathWalletConnectPolicy.approvalMethods))
+    }
+    func testTronNamespacesAreIsolatedAndRequireImplementedMethods() throws {
+        for chain in WalletConnectTronRequest.blockchains {
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let approved = try build(proposal(["tron": namespace([chain], WalletConnectTronRequest.methods)]), [chain])
+            XCTAssertEqual(approved["tron"]?.methods, WalletConnectTronRequest.methods)
+            XCTAssertEqual(approved["tron"]?.events, [])
+            for method in ["eth_sendTransaction", "cosmos_signDirect", "tron_sendTransaction"] {
+                XCTAssertThrowsError(try build(proposal(["tron": namespace([chain], [method])]), [chain]))
+            }
+        }
+        XCTAssertFalse(OathWalletConnectPolicy.supportsConnection("tron:0x94a9059e"))
+        XCTAssertTrue(WalletConnectTronRequest.methods.isSubset(of: OathWalletConnectPolicy.approvalMethods))
+    }
+    func testPolkadotNetworksAndMethodsAreBound() throws {
+        for network in PolkadotConnectNetwork.allCases {
+            let chain = network.chain
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let approved = try build(proposal(["polkadot": namespace([chain],WalletConnectPolkadotRequest.methods)]),[chain])
+            XCTAssertEqual(approved["polkadot"]?.methods,WalletConnectPolkadotRequest.methods)
+            XCTAssertEqual(approved["polkadot"]?.events,[])
+            XCTAssertEqual(Set(approved["polkadot"]!.accounts.map { $0.blockchain.absoluteString }),[chain])
+            XCTAssertThrowsError(try build(proposal(["polkadot": namespace([chain],["eth_sendTransaction"])]),[chain]))
+        }
+        XCTAssertFalse(OathWalletConnectPolicy.supportsConnection("polkadot:"+String(repeating:"0",count:32)))
+        XCTAssertTrue(WalletConnectPolkadotRequest.methods.isSubset(of:OathWalletConnectPolicy.approvalMethods))
+    }
+    func testSuiNetworksAndMethodsAreBound() throws {
+        for chain in ["sui:mainnet", "sui:testnet"] {
+            XCTAssertTrue(OathWalletConnectPolicy.supportsConnection(chain))
+            let approved = try build(proposal(["sui": namespace([chain],WalletConnectSuiRequest.methods)]),[chain])
+            XCTAssertEqual(approved["sui"]?.methods,WalletConnectSuiRequest.methods)
+            XCTAssertEqual(approved["sui"]?.events,[])
+            XCTAssertEqual(Set(approved["sui"]!.accounts.map { $0.blockchain.absoluteString }),[chain])
+            XCTAssertThrowsError(try build(proposal(["sui": namespace([chain],["eth_sendTransaction"])]),[chain]))
+        }
+        XCTAssertFalse(OathWalletConnectPolicy.supportsConnection("sui:unknown"))
+        XCTAssertFalse(OathWalletConnectPolicy.approvalMethods.contains("sui_getAccounts"))
+        XCTAssertTrue(WalletConnectSuiRequest.signingMethods.isSubset(of:OathWalletConnectPolicy.approvalMethods))
+    }
     private let address = "0x0000000000000000000000000000000000000001"
     private let arc = "eip155:5042"
     private let thor = ThorchainWalletConnectRequest.blockchain

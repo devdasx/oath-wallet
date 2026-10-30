@@ -132,17 +132,17 @@ struct TonReader {
 /// Decode bodies from the hash-checked message. Index APIs may flatten text
 /// comments into raw bytes while returning BOCs for other bodies.
 struct TonMessage {
-    let source:String?,destination:String,value:UInt64,bounced:Bool,body:TonCell
+    let source:String?,destination:String,value:UInt64,bounce:Bool,bounced:Bool,body:TonCell
     init(_ cell:TonCell) throws {
         var r=TonReader(cell)
         if try r.uint(1)==0 {
-            try r.skip(2);bounced=try r.uint(1)==1;source=try r.address();destination=try r.address();value=try r.coins()
+            try r.skip(1);bounce=try r.uint(1)==1;bounced=try r.uint(1)==1;source=try r.address();destination=try r.address();value=try r.coins()
             // No extra currencies are present in the messages this sender emits.
             if try r.uint(1)==1 { _ = try r.ref() }
             _ = try r.coins();_ = try r.coins();try r.skip(64+32)
         } else {
             guard try r.uint(1)==0,try r.uint(2)==0 else { throw TonSendError.malformed }
-            source=nil;destination=try r.address();value=0;bounced=false;_ = try r.coins()
+            source=nil;destination=try r.address();value=0;bounce=false;bounced=false;_ = try r.coins()
         }
         if try r.uint(1)==1 {
             if try r.uint(1)==1 { _ = try r.ref() }

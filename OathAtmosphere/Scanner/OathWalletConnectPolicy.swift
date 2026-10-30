@@ -1,5 +1,6 @@
 import Foundation
 import OathAnkr
+import OathBitcoin
 #if canImport(WalletConnectSign)
 @preconcurrency import WalletConnectSign
 #endif
@@ -81,7 +82,7 @@ enum OathWalletConnectPolicy {
         }
     }
     static let approvalMethods: Set<String> = Set(["personal_sign", "eth_signTypedData_v4", "eth_sendTransaction",
-        "wallet_switchEthereumChain", "cosmos_signAmino", "cosmos_signDirect"]).union(WalletConnectSolanaRequest.signingMethods)
+        "wallet_switchEthereumChain", "cosmos_signAmino", "cosmos_signDirect"]).union(WalletConnectSolanaRequest.signingMethods).union(WalletConnectTonRequest.methods).union(BitcoinConnectRequest.signingMethods).union(WalletConnectTronRequest.methods).union(WalletConnectPolkadotRequest.methods).union(WalletConnectSuiRequest.signingMethods).union(WalletConnectNearRequest.signingMethods).union(WalletConnectStellarRequest.signingMethods).union(WalletConnectXrplRequest.signingMethods)
 
     static func requiresFreshPairing(_ error: Error) -> Bool {
         // The pinned SDK's private error cannot be named outside its module.
@@ -98,7 +99,7 @@ enum OathWalletConnectPolicy {
     static let transactionChains = Set(EVMSendNetwork.allCases.filter { !$0.isTestnet && $0 != .arc }
         .map { "eip155:\($0.chainID)" })
     static func supportsConnection(_ blockchain: String) -> Bool {
-        transactionChains.contains(blockchain) || ThorchainWalletConnectRequest.blockchains.contains(blockchain) || SolanaSendNetwork(walletConnectChain: blockchain) != nil
+        XrplSendNetwork(walletConnectChain: blockchain) != nil || StellarSendNetwork(walletConnectChain: blockchain) != nil || NearSendNetwork(walletConnectChain: blockchain) != nil || SuiSendNetwork(walletConnectChain: blockchain) != nil || PolkadotConnectNetwork(chain: blockchain) != nil || TronSendNetwork(walletConnectChain: blockchain) != nil || BitcoinConnectNetwork(chain: blockchain) != nil || transactionChains.contains(blockchain) || ThorchainWalletConnectRequest.blockchains.contains(blockchain) || SolanaSendNetwork(walletConnectChain: blockchain) != nil || TonSendNetwork(walletConnectChain: blockchain) != nil
     }
 
     /// Consent rows retain the peer's exact requested identifiers. THORChain
@@ -132,8 +133,19 @@ enum OathWalletConnectPolicy {
         case "eip155": return methods
         case "solana": return WalletConnectSolanaRequest.methods
         case "cosmos": return ThorchainWalletConnectRequest.methods
+        case "xrpl": return WalletConnectXrplRequest.methods
+        case "stellar": return WalletConnectStellarRequest.methods
+        case "near": return WalletConnectNearRequest.methods
+        case "sui": return WalletConnectSuiRequest.methods
+        case "polkadot": return WalletConnectPolkadotRequest.methods
+        case "tron": return WalletConnectTronRequest.methods
+        case "ton": return WalletConnectTonRequest.methods
+        case "bip122": return BitcoinConnectRequest.methods
         default: return []
         }
+    }
+    static func events(namespace: String) -> Set<String> {
+        namespace == "bip122" ? Set(BitcoinConnectRequest.events) : ["eip155", "solana"].contains(namespace) ? events : []
     }
     static func displayName(_ text: String) -> String {
         displayText(text, limit: 80)
@@ -199,14 +211,14 @@ extension OathWalletConnectPolicy {
             guard value.methods.isSubset(of: methods(namespace: name)) else {
                 throw AutoNamespacesError.requiredMethodsNotSatisfied
             }
-            guard value.events.isSubset(of: ["eip155", "solana"].contains(name) ? events : []) else {
+            guard value.events.isSubset(of: events(namespace: name)) else {
                 throw AutoNamespacesError.requiredEventsNotSatisfied
             }
         }
         var result = try AutoNamespaces.build(sessionProposal: proposal,
             chains: Array(Set(approved.map(\.blockchain))),
-            methods: Array(methods.union(ThorchainWalletConnectRequest.methods).union(WalletConnectSolanaRequest.methods)),
-            events: Array(events), accounts: approved)
+            methods: Array(methods.union(ThorchainWalletConnectRequest.methods).union(WalletConnectSolanaRequest.methods).union(WalletConnectTonRequest.methods).union(BitcoinConnectRequest.methods).union(WalletConnectTronRequest.methods).union(WalletConnectPolkadotRequest.methods).union(WalletConnectSuiRequest.methods).union(WalletConnectNearRequest.methods).union(WalletConnectStellarRequest.methods).union(WalletConnectXrplRequest.methods)),
+            events: Array(events.union(BitcoinConnectRequest.events)), accounts: approved)
         // AutoNamespaces takes a global list. Never grant Cosmos methods to an
         // EVM account (or vice versa), even when the peer lists them as optional.
         let requiredGroups = Set(proposal.requiredNamespaces.keys.map { String($0.prefix(while: { $0 != ":" })) })
@@ -214,7 +226,7 @@ extension OathWalletConnectPolicy {
             let name = String(key.prefix(while: { $0 != ":" }))
             guard var namespace = result[key] else { continue }
             namespace.methods.formIntersection(methods(namespace: name))
-            if !["eip155", "solana"].contains(name) { namespace.events = [] }
+            namespace.events.formIntersection(events(namespace: name))
             if namespace.methods.isEmpty && !requiredGroups.contains(name) {
                 result.removeValue(forKey: key)
             } else { result[key] = namespace }

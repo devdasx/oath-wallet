@@ -1,6 +1,6 @@
 # Token artwork
 
-Current release: [4.1.14 (98) verification record](../../releases/4.1.14.md). Historical checks below describe their original scope; they are not an independent audit of this release.
+Current release: [4.1.15 (99) verification record](../../releases/4.1.15.md). Historical checks below describe their original scope; they are not an independent audit of this release.
 
 
 `OathTokenLogo` is the app's shared entry point for remote token logos. Use it in

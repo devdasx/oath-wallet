@@ -33,6 +33,7 @@ extension OathDatabase {
                   account.networkID == "xrpl", try XrplIdentity.address(account.address) == plan.sender,
                   let asset = try AssetRecord.fetchOne(db,key:send.assetID), asset.networkID == "xrpl", asset.reference == (plan.configuresAccount ? "native":plan.reference),
                   send.recipient == plan.recipient, send.amountAtomic == String(plan.amount) else { throw XrplSendError.changed }
+            guard try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM walletConnectXrplSubmissions WHERE source=? AND chain='xrpl:0' AND state IN ('signed','unknown','accepted')", arguments: [plan.sender]) == 0 else { throw XrplSendError.busy }
             let others = try SendRecord.fetchAll(db,sql:"SELECT * FROM sends WHERE networkID='xrpl' AND state IN ('queued','signed','broadcast')")
             guard try !others.contains(where:{ try XrplIdentity.address($0.senderAddress) == plan.sender }) else { throw XrplSendError.busy }
             try db.execute(sql:"INSERT INTO xrplSendPlans(sendID,plan) VALUES(?,?)",arguments:[sendID,try JSONEncoder().encode(plan)])

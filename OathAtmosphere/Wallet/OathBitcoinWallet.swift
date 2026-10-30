@@ -94,3 +94,39 @@ extension OathWalletEngine {
         return try network.wallet(seed: seed, account: account)
     }
 }
+
+
+enum OathBitcoinConnectSignature {
+    case transaction(BitcoinConnectSigned)
+    case message(BitcoinConnectMessageSignature)
+}
+extension OathWalletEngine {
+    static func signWalletConnectBitcoin(_ request: BitcoinConnectRequest, plan: BitcoinConnectPlan?,
+        address: BitcoinDerivedAddress?, secret: OathWalletSecret, account: AccountRecord) throws -> OathBitcoinConnectSignature {
+        guard secret.hasValidMaterial, account.walletID == secret.id.uuidString, account.networkID == "bitcoin",
+              account.accountIndex >= 0, account.accountIndex < 0x8000_0000, secret.bitcoinMultisig == nil else { throw BitcoinConnectError.wrongAccount }
+        var seed: Data?
+        defer { if seed != nil { seed!.resetBytes(in:0..<seed!.count) } }
+        let source: BitcoinPrivateKeySource
+        if let material = secret.electrum { source = .electrum(material) }
+        else if let key = secret.privateKey {
+            guard key.isValidStructure, key.networks.map(\.rawValue) == ["bitcoin"] else { throw BitcoinConnectError.wrongAccount }
+            if let extended = key.bitcoinExtendedKey {
+                guard try BitcoinKeys.decodeImport(extended).bytes == key.bytes else { throw BitcoinConnectError.wrongAccount }
+                source = .extended(extended)
+            } else { source = .single(key.bytes,compressed:key.compressed != false) }
+        } else if let material = secret.aezeed {
+            seed = material.entropy; source = .aezeed(seed!,account:UInt32(account.accountIndex))
+        } else {
+            guard OathMnemonicValidator.bundled?.verifiedPhrase(secret.mnemonic) != nil,
+                  let wallet = HDWallet(mnemonic:secret.mnemonic,passphrase:try secret.bip39Passphrase,check:false) else { throw OathWalletError.derivationFailed }
+            seed = wallet.seed; source = .seed(seed!,account:UInt32(account.accountIndex))
+        }
+        if let plan {
+            guard plan.request == request else { throw BitcoinConnectError.changed }
+            return .transaction(try BitcoinConnectSigning.sign(plan,source:source))
+        }
+        guard let address else { throw BitcoinConnectError.wrongAccount }
+        return .message(try BitcoinConnectSigning.message(request,address:address,source:source))
+    }
+}

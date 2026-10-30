@@ -1,4 +1,5 @@
 import OathAnkr
+import OathBitcoin
 import SwiftUI
 import SafariServices
 @preconcurrency import WalletConnectSign
@@ -245,7 +246,7 @@ private struct OathWalletConnectSessionNetworks: View {
                         let solana = SolanaSendNetwork(walletConnectChain: blockchain)
                         let chain = OathWalletConnectService.chain(for: blockchain)
                         OathSettingsRow(
-                            title: solana?.walletConnectName ?? chain?.name ?? OathWalletConnectPolicy.displayName(blockchain),
+                            title: XrplSendNetwork(walletConnectChain:blockchain)?.walletConnectName ?? StellarSendNetwork(walletConnectChain:blockchain)?.walletConnectName ?? NearSendNetwork(walletConnectChain:blockchain)?.walletConnectName ?? SuiSendNetwork(walletConnectChain:blockchain)?.walletConnectName ?? PolkadotConnectNetwork(chain: blockchain)?.name ?? BitcoinConnectNetwork(chain: blockchain)?.name ?? solana?.walletConnectName ?? TronSendNetwork(walletConnectChain: blockchain)?.walletConnectName ?? TonSendNetwork(walletConnectChain: blockchain)?.walletConnectName ?? chain?.name ?? OathWalletConnectPolicy.displayName(blockchain),
                             icon: chain == nil ? "globe" : nil,
                             accessory: .none,
                             networkLogo: chain.map { "network-" + $0.id })

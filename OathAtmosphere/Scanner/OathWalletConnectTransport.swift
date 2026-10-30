@@ -65,7 +65,7 @@ private final class OathWCSocket: NSObject, WebSocketErrorReporting, URLSessionW
             if let pendingWriteID, writes[pendingWriteID] == nil { return nil }
             // URLSession can finish the pending receive with ENOTCONN before
             // didClose runs, even after receiving a normal close frame. Read
-            // its close code before our own cancellation changes task state.
+            // its close code before local cancellation changes task state.
             let failure = stage == .disconnect || stage == .writeTimeout ? error
                 : Self.remoteCloseFailure(closeCode ?? task.closeCode, transportError: error)
             connected = false; socket = nil

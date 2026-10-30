@@ -5,9 +5,9 @@ import Foundation
 /// cannot disagree about which occurrence wins. This parser never logs input.
 public enum WalletConnectJSON {
     public enum Failure: Error, Sendable { case malformed, tooLarge }
-    public static func decode(_ data: Data) throws -> SolanaJSON {
-        guard data.count <= 65_536 else { throw Failure.tooLarge }
-        var parser = Parser(bytes: Array(data))
+    public static func decode(_ data: Data, byteLimit:Int = 65_536, collectionLimit:Int = 1_024, nodeLimit:Int = 4_096) throws -> SolanaJSON {
+        guard byteLimit <= 600_000, collectionLimit <= 131_072, nodeLimit <= 150_000, data.count <= byteLimit else { throw Failure.tooLarge }
+        var parser = Parser(bytes: Array(data), collectionLimit:collectionLimit, nodeLimit:nodeLimit)
         let value = try parser.value(depth: 0)
         parser.whitespace()
         guard parser.offset == parser.bytes.count else { throw Failure.malformed }
@@ -15,6 +15,7 @@ public enum WalletConnectJSON {
     }
     private struct Parser {
         let bytes: [UInt8]
+        let collectionLimit:Int, nodeLimit:Int
         var offset = 0, nodes = 0
         mutating func whitespace() {
             while offset < bytes.count, [9, 10, 13, 32].contains(bytes[offset]) { offset += 1 }
@@ -26,7 +27,7 @@ public enum WalletConnectJSON {
         }
         mutating func value(depth: Int) throws -> SolanaJSON {
             nodes += 1; whitespace()
-            guard depth <= 32, nodes <= 4_096 else { throw Failure.tooLarge }
+            guard depth <= 32, nodes <= nodeLimit else { throw Failure.tooLarge }
             guard offset < bytes.count else { throw Failure.malformed }
             switch bytes[offset] {
             case 123:
@@ -43,7 +44,7 @@ public enum WalletConnectJSON {
                 offset += 1; var array = [SolanaJSON]()
                 if take(93) { return .array(array) }
                 repeat {
-                    guard array.count < 1_024 else { throw Failure.tooLarge }
+                    guard array.count < collectionLimit else { throw Failure.tooLarge }
                     array.append(try value(depth: depth + 1))
                     if take(93) { return .array(array) }
                 } while take(44)
