@@ -8,7 +8,7 @@ Choose access controls deliberately and keep a separate recovery method.
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/e98eba14186da8afe21c46fb9466afd464f498e1). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## App passcode
 
