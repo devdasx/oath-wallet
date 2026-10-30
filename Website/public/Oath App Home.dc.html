@@ -1,129 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<template data-oath-template>
-<x-dc>
-<div ref="{{ box }}" style="position:relative;width:100%;height:100%;overflow:hidden;background:{{ c.bg }}">
-  <div style="position:absolute;left:0;top:0;width:440px;height:956px;transform-origin:0 0;transform:{{ scale }};background:{{ c.bg }};color:{{ c.text }};font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
-
-    <div style="position:absolute;left:0;right:0;top:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:6px 34px 0 58px">
-      <span style="font-size:17px;font-weight:600;letter-spacing:-.01em">1:03</span>
-      <div style="display:flex;align-items:center;gap:7px">
-        <div style="display:flex;align-items:flex-end;gap:2px;height:12px"><span style="width:3.5px;height:4.5px;border-radius:1px;background:{{ c.text }}"></span><span style="width:3.5px;height:6.5px;border-radius:1px;background:{{ c.text }}"></span><span style="width:3.5px;height:9px;border-radius:1px;background:{{ c.text }}"></span><span style="width:3.5px;height:12px;border-radius:1px;background:{{ c.text }}"></span></div>
-        <svg width="17" height="12" viewBox="0 0 17 12" style="display:block"><path d="M8.5 2.2c2.4 0 4.6.9 6.2 2.5l1.3-1.3A10.6 10.6 0 0 0 8.5.4 10.6 10.6 0 0 0 1 3.4l1.3 1.3a8.7 8.7 0 0 1 6.2-2.5Z" fill="{{ c.text }}"></path><path d="M8.5 5.7c1.4 0 2.8.6 3.7 1.5l1.3-1.3a7 7 0 0 0-10 0l1.3 1.3c1-.9 2.3-1.5 3.7-1.5Z" fill="{{ c.text }}"></path><path d="m8.5 11.6 2.4-2.4a3.4 3.4 0 0 0-4.8 0l2.4 2.4Z" fill="{{ c.text }}"></path></svg>
-        <div style="position:relative;width:27px;height:13px;border-radius:4px;box-shadow:inset 0 0 0 1px {{ c.battEdge }};padding:2px"><div style="width:72%;height:100%;border-radius:2px;background:{{ c.text }}"></div></div>
-      </div>
-    </div>
-
-    <div style="position:absolute;left:20px;right:20px;top:62px;height:44px;display:flex;align-items:center;justify-content:space-between">
-      <div style="height:44px;display:flex;align-items:center;gap:9px;padding:0 16px 0 8px;border-radius:22px;background:{{ c.glass }};box-shadow:inset 0 0 0 .5px {{ c.glassEdge }},0 2px 10px {{ c.shadow }}">
-        <span style="width:28px;height:28px;border-radius:8px;background:linear-gradient(180deg,#40A9FF,#0A84FF);display:flex;align-items:center;justify-content:center">
-          <svg width="16" height="14" viewBox="0 0 16 14" style="display:block"><path d="M2 4.5 8 1l6 3.5v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 11Z" fill="#FFFFFF"></path><path d="M2 4.8 8 8.2l6-3.4" fill="none" stroke="#0A84FF" stroke-width="1.3" stroke-linejoin="round"></path></svg>
-        </span>
-        <span style="font-size:17px;font-weight:600;letter-spacing:-.02em">Everyday</span>
-      </div>
-      <span style="width:44px;height:44px;border-radius:50%;background:{{ c.glass }};box-shadow:inset 0 0 0 .5px {{ c.glassEdge }},0 2px 10px {{ c.shadow }};display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:300;line-height:1">+</span>
-    </div>
-
-    <div style="position:absolute;left:0;right:0;top:166px;text-align:center;font-size:15px;color:{{ c.sec }}">Total Balance</div>
-    <div style="position:absolute;left:0;right:0;top:190px;text-align:center;font-family:ui-rounded,'SF Pro Rounded',-apple-system,'Instrument Sans',sans-serif;font-size:60px;font-weight:700;letter-spacing:-.01em;line-height:1.1">$31,509.83</div>
-
-    <div style="position:absolute;left:20px;right:20px;top:308px;height:52px;display:flex;gap:12px">
-      <span style="width:166px;height:52px;border-radius:26px;background:#0065D1;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 4px 14px rgba(10,132,255,.25)">Send</span>
-      <span style="width:166px;height:52px;border-radius:26px;background:{{ c.glass }};box-shadow:inset 0 0 0 .5px {{ c.glassEdge }},0 2px 10px {{ c.shadow }};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600">Receive</span>
-      <span style="width:44px;height:44px;margin-top:4px;border-radius:50%;background:{{ c.glass }};box-shadow:inset 0 0 0 .5px {{ c.glassEdge }},0 2px 10px {{ c.shadow }};display:flex;align-items:center;justify-content:center;gap:3px"><i style="width:4px;height:4px;border-radius:50%;background:{{ c.text }}"></i><i style="width:4px;height:4px;border-radius:50%;background:{{ c.text }}"></i><i style="width:4px;height:4px;border-radius:50%;background:{{ c.text }}"></i></span>
-    </div>
-
-    <div style="position:absolute;left:40px;right:40px;top:386px;display:flex;justify-content:space-between;font-size:17px;font-weight:600;color:{{ c.sec }}"><span>Markets ›</span><span>Trending ⌄</span></div>
-
-    <div style="position:absolute;left:20px;top:422px;display:flex;gap:12px">
-      <div style="width:126px;height:126px;border-radius:28px;background:{{ c.card }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
-        <div style="position:relative;width:44px;height:44px;display:flex;align-items:center;justify-content:center">
-          <div style="position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 225deg,#FF3B30 0deg,#FF9500 70deg,#FFCC00 140deg,#34C759 270deg,transparent 270deg);-webkit-mask:radial-gradient(closest-side,transparent 82%,#000 84%);mask:radial-gradient(closest-side,transparent 82%,#000 84%)"></div>
-          <span style="position:absolute;left:50%;top:-1px;width:6px;height:6px;margin-left:-2px;border-radius:50%;background:{{ c.card }};box-shadow:0 0 0 1.5px #FFCC00"></span>
-          <span style="font-size:17px;font-weight:600">52</span>
-        </div>
-        <span style="margin-top:6px;font-size:12px;font-weight:600">Fear &amp; Greed</span>
-        <span style="font-size:11.5px;color:{{ c.sec }}">Neutral</span>
-      </div>
-      <div style="width:126px;height:126px;border-radius:28px;background:{{ c.card }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
-        <img src="assets/bitcoin.svg" alt="" style="display:block;width:44px;height:44px" role="presentation">
-        <span style="margin-top:6px;font-size:14px;font-weight:600">Bitcoin</span>
-        <span style="font-size:12.5px;font-weight:600;color:#34C759">+2.84%</span>
-      </div>
-      <div style="width:126px;height:126px;border-radius:28px;background:{{ c.card }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
-        <img src="assets/coin-eth.svg" alt="" style="display:block;width:44px;height:44px" role="presentation">
-        <span style="margin-top:6px;font-size:14px;font-weight:600">Ethereum</span>
-        <span style="font-size:12.5px;font-weight:600;color:#34C759">+1.62%</span>
-      </div>
-      <div style="width:126px;height:126px;border-radius:28px;background:{{ c.card }}"></div>
-    </div>
-
-    <div style="position:absolute;left:40px;right:40px;top:580px;display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:600;color:{{ c.sec }}">
-      <span style="display:flex;align-items:center;gap:8px"><svg width="12" height="16" viewBox="0 0 12 16" style="display:block"><path d="M3 1h6l-1 5 3 3H1l3-3Z" fill="{{ c.sec }}"></path><rect x="5.3" y="9" width="1.4" height="6.5" rx=".7" fill="{{ c.sec }}"></rect></svg>Pinned Assets</span>
-      <span>View All</span>
-    </div>
-
-    <div style="position:absolute;left:20px;right:20px;top:612px;border-radius:32px;background:{{ c.card }};padding:4px 0">
-      <sc-for list="{{ assets }}" as="a" hint-placeholder-count="5">
-        <div style="display:flex;align-items:center;gap:14px;height:76px;padding:0 18px 0 20px">
-          <div style="position:relative;width:44px;height:44px;flex:none">
-            <img src="{{ a.icon }}" alt="" style="display:block;width:44px;height:44px;border-radius:50%" role="presentation">
-            <img src="{{ a.icon }}" alt="" style="position:absolute;right:-3px;bottom:-3px;width:19px;height:19px;border-radius:50%;box-shadow:0 0 0 2px {{ c.card }}" role="presentation">
-          </div>
-          <div style="flex:1;min-width:0;height:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:{{ a.sep }}">
-            <div style="display:flex;flex-direction:column;gap:3px"><span style="font-size:17px">{{ a.name }}</span><span style="font-size:14px;color:{{ c.sec }}">{{ a.qty }}</span></div>
-            <div style="display:flex;align-items:center;gap:10px"><span style="font-size:16px;font-weight:600">{{ a.val }}</span><span style="font-size:20px;color:{{ c.chev }}">›</span></div>
-          </div>
-        </div>
-      </sc-for>
-    </div>
-
-    <div style="position:absolute;left:28px;right:26px;top:880px;height:50px;display:flex;align-items:center;gap:10px">
-      <div style="flex:1;height:50px;border-radius:25px;background:{{ c.glassBar }};backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);box-shadow:inset 0 0 0 .5px {{ c.glassEdge }},0 6px 24px {{ c.shadow }};display:flex;align-items:center;gap:10px;padding:0 16px">
-        <svg width="17" height="17" viewBox="0 0 17 17" style="display:block"><circle cx="7" cy="7" r="5.6" fill="none" stroke="{{ c.text }}" stroke-width="1.9"></circle><path d="m11.2 11.2 4.3 4.3" stroke="{{ c.text }}" stroke-width="1.9" stroke-linecap="round"></path></svg>
-        <span style="font-size:17px;color:{{ c.sec }}">Search Your Wallet</span>
-      </div>
-      <span style="width:50px;height:50px;flex:none;border-radius:50%;background:{{ c.glassBar }};backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px {{ c.glassEdge }},0 6px 24px {{ c.shadow }};display:flex;align-items:center;justify-content:center;font-size:21px">⚙︎</span>
-    </div>
-    <div style="position:absolute;left:50%;bottom:8px;width:144px;height:5px;margin-left:-72px;border-radius:3px;background:{{ c.text }}"></div>
-  </div>
-</div>
-</x-dc>
-</template>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:440,&quot;height&quot;:956},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light' | 'dark'&quot;}}">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="./support.js"></script></head><body><template data-oath-template><x-dc>
+<div ref="{{ box }}" role="img" aria-label="Illustrative Oath wallet preview with synthetic assets totaling $1,259,301.765" style="position:relative;width:100%;height:100%;overflow:hidden;background:white">
+<div data-home-preview style="position:absolute;width:440px;height:956px;transform-origin:0 0;transform:{{ scale }};background:white;color:black;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif;-webkit-font-smoothing:antialiased">
+<div style="position:absolute;inset:0 0 auto;height:460px;background:#82071b url('/assets/home-preview/ruby.jpg') center 32%/440px 1100px no-repeat;color:white">
+<div style="position:absolute;left:65px;top:22px;font-size:18px;font-weight:600">5:01</div>
+<div style="position:absolute;right:40px;top:26px;display:flex;align-items:center;gap:8px"><svg width="25" height="15" viewBox="0 0 25 15" fill="white"><rect x="0" y="8" width="4" height="7" rx="2"/><rect x="6" y="5" width="4" height="10" rx="2"/><rect x="12" y="2" width="4" height="13" rx="2"/><rect x="18" width="4" height="15" rx="2"/></svg><svg width="24" height="18" viewBox="0 0 24 18" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round"><path d="M2 5q10-8 20 0M6 10q6-5 12 0m-8 5q2-2 4 0"/></svg><span style="width:28px;height:14px;border-radius:5px;background:rgba(255,255,255,.35);box-shadow:2px 0 0 -1px white;overflow:hidden"><span style="display:block;width:78%;height:100%;background:#30c95a"></span></span></div>
+<div style="position:absolute;left:20px;top:62px;height:44px;border-radius:24px;display:flex;align-items:center;padding:0 16px;gap:12px;background:linear-gradient(150deg,rgba(255,255,255,.23),rgba(255,255,255,.08));backdrop-filter:blur(12px);box-shadow:inset 0 1px 1px rgba(255,255,255,.62),inset 0 -1px 1px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5h11m5 0h4M2 12h3m5 0h12M2 19h11m5 0h4"/><rect x="13" y="3" width="5" height="4" rx="2"/><rect x="5" y="10" width="5" height="4" rx="2"/><rect x="13" y="17" width="5" height="4" rx="2"/></svg><span style="height:22px;border-left:1px solid #ffffff30"></span><span style="font-size:16px;font-weight:600">Main Wallet</span><span style="font-size:20px;line-height:1;transform:translateY(-3px)">⌄</span></div><div style="position:absolute;right:20px;top:62px;width:52px;height:44px;border-radius:25px;display:grid;place-items:center;background:linear-gradient(150deg,rgba(255,255,255,.23),rgba(255,255,255,.08));backdrop-filter:blur(12px);box-shadow:inset 0 1px 1px rgba(255,255,255,.62),inset 0 -1px 1px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8V5a2 2 0 0 1 2-2h3m8 0h3a2 2 0 0 1 2 2v3m0 8v3a2 2 0 0 1-2 2h-3m-8 0H5a2 2 0 0 1-2-2v-3"/></svg></div><div style="position:absolute;top:166px;left:0;right:0;text-align:center;font-size:15px;font-weight:600;color:#ffffffc4">Total Balance</div>
+<div data-preview-total style="position:absolute;top:201px;left:12px;right:12px;text-align:center;font-family:'SF Pro Rounded',ui-rounded,-apple-system,BlinkMacSystemFont,sans-serif;font-size:45px;font-weight:600;letter-spacing:normal;font-variant-numeric:tabular-nums;line-height:1.2;white-space:nowrap">$1,259,301.765</div>
+<div style="position:absolute;top:275px;left:50%;transform:translateX(-50%);white-space:nowrap;border-radius:20px;padding:9px 15px;background:rgba(39,13,18,.65);box-shadow:inset 0 0 0 .5px #ffffff40;color:#ffb7bb;font-size:15px;font-weight:600">▼ −$6,296.51 (−0.50%) Today</div>
+<div style="position:absolute;top:360px;left:32px;width:182px;height:52px;border-radius:28px;display:flex;gap:13px;align-items:center;justify-content:center;font-size:18px;font-weight:600;background:linear-gradient(150deg,rgba(255,255,255,.23),rgba(255,255,255,.08));backdrop-filter:blur(12px);box-shadow:inset 0 1px 1px rgba(255,255,255,.62),inset 0 -1px 1px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg>Send</div><div style="position:absolute;top:360px;left:226px;width:182px;height:52px;border-radius:28px;display:flex;gap:13px;align-items:center;justify-content:center;font-size:18px;font-weight:600;background:linear-gradient(150deg,rgba(255,255,255,.23),rgba(255,255,255,.08));backdrop-filter:blur(12px);box-shadow:inset 0 1px 1px rgba(255,255,255,.62),inset 0 -1px 1px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.14);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1"/><rect x="15" y="2" width="7" height="7" rx="1"/><rect x="2" y="15" width="7" height="7" rx="1"/><path d="M5 5h1m12 0h1M5 18h1m9-3h3v3h4m-7 4h3m4 0v-3"/></svg>Receive</div></div><div style="position:absolute;top:488px;left:20px;right:20px;display:flex;align-items:center;justify-content:space-between;height:40px"><span style="font-size:18px;font-weight:700">Assets</span><span style="width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#fff,#f7f7f7);box-shadow:0 0 0 .5px #ddd"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h20M6 12h12m-8 6h4"/></svg></span></div><div style="position:absolute;left:26px;right:20px;top:544px"><sc-for list="{{ assets }}" as="a"><div style="height:78px;display:flex;align-items:center;gap:18px"><img src="{{ a.icon }}" alt="" width="40" height="40" style="width:40px;height:40px;flex:none;border-radius:10px"><div style="height:100%;flex:1;display:flex;align-items:center;justify-content:space-between;border-bottom:.5px solid #dedee1"><div><div style="font-size:17px;font-weight:600;line-height:1.3">{{ a.name }}</div><div style="font-size:16px;color:#858585;margin-top:4px">{{ a.qty }}</div></div><span style="font-size:17px;font-weight:600;white-space:nowrap">{{ a.val }}</span></div></div></sc-for></div><div style="position:absolute;left:21px;top:873px;width:189px;height:62px;border-radius:34px;display:flex;align-items:center;padding:4px;box-sizing:border-box;background:rgba(250,250,250,.72);backdrop-filter:blur(15px);box-shadow:inset 0 1px 1px white,0 0 0 .5px #d9d9dd,0 3px 15px #00000008;"><span style="width:90px;height:54px;border-radius:29px;background:#dededeb8;display:grid;place-items:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h14l-2-3-12 3Zm-1 3h18v13H3z" fill="currentColor"/><rect x="14" y="12" width="8" height="5" rx="2" fill="white"/><path d="M17 14.5h1"/></svg></span><span style="flex:1;display:grid;place-items:center"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1 8M3 4v6h6m3-4v7l4 2"/></svg></span></div><div style="position:absolute;right:21px;top:873px;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:rgba(250,250,250,.72);backdrop-filter:blur(15px);box-shadow:inset 0 1px 1px white,0 0 0 .5px #d9d9dd,0 3px 15px #00000008;"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 7 7"/></svg></div></div></div></x-dc></template>
+<script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
-  state = { s: 1 };
-  box = React.createRef();
-  componentDidMount() {
-    const el = this.box.current; if (!el) return;
-    const fit = () => { const w = el.clientWidth; if (w) this.setState({ s: w / 440 }); };
-    this._ro = new ResizeObserver(fit); this._ro.observe(el); fit();
-  }
-  componentWillUnmount() { this._ro && this._ro.disconnect(); }
-  renderVals() {
-    const dark = (this.props.theme ?? 'light') === 'dark';
-    const c = dark
-      ? { bg: '#000000', card: '#1C1C1E', text: '#FFFFFF', sec: '#8E8E93', chev: '#48484A', sepLine: '#38383A', glass: 'rgba(44,44,46,.85)', glassBar: 'rgba(44,44,46,.72)', glassEdge: 'rgba(255,255,255,.1)', shadow: 'rgba(0,0,0,.3)', battEdge: 'rgba(255,255,255,.45)' }
-      : { bg: '#F2F2F7', card: '#FFFFFF', text: '#000000', sec: '#8E8E93', chev: '#C7C7CC', sepLine: '#E5E5EA', glass: 'rgba(255,255,255,.82)', glassBar: 'rgba(255,255,255,.72)', glassEdge: 'rgba(0,0,0,.08)', shadow: 'rgba(0,0,0,.05)', battEdge: 'rgba(0,0,0,.4)' };
-    const rows = [
-      { icon: 'assets/bitcoin.svg', name: 'Bitcoin', qty: '0.1842 BTC', val: '$18,189.75' },
-      { icon: 'assets/coin-eth.svg', name: 'Ethereum', qty: '1.6 ETH', val: '$5,481.28' },
-      { icon: 'assets/coin-sol.svg', name: 'Solana', qty: '18.4 SOL', val: '$3,427.00' },
-      { icon: 'assets/coin-usdc.svg', name: 'Arc', qty: '2,450 USDC', val: '$2,450.00' },
-      { icon: 'assets/coin-xrp.svg', name: 'XRP', qty: '612 XRP', val: '$1,441.60' },
-    ];
-    return {
-      box: this.box, c, scale: `scale(${this.state.s})`,
-      assets: rows.map((r, k) => Object.assign({}, r, { sep: k < rows.length - 1 ? `inset 0 -0.5px 0 ${c.sepLine}` : 'none' })),
-    };
-  }
+state = {s:1}; box = React.createRef();
+componentDidMount(){const el=this.box.current;if(!el)return;const fit=()=>{if(el.clientWidth)this.setState({s:el.clientWidth/440});};this._ro=new ResizeObserver(fit);this._ro.observe(el);fit();}
+componentWillUnmount(){this._ro?.disconnect();}
+renderVals(){return {box:this.box,scale:`scale(${this.state.s})`,assets:[
+{icon:'/assets/home-preview/bitcoin.png',name:'Bitcoin',qty:'10 BTC',val:'$900,000.00'},
+{icon:'/assets/home-preview/ethereum.png',name:'Ethereum',qty:'80 ETH',val:'$240,000.00'},
+{icon:'/assets/home-preview/solana.png',name:'Solana',qty:'500 SOL',val:'$75,000.00'},
+{icon:'/assets/home-preview/bnb.png',name:'BNB Smart Chain',qty:'60 BNB',val:'$36,000.00'},
+{icon:'/assets/home-preview/xrpl.png',name:'XRP Ledger',qty:'4,150.8825 XRP',val:'$8,301.765'}]};}
 }
-</script>
-</body>
-</html>
+</script></body></html>
