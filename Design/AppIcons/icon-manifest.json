@@ -27,15 +27,15 @@
       "display_name": "Signal Blue",
       "is_default": true,
       "order": 1,
-      "description": "Cobalt gradient / white",
+      "description": "Solid Signal Blue / white",
       "assets": {
         "png": {
           "path": "png/01-oath-signal-blue.png",
-          "sha256": "15b54756e3cfca52c70e1f9d1c873a4ddf0c5101b9ebd36761cbc739ac514236"
+          "sha256": "365abc77ad4695392c22cdf40a58d401b4f8ba74a7913fed68a0518d81354bea"
         },
         "svg": {
-          "path": "svg/01-oath-signal-blue.svg",
-          "sha256": "0704900e2dd3a159fecee59159f68b62aabf6248127295f1f056ee71d787e25a"
+          "path": "oath-solid-blue.svg",
+          "sha256": "c5ca159ad435ce2ac992b982f73fa603c066e8c17243e000a9f4949a84c56e1e"
         }
       }
     },

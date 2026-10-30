@@ -19,6 +19,10 @@ parser.add_argument('--app', type=Path)
 args = parser.parse_args()
 manifest = json.loads((ROOT / 'Design/AppIcons/icon-manifest.json').read_text())
 assets = ROOT / 'OathApp/Assets.xcassets'
+master = (ROOT / 'Design/AppIcons/oath-solid-blue.svg').read_text()
+assert 'Gradient' not in master and 'url(' not in master, 'Default logo must stay flat'
+assert '#247BFF' in master and '#FFFFFF' in master
+assert hashlib.sha256(master.encode()).hexdigest() == manifest['icons'][0]['assets']['svg']['sha256']
 
 with tempfile.TemporaryDirectory(prefix='oath-app-icons-') as temporary:
     work = Path(temporary)
@@ -46,6 +50,7 @@ enum TestFailure: Error { case rejected }
     }
 }
 enum OathDiagnostics {
+    static func isExpectedCancellation(_ error: Error) -> Bool { error is CancellationError }
     @TaskLocal static var operationID: UUID?
     @MainActor static var failures = 0
     @MainActor static func record(_ error: Error, component: String, operation: String) {
@@ -187,9 +192,9 @@ for row, icon in zip(rows, manifest['icons']):
 assert {p.stem for p in assets.glob('*.appiconset') if p.is_dir()} == {r['asset'] for r in rows}
 assert {p.stem for p in assets.glob('IconPreview-*.imageset') if p.is_dir()} == {r['preview'] for r in rows}
 alternates = ' '.join(r['asset'] for r in rows[1:])
-assert (ROOT / 'project.yml').read_text().count(alternates) == 1
+assert ' '.join((ROOT / 'project.yml').read_text().split()).count(alternates) == 1
 assert (ROOT / 'OathAtmosphere.xcodeproj/project.pbxproj').read_text().count(alternates) == 2
-print('Passed: 10 exact original icons/previews; default, all alternatives, reset, upgrade, failure, concurrency and relaunch selection checks (mock UIKit).')
+print('Passed: 10 manifest-matched icons/previews; default, all alternatives, reset, upgrade, failure, concurrency and relaunch selection checks (mock UIKit).')
 
 if args.app:
     info = plistlib.loads((args.app / 'Info.plist').read_bytes())
