@@ -1,0 +1,436 @@
+[
+  {
+    "key": "bitget-self-custody",
+    "article_id": null,
+    "slug": "bitget-388-million-hack-self-custody",
+    "old_path": "/assets/articles/bitget-388-million-hack-self-custody.png",
+    "path": "/assets/articles/oath-blue-2026-10-18/bitget-self-custody.jpg",
+    "old_url": "https://oathwallet.org/assets/articles/bitget-388-million-hack-self-custody.png",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/bitget-self-custody.jpg",
+    "alt": "Oath — Your crypto. Your control. An open white padlock and coin on blue.",
+    "old_alts": [
+      "Oath Wallet article cover: Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call, with the current interlocking-ring Oath logo on the official dark article template."
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "release-3-5-5",
+    "article_id": "4772fa6a-a33e-493a-b3ee-1f6dedbd436d",
+    "slug": "oath-3-5-5-slide-to-send-transaction-activity",
+    "old_path": "/assets/articles/de9dd061175f-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/release-3-5-5.jpg",
+    "old_url": "https://aperturex.io/assets/articles/release-3-5-5/cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/release-3-5-5.jpg",
+    "alt": "Oath — A better feel. Every transfer. A white slider and blue forward arrow on blue.",
+    "old_alts": [
+      "A silver mechanical rail and circular ceramic slider, photographed as an abstract editorial still life."
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "release-3-5-4",
+    "article_id": "a7fd9a90-61b6-4b46-bdd8-0c469136a2c9",
+    "slug": "oath-3-5-4-bitcoin-recovery-clearer-sending",
+    "old_path": "/assets/articles/oath-release-3-5-4-cover.png",
+    "path": "/assets/articles/oath-blue-2026-10-18/release-3-5-4.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/aperture-3-5-4-20260913/aperture-3-5-4-cover.png",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/release-3-5-4.jpg",
+    "alt": "Oath — Recovery. With more range. A branching white path leads to three tiles and an arch on blue.",
+    "old_alts": [
+      "Aperture 3.5.4 editorial cover with graphite numerals, orange decimal points, and the headline Recovery. With more range. on a silver-gray surface.",
+      "Oath 3.5.4 editorial cover with graphite numerals, orange decimal points, and the headline Recovery. With more range. on a silver-gray surface."
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "bitcoin-address-types",
+    "article_id": "c6e47f38-7ee6-4e43-bdd5-27db8aebf8ec",
+    "slug": "bitcoin-settings-oath-address-types-indexes-complete-guide",
+    "old_path": "/assets/articles/oath-bitcoin-address-guide-cover.png",
+    "path": "/assets/articles/oath-blue-2026-10-18/bitcoin-address-types.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/bitcoin-settings-complete-guide-20260911/cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/bitcoin-address-types.jpg",
+    "alt": "Oath — Bitcoin. Address by address. A white Bitcoin coin beside three address cards on blue.",
+    "old_alts": [
+      "Aperture Bitcoin guide: a graphite rail branches into two rows of silver address tiles, within the approved gray Aperture editorial layout.",
+      "Oath Bitcoin guide: a graphite rail branches into two rows of silver address tiles, within the approved gray Oath editorial layout."
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "wallet-boundaries",
+    "article_id": "a469e172-c64d-4d81-8420-d2498cc2095e",
+    "slug": "why-oath-has-no-swaps-perps-web3-walletconnect",
+    "old_path": "/assets/articles/1f87070c027b-wallet-not-marketplace-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/wallet-boundaries.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/wallet-not-marketplace/wallet-not-marketplace-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/wallet-boundaries.jpg",
+    "alt": "Oath — A wallet. With boundaries. A white circular boundary surrounds a coin on blue.",
+    "old_alts": [
+      "Monochrome editorial sculpture of a protected circular vault separated from a field of disconnected contract and trading paths"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "coldcard-security",
+    "article_id": "8805822a-7e38-4b57-90d4-0823d14cbec5",
+    "slug": "coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+    "old_path": "/assets/articles/d407ccb16f8c-coldcard-weak-seed-crisis-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/coldcard-weak-seed-crisis/coldcard-weak-seed-crisis-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/coldcard-security.jpg",
+    "alt": "Oath logo and a white circular maze around a blue cube, on a blue background.",
+    "old_alts": [
+      "Editorial sculpture of a dense graphite maze surrounding a field of random tiles, with one predictable path escaping through the enclosure",
+      "Escultura editorial de um denso labirinto de grafite ao redor de um campo de peças aleatórias, com um caminho previsível escapando pelo invólucro",
+      "Escultura editorial de un denso laberinto de grafito que rodea un campo de fichas aleatorias, con una ruta predecible que escapa de la carcasa",
+      "Patung editorial berupa labirin grafit padat yang mengelilingi bidang ubin acak, dengan satu jalur yang dapat diprediksi keluar menembus selubung",
+      "Rastgele karolardan oluşan bir alanı çevreleyen yoğun grafit labirentin ve muhafazadan dışarı çıkan öngörülebilir tek bir yolun editoryal heykeli",
+      "Redaktionelle Skulptur eines dichten Graphitlabyrinths, das ein Feld zufälliger Kacheln umschließt, wobei ein vorhersehbarer Pfad die Umfassung durchbricht",
+      "Sculpture éditoriale représentant un labyrinthe dense en graphite autour d’un champ de tuiles aléatoires, dont un chemin prévisible s’échappe à travers le boîtier",
+      "Tác phẩm điêu khắc biên tập về một mê cung than chì dày đặc bao quanh vùng ô xếp ngẫu nhiên, với một lối đi có thể dự đoán xuyên qua vỏ bao để thoát ra ngoài",
+      "Редакционная скульптура: плотный графитовый лабиринт окружает поле случайных плиток, а один предсказуемый путь выходит за пределы корпуса",
+      "منحوتة تحريرية لمتاهة كثيفة بلون الغرافيت تحيط بحقل من القطع العشوائية، مع مسار واحد قابل للتنبؤ يخرج عبر الغلاف",
+      "گریفائٹ کی گھنی بھول بھلیاں کا اداریاتی مجسمہ جو بے ترتیب ٹائلوں کے میدان کو گھیرے ہوئے ہے، اور ایک قابلِ پیش گوئی راستہ غلاف سے باہر نکل رہا ہے",
+      "यादृच्छिक टाइलों के क्षेत्र को घेरे सघन ग्रेफ़ाइट भूलभुलैया की संपादकीय मूर्ति, जिसके आवरण से एक अनुमानित पथ बाहर निकल रहा है",
+      "দৈব টাইলের ক্ষেত্র ঘিরে থাকা ঘন গ্রাফাইট গোলকধাঁধার সম্পাদকীয় ভাস্কর্য, যার আবরণ ভেদ করে একটি অনুমানযোগ্য পথ বেরিয়ে গেছে",
+      "ランダムなタイル群を囲む高密度の黒鉛製迷路と、囲いから抜け出す1本の予測可能な経路を表したエディトリアル彫刻",
+      "一件编辑性雕塑：密集的石墨色迷宫围绕一片随机方块，其中一条可预测路径穿过围障逸出",
+      "촘촘한 흑연색 미로가 무작위 타일 구역을 둘러싸고, 하나의 예측 가능한 경로가 외장을 빠져나오는 모습을 표현한 편집용 조형물"
+    ],
+    "localized_alts": {
+      "ar": "شعار Oath ومتاهة دائرية بيضاء تحيط بمكعب أزرق، على خلفية زرقاء.",
+      "bn": "নীল পটভূমিতে Oath লোগো এবং একটি নীল ঘনক ঘিরে সাদা বৃত্তাকার গোলকধাঁধা।",
+      "de": "Oath-Logo und ein weißes kreisförmiges Labyrinth um einen blauen Würfel auf blauem Hintergrund.",
+      "es": "Logotipo de Oath y un laberinto circular blanco alrededor de un cubo azul, sobre fondo azul.",
+      "fr": "Logo Oath et labyrinthe circulaire blanc autour d’un cube bleu, sur fond bleu.",
+      "hi": "नीली पृष्ठभूमि पर Oath का लोगो और नीले घन के चारों ओर सफेद गोलाकार भूलभुलैया।",
+      "id": "Logo Oath dan labirin melingkar putih yang mengelilingi kubus biru, dengan latar biru.",
+      "ja": "青い背景に、Oathのロゴと青い立方体を囲む白い円形の迷路。",
+      "ko": "파란 배경 위 Oath 로고와 파란 정육면체를 둘러싼 흰색 원형 미로.",
+      "pt-BR": "Logotipo da Oath e um labirinto circular branco ao redor de um cubo azul, sobre fundo azul.",
+      "ru": "Логотип Oath и белый круговой лабиринт вокруг синего куба на синем фоне.",
+      "tr": "Mavi arka plan üzerinde Oath logosu ve mavi bir küpü çevreleyen beyaz dairesel labirent.",
+      "ur": "نیلے پس منظر پر Oath کا لوگو اور ایک نیلے مکعب کے گرد سفید گول بھول بھلیاں۔",
+      "vi": "Biểu trưng Oath và mê cung tròn màu trắng bao quanh một khối lập phương màu xanh trên nền xanh.",
+      "zh-Hans": "蓝色背景上的 Oath 标志，以及环绕蓝色立方体的白色圆形迷宫。"
+    },
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "release-2-40-12",
+    "article_id": "27368108-fe93-4c8f-a25e-b89288c93a01",
+    "slug": "oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools",
+    "old_path": "/assets/articles/84fc4823b579-oath-2-40-12-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/release-2-40-12.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/release-2-40-12/aperture-2-40-12-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/release-2-40-12.jpg",
+    "alt": "Oath — More ways. More clarity. A white shield, Bitcoin coin and forward arrow on blue.",
+    "old_alts": [
+      "Editorial still life of a modular graphite security hub connecting privacy, Bitcoin, sending, QR, conversion, and language tools"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "send-to-name",
+    "article_id": "f0bd299c-c090-4db1-84cf-914a8fe96792",
+    "slug": "send-to-name-ens-sol-space-id-payment-ids",
+    "old_path": "/assets/articles/2abc808b78a5-send-to-name-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/send-to-name.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/name-resolution/send-to-name-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/send-to-name.jpg",
+    "alt": "Oath — Send to a name. A white name card with a blue at-sign and a forward arrow.",
+    "old_alts": [
+      "Independent editorial still life of a long graphite machine-address ribbon resolving through one verified junction into four short human-readable name rails"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "transaction-details",
+    "article_id": "21937a60-dd1b-4d45-a01d-56c136ea46c0",
+    "slug": "understand-transaction-status-hash-fees-addresses-local-notes",
+    "old_path": "/assets/articles/e39f71339967-transaction-details-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/transaction-details.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/transaction-details/transaction-details-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/transaction-details.jpg",
+    "alt": "Oath — Every transfer. Explained. A white receipt and blue confirmation check on blue.",
+    "old_alts": [
+      "Independent editorial still life of a graphite transaction rail with separate cobalt status, orange fee, address, hash, and blank note modules"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "custom-token",
+    "article_id": "cc1fd9a0-1f37-4c86-b786-52ccde936c62",
+    "slug": "add-custom-token-without-trusting-name-symbol",
+    "old_path": "/assets/articles/dcbaf6d028d8-custom-token-identity-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/custom-token.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/custom-token-identity/custom-token-identity-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/custom-token.jpg",
+    "alt": "Oath — Know your token. A magnifying glass over a blue token, with white coins behind it.",
+    "old_alts": [
+      "Independent editorial still life of a cobalt address rail passing through a graphite network gate beside three differently keyed blank token discs"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "app-lock",
+    "article_id": "16fbcfcf-262a-4dee-bdba-93fb55eea6e9",
+    "slug": "lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy",
+    "old_path": "/assets/articles/dee0e1407128-lock-oath-down-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/app-lock.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/app-lock-privacy/lock-aperture-down-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/app-lock.jpg",
+    "alt": "Oath — Your wallet. Under lock. A white padlock and six passcode dots on blue.",
+    "old_alts": [
+      "Independent editorial security sculpture with a six-dot graphite module, cobalt biometric contour, ivory timing gate, and graphite privacy shutter"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "self-custody",
+    "article_id": "0749ac0b-dc62-4296-933c-d48b0eb68360",
+    "slug": "what-never-leaves-iphone-oath-self-custody-security-model",
+    "old_path": "/assets/articles/1709b6c61956-what-never-leaves-iphone-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/self-custody.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/self-custody-security-model/what-never-leaves-iphone-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/self-custody.jpg",
+    "alt": "Oath — Your keys. Your control. A white key across a shield on blue.",
+    "old_alts": [
+      "Independent editorial cutaway of a graphite device chassis with a sealed cobalt local vault, separate public-data rail, and orange verification tab"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "receive-safely",
+    "article_id": "56a454c0-acd9-4248-a54a-c39da9d53684",
+    "slug": "receive-crypto-safely-network-address-qr-requested-amounts",
+    "old_path": "/assets/articles/fde0815b101f-receive-crypto-safely-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/receive-safely.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/receive-crypto-safely/receive-crypto-safely-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/receive-safely.jpg",
+    "alt": "Oath — Receive. With confidence. A white receiving arrow points into a tray holding a coin.",
+    "old_alts": [
+      "Independent editorial sculpture with an ivory asset token, cobalt network gate, graphite address rail, and separate amount dial"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "universal-search",
+    "article_id": "f67b50a0-f911-4aaa-ab3a-3f5279c07671",
+    "slug": "find-anything-wallet-oath-universal-search",
+    "old_path": "/assets/articles/abb8a8da54c2-oath-universal-search-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/universal-search.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/universal-search/aperture-universal-search-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/universal-search.jpg",
+    "alt": "Oath — Find it. In a moment. A white magnifying glass over three index cards on blue.",
+    "old_alts": [
+      "Independent editorial sculpture of one blue query rail selecting six ranked wallet records from a precise graphite local index"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "silent-payments",
+    "article_id": "182123d5-a790-47cb-9da4-2807c6bbc703",
+    "slug": "silent-payments-oath-reusable-bitcoin-address-without-reuse",
+    "old_path": "/assets/articles/089713ad143e-silent-payments-reusable-address-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/silent-payments.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/silent-payments/silent-payments-reusable-address-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/silent-payments.jpg",
+    "alt": "Oath — Silent Payments. Explained. A white Bitcoin coin connected to three recipient symbols on blue.",
+    "old_alts": [
+      "Independent editorial sculpture of one reusable two-part receiver gateway transforming three separate sender inputs into three unique Bitcoin output tiles"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "fresh-addresses",
+    "article_id": "b364d642-9f20-4ba5-a546-fa36200a1297",
+    "slug": "why-bitcoin-wallets-generate-fresh-receiving-addresses",
+    "old_path": "/assets/articles/e83a5b60b409-why-bitcoin-wallets-generate-fresh-addresses-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/fresh-addresses.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/bitcoin-fresh-addresses/why-bitcoin-wallets-generate-fresh-addresses-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/fresh-addresses.jpg",
+    "alt": "Oath — A fresh address. Every time. A white Bitcoin coin with three distinct address cards on blue.",
+    "old_alts": [
+      "Independent editorial sculpture of one deterministic Bitcoin key feeding unique receiving tiles along a blue external rail and a separate orange change rail"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "many-networks",
+    "article_id": "ed8ffa5b-7f6b-4e74-b843-0748e6ba9882",
+    "slug": "one-wallet-many-mainnets-accounts-networks-separate",
+    "old_path": "/assets/articles/abc323213f24-one-wallet-many-mainnets-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/many-networks.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/mainnet-separation/one-wallet-many-mainnets-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/many-networks.jpg",
+    "alt": "Oath — Many networks. One wallet. A wallet surrounded by five network symbols on blue.",
+    "old_alts": [
+      "Independent editorial sculpture of one secure vault connected to physically separated mainnet ledger islands with distinct account keys"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "import-methods",
+    "article_id": "969e2e30-ca83-4cac-a4ec-de5bf3b91f1d",
+    "slug": "recovery-phrase-private-key-icloud-iphone-transfer-import",
+    "old_path": "/assets/articles/d197124e5a9d-choose-import-method-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/import-methods.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/import-methods/choose-import-method-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/import-methods.jpg",
+    "alt": "Oath — Your wallet. Welcome back. White stepping stones lead through an illuminated doorway on blue.",
+    "old_alts": [
+      "Editorial decision board presenting recovery tiles, a cryptographic key, an encrypted cloud capsule, and two directly connected phones around one secure vault"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "network-fees",
+    "article_id": "0a79b46a-ed88-46d3-93c7-12b74cd31018",
+    "slug": "where-crypto-network-fees-actually-go",
+    "old_path": "/assets/articles/693c3f9c7a12-where-network-fees-go-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/network-fees.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/network-fees/where-network-fees-go-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/network-fees.jpg",
+    "alt": "Oath — Where your network fee goes. Three white coins follow a path into a stack of network blocks.",
+    "old_alts": [
+      "Editorial still life of a physical routing machine dividing one blue value token among a validator tower, burn Oath, storage vault, and settlement rail",
+      "Editorial still life of a physical routing machine dividing one blue value token among a validator tower, burn aperture, storage vault, and settlement rail"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "send-finality",
+    "article_id": "8f0eb348-1f2b-4e3d-a40c-bcf2a2851c6a",
+    "slug": "send-crypto-without-guesswork-recipient-to-finality",
+    "old_path": "/assets/articles/6cd3af18b4e7-send-crypto-finality-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/send-finality.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/send-crypto-finality/send-crypto-finality-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/send-finality.jpg",
+    "alt": "Oath — From send to settled. A white arrow leads to a confirmation check in an open circle.",
+    "old_alts": [
+      "Editorial still life of a blue transfer token moving from an address slab through a signing gate toward three finality blocks"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "iphone-transfer",
+    "article_id": "1c81a228-4d29-4914-8e93-3517f0c516ae",
+    "slug": "move-oath-to-new-iphone-direct-encrypted-serverless",
+    "old_path": "/assets/articles/b19c23496e8a-oath-direct-iphone-transfer-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/iphone-transfer.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/direct-iphone-transfer/aperture-direct-iphone-transfer-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/iphone-transfer.jpg",
+    "alt": "Oath — New iPhone. Same wallet. Two white phone silhouettes connected by a bridge carrying a blue capsule.",
+    "old_alts": [
+      "Editorial still life of two phone-shaped objects connected directly by a bridge carrying a sealed blue data capsule"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "backup-restore",
+    "article_id": "ff91ac30-fce9-4cd1-9371-8a0ee408fd72",
+    "slug": "backup-restore-oath-wallet",
+    "old_path": "/assets/articles/7dece4021f83-oath-backup-restore-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/backup-restore.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/icloud-backup-restore/aperture-backup-restore-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/backup-restore.jpg",
+    "alt": "Oath — Back it up. Bring it back. A white cloud and shield with a blue restore arrow.",
+    "old_alts": [
+      "Editorial still life of a phone slipping away while a recovery tile, cloud token, and blue passkey remain secured"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "bip39-passphrase",
+    "article_id": "b041fc84-a14d-4f78-8e22-ce4b595f7220",
+    "slug": "add-bip39-passphrase-oath-wallet",
+    "old_path": "/assets/articles/c18566b78f34-oath-bip39-passphrase-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/bip39-passphrase.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/bip39-passphrase/aperture-bip39-passphrase-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/bip39-passphrase.jpg",
+    "alt": "Oath — One phrase. A separate wallet. A white key between two separate vaults on blue.",
+    "old_alts": [
+      "Editorial still life of blank recovery tiles and a separate blue key converging on a secure black wallet"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "currency-converter",
+    "article_id": "9fb0194f-2f3c-425c-a4a3-9551e3720789",
+    "slug": "oath-currency-converter-crypto-fiat-metals",
+    "old_path": "/assets/articles/0db784301f96-oath-currency-converter-editorial-cover.webp",
+    "path": "/assets/articles/oath-blue-2026-10-18/currency-converter.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/currency-converter/aperture-currency-converter-editorial-cover.webp",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/currency-converter.jpg",
+    "alt": "Oath — One amount. Every context. White dollar and Bitcoin coins connected by conversion arrows.",
+    "old_alts": [
+      "Editorial still life of generic digital, fiat, silver, and gold forms connected in a conversion network"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  },
+  {
+    "key": "physical-entropy",
+    "article_id": "9cc9755c-179b-4676-b2bf-e4bed411fd4a",
+    "slug": "build-wallet-with-dice-coin-flips-random-digits",
+    "old_path": "/assets/articles/70008815c7ea-oath-physical-entropy-editorial-cover.png",
+    "path": "/assets/articles/oath-blue-2026-10-18/physical-entropy.jpg",
+    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/physical-entropy/aperture-physical-entropy-editorial-cover.png",
+    "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/physical-entropy.jpg",
+    "alt": "Oath — Make randomness physical. A white die and two coins on blue.",
+    "old_alts": [
+      "Editorial still life of a black die, two silver coins, and cobalt number tiles representing physical wallet entropy"
+    ],
+    "localized_alts": {},
+    "width": 1200,
+    "height": 630
+  }
+]

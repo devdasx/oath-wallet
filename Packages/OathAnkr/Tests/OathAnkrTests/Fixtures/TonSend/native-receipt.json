@@ -1,0 +1,232 @@
+{
+  "plan": {
+    "reference": "native",
+    "requestedAmount": 10000000,
+    "assetBalance": 2000000000,
+    "feeReserve": 2366035,
+    "expiration": 1791952443,
+    "nativeBalance": 2000000000,
+    "fee": 910690,
+    "sequence": 0,
+    "recipient": "0:2dae4ddedb309bb3310b8eeb4b31c6e85bd05e6773b51b58bad6adcda5facacd",
+    "publicKey": "gJO/AOKpbkwVR01iQeN8zlNpM9DgG1W4/HrCsf0ti28=",
+    "memo": "",
+    "decimals": 9,
+    "createdAt": 813644943.159177,
+    "bounce": false,
+    "network": "testnet",
+    "amount": 10000000,
+    "attached": 10000000,
+    "queryID": 14874345919853390993,
+    "deploy": true,
+    "sender": "0:0bf115436307ed2c4de6b4b251d883c2628f4c69228a3ac59526babf8fb79609"
+  },
+  "signed": {
+    "signature": "JCKkcy5S0OLaHoiCsHbXLSnxNfjFtrOvsgEYOA88zHnTMKK0jkOsDAm2rxXZRRRFc1PlAjrTzAXgmg/tHlHJCg==",
+    "bytes": "te6ccgECGQEAA7EAAkWIABfiKobGD9pYm81pZKOxB4TFHpjSRRR1iypNdX8fbywSHgMBAZwkIqRzLlLQ4toeiIKwdtctKfE1+MW2s6+yARg4DzzMedMworSOQ6wMCbavFdlFFEVzU+UCOtPMBeCaD+0eUckKKamjF2rPBjsAAAAAAAMCAGZCABbXJu9tmE3ZmIXHdaWY43Qt6C8zudqNrF1rVubS/WVmnMS0AAAAAAAAAAAAAAAAAAACATQFBABRAAAAACmpoxeAk78A4qluTBVHTWJB43zOU2kz0OAbVbj8esKx/S2Lb0ABFP8A9KQT9LzyyAsGAgEgDAcE+PKDCNcYINMf0x/THwL4I7vyZO1E0NMf0x/T//QE0VFDuvKhUVG68qIF+QFUEGT5EPKj+AAkpMjLH1JAyx9SMMv/UhD0AMntVPgPAdMHIcAAn2xRkyDXSpbTB9QC+wDoMOAhwAHjACHAAuMAAcADkTDjDQOkyMsfEssfy/8LCgkIAAr0AMntVABsgQEI1xj6ANM/MFIkgQEI9Fnyp4IQZHN0cnB0gBjIywXLAlAFzxZQA/oCE8tqyx8Syz/Jc/sAAHCBAQjXGPoA0z/IVCBHgQEI9FHyp4IQbm90ZXB0gBjIywXLAlAGzxZQBPoCFMtqEssfyz/Jc/sAAgBu0gf6ANTUIvkABcjKBxXL/8nQd3SAGMjLBcsCIs8WUAX6AhTLaxLMzMlz+wDIQBSBAQj0UfKnAgIBSBYNAgEgDw4AWb0kK29qJoQICga5D6AhhHDUCAhHpJN9KZEM5pA+n/mDeBKAG3gQFImHFZ8xhAIBIBEQABG4yX7UTQ1wsfgCAVgVEgIBIBQTABmvHfaiaEAQa5DrhY/AABmtznaiaEAga5Drhf/AAD2ynftRNCBAUDXIfQEMALIygfL/8nQAYEBCPQKb6ExgAubQAdDTAyFxsJJfBOAi10nBIJJfBOAC0x8hghBwbHVnvSKCEGRzdHK9sJJfBeAD+kAwIPpEAcjKB8v/ydDtRNCBAUDXIfQEMFyBAQj0Cm+hMbOSXwfgBdM/yCWCEHBsdWe6kjgw4w0DghBkc3RyupJfBuMNGBcAilAEgQEI9Fkw7UTQgQFA1yDIAc8W9ADJ7VQBcrCOI4IQZHN0coMesXCAGFAFywVQA88WI/oCE8tqyx/LP8mAQPsAkl8D4gB4AfoA9AQw+CdvIjBQCqEhvvLgUIIQcGx1Z4MesXCAGFAEywUmzxZY+gIZ9ADLaRfLH1Jgyz8gyYBA+wAG",
+    "hash": "158b4d312dbe1578cd52804ff11110c299425d3da521265df8d414c09c599088",
+    "bodyHash": "9ec72fb204c8d879e1ce2de53d116f1b5e25b6efb9fcf6bd44d0ed59f3282edb"
+  },
+  "trace": {
+    "transaction": {
+      "hash": "68155971aeae525489df2816c669677ca6dceabaa0d7d29af2651ee83218665e",
+      "lt": 102909640000001,
+      "account": {
+        "address": "0:0bf115436307ed2c4de6b4b251d883c2628f4c69228a3ac59526babf8fb79609",
+        "is_scam": false,
+        "is_wallet": true
+      },
+      "success": true,
+      "utime": 1791952148,
+      "orig_status": "uninit",
+      "end_status": "active",
+      "total_fees": 910690,
+      "end_balance": 1989044864,
+      "transaction_type": "TransOrd",
+      "state_update_old": "beaa05f2ee0afde1cd4fb294e052c6f878a1612ddce8acb2fad3622623f0966d",
+      "state_update_new": "3244fa3e33829ea96714888b7187089fa1ecfc17d335f78ac24a3a64112f47b4",
+      "in_msg": {
+        "msg_type": "ext_in_msg",
+        "created_lt": 0,
+        "ihr_disabled": false,
+        "bounce": false,
+        "bounced": false,
+        "value": 0,
+        "fwd_fee": 0,
+        "ihr_fee": 0,
+        "destination": {
+          "address": "0:0bf115436307ed2c4de6b4b251d883c2628f4c69228a3ac59526babf8fb79609",
+          "is_scam": false,
+          "is_wallet": true
+        },
+        "import_fee": 0,
+        "created_at": 0,
+        "op_code": "0x2422a473",
+        "init": {
+          "boc": "b5ee9c72010216010003040002013401020114ff00f4a413f4bcf2c80b0300510000000029a9a3178093bf00e2a96e4c15474d6241e37cce536933d0e01b55b8fc7ac2b1fd2d8b6f400201200405020148060704f8f28308d71820d31fd31fd31f02f823bbf264ed44d0d31fd31fd3fff404d15143baf2a15151baf2a205f901541064f910f2a3f80024a4c8cb1f5240cb1f5230cbff5210f400c9ed54f80f01d30721c0009f6c519320d74a96d307d402fb00e830e021c001e30021c002e30001c0039130e30d03a4c8cb1f12cb1fcbff1213141502e6d001d0d3032171b0925f04e022d749c120925f04e002d31f218210706c7567bd22821064737472bdb0925f05e003fa403020fa4401c8ca07cbffc9d0ed44d0810140d721f404305c810108f40a6fa131b3925f07e005d33fc8258210706c7567ba923830e30d03821064737472ba925f06e30d08090201200a0b007801fa00f40430f8276f2230500aa121bef2e0508210706c7567831eb17080185004cb0526cf1658fa0219f400cb6917cb1f5260cb3f20c98040fb0006008a5004810108f45930ed44d0810140d720c801cf16f400c9ed540172b08e23821064737472831eb17080185005cb055003cf1623fa0213cb6acb1fcb3fc98040fb00925f03e20201200c0d0059bd242b6f6a2684080a06b90fa0218470d4080847a4937d29910ce6903e9ff9837812801b7810148987159f31840201580e0f0011b8c97ed44d0d70b1f8003db29dfb513420405035c87d010c00b23281f2fff274006040423d029be84c6002012010110019adce76a26840206b90eb85ffc00019af1df6a26840106b90eb858fc0006ed207fa00d4d422f90005c8ca0715cbffc9d077748018c8cb05cb0222cf165005fa0214cb6b12ccccc973fb00c84014810108f451f2a7020070810108d718fa00d33fc8542047810108f451f2a782106e6f746570748018c8cb05cb025006cf165004fa0214cb6a12cb1fcb3fc973fb0002006c810108d718fa00d33f305224810108f459f2a782106473747270748018c8cb05cb025005cf165003fa0213cb6acb1f12cb3fc973fb00000af400c9ed54",
+          "interfaces": [
+            "wallet_v4r2"
+          ]
+        },
+        "hash": "158b4d312dbe1578cd52804ff11110c299425d3da521265df8d414c09c599088",
+        "raw_body": "b5ee9c7201010201008600019c2422a4732e52d0e2da1e8882b076d72d29f135f8c5b6b3afb20118380f3ccc79d330a2b48e43ac0c09b6af15d94514457353e5023ad3cc05e09a0fed1e51c90a29a9a3176acf063b000000000003010066420016d726ef6d984dd99885c775a598e3742de82f33b9da8dac5d6b56e6d2fd65669cc4b40000000000000000000000000000",
+        "decoded_op_name": "wallet_signed_v4",
+        "decoded_body": {
+          "signature": "2422a4732e52d0e2da1e8882b076d72d29f135f8c5b6b3afb20118380f3ccc79d330a2b48e43ac0c09b6af15d94514457353e5023ad3cc05e09a0fed1e51c90a",
+          "subwallet_id": 698983191,
+          "valid_until": 1791952443,
+          "seqno": 0,
+          "payload": {
+            "sum_type": "SimpleSend",
+            "simple_send": {
+              "payload": [
+                {
+                  "mode": 3,
+                  "message": {
+                    "sum_type": "MessageInternal",
+                    "message_internal": {
+                      "ihr_disabled": true,
+                      "bounce": false,
+                      "bounced": false,
+                      "src": "",
+                      "dest": "0:2dae4ddedb309bb3310b8eeb4b31c6e85bd05e6773b51b58bad6adcda5facacd",
+                      "value": {
+                        "grams": "10000000",
+                        "other": {}
+                      },
+                      "ihr_fee": "0",
+                      "fwd_fee": "0",
+                      "created_lt": 0,
+                      "created_at": 0,
+                      "init": null,
+                      "body": {
+                        "is_right": false,
+                        "value": {}
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "deploy_and_install_plugin": {
+              "plugin_workchain": 0,
+              "plugin_balance": "0",
+              "state_init": {
+                "split_depth": null,
+                "special": null,
+                "code": null,
+                "data": null,
+                "library": {}
+              },
+              "body": {}
+            },
+            "install_plugin": {
+              "plugin_workchain": 0,
+              "plugin_address": "0000000000000000000000000000000000000000000000000000000000000000",
+              "amount": "0",
+              "query_id": 0
+            },
+            "remove_plugin": {
+              "plugin_workchain": 0,
+              "plugin_address": "0000000000000000000000000000000000000000000000000000000000000000",
+              "amount": "0",
+              "query_id": 0
+            }
+          }
+        }
+      },
+      "out_msgs": [],
+      "block": "(0,8000000000000000,96326582)",
+      "prev_trans_hash": "eed5e96d1fb250c5cc57dc989bac6ba0e500fc00355079fdd021902d0d2aba0e",
+      "prev_trans_lt": 102908653000003,
+      "compute_phase": {
+        "skipped": false,
+        "success": true,
+        "gas_fees": 220534,
+        "gas_used": 3308,
+        "vm_steps": 68,
+        "exit_code": 0,
+        "exit_code_description": "Ok"
+      },
+      "storage_phase": {
+        "fees_collected": 1,
+        "status_change": "acst_unchanged"
+      },
+      "action_phase": {
+        "success": true,
+        "result_code": 0,
+        "total_actions": 1,
+        "skipped_actions": 0,
+        "fwd_fees": 66667,
+        "total_fees": 22221
+      },
+      "aborted": false,
+      "destroyed": false,
+      "raw": "b5ee9c720102210100054c0003b570bf115436307ed2c4de6b4b251d883c2628f4c69228a3ac59526babf8fb7960900005d9884894201eed5e96d1fb250c5cc57dc989bac6ba0e500fc00355079fdd021902d0d2aba0e00005d9849b4d5436acf05140002461bcac480102030201e00405008272beaa05f2ee0afde1cd4fb294e052c6f878a1612ddce8acb2fad3622623f0966d3244fa3e33829ea96714888b7187089fa1ecfc17d335f78ac24a3a64112f47b4020f0c4046181aebb4401f200245880017e22a86c60fda589bcd6964a3b10784c51e98d24514758b2a4d757f1f6f2c121e06070101df1e0201340809019c2422a4732e52d0e2da1e8882b076d72d29f135f8c5b6b3afb20118380f3ccc79d330a2b48e43ac0c09b6af15d94514457353e5023ad3cc05e09a0fed1e51c90a29a9a3176acf063b0000000000031d0114ff00f4a413f4bcf2c80b0a00510000000029a9a3178093bf00e2a96e4c15474d6241e37cce536933d0e01b55b8fc7ac2b1fd2d8b6f400201200b0c0201480d0e04f8f28308d71820d31fd31fd31f02f823bbf264ed44d0d31fd31fd3fff404d15143baf2a15151baf2a205f901541064f910f2a3f80024a4c8cb1f5240cb1f5230cbff5210f400c9ed54f80f01d30721c0009f6c519320d74a96d307d402fb00e830e021c001e30021c002e30001c0039130e30d03a4c8cb1f12cb1fcbff191a1b1c02e6d001d0d3032171b0925f04e022d749c120925f04e002d31f218210706c7567bd22821064737472bdb0925f05e003fa403020fa4401c8ca07cbffc9d0ed44d0810140d721f404305c810108f40a6fa131b3925f07e005d33fc8258210706c7567ba923830e30d03821064737472ba925f06e30d0f100201201112007801fa00f40430f8276f2230500aa121bef2e0508210706c7567831eb17080185004cb0526cf1658fa0219f400cb6917cb1f5260cb3f20c98040fb0006008a5004810108f45930ed44d0810140d720c801cf16f400c9ed540172b08e23821064737472831eb17080185005cb055003cf1623fa0213cb6acb1fcb3fc98040fb00925f03e202012013140059bd242b6f6a2684080a06b90fa0218470d4080847a4937d29910ce6903e9ff9837812801b7810148987159f318402015815160011b8c97ed44d0d70b1f8003db29dfb513420405035c87d010c00b23281f2fff274006040423d029be84c6002012017180019adce76a26840206b90eb85ffc00019af1df6a26840106b90eb858fc0006ed207fa00d4d422f90005c8ca0715cbffc9d077748018c8cb05cb0222cf165005fa0214cb6b12ccccc973fb00c84014810108f451f2a7020070810108d718fa00d33fc8542047810108f451f2a782106e6f746570748018c8cb05cb025006cf165004fa0214cb6a12cb1fcb3fc973fb0002006c810108d718fa00d33f305224810108f459f2a782106473747270748018c8cb05cb025005cf165003fa0213cb6acb1f12cb3fc973fb00000af400c9ed540066420016d726ef6d984dd99885c775a598e3742de82f33b9da8dac5d6b56e6d2fd65669cc4b4000000000000000000000000000000ad480017e22a86c60fda589bcd6964a3b10784c51e98d24514758b2a4d757f1f6f2c13000b6b9377b6cc26eccc42e3bad2cc71ba16f41799dced46d62eb5ab73697eb2b34e625a00055b3c0000bb3109128404d59e0a2840009d419d8313880000000000000000110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020006dc9808235c95b34000000000002000000000002a4cdea28d4fcadb1aa0e76f31cd43a2a72254f1a63937c544d846ec402bb0aa64050158c"
+    },
+    "interfaces": [
+      "wallet_v4r2"
+    ],
+    "children": [
+      {
+        "transaction": {
+          "hash": "0948d5b116397e0a5d85c1e0dc050d7b3d9b576ac33deb66ca7e42a530e17dc9",
+          "lt": 102909640000003,
+          "account": {
+            "address": "0:2dae4ddedb309bb3310b8eeb4b31c6e85bd05e6773b51b58bad6adcda5facacd",
+            "is_scam": false,
+            "is_wallet": true
+          },
+          "success": true,
+          "utime": 1791952148,
+          "orig_status": "nonexist",
+          "end_status": "uninit",
+          "total_fees": 0,
+          "end_balance": 10000000,
+          "transaction_type": "TransOrd",
+          "state_update_old": "90aec8965afabb16ebc3cb9b408ebae71b618d78788bc80d09843593cac98da4",
+          "state_update_new": "3d479b48e8393c425400ccdd9b9e2f594f72e6375b10685e73ea7760bb5e0f4e",
+          "in_msg": {
+            "msg_type": "int_msg",
+            "created_lt": 102909640000002,
+            "ihr_disabled": true,
+            "bounce": false,
+            "bounced": false,
+            "value": 10000000,
+            "fwd_fee": 44446,
+            "ihr_fee": 0,
+            "destination": {
+              "address": "0:2dae4ddedb309bb3310b8eeb4b31c6e85bd05e6773b51b58bad6adcda5facacd",
+              "is_scam": false,
+              "is_wallet": true
+            },
+            "source": {
+              "address": "0:0bf115436307ed2c4de6b4b251d883c2628f4c69228a3ac59526babf8fb79609",
+              "is_scam": false,
+              "is_wallet": true
+            },
+            "import_fee": 0,
+            "created_at": 1791952148,
+            "hash": "d65dd56b28caa1d4eb816996f61426f30cf25e3c65e61ce7f65622cb8da68557"
+          },
+          "out_msgs": [],
+          "block": "(0,8000000000000000,96326582)",
+          "compute_phase": {
+            "skipped": true,
+            "skip_reason": "cskip_no_state"
+          },
+          "credit_phase": {
+            "fees_collected": 0,
+            "credit": 10000000
+          },
+          "aborted": true,
+          "destroyed": false,
+          "raw": "b5ee9c72010205010001060003af72dae4ddedb309bb3310b8eeb4b31c6e85bd05e6773b51b58bad6adcda5facacd00005d9884894203000000000000000000000000000000000000000000000000000000000000000000000000000000006acf051400018080102030101a00400827290aec8965afabb16ebc3cb9b408ebae71b618d78788bc80d09843593cac98da43d479b48e8393c425400ccdd9b9e2f594f72e6375b10685e73ea7760bb5e0f4e000d0c08e625a0012000ad480017e22a86c60fda589bcd6964a3b10784c51e98d24514758b2a4d757f1f6f2c13000b6b9377b6cc26eccc42e3bad2cc71ba16f41799dced46d62eb5ab73697eb2b34e625a00055b3c0000bb3109128404d59e0a2840"
+        },
+        "interfaces": [],
+        "emulated": false
+      }
+    ],
+    "emulated": false
+  }
+}

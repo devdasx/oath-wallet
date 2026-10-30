@@ -1,0 +1,4 @@
+module OathAezeedCore {
+    header "OathAezeedCore.h"
+    export *
+}

@@ -1,0 +1,1376 @@
+[
+  {
+    "name": "test_electrum_seed_standard",
+    "phrase": "cycle rocket west magnet parrot shuffle foot correct salt library feed song",
+    "password": "",
+    "kind": "standard",
+    "normalized": "cycle rocket west magnet parrot shuffle foot correct salt library feed song",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "1NNkttn1YvVGdqBW4PR6zvc3Zx3H5owKRf",
+        "publicKeys": [
+          "030b482838721a38d94847699fed8818b5c5f56500ef72f13489e365b65e5749cf"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "18KCZB4y7SKPmTGN2rDQuUsNxyVBX7CAbG",
+        "publicKeys": [
+          "02a8cbd5bf36c18d37f9837f956cd99754479bc92d7c47b343cf6376d4a4814435"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "19ZNT9zvtbmuPu5Yu7P9KUBFwVrhkfJKA3",
+        "publicKeys": [
+          "03b51e256b9ebaf6c5ce4966e3b20ef5913b5b00ae2ae59ab94bfd163c8709c93b"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "1JwM3Cr8VcZdzLpPXVxfaoSxyeeVch82T",
+        "publicKeys": [
+          "02cafbfb9d7b9765dd36da0c61a29d761b891531804254fbc99d5de5a0bf56e6c8"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "153wgah75ZTfzyeGAYN9EDeVjL698geAoN",
+        "publicKeys": [
+          "026f56bee4c703b4401c0b127e14bca87002ee859d1cd93ed98d54f75a11c50c2e"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "1KSezYMhAJMWqFbVFB2JshYg69UpmEXR4D",
+        "publicKeys": [
+          "02b7139e93747d7c77f62af5a38b8a2b009f3456aa94dea9bf21f73a6298c867a2"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "1GSmpT2UWuELEMEv6GmoAYZwmUY1oFsypn",
+        "publicKeys": [
+          "024711506bd95aa558301941bf24437ac76bd7773055a8bbf0c904dad2b56990da"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "1N8oBoNYEstsvqr3w7963SjRHtb6UyByDR",
+        "publicKeys": [
+          "028daf8aba35940335850098d5d83800584b93346d478379bdd2767de9e09a930b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "1DAFWec1vfA8jfvXenNeNtj3ioW8rar4rV",
+        "publicKeys": [
+          "03a72304f24a9684de35e12e1886f3117d5bd6d7dad2dbbd17233a47a9f53387cf"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "1AHYZkqwG5hs3HX5MwLj8sQBjnysAzaniG",
+        "publicKeys": [
+          "0212282f9701ce1f9db5010a371483bcb7b65f0442d5866bd8687a292cc8207e8e"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_standard",
+    "phrase": "cycle rocket west magnet parrot shuffle foot correct salt library feed song",
+    "password": "Tést  EXTENSION 日本語",
+    "kind": "standard",
+    "normalized": "cycle rocket west magnet parrot shuffle foot correct salt library feed song",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "185brNZ5v8V596yce8zykatoGFik3XXvjK",
+        "publicKeys": [
+          "034aa760bfcd2e4db6db09add974a30dc770e5d69fe72282d37f320d90f66af607"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "1CBQfAzGxcYpLyAtzwYb8Vw5LWR4Uo576Y",
+        "publicKeys": [
+          "03516352a0a18ed781e23cde99bc44fbc0dc56a8c6b9bd900cd30e0d54d72106be"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "1rLv8z8Ni75rzh8JbB71Q4futUPbpFhvU",
+        "publicKeys": [
+          "0219e87d648e703190b584b4295eb8901caa2b734e7b45ca74a11e0d535d0d0a80"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "18vu7QntEhPnLZJ2bJmJUPAiaZviP3J5AS",
+        "publicKeys": [
+          "0375a2c2ff1011d7bd8420ab9e541eb20e71823d26f20288ee1a55b387b4ac9019"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "1DPfCC65iWZmLwvshyd38pM6jLCCMRfvCn",
+        "publicKeys": [
+          "0201d6c3f69f5af64244717c3ef75f52c0e736978f2eb7f38077338a980718c7f9"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "1tJKzyAtr6CABNwNXvdZPwbxfzhuDX7xz",
+        "publicKeys": [
+          "026319dadb1480e9ab13f8b0e84033c1bf34a452f08b4c93db1519b48b9f3cf0f7"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "12fzuoKrhGofp6RWR1XNHsQHLbGhS69sBG",
+        "publicKeys": [
+          "02ecb3cb4e210f45457652b61ac50acad237f3f6f8c91609ec74e6e05deb90014b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "17xJWKjDkmAhR9s8PATxeYrRG87KqBosPb",
+        "publicKeys": [
+          "029f7dfecd6c1be54e4c1acfb9930a82592a8e5d4dfd847683652e5b5af23a72ee"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "1Lz7A1M84wQ6pxQNimvaQuwGLbikFs7AYh",
+        "publicKeys": [
+          "030eca35eb402b168cbb9737143376745ffbb8687653739a80e0148ed40c5dcff9"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "1bxPqGW9ptoFwFgDbAaPk4JtZeeNMHEJZ",
+        "publicKeys": [
+          "02e97fe271936e8ea94831ae4d3e2f53e56ced5c342e12fc79227525e0057fd7db"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_segwit",
+    "phrase": "bitter grass shiver impose acquire brush forget axis eager alone wine silver",
+    "password": "",
+    "kind": "segwit",
+    "normalized": "bitter grass shiver impose acquire brush forget axis eager alone wine silver",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1q3g5tmkmlvxryhh843v4dz026avatc0zzr6h3af",
+        "publicKeys": [
+          "030faee9b4a25b7db82023ca989192712cdd4cb53d3d9338591c7909e581ae1c0c"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "bc1q9pzjpjq4nqx5ycnywekcmycqz0wjp2nq604y2n",
+        "publicKeys": [
+          "021f110909ded653828a254515b58498a6bafc96799fb0851554463ed44ca7d9da"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "bc1q6vnhf2yhcmpkd48gkqn3tn8820zpmhya3wsre8",
+        "publicKeys": [
+          "033d02267fd7dec57c08ef98cab1cb081824b3e2d3d7a5b9f51ac4b61210a6ee2c"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "bc1qf2d8m4xzfv9ucuuxrtjq4s4yv9lql49eu4y2xp",
+        "publicKeys": [
+          "03fcf18d5edf8863229ba06398734af0596ebbe99dccac7e9000f8810982f521bd"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "bc1qwk0wyjrfu0x3h7cp4z2f57f70hvzzngkmdlzm3",
+        "publicKeys": [
+          "03ee5f6fb16f0bdc70f9dc46edd02da24f437094353f3c44d8f50c4862e5ee1615"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qdy94n2q5qcp0kg7v9yzwe6wvfkhnvyzje7nx2p",
+        "publicKeys": [
+          "028584e789e39f41391b2f27852ca18abec06a5411c21be350fed61eec7120de53"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "bc1q6xwxcw6m9ga35687tnu5tstmsvmzjwdnzktemv",
+        "publicKeys": [
+          "0374165ed07208ea6a26cf73fc3726a2f8b325192bf423636438ebbde62dd7acaf"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "bc1q0d29vhn348vdv5zc8cquxzjuxtxxgc5usvv46e",
+        "publicKeys": [
+          "02cd8ee6db5ea1f17e1467ccca5145a88a1a8a93b415cb35708f592b5309701b4f"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "bc1qztl9d9af47hk4la8q9st3u2x0cj2ll4taylqy5",
+        "publicKeys": [
+          "024f2084c947f1fc5e76c7d167a9db1a545a3df490337384b5c2102fb8d06bcdf2"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "bc1qem4s3ycedjmwy9jp88s8n7zp4mm5hw77v2j5d6",
+        "publicKeys": [
+          "0248d0a3e991ebe2b39c30b20a8e708a0842e337fd7c346a1a74d8acc0b14da784"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_segwit",
+    "phrase": "bitter grass shiver impose acquire brush forget axis eager alone wine silver",
+    "password": "Tést  EXTENSION 日本語",
+    "kind": "segwit",
+    "normalized": "bitter grass shiver impose acquire brush forget axis eager alone wine silver",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1qf07pyg5h8ve6w2pr46mjjqnklpkc7kjcaszvzy",
+        "publicKeys": [
+          "023e94fe24311e73e039520535160caa87427bab8eaeda9d8995979a30ef535d84"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "bc1q8vdcdr247wfnet2kwlpdqcgggzwungwuyfhad2",
+        "publicKeys": [
+          "0376f1d19421663f4c294d1004a3ea59725edbe18afdadf04d2d60890d07630702"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "bc1qmz90v9jdl2fcfv80hk633h6jwcmg2d8am5zc02",
+        "publicKeys": [
+          "029975174a436b55a406b3532b8a78ffd23c83283927fb1f8fa4e9c03278d28119"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "bc1qkvg3gpmnjkm7kt9ld2gldm6858q4dnn9l2yz2y",
+        "publicKeys": [
+          "02dfbaeff2189610b19523922d1ace214e5b4b49a2506f3243031afb55d6bde008"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "bc1qr8q2x6hkdcfwsyguh3y8crk5y9xltxaect7qhv",
+        "publicKeys": [
+          "0383517a8799c523b7e67b04ac86b5f37e7b1e23287ca7575784eaa8c25152ff65"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qysdwmcm9mmhsgw0jew3mf9r9dfzlxgzj2jg9dq",
+        "publicKeys": [
+          "03f6150cb70c4aacd0ceb6b49332b0c4867169d4a7a06771b9375613cdc2e4a1bc"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "bc1qrxj0c4jzaswd7uj2gwq3ymqlmlweszpam4d5lg",
+        "publicKeys": [
+          "023587400ad2c5f13f21f2e629e9802c4e4669ee5c8e27c27b4cde67c1cdd3ee57"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "bc1qfjgjj9antf70rtmemya8rh004r07tvlzy0sn5h",
+        "publicKeys": [
+          "02f3d3f62b926a509b83a3c4cee5b14c686d8a031b7faf7bc902598297729b00da"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "bc1q33yrxtj8kgpeljq5c8xqf4xchedfdw8lthwsuh",
+        "publicKeys": [
+          "030137a6611f66c38618c5191233982399d6f85da6b0fbc3ac1b097f48f61f191c"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "bc1qzlmacaph4fl5nqzrnzz28vmxqckdf4gjl0mdjt",
+        "publicKeys": [
+          "02fb931f7c22a8174e60c9e684b35ce15cd26b0677d6f7f52f1165e157d9b56dbe"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_old",
+    "phrase": "powerful random nobody notice nothing important anyway look away hidden message over",
+    "password": "",
+    "kind": "old",
+    "normalized": "powerful random nobody notice nothing important anyway look away hidden message over",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "1FJEEB8ihPMbzs2SkLmr37dHyRFzakqUmo",
+        "publicKeys": [
+          "045f7ba332df2a7b4f5d13f246e307c9174cfa9b8b05f3b83410a3c23ef8958d610be285963d67c7bc1feb082f168fa9877c25999963ff8b56b242a852b23e25ed"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "1JnNwHaztEa181EnG6qur1WALRJe1f3WLn",
+        "publicKeys": [
+          "04dc28da82e141416aaf771eb78128d00a55fdcbd13622afcbb7a3b911e58baa6a99841bfb7b99bcb7e1d47904fda5d13fdf9675cdbbe73e44efcc08165f49bac6"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "1ScW6zeUZ4XKJEfe2TZaYC9K7tYvi8k7L",
+        "publicKeys": [
+          "049a25cc3a3313c1274b975e42b32413bec00b55912a648bd6cc3582d53c35adfdeb151f02ba6d4ee72ace842ba71a8215b52fc33baf1c74c4a4046ff5e121fd31"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "14zQbNwPktjMnE9fZ1p92xHcvywY3NFMHm",
+        "publicKeys": [
+          "0429a7a92a8746549afe182e933f3813d19feb10051aa9352877e28f69aaae62d70e44c7d60e95ea62b02e01b5194f0bf31ddedb233542e7058cae8ba37ea6b836"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "1P72Wd9rwp2z8U4XU46CwVHeF8tJtKJkg6",
+        "publicKeys": [
+          "046b4a366512c527cd045ce6f23f5e70e38137de96769a228527356426eaf024c9c5352e861812b35d0cc1aee760ce84a06e1ba93597bc287a8e525d094e56b63f"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "1KRW8pH6HFHZh889VDq6fEKvmrsmApwNfe",
+        "publicKeys": [
+          "04c291245c2ee3babb2a35c39389df56540867f93794215f743b9aa97f5ba114c4cdee8d49d877966728b76bc649bb349efd73adef1d77452a9aac26f8c51ae1dd"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "1DWmSqT8NTK9ehmEuaAzK5pgghGXPKjEHE",
+        "publicKeys": [
+          "04aecb9d427e10f0c370c32210fe75b6e72ccc4f415076cf1a6318fbed5537388862c914b29269751ab3a04962df06d96f5f4f54e393a0afcbfa44b590385ae61a"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "1HN3BMwu5xVFJQkpNPWtzqN7ho5BAANeBW",
+        "publicKeys": [
+          "0416148c4e5fcaf8e639877b1fa058770f7532926b6709f57a5ca06cef0923306fa1090527018f9d9f881006e583b97521d4fba9d7ec6d2deb5e77accd74c1aae9"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "128fZwfUcFjc6dX17eodqEAaDw8rfwoBdL",
+        "publicKeys": [
+          "04f623b974d1f9fd6b2e5266e94fcaee7394120f77fc22a74f77ad025849494eefb1a92bf250e5e72c8e5b068f503f42972c634ed3698969ac1c8a7cfac9ec2c36"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "16HYNFngym1VUJapk9uFKYGZTqGJgqTJ7S",
+        "publicKeys": [
+          "049a973cb41fbb4e2760a757b14c16df0f4147c9254977591a5df2eb0b2c4e5e43d7d285f78a447b45c356b879d14d2f2eb2fe271185d97a8d337ab6576a03e5f5"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_2fa_legacy_pre27_25words",
+    "phrase": "bind clever room kidney crucial sausage spy edit canvas soul liquid ribbon slam open alpha suffer gate relax voice carpet law hill woman tonight abstract",
+    "password": "",
+    "kind": "2fa",
+    "normalized": "bind clever room kidney crucial sausage spy edit canvas soul liquid ribbon slam open alpha suffer gate relax voice carpet law hill woman tonight abstract",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "3Bw5jczNModhFAbvfwvUHbdGrC2Lh2qRQp",
+        "publicKeys": [
+          "02e20b45a1866053e01c712def2bd99cd0a8523f9dd5d5363777c25199c5215169",
+          "0363173184af1d961b3ee064083cce2eae37145eb27dfc0b67ff71527c6cc435f1",
+          "030027f5aad0e84dcbbd2656c33e63a60dfb8d282f968cf4d10e4dbf35100c9340"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "39FJR7CqYu1KMTbg68mw1ohr8gHTJoTPTA",
+        "publicKeys": [
+          "02b16b5afa4e091a11fd129ede383379c07b09cf7d352802dc396f82e8aa9ad3d5",
+          "02563811a32e29651063da2096de1936b150d295e28c4e95dae32b91b3ef166dcb",
+          "021bbc8d0621c1b8a6a2f6fa791d9b5e9aaf4db900dd1a22109b200ad1d242921f"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "39WmgbwWkdHLTKKGxFFn8Ezz53cHGAvQVT",
+        "publicKeys": [
+          "036d8bf3090d12e34d63ede531ea0ead32d5c22d58e194e9ef17f9a6f25f58200a",
+          "021385541ecb69ae645986544b5ca6a8594aa69c4f4c9bf38896289ee354d480cf",
+          "02e2179b9751e11153d1b6f728853f057d1f8edd41d5280eccbff72f37e59352c5"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "355ej1FzxmhmHmcnHRhDk2L9fUAanUeie2",
+        "publicKeys": [
+          "0384f0d615e351d863f685ca5bacb7388bfe362c3701a0011eaf763a3cbfc8bb69",
+          "0200b3dfbf32c753900eb5d116f02ee7ef9874b61c220f42d9fab271f11c0a35f4",
+          "0210377c14336a50b27455b8e63f81c7baa13b60f44cbba8b70714f2eed2ad1487"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "3Qxv4UkG9vMDBnaG3KZrjpHH2BUrwmX84S",
+        "publicKeys": [
+          "021e39e745cfc3a86949985d7ea5670c538309640c88ad0f83c9bbcaf99f9c69c5",
+          "0258ead96f0425d32afa956a0a0cdeaf61c17edc3de5e40ded86ab9f35b868d767",
+          "031a04637fe1d185dc2dd1b7bff43fbf857f935749d4e1c0a1db6df80964ae2f46"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "3Ke6pKrmtSyyQaMob1ES4pk8siAAkRmst9",
+        "publicKeys": [
+          "02e42e0ece2aae8d44949eaaae73b6e0f0e1a79cd614b9e64214383ce8186fca2e",
+          "036dd01b461af3b5cb0369d51636670ddd9edc0af2065f22f27f7c1dc18a887264",
+          "027442ee991f26e6316c4f8798698c44001eae899eccfdeae20d43e8ad824ef158"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "33WaaHUaYmuRgyeEGHKb2vsjoFBk5tLRMA",
+        "publicKeys": [
+          "0384ed58f20c9fbca9ae5416cd7c80877bcfef1e0f1f9c2a5cb2d32bb40bc9e019",
+          "026f26200db472418b052cae35de368ddf30e5cb1275cc6cf9b600d716bf330780",
+          "03d30a54462606a322e8f24b690cc29dbe79baa9eba235da036890938d7e853646"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "3GYwMduaA6cwTRS3d9saDi6enD74zkGbNW",
+        "publicKeys": [
+          "0228aa4a9ed096ccfea4b6605fe1bf2320c989b96f40341ddd6c403303046bfea8",
+          "03ab6614035ede4a4a3235fc89bfdefae658c62a5909436bd8c206ffa3e3d1f6b9",
+          "03478713d61e8968639efffced262352c5a45ef453565cdde8c95243a328d02f67"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "3GMkdL6HP9SJrjt21fsUsQz9CcGthg2tyt",
+        "publicKeys": [
+          "02632f27a7fe694aa23723a970bded2c8bac4aa8752f8c110bcc7d0c9a9b470c2c",
+          "029d940e1a1d9e67109a44bd80d511e503e196e581d4bc042a62bd6d75bb092cfc",
+          "02d3fd303ac2918afd5039e9bf5c4f8d04f05c95de9678f07ad49a68786daea0ef"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "3EwpMrmGpE55fhdEB6AD7T6wLwW9G8wJj3",
+        "publicKeys": [
+          "02f21e5eb33c57fd9385c5fc076e0133aa93c0140681a42bdb98d66e71289e2a4d",
+          "038a19c8ca919d96fcb9da8361b748ef636c708c910a6b9e92d35fc8087bc2500a",
+          "02ce08da16fc19d10f39d908260aa2ab181bc622aba21f3861326f7574871864e8"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_2fa_legacy_pre27_24words",
+    "phrase": "sibling leg cable timber patient foot occur plate travel finger chef scale radio citizen promote immune must chef fluid sea sphere common acid lab",
+    "password": "",
+    "kind": "2fa",
+    "normalized": "sibling leg cable timber patient foot occur plate travel finger chef scale radio citizen promote immune must chef fluid sea sphere common acid lab",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "39XK9VBGiK4bqNJYrajfKE8C1ky4gYA5Zy",
+        "publicKeys": [
+          "0354c28556345121cb2de456c530379a0ecaab160b04b48f7e2029af6a19e5d744",
+          "02080c552755da2378b325a835cee10b64406604c0875986d7b7be68b6835b80f8",
+          "02f6694fa01926b61e46fbc8454e229eedd8762bc83da6742f08b0b8bc025e6fed"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "33CZSQJW3EZwLMbA8Aoazsz24jktPCR91k",
+        "publicKeys": [
+          "039946dace3a0bd0e2f53f853b0e6112b9c12db7444a3d914e3601150e0632216c",
+          "03b20e8ccef1ed1d8770d668dd644fd615581adffbbf53aa56a5c09c4bb191a445",
+          "0229f7508dc21f69a80e7f9883b15be333c7e408d4a9fa9effc219fb2120d5a066"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "3CSNFVL72C4vShC1LNX1x5DBxBfFWym78b",
+        "publicKeys": [
+          "03c1c9acee9528cbc18bdf785c5d46a237b7da7f1768169ff281d1e0d8dfd3395d",
+          "024b579e4ea89d2db807df28598c3abd19f0ba936b7087278ddd0684cb8868dbe3",
+          "026666605a6fa9e88b74b0b90eef52d36335bebc4adbd6bc481d6f2ee75d64e626"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "36Eir15QK7mmzpPtUDyktHFVnPxCgSuVmA",
+        "publicKeys": [
+          "0210632810928538ef51b1df3d756eee74185b66c9cef5dd7faed160129bb681e2",
+          "02543e677750221c99e60f2cef1aaabbe4861c5ad8007b8019afd13ef53466ab55",
+          "03aebee026d077e4707aacc80f08262647636954e82bf0f8240d37650d6534e21c"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "3CCx5YLHftA8uME7SNsPh8KsZRApwzsg3o",
+        "publicKeys": [
+          "02fff6a83201d6e71e245d2bb85ec2d40b17e155681cbcb68033c5ffeee566bce8",
+          "0352360419fe13b6fbfe449c9e1197e2741f40dde4c5d046d80fad9bd597a40e31",
+          "024d089bd494a9178d9d21bdd0a0544ab5ac04a9e9ff44c751ad0ab268273ffbf2"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "3PKtHrjiKdsZ73ULZ4Sf1vDBnrUoAEtLDe",
+        "publicKeys": [
+          "020dc99f1478e5951dadf5aca45b2145310f333f951ced8588aec39670fde5ea30",
+          "034c7b8cbe31558cf693e49127ad403532e8e6c8ce1f71e03c1737aae50bbd01f8",
+          "0222be80bd8d94447a9cd2c930de904c41e0175d4017f30f4e2ec5e7cc07717a40"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "3NLGuBHNB82qKdSs3Z4E1kJUP8W7sKuVga",
+        "publicKeys": [
+          "028de13db6e82ff35cf33f74864af1804b6b847b6c31ff996becc90c7d7d1bf88a",
+          "0208af95189d4a2ffe8435d73b1a90395c35abaef2ba72a7f251bcf4c1bf999269",
+          "03642ff5a55834ed1bc332f55fa623606c8fbd4cbbfdeddf4cf563c6a6bd5151bb"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "3FbtXREqtWSuYo8EDabx6LV7PNLJfmPL4H",
+        "publicKeys": [
+          "02f5cb339d4198e6ad1f2a36f0fa2c3346eb650e94af29cfea22004625bef72d4e",
+          "0287f3a24c4b9a6e05ebb5df4052907237ae37b21c7a450d61b80066ff2d978d1f",
+          "027b59a46de2ec63e42d745c29a0c01ff6b9766b04f225865660a190638e03a292"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "34P1jfxjVwg1qSkhZLVGChwujT7trb44RJ",
+        "publicKeys": [
+          "0370c01a9b4707a7ad5f8df9e76f054f8d241b9f440a4cb2da9058a4599911abc9",
+          "03d444e7fb5971aba5ae07d4870dbaa6bfcc13ad4c875472b4aee7d43123dbafdb",
+          "03866dc2916906da2879d010278951431c3e55cbc7f488c8053e021111ad99426b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "3EAKKiVasJwjyDkEnW1LR6voCdPH69xauV",
+        "publicKeys": [
+          "037af4af740bc90b05b85f51ebdd81152d3d4fe9bf6af78bb87302208d9d9ae4e3",
+          "032886d5c3b791a68a61f76b84c7887f9c8a7005517e314f0cf613de2444f11387",
+          "0254165ad722ae16dfb46821dbcfa2daccf1ecf38016781eb311d06790b956d2bc"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_2fa_legacy_post27",
+    "phrase": "kiss live scene rude gate step hip quarter bunker oxygen motor glove",
+    "password": "",
+    "kind": "2fa",
+    "normalized": "kiss live scene rude gate step hip quarter bunker oxygen motor glove",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "35L8XmCDoEBKeaWRjvmZvoZvhp8BXMMMPV",
+        "publicKeys": [
+          "03fe42dab58718ea0413f7c8de693cdeee22ce19b1dc34c0bbdd7a48245465c5a2",
+          "02091f0b4d8ab30016a5d1c088249e02883fad8160f06fa53588ad8598650a3e62",
+          "02b5a58a3168e781a6eef0f03506024bb2bd40974346c532d8b718369a5f53bcb1"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "3DEgzqjvLBivQvonoAqgrCjWisgqfp2voh",
+        "publicKeys": [
+          "03dba6d3175750c6a437147cde67779bd69eb76d7c1fad6d25e0e6e91748f9789f",
+          "035798d6d324fcb8380f6b5f940a10fd0be4a61d262afbdb2f264b97f8705674dd",
+          "031417e51b6ebf7412dff165cb98a3998273523e2f01f9e8e8cf0761c4e6f3b438"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "3DG2MJNFATSV4bvmSacABjCcv6uwNREU7u",
+        "publicKeys": [
+          "026b069431cb3e8c61966a36ef5a9f58d111cffc8e458835dab31eb13bca688fcf",
+          "03a6d2445b551bbc1a7905c9e21beb27f73a728fe9e47057c5fa8f6279eb6c3f2a",
+          "028ff8311169d709f4588723ac69b078cfe2d3fca281e622dc0b3b02d41a80d7c4"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "3FP2fJTr32hFYDhTWYuFxE82tvSiH9YFQ3",
+        "publicKeys": [
+          "026d23a23e39fe0f5fc8ac18925d965fef88deff854951e6b899219592fb6377e9",
+          "03cf90917a394b91d230b776c0136d049c605f3117047dda063f5cf9e3b4cc3ab1",
+          "02c2ff7423459cbea72fe70b34f317d0d3d3310aed2185b058ceeae5c2391bbef8"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "3KX2DWur5dxzn7jH21kUbbwuPkDuPnecTL",
+        "publicKeys": [
+          "03076fc4fe1c9fe96f786a4a49427bccee5702f262888c5a1c880fb529ff3f6687",
+          "0362544bfb0c7f46a42b2859ba07054feaee0629aabf9ee4ac486b69265db03da1",
+          "03bd78077565efe815f719693f27b082eb1df0a4ec506a4ab309e7f686372090a0"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "3PeZEcumRqHSPNN43hd4yskGEBdzXgY8Cy",
+        "publicKeys": [
+          "034cd147167675c66286450cc5694013f4378393635d7964ab8a573cc3d04a8d4e",
+          "022ab679fda2e337c40abbc08203d3d71d2a96fdbbf38c908f7b92e537c1c4efff",
+          "03a9713f345179fc3ffef222a935328efd43f858d7e5a911c448bb7bfb0634ff90"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "3Di2BUTkXGeaCH2tNYqa3tgrouZV3qY37q",
+        "publicKeys": [
+          "03ac00120544d6347b76e34937a6d03f6092796a4edda29ad3a8e81580438a9b2d",
+          "020969536de1329f6f4a90759ad90325079384d54e95066f9999d4c00e2444c8ae",
+          "03610203fc799b687b85b3794d3237cd9e24d00c33b17d9dc9034905606d54625e"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "3E58fqHgZUHULidm7zYXTVF38exF6tHgUc",
+        "publicKeys": [
+          "02f825926c792c76f586b56423e33e1c2c056db4ea91fc4cd4e955d777329e9a44",
+          "02e251adfb0315bff554f0b79360a9adeaf9e3ded1eb247d28ffe76239e55522d6",
+          "02aeec1839fc04fb81de42fa06b5cc1da5a22636c67cb0f22ec54a935ded7534bf"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "3FatAtnSgzcAYContFhKx2fommBYFNrxEw",
+        "publicKeys": [
+          "0360939bd1e1b1c4f5d0e5c6dc706cb576e382f192ca577a57f7ab1673b32a451d",
+          "03e02de632c204c704e22b410b11cbc8af84afe85c2ea4605edd8063f2d61089af",
+          "03d89d9fd910eb1f4070a73e327c6d8774b32ca55ccca0bfe82599eef285bd1544"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "3JRd4NkVSnUcKyuMxCcoDgdSzjbTArPs13",
+        "publicKeys": [
+          "0308a72fab6d2a686a72a43358c947e528e7fc83e944344874358cd8d9195d40d4",
+          "0287bcd332a9db11d3b93ac7ee10a1648591084275695a2c5bbaca542bb8b3b534",
+          "02dbbc14f98ab2bb06c7d54c7739a942b46d830b953544689a1f5eeb15497a9eba"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_2fa_legacy_post27",
+    "phrase": "kiss live scene rude gate step hip quarter bunker oxygen motor glove",
+    "password": "Tést  EXTENSION 日本語",
+    "kind": "2fa",
+    "normalized": "kiss live scene rude gate step hip quarter bunker oxygen motor glove",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "3QUQ7drPp9MrjHdZeVoTeTDT48rr8q9a46",
+        "publicKeys": [
+          "024bb024c8ad1b049c66f15505d0260a4e36f0792c7ea450700a32e0d9607fdbbc",
+          "036691decb1dd4e07b59bffd114875e988bd2504b6c9636c23bb3a626f9a97100f",
+          "03e97534f7c6034e96f7ef665aaac669238cf241322d54845668b67c5410efcc33"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "3B9vCWZCnQRWfUGcJQnEinz2vzAxLCdXhd",
+        "publicKeys": [
+          "02ebd7688ac298e95427e16e9a5484369ccf62917bcd6806e426d0e4a994642bb3",
+          "02d54fd41ee6c337ca4fcebbea1ba0312e08174b4cdc142cb9c5f70a258a2226cd",
+          "024e69bcc8391d4489e83433d1988fbf0b6b0396f128cd2b1443537620606c1f6c"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "3FMvBkNH92xvVFzLpssYY4ptYcW9xKC3nD",
+        "publicKeys": [
+          "034baaee13a59830e5a850fe8ca664180d3f11f8d6045e438e62982e850aad5628",
+          "02097b7b17d8a1fa77bd0864a9de80140c570cfa9ed33e7fa63a2f82ec747472b0",
+          "03c7003708dacb340184773ac08600fc90c609f58ff5888dec742226d477be43bc"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "3Dut8uXQbos69GpydLZmMGGswsXPS6wXYC",
+        "publicKeys": [
+          "0220cb42fee3c973bcab7905cac50ed8967ab2b8ffb56f46bc6d183ba2f51c6459",
+          "0218bc1de159bda91167bc84c7fbe0bf5eb8648477086d33e0434750d652613c4c",
+          "0256cacf30c8f2fcb2bb55826cad3cff883d324bc67af51d43e9a7c64a5ec7960c"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "31w161Q1rhmF9WrdQFGdpM8pY4c5mogHJK",
+        "publicKeys": [
+          "02de765a66dc9b6d5487fc3b68ff662bac2416fbc4ba2963074398b7e654b9cb53",
+          "03013565a09a28191ba50085c84e57be7386926cc08cb540f5bc2f6beeaf0fdf89",
+          "02dc3a3bcf037324ff79773a942578a27b844436c0aa966282d23e728b5a6a5fe2"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "3JV3oq9BesUGCh8VCibF3JRBpTushMe4W3",
+        "publicKeys": [
+          "0243d6ac2be366420dab3d8a533484aac3e81b700f06ec03c3838cb8a0412e9b3a",
+          "0268638b5970c71f123b74f909f3e90642edaaea6886fae1e335f6e5c75a43027f",
+          "02a6b0cfa95e360fb0a3d67f785db18c0086cde4418a42549a19c94bd05aa13afa"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "3QRsuD6s3ZnQdgjiuJfxiVVWCsWY3KYAcZ",
+        "publicKeys": [
+          "03ccbb28dd8900b3c3a8fbca3a6c38b99e7cb8862b6ed2db18aca91a4e6221aa27",
+          "02845f1e15ccb7ca53196efcb6f24ee951509a98b0cbb39cb3d3b8069df1c5fed3",
+          "02f87d7c99ac1c05b9efdf0d30b806eb282bc69220aeb0ee49931b2eb531d21f4b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "38xna4GoGBewjHrT5LdzLUkm24BvWtUwem",
+        "publicKeys": [
+          "024d06584ce9f74c454e78a3186ce47cb8e33bc4019b4f3f7239d9ecaee748af1b",
+          "02183a97a5844636f1db9f000e1f90fadc5f9854c1e23273f2599b7542c77cc47b",
+          "036cf893d6e6229173b2f53e0963322fdfe1ca713b6d85cd1a1a01f9f04ae8510b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "3L8eq2o4zi31hdH57myG68wYPQcqN74YyM",
+        "publicKeys": [
+          "02e2800c1fbf0fcc11cca0721ac25d10aef1df9b7f34369c83a8014fcfc0ade3ca",
+          "02148b0facfa7b3f036f346594020c0cb2f725cd0c07a83d93c165bcd04a9f922c",
+          "030a86c6ea1268f4b7cb08d8675ffb8b3dc4f490dbe83da0b09e7957b68b90cf30"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "3NxVVcHy9znSiKatQVFwLimN5wjVmtkpV7",
+        "publicKeys": [
+          "02db001ee0ac477668af414814a4907129e705e7f625103baf49d3da21c7147cb4",
+          "03fac309948da59728cd2848e4b9eff6591606e2a9d9b2b7ea33a4e3387bf19761",
+          "02672ec4e9084bde9397cdb99f52fb00077f3ad9ebb65c857e9b42b266ab25a9d2"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_2fa_segwit",
+    "phrase": "universe topic remind silver february ranch shine worth innocent cattle enhance wise",
+    "password": "",
+    "kind": "2fa_segwit",
+    "normalized": "universe topic remind silver february ranch shine worth innocent cattle enhance wise",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1qpmufh0zjp5prfsrk2yskcy82sa26srqkd97j0457andc6m0gh5asw7kqd2",
+        "publicKeys": [
+          "0218980ddc48a0a303580266b2d47fcf2ad1f02aacbcecf332696e38524c74bff2",
+          "036cfc670c700905f35e1f971bcd2bb90e27ae94eff0fbef1674726ee8deffc30b",
+          "03991635aef0b6786ef2a729a05463bfaa581d3ffb1e3d9a1f24daaf4b6a71b8aa"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "bc1qyk4c6thrdap267ud6dku9zwkadn3s7f0nl4ktkl9flw3a5z37hxqcxapus",
+        "publicKeys": [
+          "0307a3c41d07ed976d65e213e823d02840937475e709b41253e85e970e3cb16674",
+          "03521b0a45e042f08ccd03af47fd88bb207b5414e0e30bb8799fca311a06323a19",
+          "021c52ec87fd2ef01367afc88551cf6648b492a3d8c652ea111e20f241065bfadb"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "bc1q7u70qa5yr26zlahfk7lsmn23st6ydhemz75286jx3aqc7vqqgcxquj4y3x",
+        "publicKeys": [
+          "02e96b886d6203a211afa2d9deb7d06c4bb1b518cf684a4d20530ecc299bc7d507",
+          "032ee3555d349350bd30410c2cbfcd158acc7593a22280a9a7a01bf60aa0210757",
+          "02f5bf94cef244fc72a7cd9bedb978bf1de9d822c6ce878711103af5df0043d359"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "bc1qt6w2wqw2ns0l9dfsz8kf5p8jsc5ll6jh02k99n70htwrcd3lmgzsx45rat",
+        "publicKeys": [
+          "022ca9780987fe83020dc5f0840f1f82b14a6de7c4c78c6cc09dac85b775b55d31",
+          "021453785ed9f6ee8b8651e5b15a2801dd2450cdbdda2fa12d4888169cec184560",
+          "02ecda2bdb6c32c6fa9616e51526e896556cc1e903e2bec526423efc1bd75a8251"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "bc1qq3sljd85c59ppp2jylldfwyduy9uxdjql8k8yt2kvnu25qar0znqujayrv",
+        "publicKeys": [
+          "02069df6046dfd3ed1f29770788e178ca69b0a5eef7437ac8e6fe9e6dedd7655d1",
+          "0309421cc9fb2231d292d14a4af8c55cfb26d594b4b73627686ca8fc30abc22467",
+          "03439a6363c2a192ee1a5343c5eb6a4e8231bcd95f4418e5f5c44f956b1946d89a"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qd4q50nft7kxm9yglfnpup9ed2ukj3tkxp793y0zya8dc9m39jcwq308dxz",
+        "publicKeys": [
+          "02d90e3c8973844b9cc0b38494c48515a319eec3ac2489f96f6f55e6aa6912a608",
+          "022cca282cfdd9cc1f387d3098661d68bc9c8a39ac6bd72c30db579a7857d0859b",
+          "0307780cd4a9bab5284f20b1eab1262872eff717d41343d1f3ed42d6de4d328f3b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "bc1quvv83fhnmg6yr3cpxam398ygktmkj57094qwucgvltfpujldyseskng5pf",
+        "publicKeys": [
+          "0379cd5ee4c3acee7a4f7db595d6044961e4de8f97dc252c81374b2fdc974c2a35",
+          "025d533c0a620694b067ae316018c6660106d0607371e2d9ca759272a9922e9ca5",
+          "0251bd39e97e70b0dd26dd61f1668dacd9cef860a613d94739ea0c92700d7acf61"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "bc1qqcz7zuhzm6yl249n5xefu3tumrxs3xtegdy4gxyhvh202v34hnqsfnha0l",
+        "publicKeys": [
+          "02e42fa9553218eb8aedea2abb3c00dd4853928ff4ecaad334287509ed254ec7c2",
+          "0311c1788593983623974ea8d4356816917f686864f9557d527019a05150b8e626",
+          "0283f136933aa9e752275c6e570e57bccb884699c8eb4cafc2ec412fd080d463bf"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "bc1qkzwuupew506m4jhuxqsl8k2v0g3u9ap2jalgq5eznj2y4604vc8suup6kl",
+        "publicKeys": [
+          "0212c6274e4a5e7eb7138bfeda5297450e007d03b3180774754174d17ebbd5c764",
+          "02901fb3b1d6c0c042a5aabe87cf5d42703ae97c0ca53d6335fd53fce936d0c420",
+          "02d75d53bfcbfb605668376caafbbe32a717a436cc923e31c4d1d7069059e4d8ce"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "bc1q48w3l92lkk8yayhwtzue7hvecukcrrzjtqhfmgjc2kth394vg3sqh5rlj9",
+        "publicKeys": [
+          "03c7c38534df70d5e667b204ca09d628f1ab4a8a3c8859dddb09d1540f00d432a5",
+          "02f9c92eaf9d26046d4b39af3d35516285dad836573d2ca63e5c940e080849b45a",
+          "030a5526d6bd89902e062dd07db4c174aca5f1b1961ae545684c3134bdac8c7dfc"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "test_electrum_seed_2fa_segwit",
+    "phrase": "universe topic remind silver february ranch shine worth innocent cattle enhance wise",
+    "password": "Tést  EXTENSION 日本語",
+    "kind": "2fa_segwit",
+    "normalized": "universe topic remind silver february ranch shine worth innocent cattle enhance wise",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1q9p4y4ysucrxf69efwhuau6fahxfx2r22f83edwjz2z6hjj62grnq3r6xrf",
+        "publicKeys": [
+          "02ee72bddc14fa7716cc1070de4f3164ffca775fc8d4a6dc907e1b5f218a0b1997",
+          "03722d27937ee15026d856f342c4257df09c6651d9f0f438d85e4843e547dbb27a",
+          "030590aa7b4331e59edc82e45edc5a0e46660f0623a667a0dcc2465560c7992255"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 1,
+        "address": "bc1qwm4kjge6acu8zusmpyjj772l2a5keda68cgxvzf00j0chrrlxvsscsgh99",
+        "publicKeys": [
+          "02ff7337b50f5e3ef9e3e81a9e6fdf06722a78bcdd5e3dbc0c7516e0e8da06c68f",
+          "03a980fac99d1dae0a37a8551b17303af1efeb9bc4cae5ddc045c31feacf0455b8",
+          "034c5ef52a256f3dc9e4208e62e93ac4fb20d29dea92b13baa04f54840783a0358"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 19,
+        "address": "bc1q7ehmd9lpdw6xyzgffmg9xpg9enwtjvgdz06gkkt38sy3fndegnxs4463dm",
+        "publicKeys": [
+          "026624cd5b82f23f83a8ad1150b059f46a25d3b515c32c628b52f7f63daa546762",
+          "026bac7e35601e9a9ecc681a6f2daade23fffc4a0c67526f7f651568a2f73b4e39",
+          "028e04565d664df846c3fbf3bf4b0e2972570607522bba289a8495a4d44223fa5f"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 20,
+        "address": "bc1qd8vjafdl8ke5qpanw7ce7wz9fy0puwtwsascetf5xj9e2yazy8vqsq808f",
+        "publicKeys": [
+          "038a859524a8a26d0ac6d4c5581a24b69bb8cb9c71ed038daa8b0ffe74acc41175",
+          "02bcacffe194abd79cbd11b75c7cea81da59f220c1e162088d7fce7b6c6c5029a1",
+          "03906dbcad1f4dfcca7d18b3aa9c42bbe9bb428f1e07ce9c0e281cdabda7728ea6"
+        ]
+      },
+      {
+        "change": 0,
+        "index": 50,
+        "address": "bc1q0zp4dp6l5cut4n32q4a8uwduze74dy4cmc0f56gpgp2nanj2ts6qxak5rj",
+        "publicKeys": [
+          "03cbe318c536ee16be3b40686b6e66e536cadab5b258f93626ede8700dd43fe819",
+          "0234ec5144defb649938140d3a2931faef851da4a9d83024a595322bc15cf247d5",
+          "020c7e8a8587ec484e0994667ce5ea6d5221c20cb6dffd72869da7a86811d7031c"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qz708gschyxmeh9c7j8eyfz63g7dnglvwvdf4hgslhu8uff08udas20w2k3",
+        "publicKeys": [
+          "0372f1e5cb55ce6780c12f9a3e0ccf2ad39a8484f71419547be372220f74f2d8d8",
+          "020acdcdc57701e4fa449b48474e1f42fe9dd6c5d12f52c77685a92d36d8982063",
+          "02ab8ec87c2f0b95ad420c9222ea49f162b634bf8e849d08eb681c6a8066f935b2"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 1,
+        "address": "bc1qylc7nk4mag6ukn06sftukzhfd80a76hjmrtf80c9q08805yaggasnzarkm",
+        "publicKeys": [
+          "0294247cbc08d972d41ed09cadafec56fb981689852f6b6fc6c8f3b8ac3ddb7684",
+          "0358227d179f54ea4d544250cf00390d4e44512c8c218a9614e1e48dec9e8e066a",
+          "023662b5dc9206a57a9617a82184149afc50f3fe2e5340f9af92c07e9b7524f4d6"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 19,
+        "address": "bc1q6wq5m3rs3erg8q959dpf58vv79j7cz3uv8d4ny5z4wfn2wwkx82qyl7s8p",
+        "publicKeys": [
+          "02748bfecf386414250b00581e60cdcacedaa4de951dc86cb27e161d6780a51e8d",
+          "02ab28bce7c95763d3e34fa673a0719f8bfcb6b9c0dc81ec1b12c91892a972728b",
+          "03587f16fc386d3dfe7b98818bdf54b63546802fa77e663007eabc55aad810e4ee"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 20,
+        "address": "bc1q9umkw9atnrka7thua44uws5n3xjyy7sprwjsmfkm7ppkravmd4fqsgg7t3",
+        "publicKeys": [
+          "02b7854b80035751f8b9c64e9e3dbffec263917bc6a3d15026a8ac27a35f51212a",
+          "037191e58528775f7358c1c0f46c22c61b06660e4ec96a09ed6cdb5dfa8dbf1b8c",
+          "03fb339b5518604c2f3882678401e6bfb4752de3f49f4e43bc51112ca248d6b003"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 50,
+        "address": "bc1q3cm9wsaefk4e3rmh8tz4g0quaw5v2hzw2nz36rz2rm9ljyjjs4zqv7ucyq",
+        "publicKeys": [
+          "033446e22a234dd2b3e0eb24bcc794ec5dbe206b103de5e9b1426b6b1622217f5a",
+          "03b981977d586bc7c2c6085b992f8c019b3332df3f7fc0d73bc51d6131f146a062",
+          "02a144ecf5cc08670010864722f65f6a5cfd39e58cd3104fe4628fb0fc7dd34704"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "english",
+    "phrase": "wild father tree among universe such mobile favorite target dynamic credit identify",
+    "password": "",
+    "kind": "segwit",
+    "normalized": "wild father tree among universe such mobile favorite target dynamic credit identify",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1q4794m2uuw9jmjszmplfj4wvvr5j272fpnx2cse",
+        "publicKeys": [
+          "022e085af92c30eabc5fdd71b29a82cb8fba988ae5cc44831d5718ee673cd30cf1"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qdv80tpukzcz05aqj8jj3g9v3gct32an090sjmd",
+        "publicKeys": [
+          "026c788141856d93132565cead3aecc1cef772b2d03cc3f8c67b6cb5c12519220f"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "english_with_passphrase",
+    "phrase": "wild father tree among universe such mobile favorite target dynamic credit identify",
+    "password": "Did you ever hear the tragedy of Darth Plagueis the Wise?",
+    "kind": "segwit",
+    "normalized": "wild father tree among universe such mobile favorite target dynamic credit identify",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1qd95tuv3qp38wjnw0u56m6t8ku4hl66vwjr72az",
+        "publicKeys": [
+          "023ee11455fef61d50886604a18c0463185cdbeda57a88e4b31d11aabef4701c09"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1q9wfhr0rnydjusx5s30xrflyklf5m08grn04989",
+        "publicKeys": [
+          "03d001def07bb1eba30c56a43b9fcb80a3b05c37d007d47d2d7ff670d555067dfe"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "japanese",
+    "phrase": "なのか ひろい しなん まなぶ つぶす さがす おしゃれ かわく おいかける けさき かいとう さたん",
+    "password": "",
+    "kind": "standard",
+    "normalized": "なのかひろいしなんまなふつふすさかすおしゃれかわくおいかけるけさきかいとうさたん",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "1EHQKxw2CJ1Mf8ePxQx66TtwP4x3fg2hYi",
+        "publicKeys": [
+          "027e127c4a73642f907749504c6de35f6146726204efaa6dd6b7c9d72f9f3d7dba"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "18ysV3nP8TVc4aec6AEsBCrQLxeydxm5GC",
+        "publicKeys": [
+          "02988bff3a899ccbe5e8f540ce4681017d66220d7b5a816e9acd42ad20ba9ff1d8"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "japanese_with_passphrase",
+    "phrase": "なのか ひろい しなん まなぶ つぶす さがす おしゃれ かわく おいかける けさき かいとう さたん",
+    "password": "₿ 😀 😈     う けたま わる w͢͢͝h͡o͢͡ ̸͢k̵͟n̴͘ǫw̸̛s͘ ̀́w͘͢ḩ̵a҉̡͢t ̧̕h́o̵r͏̵rors̡ ̶͡͠lį̶e͟͟ ̶͝in͢ ͏t̕h̷̡͟e ͟͟d̛a͜r̕͡k̢̨ ͡h̴e͏a̷̢̡rt́͏ ̴̷͠ò̵̶f̸ u̧͘ní̛͜c͢͏o̷͏d̸͢e̡͝?͞",
+    "kind": "standard",
+    "normalized": "なのかひろいしなんまなふつふすさかすおしゃれかわくおいかけるけさきかいとうさたん",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "19MTwgSASkdcc7ydSMifwy7bMb5MfJT8Aa",
+        "publicKeys": [
+          "02c19238f6d02ade41a052f927cea1ae6df4cbeb13dcf105bda91381764eccdc5d"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "1Lhov9soqfgfmVW24CLJqG2UzyBkB8Pn48",
+        "publicKeys": [
+          "038e47c01f7d1fdc2b77a1019e89e1c390028cbc28081e85f284260eaeeaf4c0cb"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "chinese",
+    "phrase": "眼 悲 叛 改 节 跃 衡 响 疆 股 遂 冬",
+    "password": "",
+    "kind": "segwit",
+    "normalized": "眼悲叛改节跃衡响疆股遂冬",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1qe26k9rvz2frkjkepsml7jku9ses5jupls7t8e9",
+        "publicKeys": [
+          "02ca595d8a4a8e117dafb627738fbc88f258f6f75303e80d6ea11c9567ca81ac26"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qt4pps4dt2pxyz6c7jt6re3ct8nkvdvep92q44d",
+        "publicKeys": [
+          "02a9f39fba808b7e66a6cf32b6f8cd71609fbb60c6a9b1a595413e2f1f35369669"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "chinese_with_passphrase",
+    "phrase": "眼 悲 叛 改 节 跃 衡 响 疆 股 遂 冬",
+    "password": "给我一些测试向量谷歌",
+    "kind": "segwit",
+    "normalized": "眼悲叛改节跃衡响疆股遂冬",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1qqxxe9jvuv4jc9c5mee5y7x7y7ttap422u68kva",
+        "publicKeys": [
+          "039a474a7aa049251c44406c1c7d9558bea69175b69986db0178f22fb2a3ea5dae"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qxhhv2tzghpe27humrcjxlssu9kt4ehszttj3rr",
+        "publicKeys": [
+          "03ffd05b789aec4ef58e44207abac0129098f8932925902f711b4546b3cd6f94da"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "spanish",
+    "phrase": "almíbar tibio superar vencer hacha peatón príncipe matar consejo polen vehículo odisea",
+    "password": "",
+    "kind": "standard",
+    "normalized": "almibar tibio superar vencer hacha peaton principe matar consejo polen vehiculo odisea",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "1FckJut2asycDsV3qADcZf3htcjqgxw3Fw",
+        "publicKeys": [
+          "0346188ff23aa9de6188cfbfb6786c0ba6b875b8b588946e10b158f92ff4b019b3"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "1EGShdpa3D4mtVrWCTbrUgC2YUtcCQFiwn",
+        "publicKeys": [
+          "0304acc4310715d4cdc0cea944597ad0cd5003855c85b7ceef43bb6183e32fc24a"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "spanish_with_passphrase",
+    "phrase": "almíbar tibio superar vencer hacha peatón príncipe matar consejo polen vehículo odisea",
+    "password": "araña difícil solución término cárcel",
+    "kind": "standard",
+    "normalized": "almibar tibio superar vencer hacha peaton principe matar consejo polen vehiculo odisea",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "1PnidNAh53Et2pWmvpwn7eHEELUvt6mK29",
+        "publicKeys": [
+          "0250fcc6b6d6bef9390cb78cbb716a7c95be8787210e72231ce820d2a743376550"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "1DneS28XTLBxcNu5bp1hgmY9izcdkk9kRq",
+        "publicKeys": [
+          "034678f4816c8cbd52f3c0b326c682e07104556690a24402d20c30a8f86d735a8c"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "spanish2",
+    "phrase": "equipo fiar auge langosta hacha calor trance cubrir carro pulmón oro áspero",
+    "password": "",
+    "kind": "segwit",
+    "normalized": "equipo fiar auge langosta hacha calor trance cubrir carro pulmon oro aspero",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1qv09z768ffaqf4hp7rx5gqlfpnxtmagz303wx97",
+        "publicKeys": [
+          "0265439f9f47c031595c163acc0b3d0d561ae98af1b902b4bbb01aa43627ae5abf"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1qqfu6q06nyjcxg75nzg3vev05n05cdd7jmldydc",
+        "publicKeys": [
+          "02d257e38ca349fac73dd6c282c6e6859e1df366e153fc72a40bf0f599bd9d0bea"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "spanish3",
+    "phrase": "vidrio jabón muestra pájaro capucha eludir feliz rotar fogata pez rezar oír",
+    "password": "¡Viva España! repiten veinte pueblos y al hablar dan fe del ánimo español... ¡Marquen arado martillo y clarín",
+    "kind": "segwit",
+    "normalized": "vidrio jabon muestra pajaro capucha eludir feliz rotar fogata pez rezar oir",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "bc1q0fp4hfqy8zylxrfv50mxtehdc9xe0crjet3q4y",
+        "publicKeys": [
+          "02b3d453ef7a9a956cffecaa22e1e4bd33dde432603e75108d659ad6319bc37192"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "bc1q88p9dc9awfcj5fg9nsg84xctj4lk0n8hta49rg",
+        "publicKeys": [
+          "0230b035207ad0f4d09169c117fd8cb97a47952d7a7febd9fee517c7b366639f0c"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "bip39_electrum_overlap",
+    "phrase": "fall mixture explain input oil announce wine retire matter material agent upgrade",
+    "password": "",
+    "kind": "standard",
+    "normalized": "fall mixture explain input oil announce wine retire matter material agent upgrade",
+    "addresses": [
+      {
+        "change": 0,
+        "index": 0,
+        "address": "17ZRFWSoE1T4hsNEZfuoD6HjcKgP5zsLjR",
+        "publicKeys": [
+          "02c81b311670d379e62fa9163f1b8dca17fdd5a4324505f7cba8018271f3259c6b"
+        ]
+      },
+      {
+        "change": 1,
+        "index": 0,
+        "address": "18P8Jn9LwUz6X1TtzKaagoqaponUwsCdP6",
+        "publicKeys": [
+          "038ae3601a12f45274aaedc5747a34bb54968d2f7f862f51c3e369a27da21ddbe2"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "network": "near",
+    "reference": "dac17f958d2ee523a2206206994597c13d831ec7.factory.bridge.near",
+    "sourceHash": "18ae79cbb92f"
+  },
+  {
+    "network": "stellar",
+    "reference": "CANKBYNNAYKEZXLB655F2UPNTAZFK5HILZUXL7ZTFR3NF6LKDSVY7KFH",
+    "sourceHash": "24fbcf2496e4"
+  },
+  {
+    "network": "sui",
+    "reference": "0xee962a61432231c2ede6946515beb02290cb516ad087bb06a731e922b2a5f57a::us::US",
+    "sourceHash": "3f0e82bb5e51"
+  },
+  {
+    "network": "tron",
+    "reference": "TRwptGFfX3fuffAMbWDDLJZAZFmP6bGfqL",
+    "sourceHash": "881353831109"
+  },
+  {
+    "network": "ton",
+    "reference": "0:f7e8bc69ea9e053331d04e15b3bc535aaa16d3f108a9e2b305d4d623092818ea",
+    "sourceHash": "8742e3497497"
+  }
+]

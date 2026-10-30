@@ -1,0 +1,850 @@
+{
+  "name": "Oath Wallet",
+  "updated": "2026-10-27",
+  "facts": {
+    "formerly": "Aperture",
+    "previous_names": [
+      "Aperture",
+      "Aperture Wallet",
+      "Aperture BTC Crypto Wallet"
+    ],
+    "rename_note": "Oath was previously called Aperture (Aperture Wallet / “Aperture BTC Crypto Wallet” on the App Store). It is the same app, now renamed Oath Wallet; the source code repository is now named “oath-wallet”.",
+    "name": "Oath Wallet",
+    "slogan": "A wallet, not a marketplace.",
+    "category": "Self-custody (non-custodial) crypto wallet",
+    "platform": "iPhone and iPad; Apple App Store",
+    "price": "Free to download; users pay only blockchain network fees",
+    "download": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283",
+    "source_code": "https://github.com/devdasx/oath-wallet",
+    "website": "https://oathwallet.org",
+    "email": "care@oathwallet.org",
+    "x": "https://x.com/OathWallet",
+    "company": "STAGE AND STYLE COLLECTIVE LLC",
+    "leadership": {
+      "name": "Marco Valenti",
+      "role": "Founder & CEO",
+      "profile": "https://x.com/MarcoValentiX"
+    },
+    "address": "2103 Condor Ct, Redmond, Oregon 97756-8281, United States",
+    "custody": "Oath never holds, controls or has access to user funds, private keys, recovery phrases or passkeys. It cannot recover, reverse or freeze transactions.",
+    "account": "No account, email, phone number or KYC is required to use Oath.",
+    "confirm": "Transactions are authorized after reviewing the amount, destination, network and estimated fee. The final network fee and confirmation depend on the chain.",
+    "app_store_rating": {
+      "value": 4.8,
+      "count": 38,
+      "source": "Apple App Store (US)",
+      "checked_on": "2026-10-27"
+    },
+    "app_store_version": "4.1.2",
+    "source_version": "4.1.14 (98)",
+    "source_release_status": "Build 98 source released; no Apple upload or review submission"
+  },
+  "features": [
+    {
+      "id": "own-entropy",
+      "name": "Create and import recovery formats",
+      "summary": "Create a new BIP39 wallet or import supported BIP39, Electrum and aezeed recovery material. Validation and signing happen on the device. Electrum and aezeed imports are Bitcoin-only and need manual recovery backups."
+    },
+    {
+      "id": "passkey-restore",
+      "name": "Password-encrypted iCloud backup",
+      "summary": "Back up eligible wallets as encrypted .oathbackup files. Restore with the file and its separate backup password. Electrum and aezeed require manual recovery backups."
+    },
+    {
+      "id": "every-language",
+      "name": "57 app localizations",
+      "summary": "Oath is available in 57 app localizations, with right-to-left layouts, local number formats and BIP39 word lists."
+    },
+    {
+      "id": "open-source",
+      "name": "Open source, with a documented review scope",
+      "summary": "The full source code is public on GitHub at https://github.com/devdasx/oath-wallet. The published release includes its security model, verification record and reporting policy. Public source is available for review; it does not establish an independent audit or a verified match to the App Store binary."
+    },
+    {
+      "id": "bitcoin-address-types",
+      "name": "Bitcoin address options",
+      "summary": "Compatible Bitcoin wallets support Taproot, Native SegWit, nested SegWit and Legacy, depending on the imported material. Capabilities vary by network. Oath 4.1.14 does not support Silent Payments receiving or discovery; see the Silent Payments guide before relying on that feature."
+    },
+    {
+      "id": "evm-access",
+      "name": "EVM Access",
+      "summary": "A tool that shows discovered token approvals (web3 permissions) on supported EVM networks and lets the user submit supported revocation transactions. Revoking is an on-chain transaction with a network fee shown before confirming."
+    },
+    {
+      "id": "local-currencies",
+      "name": "Your display currency",
+      "summary": "Choose from the app’s supported display currencies. Values are estimates based on available exchange-rate data."
+    },
+    {
+      "id": "real-time-prices",
+      "name": "Available market prices",
+      "summary": "See available price quotes for supported assets. Quotes can be delayed or unavailable; displayed fiat values are estimates."
+    }
+  ],
+  "faq": [
+    {
+      "category": "Getting started",
+      "q": "How do I create a wallet?",
+      "a": "Open Oath and tap “Create a new wallet”. Your keys are generated on your iPhone, then you’ll back up your recovery phrase. Creating a local wallet needs no Oath account or email."
+    },
+    {
+      "category": "Getting started",
+      "q": "Can I import a wallet from another app?",
+      "a": "Yes. Choose Import wallet and use the original BIP39, Electrum or aezeed format with any required passphrase. Electrum and aezeed restore supported Bitcoin accounts. Private keys use a separate import with the matching network. Compare a known public address before moving funds."
+    },
+    {
+      "category": "Getting started",
+      "q": "Can I create my own recovery phrase with dice?",
+      "a": "The 4.1.14 source creates standard wallets with a 12-word BIP39 phrase. The earlier dice, coin-flip and typed-digit creation controls are not included in this release."
+    },
+    {
+      "category": "Backup & recovery",
+      "q": "What if I lose my iPhone?",
+      "a": "Install Oath on a compatible iPhone or iPad and use the correct recovery phrase and any extra passphrase, or an existing encrypted iCloud backup with its backup password. Your funds live on the blockchain, not on your phone."
+    },
+    {
+      "category": "Backup & recovery",
+      "q": "Can Oath recover my recovery phrase?",
+      "a": "No. Recovery material is protected locally in the app, not held by Oath support. Keep your own recovery backup; support cannot replace missing words, keys or passwords."
+    },
+    {
+      "category": "Encrypted backups",
+      "q": "How does backup password restore work?",
+      "a": "Eligible iCloud backups need both the .oathbackup file and the separate password used to encrypt it. The app passcode or Apple Account access alone cannot decrypt it. Electrum and aezeed wallets need manual recovery material in 4.1.14."
+    },
+    {
+      "category": "Encrypted backups",
+      "q": "Is a backup password a replacement for my recovery phrase?",
+      "a": "Eligible iCloud backups need both the .oathbackup file and the separate password used to encrypt it. The app passcode or Apple Account access alone cannot decrypt it. Electrum and aezeed wallets need manual recovery material in 4.1.14."
+    },
+    {
+      "category": "Sending & receiving",
+      "q": "Why is my transaction pending?",
+      "a": "Transactions confirm when the network includes them. Busy networks take longer. You can see the status and the fee you paid in the transaction details."
+    },
+    {
+      "category": "Sending & receiving",
+      "q": "What are network fees?",
+      "a": "Fees go to the network, not to Oath. A network-fee estimate is shown before you confirm; the final fee can depend on the network and transaction."
+    },
+    {
+      "category": "Sending & receiving",
+      "q": "Which address type should I use for Bitcoin?",
+      "a": "Native SegWit (bc1q) and Taproot (bc1p) are efficient Bitcoin address options. The best choice depends on sender compatibility and how your coins will be spent. Nested SegWit and Legacy are also available where supported by the imported material. Silent Payments receiving and discovery are not supported in 4.1.14."
+    },
+    {
+      "category": "Security",
+      "q": "Someone from “Oath support” asked for my phrase.",
+      "a": "That is a scam. Oath will never ask for your recovery phrase, private key or passkey. Don’t reply, and forward the message to care@oathwallet.org."
+    },
+    {
+      "category": "Security",
+      "q": "Is Oath open source?",
+      "a": "Yes. The full source is published on GitHub at github.com/devdasx/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary."
+    },
+    {
+      "category": "EVM Access",
+      "q": "What is EVM Access?",
+      "a": "A tool that shows discovered token approvals on supported EVM networks. Revoke a supported permission with an on-chain transaction; a network fee applies."
+    },
+    {
+      "category": "EVM Access",
+      "q": "Does revoking an approval cost a fee?",
+      "a": "Yes, a small network fee, because revoking is an on-chain transaction. Oath shows it before you confirm."
+    },
+    {
+      "category": "Self-custody",
+      "q": "What is a self-custody crypto wallet?",
+      "a": "A self-custody, or non-custodial, wallet lets you authorize transactions with your wallet’s private keys. The crypto remains recorded on its blockchain. Your wallet helps you manage the credentials and addresses used to access it. Keeping a usable recovery method is your responsibility."
+    },
+    {
+      "category": "Self-custody",
+      "q": "How is a wallet different from an exchange account?",
+      "a": "With a custodial exchange account, the provider controls the withdrawal keys. With self-custody, you manage the signing credentials. This removes reliance on an exchange to approve a withdrawal, but it also means a forgotten recovery phrase, a malicious approval or a mistaken transfer can cause permanent loss."
+    },
+    {
+      "category": "Self-custody",
+      "q": "Can I use Oath for Bitcoin and other crypto on iPhone?",
+      "a": "Oath Wallet is available for iPhone and iPad. Choose the asset and network in the app before sharing a receiving address. A matching coin name or address format does not mean two networks are interchangeable. Available actions depend on your app version, network and wallet type."
+    },
+    {
+      "category": "Self-custody",
+      "q": "What happens if I lose my phone?",
+      "a": "Recovery depends on the backup you prepared before the loss. A recovery phrase may also require its separate BIP-39 passphrase. Oath’s optional iCloud recovery needs the encrypted backup and the backup password. Check your recovery method before relying on it, and never share recovery words with support."
+    },
+    {
+      "category": "Self-custody",
+      "q": "Is Oath free, and why do transfers have fees?",
+      "a": "Oath is free to download from the App Store. Blockchain transfers can require network fees, account reserves or activation costs. These vary by network and conditions. Review the asset, destination, network and fee before confirming; an on-chain transfer generally cannot be reversed."
+    },
+    {
+      "category": "Self-custody",
+      "q": "Does open source mean a wallet has been audited?",
+      "a": "Public code lets people inspect an implementation. It does not by itself establish an independent security audit or prove that the app installed on a phone matches that code. Oath publishes its source-review scope and limitations so you can check the evidence behind a claim."
+    }
+  ],
+  "articles": [
+    {
+      "title": "The Missing Link Between Open Source and the Wallet on Your Phone",
+      "excerpt": "What connects public source code to the app you install? A practical guide to reproducible builds, signed releases, App Store approval, and Oath’s current evidence.",
+      "category": "Security",
+      "author_name": "Oath Wallet",
+      "published_at": "2026-10-19T00:52:50.213485+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 10,
+      "url": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
+      "cover_image_url": "https://articles.oathwallet.org/assets/articles/verifiable-builds-2026-10-19.png",
+      "markdown_url": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds.md"
+    },
+    {
+      "title": "Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call",
+      "excerpt": "Bitget’s $388 million breach exposes the difference between a protected balance and control of your money. A sourced examination of exchange failures, self-custody, and the responsibilities that come with your keys.",
+      "category": "Security",
+      "author_name": "Oath Wallet",
+      "published_at": "2026-09-28T16:43:23.113114+00:00",
+      "updated_at": "2026-09-28T16:43:23.113114+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 14,
+      "url": "https://oathwallet.org/articles/bitget-388-million-hack-self-custody",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/bitget-self-custody.jpg",
+      "markdown_url": "https://oathwallet.org/articles/bitget-388-million-hack-self-custody.md"
+    },
+    {
+      "title": "Oath 3.5.5: A Better Feel for Every Transfer",
+      "excerpt": "Meet Slide to Send, clearer transaction activity, better Max fee handling, and simpler transaction details. A complete guide with real app screenshots and a hands-on video.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-09-14T03:04:17.934+00:00",
+      "updated_at": "2026-09-14T03:04:19.583784+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 12,
+      "url": "https://oathwallet.org/articles/oath-3-5-5-slide-to-send-transaction-activity",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/release-3-5-5.jpg",
+      "markdown_url": "https://oathwallet.org/articles/oath-3-5-5-slide-to-send-transaction-activity.md"
+    },
+    {
+      "title": "Inside Oath 3.5.4: Recovery With More Range",
+      "excerpt": "A detailed guide to broader Bitcoin recovery, BRD wallets, Silent Payment output exports, clearer Coin Control, fee funding, and everyday improvements—with real app screenshots.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-09-13T00:24:54.837+00:00",
+      "updated_at": "2026-09-13T00:24:55.37272+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 17,
+      "url": "https://oathwallet.org/articles/oath-3-5-4-bitcoin-recovery-clearer-sending",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/release-3-5-4.jpg",
+      "markdown_url": "https://oathwallet.org/articles/oath-3-5-4-bitcoin-recovery-clearer-sending.md"
+    },
+    {
+      "title": "Bitcoin Address Types and Recovery Scope in Oath",
+      "excerpt": "Match the address type and imported key scope; changing the visible format does not change the blockchain.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-09-11T05:44:15.57+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 3,
+      "url": "https://oathwallet.org/articles/bitcoin-settings-oath-address-types-indexes-complete-guide",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/bitcoin-address-types.jpg",
+      "markdown_url": "https://oathwallet.org/articles/bitcoin-settings-oath-address-types-indexes-complete-guide.md"
+    },
+    {
+      "title": "WalletConnect in Oath: Review the Request, Control the Permission",
+      "excerpt": "Oath now supports WalletConnect. Understand the difference between a session, a signature and an on-chain approval.",
+      "category": "Security",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-04T17:44:21.264+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/why-oath-has-no-swaps-perps-web3-walletconnect",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/wallet-boundaries.jpg",
+      "markdown_url": "https://oathwallet.org/articles/why-oath-has-no-swaps-perps-web3-walletconnect.md"
+    },
+    {
+      "title": "Coldcard’s Weak-Seed Crisis: Complexity Is Not the Same as Security",
+      "excerpt": "The 2026 Coldcard incident did not remotely compromise the devices. It exposed something more fundamental: a sophisticated enclosure cannot protect a seed that was predictable at birth.",
+      "category": "Security",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T10:58:48.685141+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 18,
+      "url": "https://oathwallet.org/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Oath 2.40.12: Monero, Major Bitcoin Upgrades, and Safer Sending",
+      "excerpt": "Oath 2.40.12 adds complete Monero mainnet support, five Bitcoin receiving standards, EVM permission controls, safer sending, local wallet tools, seven languages, and system-wide reliability improvements.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-09-02T13:41:47.749+00:00",
+      "updated_at": "2026-09-02T13:41:48.980205+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 18,
+      "url": "https://oathwallet.org/articles/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/release-2-40-12.jpg",
+      "markdown_url": "https://oathwallet.org/articles/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools.md"
+    },
+    {
+      "title": "Send to a Name, Not a String: ENS, .sol, SPACE ID, and Payment IDs",
+      "excerpt": "Oath resolves human-readable recipient names into validated mainnet addresses—while keeping the network, final address, and your verification in control.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T13:32:14.967+00:00",
+      "updated_at": "2026-08-31T13:32:17.034915+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 12,
+      "url": "https://oathwallet.org/articles/send-to-name-ens-sol-space-id-payment-ids",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/send-to-name.jpg",
+      "markdown_url": "https://oathwallet.org/articles/send-to-name-ens-sol-space-id-payment-ids.md"
+    },
+    {
+      "title": "Understand Any Transaction: Status, Hash, Fees, Addresses, and Local Notes",
+      "excerpt": "Read an Oath transaction from status to settlement: verify its ID, separate the network fee, inspect both addresses, and attach a private local note.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T13:11:02.44+00:00",
+      "updated_at": "2026-08-31T13:12:33.994451+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 13,
+      "url": "https://oathwallet.org/articles/understand-transaction-status-hash-fees-addresses-local-notes",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/transaction-details.jpg",
+      "markdown_url": "https://oathwallet.org/articles/understand-transaction-status-hash-fees-addresses-local-notes.md"
+    },
+    {
+      "title": "Add a Custom Token Without Trusting Its Name or Symbol",
+      "excerpt": "Add a token by the identity that matters—mainnet plus contract or mint address—then understand what names, symbols, decimals, logos, and prices can and cannot prove.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T12:46:45.045+00:00",
+      "updated_at": "2026-08-31T12:46:46.986052+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 12,
+      "url": "https://oathwallet.org/articles/add-custom-token-without-trusting-name-symbol",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/custom-token.jpg",
+      "markdown_url": "https://oathwallet.org/articles/add-custom-token-without-trusting-name-symbol.md"
+    },
+    {
+      "title": "Lock Oath Down: Passcode, Biometrics and Auto-Lock",
+      "excerpt": "Choose access controls deliberately and keep a separate recovery method.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T12:27:08.913+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/app-lock.jpg",
+      "markdown_url": "https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy.md"
+    },
+    {
+      "title": "Oath’s Current Security Model: Local Keys and Explicit Network Boundaries",
+      "excerpt": "Understand the protected local vault, password-encrypted backups, and what public network requests reveal.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T12:01:39.484+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/self-custody.jpg",
+      "markdown_url": "https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model.md"
+    },
+    {
+      "title": "Receive Crypto Safely: Match the Network and Address",
+      "excerpt": "Use the address displayed for your selected wallet and exact asset network.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T11:37:15.61+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/receive-crypto-safely-network-address-qr-requested-amounts",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/receive-safely.jpg",
+      "markdown_url": "https://oathwallet.org/articles/receive-crypto-safely-network-address-qr-requested-amounts.md"
+    },
+    {
+      "title": "Find Anything in Your Wallet: Oath Universal Search",
+      "excerpt": "Search wallet actions, settings, managed wallets, mainnets, assets, prices, and selected-wallet activity from one local field—then jump directly to the result.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-31T00:08:06.408+00:00",
+      "updated_at": "2026-08-31T00:08:08.231578+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 13,
+      "url": "https://oathwallet.org/articles/find-anything-wallet-oath-universal-search",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/universal-search.jpg",
+      "markdown_url": "https://oathwallet.org/articles/find-anything-wallet-oath-universal-search.md"
+    },
+    {
+      "title": "Silent Payments: What Oath 4.1.14 Does Not Support",
+      "excerpt": "Silent Payments receiving and discovery are not available in the current source release; retain compatible recovery tools.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T23:55:17.18+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/silent-payments.jpg",
+      "markdown_url": "https://oathwallet.org/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse.md"
+    },
+    {
+      "title": "Why Bitcoin Receiving Addresses Change",
+      "excerpt": "A fresh address can belong to the same supported HD wallet; verify the wallet and network.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T23:43:31.639+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/why-bitcoin-wallets-generate-fresh-receiving-addresses",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/fresh-addresses.jpg",
+      "markdown_url": "https://oathwallet.org/articles/why-bitcoin-wallets-generate-fresh-receiving-addresses.md"
+    },
+    {
+      "title": "One Wallet, Many Mainnets: How Oath Keeps Accounts and Networks Separate",
+      "excerpt": "One Oath wallet can manage many mainnet identities, but every address, asset, balance, fee, nonce, and transaction remains attached to its exact network.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T23:27:05.536+00:00",
+      "updated_at": "2026-08-30T23:27:07.23786+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 10,
+      "url": "https://oathwallet.org/articles/one-wallet-many-mainnets-accounts-networks-separate",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/many-networks.jpg",
+      "markdown_url": "https://oathwallet.org/articles/one-wallet-many-mainnets-accounts-networks-separate.md"
+    },
+    {
+      "title": "Recovery Phrase, Private Key or Encrypted Backup: Choose the Right Import",
+      "excerpt": "Match the recovery format, network and required passphrase to the original wallet.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T23:17:38.457+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/recovery-phrase-private-key-icloud-iphone-transfer-import",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/import-methods.jpg",
+      "markdown_url": "https://oathwallet.org/articles/recovery-phrase-private-key-icloud-iphone-transfer-import.md"
+    },
+    {
+      "title": "Where Crypto Network Fees Actually Go",
+      "excerpt": "A network fee is not one universal charge. Follow it through miner rewards, validator tips, burns, L1 settlement, storage funds, and protocol pools—and see exactly what Oath does with none of it.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T23:07:57.492+00:00",
+      "updated_at": "2026-08-30T23:07:58.755836+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 12,
+      "url": "https://oathwallet.org/articles/where-crypto-network-fees-actually-go",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/network-fees.jpg",
+      "markdown_url": "https://oathwallet.org/articles/where-crypto-network-fees-actually-go.md"
+    },
+    {
+      "title": "Send Crypto Without Guesswork: From Recipient to Finality",
+      "excerpt": "Oath turns a transfer into a chain of explicit checks: exact asset, validated destination, lossless amount, visible network fee, locally bound authorization, one-shot broadcast, and exact-hash finality.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T22:56:16.534+00:00",
+      "updated_at": "2026-08-30T22:56:18.433562+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 12,
+      "url": "https://oathwallet.org/articles/send-crypto-without-guesswork-recipient-to-finality",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/send-finality.jpg",
+      "markdown_url": "https://oathwallet.org/articles/send-crypto-without-guesswork-recipient-to-finality.md"
+    },
+    {
+      "title": "Move Oath to a New iPhone Using a Supported Recovery Method",
+      "excerpt": "Use the original recovery material or an eligible password-encrypted backup; verify the new wallet before erasing the old phone.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T22:46:06.663+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 3,
+      "url": "https://oathwallet.org/articles/move-oath-to-new-iphone-direct-encrypted-serverless",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/iphone-transfer.jpg",
+      "markdown_url": "https://oathwallet.org/articles/move-oath-to-new-iphone-direct-encrypted-serverless.md"
+    },
+    {
+      "title": "Backup and Restore in Oath: Files, Passwords and Recovery Words",
+      "excerpt": "Choose a recovery method supported by 4.1.14 and verify it before replacing or erasing your phone.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T22:33:18.253+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/backup-restore-oath-wallet",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/backup-restore.jpg",
+      "markdown_url": "https://oathwallet.org/articles/backup-restore-oath-wallet.md"
+    },
+    {
+      "title": "BIP39 Passphrases and Electrum Seed Extensions in Oath",
+      "excerpt": "A passphrase derives another wallet; it is not an app lock or backup-file password.",
+      "category": "Security",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T21:59:10.378+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/bip39-passphrase.jpg",
+      "markdown_url": "https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet.md"
+    },
+    {
+      "title": "One Amount, Every Context: Meet Oath’s Currency Converter",
+      "excerpt": "Convert crypto, fiat currencies, and precious metals together in one editable view—then keep the tool one tap from Home.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T21:44:02.292+00:00",
+      "updated_at": "2026-08-30T22:08:35.490096+00:00",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 4,
+      "url": "https://oathwallet.org/articles/oath-currency-converter-crypto-fiat-metals",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/currency-converter.jpg",
+      "markdown_url": "https://oathwallet.org/articles/oath-currency-converter-crypto-fiat-metals.md"
+    },
+    {
+      "title": "Creating a Wallet in Oath: Current Recovery Options",
+      "excerpt": "The current source uses standard BIP39 creation; historical dice and coin controls are not in 4.1.14.",
+      "category": "Product",
+      "author_name": "Oath Editorial",
+      "published_at": "2026-08-30T21:30:44.629+00:00",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "locale": "en",
+      "language_name": "English",
+      "reading_minutes": 2,
+      "url": "https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/physical-entropy.jpg",
+      "markdown_url": "https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits.md"
+    },
+    {
+      "title": "Coldcard-এর দুর্বল-সিড সংকট: জটিলতা নিরাপত্তার সমার্থক নয়",
+      "excerpt": "2026 সালের Coldcard ঘটনায় ডিভাইসগুলো দূর থেকে আপসকৃত হয়নি। ঘটনাটি আরও মৌলিক এক সত্য উন্মোচন করেছে: জন্মমুহূর্তেই অনুমানযোগ্য ছিল—এমন সিডকে পরিশীলিত আবরণও সুরক্ষিত রাখতে পারে না।",
+      "category": "নিরাপত্তা",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:05.016484+00:00",
+      "locale": "bn",
+      "language_name": "বাংলা",
+      "reading_minutes": 19,
+      "url": "https://oathwallet.org/bn/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/bn/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Кризис слабых сид-фраз Coldcard: сложность не равнозначна безопасности",
+      "excerpt": "Инцидент с Coldcard в 2026 году не был удалённым взломом устройств. Он выявил более фундаментальную проблему: сложный корпус не способен защитить сид-фразу, которая была предсказуема с момента создания.",
+      "category": "Безопасность",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:12.692389+00:00",
+      "locale": "ru",
+      "language_name": "Русский",
+      "reading_minutes": 19,
+      "url": "https://oathwallet.org/ru/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/ru/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Crisis de las semillas débiles de Coldcard: complejidad no equivale a seguridad",
+      "excerpt": "El incidente de Coldcard de 2026 no comprometió los dispositivos de forma remota. Reveló algo más fundamental: una carcasa sofisticada no puede proteger una semilla que era predecible desde su creación.",
+      "category": "Seguridad",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:07.08046+00:00",
+      "locale": "es",
+      "language_name": "Español",
+      "reading_minutes": 23,
+      "url": "https://oathwallet.org/es/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/es/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcardの脆弱シード危機――複雑さはセキュリティと同義ではない",
+      "excerpt": "2026年のColdcard事件で、デバイスがリモートから侵害されたわけではない。この事件が露呈させたのは、より根本的な問題だ。どれほど高度な筐体でも、生成時点から予測可能だったシードは守れない。",
+      "category": "セキュリティ",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:10.0059+00:00",
+      "locale": "ja",
+      "language_name": "日本語",
+      "reading_minutes": 29,
+      "url": "https://oathwallet.org/ja/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/ja/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcard کے کمزور سیڈ کا بحران: پیچیدگی سکیورٹی کے مترادف نہیں",
+      "excerpt": "2026 کے Coldcard واقعے میں آلات کو دور سے قابو نہیں کیا گیا۔ اس نے ایک زیادہ بنیادی حقیقت آشکار کی: نفیس غلاف ایسے سیڈ کی حفاظت نہیں کر سکتا جو پیدائش ہی سے قابلِ پیش گوئی ہو۔",
+      "category": "سکیورٹی",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:14.066592+00:00",
+      "locale": "ur",
+      "language_name": "اردو",
+      "reading_minutes": 25,
+      "url": "https://oathwallet.org/ur/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/ur/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcard 弱种子危机：复杂性不等于安全性",
+      "excerpt": "2026 年 Coldcard 事件并非设备遭远程攻破。它揭示了更根本的问题：再精密的外壳，也保护不了一个从诞生之初便可预测的种子。",
+      "category": "安全",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:15.342517+00:00",
+      "locale": "zh-Hans",
+      "language_name": "简体中文",
+      "reading_minutes": 22,
+      "url": "https://oathwallet.org/zh-Hans/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/zh-Hans/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Krisis Seed Lemah Coldcard: Kompleksitas Tidak Sama dengan Keamanan",
+      "excerpt": "Insiden Coldcard 2026 tidak membobol perangkat dari jarak jauh. Insiden itu mengungkap persoalan yang lebih mendasar: selubung canggih tidak dapat melindungi seed yang sudah dapat diprediksi sejak dibuat.",
+      "category": "Keamanan",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:09.195389+00:00",
+      "locale": "id",
+      "language_name": "Bahasa Indonesia",
+      "reading_minutes": 19,
+      "url": "https://oathwallet.org/id/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/id/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcards Krise um schwache Seeds: Komplexität ist nicht gleich Sicherheit",
+      "excerpt": "Beim Coldcard-Vorfall von 2026 wurden die Geräte keineswegs aus der Ferne kompromittiert. Er legte etwas Grundlegenderes offen: Ein ausgeklügeltes Gehäuse kann keinen Seed schützen, der schon bei seiner Entstehung vorhersehbar war.",
+      "category": "Sicherheit",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:06.42525+00:00",
+      "locale": "de",
+      "language_name": "Deutsch",
+      "reading_minutes": 20,
+      "url": "https://oathwallet.org/de/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/de/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "La crise des graines faibles de Coldcard : la complexité n’est pas synonyme de sécurité",
+      "excerpt": "L’incident Coldcard de 2026 n’a entraîné aucune compromission à distance des appareils. Il a mis au jour une réalité plus fondamentale : un boîtier sophistiqué ne peut protéger une graine qui était prévisible dès sa création.",
+      "category": "Sécurité",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:07.82832+00:00",
+      "locale": "fr",
+      "language_name": "Français",
+      "reading_minutes": 24,
+      "url": "https://oathwallet.org/fr/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/fr/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcard का कमजोर-सीड संकट: जटिलता और सुरक्षा एक ही बात नहीं हैं",
+      "excerpt": "2026 की Coldcard घटना में उपकरणों को दूर से अपने नियंत्रण में नहीं लिया गया था। उसने कहीं अधिक मूलभूत समस्या उजागर की: परिष्कृत आवरण भी उस सीड की रक्षा नहीं कर सकता जिसका जन्म के समय ही अनुमान लगाया जा सकता था।",
+      "category": "सुरक्षा",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:08.564067+00:00",
+      "locale": "hi",
+      "language_name": "हिन्दी",
+      "reading_minutes": 23,
+      "url": "https://oathwallet.org/hi/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/hi/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcard 취약 시드 위기: 복잡성이 곧 보안은 아니다",
+      "excerpt": "2026년 Coldcard 사건은 기기가 원격으로 침해된 사건이 아니었다. 오히려 더 근본적인 사실을 드러냈다. 아무리 정교한 외장이라도 생성 순간부터 예측 가능했던 시드는 보호할 수 없다.",
+      "category": "보안",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:10.626037+00:00",
+      "locale": "ko",
+      "language_name": "한국어",
+      "reading_minutes": 17,
+      "url": "https://oathwallet.org/ko/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/ko/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "A crise das sementes fracas da Coldcard: complexidade não é o mesmo que segurança",
+      "excerpt": "O incidente da Coldcard em 2026 não comprometeu remotamente os dispositivos. Ele expôs algo mais fundamental: um invólucro sofisticado não pode proteger uma semente que era previsível desde sua criação.",
+      "category": "Segurança",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:12.006831+00:00",
+      "locale": "pt-BR",
+      "language_name": "Português (Brasil)",
+      "reading_minutes": 23,
+      "url": "https://oathwallet.org/pt-BR/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/pt-BR/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Coldcard’ın Zayıf Tohum Krizi: Karmaşıklık Güvenlikle Aynı Şey Değildir",
+      "excerpt": "2026’daki Coldcard vakasında cihazlar uzaktan ele geçirilmedi. Vaka, daha temel bir gerçeği açığa çıkardı: Gelişmiş bir muhafaza, oluşturulduğu anda öngörülebilir olan bir tohumu koruyamaz.",
+      "category": "Güvenlik",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:13.324423+00:00",
+      "locale": "tr",
+      "language_name": "Türkçe",
+      "reading_minutes": 18,
+      "url": "https://oathwallet.org/tr/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/tr/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "أزمة البذور الضعيفة في Coldcard: التعقيد ليس مرادفًا للأمن",
+      "excerpt": "لم تتعرض أجهزة Coldcard للاختراق عن بُعد في حادثة عام 2026. بل كشفت الحادثة عن أمر أكثر جوهرية: لا يستطيع غلاف متطور حماية بذرة كان من الممكن التنبؤ بها منذ لحظة إنشائها.",
+      "category": "الأمن",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:03.489863+00:00",
+      "locale": "ar",
+      "language_name": "العربية",
+      "reading_minutes": 18,
+      "url": "https://oathwallet.org/ar/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/ar/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    },
+    {
+      "title": "Khủng hoảng seed yếu của Coldcard: Phức tạp không đồng nghĩa với bảo mật",
+      "excerpt": "Trong sự cố Coldcard năm 2026, các thiết bị không hề bị xâm nhập từ xa. Sự cố ấy phơi bày một vấn đề căn bản hơn: lớp vỏ tinh vi không thể bảo vệ một seed vốn đã có thể dự đoán ngay từ khi ra đời.",
+      "category": "Bảo mật",
+      "author_name": "Oath Research",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "updated_at": "2026-09-03T12:01:14.734021+00:00",
+      "locale": "vi",
+      "language_name": "Tiếng Việt",
+      "reading_minutes": 31,
+      "url": "https://oathwallet.org/vi/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
+      "markdown_url": "https://oathwallet.org/vi/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://oathwallet.org/",
+      "markdown": "https://oathwallet.org/index.md",
+      "title": "Oath Wallet | Self-Custody Crypto Wallet for iPhone",
+      "description": "Explore Oath Wallet, a self-custody Bitcoin and crypto wallet for iPhone and iPad. Compare features, check supported networks, and learn backup and recovery."
+    },
+    {
+      "url": "https://oathwallet.org/features",
+      "markdown": "https://oathwallet.org/features.md",
+      "title": "Oath Wallet Features | Bitcoin, Backups & Supported Networks",
+      "description": "Explore Oath Wallet features: recovery phrases, password-encrypted iCloud backup, Bitcoin address options, EVM approvals, supported currencies and available price quotes."
+    },
+    {
+      "url": "https://oathwallet.org/articles",
+      "markdown": "https://oathwallet.org/articles.md",
+      "title": "Oath Wallet Guides | Recovery, Bitcoin & Network Help",
+      "description": "Guides, security notes and stories from the people building Oath."
+    },
+    {
+      "url": "https://oathwallet.org/support",
+      "markdown": "https://oathwallet.org/support.md",
+      "title": "Oath Wallet Support | Backup, Restore & Troubleshooting",
+      "description": "Answers about Oath, and how to reach a real person at care@oathwallet.org."
+    },
+    {
+      "url": "https://oathwallet.org/press",
+      "markdown": "https://oathwallet.org/press.md",
+      "title": "Oath Wallet Press Kit | Brand, Team & Product Facts",
+      "description": "Logos, colours, facts and copy for writing about Oath."
+    },
+    {
+      "url": "https://oathwallet.org/terms",
+      "markdown": "https://oathwallet.org/terms.md",
+      "title": "Terms of Service — Oath",
+      "description": "Terms of Service for the Oath self-custody wallet."
+    },
+    {
+      "url": "https://oathwallet.org/privacy",
+      "markdown": "https://oathwallet.org/privacy.md",
+      "title": "Privacy Policy — Oath",
+      "description": "How Oath handles your data — no account, no KYC, keys never leave your device."
+    },
+    {
+      "url": "https://oathwallet.org/security",
+      "markdown": "https://oathwallet.org/security.md",
+      "title": "Oath Wallet Security | Key Storage, Backups & Source Code",
+      "description": "Oath’s open-source code, App Store source-correspondence statement, and security model. Understand maintainer confirmation and independent build verification."
+    },
+    {
+      "url": "https://oathwallet.org/about",
+      "markdown": "https://oathwallet.org/about.md",
+      "title": "About Oath Wallet — Team, Open Source & Official Links",
+      "description": "Learn who publishes Oath Wallet, why Aperture became Oath, and where to find the official app, source code, support and security policy."
+    },
+    {
+      "url": "https://oathwallet.org/networks",
+      "markdown": "https://oathwallet.org/networks.md",
+      "title": "Oath Wallet Supported Networks — Bitcoin, Ethereum & More",
+      "description": "Check Oath Wallet’s supported mainnets, native network-fee assets, token-network requirements and release-specific Bitcoin limitations before receiving crypto."
+    }
+  ],
+  "security": {
+    "reviewed_source_version": "4.1.14 (98)",
+    "reviewed_source_commit": "v4.1.14",
+    "reviewed_on": "2026-10-30",
+    "mnemonic": "BIP39, Electrum and aezeed retain distinct validation and derivation rules",
+    "storage": "AES-GCM local vault; device-only Keychain and protected installation key; passcode key derivation uses PBKDF2-HMAC-SHA256 with 600,000 rounds",
+    "backup": "Eligible wallets use AES-256-GCM password-encrypted .oathbackup files; Electrum and aezeed excluded",
+    "independent_audit": "Not established by the published source release",
+    "app_store_binary_match": "Version 4.1.14 (98) is built from public source commit v4.1.14; the release record documents archive and delivery evidence. This is not an independent binary comparison.",
+    "silent_payments": "Receiving and discovery are not supported in 4.1.14",
+    "source": "https://github.com/devdasx/oath-wallet/blob/v4.1.14/README.md",
+    "scope": "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md",
+    "reporting_policy": "https://github.com/devdasx/oath-wallet/security/policy",
+    "source_correspondence": {
+      "status": "maintainer-release-checks",
+      "confirmed_on": "2026-10-27",
+      "statement": "Oath Wallet 4.1.14 (98) is built from public source commit v4.1.14. Its release record separates source checks, host tests, compilation and App Store Connect delivery. Provider configuration and Apple signing are supplied through encrypted deployment secrets and excluded from Git. Version 4.1.14 (98) is a public source release. Its App Store Connect upload-only workflow was cancelled before upload at the maintainer’s request; it was not submitted for review. See its release record for delivery evidence.",
+      "readme": "https://github.com/devdasx/oath-wallet#release-verification",
+      "guide": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
+      "independent_verification": "This statement is distinct from an independently reproduced, byte-for-byte comparison of an App Store download. This update supplies no new binary comparison, independent reproducibility report, or security audit."
+    },
+    "technical_examples_scope": "Source descriptions and excerpts checked against 4.1.14 (98) on 2026-10-28",
+    "page_updated_on": "2026-10-27",
+    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14",
+    "release_source_commit": "v4.1.14"
+  }
+}

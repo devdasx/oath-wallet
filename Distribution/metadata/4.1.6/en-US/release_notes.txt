@@ -1,0 +1,1 @@
+Access Recently Deleted directly from the wallet switcher, with a Security setting to hide the shortcut. View your installed version and build in About and check for App Store updates. Improved native navigation to the App Store.

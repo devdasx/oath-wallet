@@ -1,0 +1,20 @@
+[
+  {
+    "message": "",
+    "address": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "digest": "0x5f35dce98ba4fba25530a026ed80b2cecdaa31091ba4958b99b52ea1d068adad",
+    "signature": "0x0ac02a3eb3039b7a3ebb6a35f1e0dd31a4ed51781205a2c193354752a25edad50593868baf38c519b78bdc61a23c3f55e058c29f8b83d79ae48cc47d931afaed1b"
+  },
+  {
+    "message": "hello",
+    "address": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "digest": "0x50b2c43fd39106bafbba0da34fc430e1f91e3c96ea2acee2bc34119f92b37750",
+    "signature": "0xe5ddc160e4c8f92de507c7db9b982d4f9b7197bfa421864aeadc586bc96b09ae0ba0c5b131650ae4994cff1839341d00f3735ef5abc62ac8fe2cf50f65208e2a1b"
+  },
+  {
+    "message": "Oath Wallet ✓",
+    "address": "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf",
+    "digest": "0x9f672903f4836b987089d8900a5e313b3b649bea9349f177b166d41d8613f9b9",
+    "signature": "0x027ba2ab1ea7047bf5991d0b927e7155449c38cbee728cee0e83f4db3e5cbf4c0f2f805cdc7968b54a98044a357ebcc0fee7835a49253a226518c13134a5cbf41b"
+  }
+]

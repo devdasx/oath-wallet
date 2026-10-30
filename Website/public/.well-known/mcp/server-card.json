@@ -1,0 +1,33 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card.json",
+  "name": "org.oathwallet/website",
+  "title": "Oath Wallet",
+  "version": "1.0.0",
+  "description": "Read-only facts about Oath Wallet (formerly Aperture), a self-custody iPhone wallet: features, support answers, download link, contact and policies.",
+  "websiteUrl": "https://oathwallet.org",
+  "documentationUrl": "https://oathwallet.org/llms.txt",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://oathwallet.org/mcp"
+    }
+  ],
+  "capabilities": {
+    "tools": {},
+    "resources": {},
+    "prompts": {}
+  },
+  "authentication": {
+    "required": false
+  },
+  "tools": [
+    "get_overview",
+    "list_features",
+    "get_feature",
+    "search_help",
+    "get_contact",
+    "get_download",
+    "get_policy",
+    "list_articles"
+  ]
+}

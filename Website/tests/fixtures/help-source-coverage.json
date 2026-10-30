@@ -1,0 +1,1399 @@
+[
+  {
+    "slug": "create-wallet",
+    "title": "Create your first wallet",
+    "sources": [
+      "OathAtmosphere/OathOnboardingScreen.swift",
+      "OathAtmosphere/Wallet/OathWalletEngine.swift",
+      "OathApp/OathAtmosphereApp.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "import-recovery-phrase",
+    "title": "Import a recovery phrase",
+    "sources": [
+      "OathAtmosphere/Import/OathRecoveryPhraseScreen.swift",
+      "OathAtmosphere/Import/OathMnemonicValidator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "scan-recovery-qr",
+    "title": "Scan a recovery-phrase QR code",
+    "sources": [
+      "OathAtmosphere/Import/OathRecoveryScanner.swift",
+      "OathAtmosphere/Import/OathRecoveryPhraseScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "import-private-key",
+    "title": "Import a private key",
+    "sources": [
+      "OathAtmosphere/Wallet/OathPrivateKeyImport.swift",
+      "OathAtmosphere/Import/OathPrivateKeyImportScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "private-key-formats",
+    "title": "Which private-key formats can I import?",
+    "sources": [
+      "OathAtmosphere/Wallet/OathPrivateKeyImport.swift",
+      "Packages/OathBitcoin/Sources/OathBitcoin/UTXONetwork.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "first-passcode",
+    "title": "Set your first app passcode",
+    "sources": [
+      "OathAtmosphere/Passcode/OathPasscodeSetupScreen.swift",
+      "OathAtmosphere/Passcode/OathPasscodeSetupModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "home-screen",
+    "title": "Find your way around Home",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Home/OathHomeHeaderSurface.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "add-another-wallet",
+    "title": "Add another wallet",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSwitcherSheet.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "switch-wallet",
+    "title": "Switch wallets from Home",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSwitcherSheet.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "customize-wallet",
+    "title": "Change a wallet’s name and color",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletCustomizationScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "reorder-wallets",
+    "title": "Reorder your wallets",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletManagementPages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "remove-wallet",
+    "title": "Move a wallet to Recently Deleted",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletManagementPages.swift",
+      "OathAtmosphere/Wallet/OathWalletRemovalModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "recover-deleted-wallet",
+    "title": "Recover a recently deleted wallet",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletManagementPages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "permanently-delete-wallet",
+    "title": "Permanently delete removed wallets",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletManagementPages.swift",
+      "OathAtmosphere/Wallet/OathWalletRemovalModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "add-passphrase",
+    "title": "Create a wallet with a BIP-39 passphrase",
+    "sources": [
+      "OathAtmosphere/Home/OathPassphraseWalletPages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "backup-all-wallets",
+    "title": "Back up all wallets to iCloud",
+    "sources": [
+      "OathAtmosphere/Home/OathAllWalletBackupPage.swift",
+      "OathAtmosphere/Wallet/OathCloudBackupService.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "backup-one-wallet",
+    "title": "Back up one wallet to iCloud",
+    "sources": [
+      "OathAtmosphere/Home/OathCloudBackupSection.swift",
+      "OathAtmosphere/Home/OathBackupPasswordForm.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "backup-password",
+    "title": "Understand your backup password",
+    "sources": [
+      "OathAtmosphere/Home/OathBackupPasswordForm.swift",
+      "OathAtmosphere/Import/OathCloudRestoreContent.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "restore-icloud",
+    "title": "Restore from an iCloud backup",
+    "sources": [
+      "OathAtmosphere/Import/OathCloudRestoreContent.swift",
+      "OathAtmosphere/Wallet/OathCloudRestoreModel.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "backup-status",
+    "title": "Check whether a backup has finished",
+    "sources": [
+      "OathAtmosphere/Home/OathAllWalletBackupPage.swift",
+      "OathAtmosphere/Home/OathCloudBackupSection.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "icloud-troubleshooting",
+    "title": "Fix an iCloud backup or restore problem",
+    "sources": [
+      "OathAtmosphere/Home/OathCloudBackupSection.swift",
+      "OathAtmosphere/Import/OathCloudRestoreContent.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "view-recovery-phrase",
+    "title": "View your recovery phrase",
+    "sources": [
+      "OathAtmosphere/Home/OathRecoveryPhrasePages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "view-private-key",
+    "title": "View or copy a private key",
+    "sources": [
+      "OathAtmosphere/Home/OathPrivateKeyPages.swift",
+      "OathAtmosphere/Wallet/OathPrivateKeyExport.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "move-to-new-phone",
+    "title": "Restore your wallets on another iPhone",
+    "sources": [
+      "OathAtmosphere/Wallet/OathInstallationSecurity.swift",
+      "OathAtmosphere/Import/OathMoreOptionsSheet.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "unlock-wallet",
+    "title": "Unlock Oath",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletUnlockScreen.swift",
+      "OathAtmosphere/Shared/OathPasscodeEntry.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "enable-passcode",
+    "title": "Enable passcode protection",
+    "sources": [
+      "OathAtmosphere/Security/OathSecurityPage.swift",
+      "OathAtmosphere/Security/OathSecurityModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "change-passcode",
+    "title": "Change your app passcode",
+    "sources": [
+      "OathAtmosphere/Security/OathSecurityModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "enable-face-id",
+    "title": "Enable Face ID or Touch ID",
+    "sources": [
+      "OathAtmosphere/Security/OathSecurityPage.swift",
+      "OathAtmosphere/Security/OathSecurityModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "disable-security",
+    "title": "Turn off Face ID or passcode protection",
+    "sources": [
+      "OathAtmosphere/Security/OathSecurityModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "auto-lock",
+    "title": "Choose when Oath locks",
+    "sources": [
+      "OathAtmosphere/Security/OathSecurityPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "lock-now",
+    "title": "Lock Oath immediately",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSheets.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "app-switcher-privacy",
+    "title": "Hide the app preview in the app switcher",
+    "sources": [
+      "OathAtmosphere/Security/OathAppSwitcherPrivacy.swift",
+      "OathAtmosphere/Security/OathSecurityPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "hide-balances",
+    "title": "Hide balances on screen",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "forgot-passcode",
+    "title": "What if I forget my app passcode?",
+    "sources": [
+      "OathAtmosphere/Wallet/OathInstallationSecurity.swift",
+      "OathAtmosphere/Home/OathWalletUnlockScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "reset-app",
+    "title": "Reset Oath on this device",
+    "sources": [
+      "OathAtmosphere/Security/OathResetPages.swift",
+      "OathAtmosphere/Security/OathResetModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "asset-screen",
+    "title": "Open an asset’s screen",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "portfolio-values",
+    "title": "Understand balances and portfolio value",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeAssetRow.swift",
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "refresh-balances",
+    "title": "Refresh balances and activity",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "search-assets",
+    "title": "Search for a coin or token",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "add-custom-token",
+    "title": "Find and add a token by address",
+    "sources": [
+      "OathAtmosphere/Tokens/OathTokenViews.swift",
+      "OathAtmosphere/Tokens/OathTokenSearchModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "token-not-found",
+    "title": "Why isn’t a token appearing?",
+    "sources": [
+      "OathAtmosphere/Tokens/OathTokenViews.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "asset-order",
+    "title": "How assets are sorted",
+    "sources": [
+      "Packages/OathDatabase/Sources/OathDatabase/AssetOrdering.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "prices-chart",
+    "title": "Read an asset’s price and chart",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetDetailModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "asset-information",
+    "title": "View an asset’s information",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetInformationSheet.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "receive-crypto",
+    "title": "Receive crypto with a QR code",
+    "sources": [
+      "OathAtmosphere/Home/OathReceiveSheet.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "copy-share-address",
+    "title": "Copy or share your receiving address",
+    "sources": [
+      "OathAtmosphere/Home/OathReceiveSheet.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "receive-network-tokens",
+    "title": "What does “and more” mean on Receive?",
+    "sources": [
+      "OathAtmosphere/Home/OathReceiveSheet.swift",
+      "OathAtmosphere/Home/OathReceiveNetworkGuide.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "bitcoin-address-types",
+    "title": "Choose a Bitcoin address type",
+    "sources": [
+      "OathAtmosphere/Home/OathReceiveSheet.swift",
+      "Packages/OathBitcoin/Sources/OathBitcoin/BitcoinKeys.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "bitcoin-gap-limit",
+    "title": "Why can a Bitcoin receiving address change?",
+    "sources": [
+      "Packages/OathBitcoin/Sources/OathBitcoin/BitcoinKeys.swift",
+      "OathAtmosphere/Home/OathReceiveSheet.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "solana-address-path",
+    "title": "Choose Phantom or Trust Wallet’s Solana path",
+    "sources": [
+      "OathAtmosphere/Home/OathReceiveSheet.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/SolanaReceive.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "wrong-network",
+    "title": "Check the network before a transfer",
+    "sources": [
+      "OathAtmosphere/Home/OathReceiveNetworkGuide.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "transaction-list",
+    "title": "Read your transaction activity",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift",
+      "OathAtmosphere/Assets/OathChainActivityScreen.swift",
+      "OathAtmosphere/Shared/OathRefinedListRow.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "transaction-details",
+    "title": "Open transaction details",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "transaction-status",
+    "title": "Understand pending, confirmed and failed activity",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "canceled-replaced",
+    "title": "What do Canceled and Replaced mean?",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "network-fee",
+    "title": "Read the network fee",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "copy-transaction-id",
+    "title": "Copy a transaction ID or address",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "view-explorer",
+    "title": "View a transaction on its explorer",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionExplorer.swift",
+      "OathAtmosphere/Shared/OathInAppLinks.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "share-transaction",
+    "title": "Share a transaction image or link",
+    "sources": [
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "send-availability",
+    "title": "Send coins and tokens",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "address-book",
+    "title": "Create a contact in the address book",
+    "sources": [
+      "OathAtmosphere/Contacts/OathContactsPages.swift",
+      "OathAtmosphere/Contacts/OathContactEditorPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "contact-address",
+    "title": "Add an address to a contact",
+    "sources": [
+      "OathAtmosphere/Contacts/OathContactEditorPage.swift",
+      "OathAtmosphere/Contacts/OathContactAddressValidator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "edit-contact",
+    "title": "Edit a contact or saved address",
+    "sources": [
+      "OathAtmosphere/Contacts/OathContactsPages.swift",
+      "OathAtmosphere/Contacts/OathContactEditorPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "delete-contact",
+    "title": "Delete a contact or remove an address",
+    "sources": [
+      "OathAtmosphere/Contacts/OathContactsPages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "search-contacts",
+    "title": "Find a contact",
+    "sources": [
+      "OathAtmosphere/Contacts/OathContactsPages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "currency",
+    "title": "Change your display currency",
+    "sources": [
+      "OathAtmosphere/Preferences/OathPreferencesPages.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "language",
+    "title": "Change the app language",
+    "sources": [
+      "OathAtmosphere/Localization/OathLanguageSelectionController.swift",
+      "OathAtmosphere/Localization/OathLanguageCatalog.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "appearance",
+    "title": "Use Light, Dark or System appearance",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "app-icon",
+    "title": "Change the app icon",
+    "sources": [
+      "OathAtmosphere/Preferences/OathPreferencesPages.swift",
+      "OathAtmosphere/Preferences/OathAppIcon.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "permissions",
+    "title": "Review wallet permissions and connected apps",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSheets.swift",
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "in-app-browser",
+    "title": "Open links without leaving Oath",
+    "sources": [
+      "OathAtmosphere/Shared/OathInAppLinks.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "request-feature",
+    "title": "Request a feature",
+    "sources": [
+      "OathAtmosphere/Shared/OathLinkDestination.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "report-bug",
+    "title": "Report a bug",
+    "sources": [
+      "OathAtmosphere/Shared/OathLinkDestination.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "contact-support",
+    "title": "Contact Oath support",
+    "sources": [
+      "OathAtmosphere/Shared/OathInAppLinks.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "about-legal",
+    "title": "Find articles, privacy and terms",
+    "sources": [
+      "OathAtmosphere/Home/OathAboutPage.swift",
+      "OathAtmosphere/Shared/OathLinkDestination.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-bitcoin-cash",
+    "title": "Use Bitcoin Cash in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-dogecoin",
+    "title": "Use Dogecoin in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-litecoin",
+    "title": "Use Litecoin in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-solana",
+    "title": "Use Solana in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-tron",
+    "title": "Use TRON in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-gram",
+    "title": "Use Gram in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-aptos",
+    "title": "Use Aptos in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-sui",
+    "title": "Use Sui Network in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-near",
+    "title": "Use NEAR Protocol in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-xrp-ledger",
+    "title": "Use XRP Ledger in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-stellar",
+    "title": "Use Stellar in Oath",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "evm-networks",
+    "title": "Use Ethereum and EVM networks",
+    "sources": [
+      "OathAtmosphere/Import/OathImportCatalog.swift",
+      "OathAtmosphere/Wallet/OathWalletEngine.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "arc-usdc",
+    "title": "Understand USDC on Arc",
+    "sources": [
+      "Packages/OathAnkr/Sources/OathAnkr/ArcModels.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "robinhood-chain",
+    "title": "Use Robinhood Chain",
+    "sources": [
+      "Packages/OathAnkr/Sources/OathAnkr/RobinhoodModels.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "home-scanner",
+    "title": "Scan a token address from Home",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Home/OathHomeHeaderSurface.swift",
+      "OathAtmosphere/Import/OathRecoveryScanner.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "wallet-settings-shortcut",
+    "title": "Open the current wallet’s settings from Home",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeHeaderSurface.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "wallet-balances",
+    "title": "Read wallet balances and the active-wallet badge",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletManagementPages.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "full-transaction-history",
+    "title": "View the active wallet’s full transaction history",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Assets/OathChainActivityScreen.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/ChainHistory.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "search-transactions",
+    "title": "Search transactions by ID, address or amount",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/ChainHistory.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/HistorySearch.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "filter-transactions",
+    "title": "Filter transaction history",
+    "sources": [
+      "OathAtmosphere/Assets/OathHistoryFilters.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/HistoryFilter.swift",
+      "OathAtmosphere/Assets/OathChainActivityScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "asset-transaction-history",
+    "title": "View all transactions for one coin or token",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetDetailModel.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/ChainHistory.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "spam-history",
+    "title": "How Oath hides spam and phishing activity",
+    "sources": [
+      "Packages/OathDatabase/Sources/OathDatabase/HistorySafety.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/Portfolio.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "zero-value-transactions",
+    "title": "Why can a transaction show zero?",
+    "sources": [
+      "Packages/OathDatabase/Sources/OathDatabase/HistorySafety.swift",
+      "OathAtmosphere/Assets/OathTransactionDetailScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "unverified-tokens",
+    "title": "Understand verified and manually added tokens",
+    "sources": [
+      "Packages/OathDatabase/Sources/OathDatabase/Portfolio.swift",
+      "Packages/OathDatabase/Sources/OathDatabase/HistorySafety.swift",
+      "OathAtmosphere/Tokens/OathTokenViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "confirmation-checkmark",
+    "title": "Use the checkmark to finish an action",
+    "sources": [
+      "OathAtmosphere/Shared/OathActionButton.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift",
+      "OathAtmosphere/Assets/OathHistoryFilters.swift",
+      "OathAtmosphere/Tokens/OathTokenViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "security-settings-access",
+    "title": "Authenticate before opening Passcode & Face ID",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSheets.swift",
+      "OathAtmosphere/Security/OathSecurityPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "help-center",
+    "title": "Open and search the Help Center",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSheets.swift",
+      "OathAtmosphere/Shared/OathInAppLinks.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "send-max-and-fees",
+    "title": "Use Max and understand spendable balance",
+    "sources": [
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "send-tags-and-memos",
+    "title": "Enter destination tags and memos",
+    "sources": [
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift",
+      "OathAtmosphere/Send/OathSendRecipientRules.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "bitcoin-transfer-options",
+    "title": "Set Bitcoin transfer options",
+    "sources": [
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift",
+      "OathAtmosphere/Send/OathSendOptionsSheet.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "send-troubleshooting",
+    "title": "Resolve a transfer that cannot be sent",
+    "sources": [
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift",
+      "OathAtmosphere/Send/OathSendAccountHelp.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "connect-dapp",
+    "title": "Connect a dApp with WalletConnect",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "dapp-disconnect",
+    "title": "Disconnect a dApp safely",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "dapp-swap",
+    "title": "Review a token swap from a dApp",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "dapp-transaction-data",
+    "title": "Read human-readable transaction data",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "dapp-signatures",
+    "title": "Review messages, sign-ins and token permits",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectTypedReview.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "walletconnect-solana",
+    "title": "Use Solana dApps and test networks",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectSolanaViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "walletconnect-thorchain",
+    "title": "Review THORChain dApp requests",
+    "sources": [
+      "OathAtmosphere/Scanner/OathWalletConnectPage.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectConsent.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectEVMViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectCallDetails.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectRequestViews.swift",
+      "OathAtmosphere/Scanner/OathWalletConnectThorchainViews.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "revoke-token-access",
+    "title": "Revoke a token allowance or delegate",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "bulk-revoke-access",
+    "title": "Revoke several permissions",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "permission-coverage",
+    "title": "Understand permission scan coverage",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "check-contract-access",
+    "title": "Check a contract and approved address",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift",
+      "OathAtmosphere/Permissions/OathPermissionContractPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "permit2-access",
+    "title": "Understand Permit2 and signed approvals",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "permission-removal-history",
+    "title": "Check revocation progress and failures",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "account-control-permissions",
+    "title": "Review account-control and permanent delegates",
+    "sources": [
+      "OathAtmosphere/Permissions/OathPermissionsPage.swift",
+      "OathAtmosphere/Permissions/OathPermissionsModel.swift",
+      "OathAtmosphere/Permissions/OathPermissionReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchReview.swift",
+      "OathAtmosphere/Permissions/OathPermissionBatchCoordinator.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "last-wallet-reset",
+    "title": "Remove the last active wallet",
+    "sources": [
+      "OathAtmosphere/Wallet/OathWalletRemovalModel.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift",
+      "OathAtmosphere/Home/OathWalletSheets.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "upgrade-existing-wallets",
+    "title": "Open existing wallets after an Oath update",
+    "sources": [
+      "OathAtmosphere/Wallet/OathLegacyUpgrade.swift",
+      "OathAtmosphere/Wallet/OathLegacyUpgradeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "balance-change",
+    "title": "Understand the balance-change capsule",
+    "sources": [
+      "OathAtmosphere/Home/OathHomeScreen.swift",
+      "OathAtmosphere/Wallet/OathWalletSession.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "asset-filters",
+    "title": "Filter the Home assets list",
+    "sources": [
+      "OathAtmosphere/Home/OathAssetFilterSheet.swift",
+      "OathAtmosphere/Home/OathHomeScreen.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "token-prices-and-logos",
+    "title": "Understand token logos and missing prices",
+    "sources": [
+      "OathAtmosphere/Tokens/OathTokenSearchModel.swift",
+      "OathAtmosphere/Tokens/OathTokenService.swift",
+      "OathAtmosphere/Assets/OathAssetDetailModel.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "haptic-feedback",
+    "title": "Turn haptic feedback on or off",
+    "sources": [
+      "OathAtmosphere/Home/OathWalletSheets.swift",
+      "OathAtmosphere/Shared/OathAppSettings.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-thorchain",
+    "title": "Use THORChain and RUNE",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetInformationSheet.swift",
+      "OathAtmosphere/Tokens/OathTokenNetwork.swift",
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-hyperevm",
+    "title": "Use HyperEVM in Oath",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetInformationSheet.swift",
+      "OathAtmosphere/Tokens/OathTokenNetwork.swift",
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-monad",
+    "title": "Use Monad in Oath",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetInformationSheet.swift",
+      "OathAtmosphere/Tokens/OathTokenNetwork.swift",
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  },
+  {
+    "slug": "use-unichain",
+    "title": "Use Unichain in Oath",
+    "sources": [
+      "OathAtmosphere/Assets/OathAssetDetailScreen.swift",
+      "OathAtmosphere/Assets/OathAssetInformationSheet.swift",
+      "OathAtmosphere/Tokens/OathTokenNetwork.swift",
+      "OathAtmosphere/Send/OathSendFlow.swift",
+      "OathAtmosphere/Send/OathSendModel.swift",
+      "OathAtmosphere/Send/OathSendRecipientPage.swift",
+      "OathAtmosphere/Send/OathSendAmountPage.swift",
+      "OathAtmosphere/Send/OathSendReviewPage.swift"
+    ],
+    "source_paths_missing": [],
+    "review": "Source review plus actual app-view captures with synthetic data; no live payment or cloud-backup claim."
+  }
+]

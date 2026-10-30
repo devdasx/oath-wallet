@@ -1,0 +1,410 @@
+[
+  {
+    "kind": "send",
+    "method": "cosmos_signAmino",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chain_id": "thorchain-1",
+        "account_number": "123",
+        "sequence": "7",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgSend",
+            "value": {
+              "from_address": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+              "to_address": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+              "amount": [
+                {
+                  "denom": "rune",
+                  "amount": "123456"
+                }
+              ]
+            }
+          }
+        ],
+        "memo": "Oath <&> / é اختبار"
+      }
+    },
+    "signBytes": "eyJhY2NvdW50X251bWJlciI6IjEyMyIsImNoYWluX2lkIjoidGhvcmNoYWluLTEiLCJmZWUiOnsiYW1vdW50IjpbXSwiZ2FzIjoiNTAwMDAwMDAwIn0sIm1lbW8iOiJPYXRoIFx1MDAzY1x1MDAyNlx1MDAzZSAvIMOpINin2K7Yqtio2KfYsSIsIm1zZ3MiOlt7InR5cGUiOiJ0aG9yY2hhaW4vTXNnU2VuZCIsInZhbHVlIjp7ImFtb3VudCI6W3siYW1vdW50IjoiMTIzNDU2IiwiZGVub20iOiJydW5lIn1dLCJmcm9tX2FkZHJlc3MiOiJ0aG9yMTB4Y3FwenJreTZlZmYyZzUycWR5ZTUzeGtrOWp4a3ZyODhyODR1IiwidG9fYWRkcmVzcyI6InRob3IxYTBxd3V6ZTJoODV6dzducXBzajNnYTB6OWdleXJnd3AzYzdmMDMifX1dLCJzZXF1ZW5jZSI6IjcifQ==",
+    "response": {
+      "signed": {
+        "chain_id": "thorchain-1",
+        "account_number": "123",
+        "sequence": "7",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgSend",
+            "value": {
+              "from_address": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+              "to_address": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+              "amount": [
+                {
+                  "denom": "rune",
+                  "amount": "123456"
+                }
+              ]
+            }
+          }
+        ],
+        "memo": "Oath <&> / é اختبار"
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "odETCk0LHWr4IN5TnCAbWSZqBlMuXNPqY78NDx5dwLxz+1cqLgw1xG/jfhbhM+aTlRQRtUwtKgv1ChqzmBd5Pw=="
+      }
+    }
+  },
+  {
+    "kind": "send",
+    "method": "cosmos_signDirect",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chainId": "thorchain-1",
+        "accountNumber": "123",
+        "bodyBytes": "Ck4KDi90eXBlcy5Nc2dTZW5kEjwKFHmwAIh2JrKUqRRQGkzSJrWLI1mDEhTrwO4LKrnoJ3pgDCUUdeIqMkGhwRoOCgRydW5lEgYxMjM0NTYSGk9hdGggPCY+IC8gw6kg2KfYrtiq2KjYp9ix",
+        "authInfoBytes": "ClAKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAEYBxIGEIDKte4B"
+      }
+    },
+    "signBytes": "CmwKTgoOL3R5cGVzLk1zZ1NlbmQSPAoUebAAiHYmspSpFFAaTNImtYsjWYMSFOvA7gsquegnemAMJRR14ioyQaHBGg4KBHJ1bmUSBjEyMzQ1NhIaT2F0aCA8Jj4gLyDDqSDYp9iu2KrYqNin2LESWgpQCkYKHy9jb3Ntb3MuY3J5cHRvLnNlY3AyNTZrMS5QdWJLZXkSIwohAxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QePEgQKAggBGAcSBhCAyrXuARoLdGhvcmNoYWluLTEgew==",
+    "response": {
+      "signed": {
+        "chainId": "thorchain-1",
+        "accountNumber": "123",
+        "bodyBytes": "Ck4KDi90eXBlcy5Nc2dTZW5kEjwKFHmwAIh2JrKUqRRQGkzSJrWLI1mDEhTrwO4LKrnoJ3pgDCUUdeIqMkGhwRoOCgRydW5lEgYxMjM0NTYSGk9hdGggPCY+IC8gw6kg2KfYrtiq2KjYp9ix",
+        "authInfoBytes": "ClAKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAEYBxIGEIDKte4B"
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "AWbqCj8lI8Ch2LUrV+SxJo42KGPqvDYEc7S2gIiDKhgSLfQh4Z8wzjmIXlXpC45nRw5W+anuh+Q469A1jIo2hg=="
+      }
+    }
+  },
+  {
+    "kind": "token",
+    "method": "cosmos_signAmino",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chain_id": "thorchain-1",
+        "account_number": "123",
+        "sequence": "7",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgSend",
+            "value": {
+              "from_address": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+              "to_address": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+              "amount": [
+                {
+                  "denom": "x/oath-test",
+                  "amount": "123456"
+                }
+              ]
+            }
+          }
+        ],
+        "memo": "Oath <&> / é اختبار"
+      }
+    },
+    "signBytes": "eyJhY2NvdW50X251bWJlciI6IjEyMyIsImNoYWluX2lkIjoidGhvcmNoYWluLTEiLCJmZWUiOnsiYW1vdW50IjpbXSwiZ2FzIjoiNTAwMDAwMDAwIn0sIm1lbW8iOiJPYXRoIFx1MDAzY1x1MDAyNlx1MDAzZSAvIMOpINin2K7Yqtio2KfYsSIsIm1zZ3MiOlt7InR5cGUiOiJ0aG9yY2hhaW4vTXNnU2VuZCIsInZhbHVlIjp7ImFtb3VudCI6W3siYW1vdW50IjoiMTIzNDU2IiwiZGVub20iOiJ4L29hdGgtdGVzdCJ9XSwiZnJvbV9hZGRyZXNzIjoidGhvcjEweGNxcHpya3k2ZWZmMmc1MnFkeWU1M3hrazlqeGt2cjg4cjg0dSIsInRvX2FkZHJlc3MiOiJ0aG9yMWEwcXd1emUyaDg1enc3bnFwc2ozZ2EwejlnZXlyZ3dwM2M3ZjAzIn19XSwic2VxdWVuY2UiOiI3In0=",
+    "response": {
+      "signed": {
+        "chain_id": "thorchain-1",
+        "account_number": "123",
+        "sequence": "7",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgSend",
+            "value": {
+              "from_address": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+              "to_address": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+              "amount": [
+                {
+                  "denom": "x/oath-test",
+                  "amount": "123456"
+                }
+              ]
+            }
+          }
+        ],
+        "memo": "Oath <&> / é اختبار"
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "nnLI+VPj7go+UYvaIsDOAtLy0G+94uIqi+Urk5TYoB4PlaecTwxsNcp5cdQnL4VsFtEh4MA2mYpNyr0EGPIvug=="
+      }
+    }
+  },
+  {
+    "kind": "token",
+    "method": "cosmos_signDirect",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": "thor1a0qwuze2h85zw7nqpsj3ga0z9geyrgwp3c7f03",
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chainId": "thorchain-1",
+        "accountNumber": "123",
+        "bodyBytes": "ClUKDi90eXBlcy5Nc2dTZW5kEkMKFHmwAIh2JrKUqRRQGkzSJrWLI1mDEhTrwO4LKrnoJ3pgDCUUdeIqMkGhwRoVCgt4L29hdGgtdGVzdBIGMTIzNDU2EhpPYXRoIDwmPiAvIMOpINin2K7Yqtio2KfYsQ==",
+        "authInfoBytes": "ClAKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAEYBxIGEIDKte4B"
+      }
+    },
+    "signBytes": "CnMKVQoOL3R5cGVzLk1zZ1NlbmQSQwoUebAAiHYmspSpFFAaTNImtYsjWYMSFOvA7gsquegnemAMJRR14ioyQaHBGhUKC3gvb2F0aC10ZXN0EgYxMjM0NTYSGk9hdGggPCY+IC8gw6kg2KfYrtiq2KjYp9ixEloKUApGCh8vY29zbW9zLmNyeXB0by5zZWNwMjU2azEuUHViS2V5EiMKIQMbhMVWexJkQJldPtWqugVl1x4YNGBIGf+cF/Xp1d0HjxIECgIIARgHEgYQgMq17gEaC3Rob3JjaGFpbi0xIHs=",
+    "response": {
+      "signed": {
+        "chainId": "thorchain-1",
+        "accountNumber": "123",
+        "bodyBytes": "ClUKDi90eXBlcy5Nc2dTZW5kEkMKFHmwAIh2JrKUqRRQGkzSJrWLI1mDEhTrwO4LKrnoJ3pgDCUUdeIqMkGhwRoVCgt4L29hdGgtdGVzdBIGMTIzNDU2EhpPYXRoIDwmPiAvIMOpINin2K7Yqtio2KfYsQ==",
+        "authInfoBytes": "ClAKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAEYBxIGEIDKte4B"
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "ohdIIMt3Voz5h3WJVqZho8MioMlZl/gBZCVWvS7XCnd6WvIArs4AOKDUZ7jxGODvXEtuHHL7VxDC5Gfv+bsmOA=="
+      }
+    }
+  },
+  {
+    "kind": "deposit",
+    "method": "cosmos_signAmino",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": null,
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chain_id": "thorchain-1",
+        "account_number": "123",
+        "sequence": "7",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgDeposit",
+            "value": {
+              "coins": [
+                {
+                  "asset": "THOR.RUNE",
+                  "amount": "123456"
+                }
+              ],
+              "memo": "=:ETH.ETH:0x1111111111111111111111111111111111111111:1",
+              "signer": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u"
+            }
+          }
+        ],
+        "memo": ""
+      }
+    },
+    "signBytes": "eyJhY2NvdW50X251bWJlciI6IjEyMyIsImNoYWluX2lkIjoidGhvcmNoYWluLTEiLCJmZWUiOnsiYW1vdW50IjpbXSwiZ2FzIjoiNTAwMDAwMDAwIn0sIm1lbW8iOiIiLCJtc2dzIjpbeyJ0eXBlIjoidGhvcmNoYWluL01zZ0RlcG9zaXQiLCJ2YWx1ZSI6eyJjb2lucyI6W3siYW1vdW50IjoiMTIzNDU2IiwiYXNzZXQiOiJUSE9SLlJVTkUifV0sIm1lbW8iOiI9OkVUSC5FVEg6MHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExOjEiLCJzaWduZXIiOiJ0aG9yMTB4Y3FwenJreTZlZmYyZzUycWR5ZTUzeGtrOWp4a3ZyODhyODR1In19XSwic2VxdWVuY2UiOiI3In0=",
+    "response": {
+      "signed": {
+        "chain_id": "thorchain-1",
+        "account_number": "123",
+        "sequence": "7",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgDeposit",
+            "value": {
+              "coins": [
+                {
+                  "asset": "THOR.RUNE",
+                  "amount": "123456"
+                }
+              ],
+              "memo": "=:ETH.ETH:0x1111111111111111111111111111111111111111:1",
+              "signer": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u"
+            }
+          }
+        ],
+        "memo": ""
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "eWN2D59JY9z3U5oMF6DGE61C39CRQ6cMwrTWi3WlhrEw60xha+OcMvyknFlBPlsxyKrCo86serGrlq9B8wVZfw=="
+      }
+    }
+  },
+  {
+    "kind": "deposit",
+    "method": "cosmos_signDirect",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": null,
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chainId": "thorchain-1",
+        "accountNumber": "123",
+        "bodyBytes": "CoEBChEvdHlwZXMuTXNnRGVwb3NpdBJsChwKEgoEVEhPUhIEUlVORRoEUlVORRIGMTIzNDU2EjY9OkVUSC5FVEg6MHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExOjEaFHmwAIh2JrKUqRRQGkzSJrWLI1mD",
+        "authInfoBytes": "ClAKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAEYBxIGEIDKte4B"
+      }
+    },
+    "signBytes": "CoQBCoEBChEvdHlwZXMuTXNnRGVwb3NpdBJsChwKEgoEVEhPUhIEUlVORRoEUlVORRIGMTIzNDU2EjY9OkVUSC5FVEg6MHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExOjEaFHmwAIh2JrKUqRRQGkzSJrWLI1mDEloKUApGCh8vY29zbW9zLmNyeXB0by5zZWNwMjU2azEuUHViS2V5EiMKIQMbhMVWexJkQJldPtWqugVl1x4YNGBIGf+cF/Xp1d0HjxIECgIIARgHEgYQgMq17gEaC3Rob3JjaGFpbi0xIHs=",
+    "response": {
+      "signed": {
+        "chainId": "thorchain-1",
+        "accountNumber": "123",
+        "bodyBytes": "CoEBChEvdHlwZXMuTXNnRGVwb3NpdBJsChwKEgoEVEhPUhIEUlVORRoEUlVORRIGMTIzNDU2EjY9OkVUSC5FVEg6MHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExOjEaFHmwAIh2JrKUqRRQGkzSJrWLI1mD",
+        "authInfoBytes": "ClAKRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAEYBxIGEIDKte4B"
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "SzVkmuGoxeFuv76QpSbhac2NmfBdtWl9SUJLbmPHMXA3Bn0jixrIISDeNtG+Lj/1cn4jIhk7B+HsY6ofIxN4fw=="
+      }
+    }
+  },
+  {
+    "kind": "zero",
+    "method": "cosmos_signAmino",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": null,
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chain_id": "thorchain-1",
+        "account_number": "0",
+        "sequence": "0",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgDeposit",
+            "value": {
+              "coins": [
+                {
+                  "asset": "THOR.RUNE",
+                  "amount": "0"
+                }
+              ],
+              "memo": "Oath <&> / é اختبار",
+              "signer": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u"
+            }
+          }
+        ],
+        "memo": ""
+      }
+    },
+    "signBytes": "eyJhY2NvdW50X251bWJlciI6IjAiLCJjaGFpbl9pZCI6InRob3JjaGFpbi0xIiwiZmVlIjp7ImFtb3VudCI6W10sImdhcyI6IjUwMDAwMDAwMCJ9LCJtZW1vIjoiIiwibXNncyI6W3sidHlwZSI6InRob3JjaGFpbi9Nc2dEZXBvc2l0IiwidmFsdWUiOnsiY29pbnMiOlt7ImFtb3VudCI6IjAiLCJhc3NldCI6IlRIT1IuUlVORSJ9XSwibWVtbyI6Ik9hdGggXHUwMDNjXHUwMDI2XHUwMDNlIC8gw6kg2KfYrtiq2KjYp9ixIiwic2lnbmVyIjoidGhvcjEweGNxcHpya3k2ZWZmMmc1MnFkeWU1M3hrazlqeGt2cjg4cjg0dSJ9fV0sInNlcXVlbmNlIjoiMCJ9",
+    "response": {
+      "signed": {
+        "chain_id": "thorchain-1",
+        "account_number": "0",
+        "sequence": "0",
+        "fee": {
+          "amount": [],
+          "gas": "500000000"
+        },
+        "msgs": [
+          {
+            "type": "thorchain/MsgDeposit",
+            "value": {
+              "coins": [
+                {
+                  "asset": "THOR.RUNE",
+                  "amount": "0"
+                }
+              ],
+              "memo": "Oath <&> / é اختبار",
+              "signer": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u"
+            }
+          }
+        ],
+        "memo": ""
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "cOdmGx9XGJRsvrnsu1dBp1SHSf3EHHMOi0swRp4QxqNiHx71ifUCnApZtSA2STCnYjykFevVOcXk/8XKWhlrIg=="
+      }
+    }
+  },
+  {
+    "kind": "zero",
+    "method": "cosmos_signDirect",
+    "sender": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+    "recipient": null,
+    "publicKey": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP",
+    "params": {
+      "signerAddress": "thor10xcqpzrky6eff2g52qdye53xkk9jxkvr88r84u",
+      "signDoc": {
+        "chainId": "thorchain-1",
+        "accountNumber": "0",
+        "bodyBytes": "CmAKES90eXBlcy5Nc2dEZXBvc2l0EksKFwoSCgRUSE9SEgRSVU5FGgRSVU5FEgEwEhpPYXRoIDwmPiAvIMOpINin2K7Yqtio2KfYsRoUebAAiHYmspSpFFAaTNImtYsjWYM=",
+        "authInfoBytes": "Ck4KRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAESBhCAyrXuAQ=="
+      }
+    },
+    "signBytes": "CmIKYAoRL3R5cGVzLk1zZ0RlcG9zaXQSSwoXChIKBFRIT1ISBFJVTkUaBFJVTkUSATASGk9hdGggPCY+IC8gw6kg2KfYrtiq2KjYp9ixGhR5sACIdiaylKkUUBpM0ia1iyNZgxJYCk4KRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAESBhCAyrXuARoLdGhvcmNoYWluLTE=",
+    "response": {
+      "signed": {
+        "chainId": "thorchain-1",
+        "accountNumber": "0",
+        "bodyBytes": "CmAKES90eXBlcy5Nc2dEZXBvc2l0EksKFwoSCgRUSE9SEgRSVU5FGgRSVU5FEgEwEhpPYXRoIDwmPiAvIMOpINin2K7Yqtio2KfYsRoUebAAiHYmspSpFFAaTNImtYsjWYM=",
+        "authInfoBytes": "Ck4KRgofL2Nvc21vcy5jcnlwdG8uc2VjcDI1NmsxLlB1YktleRIjCiEDG4TFVnsSZECZXT7VqroFZdceGDRgSBn/nBf16dXdB48SBAoCCAESBhCAyrXuAQ=="
+      },
+      "signature": {
+        "pub_key": {
+          "type": "tendermint/PubKeySecp256k1",
+          "value": "AxuExVZ7EmRAmV0+1aq6BWXXHhg0YEgZ/5wX9enV3QeP"
+        },
+        "signature": "eQ7uM/ITDcJuWVYhlY2GyBX2gBzs4jc5dNi2zuBvGythqAi7HMyb9jyipuqjAcFcoRKnyyPyWCluIjrVj+71wA=="
+      }
+    }
+  }
+]

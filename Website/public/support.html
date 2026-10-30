@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oath Wallet Support | Backup, Restore &amp; Troubleshooting</title>
+<meta name="description" content="Answers about Oath, and how to reach a real person at care@oathwallet.org.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oath">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://oathwallet.org/support">
+<meta property="og:title" content="Oath Wallet Support | Backup, Restore &amp; Troubleshooting">
+<meta property="og:description" content="Answers about Oath, and how to reach a real person at care@oathwallet.org.">
+<meta property="og:image" content="https://oathwallet.org/og/support.png">
+<meta property="og:image:secure_url" content="https://oathwallet.org/og/support.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Oath support — How can we help you?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OathWallet">
+<meta name="twitter:creator" content="@OathWallet">
+<meta name="twitter:title" content="Oath Wallet Support | Backup, Restore &amp; Troubleshooting">
+<meta name="twitter:description" content="Answers about Oath, and how to reach a real person at care@oathwallet.org.">
+<meta name="twitter:image" content="https://oathwallet.org/og/support.png">
+<meta name="twitter:image:alt" content="Oath support — How can we help you?">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="canonical" href="https://oathwallet.org/support">
+<link rel="alternate" type="text/markdown" href="support.md" title="Support — Oath (Markdown)">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Guide for AI agents">
+<link rel="mcp-server" href="https://oathwallet.org/mcp">
+<meta name="apple-itunes-app" content="app-id=6780187283">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://oathwallet.org/#org","name":"Oath Wallet","alternateName":["Oath Wallet","Aperture"],"legalName":"STAGE AND STYLE COLLECTIVE LLC","url":"https://oathwallet.org/","logo":"https://oathwallet.org/apple-touch-icon.png","email":"care@oathwallet.org","address":{"@type":"PostalAddress","streetAddress":"2103 Condor Ct","addressLocality":"Redmond","addressRegion":"OR","postalCode":"97756-8281","addressCountry":"US"},"sameAs":["https://x.com/OathWallet","https://github.com/devdasx/oath-wallet","https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"],"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"care@oathwallet.org","availableLanguage":"en"}},{"@type":"WebSite","@id":"https://oathwallet.org/#site","url":"https://oathwallet.org/","name":"Oath Wallet","description":"A wallet, not a marketplace.","publisher":{"@id":"https://oathwallet.org/#org"}},{"@type":"WebPage","@id":"https://oathwallet.org/support","url":"https://oathwallet.org/support","name":"Oath Wallet Support | Backup, Restore & Troubleshooting","description":"Answers about Oath, and how to reach a real person at care@oathwallet.org.","isPartOf":{"@id":"https://oathwallet.org/#site"},"about":{"@id":"https://oathwallet.org/#app"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I create a wallet?","acceptedAnswer":{"@type":"Answer","text":"Open Oath and tap “Create a new wallet”. Your keys are generated on your iPhone, then you’ll back up your recovery phrase. Creating a local wallet needs no Oath account or email."}},{"@type":"Question","name":"Can I import a wallet from another app?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Import wallet and use the original BIP39, Electrum or aezeed format with any required passphrase. Electrum and aezeed restore supported Bitcoin accounts. Private keys use a separate import with the matching network. Compare a known public address before moving funds."}},{"@type":"Question","name":"Can I create my own recovery phrase with dice?","acceptedAnswer":{"@type":"Answer","text":"The 4.1.14 source creates standard wallets with a 12-word BIP39 phrase. The earlier dice, coin-flip and typed-digit creation controls are not included in this release."}},{"@type":"Question","name":"What if I lose my iPhone?","acceptedAnswer":{"@type":"Answer","text":"Install Oath on a compatible iPhone or iPad and use the correct recovery phrase and any extra passphrase, or an existing encrypted iCloud backup with its backup password. Your funds live on the blockchain, not on your phone."}},{"@type":"Question","name":"Can Oath recover my recovery phrase?","acceptedAnswer":{"@type":"Answer","text":"No. Recovery material is protected locally in the app, not held by Oath support. Keep your own recovery backup; support cannot replace missing words, keys or passwords."}},{"@type":"Question","name":"How does encrypted backup restore work?","acceptedAnswer":{"@type":"Answer","text":"An existing Oath iCloud backup needs both the encrypted backup file in iCloud Drive and its backup password. Keep iCloud Drive and the backup password available on the new device, then follow Restore from iCloud. Apple Account access alone is not enough."}},{"@type":"Question","name":"Is an iCloud backup a replacement for my recovery phrase?","acceptedAnswer":{"@type":"Answer","text":"For eligible wallets, it is an additional recovery method. Keep manual recovery material too. Electrum and aezeed wallets are excluded from iCloud backup in 4.1.14."}},{"@type":"Question","name":"Why is my transaction pending?","acceptedAnswer":{"@type":"Answer","text":"Transactions confirm when the network includes them. Busy networks take longer. You can see the status and the fee you paid in the transaction details."}},{"@type":"Question","name":"What are network fees?","acceptedAnswer":{"@type":"Answer","text":"Fees go to the network, not to Oath. A network-fee estimate is shown before you confirm; the final fee can depend on the network and transaction."}},{"@type":"Question","name":"Which address type should I use for Bitcoin?","acceptedAnswer":{"@type":"Answer","text":"Native SegWit (bc1q) and Taproot (bc1p) are efficient Bitcoin address options. The best choice depends on sender compatibility and how your coins will be spent. Nested SegWit and Legacy are also available where supported by the imported material. Silent Payments receiving and discovery are not supported in 4.1.14."}},{"@type":"Question","name":"Someone from “Oath support” asked for my phrase.","acceptedAnswer":{"@type":"Answer","text":"That is a scam. Oath will never ask for your recovery phrase, private key or passkey. Don’t reply, and forward the message to care@oathwallet.org."}},{"@type":"Question","name":"Is Oath open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. The full source is published on GitHub at github.com/devdasx/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary."}},{"@type":"Question","name":"What is EVM Access?","acceptedAnswer":{"@type":"Answer","text":"A tool that shows discovered token approvals on supported EVM networks. Revoke a supported permission with an on-chain transaction; a network fee applies."}},{"@type":"Question","name":"Does revoking an approval cost a fee?","acceptedAnswer":{"@type":"Answer","text":"Yes, a small network fee, because revoking is an on-chain transaction. Oath shows it before you confirm."}}]}]}</script>
+
+<script src="./support.js" defer></script>
+<!-- oath-runtime-preloads:start --><link rel="preload" as="script" href="/assets/vendor/react-18.3.1.min.js" crossorigin="anonymous" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z"><link rel="preload" as="script" href="/assets/vendor/react-dom-18.3.1.min.js" crossorigin="anonymous" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"><!-- oath-runtime-preloads:end --></head>
+<body>
+<!-- oath-server-content:start --><style id="oath-readable-style">#oath-server-content{box-sizing:border-box;min-height:100vh;margin:0;background:#0A0A0B;color:#F2F0EA;font:17px/1.65 system-ui,sans-serif;padding:24px clamp(20px,5vw,64px) 64px}#oath-server-content a{color:inherit;text-decoration:underline;text-underline-offset:4px}#oath-server-content nav{display:flex;gap:22px;flex-wrap:wrap;padding:8px 0 40px;border-bottom:1px solid #333}#oath-server-content nav a{text-decoration:none}#oath-server-content main{max-width:920px;margin:64px auto}#oath-server-content h1{font:400 clamp(42px,7vw,86px)/1.05 Georgia,serif;letter-spacing:-.03em}#oath-server-content h2{font:400 clamp(28px,4vw,40px)/1.2 Georgia,serif;margin-top:48px}#oath-server-content h3{font-size:21px;margin-top:32px}#oath-server-content p,#oath-server-content li{max-width:78ch}#oath-server-content footer{max-width:920px;margin:auto;border-top:1px solid #333;padding-top:24px}#oath-server-content .oath-readable-table{overflow-x:auto}#oath-server-content th,#oath-server-content td{border-bottom:1px solid #333;padding:12px;text-align:left}#oath-server-content code{overflow-wrap:anywhere}</style><div id="oath-server-content"><nav aria-label="Main navigation"><a href="/">Oath Wallet</a><a href="/features">Features</a><a href="/networks">Networks</a><a href="/articles">Guides</a><a href="/security">Security</a><a href="/support">Support</a><a href="/about">About</a></nav><main><h1>Oath support</h1>
+<p>Contact a real person: <strong>care@oathwallet.org</strong> — put your iPhone model and app version in the message.</p>
+<p>&gt; <strong>Oath will never ask for your recovery phrase, private key or passkey</strong> — not by email, DM or call. Anyone who asks is trying to steal your wallet.</p>
+<h2>Frequently asked questions</h2>
+<h3>How do I create a wallet?</h3>
+<p><em>Getting started</em> — Open Oath and tap “Create a new wallet”. Your keys are generated on your iPhone, then you’ll back up your recovery phrase. Creating a local wallet needs no Oath account or email.</p>
+<h3>Can I import a wallet from another app?</h3>
+<p><em>Getting started</em> — Yes. Choose Import wallet and use the original BIP39, Electrum or aezeed format with any required passphrase. Electrum and aezeed restore supported Bitcoin accounts. Private keys use a separate import with the matching network. Compare a known public address before moving funds.</p>
+<h3>Can I create my own recovery phrase with dice?</h3>
+<p><em>Getting started</em> — The 4.1.14 source creates standard wallets with a 12-word BIP39 phrase. The earlier dice, coin-flip and typed-digit creation controls are not included in this release.</p>
+<h3>What if I lose my iPhone?</h3>
+<p><em>Backup &amp; recovery</em> — Install Oath on a compatible iPhone or iPad and use the correct recovery phrase and any extra passphrase, or an existing encrypted iCloud backup with its backup password. Your funds live on the blockchain, not on your phone.</p>
+<h3>Can Oath recover my recovery phrase?</h3>
+<p><em>Backup &amp; recovery</em> — No. Recovery material is protected locally in the app, not held by Oath support. Keep your own recovery backup; support cannot replace missing words, keys or passwords.</p>
+<h3>How does encrypted backup restore work?</h3>
+<p><em>Encrypted backups</em> — An existing Oath iCloud backup needs both the encrypted backup file in iCloud Drive and its backup password. Keep iCloud Drive and the backup password available on the new device, then follow Restore from iCloud. Apple Account access alone is not enough.</p>
+<h3>Is an iCloud backup a replacement for my recovery phrase?</h3>
+<p><em>Encrypted backups</em> — For eligible wallets, it is an additional recovery method. Keep manual recovery material too. Electrum and aezeed wallets are excluded from iCloud backup in 4.1.14.</p>
+<h3>Why is my transaction pending?</h3>
+<p><em>Sending &amp; receiving</em> — Transactions confirm when the network includes them. Busy networks take longer. You can see the status and the fee you paid in the transaction details.</p>
+<h3>What are network fees?</h3>
+<p><em>Sending &amp; receiving</em> — Fees go to the network, not to Oath. A network-fee estimate is shown before you confirm; the final fee can depend on the network and transaction.</p>
+<h3>Which address type should I use for Bitcoin?</h3>
+<p><em>Sending &amp; receiving</em> — Native SegWit (bc1q) and Taproot (bc1p) are efficient Bitcoin address options. The best choice depends on sender compatibility and how your coins will be spent. Nested SegWit and Legacy are also available where supported by the imported material. Silent Payments receiving and discovery are not supported in 4.1.14.</p>
+<h3>Someone from “Oath support” asked for my phrase.</h3>
+<p><em>Security</em> — That is a scam. Oath will never ask for your recovery phrase, private key or passkey. Don’t reply, and forward the message to care@oathwallet.org.</p>
+<h3>Is Oath open source?</h3>
+<p><em>Security</em> — Yes. The full source is published on GitHub at github.com/devdasx/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary.</p>
+<h3>What is EVM Access?</h3>
+<p><em>EVM Access</em> — A tool that shows discovered token approvals on supported EVM networks. Revoke a supported permission with an on-chain transaction; a network fee applies.</p>
+<h3>Does revoking an approval cost a fee?</h3>
+<p><em>EVM Access</em> — Yes, a small network fee, because revoking is an on-chain transaction. Oath shows it before you confirm.</p>
+<h2>Practical guides</h2>
+<p>Step-by-step help, with release notes and recovery limitations. Start with the guide that matches what you need to do.</p>
+<ul><li><a href="/articles/backup-restore-oath-wallet">Choose a backup and restore method</a></li><li><a href="/articles/move-oath-to-new-iphone-direct-encrypted-serverless">Move Oath to a new iPhone</a></li><li><a href="/articles/recovery-phrase-private-key-icloud-iphone-transfer-import">Import an existing or older wallet</a></li><li><a href="/articles/bitcoin-settings-oath-address-types-indexes-complete-guide">Understand Bitcoin address types</a></li><li><a href="/articles/receive-crypto-safely-network-address-qr-requested-amounts">Receive on the correct network</a></li><li><a href="/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse">Check Silent Payments availability and limits</a></li></ul>
+<p><a href="/networks">Check supported networks</a> · <a href="/security">Read the security evidence</a></p>
+<h2>Security vulnerabilities</h2>
+<p>Use <a href="https://github.com/devdasx/oath-wallet/security/advisories/new">GitHub private vulnerability reporting</a> and follow the <a href="https://github.com/devdasx/oath-wallet/security/policy">security policy</a>. Reports go privately to repository maintainers. Never include real wallet credentials or post exploit details in a public issue.</p></main><footer><a href="https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283">Download Oath Wallet on the App Store</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer></div><!-- oath-server-content:end -->
+
+<template data-oath-template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<script src="oath-icons.js"></script>
+<style>html,body{margin:0;background:#0A0A0B;color:#F2F0EA;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#F2F0EA;text-decoration:none}a:hover{color:#FFFFFF}button,input,select,textarea{font-family:inherit}::selection{background:#F2F0EA;color:#0A0A0B}::placeholder{color:#6E6C67}</style>
+</helmet>
+
+<div style="position:relative;background:#0A0A0B;color:#F2F0EA;overflow-x:clip">
+  <dc-import name="Oath Header" active="Support" hint-size="100%,0px"></dc-import>
+  <main id="main-content">
+
+  <section id="top" data-screen-label="01 Support hero" style="max-width:1320px;margin:0 auto;padding:clamp(120px,17vw,170px) clamp(20px,5vw,32px) 0">
+    <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86;opacity:{{ inO }};transition:opacity 1s ease .5s">Support</span>
+    <div data-oath-page-title style="margin:24px 0 0;font:400 clamp(48px,10vw,168px)/.9 'Instrument Serif',serif;letter-spacing:-.025em">
+      <span style="display:block;overflow:hidden;padding-bottom:.06em"><span style="display:block;transform:{{ hl1 }};transition:transform 1.3s cubic-bezier(.16,1,.3,1) .1s">How can we</span></span>
+      <span style="display:block;overflow:hidden;padding-bottom:.08em"><span style="display:block;transform:{{ hl2 }};transition:transform 1.3s cubic-bezier(.16,1,.3,1) .22s"><em style="color:#8E8C86">help you?</em></span></span>
+    </div>
+
+    <div style="margin-top:clamp(32px,5vw,48px);max-width:760px;height:68px;border-radius:999px;background:#141416;box-shadow:inset 0 0 0 1px {{ searchRing }};display:flex;align-items:center;gap:14px;padding:0 10px 0 24px;transition:box-shadow .3s;opacity:{{ inO }};transform:{{ inY }};transition:opacity 1s ease .5s,transform 1.2s cubic-bezier(.16,1,.3,1) .5s,box-shadow .3s">
+      <svg width="20" height="20" viewBox="0 0 20 20" style="display:block;flex:none"><circle cx="8.5" cy="8.5" r="6.5" fill="none" stroke="#8E8C86" stroke-width="1.8"></circle><path d="m13.5 13.5 5 5" stroke="#8E8C86" stroke-width="1.8" stroke-linecap="round"></path></svg>
+      <input value="{{ q }}" onChange="{{ onQ }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="Search — recovery phrase, backup, fees…" style="flex:1;min-width:0;height:100%;border:0;outline:none;background:transparent;color:#F2F0EA;font:400 18px/1 'Instrument Sans',sans-serif">
+      <sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ clearQ }}" style="height:44px;padding:0 16px;border:0;border-radius:999px;background:#1E1E21;color:#D6D4CD;cursor:pointer;font:500 13px/1 'Instrument Sans',sans-serif">Clear</button>
+      </sc-if>
+    </div>
+  </section>
+
+  <section data-screen-label="02 Safety" style="max-width:1320px;margin:0 auto;padding:clamp(48px,6vw,72px) clamp(20px,5vw,32px) 0">
+    <div style="border-radius:clamp(24px,3vw,32px);background:#F2F0EA;color:#0A0A0B;padding:clamp(22px,3.4vw,36px);display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px">
+      <span style="width:52px;height:52px;flex:none;border-radius:16px;background:#0A0A0B;color:#F2F0EA;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.4 7.5 9.5 4.3-1.1 7.5-4.9 7.5-9.5V6Z"></path><path d="M12 8.5v4"></path><path d="M12 15.8v.2"></path></svg></span>
+      <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px">
+        <span style="font:400 clamp(24px,2.6vw,34px)/1.1 'Instrument Serif',serif">We will never ask for your recovery phrase.</span>
+        <span style="font:400 15px/1.5 'Instrument Sans',sans-serif;color:#48474A">Not by email, not in a DM, not on a call. Anyone who asks is trying to steal your wallet — don’t share it, and report them to us.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="topics" data-screen-label="03 Topics" style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,5vw,32px) 0">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px">
+      <h2 style="margin:0;font:400 clamp(36px,4.6vw,68px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Browse <em style="color:#8E8C86">by topic.</em></h2>
+      <span style="font:400 13px/1 'IBM Plex Mono',monospace;color:#8E8C86">{{ countLabel }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:clamp(10px,1.4vw,14px)">
+      <sc-for list="{{ topics }}" as="tp" hint-placeholder-count="6">
+        <button onClick="{{ tp.go }}" style="text-align:left;border:0;cursor:pointer;border-radius:24px;padding:22px 22px 20px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;background:{{ tp.bg }};color:{{ tp.fg }};box-shadow:inset 0 0 0 1px {{ tp.ring }};transition:background .35s,color .35s,transform .3s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-3px)">
+          <span style="font:400 12px/1 'IBM Plex Mono',monospace;opacity:.6">{{ tp.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font:400 26px/1.1 'Instrument Serif',serif">{{ tp.t }}</span><span style="font:400 13.5px/1.4 'Instrument Sans',sans-serif;opacity:.7">{{ tp.d }}</span></div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="faq" data-screen-label="04 Answers" style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,120px) clamp(20px,5vw,32px) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:40px 80px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">{{ faqKicker }}</span>
+      <h2 style="margin:0;font:400 clamp(36px,4.6vw,68px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Answers.</h2>
+      <sc-if value="{{ filtered }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ showAll }}" style="align-self:flex-start;height:40px;padding:0 16px;border:0;border-radius:999px;background:#1E1E21;color:#F2F0EA;cursor:pointer;font:500 13px/1 'Instrument Sans',sans-serif">Show all questions</button>
+      </sc-if>
+    </div>
+    <div style="display:flex;flex-direction:column;border-top:1px solid rgba(242,240,234,.14)">
+      <sc-for list="{{ faq }}" as="f" hint-placeholder-count="8">
+        <div style="border-bottom:1px solid rgba(242,240,234,.14)">
+          <button onClick="{{ f.toggle }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 0;border:0;background:transparent;color:#F2F0EA;cursor:pointer;text-align:left">
+            <span style="display:flex;flex-direction:column;gap:7px"><span style="font:400 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:#8E8C86">{{ f.cat }}</span><span style="font:400 clamp(21px,2vw,27px)/1.2 'Instrument Serif',serif">{{ f.q }}</span></span>
+            <span style="flex:none;width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(242,240,234,.22);display:flex;align-items:center;justify-content:center;font:300 18px/1 'Instrument Sans',sans-serif;transform:{{ f.rot }};transition:transform .4s cubic-bezier(.16,1,.3,1)">+</span>
+          </button>
+          <div style="display:grid;grid-template-rows:{{ f.rows }};transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1)">
+            <div style="overflow:hidden"><p style="margin:0;padding:0 56px 26px 0;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">{{ f.a }}</p></div>
+          </div>
+        </div>
+      </sc-for>
+      <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:40px 0;display:flex;flex-direction:column;gap:10px">
+          <span style="font:400 28px/1.2 'Instrument Serif',serif">No answers for “{{ q }}”.</span>
+          <span style="font:400 15px/1.5 'Instrument Sans',sans-serif;color:#B9B7B0">Write to us below — a real person will reply.</span>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <section id="contact" data-screen-label="05 Contact" style="max-width:1320px;margin:0 auto;padding:clamp(96px,12vw,160px) clamp(20px,5vw,32px) clamp(96px,12vw,140px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(16px,2vw,20px)">
+      <div style="border-radius:clamp(28px,3vw,36px);box-shadow:inset 0 0 0 1px rgba(242,240,234,.12);padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:48px">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">Still need help?</span>
+          <h2 style="margin:0;font:400 clamp(40px,5vw,76px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Talk to <em style="color:#8E8C86">a person.</em></h2>
+          <p style="margin:0;max-width:420px;font:400 17px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">For product help, describe what happened and include your device and app version. For a security vulnerability, first follow our security reporting policy; do not email exploit details or wallet secrets.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="mailto:care@oathwallet.org" style="font:400 clamp(30px,4vw,54px)/1.05 'Instrument Serif',serif;letter-spacing:-.015em;word-break:break-all" style-hover="color:#FFFFFF;text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px">care@oathwallet.org</a>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <a href="mailto:care@oathwallet.org" style="height:48px;padding:0 22px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;font:600 15px/1 'Instrument Sans',sans-serif">Email us</a>
+            <button onClick="{{ copy }}" style="height:48px;padding:0 20px;border:0;border-radius:999px;background:#1E1E21;color:#F2F0EA;cursor:pointer;font:500 15px/1 'Instrument Sans',sans-serif;transition:background .3s">{{ copyLabel }}</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-radius:clamp(28px,3vw,36px);background:#141416;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1);padding:clamp(24px,4vw,40px);display:flex;flex-direction:column;gap:16px">
+        <span style="font:600 18px/1 'Instrument Sans',sans-serif;padding-bottom:6px">Write to support</span>
+        <a href="https://github.com/devdasx/oath-wallet/security/policy" style="font:400 14px/1.5 'Instrument Sans',sans-serif;text-decoration:underline">Read the security reporting policy</a>
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:#8E8C86">Topic</span>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ formTopics }}" as="ft" hint-placeholder-count="6">
+              <button onClick="{{ ft.go }}" style="height:36px;padding:0 14px;border:0;border-radius:999px;cursor:pointer;font:500 13px/1 'Instrument Sans',sans-serif;background:{{ ft.bg }};color:{{ ft.fg }};transition:background .3s,color .3s">{{ ft.t }}</button>
+            </sc-for>
+          </div>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:#8E8C86">Your email</span>
+          <input value="{{ from }}" onChange="{{ onFrom }}" placeholder="you@example.com" style="height:52px;padding:0 18px;border-radius:16px;border:0;outline:none;background:#0A0A0B;box-shadow:inset 0 0 0 1px rgba(242,240,234,.12);color:#F2F0EA;font:400 16px/1 'Instrument Sans',sans-serif" style-focus="box-shadow:inset 0 0 0 1px rgba(242,240,234,.45)">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px"><span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase;color:#8E8C86">What happened?</span>
+          <textarea value="{{ msg }}" onChange="{{ onMsg }}" rows="5" placeholder="Describe the issue. Never include your recovery phrase." style="padding:16px 18px;border-radius:16px;border:0;outline:none;resize:vertical;background:#0A0A0B;box-shadow:inset 0 0 0 1px rgba(242,240,234,.12);color:#F2F0EA;font:400 16px/1.5 'Instrument Sans',sans-serif" style-focus="box-shadow:inset 0 0 0 1px rgba(242,240,234,.45)"></textarea>
+        </label>
+        <sc-if value="{{ phraseWarn }}" hint-placeholder-val="{{ false }}">
+          <span style="padding:12px 14px;border-radius:14px;background:rgba(255,69,58,.12);color:#FF6961;font:500 13.5px/1.45 'Instrument Sans',sans-serif">That looks like it could be a recovery phrase. Please remove it — we never need it.</span>
+        </sc-if>
+        <a href="{{ mailto }}" style="margin-top:6px;height:56px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;justify-content:center;font:600 16px/1 'Instrument Sans',sans-serif;opacity:{{ sendO }};pointer-events:{{ sendPE }};transition:opacity .3s">Send to care@oathwallet.org</a>
+        <span style="font:400 12px/1.5 'IBM Plex Mono',monospace;color:#8E8C86;text-align:center">Opens your mail app with the message ready to send.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="practical-guides" style="max-width:1320px;margin:0 auto;padding:64px clamp(20px,5vw,32px) 80px">
+    <h2 style="margin:0 0 20px;font:400 clamp(40px,5vw,68px)/1.05 'Instrument Serif',serif">Practical guides</h2>
+    <p style="max-width:680px;font:400 17px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">Step-by-step help, with release notes and recovery limitations. Start with the guide that matches what you need to do.</p>
+    <ul style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px 32px"><li><a href="/articles/backup-restore-oath-wallet" style="display:block;padding:16px 0;border-bottom:1px solid #333;text-decoration:underline;text-underline-offset:5px;font:500 17px/1.5 'Instrument Sans',sans-serif">Choose a backup and restore method</a></li><li><a href="/articles/move-oath-to-new-iphone-direct-encrypted-serverless" style="display:block;padding:16px 0;border-bottom:1px solid #333;text-decoration:underline;text-underline-offset:5px;font:500 17px/1.5 'Instrument Sans',sans-serif">Move Oath to a new iPhone</a></li><li><a href="/articles/recovery-phrase-private-key-icloud-iphone-transfer-import" style="display:block;padding:16px 0;border-bottom:1px solid #333;text-decoration:underline;text-underline-offset:5px;font:500 17px/1.5 'Instrument Sans',sans-serif">Import an existing or older wallet</a></li><li><a href="/articles/bitcoin-settings-oath-address-types-indexes-complete-guide" style="display:block;padding:16px 0;border-bottom:1px solid #333;text-decoration:underline;text-underline-offset:5px;font:500 17px/1.5 'Instrument Sans',sans-serif">Understand Bitcoin address types</a></li><li><a href="/articles/receive-crypto-safely-network-address-qr-requested-amounts" style="display:block;padding:16px 0;border-bottom:1px solid #333;text-decoration:underline;text-underline-offset:5px;font:500 17px/1.5 'Instrument Sans',sans-serif">Receive on the correct network</a></li><li><a href="/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse" style="display:block;padding:16px 0;border-bottom:1px solid #333;text-decoration:underline;text-underline-offset:5px;font:500 17px/1.5 'Instrument Sans',sans-serif">Check Silent Payments availability and limits</a></li></ul>
+    <p><a href="/networks">Supported networks</a> · <a href="/security">Security evidence</a></p>
+  </section>
+
+  </main>
+  <dc-import name="Oath Footer" hint-size="100%,520px"></dc-import>
+</div>
+</x-dc>
+</template>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mounted: false, q: '', focus: false, topic: null, open: 0, copied: false, formTopic: 'General', from: '', msg: '' };
+
+  componentDidMount() { this._m = setTimeout(() => this.setState({ mounted: true }), 80); }
+  componentWillUnmount() { clearTimeout(this._m); clearTimeout(this._c); }
+
+  renderVals() {
+    const { mounted, q, focus, topic, open, copied, formTopic, from, msg } = this.state;
+    const TOPICS = [
+      ['start', 'Getting started', 'Create or import a wallet'],
+      ['backup', 'Backup & recovery', 'Recovery phrase, restoring'],
+      ['backup', 'Encrypted backups', 'Files and backup passwords'],
+      ['send', 'Sending & receiving', 'Fees, addresses, networks'],
+      ['security', 'Security', 'Scams, Face ID, open source'],
+      ['evm', 'EVM Access', 'Revoking web3 permissions'],
+    ];
+    const CAT = Object.fromEntries(TOPICS.map(t => [t[0], t[1]]));
+    const FAQ = [
+      ['start', 'How do I create a wallet?', 'Open Oath and tap “Create a new wallet”. Your keys are generated on your iPhone, then you’ll back up your recovery phrase. Creating a local wallet needs no Oath account or email.'],
+      ['start', 'Can I import a wallet from another app?', 'Yes. Choose Import wallet and use the original BIP39, Electrum or aezeed format with any required passphrase. Electrum and aezeed restore supported Bitcoin accounts. Private keys use a separate import with the matching network. Compare a known public address before moving funds.'],
+      ['start', 'Can I create my own recovery phrase with dice?', 'The 4.1.14 source creates standard wallets with a 12-word BIP39 phrase. The earlier dice, coin-flip and typed-digit creation controls are not included in this release.'],
+      ['backup', 'What if I lose my iPhone?', 'Install Oath on a compatible iPhone or iPad and use the correct recovery phrase and any extra passphrase, or an existing encrypted iCloud backup with its backup password. Your funds live on the blockchain, not on your phone.'],
+      ['backup', 'Can Oath recover my recovery phrase?', 'No. Recovery material is protected locally in the app, not held by Oath support. Keep your own recovery backup; support cannot replace missing words, keys or passwords.'],
+      ['backup', 'How does encrypted backup restore work?', 'An existing Oath iCloud backup needs both the encrypted backup file in iCloud Drive and its backup password. Keep iCloud Drive and the backup password available on the new device, then follow Restore from iCloud. Apple Account access alone is not enough.'],
+      ['backup', 'Is an iCloud backup a replacement for my recovery phrase?', 'For eligible wallets, it is an additional recovery method. Keep manual recovery material too. Electrum and aezeed wallets are excluded from iCloud backup in 4.1.14.'],
+      ['send', 'Why is my transaction pending?', 'Transactions confirm when the network includes them. Busy networks take longer. You can see the status and the fee you paid in the transaction details.'],
+      ['send', 'What are network fees?', 'Fees go to the network, not to Oath. A network-fee estimate is shown before you confirm; the final fee can depend on the network and transaction.'],
+      ['send', 'Which address type should I use for Bitcoin?', 'Native SegWit (bc1q) and Taproot (bc1p) are efficient Bitcoin address options. The best choice depends on sender compatibility and how your coins will be spent. Nested SegWit and Legacy are also available where supported by the imported material. Silent Payments receiving and discovery are not supported in 4.1.14.'],
+      ['security', 'Someone from “Oath support” asked for my phrase.', 'That is a scam. Oath will never ask for your recovery phrase, private key or passkey. Don’t reply, and forward the message to care@oathwallet.org.'],
+      ['security', 'Is Oath open source?', 'Yes. The full source is published on GitHub at github.com/devdasx/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary.'],
+      ['evm', 'What is EVM Access?', 'A tool that shows discovered token approvals on supported EVM networks. Revoke a supported permission with an on-chain transaction; a network fee applies.'],
+      ['evm', 'Does revoking an approval cost a fee?', 'Yes, a small network fee, because revoking is an on-chain transaction. Oath shows it before you confirm.'],
+    ];
+    const needle = q.trim().toLowerCase();
+    const list = FAQ.filter(f => (!topic || f[0] === topic) && (!needle || (f[1] + ' ' + f[2]).toLowerCase().includes(needle)));
+    const counts = Object.fromEntries(TOPICS.map(t => [t[0], FAQ.filter(f => f[0] === t[0]).length]));
+    const FT = ['General', 'Recovery', 'Backups', 'Sending', 'Security', 'Bug report'];
+    const words = msg.trim().split(/\s+/).filter(w => /^[a-z]{3,8}$/.test(w));
+    const phraseWarn = words.length >= 12 && words.length / Math.max(1, msg.trim().split(/\s+/).length) > 0.9;
+    const body = `${msg}\n\n—\nReply to: ${from || '(not provided)'}\nTopic: ${formTopic}`;
+    const canSend = msg.trim().length > 3 && !phraseWarn;
+
+    return {
+      inO: mounted ? 1 : 0, inY: mounted ? 'translateY(0)' : 'translateY(24px)',
+      hl1: mounted ? 'translateY(0)' : 'translateY(105%)', hl2: mounted ? 'translateY(0)' : 'translateY(105%)',
+      q, hasQ: !!q, searchRing: focus ? 'rgba(242,240,234,.45)' : 'rgba(242,240,234,.12)',
+      onQ: e => { this.setState({ q: e.target.value, open: 0 }); },
+      onFocus: () => this.setState({ focus: true }), onBlur: () => this.setState({ focus: false }),
+      clearQ: () => this.setState({ q: '' }),
+      countLabel: `${FAQ.length} answers · ${TOPICS.length} topics`,
+      topics: TOPICS.map(([k, t, d], i) => {
+        const on = topic === k;
+        return { n: String(i + 1).padStart(2, '0') + ' · ' + counts[k] + ' answers', t, d, bg: on ? '#F2F0EA' : '#141416', fg: on ? '#0A0A0B' : '#F2F0EA', ring: on ? '#F2F0EA' : 'rgba(242,240,234,.1)',
+          go: () => { this.setState({ topic: on ? null : k, open: 0 }); const el = document.getElementById('faq'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior: 'smooth' }); } };
+      }),
+      faqKicker: topic ? CAT[topic] : needle ? `Results for “${q.trim()}”` : 'All topics',
+      filtered: !!topic || !!needle,
+      showAll: () => this.setState({ topic: null, q: '' }),
+      faq: list.map((f, k) => ({ cat: CAT[f[0]], q: f[1], a: f[2], rows: open === k ? '1fr' : '0fr', rot: open === k ? 'rotate(45deg)' : 'rotate(0deg)', toggle: () => this.setState({ open: open === k ? -1 : k }) })),
+      empty: list.length === 0,
+      copyLabel: copied ? 'Copied ✓' : 'Copy address',
+      copy: () => { try { navigator.clipboard.writeText('care@oathwallet.org'); } catch (e) {} this.setState({ copied: true }); clearTimeout(this._c); this._c = setTimeout(() => this.setState({ copied: false }), 1800); },
+      formTopics: FT.map(t => ({ t, go: () => this.setState({ formTopic: t }), bg: formTopic === t ? '#F2F0EA' : '#1E1E21', fg: formTopic === t ? '#0A0A0B' : '#D6D4CD' })),
+      from, msg,
+      onFrom: e => this.setState({ from: e.target.value }),
+      onMsg: e => this.setState({ msg: e.target.value }),
+      phraseWarn,
+      mailto: `mailto:care@oathwallet.org?subject=${encodeURIComponent('Oath support — ' + formTopic)}&body=${encodeURIComponent(body)}`,
+      sendO: canSend ? 1 : 0.4, sendPE: canSend ? 'auto' : 'none',
+    };
+  }
+}
+</script>
+</body>
+</html>

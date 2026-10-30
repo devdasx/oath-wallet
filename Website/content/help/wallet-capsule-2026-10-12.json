@@ -1,0 +1,176 @@
+{
+  "reviewed_at": "2026-10-12T17:43:40.272254+00:00",
+  "articles": [
+    {
+      "slug": "home-screen",
+      "category_id": "start",
+      "title": "Find your way around Home",
+      "summary": "Use the Wallet, History and Search icons, and find the controls for your active wallet.",
+      "route": "Bottom navigation → Wallet",
+      "steps": [
+        "Tap the wallet-shaped icon in the bottom navigation to return to Home. The icons have no text labels; VoiceOver announces their names.",
+        "The capsule above the large balance shows the active wallet’s name and colored icon. Tap it to switch wallets or add another wallet. Tap the large balance itself to hide or reveal amounts.",
+        "Tap an asset for its price, receiving address and latest activity. Tap the history icon for available activity across the active wallet’s networks.",
+        "To find an asset, select Wallet and then the separate magnifying-glass Search icon. The native search field appears in the Search view, not on the ordinary Home screen.",
+        "At the top of Home, use the viewfinder icon to scan a QR code. The sliders icon opens app Settings; after scrolling down, the wallet-colored icon in its place opens the current wallet’s settings."
+      ],
+      "body": [
+        "Wallet, History and Search are different views of the same active wallet. Selecting the Wallet navigation icon returns to Home. The name capsule above the balance opens the wallet switcher.",
+        "Search follows the last section you selected: Wallet searches assets, while History searches transactions. Select the section you want before opening Search.",
+        "For the main Settings screen, return to the top of Home until the sliders icon is visible. Currency, Language and Appearance are directly in Settings; there is no separate Preferences screen.",
+        "A long wallet name stays on one line and ends with an ellipsis inside the capsule. VoiceOver reads the full name. The wallet’s saved name is not shortened or changed."
+      ],
+      "note": "The total is a valuation based on available balances, prices and exchange rates. Missing or delayed provider data can affect it. Send is a placeholder in this build.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "switch-wallet",
+        "full-transaction-history",
+        "wallet-settings-shortcut"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:43:40.272254+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 6
+    },
+    {
+      "slug": "add-another-wallet",
+      "category_id": "wallets",
+      "title": "Add another wallet",
+      "summary": "Keep separate wallets in the same app without replacing the one you already use.",
+      "route": "Wallet → wallet-name capsule → add-wallet action",
+      "steps": [
+        "Tap the wallet-name capsule above the large balance on Home to open the switcher. Settings → Wallets also offers the add-wallet actions.",
+        "Choose Create a new wallet, Import wallet, Import private key or Restore from iCloud.",
+        "Complete that flow and choose a name and color you can recognize.",
+        "When setup finishes, check the wallet name on Home and the active check badge in the switcher. Verify the receiving address before using the wallet."
+      ],
+      "body": [
+        "The list also shows a local-currency value for each wallet when a saved valuation is available. These are separate wallets, even when they share the same app passcode."
+      ],
+      "note": "Additional wallets share the app lock. They remain separate wallet records; adding a wallet does not transfer funds.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "switch-wallet",
+        "create-wallet",
+        "import-recovery-phrase"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:43:40.272254+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 7
+    },
+    {
+      "slug": "switch-wallet",
+      "category_id": "wallets",
+      "title": "Switch wallets from Home",
+      "summary": "Use the glass name capsule above your balance to select another wallet or add one.",
+      "route": "Wallet → wallet-name capsule above the balance",
+      "steps": [
+        "Tap the Wallet icon to return to Home. If you have scrolled down, return to the balance at the top.",
+        "Tap the glass capsule containing the wallet icon, name and down arrow. It replaces the previous Total balance caption.",
+        "In the switcher, find the wallet by its name and colored icon. The small check badge identifies the current selection, and an available balance belongs to that row’s wallet.",
+        "Tap a different wallet and wait for the switch to finish. The sheet closes after Oath loads that wallet; Home then shows its name, balances and assets.",
+        "To add a wallet, choose Create a new wallet, Import wallet, Import private key or Restore from iCloud in the same sheet.",
+        "Before receiving funds, open Receive and check the public address for the wallet and network you intended."
+      ],
+      "body": [
+        "The name capsule and balance are separate buttons. Tapping the capsule opens the switcher; tapping the large amount hides or reveals balances.",
+        "Long names are shortened visually with an ellipsis so the capsule remains on one line. Open the switcher to identify the wallet, or use VoiceOver to hear the complete name. The saved wallet name is unchanged.",
+        "Switching changes the active wallet used by Home and History. Asset navigation, searches and history filters reset for the newly selected wallet so they do not keep showing results from the previous one.",
+        "Creating or importing a wallet continues through the existing setup and customization flow. Phrase and private-key import open after the switcher closes. Restore from iCloud opens its backup list in the sheet.",
+        "Use the sliders icon for app settings and the wallet-colored toolbar shortcut after scrolling for current-wallet settings. Settings → Wallets still opens management; its rows are separate from the Home switcher."
+      ],
+      "note": "Switching wallets does not transfer funds. A wallet-row valuation can use cached balances and prices; it is not a guarantee of a fresh network check.",
+      "screenshot": null,
+      "tags": [
+        "switch wallet",
+        "wallet selector",
+        "wallet name",
+        "capsule",
+        "liquid glass",
+        "long name"
+      ],
+      "related": [
+        "add-another-wallet",
+        "wallet-balances",
+        "wallet-settings-shortcut"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:43:40.272254+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 8
+    },
+    {
+      "slug": "restore-icloud",
+      "category_id": "backup",
+      "title": "Restore from an iCloud backup",
+      "summary": "Recover a wallet from an encrypted Oath backup file.",
+      "route": "Welcome → more options → Restore from iCloud",
+      "steps": [
+        "Sign in to the Apple Account that holds the backup and enable iCloud Drive.",
+        "Choose Restore from iCloud under Welcome’s more options, in Home’s wallet-name capsule switcher, or under Settings → Wallets.",
+        "Select a backup by its displayed date and enter that file’s backup password.",
+        "Wait while Oath downloads, decrypts and saves the wallet. Finish customization when shown."
+      ],
+      "body": [],
+      "note": "An all-wallet backup produces separate files: restore each wallet separately. This guide describes the current password-based backup flow, not the passkey flow described in older release articles.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "backup-all-wallets",
+        "backup-one-wallet",
+        "backup-password"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:43:40.272254+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 18
+    },
+    {
+      "slug": "wallet-balances",
+      "category_id": "wallets",
+      "title": "Read wallet balances and the active-wallet badge",
+      "summary": "Recognize each wallet by its color and check its available value beside the disclosure arrow.",
+      "route": "Home → wallet-name capsule, or Settings → Wallets",
+      "steps": [
+        "Tap the wallet-name capsule above Home’s balance to open the switcher. To manage wallets instead, open Settings with the sliders icon, then choose Wallets.",
+        "Find a wallet by its name and colored square symbol. Passphrase wallets can also show a descriptive subtitle.",
+        "Read each row’s available local-currency value. This is that wallet’s saved valuation, not the combined value of every wallet.",
+        "Look for a small check badge on the icon to identify the active wallet. The check is no longer placed beside the amount.",
+        "If values appear as dots, return Home and tap the total balance to reveal them. Use Settings → Currency to choose another display currency."
+      ],
+      "body": [
+        "The icon has no separate colored tile behind it. It uses the wallet’s selected color, so changing Customize Wallet also changes its visual identity in the list.",
+        "Values are based on the balances, prices and exchange rates available to Oath. An inactive wallet can have older cached information; a listed value is not proof of a fresh network check.",
+        "Large accessibility text can move the amount below the name to preserve readability. The value still belongs to the same wallet row.",
+        "In the Home switcher, tapping a wallet selects it. In Settings → Wallets, tapping a row opens management instead. Both lists share the same wallet icon, balance and active badge."
+      ],
+      "note": "The active-wallet badge identifies the wallet used by Home and History. Use the Home name capsule to switch; opening a management row in Settings does not by itself change the active wallet.",
+      "screenshot": null,
+      "tags": [
+        "wallet list",
+        "balance",
+        "badge",
+        "checkmark",
+        "color",
+        "valuation"
+      ],
+      "related": [
+        "switch-wallet",
+        "hide-balances",
+        "reorder-wallets"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:43:40.272254+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 91
+    }
+  ]
+}

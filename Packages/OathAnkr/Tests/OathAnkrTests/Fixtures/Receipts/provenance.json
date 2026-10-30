@@ -1,0 +1,245 @@
+{
+  "capturedAt": "2026-10-17",
+  "purpose": "Public read-only receipt regression fixtures; no keys, signing, broadcasting or device access. Testnet data is replayed into disposable host-test databases, not a running app.",
+  "evm": {
+    "captureChecks": [
+      "eth_chainId equals the recorded testnet chainID",
+      "transaction and receipt hashes and block hashes agree",
+      "transaction and receipt From and To agree"
+    ],
+    "samples": [
+      {
+        "network": "arbitrum",
+        "chainID": 421614,
+        "endpoint": "https://sepolia-rollup.arbitrum.io/rpc",
+        "hash": "0x75c3150b816a86860361674b9a8cb3b786cfa868885721b4d8ec13ca2c4ca65b"
+      },
+      {
+        "network": "arc",
+        "chainID": 5042002,
+        "endpoint": "https://rpc.blockdaemon.testnet.arc.io",
+        "hash": "0x95c1683933d5bcaf3298996912d5bee4e0165df318fdcf9245a75c1ce080cc26"
+      },
+      {
+        "network": "avalanche",
+        "chainID": 43113,
+        "endpoint": "https://api.avax-test.network/ext/bc/C/rpc",
+        "hash": "0x3c4cf55f01060996ef8b782d7e8a56119ba4fac2afd3b3f1f424dfdbde5b6db4"
+      },
+      {
+        "network": "base",
+        "chainID": 84532,
+        "endpoint": "https://sepolia.base.org",
+        "hash": "0x361018d4f18261481e160b6cab1b29438267ebfe7cbc8a3be81dac655b62c9e5"
+      },
+      {
+        "network": "bnb",
+        "chainID": 97,
+        "endpoint": "https://data-seed-prebsc-1-s1.bnbchain.org:8545",
+        "hash": "0x2f596cc58f0b0b5d60d11e6f1abececb1137b0dcef18ff37a8ab38e5b7ef9720"
+      },
+      {
+        "network": "ethereum",
+        "chainID": 11155111,
+        "endpoint": "https://rpc.sepolia.ethpandaops.io",
+        "hash": "0xcd26912c8a476b5e1be48fed87c42daf0b25f5f2065fc09b7c460676a05ddb7b"
+      },
+      {
+        "network": "flare",
+        "chainID": 114,
+        "endpoint": "https://coston2-api.flare.network/ext/C/rpc",
+        "hash": "0x4283003887307cb917c8d5bc71469d42fe7d98dcf26123e3365e9e1a84efe13d"
+      },
+      {
+        "network": "gnosis",
+        "chainID": 10200,
+        "endpoint": "https://rpc.chiadochain.net",
+        "hash": "0x8cb943959bcc07658eee57a3ad3696bce977d24d390cbed1b3ddf712c7b41a90"
+      },
+      {
+        "network": "hyperevm",
+        "chainID": 998,
+        "endpoint": "https://rpc.hyperliquid-testnet.xyz/evm",
+        "hash": "0x041b5d96b251abc7616f48cb7667952fb60429cf8142e16f81db51ec755b9a1c"
+      },
+      {
+        "network": "linea",
+        "chainID": 59141,
+        "endpoint": "https://rpc.sepolia.linea.build",
+        "hash": "0x2f630cdda4d03288c787a96d90eb7b1d20a6d57d67d7d86c15ea89074e4bc114"
+      },
+      {
+        "network": "monad",
+        "chainID": 10143,
+        "endpoint": "https://testnet-rpc.monad.xyz",
+        "hash": "0x0642d92077e4a879e2a50eebf4c63bb77f0c4f0b687adf0a4036f8209aadbf4a"
+      },
+      {
+        "network": "optimism",
+        "chainID": 11155420,
+        "endpoint": "https://sepolia.optimism.io",
+        "hash": "0x7ec191036dd4e51afb7ff693fab28b8c5a6998d0e95dab1945168e9cf80ca091"
+      },
+      {
+        "network": "polygon",
+        "chainID": 80002,
+        "endpoint": "https://polygon-amoy-bor-rpc.publicnode.com",
+        "hash": "0xbf3b49df5b9276eed88088ea1727acbcbd50d62e62a78c10f4d0446094505b81"
+      },
+      {
+        "network": "robinhood",
+        "chainID": 46630,
+        "endpoint": "https://rpc.testnet.chain.robinhood.com/rpc",
+        "hash": "0xe2c36365d7c02ed88f6d09de9d0fb9cd35f855600a88a80c659df7399ebcc2a4"
+      },
+      {
+        "network": "somnia",
+        "chainID": 50312,
+        "endpoint": "https://dream-rpc.somnia.network",
+        "hash": "0xa5aa2b36e5125e798acbc7325a976e6862b9ba8f507d4dfde7ef647d776aba0f"
+      },
+      {
+        "network": "story",
+        "chainID": 1315,
+        "endpoint": "https://aeneid.datarpc.io",
+        "hash": "0x0b8a653161f47bddda3957d63e6dfddd4ec7e82cbf16aff9bb068bd541a832a1"
+      },
+      {
+        "network": "taiko",
+        "chainID": 167013,
+        "endpoint": "https://rpc.hoodi.taiko.xyz",
+        "hash": "0x622392a23fb80baf5cc8ecd3feb038574d098ab29807bd518618a8e4332e149b"
+      },
+      {
+        "network": "unichain",
+        "chainID": 1301,
+        "endpoint": "https://sepolia.unichain.org",
+        "hash": "0xea9232e0dfb0049bb17ce85cc42115c858c7eedfad5bb5a3e859397cbb6c3d17"
+      },
+      {
+        "network": "xlayer",
+        "chainID": 1952,
+        "endpoint": "https://testrpc.xlayer.tech",
+        "hash": "0x9ab448e9d82ea7149570d839c9e7fed2ee5d1316f610616deb83b29b5bc21caa"
+      }
+    ],
+    "unavailableTestnets": [
+      "scroll",
+      "telos",
+      "fantom"
+    ],
+    "limitation": "Provider-format envelopes in PublicReceiptLedgerTests are adapted from node data. They do not verify a testnet address-indexing service. Arc replay covers its external call receipt, not token/EIP-7708 event indexing."
+  },
+  "aptos": {
+    "node": "https://api.testnet.aptoslabs.com/v1",
+    "indexer": "https://api.testnet.aptoslabs.com/v1/graphql",
+    "chainID": 2,
+    "methods": [
+      "GET transactions/by_hash/<hash>",
+      "fungible_asset_activities by transaction_version for all owners"
+    ],
+    "hashes": [
+      "0x6baddc34616292cbf431a9a5e7456bbebc98e24e8fd29e81dc4b411971e2391e",
+      "0x362a007a4b1fdbcf5e14027477273b7a602fb9056a1a98232d10c1d67667bc07",
+      "0xa8c573dd50c192051c96c120a9394cb90b8ba1103e5d8a9eeae1b5677bf9aa41",
+      "0xb808f3323f600a104f2881d35dd49f12f6404435fae6d386fde21a836bb9a28d",
+      "0x61c55fec18b7bb403f0cdfaab37da73b77735cd1ee2d6ab862626622f9972539"
+    ]
+  },
+  "xrpl": {
+    "endpoint": "https://s.altnet.rippletest.net:51234/",
+    "methods": [
+      "tx (validated=true, tesSUCCESS)",
+      "ledger_entry mpt_issuance on validated ledger"
+    ],
+    "hashes": [
+      "D33C908FB4B20BA5C0171F44F427B7B1B3D1AE30C21E952B42DD6FE96018EC3C",
+      "A080C03848FA573CFC387A32D909EE8C44B3CE606503D21453CCFDE9F09B3F4F",
+      "560A218EC940A1CE80B0EB3A33325083FC4AA0615254E6DD425191ED04929AF8"
+    ]
+  },
+  "tron": {
+    "endpoint": "https://nile.trongrid.io",
+    "methods": [
+      "wallet/gettransactionbyid",
+      "wallet/gettransactioninfobyid"
+    ],
+    "hashes": [
+      "fb09b3315e8d7ebfa5b9558c5106ba159c694dcea1fb0c1b2a79f33f1584557f",
+      "a294ce5ae8f8a5090431ee9636a0b7811914bb1b1150addf9d4af74929721284",
+      "63bcf905bca53e6c6862941fe65aa8347d50316d1e7ae5d057b5b6550e81274b"
+    ]
+  },
+  "sui": {
+    "endpoint": "https://graphql.testnet.sui.io/graphql",
+    "method": "transaction(digest) including transactionJson and effects balanceChangesJson",
+    "chainIdentifier": "69WiPg3DAQiwdxfncX6wYQ2siKwAe6L9BZthQea3JNMD",
+    "digests": [
+      "7KQxBWFbi7jBgV9dJycWUHDFAp42wgJATm4qXZBXRRsQ",
+      "8qYGSCMBsPzkaX3TNakortM57CQGg1yqNxXRqKdggVoX",
+      "6SAvENwD91Aw5w7XBo7MMEx7o2HHD7CTBG8bj6R3qSaK"
+    ]
+  },
+  "productionHistoryLimitations": {
+    "arc": "Alchemy public-mainnet history, EIP-7708/native USDC and ERC-20 receipt validation, database persistence and offline From/To verified. Bounded public sample; not an exhaustive account-history proof.",
+    "robinhood": "Alchemy external and ERC-20 history verified against mined transactions/receipts, then persisted and read offline. Alchemy rejects internal history on Robinhood; those cursors remain incomplete. Existing Blockscout integration is retained."
+  },
+  "files": [
+    {
+      "file": "alchemy-mainnet-public-samples.json",
+      "sha256": "a6447364e80f05560679804757d3f7e9d1d1f8dc36eecb9d02a4f72ccdbf1d50",
+      "bytes": 548
+    },
+    {
+      "file": "aptos-testnet.json",
+      "sha256": "d3d686661f66f7138be04a6f78e2c8b82bb9a3cffe9ede76a1f7e47d6aa48381",
+      "bytes": 50893
+    },
+    {
+      "file": "evm-testnet.json",
+      "sha256": "3dd5ab3c1126225ceaf251a3720db8a212a3be2475c2916d400eb3f7a8baf66b",
+      "bytes": 91463
+    },
+    {
+      "file": "monad-mainnet-public-sample.json",
+      "sha256": "05392d3e1728aa8b5c025787e909bebf6d4ee267f5f3e09992314b366d2570e4",
+      "bytes": 201
+    },
+    {
+      "file": "sui-testnet.json",
+      "sha256": "8556ecd8832056161b9163ef7dd7408845c4c58afecba29259f6c2a75e7d1ad5",
+      "bytes": 15832
+    },
+    {
+      "file": "tron-testnet.json",
+      "sha256": "5e5b435148ba33a149f05aa1d3a5fc651d5483fdc0b57ff24c74f2875fb447ca",
+      "bytes": 4445
+    },
+    {
+      "file": "xrpl-testnet.json",
+      "sha256": "36bc33173b0bebdd525f23fc356eedb92a028f8610b4d91110e15d2606f1e2e1",
+      "bytes": 12534
+    }
+  ],
+  "alchemyVerification": {
+    "date": "2026-10-17",
+    "methods": [
+      "eth_chainId",
+      "alchemy_getAssetTransfers",
+      "alchemy_getTokenBalances",
+      "eth_getTransactionReceipt",
+      "eth_getTransactionByHash",
+      "eth_call"
+    ],
+    "mainnetProductionEvidence": {
+      "arcReceiptEvents": 4,
+      "robinhoodExternalEvents": 100,
+      "robinhoodERC20Events": 100
+    },
+    "testnetScope": "Arc and Robinhood testnet RPC identities and Transfers API external/ERC-20 capability probed read-only. Their public testnet receipts are also in evm-testnet.json; no transfers were broadcast.",
+    "documentation": [
+      "https://www.alchemy.com/docs/reference/arc-api-faq",
+      "https://www.alchemy.com/docs/data/transfers-api/transfers-endpoints/alchemy-get-asset-transfers"
+    ]
+  }
+}

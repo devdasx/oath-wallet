@@ -1,0 +1,1507 @@
+{
+  "reviewed_at": "2026-10-12T17:33:34.237657+00:00",
+  "app_source": "/Volumes/MacOSDisk/Oath App",
+  "articles": [
+    {
+      "slug": "home-screen",
+      "category_id": "start",
+      "title": "Find your way around Home",
+      "summary": "Use the Wallet, History and Search icons, and find the controls for your active wallet.",
+      "route": "Bottom navigation → Wallet",
+      "steps": [
+        "Tap the wallet-shaped icon in the bottom navigation to return to Home. The icons have no text labels; VoiceOver announces their names.",
+        "Read the active wallet’s total value. Tap the large balance to hide or reveal amounts. In Assets, the quantity is under the asset name and the local-currency value is opposite it.",
+        "Tap an asset for its price, receiving address and latest activity. Tap the history icon for available activity across the active wallet’s networks.",
+        "To find an asset, select Wallet and then the separate magnifying-glass Search icon. The native search field appears in the Search view, not on the ordinary Home screen.",
+        "At the top of Home, use the viewfinder icon to scan a QR code. The sliders icon opens app Settings; after scrolling down, the wallet-colored icon in its place opens the current wallet’s settings."
+      ],
+      "body": [
+        "Wallet, History and Search are different views of the same active wallet. Selecting the Wallet navigation icon returns to Home; it is not a wallet selector.",
+        "Search follows the last section you selected: Wallet searches assets, while History searches transactions. Select the section you want before opening Search.",
+        "For the main Settings screen, return to the top of Home until the sliders icon is visible. Currency, Language and Appearance are directly in Settings; there is no separate Preferences screen."
+      ],
+      "note": "The total is a valuation based on available balances, prices and exchange rates. Missing or delayed provider data can affect it. Send is a placeholder in this build.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "full-transaction-history",
+        "search-assets",
+        "wallet-settings-shortcut"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 6
+    },
+    {
+      "slug": "add-another-wallet",
+      "category_id": "wallets",
+      "title": "Add another wallet",
+      "summary": "Keep separate wallets in the same app without replacing the one you already use.",
+      "route": "Settings → Wallets",
+      "steps": [
+        "Return to the top of Home, open Settings with the sliders icon, and choose Wallets.",
+        "Choose Create a new wallet, Import wallet, Import private key, or Restore from iCloud.",
+        "Complete that flow and choose a name and color you can recognize.",
+        "When setup finishes, check the active-wallet badge in Settings → Wallets and verify the receiving address before using the new wallet."
+      ],
+      "body": [
+        "The list also shows a local-currency value for each wallet when a saved valuation is available. These are separate wallets, even when they share the same app passcode."
+      ],
+      "note": "Additional wallets share the app lock. They remain separate wallet records; adding a wallet does not transfer funds.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "wallet-balances",
+        "create-wallet",
+        "import-recovery-phrase"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 7
+    },
+    {
+      "slug": "switch-wallet",
+      "category_id": "wallets",
+      "title": "Find the active wallet and open wallet settings",
+      "summary": "Recognize the wallet Home is using and distinguish its settings from a wallet switch.",
+      "route": "Home → top-right sliders → Settings → Wallets",
+      "steps": [
+        "Return to the top of Home and tap the sliders icon, then open Wallets.",
+        "Look for the small check badge attached to a wallet’s colored icon. That badge identifies the active wallet.",
+        "Tap a wallet row to open that wallet’s settings, including customization and available backup or recovery options.",
+        "Close Settings to return to the active wallet’s Home screen. Before using Receive, check the receiving address belongs to the wallet you intend."
+      ],
+      "body": [
+        "The previous Home wallet-name button has been replaced by the scanner. The wallet-shaped bottom-navigation icon opens Home, and the colored icon shown after scrolling opens current-wallet settings.",
+        "In this build, tapping a wallet row in Settings opens its management screen; it does not switch the active wallet. The old Home wallet-switcher route is not exposed by the current toolbar."
+      ],
+      "note": "Do not assume that opening another wallet’s settings changes the wallet used by Home, History or Receive. This guide describes the current interface, not the earlier wallet-switcher design.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "wallet-balances",
+        "wallet-settings-shortcut",
+        "add-another-wallet"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 8
+    },
+    {
+      "slug": "reorder-wallets",
+      "category_id": "wallets",
+      "title": "Reorder your wallets",
+      "summary": "Put frequently used wallets where you want them in the list.",
+      "route": "Settings → Wallets → Edit",
+      "steps": [
+        "Open Settings → Wallets and tap Edit.",
+        "Drag a wallet by its reorder handle to the position you want.",
+        "Repeat as needed, then tap the native checkmark in the top bar to finish editing.",
+        "Reopen Wallets to see the saved order. The check badge on a wallet icon still identifies the active wallet."
+      ],
+      "body": [
+        "The checkmark in the top bar is an action that finishes editing. The small check attached to a wallet’s icon is a selection badge; it is not a second Done button.",
+        "Reordering changes the wallet list only. It does not change the order of assets or move funds between wallets."
+      ],
+      "note": "This changes wallet order. Asset lists are sorted by portfolio value and activity, not by this setting.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "confirmation-checkmark",
+        "wallet-balances",
+        "remove-wallet"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 10
+    },
+    {
+      "slug": "remove-wallet",
+      "category_id": "wallets",
+      "title": "Move a wallet to Recently Deleted",
+      "summary": "Remove a wallet from the active list while keeping a short recovery window.",
+      "route": "Settings → Wallets → Edit",
+      "steps": [
+        "Tap Edit and use the remove control for the wallet.",
+        "Authenticate with enabled biometrics or your app passcode when requested.",
+        "Read the native confirmation dialog and confirm removal.",
+        "Find the removed wallet under Recently Deleted in the Wallets screen."
+      ],
+      "body": [],
+      "note": "Removed wallets are retained for seven days before automatic cleanup. Removing a wallet does not move on-chain funds or delete an existing iCloud backup. Keep a separate backup before removal.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "add-another-wallet",
+        "switch-wallet",
+        "customize-wallet"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 11
+    },
+    {
+      "slug": "restore-icloud",
+      "category_id": "backup",
+      "title": "Restore from an iCloud backup",
+      "summary": "Recover a wallet from an encrypted Oath backup file.",
+      "route": "Welcome → more options → Restore from iCloud",
+      "steps": [
+        "Sign in to the Apple Account that holds the backup and enable iCloud Drive.",
+        "Choose Restore from iCloud under Welcome’s more options or Settings → Wallets.",
+        "Select a backup by its displayed date and enter that file’s backup password.",
+        "Wait while Oath downloads, decrypts and saves the wallet. Finish customization when shown."
+      ],
+      "body": [],
+      "note": "An all-wallet backup produces separate files: restore each wallet separately. This guide describes the current password-based backup flow, not the passkey flow described in older release articles.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "backup-all-wallets",
+        "backup-one-wallet",
+        "backup-password"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 18
+    },
+    {
+      "slug": "unlock-wallet",
+      "category_id": "security",
+      "title": "Unlock Oath",
+      "summary": "Use your app passcode or enabled biometrics to open the app.",
+      "route": "Launch Oath → unlock screen",
+      "steps": [
+        "Enter your six-digit app passcode, or complete Face ID or Touch ID when offered.",
+        "If automatic biometric authentication is canceled, use the keypad or the biometric icon.",
+        "If a passcode is incorrect, the dots turn red with an inline error. Try again carefully.",
+        "If Oath asks you to wait after repeated failures, wait before another attempt."
+      ],
+      "body": [
+        "An incorrect code produces an inline message and red passcode dots, with a shake and error haptic where device settings allow them. There is no incorrect-passcode dialog to dismiss; wait for the entry to reset and try again.",
+        "Reduce Motion can suppress the shake. Haptic feedback depends on the device and system settings; the visible error remains available.",
+        "The keypad keeps its normal appearance while a biometric prompt is active. Complete or dismiss that prompt before continuing with a passcode. Authentication is still required even when the keys do not look dimmed."
+      ],
+      "note": "The keypad passcode is the one created in Oath. It is not necessarily your iPhone’s device passcode.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "security-settings-access",
+        "enable-passcode",
+        "enable-face-id"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 24
+    },
+    {
+      "slug": "hide-balances",
+      "category_id": "security",
+      "title": "Hide balances on screen",
+      "summary": "Temporarily replace visible amounts with dots.",
+      "route": "Home → total balance",
+      "steps": [
+        "Tap the large total balance on Home.",
+        "The amount changes to dots, and linked balance displays respect the hidden state.",
+        "Tap again to reveal amounts.",
+        "Before sharing a transaction image, check whether the hidden-balance state is appropriate for the information you want to share."
+      ],
+      "body": [
+        "The hidden state is also respected by wallet-list values, activity amounts and transaction-detail images. Use the total balance on Home to reveal amounts again.",
+        "Hiding amounts does not hide every identifier. A shared address or explorer URL can still reveal public blockchain activity."
+      ],
+      "note": "Hiding amounts is a screen-privacy choice. It does not change balances, transfers or public blockchain information.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "wallet-balances",
+        "share-transaction",
+        "app-switcher-privacy"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 32
+    },
+    {
+      "slug": "asset-screen",
+      "category_id": "assets",
+      "title": "Open an asset’s screen",
+      "summary": "View one asset’s value, quantity, market information and activity.",
+      "route": "Home → asset row",
+      "steps": [
+        "From Wallet, tap a coin or token in Assets. You can also find it through the separate Search view.",
+        "Read the local-currency value at the top and the native quantity below. The hero no longer repeats the network name below the logo.",
+        "Use the price card for the available quote and update time. A 24h chart control appears only when chart data is available.",
+        "Scroll to Activity for up to five latest visible entries for this asset. View All appears when there are more than five.",
+        "Use Receive for the receiving address, or the information icon to verify the network and exact token identity."
+      ],
+      "body": [
+        "A token’s View All history stays limited to that token and account. To view activity across the active wallet, use the History icon in the bottom navigation."
+      ],
+      "note": "A token’s ticker is not its identity. Check the network and contract or asset reference when comparing tokens.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "asset-transaction-history",
+        "prices-chart",
+        "asset-information"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 35
+    },
+    {
+      "slug": "portfolio-values",
+      "category_id": "assets",
+      "title": "Understand balances and portfolio value",
+      "summary": "Oath shows token quantities and a local-currency valuation.",
+      "route": "Home → total balance and Assets",
+      "steps": [
+        "Read the total at the top for the active wallet’s available valuation.",
+        "In each row, read the native quantity under the asset name and the local-currency amount on the opposite side.",
+        "Open an asset for a closer view.",
+        "If a value looks stale, refresh and compare the exact account and network in an explorer."
+      ],
+      "body": [
+        "The smaller quantity underneath an asset name is measured in that coin or token, such as BTC or USDT. The value on the opposite side is its conversion into the selected display currency.",
+        "The app may shorten a very long quantity to keep list rows readable. Open the asset or its public explorer to inspect more detail; display formatting does not change the balance.",
+        "Wallet-list values use available saved balances and market data. A total does not include a reliable valuation for an asset when a required price or exchange rate is missing."
+      ],
+      "note": "A local-currency value uses available prices and exchange rates; it is not a sale quote. A displayed zero is not proof that a network query succeeded or that an asset has no market value.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "wallet-balances",
+        "currency",
+        "prices-chart"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 36
+    },
+    {
+      "slug": "refresh-balances",
+      "category_id": "assets",
+      "title": "Refresh balances and activity",
+      "summary": "Request updated data without leaving your wallet.",
+      "route": "Home or an asset screen → pull down",
+      "steps": [
+        "Scroll to the top of Home or the asset screen.",
+        "Pull down and release to start a refresh.",
+        "Wait for the Oath refresh animation to complete.",
+        "If data has not changed, check your connection and try again later."
+      ],
+      "body": [
+        "Home and asset screens use the same Oath-logo refresh animation. The lists can continue showing previously saved information while an update is in progress.",
+        "To revisit history after a network update, refresh Home or the relevant asset, then return to History. A completed request does not guarantee that every network provider supplied a full historical record."
+      ],
+      "note": "Providers can return delayed or incomplete data. Oath retains cached information when updates fail; a refresh is not confirmation that a pending transfer has settled.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "full-transaction-history",
+        "prices-chart",
+        "token-not-found"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 37
+    },
+    {
+      "slug": "search-assets",
+      "category_id": "assets",
+      "title": "Search for a coin or token",
+      "summary": "Find an asset by its name, symbol, network or saved token address.",
+      "route": "Bottom navigation → Wallet → Search",
+      "steps": [
+        "Tap the Wallet icon first so Search is in asset mode.",
+        "Tap the separate magnifying-glass Search icon. Enter a name, symbol or network in the native search field.",
+        "Tap a matching asset to open its balance, receiving address and recent activity.",
+        "Clear the query to review other matches, or tap Wallet to return to the unfiltered Home list."
+      ],
+      "body": [
+        "The ordinary Wallet and History screens do not have a search field in their app bars. Search has its own view, reached with the magnifying-glass icon.",
+        "If you see Search transactions, you entered Search from History. Select Wallet, then Search, to search assets instead.",
+        "To discover a supported token that is not already listed, paste its exact contract or mint address. Searching a name alone does not prove which contract issued a token."
+      ],
+      "note": "The same symbol can belong to unrelated tokens on different networks. Inspect the asset information before relying on a match.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "add-custom-token",
+        "search-transactions",
+        "home-scanner"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 38
+    },
+    {
+      "slug": "add-custom-token",
+      "category_id": "assets",
+      "title": "Find and add a token by address",
+      "summary": "Look up a supported contract or mint address and review its details before adding it.",
+      "route": "Bottom navigation → Wallet → Search → token address",
+      "steps": [
+        "Tap Wallet, then the magnifying-glass Search icon. Paste the exact token contract address, or Solana mint address.",
+        "Wait for lookup on supported networks present in the active wallet. If some lookups fail, use Try Again for an incomplete result.",
+        "Tap a result and review its network, full address, name, symbol, standard and decimals.",
+        "Compare the full token identity with information you obtained independently from the project, then tap Add Token.",
+        "After addition succeeds, tap the native checkmark to finish. Oath tracks the token for that account."
+      ],
+      "body": [
+        "Manual lookup is available for the supported EVM networks, TRON and Solana. The same-looking address or symbol on a different network is a different token.",
+        "Explicitly tracking a token can make otherwise unlisted token activity visible. It does not certify the token as legitimate, obtain a market price, or override identified phishing metadata and blocked-token protection."
+      ],
+      "note": "Manual address lookup supports the app’s EVM networks, TRON and Solana. Results can be incomplete if a provider fails. Adding a token does not buy it, approve it or transfer funds.",
+      "screenshot": null,
+      "tags": [
+        "contract",
+        "mint",
+        "custom token",
+        "ERC20",
+        "TRC20",
+        "SPL"
+      ],
+      "related": [
+        "unverified-tokens",
+        "spam-history",
+        "confirmation-checkmark"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 39
+    },
+    {
+      "slug": "token-not-found",
+      "category_id": "assets",
+      "title": "Why isn’t a token appearing?",
+      "summary": "Check the wallet, network, address and lookup result before assuming funds are missing.",
+      "route": "Wallet → Search, or asset → information icon",
+      "steps": [
+        "Check the active-wallet badge in Settings → Wallets. For Solana, also check the selected path in Receive.",
+        "Confirm the sender’s exact network and account, then inspect the transaction in that network’s explorer.",
+        "Consider whether verification or spam filtering is hiding the token. A familiar ticker or a price is not enough to establish its identity.",
+        "For a token you independently recognize on a supported manual-lookup network, select Wallet → Search and paste its exact contract or mint address.",
+        "If lookup is incomplete, retry after checking your connection. If the mismatch remains, send support the public network and transaction ID, never recovery material."
+      ],
+      "body": [
+        "Filtering affects what Oath displays; it does not destroy a token balance or undo an on-chain transfer. A genuine new token can be absent from verification lists.",
+        "An asset can also have a quantity but no available local-currency price. Missing price coverage and missing balance data are different problems."
+      ],
+      "note": "Some automatically discovered tokens are filtered using provider verification lists. An unsupported price, filtered token or failed request does not erase a blockchain holding.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "unverified-tokens",
+        "spam-history",
+        "add-custom-token"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 40
+    },
+    {
+      "slug": "prices-chart",
+      "category_id": "assets",
+      "title": "Read an asset’s price and chart",
+      "summary": "View the latest available market quote and its recent movement.",
+      "route": "Asset screen → price card",
+      "steps": [
+        "Open the coin or token from Wallet or Search.",
+        "Read the available price and the displayed update time. The price card does not show provider names, Powered by labels or Saved price labels.",
+        "If a 24h chart control is visible, tap it to expand or collapse the available chart.",
+        "If there is no chart control, Oath has no usable chart data for that asset at present. You can still read an available quote.",
+        "Pull down on the asset screen to refresh, then check the timestamp again."
+      ],
+      "body": [
+        "A quote and a chart are separate pieces of market data. Having a price does not guarantee a 24-hour chart, and an absent chart control does not mean that the token cannot exist or has no value.",
+        "The timestamp helps you judge freshness even though provider and cache labels are hidden. Previously saved data can remain visible when a refresh cannot obtain new data."
+      ],
+      "note": "Quotes and charts depend on provider coverage. They may use cached values and do not guarantee an executable trade price. A transaction’s local-currency value can use today’s quote rather than the historical execution price.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "refresh-balances",
+        "portfolio-values",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 42
+    },
+    {
+      "slug": "transaction-list",
+      "category_id": "activity",
+      "title": "Read your transaction activity",
+      "summary": "See the direction, time and amount for an asset’s transactions.",
+      "route": "Bottom navigation → History, or asset screen → Activity",
+      "steps": [
+        "Open History for the active wallet’s available activity, or scroll to Activity on a particular asset.",
+        "Read the action and asset symbol together, such as Sent USDT or Received USDC. Failed, Canceled and Replaced identify a different outcome when evidence is available.",
+        "Use the coin or token logo to identify the asset. Its small overlaid badge indicates the direction or outcome.",
+        "Read the time beneath the action label. Date headings group entries; the local-currency value is on the opposite side with the native quantity underneath.",
+        "Tap an entry for status, network, available fee information, addresses and the transaction ID."
+      ],
+      "body": [
+        "The logo is the asset identity; the badge describes the activity. Neither an attractive logo nor a familiar ticker guarantees that a token is trustworthy.",
+        "Local-currency amounts can use current available prices and exchange rates. They are not a historical receipt of the original exchange rate. Amounts respect your hidden-balance setting.",
+        "Spam filtering applies to activity lists, searches and asset previews. Provider coverage can also limit the records available to Oath."
+      ],
+      "note": "Some providers supply incomplete history or do not identify every transfer. Local-currency amounts may use current available prices, not the price at the time of the transaction.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "full-transaction-history",
+        "asset-transaction-history",
+        "transaction-status"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 51
+    },
+    {
+      "slug": "transaction-details",
+      "category_id": "activity",
+      "title": "Open transaction details",
+      "summary": "Review the useful details without navigating raw blockchain data.",
+      "route": "History or asset Activity → transaction",
+      "steps": [
+        "Tap an activity row.",
+        "Check the action, amounts, status, time and network.",
+        "Review the network fee when available and the From or To address.",
+        "Use the copy icon beside an address or transaction ID, or choose View on Explorer for more detail."
+      ],
+      "body": [
+        "Long addresses and transaction IDs are shortened in the middle to fit one row. The copy icon copies the full identifier, not the shortened display.",
+        "The main amount is the local-currency value, with native units below it. The Network fee row uses the selected local currency when a fee and conversion are available.",
+        "The share icon offers a transaction image and, where supported, the transaction’s explorer link. Use View on Explorer for the more detailed public record."
+      ],
+      "note": "Missing provider fields are not fabricated. A displayed local-currency fee is a conversion and can differ from the value at the transaction’s original time.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "copy-transaction-id",
+        "network-fee",
+        "share-transaction"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 52
+    },
+    {
+      "slug": "copy-transaction-id",
+      "category_id": "activity",
+      "title": "Copy a transaction ID or address",
+      "summary": "Use the small copy controls beside shortened identifiers.",
+      "route": "Transaction details → From / To or Transaction ID",
+      "steps": [
+        "Open the transaction.",
+        "Find the address or transaction ID row. Long values are shortened in the middle for readability.",
+        "Tap the copy icon next to the value.",
+        "Paste it into the appropriate network explorer or your support message."
+      ],
+      "body": [
+        "The middle ellipsis is only a display abbreviation. Copy preserves the entire address or transaction ID; comparing just the first and last characters is not enough to establish a match.",
+        "An address identifies an account or destination. A transaction ID identifies a particular public transaction; use the identifier requested by the person helping you."
+      ],
+      "note": "The copied value is complete even when the on-screen label is shortened. A transaction ID is public; recovery material is not.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "transaction-details",
+        "view-explorer",
+        "spam-history"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 56
+    },
+    {
+      "slug": "share-transaction",
+      "category_id": "activity",
+      "title": "Share a transaction image or link",
+      "summary": "Export a receipt-style image or a link to the explorer.",
+      "route": "Transaction details → share icon",
+      "steps": [
+        "Tap the share icon in the top bar.",
+        "Choose the transaction image to share the on-screen receipt design, or choose the link option.",
+        "Review the iOS share sheet and select a destination.",
+        "Check the information you are sharing, including whether balances are hidden."
+      ],
+      "body": [
+        "The image uses the same receipt content as the details screen rather than an unrelated template. The link option shares the transaction’s network-specific explorer URL when that network has one.",
+        "Check the result before sending it. Hiding amounts does not make a public address or transaction link private, and a recipient can look up the public amounts using the link."
+      ],
+      "note": "A screenshot is not independent proof of payment. The recipient can verify the transaction using its explorer link.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "transaction-details",
+        "hide-balances",
+        "view-explorer"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 58
+    },
+    {
+      "slug": "use-bitcoin-cash",
+      "category_id": "assets",
+      "title": "Use Bitcoin Cash in Oath",
+      "summary": "Find the Bitcoin Cash account, its receiving address and available activity.",
+      "route": "Home → Bitcoin Cash",
+      "steps": [
+        "Select Wallet, then Search, and look for Bitcoin Cash or BCH, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "Bitcoin Cash balances and history use the wallet’s supported HD branches or imported key scope.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Uses Bitcoin Cash addresses and its own history. Do not send Bitcoin (BTC) to this network.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 75
+    },
+    {
+      "slug": "use-dogecoin",
+      "category_id": "assets",
+      "title": "Use Dogecoin in Oath",
+      "summary": "Find the Dogecoin account, its receiving address and available activity.",
+      "route": "Home → Dogecoin",
+      "steps": [
+        "Select Wallet, then Search, and look for Dogecoin or DOGE, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "The app scans supported HD receiving and change branches, or the imported single-key account.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Uses Dogecoin addresses. A Dogecoin key is not interchangeable with a similarly shaped Bitcoin address.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 76
+    },
+    {
+      "slug": "use-litecoin",
+      "category_id": "assets",
+      "title": "Use Litecoin in Oath",
+      "summary": "Find the Litecoin account, its receiving address and available activity.",
+      "route": "Home → Litecoin",
+      "steps": [
+        "Select Wallet, then Search, and look for Litecoin or LTC, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "The balance scan includes supported address branches even when a different type is selected for receiving.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Use the address-type control when available for the imported wallet material.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 77
+    },
+    {
+      "slug": "use-solana",
+      "category_id": "assets",
+      "title": "Use Solana in Oath",
+      "summary": "Find the Solana account, its receiving address and available activity.",
+      "route": "Home → Solana",
+      "steps": [
+        "Select Wallet, then Search, and look for Solana or SOL, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "If a recovered account looks empty, check the Phantom or Trust Wallet path in Receive. Token mint addresses identify SPL assets.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Balances, discovered tokens and activity follow the active Solana address.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 78
+    },
+    {
+      "slug": "use-tron",
+      "category_id": "assets",
+      "title": "Use TRON in Oath",
+      "summary": "Find the TRON account, its receiving address and available activity.",
+      "route": "Home → TRON",
+      "steps": [
+        "Select Wallet, then Search, and look for TRON or TRX, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "Use a TRON contract address for manual token lookup. An Ethereum USDT contract is a different token deployment.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Choose TRON at the sender for TRX and compatible TRON tokens.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 79
+    },
+    {
+      "slug": "use-gram",
+      "category_id": "assets",
+      "title": "Use Gram in Oath",
+      "summary": "Find the Gram account, its receiving address and available activity.",
+      "route": "Home → Gram",
+      "steps": [
+        "Select Wallet, then Search, and look for Gram or GRAM, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "Check the network and full receive address rather than relying only on the displayed coin name. Jetton holdings and their prices depend on data coverage.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "The app labels this network Gram and recognizes TON-related search aliases.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 80
+    },
+    {
+      "slug": "use-aptos",
+      "category_id": "assets",
+      "title": "Use Aptos in Oath",
+      "summary": "Find the Aptos account, its receiving address and available activity.",
+      "route": "Home → Aptos",
+      "steps": [
+        "Select Wallet, then Search, and look for Aptos or APT, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "Aptos asset types and fungible-asset references are not EVM contracts even when hexadecimal values look similar.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Uses an Aptos account and network-specific token identities.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 81
+    },
+    {
+      "slug": "use-sui",
+      "category_id": "assets",
+      "title": "Use Sui Network in Oath",
+      "summary": "Find the Sui Network account, its receiving address and available activity.",
+      "route": "Home → Sui Network",
+      "steps": [
+        "Select Wallet, then Search, and look for Sui Network or SUI, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "Token identity depends on its Sui type, not just a ticker. A 0x prefix alone does not identify an Ethereum account.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Uses a Sui account and Sui coin types.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 82
+    },
+    {
+      "slug": "use-near",
+      "category_id": "assets",
+      "title": "Use NEAR Protocol in Oath",
+      "summary": "Find the NEAR Protocol account, its receiving address and available activity.",
+      "route": "Home → NEAR Protocol",
+      "steps": [
+        "Select Wallet, then Search, and look for NEAR Protocol or NEAR, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "An imported key may not correspond to the named NEAR account you expect. Compare the full account shown in Receive with the account that holds the funds.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Shows data for the wallet’s active NEAR account.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 83
+    },
+    {
+      "slug": "use-xrp-ledger",
+      "category_id": "assets",
+      "title": "Use XRP Ledger in Oath",
+      "summary": "Find the XRP Ledger account, its receiving address and available activity.",
+      "route": "Home → XRP Ledger",
+      "steps": [
+        "Select Wallet, then Search, and look for XRP Ledger or XRP, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "An issued asset is identified by currency and issuer, not its name alone. Exchange destinations may require a destination tag; this build does not have a send form.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Shows XRP and supported issued assets for the active ledger account.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 84
+    },
+    {
+      "slug": "use-stellar",
+      "category_id": "assets",
+      "title": "Use Stellar in Oath",
+      "summary": "Find the Stellar account, its receiving address and available activity.",
+      "route": "Home → Stellar",
+      "steps": [
+        "Select Wallet, then Search, and look for Stellar or XLM, then open the native asset.",
+        "Read the native balance and local-currency value. Scroll to Activity to review available history.",
+        "Tap Receive and verify the network and complete public address.",
+        "Refresh after an expected transfer, and use transaction details → View on Explorer to compare the public record."
+      ],
+      "body": [
+        "Issued assets depend on both asset code and issuer. Exchange destinations may require a memo; this build does not have a send form.",
+        "Discovery, history and prices depend on the providers available for this account. A missing price does not establish that an asset has no value."
+      ],
+      "note": "Shows XLM and supported assets for the active Stellar account.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 85
+    },
+    {
+      "slug": "evm-networks",
+      "category_id": "assets",
+      "title": "Use Ethereum and EVM networks",
+      "summary": "One wallet can show the same public address across EVM networks while tracking each network separately.",
+      "route": "Home → network or token",
+      "steps": [
+        "Select Wallet, then Search, and look for the intended network or select it through Receive.",
+        "Check the network name before sharing its address.",
+        "View tokens on that network or search by an exact token contract address.",
+        "Open transactions from the relevant asset’s Activity; their explorer links are network-specific."
+      ],
+      "body": [
+        "The current catalog includes Ethereum, Arbitrum, Arc, Avalanche C-Chain, Base, BNB Smart Chain, Fantom, Flare, Gnosis, Linea, Optimism, Polygon, Robinhood Chain, Scroll, Somnia, Story, Taiko, Telos EVM and X Layer.",
+        "Data and token-price coverage differ between networks. Compare the network’s full identity when a third-party service offers mainnet and testnet choices."
+      ],
+      "note": "A shared 0x address does not combine balances across chains. Bridging or moving funds is a separate operation and is not provided by the current Send placeholder.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 86
+    },
+    {
+      "slug": "arc-usdc",
+      "category_id": "assets",
+      "title": "Understand USDC on Arc",
+      "summary": "Arc uses USDC as its native asset in the app’s network integration.",
+      "route": "Home → Arc",
+      "steps": [
+        "Select Wallet, then Search, and look for Arc or USDC and select the Arc entry.",
+        "Check that the network is Arc before using Receive.",
+        "Review its native USDC balance and activity on the asset screen.",
+        "For other Arc tokens, search the exact contract address and verify the selected network before adding."
+      ],
+      "body": [],
+      "note": "An Ethereum or another network’s USDC balance is separate. Mainnet and testnet are distinct; use the network identity shown by the app and the sender.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 87
+    },
+    {
+      "slug": "robinhood-chain",
+      "category_id": "assets",
+      "title": "Use Robinhood Chain",
+      "summary": "Find the Robinhood Chain account separately from an exchange account or other EVM networks.",
+      "route": "Home → Robinhood Chain",
+      "steps": [
+        "Select Wallet, then Search, and look for Robinhood Chain and open it.",
+        "Use Receive to find the wallet’s public address on this network.",
+        "Review native and supported token activity from the appropriate asset screen.",
+        "Open a transaction’s explorer link if you need to check a result independently."
+      ],
+      "body": [],
+      "note": "A Robinhood Chain address in Oath is not a login to a Robinhood brokerage account. Provider coverage can limit discovery and history; a successful native balance lookup does not prove complete token coverage.",
+      "screenshot": null,
+      "tags": [],
+      "related": [
+        "search-assets",
+        "full-transaction-history",
+        "asset-screen"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 88
+    },
+    {
+      "slug": "home-scanner",
+      "category_id": "start",
+      "title": "Scan a token address from Home",
+      "summary": "Use the viewfinder button to bring QR text into asset search without typing it.",
+      "route": "Wallet → viewfinder icon",
+      "steps": [
+        "Return to Home with the Wallet icon and tap the viewfinder in the top bar.",
+        "Allow camera access when iOS asks, then point the camera at a public token-address QR you trust.",
+        "After a code is read, the scanner closes and Oath opens asset Search with the scanned text.",
+        "If the text identifies a supported token, review the result’s network and full contract or mint address before adding it.",
+        "If scanning cannot start, check Camera permission in iOS Settings or paste the address into Wallet → Search."
+      ],
+      "body": [
+        "The Home scanner fills asset search. It does not send a payment, approve a contract, connect a dApp or automatically open a scanned website.",
+        "Not every QR contains a token address. A receiving address, payment URI or unrelated text may produce no token result; copying a project’s exact token contract or mint address can help.",
+        "To import a recovery phrase, use the dedicated scan action inside Import wallet. Keep private recovery material out of Home search and support messages."
+      ],
+      "note": "Scanning is an input shortcut, not a trust check. Confirm the network and complete address using an independent source.",
+      "screenshot": null,
+      "tags": [
+        "QR",
+        "scanner",
+        "viewfinder",
+        "camera",
+        "contract",
+        "mint"
+      ],
+      "related": [
+        "search-assets",
+        "add-custom-token",
+        "scan-recovery-qr"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 89
+    },
+    {
+      "slug": "wallet-settings-shortcut",
+      "category_id": "wallets",
+      "title": "Open the current wallet’s settings from Home",
+      "summary": "Reach the active wallet’s management screen using the toolbar shortcut that appears after scrolling.",
+      "route": "Wallet → scroll down → wallet-colored icon",
+      "steps": [
+        "Open Home using the Wallet icon in the bottom navigation.",
+        "At the top of Home, the top-right sliders icon opens the main app Settings.",
+        "Scroll down through Assets. As the header scrolls away, the sliders icon changes to the current wallet’s colored square symbol.",
+        "Tap that colored icon to open the current wallet’s settings in a slide-up presentation.",
+        "Choose an available action, such as customization, iCloud backup or viewing recovery information. Close the screen when finished."
+      ],
+      "body": [
+        "The symbol uses the actual wallet color. Its center is the main color and its surrounding border uses the system’s lighter hierarchical rendering.",
+        "The two appearances have different destinations: sliders opens app Settings, while the colored wallet symbol opens current-wallet settings. To reach Currency, Language or Appearance, return to the top of Home and use sliders.",
+        "The shortcut does not switch wallets. Recovery and private-key actions still use their own authentication and warning steps."
+      ],
+      "note": "The controls can be mirrored for right-to-left languages. Identify them by their symbols or VoiceOver names rather than relying only on left or right placement.",
+      "screenshot": null,
+      "tags": [
+        "toolbar",
+        "appclip",
+        "wallet color",
+        "current wallet",
+        "settings"
+      ],
+      "related": [
+        "home-screen",
+        "customize-wallet",
+        "wallet-balances"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 90
+    },
+    {
+      "slug": "wallet-balances",
+      "category_id": "wallets",
+      "title": "Read wallet balances and the active-wallet badge",
+      "summary": "Recognize each wallet by its color and check its available value beside the disclosure arrow.",
+      "route": "Settings → Wallets",
+      "steps": [
+        "At the top of Home, tap the sliders icon, then open Wallets.",
+        "Find a wallet by its name and colored square symbol. Passphrase wallets can also show a descriptive subtitle.",
+        "Read the available local-currency value near the row’s arrow. This is that wallet’s saved valuation, not the combined value of every wallet.",
+        "Look for a small check badge on the icon to identify the active wallet. The check is no longer placed beside the amount.",
+        "If values appear as dots, return Home and tap the total balance to reveal them. Use Settings → Currency to choose another display currency."
+      ],
+      "body": [
+        "The icon has no separate colored tile behind it. It uses the wallet’s selected color, so changing Customize Wallet also changes its visual identity in the list.",
+        "Values are based on the balances, prices and exchange rates available to Oath. An inactive wallet can have older cached information; a listed value is not proof of a fresh network check.",
+        "Large accessibility text can move the amount below the name to preserve readability. The value still belongs to the same wallet row."
+      ],
+      "note": "The active-wallet badge identifies the wallet used by Home and History. Opening another wallet’s management row does not by itself change that selection.",
+      "screenshot": null,
+      "tags": [
+        "wallet list",
+        "balance",
+        "badge",
+        "checkmark",
+        "color",
+        "valuation"
+      ],
+      "related": [
+        "switch-wallet",
+        "hide-balances",
+        "reorder-wallets"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 91
+    },
+    {
+      "slug": "full-transaction-history",
+      "category_id": "activity",
+      "title": "View the active wallet’s full transaction history",
+      "summary": "Review available coin and token activity together across the active wallet’s networks.",
+      "route": "Bottom navigation → History",
+      "steps": [
+        "Tap the history icon, shown as a clock with a circular arrow, in the bottom navigation.",
+        "Review the most recent available entries, grouped by date. Each row identifies the action and asset, its time, and available amounts.",
+        "Scroll for older entries and use the additional-activity control when it is shown to load more saved history.",
+        "Tap an entry to open its transaction details, or use the filter icon in the top bar to narrow the list.",
+        "To look for a particular transaction, select History and then the separate Search icon. Return to Wallet when you want the portfolio view."
+      ],
+      "body": [
+        "This view combines available activity for the active wallet. It does not merge unrelated wallets, and Solana activity follows the currently selected Solana address path.",
+        "A history row represents an asset’s activity within a transaction. One blockchain transaction can therefore produce more than one row when multiple assets are involved.",
+        "“Full history” means the available records for this wallet, after safety filtering. Provider limits, incomplete synchronization and unsupported historical details can leave gaps."
+      ],
+      "note": "If an expected entry is absent, clear search and filters, refresh Home or the asset, and compare the exact public account on its network explorer.",
+      "screenshot": null,
+      "tags": [
+        "history",
+        "all transactions",
+        "wallet",
+        "activity",
+        "older transactions"
+      ],
+      "related": [
+        "search-transactions",
+        "filter-transactions",
+        "asset-transaction-history"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 92
+    },
+    {
+      "slug": "search-transactions",
+      "category_id": "activity",
+      "title": "Search transactions by ID, address or amount",
+      "summary": "Find a transaction using information you already know, within the active wallet’s available history.",
+      "route": "Bottom navigation → History → Search",
+      "steps": [
+        "Tap History first, then the separate magnifying-glass Search icon.",
+        "Confirm the field says Search transactions. Enter a transaction ID, sender or recipient address, asset name, symbol, or network.",
+        "You can also search an amount in native units or an available displayed local-currency amount. Add a currency code or symbol when it helps distinguish a fiat value.",
+        "Open a result to compare its full transaction ID, network, addresses and status.",
+        "If a result is missing, clear the query and any active filters, then try the exact transaction ID or address. To search assets again, select Wallet before Search."
+      ],
+      "body": [
+        "Search works across available stored history before the visible page limit. An address can match supplied sender or recipient information even if the list shows only one representative counterparty.",
+        "Amount searches use available prices and the selected display currency. A local-currency match may change with the quote; a transaction ID is a more stable way to identify a transfer.",
+        "History filters remain in effect during history search. Searching does not bypass spam filtering or fetch records a provider has never supplied."
+      ],
+      "note": "A short address fragment or common amount can match several entries. Compare the complete transaction ID before treating a result as the transfer you intended.",
+      "screenshot": null,
+      "tags": [
+        "search",
+        "transaction ID",
+        "hash",
+        "amount",
+        "sender",
+        "recipient",
+        "address"
+      ],
+      "related": [
+        "filter-transactions",
+        "copy-transaction-id",
+        "search-assets"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 93
+    },
+    {
+      "slug": "filter-transactions",
+      "category_id": "activity",
+      "title": "Filter transaction history",
+      "summary": "Narrow activity by network, asset, direction, status, date and quantity without changing the underlying records.",
+      "route": "History → filter icon",
+      "steps": [
+        "Open History and tap the filter icon in the top bar. The sheet starts with your current selections.",
+        "Choose one or more Networks and Assets when those choices are available. Asset choices refer to an exact asset on its network, not just a shared ticker.",
+        "Choose transaction types such as Sent, Received or self-transfers, and any statuses you want to include.",
+        "Select a date period or custom start and end dates. Optionally enter a minimum, maximum or both under Amount.",
+        "Tap the native checkmark to apply the choices. Cancel or dismiss the sheet to leave the current results unchanged.",
+        "Use the active filter chips above the results to remove individual categories, or choose Reset Filters to clear them. If resetting inside the sheet, tap the checkmark to apply that reset."
+      ],
+      "body": [
+        "Selections within one category are alternatives; categories combine. For example, Received plus USDC plus a date range means incoming USDC entries in that range.",
+        "Amount limits are measured in the asset’s native units, not local currency. A minimum of 10 means 10 tokens or coins. Select one asset first when you need a meaningful quantity comparison.",
+        "Today uses the current calendar day. The seven-day and thirty-day periods include today; custom dates include both selected days. Entries without a usable timestamp may not match a date filter.",
+        "The number on the filter button counts active filter categories, not individual selected networks or assets. In one asset’s View All screen, the asset and account scope is fixed, so broader network and asset selectors are omitted."
+      ],
+      "note": "A disabled checkmark means a range needs correction, such as a minimum above its maximum or a start date after its end. No matching results can simply mean the combined filters are too narrow.",
+      "screenshot": null,
+      "tags": [
+        "filter",
+        "date range",
+        "minimum",
+        "maximum",
+        "status",
+        "network",
+        "reset filters"
+      ],
+      "related": [
+        "full-transaction-history",
+        "search-transactions",
+        "asset-transaction-history"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 94
+    },
+    {
+      "slug": "asset-transaction-history",
+      "category_id": "activity",
+      "title": "View all transactions for one coin or token",
+      "summary": "Move from an asset’s five-entry preview to a dedicated history for that exact asset and account.",
+      "route": "Wallet → asset → Activity → View All",
+      "steps": [
+        "Open the coin or token from Wallet or Search and scroll to Activity.",
+        "The preview shows up to five latest visible entries. Each row names the action and asset and shows its time and available amounts.",
+        "When more than five visible entries are available, tap View All at the end of the preview.",
+        "Browse older entries on the new screen. Search there or use its filter icon to narrow the same asset’s history.",
+        "Tap a transaction for details, or go back to the asset screen. Use the bottom History view separately for activity across the wallet."
+      ],
+      "body": [
+        "View All stays limited to the selected token or coin, its account and its network. Opening USDT on one network does not include another network’s USDT or every token on that chain.",
+        "If there are five or fewer visible entries, there is no View All button because the preview already contains all currently available entries.",
+        "The threshold is based on visible history after safety filtering. Hidden spam and unavailable provider records do not force the button to appear."
+      ],
+      "note": "An absent View All button is not proof that no other on-chain activity ever occurred. Check the correct account and explorer if a known transaction is missing.",
+      "screenshot": null,
+      "tags": [
+        "view all",
+        "five",
+        "5 transactions",
+        "asset history",
+        "token history"
+      ],
+      "related": [
+        "full-transaction-history",
+        "filter-transactions",
+        "transaction-list"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 95
+    },
+    {
+      "slug": "spam-history",
+      "category_id": "security",
+      "title": "How Oath hides spam and phishing activity",
+      "summary": "Understand why suspicious or unverified token entries can be absent from your activity lists.",
+      "route": "History, asset Activity and transaction search",
+      "steps": [
+        "Use History or an asset’s Activity as usual. Safety filtering runs automatically; no separate switch is required.",
+        "If an unexpected token is absent, check whether it is unverified or has a suspicious name containing a link or a claim instruction.",
+        "For an expected legitimate transfer, verify the network, public account and full token contract or asset identity using independent information.",
+        "For supported manual-lookup networks, you can deliberately add a token you recognize through Wallet → Search. Review the full identity before adding it.",
+        "If a discrepancy remains, compare the public explorer record or contact support with the network and transaction ID."
+      ],
+      "body": [
+        "The same visibility rules apply to the full history, asset previews, transaction search, filter choices and transaction details. Previously saved activity is also checked, so old spam does not need a fresh arrival to be hidden.",
+        "Oath combines available provider verification with network-specific asset catalogs and local checks. A token is matched by its network and exact contract, mint, issuer or asset reference. Matching a popular symbol or having a quoted price is not enough.",
+        "Unlisted tokens are hidden by default from history unless you have explicitly chosen to track them. Explicit tracking does not override detected phishing metadata, known blocked-token evidence or zero-value transfer rules.",
+        "Filtering changes the app’s presentation. It does not delete public blockchain records, reverse a transfer or revoke a contract allowance. The explorer can still show entries that Oath hides."
+      ],
+      "note": "No filter can recognize every scam, and an unlisted token is not automatically fraudulent. Never follow a claim link from unsolicited token metadata or use a lookalike address copied from unfamiliar activity.",
+      "screenshot": null,
+      "tags": [
+        "spam",
+        "phishing",
+        "airdrop",
+        "address poisoning",
+        "unverified",
+        "scam"
+      ],
+      "related": [
+        "unverified-tokens",
+        "zero-value-transactions",
+        "token-not-found"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 96
+    },
+    {
+      "slug": "zero-value-transactions",
+      "category_id": "activity",
+      "title": "Why can a transaction show zero?",
+      "summary": "Distinguish a rounded fiat amount, a zero-value contract action and a hidden spam transfer.",
+      "route": "History → transaction details",
+      "steps": [
+        "Compare the local-currency amount with the native quantity underneath it.",
+        "If the local value rounds to zero but the native quantity is nonzero, the transfer can simply be too small to display at that currency’s normal precision.",
+        "If the native amount is also zero, open the transaction and check its status, network fee and explorer record.",
+        "For an outgoing native-coin entry, consider whether it records a contract call or another action that transfers no native coin but still has a network fee.",
+        "If you do not recognize the activity, compare the complete sender, recipient and transaction ID. Do not rely on a short address fragment."
+      ],
+      "body": [
+        "Zero-value incoming transfers and ordinary zero-value token-transfer entries are hidden by the history safety rules. Attackers can use such entries to put lookalike addresses into a wallet’s activity.",
+        "Oath can retain zero-value outgoing or self native-coin actions, and zero-value outgoing outcomes such as Failed, Canceled or Replaced. Hiding every zero would also hide meaningful actions.",
+        "A zero local-currency display, an unavailable quote and a zero native transfer are different situations. The detailed public transaction helps distinguish them."
+      ],
+      "note": "Filtering a zero-value entry is not the same as canceling it. On-chain records and any fees already paid are separate from the app’s activity display.",
+      "screenshot": null,
+      "tags": [
+        "zero",
+        "0 ETH",
+        "0.00",
+        "contract call",
+        "dust",
+        "address poisoning"
+      ],
+      "related": [
+        "spam-history",
+        "network-fee",
+        "transaction-status"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 97
+    },
+    {
+      "slug": "unverified-tokens",
+      "category_id": "assets",
+      "title": "Understand verified and manually added tokens",
+      "summary": "Learn why automatic discovery can omit a token and what changes when you choose to track it.",
+      "route": "Wallet → Assets, or Wallet → Search → token address",
+      "steps": [
+        "First confirm the active wallet and the network on which you expect the token.",
+        "If the token is absent, check its full contract, mint or asset reference using information you trust independently.",
+        "For supported EVM networks, TRON or Solana, select Wallet then Search and paste the exact token address.",
+        "Review every matching result’s network and token identity. Add only the intended token, then finish with the checkmark.",
+        "Return to the asset and review any available quantity, quote and activity. Refresh if a recent transfer has not appeared."
+      ],
+      "body": [
+        "Automatic token discovery uses available verification lists. A new or obscure legitimate token can be missing from a list, so “unverified” does not by itself mean “scam.”",
+        "Manually adding a supported token records your choice to track it. It does not verify its issuer, grant spending permission, buy the token, or guarantee a price and complete history.",
+        "History still hides identified phishing metadata, blocked tokens and protected zero-value transfers even when a token is tracked. An explorer may therefore show more raw activity than Oath."
+      ],
+      "note": "Never decide by symbol alone. Tokens with the same name on the same or different networks can have different contracts and issuers.",
+      "screenshot": null,
+      "tags": [
+        "verified",
+        "whitelist",
+        "unlisted",
+        "manual token",
+        "token discovery"
+      ],
+      "related": [
+        "add-custom-token",
+        "token-not-found",
+        "spam-history"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 98
+    },
+    {
+      "slug": "confirmation-checkmark",
+      "category_id": "settings",
+      "title": "Use the checkmark to finish an action",
+      "summary": "The native checkmark replaces text Done controls in supported screens and sheets.",
+      "route": "Wallet editing, token completion and history filters",
+      "steps": [
+        "When you have finished reordering wallets, tap the checkmark in the top bar instead of looking for a text Done button.",
+        "After Add Token succeeds, use the checkmark confirmation to finish that sheet.",
+        "In history filters, choose your options and tap the checkmark to apply the complete selection.",
+        "If the confirmation is disabled, finish the operation or correct any invalid field before trying again.",
+        "With VoiceOver, listen for the action name, such as Done or Apply. The visual icon still has a localized accessibility label."
+      ],
+      "body": [
+        "The checkmark is an action control, and its meaning follows the screen you are on. It can finish editing, close a completed flow or apply a draft.",
+        "Cancel, Close, Back and destructive actions keep their own purposes. Do not use the checkmark as a substitute for reading a removal or permanent-deletion confirmation.",
+        "Native alerts, keyboards and browser controls are drawn by iOS and can use system-provided labels. Older supported iOS versions can also display a different native treatment."
+      ],
+      "note": "The small check badge on a wallet icon means that wallet is active. It is different from the tappable checkmark used to finish an action.",
+      "screenshot": null,
+      "tags": [
+        "done",
+        "checkmark",
+        "confirm",
+        "apply",
+        "accessibility",
+        "VoiceOver"
+      ],
+      "related": [
+        "reorder-wallets",
+        "filter-transactions",
+        "add-custom-token"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 99
+    },
+    {
+      "slug": "security-settings-access",
+      "category_id": "security",
+      "title": "Authenticate before opening Passcode & Face ID",
+      "summary": "Protect changes to app security with a separate authentication step.",
+      "route": "Settings → Passcode & Face ID",
+      "steps": [
+        "Open the main Settings screen from the sliders icon at the top of Home.",
+        "Tap Passcode & Face ID. If biometric protection is enabled, complete the biometric prompt.",
+        "If biometrics are disabled or the flow offers a passcode fallback, enter your current app passcode.",
+        "After authentication, review or change passcode protection, biometrics, Require Passcode timing or App Switcher Privacy.",
+        "If you cancel authentication, return to Settings and start again when ready."
+      ],
+      "body": [
+        "Unlocking the app and entering its security settings are separate checks. Returning after the app locks can require authentication again.",
+        "If app passcode protection is disabled, there is no existing app passcode to enter. You can access the screen to set one, then confirm the new six-digit code.",
+        "When you finish enabling a new passcode, Oath attempts biometric setup when available. Turning on Face ID itself uses the biometric prompt rather than another current-passcode entry inside that enable flow."
+      ],
+      "note": "Your app passcode is not your recovery phrase, BIP-39 passphrase or iCloud backup password. Security changes do not replace a separate recovery backup.",
+      "screenshot": null,
+      "tags": [
+        "security settings",
+        "authentication",
+        "face id",
+        "touch id",
+        "passcode"
+      ],
+      "related": [
+        "enable-passcode",
+        "enable-face-id",
+        "auto-lock"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 100
+    },
+    {
+      "slug": "help-center",
+      "category_id": "settings",
+      "title": "Open and search the Help Center",
+      "summary": "Find a feature’s instructions inside Oath and return to the app when you are finished.",
+      "route": "Settings → Help Center",
+      "steps": [
+        "Return to the top of Home and tap the sliders icon to open Settings.",
+        "Tap Help Center to open help.oathwallet.org in the native in-app browser.",
+        "Search a feature or question, or choose a collection such as Your wallets or Transactions & activity.",
+        "Open a guide and follow its Where to find it route and numbered steps. Use Related articles for connected features.",
+        "Close the in-app browser to return to Oath. Use Contact Us, Submit a Bug or Request a Feature from Settings if you need a different kind of help."
+      ],
+      "body": [
+        "Each guide describes one feature or question and identifies the app version it covers. Older release articles at articles.oathwallet.org can describe a different interface.",
+        "The Help Center is readable without importing a wallet or providing recovery material. Article screenshots use example wallets; do not send funds to example addresses.",
+        "Submit a Bug and Request a Feature open the project’s issue page. Contact Us opens an email draft to care@oathwallet.org; writing a draft does not send it automatically."
+      ],
+      "note": "Never put a recovery phrase, private key, app passcode or backup password into a support form or message. Public transaction IDs are normally enough to start a transaction investigation.",
+      "screenshot": null,
+      "tags": [
+        "help",
+        "help center",
+        "support",
+        "articles",
+        "documentation"
+      ],
+      "related": [
+        "report-bug",
+        "request-feature",
+        "contact-support"
+      ],
+      "status": "published",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "updated_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath Atmosphere · 1.0 (56)",
+      "sort_order": 101
+    }
+  ]
+}

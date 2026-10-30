@@ -1,0 +1,19 @@
+# Declare directory creation as well as every copied file for the build sandbox.
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Resources
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Resources/DWARF
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Resources/Relocations
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Resources/Relocations/aarch64
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Info.plist
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Resources/DWARF/WalletCore
+$(DWARF_DSYM_FOLDER_PATH)/WalletCore.framework.dSYM/Contents/Resources/Relocations/aarch64/WalletCore.yml
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Resources
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Resources/DWARF
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Resources/Relocations
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Resources/Relocations/aarch64
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Info.plist
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Resources/DWARF/WalletCoreSwiftProtobuf
+$(DWARF_DSYM_FOLDER_PATH)/WalletCoreSwiftProtobuf.framework.dSYM/Contents/Resources/Relocations/aarch64/WalletCoreSwiftProtobuf.yml

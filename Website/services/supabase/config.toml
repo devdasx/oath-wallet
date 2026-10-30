@@ -1,0 +1,7 @@
+project_id = "oath-website-services"
+
+[functions.website-analytics]
+verify_jwt = false
+
+[functions.oath-newsletter]
+verify_jwt = false

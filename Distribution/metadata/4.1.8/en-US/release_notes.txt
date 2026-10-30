@@ -1,0 +1,1 @@
+Recreating a matching passphrase wallet now restores it from Recently Deleted while preserving its name, color, accounts and wallet family. Active duplicate protection remains unchanged.

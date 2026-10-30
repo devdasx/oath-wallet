@@ -1,0 +1,1 @@
+Balance comparisons now remain consistent when changing display currency and crossing day boundaries. Submitted transaction receipts remain available after locking and reopening. EVM swap history supports larger responses within bounded local storage.

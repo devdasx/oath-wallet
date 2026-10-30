@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Oath USD · OUSD on Solana</title>
+<meta name="description" content="Oath USD on Solana. Review reserves, exchange tokens and redeem OUSD for USDC.">
+<meta name="theme-color" content="#0a0a0b">
+<link rel="icon" href="/wallet-logo.png"><link rel="canonical" href="https://oathwallet.org/ousd">
+<link rel="stylesheet" href="/ousd/style.css"><script src="/ousd/app.js" defer></script>
+</head>
+<body>
+<header class="nav"><a class="brand" href="/" aria-label="Oath home"><img src="/wallet-logo.png" alt="" width="32" height="32">Oath<span>USD</span></a><nav><a href="#reserves">Reserves</a><a href="#how">How it works</a><button id="connect" class="outline">Connect wallet</button></nav></header>
+<main>
+<section class="hero">
+<div class="intro"><div class="eyebrow"><span class="dot"></span> BUILT ON SOLANA</div><h1>Your dollar.<br><em>On your terms.</em></h1><p class="lede">Meet Oath USD. Designed for one USDC in reserve for every OUSD in circulation, with redemption directly from your wallet.</p><div class="status" id="launch-status" role="status">Checking launch status…</div><a class="text-link" href="#how">Understand OUSD <span aria-hidden="true">↗</span></a></div>
+<section class="trade" aria-label="Exchange Oath USD">
+<div class="trade-title"><h2>Exchange</h2><span class="network"><span class="dot"></span> Solana</span></div>
+<div class="tabs" role="tablist" aria-label="Exchange action"><button role="tab" aria-selected="true" data-mode="buy">Buy</button><button role="tab" aria-selected="false" data-mode="sell">Sell</button><button role="tab" aria-selected="false" data-mode="redeem">Redeem</button></div>
+<form id="exchange-form">
+<div class="amount-panel"><label for="amount" id="amount-label">You pay</label><div class="amount-line"><input id="amount" placeholder="0.00" inputmode="decimal" autocomplete="off" aria-describedby="trade-note" maxlength="30"><select id="asset" aria-label="Payment token"><option value="USDC">USDC</option><option value="USDT">USDT</option><option value="SOL">SOL</option></select><span id="fixed-input" hidden>OUSD</span></div></div>
+<div class="arrow" aria-hidden="true">↓</div>
+<div class="amount-panel output"><span>You receive</span><div class="amount-line"><output id="output">—</output><span id="output-token">OUSD</span></div></div>
+<div class="details"><span>Maximum slippage</span><select id="slippage" aria-label="Maximum slippage"><option value="10">0.1%</option><option value="50" selected>0.5%</option><option value="100">1%</option></select></div>
+<div class="details"><span>Minimum received</span><span id="minimum">—</span></div>
+<div class="details"><span>Network fee</span><span id="network-fee">Shown before signing</span></div>
+<button class="primary" id="review" type="submit" disabled>Preparing launch</button>
+<button class="primary" id="sign" type="button" hidden>Confirm in wallet</button>
+<p class="trade-note" id="trade-note">Quotes come from live liquidity. Your wallet approves each transaction.</p>
+<p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+<div id="pending-actions" hidden><a id="pending-link" class="text-link" target="_blank" rel="noopener noreferrer">View saved transaction ↗</a><button id="clear-pending" type="button" class="outline">Clear tracking after reviewing</button></div>
+</form>
+</section>
+</section>
+<section id="reserves" class="reserves">
+<div class="section-heading"><div><div class="eyebrow">OPEN BY DESIGN</div><h2>Reserves you can inspect.</h2></div><span id="verified-slot">Awaiting verified issuer</span></div>
+<div class="metrics"><article><span>OUSD circulating</span><strong id="supply">—</strong></article><article><span>USDC in reserve</span><strong id="reserve">—</strong></article><article><span>Reserve target</span><strong>1 : 1</strong></article><article><span>Issuer approvals</span><strong>3 of 5</strong></article></div>
+<p class="caption">Reserve balances exclude trading liquidity. Balances are read from finalized Solana accounts; network failures are shown as unavailable.</p>
+</section>
+<section id="how" class="how"><div class="eyebrow">A CLEARER WAY</div><h2>A dollar token, with clear rules.</h2><div class="explain-grid">
+<article><span class="step">01</span><h3>Exchange from your wallet</h3><p>Buy and sell through the OUSD/USDC pool. SOL and USDT are available when a verified route exists. Pool prices can differ from one USDC.</p></article>
+<article><span class="step">02</span><h3>Redeem directly</h3><p>After the issuer launches, burn your OUSD and receive the same amount of USDC in one transaction. You authorize the burn. Solana network fees apply.</p></article>
+<article><span class="step">03</span><h3>Keep control visible</h3><p>Issuance, account freezing, metadata changes and program upgrades require three of five issuer approvals. Upgrades can change the issuer rules.</p></article>
+</div></section>
+<section class="disclosure"><h2>Before you exchange</h2><p>OUSD is not a bank deposit, insured cash or a claim to direct USD redemption. The reserve asset is USDC. USDC issuer actions, depegging, contract upgrades, frozen accounts, liquidity and network failures can affect access or value. Oath may freeze individual OUSD token accounts under its published policy. A frozen account cannot transfer or redeem until thawed.</p><p id="freeze-policy">Account freezing is restricted to three-of-five issuer approval for applicable legal orders, sanctions requirements or documented security incidents. It affects OUSD in the selected token account, not unrelated wallet assets.</p><a id="mint-link" href="https://explorer.solana.com/address/2vb9ZGWvxXfb8vnBQMtM7VHPSG5FXqNHVx6wFTJ8zgya" target="_blank" rel="noopener noreferrer">View OUSD on Solana ↗</a><span> · </span><a href="/ousd/token.json">Token metadata ↗</a></section>
+</main>
+<footer><a href="/">Oath Wallet</a><span>Oath USD · OUSD</span><a href="/security">Security</a></footer>
+<dialog id="wallet-dialog"><h2>Connect your wallet</h2><p>Choose a Solana wallet. Oath never asks for your recovery phrase or private key.</p><div id="wallet-list"></div><button class="outline" id="close-wallets">Cancel</button></dialog>
+</body></html>

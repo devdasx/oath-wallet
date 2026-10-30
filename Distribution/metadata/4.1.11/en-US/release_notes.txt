@@ -1,0 +1,1 @@
+Adds Chiliz, Filecoin FEVM, Sei, 0G, IoTeX and Polkadot Asset Hub support. Improves payment QR scanning, Solana Pay references, balance discovery, token artwork and transaction tracking. Keys and recovery phrases remain on your device.

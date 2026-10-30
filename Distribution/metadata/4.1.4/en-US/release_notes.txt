@@ -1,0 +1,1 @@
+Improved transaction history with supported Across and Relay bridge recognition, clearer approval and contract interaction labels, and more readable swap rows. Refined small-balance and fee displays, and preserved precision when entering and reviewing send amounts.

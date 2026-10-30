@@ -1,0 +1,219 @@
+{
+  "source": "Public deterministic dogecoin-vectors.json addresses (change 0, indices 0 and 1), TLS queries captured 2026-10-19. No app wallet data.",
+  "response": [
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "confirmed": 0,
+        "unconfirmed": 0
+      },
+      "id": 0
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [
+        {
+          "tx_hash": "44b0cf95ee02c1c953392f988d211f62048f6a82da0cb3ce321b20078e51f07d",
+          "height": 4221946
+        },
+        {
+          "tx_hash": "d91fe422ce49cd6a3781da21dc47290d2495393859a3a28972b7da9213aa3ad7",
+          "height": 4221946
+        },
+        {
+          "tx_hash": "44b0cf95ee02c1c953392f988d211f62048f6a82da0cb3ce321b20078e51f07d",
+          "height": 4221946
+        },
+        {
+          "tx_hash": "d91fe422ce49cd6a3781da21dc47290d2495393859a3a28972b7da9213aa3ad7",
+          "height": 4221946
+        },
+        {
+          "tx_hash": "964c652fa9f5da17e6a49d36766727677a704c1e49bb4c892678cf21103b2140",
+          "height": 4977534
+        },
+        {
+          "tx_hash": "c46eb20a34d9fc0d1ddfc235273366278d8cc19b3685e4afbe4f7419c542e54a",
+          "height": 5074844
+        },
+        {
+          "tx_hash": "1eb888659706ddb483a5775cfca353c138e6f97ef1b4b8dae6ab1ea1bc30af46",
+          "height": 5074876
+        },
+        {
+          "tx_hash": "132eb4fb3c4d1f2e5a9f7af761aadc8259790f50fdc28f2bbf43b1e613a906d8",
+          "height": 5075014
+        },
+        {
+          "tx_hash": "c7a190000d52120bc916a0f808a2e00f73a9da3987e296340fbd1d78249c9e34",
+          "height": 5085810
+        },
+        {
+          "tx_hash": "a2ca1f5ad612c53e7db5efd126c0d1ac979f2ab1a17c3323ccab2ff732e45cb7",
+          "height": 5373534
+        },
+        {
+          "tx_hash": "c67261f27da715ce871b8c54e493cc586fbd4d65d802a6418277fd851b7e7c47",
+          "height": 5373537
+        },
+        {
+          "tx_hash": "3c09000f87c28c190a9694d4d3958112502b3ab935fbb277f98ea0131e2dc096",
+          "height": 5864041
+        },
+        {
+          "tx_hash": "9f1eb9ad9b0898f979416e71e415814e666b68a0e11a70836284233f505d9c8c",
+          "height": 5864041
+        },
+        {
+          "tx_hash": "d1e3b968a736cf5289af27fe510ea3b5ba086b52dbeba9f927fd0f8658b399ca",
+          "height": 6116929
+        },
+        {
+          "tx_hash": "8a9fad9305b739ee3353dfab8d6312478643b5089d204e4a575d6a6e3bea6cc5",
+          "height": 6116929
+        }
+      ],
+      "id": 1
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [],
+      "id": 2
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "confirmed": 0,
+        "unconfirmed": 0
+      },
+      "id": 3
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [
+        {
+          "tx_hash": "6797e8c2fdb047f1ed57b293211c2af192f26b1de51fdbac5753b1c493d4b952",
+          "height": 3460053
+        },
+        {
+          "tx_hash": "75b053e0bd181f3bd0d70511fd6841532aced861866501e70d35f715e7e417ee",
+          "height": 3462315
+        },
+        {
+          "tx_hash": "6797e8c2fdb047f1ed57b293211c2af192f26b1de51fdbac5753b1c493d4b952",
+          "height": 3460053
+        },
+        {
+          "tx_hash": "75b053e0bd181f3bd0d70511fd6841532aced861866501e70d35f715e7e417ee",
+          "height": 3462315
+        }
+      ],
+      "id": 4
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [],
+      "id": 5
+    }
+  ],
+  "expected": [
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "confirmed": 0,
+        "unconfirmed": 0
+      },
+      "id": 0
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [
+        {
+          "tx_hash": "44b0cf95ee02c1c953392f988d211f62048f6a82da0cb3ce321b20078e51f07d",
+          "height": 4221946
+        },
+        {
+          "tx_hash": "d91fe422ce49cd6a3781da21dc47290d2495393859a3a28972b7da9213aa3ad7",
+          "height": 4221946
+        },
+        {
+          "tx_hash": "964c652fa9f5da17e6a49d36766727677a704c1e49bb4c892678cf21103b2140",
+          "height": 4977534
+        },
+        {
+          "tx_hash": "c46eb20a34d9fc0d1ddfc235273366278d8cc19b3685e4afbe4f7419c542e54a",
+          "height": 5074844
+        },
+        {
+          "tx_hash": "1eb888659706ddb483a5775cfca353c138e6f97ef1b4b8dae6ab1ea1bc30af46",
+          "height": 5074876
+        },
+        {
+          "tx_hash": "132eb4fb3c4d1f2e5a9f7af761aadc8259790f50fdc28f2bbf43b1e613a906d8",
+          "height": 5075014
+        },
+        {
+          "tx_hash": "c7a190000d52120bc916a0f808a2e00f73a9da3987e296340fbd1d78249c9e34",
+          "height": 5085810
+        },
+        {
+          "tx_hash": "a2ca1f5ad612c53e7db5efd126c0d1ac979f2ab1a17c3323ccab2ff732e45cb7",
+          "height": 5373534
+        },
+        {
+          "tx_hash": "c67261f27da715ce871b8c54e493cc586fbd4d65d802a6418277fd851b7e7c47",
+          "height": 5373537
+        },
+        {
+          "tx_hash": "3c09000f87c28c190a9694d4d3958112502b3ab935fbb277f98ea0131e2dc096",
+          "height": 5864041
+        },
+        {
+          "tx_hash": "9f1eb9ad9b0898f979416e71e415814e666b68a0e11a70836284233f505d9c8c",
+          "height": 5864041
+        },
+        {
+          "tx_hash": "d1e3b968a736cf5289af27fe510ea3b5ba086b52dbeba9f927fd0f8658b399ca",
+          "height": 6116929
+        },
+        {
+          "tx_hash": "8a9fad9305b739ee3353dfab8d6312478643b5089d204e4a575d6a6e3bea6cc5",
+          "height": 6116929
+        }
+      ],
+      "id": 1
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [],
+      "id": 2
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": {
+        "confirmed": 0,
+        "unconfirmed": 0
+      },
+      "id": 3
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [
+        {
+          "tx_hash": "6797e8c2fdb047f1ed57b293211c2af192f26b1de51fdbac5753b1c493d4b952",
+          "height": 3460053
+        },
+        {
+          "tx_hash": "75b053e0bd181f3bd0d70511fd6841532aced861866501e70d35f715e7e417ee",
+          "height": 3462315
+        }
+      ],
+      "id": 4
+    },
+    {
+      "jsonrpc": "2.0",
+      "result": [],
+      "id": 5
+    }
+  ]
+}

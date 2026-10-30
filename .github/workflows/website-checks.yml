@@ -1,0 +1,34 @@
+name: Website checks
+on:
+  pull_request:
+    paths: ['Website/**', 'Distribution/**', '.github/workflows/**', 'Tools/ValidatePublicRelease.py']
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: Website/package-lock.json
+      - run: npm ci && npm run predeploy && npm run test:unit
+        working-directory: Website
+      - run: python3 Website/scripts/verify-source-excerpts.py .
+      - run: python3 -m unittest discover -s Distribution/tests -v
+      - run: python3 Tools/ValidatePublicRelease.py
+      - uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed # v2
+        with:
+          deno-version: '2.9.7'
+      - name: Check website service behavior without sending emails
+        working-directory: Website/services
+        run: deno test --frozen --allow-env --allow-net supabase/functions/oath-newsletter/core.test.ts supabase/functions/oath-newsletter/tracking.test.ts supabase/functions/oath-newsletter/retention.test.ts
+      - run: npx wrangler deploy --dry-run
+        working-directory: Website

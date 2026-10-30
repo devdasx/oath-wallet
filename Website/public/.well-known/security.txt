@@ -1,0 +1,5 @@
+Contact: https://github.com/devdasx/oath-wallet/security/advisories/new
+Expires: 2027-09-28T00:00:00Z
+Preferred-Languages: en
+Canonical: https://oathwallet.org/.well-known/security.txt
+Policy: https://github.com/devdasx/oath-wallet/security/policy

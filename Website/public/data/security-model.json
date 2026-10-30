@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0.0",
+  "product_id": "oath-wallet-ios",
+  "model": "self-custody",
+  "principles": [
+    "The user controls wallet credentials.",
+    "Oath cannot recover a lost recovery phrase, private key, or BIP-39 passphrase.",
+    "Sensitive wallet material is kept out of the app's SQLite database, settings, logs, analytics, and cache payloads.",
+    "Public blockchain data and signed transactions necessarily interact with network infrastructure."
+  ],
+  "local_storage": {
+    "sensitive_material": "Wallet secrets and app-lock credentials are stored through Oath's iOS Keychain vault using this-device-only protection where applicable.",
+    "implementation": {
+      "vault_source": "EVMWallet/WalletSecretVault.swift",
+      "item_class": "kSecClassGenericPassword",
+      "accessibility": "kSecAttrAccessibleWhenUnlockedThisDeviceOnly",
+      "synchronizable": false,
+      "secure_enclave_boundary": "Oath does not claim that blockchain private keys are generated, stored, or used as Secure Enclave keys. The implemented persistent-secret boundary is the app-scoped, non-synchronizing, this-device-only iOS Keychain vault."
+    },
+    "database": "Oath uses a local GRDB SQLite database for non-secret wallet, account, asset, balance, transaction, setting, synchronization, and cache records. Secret rows contain opaque Keychain references rather than wallet credentials.",
+    "never_in_database": [
+      "recovery phrases",
+      "private keys",
+      "BIP-39 passphrases",
+      "app passcodes",
+      "passcode verifiers",
+      "API credentials",
+      "encryption keys"
+    ]
+  },
+  "network_boundary": {
+    "public_data": "Balance, price, token, fee, and transaction-history features can query external blockchain or market-data providers using public network identifiers and public account addresses.",
+    "sending": "The app signs authorized transactions locally and sends the resulting signed transaction to network infrastructure for broadcast.",
+    "support": "Users must never send wallet credentials to Oath support or any AI assistant."
+  },
+  "recovery_options": [
+    {
+      "id": "recovery-phrase",
+      "description": "Restore a compatible deterministic wallet from its recovery phrase and optional BIP-39 passphrase."
+    },
+    {
+      "id": "private-key",
+      "description": "Import a network-specific private key where the selected network supports that credential type."
+    },
+    {
+      "id": "encrypted-icloud-backup",
+      "description": "Create and restore an optional encrypted wallet backup through the user's iCloud environment."
+    },
+    {
+      "id": "direct-iphone-transfer",
+      "description": "Transfer encrypted wallet data directly between nearby iPhones without an Oath storage server."
+    }
+  ],
+  "access_controls": [
+    "app passcode",
+    "Face ID unlock",
+    "automatic locking",
+    "app-switcher privacy shield"
+  ],
+  "agent_safety_policy": {
+    "never_request": [
+      "recovery phrase",
+      "private key",
+      "BIP-39 passphrase",
+      "app passcode",
+      "backup password",
+      "complete sensitive wallet payload"
+    ],
+    "never_offer": [
+      "credential recovery by Oath",
+      "guaranteed transaction reversal",
+      "guaranteed investment returns",
+      "anonymous or untraceable transactions"
+    ],
+    "allowed_public_help": [
+      "explain documented features",
+      "link to canonical Oath documentation",
+      "explain general receive and send safety",
+      "compare documented recovery methods without collecting credentials"
+    ]
+  },
+  "responsible_disclosure": {
+    "contact": "care@oathwallet.org",
+    "policy": "https://oathwallet.org/security",
+    "security_txt": "https://oathwallet.org/.well-known/security.txt"
+  },
+  "primary_url": "https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model",
+  "last_reviewed": "2026-09-02",
+  "source_correspondence": {
+    "status": "maintainer-confirmed",
+    "confirmed_on": "2026-10-19",
+    "statement": "Oath’s maintainers confirm that the App Store release corresponds to the source published on GitHub. Documented public-source boundaries and configuration requirements still apply.",
+    "readme": "https://github.com/devdasx/oath-wallet#app-store-source-correspondence",
+    "guide": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
+    "independent_verification": "This statement is distinct from an independently reproduced, byte-for-byte comparison of an App Store download. This update supplies no new binary comparison, independent reproducibility report, or security audit."
+  }
+}

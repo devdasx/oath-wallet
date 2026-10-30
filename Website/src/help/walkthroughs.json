@@ -1,0 +1,1662 @@
+{
+  "send-availability": [
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection",
+      "step": 1
+    },
+    {
+      "image": "guide-send-recipient",
+      "caption": "Paste, scan or select a public recipient, then verify its complete address and the network before continuing.",
+      "alt": "Ethereum recipient entry"
+    },
+    {
+      "image": "guide-send-amount",
+      "caption": "Enter the asset amount, inspect the available balance and use Max or the local-currency switch only when appropriate.",
+      "alt": "Native Send amount keypad"
+    },
+    {
+      "image": "guide-send-review",
+      "caption": "Review the recipient, asset amount and estimated fee before confirming. This is an unsigned mock transfer; no payment occurred.",
+      "alt": "Native Ethereum transfer review"
+    }
+  ],
+  "permissions": [
+    {
+      "image": "guide-help-permissions",
+      "caption": "Choose Token access, Collectible access, Account control, Connected DApps, Scan coverage or Recent changes as appropriate for the selected wallet.",
+      "alt": "Permissions overview",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-list",
+      "caption": "Read the asset and approved contract within its network group. Example allowances are synthetic.",
+      "alt": "Token permissions grouped by network"
+    },
+    {
+      "image": "guide-permission-review",
+      "caption": "Inspect the asset, approved address and fee before authorizing removal. This is an unsigned demo revocation.",
+      "alt": "Token-access revocation review"
+    }
+  ],
+  "home-screen": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    },
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets"
+    }
+  ],
+  "switch-wallet": [
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets",
+      "step": 1
+    },
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio"
+    }
+  ],
+  "app-switcher-privacy": [
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings",
+      "step": 1
+    }
+  ],
+  "recover-deleted-wallet": [
+    {
+      "image": "guide-help-recently-deleted",
+      "caption": "Read the deletion deadline. Restore returns retained wallets; Delete Permanently closes this local recovery route after confirmation.",
+      "alt": "Recently Deleted with a selected example wallet",
+      "step": 1
+    },
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets"
+    }
+  ],
+  "permanently-delete-wallet": [
+    {
+      "image": "guide-help-recently-deleted",
+      "caption": "Read the deletion deadline. Restore returns retained wallets; Delete Permanently closes this local recovery route after confirmation.",
+      "alt": "Recently Deleted with a selected example wallet",
+      "step": 1
+    }
+  ],
+  "remove-wallet": [
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets",
+      "step": 1
+    },
+    {
+      "image": "guide-help-recently-deleted",
+      "caption": "Read the deletion deadline. Restore returns retained wallets; Delete Permanently closes this local recovery route after confirmation.",
+      "alt": "Recently Deleted with a selected example wallet"
+    }
+  ],
+  "transaction-details": [
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis",
+      "step": 1
+    }
+  ],
+  "share-transaction": [
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis",
+      "step": 1
+    }
+  ],
+  "view-explorer": [
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis",
+      "step": 1
+    }
+  ],
+  "receive-crypto": [
+    {
+      "image": "guide-05-receive",
+      "caption": "Read the network guidance beneath the QR, then copy or share the public address using the bottom buttons. Never fund this example address.",
+      "alt": "Ethereum receiving QR and address",
+      "step": 1
+    },
+    {
+      "image": "guide-receive-about",
+      "caption": "Read the network-specific receiving explanation before sharing the address or adding an unfamiliar token.",
+      "alt": "About the receiving address"
+    }
+  ],
+  "copy-share-address": [
+    {
+      "image": "guide-05-receive",
+      "caption": "Read the network guidance beneath the QR, then copy or share the public address using the bottom buttons. Never fund this example address.",
+      "alt": "Ethereum receiving QR and address",
+      "step": 1
+    }
+  ],
+  "receive-network-tokens": [
+    {
+      "image": "guide-05-receive",
+      "caption": "Read the network guidance beneath the QR, then copy or share the public address using the bottom buttons. Never fund this example address.",
+      "alt": "Ethereum receiving QR and address",
+      "step": 1
+    },
+    {
+      "image": "guide-receive-about",
+      "caption": "Read the network-specific receiving explanation before sharing the address or adding an unfamiliar token.",
+      "alt": "About the receiving address"
+    }
+  ],
+  "bitcoin-address-types": [
+    {
+      "image": "guide-receive-bitcoin",
+      "caption": "Check the selected Bitcoin address and type before copying or sharing it. Do not fund this demonstration address.",
+      "alt": "Bitcoin receive screen",
+      "step": 1
+    },
+    {
+      "image": "guide-receive-bitcoin-types",
+      "caption": "Choose one of the address formats actually supported by this wallet. Imported keys can expose fewer choices.",
+      "alt": "Bitcoin address-type selector"
+    }
+  ],
+  "solana-address-path": [
+    {
+      "image": "guide-receive-solana",
+      "caption": "Use the displayed Solana address for the selected account and path, and verify the sender’s network.",
+      "alt": "Solana receive screen",
+      "step": 1
+    },
+    {
+      "image": "guide-receive-solana-types",
+      "caption": "Compare the Phantom and Trust Wallet account conventions where available, then verify the resulting public address.",
+      "alt": "Solana derivation-path selector"
+    }
+  ],
+  "refresh-balances": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    },
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions"
+    }
+  ],
+  "app-icon": [
+    {
+      "image": "guide-10-app-icons",
+      "caption": "Signal Blue is the default icon. Choose another listed variant to change the launcher icon.",
+      "alt": "Current Oath icon choices",
+      "step": 1
+    },
+    {
+      "image": "guide-help-appearance",
+      "caption": "Select the appearance you prefer. Wallet color and the app icon are separate choices.",
+      "alt": "Light Dark and System appearance choices"
+    }
+  ],
+  "use-solana": [
+    {
+      "image": "guide-chain-solana",
+      "caption": "Open the Solana asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Solana asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-tron": [
+    {
+      "image": "guide-chain-tron",
+      "caption": "Open the TRON asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "TRON asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-gram": [
+    {
+      "image": "guide-chain-ton",
+      "caption": "Open the Gram asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Gram asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-aptos": [
+    {
+      "image": "guide-chain-aptos",
+      "caption": "Open the Aptos asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Aptos asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-sui": [
+    {
+      "image": "guide-chain-sui",
+      "caption": "Open the Sui Network asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Sui Network asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-near": [
+    {
+      "image": "guide-chain-near",
+      "caption": "Open the NEAR Protocol asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "NEAR Protocol asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-xrp-ledger": [
+    {
+      "image": "guide-chain-xrpl",
+      "caption": "Open the XRP Ledger asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "XRP Ledger asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-stellar": [
+    {
+      "image": "guide-chain-stellar",
+      "caption": "Open the Stellar asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Stellar asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-bitcoin-cash": [
+    {
+      "image": "guide-chain-bitcoin-cash",
+      "caption": "Open the Bitcoin Cash asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Bitcoin Cash asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-dogecoin": [
+    {
+      "image": "guide-chain-dogecoin",
+      "caption": "Open the Dogecoin asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Dogecoin asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-litecoin": [
+    {
+      "image": "guide-chain-litecoin",
+      "caption": "Open the Litecoin asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Litecoin asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "evm-networks": [
+    {
+      "image": "guide-chain-ethereum",
+      "caption": "Open the Ethereum asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Ethereum asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "send-max-and-fees": [
+    {
+      "image": "guide-send-amount",
+      "caption": "Enter the asset amount, inspect the available balance and use Max or the local-currency switch only when appropriate.",
+      "alt": "Native Send amount keypad",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-gas",
+      "caption": "Use the exact required network and native fee asset. The example guidance is not a request to fund a help-center address.",
+      "alt": "Network-fee balance guidance"
+    }
+  ],
+  "send-tags-and-memos": [
+    {
+      "image": "guide-send-recipient",
+      "caption": "Paste, scan or select a public recipient, then verify its complete address and the network before continuing.",
+      "alt": "Ethereum recipient entry",
+      "step": 1
+    }
+  ],
+  "bitcoin-transfer-options": [
+    {
+      "image": "guide-send-options",
+      "caption": "Review Replace by fee and the optional public on-chain message. A message is public and adds transaction data and possible fees.",
+      "alt": "Bitcoin transfer options",
+      "step": 1
+    },
+    {
+      "image": "guide-send-amount",
+      "caption": "Enter the asset amount, inspect the available balance and use Max or the local-currency switch only when appropriate.",
+      "alt": "Native Send amount keypad"
+    }
+  ],
+  "send-troubleshooting": [
+    {
+      "image": "guide-wc-simulation",
+      "caption": "A failed check needs investigation. Recheck the route, amount, fees and dApp request instead of assuming it is safe to retry.",
+      "alt": "Transaction simulation failure guidance",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-pending",
+      "caption": "Pending is not confirmed. Check the same transaction identifier before submitting another request.",
+      "alt": "Illustrative pending transaction state"
+    }
+  ],
+  "connect-dapp": [
+    {
+      "image": "guide-wc-connect",
+      "caption": "Inspect the site identity, wallet, requested networks and access before connecting. This proposal is an offline fixture.",
+      "alt": "WalletConnect connection proposal",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-unverified",
+      "caption": "Read verification warnings and decline a request if you cannot establish the site’s identity and purpose.",
+      "alt": "Unverified WalletConnect proposal"
+    }
+  ],
+  "dapp-disconnect": [
+    {
+      "image": "guide-help-dapps",
+      "caption": "Open a connection to inspect approved access or disconnect it. This is an offline demo session, not a live connected site.",
+      "alt": "Connected apps list with a demonstration connection",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-connected",
+      "caption": "A connection confirmation concerns approved public accounts. Each later signature or transfer needs its own review.",
+      "alt": "Illustrative WalletConnect connection confirmation"
+    }
+  ],
+  "dapp-swap": [
+    {
+      "image": "guide-call-details",
+      "alt": "Readable swap details with both token identities",
+      "caption": "Review the source token, amount, destination token and minimum output in this decoded unsigned swap example.",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-approve",
+      "caption": "Review the spender and allowance limit. This unsigned example does not grant permission on-chain.",
+      "alt": "dApp token approval review"
+    },
+    {
+      "image": "guide-wc-contract",
+      "caption": "When an action cannot be fully decoded, inspect the contract and original data. Do not assume an unknown request is a harmless transfer.",
+      "alt": "Unknown contract interaction review"
+    }
+  ],
+  "dapp-transaction-data": [
+    {
+      "image": "guide-call-details",
+      "alt": "Human-readable decoded swap details",
+      "caption": "Known contract data can show the assets, network and ordered actions. Inspect the technical data when details are incomplete.",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-contract",
+      "alt": "Unknown contract interaction review",
+      "caption": "When an action cannot be fully decoded, inspect the contract and original data. Do not assume an unknown request is a harmless transfer."
+    }
+  ],
+  "dapp-signatures": [
+    {
+      "image": "guide-wc-signin",
+      "caption": "Compare the account, domain, network and message purpose before signing. This is a demonstration sign-in request.",
+      "alt": "Readable dApp sign-in message",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-permit2",
+      "caption": "Read the token, spender, amount, expiry and other displayed limits. A signature can authorize later token spending.",
+      "alt": "Permit2 signature review"
+    }
+  ],
+  "walletconnect-solana": [
+    {
+      "image": "guide-solana-dapp",
+      "caption": "The request explicitly identifies Solana Devnet. This unsigned demonstration message does not prove a testnet transaction or swap completed.",
+      "alt": "Solana Devnet message review",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-connect",
+      "caption": "Inspect the site identity, wallet, requested networks and access before connecting. This proposal is an offline fixture.",
+      "alt": "WalletConnect connection proposal"
+    }
+  ],
+  "walletconnect-thorchain": [
+    {
+      "image": "guide-wc-crossswap",
+      "caption": "Check the source and destination networks, asset and memo. A source confirmation is not proof of the destination payout.",
+      "alt": "THORChain cross-chain swap request",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-thor",
+      "caption": "Review the THORChain account, RUNE amount, recipient or deposit instruction and memo before authorizing.",
+      "alt": "THORChain dApp transaction review"
+    }
+  ],
+  "revoke-token-access": [
+    {
+      "image": "guide-permission-list",
+      "caption": "Read the asset and approved contract within its network group. Example allowances are synthetic.",
+      "alt": "Token permissions grouped by network",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-review",
+      "caption": "Inspect the asset, approved address and fee before authorizing removal. This is an unsigned demo revocation.",
+      "alt": "Token-access revocation review"
+    }
+  ],
+  "bulk-revoke-access": [
+    {
+      "image": "guide-permission-select",
+      "caption": "Select only the intended removable entries, check the count and use Revoke All to prepare a batch review.",
+      "alt": "Permission selection with Revoke All",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-review",
+      "caption": "Inspect the asset, approved address and fee before authorizing removal. This is an unsigned demo revocation.",
+      "alt": "Token-access revocation review"
+    }
+  ],
+  "permission-coverage": [
+    {
+      "image": "guide-help-permissions",
+      "caption": "Choose Token access, Collectible access, Account control, Connected DApps, Scan coverage or Recent changes as appropriate for the selected wallet.",
+      "alt": "Permissions overview",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-check",
+      "caption": "Choose the network and access type, then enter the token or collection reference and approved address. Empty fields are shown.",
+      "alt": "Check a contract form"
+    }
+  ],
+  "check-contract-access": [
+    {
+      "image": "guide-permission-check",
+      "caption": "Choose the network and access type, then enter the token or collection reference and approved address. Empty fields are shown.",
+      "alt": "Check a contract form",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-review",
+      "caption": "Inspect the asset, approved address and fee before authorizing removal. This is an unsigned demo revocation.",
+      "alt": "Token-access revocation review"
+    }
+  ],
+  "permit2-access": [
+    {
+      "image": "guide-wc-permit2",
+      "caption": "Read the token, spender, amount, expiry and other displayed limits. A signature can authorize later token spending.",
+      "alt": "Permit2 signature review",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-list",
+      "caption": "Read the asset and approved contract within its network group. Example allowances are synthetic.",
+      "alt": "Token permissions grouped by network"
+    }
+  ],
+  "permission-removal-history": [
+    {
+      "image": "guide-permission-review",
+      "caption": "Inspect the asset, approved address and fee before authorizing removal. This is an unsigned demo revocation.",
+      "alt": "Token-access revocation review",
+      "step": 1
+    },
+    {
+      "image": "guide-help-permissions",
+      "caption": "Choose Token access, Collectible access, Account control, Connected DApps, Scan coverage or Recent changes as appropriate for the selected wallet.",
+      "alt": "Permissions overview"
+    }
+  ],
+  "account-control-permissions": [
+    {
+      "image": "guide-help-permissions",
+      "caption": "Choose Token access, Collectible access, Account control, Connected DApps, Scan coverage or Recent changes as appropriate for the selected wallet.",
+      "alt": "Permissions overview",
+      "step": 1
+    },
+    {
+      "image": "guide-permission-list",
+      "caption": "Read the asset and approved contract within its network group. Example allowances are synthetic.",
+      "alt": "Token permissions grouped by network"
+    }
+  ],
+  "last-wallet-reset": [
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets",
+      "step": 1
+    },
+    {
+      "image": "guide-help-recently-deleted",
+      "caption": "Read the deletion deadline. Restore returns retained wallets; Delete Permanently closes this local recovery route after confirmation.",
+      "alt": "Recently Deleted with a selected example wallet"
+    },
+    {
+      "image": "guide-welcome",
+      "caption": "Choose creation for a new wallet, import for an existing phrase, or More Options for other supported recovery routes.",
+      "alt": "Oath Welcome screen"
+    }
+  ],
+  "upgrade-existing-wallets": [
+    {
+      "image": "guide-unlock",
+      "alt": "Empty Enter Passcode unlock screen",
+      "caption": "Enter the existing app passcode to unlock. No digits or biometric credentials are shown in this example.",
+      "step": 1
+    },
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets"
+    }
+  ],
+  "balance-change": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    },
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions"
+    }
+  ],
+  "asset-filters": [
+    {
+      "image": "guide-asset-filters",
+      "caption": "Choose the network and supported asset filters, then return to the list to see the scoped result.",
+      "alt": "Home asset filters",
+      "step": 1
+    },
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio"
+    }
+  ],
+  "token-prices-and-logos": [
+    {
+      "image": "guide-02-bitcoin-market",
+      "caption": "The asset page separates the owned quantity, market price/chart and account activity. This example uses synthetic market values.",
+      "alt": "Bitcoin asset page and market chart",
+      "step": 1
+    },
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio"
+    }
+  ],
+  "haptic-feedback": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    }
+  ],
+  "use-thorchain": [
+    {
+      "image": "guide-chain-thorchain",
+      "caption": "Open the THORChain asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "THORChain asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-wc-crossswap",
+      "caption": "Check the source and destination networks, asset and memo. A source confirmation is not proof of the destination payout.",
+      "alt": "THORChain cross-chain swap request"
+    }
+  ],
+  "use-hyperevm": [
+    {
+      "image": "guide-chain-hyperevm",
+      "caption": "Open the HyperEVM asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "HyperEVM asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-monad": [
+    {
+      "image": "guide-chain-monad",
+      "caption": "Open the Monad asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Monad asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "use-unichain": [
+    {
+      "image": "guide-chain-unichain",
+      "caption": "Open the Unichain asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Unichain asset screen",
+      "step": 1
+    },
+    {
+      "image": "guide-06-send-assets",
+      "caption": "Choose the exact asset and network before entering a recipient. This selection uses synthetic holdings.",
+      "alt": "Send asset selection"
+    }
+  ],
+  "create-wallet": [
+    {
+      "image": "guide-welcome",
+      "caption": "Choose creation for a new wallet, import for an existing phrase, or More Options for other supported recovery routes.",
+      "alt": "Oath Welcome screen",
+      "step": 1
+    },
+    {
+      "image": "guide-passcode",
+      "caption": "Enter and confirm your own app passcode privately. The screenshot shows an empty setup screen, not a usable passcode.",
+      "alt": "Six-digit passcode setup"
+    },
+    {
+      "image": "guide-create-customize",
+      "alt": "Name and color during new-wallet setup",
+      "caption": "Choose a recognizable name and color, then Continue to finish setup. This is an example wallet, not a recovered account."
+    }
+  ],
+  "first-passcode": [
+    {
+      "image": "guide-welcome",
+      "caption": "Choose creation for a new wallet, import for an existing phrase, or More Options for other supported recovery routes.",
+      "alt": "Oath Welcome screen",
+      "step": 1
+    },
+    {
+      "image": "guide-passcode",
+      "caption": "Enter and confirm your own app passcode privately. The screenshot shows an empty setup screen, not a usable passcode.",
+      "alt": "Six-digit passcode setup"
+    },
+    {
+      "image": "guide-help-customize",
+      "caption": "Use a recognizable local name and color, then finish with the displayed confirmation control.",
+      "alt": "Wallet name and color customization"
+    }
+  ],
+  "import-recovery-phrase": [
+    {
+      "image": "guide-help-import",
+      "caption": "Enter words privately in their original order, or use Paste or the scan control. Recovery words are deliberately absent from all screenshots.",
+      "alt": "Empty recovery phrase import form",
+      "step": 1
+    },
+    {
+      "image": "guide-create-customize",
+      "alt": "Name and color during new-wallet setup",
+      "caption": "Choose a recognizable name and color, then Continue to finish setup. This is an example wallet, not a recovered account."
+    }
+  ],
+  "scan-recovery-qr": [
+    {
+      "image": "guide-help-import",
+      "caption": "Enter words privately in their original order, or use Paste or the scan control. Recovery words are deliberately absent from all screenshots.",
+      "alt": "Empty recovery phrase import form",
+      "step": 1
+    },
+    {
+      "image": "guide-help-customize",
+      "caption": "Use a recognizable local name and color, then finish with the displayed confirmation control.",
+      "alt": "Wallet name and color customization"
+    }
+  ],
+  "import-private-key": [
+    {
+      "image": "guide-help-key-networks",
+      "caption": "Choose the network that matches the original key export before entering any key.",
+      "alt": "Private-key import network choices",
+      "step": 1
+    },
+    {
+      "image": "guide-key-import",
+      "caption": "The import form validates the format for the selected network. No private-key value is shown.",
+      "alt": "Empty Ethereum and EVM private-key import"
+    }
+  ],
+  "private-key-formats": [
+    {
+      "image": "guide-help-key-networks",
+      "caption": "Choose the network that matches the original key export before entering any key.",
+      "alt": "Private-key import network choices",
+      "step": 1
+    },
+    {
+      "image": "guide-key-import",
+      "caption": "The import form validates the format for the selected network. No private-key value is shown.",
+      "alt": "Empty Ethereum and EVM private-key import"
+    }
+  ],
+  "add-another-wallet": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    },
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets"
+    }
+  ],
+  "wallet-balances": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    },
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets"
+    }
+  ],
+  "customize-wallet": [
+    {
+      "image": "guide-help-customize",
+      "caption": "Use a recognizable local name and color, then finish with the displayed confirmation control.",
+      "alt": "Wallet name and color customization",
+      "step": 1
+    },
+    {
+      "image": "guide-help-wallet-details",
+      "caption": "Check the wallet name before choosing customization, recovery, private-key, backup or removal actions.",
+      "alt": "Settings for one example wallet"
+    }
+  ],
+  "wallet-settings-shortcut": [
+    {
+      "image": "guide-help-customize",
+      "caption": "Use a recognizable local name and color, then finish with the displayed confirmation control.",
+      "alt": "Wallet name and color customization",
+      "step": 1
+    },
+    {
+      "image": "guide-help-wallet-details",
+      "caption": "Check the wallet name before choosing customization, recovery, private-key, backup or removal actions.",
+      "alt": "Settings for one example wallet"
+    }
+  ],
+  "reorder-wallets": [
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets",
+      "step": 1
+    },
+    {
+      "image": "guide-help-wallet-details",
+      "caption": "Check the wallet name before choosing customization, recovery, private-key, backup or removal actions.",
+      "alt": "Settings for one example wallet"
+    }
+  ],
+  "add-passphrase": [
+    {
+      "image": "guide-help-passphrase",
+      "caption": "Select the appropriate recovery-phrase wallet before creating its passphrase-derived wallet.",
+      "alt": "Additional BIP-39 passphrase flow",
+      "step": 1
+    },
+    {
+      "image": "guide-help-passphrase-entry",
+      "caption": "The additional passphrase changes the derived wallet. Enter the exact value privately and keep it with your recovery plan.",
+      "alt": "Empty BIP-39 passphrase fields"
+    }
+  ],
+  "backup-all-wallets": [
+    {
+      "image": "guide-help-backup",
+      "caption": "This simulator has no iCloud account, so it shows the real unavailable state. This is not a completed backup; use an eligible signed-in device to upload.",
+      "alt": "Backup page showing iCloud unavailable",
+      "step": 1
+    },
+    {
+      "image": "guide-help-backup-password",
+      "caption": "Set and confirm the password for the encrypted backup. Empty fields are shown deliberately; the screenshot does not demonstrate an upload.",
+      "alt": "Empty encrypted-backup password form"
+    }
+  ],
+  "backup-one-wallet": [
+    {
+      "image": "guide-help-backup",
+      "caption": "This simulator has no iCloud account, so it shows the real unavailable state. This is not a completed backup; use an eligible signed-in device to upload.",
+      "alt": "Backup page showing iCloud unavailable",
+      "step": 1
+    },
+    {
+      "image": "guide-help-backup-password",
+      "caption": "Set and confirm the password for the encrypted backup. Empty fields are shown deliberately; the screenshot does not demonstrate an upload.",
+      "alt": "Empty encrypted-backup password form"
+    }
+  ],
+  "backup-password": [
+    {
+      "image": "guide-help-backup",
+      "caption": "This simulator has no iCloud account, so it shows the real unavailable state. This is not a completed backup; use an eligible signed-in device to upload.",
+      "alt": "Backup page showing iCloud unavailable",
+      "step": 1
+    },
+    {
+      "image": "guide-help-backup-password",
+      "caption": "Set and confirm the password for the encrypted backup. Empty fields are shown deliberately; the screenshot does not demonstrate an upload.",
+      "alt": "Empty encrypted-backup password form"
+    }
+  ],
+  "backup-status": [
+    {
+      "image": "guide-help-backup",
+      "caption": "This simulator has no iCloud account, so it shows the real unavailable state. This is not a completed backup; use an eligible signed-in device to upload.",
+      "alt": "Backup page showing iCloud unavailable",
+      "step": 1
+    },
+    {
+      "image": "guide-help-backup-password",
+      "caption": "Set and confirm the password for the encrypted backup. Empty fields are shown deliberately; the screenshot does not demonstrate an upload.",
+      "alt": "Empty encrypted-backup password form"
+    }
+  ],
+  "icloud-troubleshooting": [
+    {
+      "image": "guide-help-backup",
+      "caption": "This simulator has no iCloud account, so it shows the real unavailable state. This is not a completed backup; use an eligible signed-in device to upload.",
+      "alt": "Backup page showing iCloud unavailable",
+      "step": 1
+    }
+  ],
+  "restore-icloud": [
+    {
+      "image": "guide-help-restore",
+      "caption": "A device without an available iCloud account cannot list and restore backups. After resolving availability, select the actual file and supply its original password.",
+      "alt": "Restore from iCloud unavailable state",
+      "step": 1
+    }
+  ],
+  "view-recovery-phrase": [
+    {
+      "image": "guide-help-wallet-details",
+      "caption": "Check the wallet name before choosing customization, recovery, private-key, backup or removal actions.",
+      "alt": "Settings for one example wallet",
+      "step": 1
+    },
+    {
+      "image": "guide-recovery-warning",
+      "caption": "The capture stops before recovery material is revealed. Authenticate and view your own secret only in a private place.",
+      "alt": "Recovery material safety gate"
+    }
+  ],
+  "view-private-key": [
+    {
+      "image": "guide-help-wallet-details",
+      "caption": "Check the wallet name before choosing customization, recovery, private-key, backup or removal actions.",
+      "alt": "Settings for one example wallet",
+      "step": 1
+    },
+    {
+      "image": "guide-recovery-warning",
+      "caption": "The capture stops before recovery material is revealed. Authenticate and view your own secret only in a private place.",
+      "alt": "Recovery material safety gate"
+    }
+  ],
+  "move-to-new-phone": [
+    {
+      "image": "guide-help-restore",
+      "caption": "A device without an available iCloud account cannot list and restore backups. After resolving availability, select the actual file and supply its original password.",
+      "alt": "Restore from iCloud unavailable state",
+      "step": 1
+    },
+    {
+      "image": "guide-help-import",
+      "caption": "Enter words privately in their original order, or use Paste or the scan control. Recovery words are deliberately absent from all screenshots.",
+      "alt": "Empty recovery phrase import form"
+    }
+  ],
+  "unlock-wallet": [
+    {
+      "image": "guide-unlock",
+      "alt": "Empty Enter Passcode unlock screen",
+      "caption": "Enter the existing app passcode to unlock. No digits or biometric credentials are shown in this example.",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "enable-passcode": [
+    {
+      "image": "guide-passcode",
+      "caption": "Enter and confirm your own app passcode privately. The screenshot shows an empty setup screen, not a usable passcode.",
+      "alt": "Six-digit passcode setup",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "change-passcode": [
+    {
+      "image": "guide-passcode",
+      "caption": "Enter and confirm your own app passcode privately. The screenshot shows an empty setup screen, not a usable passcode.",
+      "alt": "Six-digit passcode setup",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "enable-face-id": [
+    {
+      "image": "guide-passcode",
+      "caption": "Enter and confirm your own app passcode privately. The screenshot shows an empty setup screen, not a usable passcode.",
+      "alt": "Six-digit passcode setup",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "disable-security": [
+    {
+      "image": "guide-passcode",
+      "caption": "Enter and confirm your own app passcode privately. The screenshot shows an empty setup screen, not a usable passcode.",
+      "alt": "Six-digit passcode setup",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "auto-lock": [
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings",
+      "step": 1
+    },
+    {
+      "image": "guide-help-autolock",
+      "caption": "Choose a supported delay. Sensitive actions may still require their own authentication.",
+      "alt": "Auto-lock timing choices"
+    }
+  ],
+  "lock-now": [
+    {
+      "image": "guide-unlock",
+      "alt": "Empty Enter Passcode unlock screen",
+      "caption": "Enter the existing app passcode to unlock. No digits or biometric credentials are shown in this example.",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "forgot-passcode": [
+    {
+      "image": "guide-unlock",
+      "alt": "Empty Enter Passcode unlock screen",
+      "caption": "Enter the existing app passcode to unlock. No digits or biometric credentials are shown in this example.",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "security-settings-access": [
+    {
+      "image": "guide-unlock",
+      "alt": "Empty Enter Passcode unlock screen",
+      "caption": "Enter the existing app passcode to unlock. No digits or biometric credentials are shown in this example.",
+      "step": 1
+    },
+    {
+      "image": "guide-09-security",
+      "caption": "Security settings group passcode, biometric, locking and app-switcher privacy controls. No authentication secret is shown.",
+      "alt": "Passcode and Face ID settings"
+    }
+  ],
+  "hide-balances": [
+    {
+      "image": "guide-hidden-balances",
+      "alt": "Home with balances hidden",
+      "caption": "The hidden-value state conceals amounts on Home. It does not remove public blockchain activity or replace authentication.",
+      "step": 1
+    }
+  ],
+  "portfolio-values": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    }
+  ],
+  "asset-order": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    }
+  ],
+  "reset-app": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-welcome",
+      "caption": "Choose creation for a new wallet, import for an existing phrase, or More Options for other supported recovery routes.",
+      "alt": "Oath Welcome screen"
+    }
+  ],
+  "asset-screen": [
+    {
+      "image": "guide-02-bitcoin-market",
+      "caption": "The asset page separates the owned quantity, market price/chart and account activity. This example uses synthetic market values.",
+      "alt": "Bitcoin asset page and market chart",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "prices-chart": [
+    {
+      "image": "guide-02-bitcoin-market",
+      "caption": "The asset page separates the owned quantity, market price/chart and account activity. This example uses synthetic market values.",
+      "alt": "Bitcoin asset page and market chart",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "asset-transaction-history": [
+    {
+      "image": "guide-02-bitcoin-market",
+      "caption": "The asset page separates the owned quantity, market price/chart and account activity. This example uses synthetic market values.",
+      "alt": "Bitcoin asset page and market chart",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "asset-information": [
+    {
+      "image": "guide-asset-info",
+      "caption": "Use asset information to confirm the network and asset identity before following project or explorer links.",
+      "alt": "Ethereum asset information",
+      "step": 1
+    },
+    {
+      "image": "guide-02-bitcoin-market",
+      "caption": "The asset page separates the owned quantity, market price/chart and account activity. This example uses synthetic market values.",
+      "alt": "Bitcoin asset page and market chart"
+    }
+  ],
+  "search-assets": [
+    {
+      "image": "guide-asset-search",
+      "caption": "Use Wallet search for an asset name or exact supported token identity. A token symbol alone does not establish its network.",
+      "alt": "Wallet asset search",
+      "step": 1
+    },
+    {
+      "image": "guide-token-review",
+      "caption": "Review the network, full contract reference, name and symbol before adding a token. A logo is not a security guarantee.",
+      "alt": "USD Coin contract review on Ethereum"
+    }
+  ],
+  "add-custom-token": [
+    {
+      "image": "guide-asset-search",
+      "caption": "Use Wallet search for an asset name or exact supported token identity. A token symbol alone does not establish its network.",
+      "alt": "Wallet asset search",
+      "step": 1
+    },
+    {
+      "image": "guide-token-review",
+      "caption": "Review the network, full contract reference, name and symbol before adding a token. A logo is not a security guarantee.",
+      "alt": "USD Coin contract review on Ethereum"
+    }
+  ],
+  "token-not-found": [
+    {
+      "image": "guide-asset-search",
+      "caption": "Use Wallet search for an asset name or exact supported token identity. A token symbol alone does not establish its network.",
+      "alt": "Wallet asset search",
+      "step": 1
+    },
+    {
+      "image": "guide-token-review",
+      "caption": "Review the network, full contract reference, name and symbol before adding a token. A logo is not a security guarantee.",
+      "alt": "USD Coin contract review on Ethereum"
+    }
+  ],
+  "unverified-tokens": [
+    {
+      "image": "guide-asset-search",
+      "caption": "Use Wallet search for an asset name or exact supported token identity. A token symbol alone does not establish its network.",
+      "alt": "Wallet asset search",
+      "step": 1
+    },
+    {
+      "image": "guide-token-review",
+      "caption": "Review the network, full contract reference, name and symbol before adding a token. A logo is not a security guarantee.",
+      "alt": "USD Coin contract review on Ethereum"
+    }
+  ],
+  "wrong-network": [
+    {
+      "image": "guide-05-receive",
+      "caption": "Read the network guidance beneath the QR, then copy or share the public address using the bottom buttons. Never fund this example address.",
+      "alt": "Ethereum receiving QR and address",
+      "step": 1
+    },
+    {
+      "image": "guide-receive-about",
+      "caption": "Read the network-specific receiving explanation before sharing the address or adding an unfamiliar token.",
+      "alt": "About the receiving address"
+    }
+  ],
+  "bitcoin-gap-limit": [
+    {
+      "image": "guide-receive-bitcoin",
+      "caption": "Check the selected Bitcoin address and type before copying or sharing it. Do not fund this demonstration address.",
+      "alt": "Bitcoin receive screen",
+      "step": 1
+    },
+    {
+      "image": "guide-receive-bitcoin-types",
+      "caption": "Choose one of the address formats actually supported by this wallet. Imported keys can expose fewer choices.",
+      "alt": "Bitcoin address-type selector"
+    }
+  ],
+  "arc-usdc": [
+    {
+      "image": "guide-chain-arc",
+      "caption": "Open the Arc asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Arc asset screen",
+      "step": 1
+    }
+  ],
+  "robinhood-chain": [
+    {
+      "image": "guide-chain-robinhood",
+      "caption": "Open the Robinhood Chain asset and verify its network before using Send or Receive. Displayed holdings and activity are illustrative; missing market data is not a zero asset balance.",
+      "alt": "Robinhood Chain asset screen",
+      "step": 1
+    }
+  ],
+  "transaction-list": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "transaction-status": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "canceled-replaced": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "copy-transaction-id": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "network-fee": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "full-transaction-history": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "spam-history": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "zero-value-transactions": [
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions",
+      "step": 1
+    },
+    {
+      "image": "guide-04-transaction",
+      "caption": "Read the amount and status separately. The ellipsis at the top contains screenshot sharing, link sharing and the explorer action.",
+      "alt": "Transaction details with asset badge and ellipsis"
+    }
+  ],
+  "search-transactions": [
+    {
+      "image": "guide-history-search",
+      "caption": "History search is scoped to transactions. Clear the query or filters when a known entry is not visible.",
+      "alt": "History transaction search",
+      "step": 1
+    },
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions"
+    }
+  ],
+  "filter-transactions": [
+    {
+      "image": "guide-history-filters",
+      "caption": "Choose the desired transaction filters and review the resulting scope. Filtering hides rows; it does not remove on-chain transactions.",
+      "alt": "Native transaction filter sheet",
+      "step": 1
+    },
+    {
+      "image": "guide-03-activity",
+      "caption": "History shows activity for the selected wallet. Open a row for its status, network, identifiers and fee; these rows are illustrative.",
+      "alt": "History with sample transactions"
+    }
+  ],
+  "address-book": [
+    {
+      "image": "guide-help-contacts",
+      "caption": "Saved contacts hold network-specific public destinations. Verify the address even when a name is familiar.",
+      "alt": "Address book with a synthetic contact",
+      "step": 1
+    },
+    {
+      "image": "guide-contact-editor",
+      "caption": "Enter a recognizable name and add the intended public destination. Cancel if its ownership or network is uncertain.",
+      "alt": "New contact form"
+    },
+    {
+      "image": "guide-contact-address",
+      "caption": "Save the destination under its correct network and label. The address in this example is demonstration data.",
+      "alt": "Contact network and address editor"
+    }
+  ],
+  "contact-address": [
+    {
+      "image": "guide-help-contacts",
+      "caption": "Saved contacts hold network-specific public destinations. Verify the address even when a name is familiar.",
+      "alt": "Address book with a synthetic contact",
+      "step": 1
+    },
+    {
+      "image": "guide-contact-editor",
+      "caption": "Enter a recognizable name and add the intended public destination. Cancel if its ownership or network is uncertain.",
+      "alt": "New contact form"
+    },
+    {
+      "image": "guide-contact-address",
+      "caption": "Save the destination under its correct network and label. The address in this example is demonstration data.",
+      "alt": "Contact network and address editor"
+    }
+  ],
+  "edit-contact": [
+    {
+      "image": "guide-help-contacts",
+      "caption": "Saved contacts hold network-specific public destinations. Verify the address even when a name is familiar.",
+      "alt": "Address book with a synthetic contact",
+      "step": 1
+    },
+    {
+      "image": "guide-contact-editor",
+      "caption": "Enter a recognizable name and add the intended public destination. Cancel if its ownership or network is uncertain.",
+      "alt": "New contact form"
+    },
+    {
+      "image": "guide-contact-address",
+      "caption": "Save the destination under its correct network and label. The address in this example is demonstration data.",
+      "alt": "Contact network and address editor"
+    }
+  ],
+  "delete-contact": [
+    {
+      "image": "guide-help-contacts",
+      "caption": "Saved contacts hold network-specific public destinations. Verify the address even when a name is familiar.",
+      "alt": "Address book with a synthetic contact",
+      "step": 1
+    },
+    {
+      "image": "guide-contact-editor",
+      "caption": "Enter a recognizable name and add the intended public destination. Cancel if its ownership or network is uncertain.",
+      "alt": "New contact form"
+    },
+    {
+      "image": "guide-contact-address",
+      "caption": "Save the destination under its correct network and label. The address in this example is demonstration data.",
+      "alt": "Contact network and address editor"
+    }
+  ],
+  "search-contacts": [
+    {
+      "image": "guide-help-contacts",
+      "caption": "Saved contacts hold network-specific public destinations. Verify the address even when a name is familiar.",
+      "alt": "Address book with a synthetic contact",
+      "step": 1
+    },
+    {
+      "image": "guide-contact-editor",
+      "caption": "Enter a recognizable name and add the intended public destination. Cancel if its ownership or network is uncertain.",
+      "alt": "New contact form"
+    },
+    {
+      "image": "guide-contact-address",
+      "caption": "Save the destination under its correct network and label. The address in this example is demonstration data.",
+      "alt": "Contact network and address editor"
+    }
+  ],
+  "currency": [
+    {
+      "image": "guide-help-currency",
+      "caption": "Choose the currency used for available valuations. This does not exchange any coins or tokens.",
+      "alt": "Display currency selection",
+      "step": 1
+    }
+  ],
+  "language": [
+    {
+      "image": "guide-help-language",
+      "caption": "Choose the interface language. Network names, symbols, addresses and transaction IDs remain asset identifiers.",
+      "alt": "Language selection",
+      "step": 1
+    }
+  ],
+  "appearance": [
+    {
+      "image": "guide-help-appearance",
+      "caption": "Select the appearance you prefer. Wallet color and the app icon are separate choices.",
+      "alt": "Light Dark and System appearance choices",
+      "step": 1
+    }
+  ],
+  "request-feature": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-help-about",
+      "caption": "About provides the Articles, Privacy Policy and Terms of Service links. These open external content; review the destination before interacting.",
+      "alt": "About and support links"
+    }
+  ],
+  "report-bug": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-help-about",
+      "caption": "About provides the Articles, Privacy Policy and Terms of Service links. These open external content; review the destination before interacting.",
+      "alt": "About and support links"
+    }
+  ],
+  "contact-support": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-help-about",
+      "caption": "About provides the Articles, Privacy Policy and Terms of Service links. These open external content; review the destination before interacting.",
+      "alt": "About and support links"
+    }
+  ],
+  "about-legal": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-help-about",
+      "caption": "About provides the Articles, Privacy Policy and Terms of Service links. These open external content; review the destination before interacting.",
+      "alt": "About and support links"
+    }
+  ],
+  "in-app-browser": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-help-about",
+      "caption": "About provides the Articles, Privacy Policy and Terms of Service links. These open external content; review the destination before interacting.",
+      "alt": "About and support links"
+    }
+  ],
+  "help-center": [
+    {
+      "image": "guide-help-settings",
+      "caption": "Open the appropriate settings row for wallets, backup, security, contacts, appearance or support.",
+      "alt": "Oath Settings list",
+      "step": 1
+    },
+    {
+      "image": "guide-help-about",
+      "caption": "About provides the Articles, Privacy Policy and Terms of Service links. These open external content; review the destination before interacting.",
+      "alt": "About and support links"
+    }
+  ],
+  "home-scanner": [
+    {
+      "image": "guide-01-portfolio",
+      "caption": "Check the active wallet in the toolbar, then use Send, Receive, asset filters or the bottom History and Search controls. Balances are illustrative.",
+      "alt": "Home with a synthetic portfolio",
+      "step": 1
+    },
+    {
+      "image": "guide-help-import",
+      "caption": "Enter words privately in their original order, or use Paste or the scan control. Recovery words are deliberately absent from all screenshots.",
+      "alt": "Empty recovery phrase import form"
+    }
+  ],
+  "confirmation-checkmark": [
+    {
+      "image": "guide-history-filters",
+      "caption": "Choose the desired transaction filters and review the resulting scope. Filtering hides rows; it does not remove on-chain transactions.",
+      "alt": "Native transaction filter sheet",
+      "step": 1
+    },
+    {
+      "image": "guide-07-wallets",
+      "caption": "Names, colors, balances and the active badge distinguish wallets. Choose the intended wallet before starting an action.",
+      "alt": "Wallet switcher with three example wallets"
+    }
+  ]
+}

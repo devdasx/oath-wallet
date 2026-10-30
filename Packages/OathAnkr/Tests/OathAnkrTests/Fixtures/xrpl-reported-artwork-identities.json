@@ -1,0 +1,30 @@
+[
+  {
+    "hash": "86914b5fcd3b",
+    "network": "xrp",
+    "reference": "4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
+    "coinID": "societe-generale-forge-eurcv",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/xrp/assets/4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL/logo.png"
+  },
+  {
+    "hash": "f3ab5f81417d",
+    "network": "xrp",
+    "reference": "5852504300000000000000000000000000000000.rHTZAic4QVErSS2AMbPJUe3zdUJPgWzXJe",
+    "coinID": "xrp-classic-new",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/xrp/assets/5852504300000000000000000000000000000000.rHTZAic4QVErSS2AMbPJUe3zdUJPgWzXJe/logo.png"
+  },
+  {
+    "hash": "771d178931fa",
+    "network": "xrp",
+    "reference": "5852504800000000000000000000000000000000.rM8hNqA3jRJ5Zgp3Xf3xzdZcx2G37guiZk",
+    "coinID": "xrp-healthcare",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/xrp/assets/5852504800000000000000000000000000000000.rM8hNqA3jRJ5Zgp3Xf3xzdZcx2G37guiZk/logo.png"
+  },
+  {
+    "hash": "e676b739ed53",
+    "network": "xrp",
+    "reference": "CTF.r9Xzi4KsSF1Xtr8WHyBmUcvfP9FzTyG5wp",
+    "coinID": "crypto-trading-fund",
+    "url": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/xrp/assets/CTF.r9Xzi4KsSF1Xtr8WHyBmUcvfP9FzTyG5wp/logo.png"
+  }
+]

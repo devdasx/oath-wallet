@@ -1,0 +1,1 @@
+Improved token search and artwork, XRP history recovery, Polkadot transaction retry handling, EVM self-transfer messages, and THORChain WalletConnect compatibility.

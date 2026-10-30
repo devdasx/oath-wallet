@@ -1,0 +1,96 @@
+require "json"
+require "securerandom"
+require "digest"
+require "fileutils"
+require "open3"
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Archive the verified public tag and upload its exact build without review submission"
+  lane :release do
+    root = File.expand_path(ENV.fetch("APP_SOURCE"))
+    temporary = File.expand_path(ENV.fetch("SIGNING_DIRECTORY"))
+    output = File.expand_path(ENV.fetch("RELEASE_OUTPUT"))
+    receipt = JSON.parse(File.read(File.join(output, "source.json")))
+    receipt["workflow_run"] = "#{ENV.fetch('GITHUB_SERVER_URL', 'https://github.com')}/#{ENV.fetch('GITHUB_REPOSITORY', 'devdasx/oath-wallet')}/actions/runs/#{ENV.fetch('GITHUB_RUN_ID', 'local')}"
+    receipt["workflow_commit"] = ENV["GITHUB_SHA"]
+    receipt["toolchain"] = Open3.capture2("xcodebuild", "-version").first.strip
+    notes_root = File.join(root, "Distribution", "metadata", receipt.fetch("version"))
+    notes = Dir.glob(File.join(notes_root, "*", "release_notes.txt"))
+    UI.user_error!("Commit release notes under Distribution/metadata/<version>/<locale>/release_notes.txt") if notes.empty?
+    UI.user_error!("Release metadata must contain release notes only") unless Dir.glob(File.join(notes_root, "**", "*"), File::FNM_DOTMATCH).select { |p| File.file?(p) && !File.basename(p).start_with?("._") }.all? { |p| notes.include?(p) }
+    profile = JSON.parse(File.read(File.join(temporary, "profile.json")))
+    keychain = File.join(temporary, "release.keychain-db")
+    keychain_password = SecureRandom.hex(32)
+    api_key = app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"), issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_filepath: File.join(temporary, "AuthKey.p8"), duration: 1200, in_house: false
+    )
+    app = Spaceship::ConnectAPI::App.find("com.aperture.wallet")
+    UI.user_error!("Oath app was not found in this Apple account") unless app
+    previous = Spaceship::ConnectAPI::Build.all(app_id: app.id, version: receipt.fetch("version"),
+      build_number: receipt.fetch("build"), platform: "IOS")
+    UI.user_error!("This version/build already exists in Apple. Do not replace or reupload it.") unless previous.empty?
+    compliance_file = File.join(root, "Distribution", "app-store-compliance.json")
+    compliance = File.exist?(compliance_file) ? JSON.parse(File.read(compliance_file))["#{receipt.fetch('version')}(#{receipt.fetch('build')})"] : nil
+    uses_non_exempt_encryption = nil
+    if compliance
+      original = Spaceship::ConnectAPI::Build.get(build_id: compliance.fetch("source_build_id"))
+      UI.user_error!("The recorded Apple compliance declaration no longer matches") unless original.uses_non_exempt_encryption == compliance.fetch("uses_non_exempt_encryption") && original.version == compliance.fetch("source_build")
+      uses_non_exempt_encryption = compliance.fetch("uses_non_exempt_encryption")
+    end
+    begin
+      create_keychain(path: keychain, password: keychain_password,
+        default_keychain: false, unlock: true, timeout: 7200, lock_when_sleeps: true)
+      import_certificate(certificate_path: File.join(temporary, "distribution.p12"),
+        certificate_password: ENV.fetch("APPLE_DISTRIBUTION_PASSWORD"),
+        keychain_path: keychain, keychain_password: keychain_password)
+      install_provisioning_profile(path: File.join(temporary, "distribution.mobileprovision"))
+      signing_config = File.join(temporary, "signing.xcconfig")
+      profile_id = profile.fetch("uuid")
+      UI.user_error!("Invalid signing profile identifier") unless profile_id.match?(/\A[A-Za-z0-9-]+\z/)
+      File.write(signing_config, <<~CONFIG)
+        CODE_SIGN_STYLE = Manual
+        DEVELOPMENT_TEAM = C5T44SZNQX
+        CODE_SIGN_IDENTITY = Apple Distribution
+        OATH_RELEASE_PROFILE_OathAtmosphere = #{profile_id}
+        PROVISIONING_PROFILE_SPECIFIER = $(OATH_RELEASE_PROFILE_$(TARGET_NAME))
+      CONFIG
+      receipt["signing_profile_uuid"] = profile_id
+      build_app(project: File.join(root, "OathAtmosphere.xcodeproj"), scheme: "OathAtmosphere",
+        configuration: "Release", clean: true, export_method: "app-store",
+        archive_path: File.join(temporary, "Oath.xcarchive"),
+        output_directory: temporary, output_name: "Oath.ipa", include_symbols: true,
+        buildlog_path: File.join(temporary, "logs"), suppress_xcode_output: true,
+        export_options: {method: "app-store-connect", teamID: "C5T44SZNQX", signingStyle: "manual",
+          manageAppVersionAndBuildNumber: false,
+          provisioningProfiles: {"com.aperture.wallet" => profile.fetch("name")}},
+        xcconfig: signing_config)
+      ipa = File.join(temporary, "Oath.ipa")
+      receipt["ipa_sha256"] = Digest::SHA256.file(ipa).hexdigest
+      receipt["stage"] = "archived"
+      File.write(File.join(output, "receipt.json"), JSON.pretty_generate(receipt))
+      upload_to_testflight(api_key: api_key, ipa: ipa, skip_waiting_for_build_processing: false,
+        distribute_external: false, changelog: nil)
+      receipt["stage"] = "uploaded_awaiting_verification"
+      File.write(File.join(output, "receipt.json"), JSON.pretty_generate(receipt))
+      uploaded = Spaceship::ConnectAPI::Build.all(app_id: app.id, version: receipt.fetch("version"),
+        build_number: receipt.fetch("build"), platform: "IOS").first
+      UI.user_error!("Cannot verify the uploaded Apple build") unless uploaded
+      UI.user_error!("Apple has not validated the uploaded build") unless uploaded.processing_state == "VALID"
+      unless uses_non_exempt_encryption.nil?
+        uploaded = uploaded.update(attributes: {usesNonExemptEncryption: uses_non_exempt_encryption}) if uploaded.uses_non_exempt_encryption.nil?
+      end
+      receipt["stage"] = "uploaded_and_processed"
+      receipt["apple_build_id"] = uploaded.id
+      receipt["apple_processing_state"] = uploaded.processing_state
+      receipt["submitted_for_review"] = false
+      File.write(File.join(output, "receipt.json"), JSON.pretty_generate(receipt))
+    ensure
+      delete_keychain(keychain_path: keychain) if File.exist?(keychain)
+      FileUtils.rm_f(File.expand_path("~/Library/MobileDevice/Provisioning Profiles/#{profile.fetch('uuid')}.mobileprovision"))
+      FileUtils.rm_f(File.expand_path("~/Library/Developer/Xcode/UserData/Provisioning Profiles/#{profile.fetch('uuid')}.mobileprovision"))
+    end
+  end
+end

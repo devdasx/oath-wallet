@@ -1,0 +1,91 @@
+{
+  "Assets": [
+    {
+      "key": "0x682a59d51ab9e48a8c8cc418ff9708d2b5f3822e35ca2f31ce3526eab1363fd2a319d0e87221ca1ee751c1529f201522c0070000",
+      "args": [
+        1984
+      ],
+      "value": "0x40b3b277000000000000000000000000285465746865722055534410555344740600",
+      "metadata": {
+        "deposit": 2008200000,
+        "name": "0x54657468657220555344",
+        "symbol": "0x55534474",
+        "decimals": 6,
+        "isFrozen": false
+      }
+    },
+    {
+      "key": "0x682a59d51ab9e48a8c8cc418ff9708d2b5f3822e35ca2f31ce3526eab1363fd2e0956573baada8dd69fae1cff092d73739050000",
+      "args": [
+        1337
+      ],
+      "value": "0x00a6af770000000000000000000000002055534420436f696e10555344430600",
+      "metadata": {
+        "deposit": 2008000000,
+        "name": "0x55534420436f696e",
+        "symbol": "0x55534443",
+        "decimals": 6,
+        "isFrozen": false
+      }
+    }
+  ],
+  "ForeignAssets": [
+    {
+      "key": "0x30e64a56026f4b5e3c2d196283a9a17db5f3822e35ca2f31ce3526eab1363fd214a55f48ec1b9f14990bbc8756ed6ea7020209070403009d39a5de30e57443bff2a8307a4256c8797a3497",
+      "args": [
+        {
+          "parents": 2,
+          "interior": {
+            "x2": [
+              {
+                "globalConsensus": {
+                  "ethereum": {
+                    "chainId": 1
+                  }
+                }
+              },
+              {
+                "accountKey20": {
+                  "network": null,
+                  "key": "0x9d39a5de30e57443bff2a8307a4256c8797a3497"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "value": "0x000000000000000000000000000000002c5374616b656420555344651473555344651200",
+      "metadata": {
+        "deposit": 0,
+        "name": "0x5374616b65642055534465",
+        "symbol": "0x7355534465",
+        "decimals": 18,
+        "isFrozen": false
+      }
+    },
+    {
+      "key": "0x30e64a56026f4b5e3c2d196283a9a17db5f3822e35ca2f31ce3526eab1363fd216d6d5f41d97d8ad3ec48f161e4322fa0101006d1f",
+      "args": [
+        {
+          "parents": 1,
+          "interior": {
+            "x1": [
+              {
+                "parachain": 2011
+              }
+            ]
+          }
+        }
+      ],
+      "value": "0xa02cb1770000000000000000000000002c457175696c69627269756d0845510900",
+      "metadata": {
+        "deposit": 2008100000,
+        "name": "0x457175696c69627269756d",
+        "symbol": "0x4551",
+        "decimals": 9,
+        "isFrozen": false
+      }
+    }
+  ],
+  "PoolAssets": []
+}

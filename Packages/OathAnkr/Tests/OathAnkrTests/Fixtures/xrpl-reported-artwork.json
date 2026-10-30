@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": "xrpl_4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
+      "type": "token",
+      "attributes": {
+        "address": "4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
+        "image_url": "https://coin-images.coingecko.com/coins/images/33415/large/eurcv_%281%29.png?1701752017"
+      }
+    },
+    {
+      "id": "xrpl_5852504300000000000000000000000000000000.rHTZAic4QVErSS2AMbPJUe3zdUJPgWzXJe",
+      "type": "token",
+      "attributes": {
+        "address": "5852504300000000000000000000000000000000.rHTZAic4QVErSS2AMbPJUe3zdUJPgWzXJe",
+        "image_url": null
+      }
+    },
+    {
+      "id": "xrpl_5852504800000000000000000000000000000000.rM8hNqA3jRJ5Zgp3Xf3xzdZcx2G37guiZk",
+      "type": "token",
+      "attributes": {
+        "address": "5852504800000000000000000000000000000000.rM8hNqA3jRJ5Zgp3Xf3xzdZcx2G37guiZk",
+        "image_url": null
+      }
+    },
+    {
+      "id": "xrpl_CTF.r9Xzi4KsSF1Xtr8WHyBmUcvfP9FzTyG5wp",
+      "type": "token",
+      "attributes": {
+        "address": "CTF.r9Xzi4KsSF1Xtr8WHyBmUcvfP9FzTyG5wp",
+        "image_url": "https://coin-images.coingecko.com/coins/images/37122/large/33DE079C-182B-40D7-B26D-0D7E12158140.jpeg?1713366927"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "brand": "Oath Wallet",
+  "edition": "2026-10",
+  "app_icon_gradient": {
+    "direction": "top-left to bottom-right",
+    "stops": [
+      "#247BFF",
+      "#183ED4"
+    ]
+  },
+  "colours": {
+    "Signal Blue": "#247BFF",
+    "Cobalt": "#183ED4",
+    "White": "#FFFFFF",
+    "Ink": "#0B0B0D"
+  }
+}

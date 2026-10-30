@@ -1,0 +1,153 @@
+name: Release app and website
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version in the public v<version> tag (for example 4.1.3)'
+        required: true
+        type: string
+      build:
+        description: 'Build number in that tag (for example 86)'
+        required: true
+        type: string
+      source_tag:
+        description: 'Optional build tag, e.g. v4.1.3-build87; otherwise v<version>'
+        required: false
+        type: string
+      verify_only:
+        description: 'Check and compile without uploading or deploying'
+        default: true
+        type: boolean
+permissions:
+  contents: read
+concurrency:
+  group: app-store-release
+  cancel-in-progress: false
+jobs:
+  website-checks:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/website-checks.yml
+  app-checks:
+    if: github.ref == 'refs/heads/main'
+    runs-on: xcode-27
+    timeout-minutes: 90
+    outputs:
+      source_commit: ${{ steps.source.outputs.commit }}
+    env:
+      VERSION: ${{ inputs.version }}
+      BUILD: ${{ inputs.build }}
+      SOURCE_TAG: ${{ inputs.source_tag || format('v{0}', inputs.version) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate input syntax
+        run: python3 Distribution/check_inputs.py
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: refs/tags/${{ env.SOURCE_TAG }}
+          fetch-depth: 0
+          path: release-app
+          persist-credentials: false
+      - name: Verify exact tag and project version
+        id: source
+        run: |
+          python3 Distribution/verify_release.py --root release-app --tag "$SOURCE_TAG" --version "$VERSION" --build "$BUILD" --output release-output/source.json
+          python3 -c 'import json,os; open(os.environ["GITHUB_OUTPUT"],"a").write("commit="+json.load(open("release-output/source.json"))["source_commit"]+"\n")'
+
+      - name: Public source and diagnostics checks
+        working-directory: release-app
+        run: |
+          command -v gitleaks >/dev/null || brew install gitleaks
+          python3 Tools/ValidatePublicRelease.py --scan
+          python3 Tools/CheckDiagnosticsCoverage.py
+          swift test --package-path Packages/OathDiagnostics
+      - name: Compile without simulator or phone
+        working-directory: release-app
+        run: |
+          sh Tools/PreparePublicBuild.sh
+          xcodebuild -project OathAtmosphere.xcodeproj -scheme OathAtmosphere -configuration Release -destination 'generic/platform=iOS' -derivedDataPath "$RUNNER_TEMP/verified-build" CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/build.log" 2>&1 || { tail -100 "$RUNNER_TEMP/build.log"; exit 1; }
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: verified-source
+          path: release-output/source.json
+  website:
+    needs: [website-checks, app-checks]
+    if: ${{ !inputs.verify_only }}
+    uses: ./.github/workflows/deploy-website.yml
+    secrets: inherit
+  app-store:
+    needs: [website-checks, app-checks]
+    if: ${{ !inputs.verify_only }}
+    runs-on: xcode-27
+    environment: production-app-store
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    timeout-minutes: 120
+    env:
+      VERSION: ${{ inputs.version }}
+      BUILD: ${{ inputs.build }}
+      SOURCE_TAG: ${{ inputs.source_tag || format('v{0}', inputs.version) }}
+      APP_SOURCE: ${{ github.workspace }}/release-app
+      SIGNING_DIRECTORY: ${{ github.workspace }}/release-output/signing
+      RELEASE_OUTPUT: ${{ github.workspace }}/release-output
+      ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+      ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+      FASTLANE_SKIP_UPDATE_CHECK: '1'
+      FASTLANE_HIDE_CHANGELOG: '1'
+      FASTLANE_OPT_OUT_USAGE: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.app-checks.outputs.source_commit }}
+          path: release-app
+          fetch-depth: 0
+          persist-credentials: false
+      - run: python3 Distribution/verify_release.py --root release-app --tag "$SOURCE_TAG" --version "$VERSION" --build "$BUILD" --output release-output/source.json
+      - uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+          working-directory: Distribution/ios
+      - name: Prepare signing and provider configuration
+        env:
+          ASC_API_KEY_P8_BASE64: ${{ secrets.ASC_API_KEY_P8_BASE64 }}
+          APPLE_DISTRIBUTION_P12_BASE64: ${{ secrets.APPLE_DISTRIBUTION_P12_BASE64 }}
+          APPLE_DISTRIBUTION_PASSWORD: ${{ secrets.APPLE_DISTRIBUTION_PASSWORD }}
+          APPLE_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
+          OATH_PROVIDER_CONFIGURATION_BASE64: ${{ secrets.OATH_PROVIDER_CONFIGURATION_BASE64 }}
+        run: python3 Distribution/prepare_signing.py --root "$APP_SOURCE" --temporary "$SIGNING_DIRECTORY"
+      - name: Verify Wallet Core symbols
+        run: python3 release-app/Tools/PrepareWalletCoreSymbols.py
+      - name: Archive and upload the exact build without review submission
+        id: publish
+        working-directory: Distribution/ios
+        env:
+          APPLE_DISTRIBUTION_PASSWORD: ${{ secrets.APPLE_DISTRIBUTION_PASSWORD }}
+        run: bundle exec fastlane ios release
+      - name: Attest the public source and Apple build receipt
+        if: ${{ !cancelled() && hashFiles('release-output/receipt.json') != '' }}
+        id: attestation
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: release-output/receipt.json
+      - name: Publish evidence only
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: app-store-release-receipt
+          path: |
+            release-output/source.json
+            release-output/receipt.json
+            ${{ steps.attestation.outputs.bundle-path }}
+      - name: Remove temporary credentials and signed products
+        if: always()
+        run: |
+          security delete-keychain "$SIGNING_DIRECTORY/release.keychain-db" 2>/dev/null || true
+          rm -rf "$SIGNING_DIRECTORY"
+          rm -f "$APP_SOURCE/OathApp/Private/TokenRPC.plist"

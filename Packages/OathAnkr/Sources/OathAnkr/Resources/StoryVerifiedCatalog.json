@@ -1,0 +1,14 @@
+{
+  "networkID": "story",
+  "decimalsByReference": {},
+  "referencesWithoutDecimals": [
+    "0x1514000000000000000000000000000000000000",
+    "0x543374350269cce6651358769512875faa4cccff",
+    "0x693c7acf65e52c71bafe555bc22d69cb7f8a78a2",
+    "0xa4f5c615f72ddeb2220471694fff1c0c3de051e1",
+    "0xbab93b7ad7fe8692a878b95a8e689423437cc500",
+    "0xc9cbbd8f211300dd0e7a3933b7aeedac6f61dd52",
+    "0xf1815bd50389c46847f0bda824ec8da914045d14"
+  ],
+  "source": "CoinGecko verified snapshot 2026-10-17"
+}

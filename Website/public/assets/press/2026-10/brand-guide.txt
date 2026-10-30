@@ -1,0 +1,28 @@
+OATH WALLET — BRAND NOTES
+Updated October 19, 2026
+
+Name: Oath Wallet. Short name: Oath.
+Current app icon: Signal Blue gradient with white interlocking rings.
+Colours: Signal Blue #247BFF; Cobalt #183ED4; White #FFFFFF; Ink #0B0B0D.
+The icon gradient runs diagonally from Signal Blue to cobalt.
+
+Use the provided SVG masters when a scalable symbol is required.
+Use the PNG artwork for layouts that need a raster image.
+The square app-icon source is 1024 x 1024. Its rounded corners on the
+press page are a display treatment; the source file remains square.
+
+Preserve the supplied shapes and proportions. Leave clear space around
+the mark. Use the white symbol on blue or dark backgrounds and the ink
+symbol on white or light backgrounds. Do not stretch, redraw, recolour,
+or add shadows to the logo. Use the current blue identity instead of the
+former multicolour app icon for new coverage.
+
+The horizontal logo artwork uses the original Oath wordmark. Do not
+retype or reconstruct the wordmark as a substitute for these files.
+
+Product previews use illustrative balances and activity. They are
+editorial product images, not live balances or financial projections.
+Features and availability vary by network and app version.
+
+For other formats or questions: care@oathwallet.org
+Official press page: https://oathwallet.org/press

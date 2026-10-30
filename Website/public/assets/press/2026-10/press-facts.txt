@@ -1,0 +1,61 @@
+# Oath Wallet press kit
+
+Updated October 19, 2026. Official logos, product previews, brand colours and press copy for Oath Wallet.
+
+[Download the full press kit](https://oathwallet.org/assets/press/2026-10/oath-press-kit.zip)
+
+## At a glance
+
+- **Product:** Oath Wallet; Oath for short.
+- **Category:** Self-custody Bitcoin and crypto wallet.
+- **Platform:** Native iPhone and iPad app, available on the [App Store](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283).
+- **Price:** Free to download. Blockchain network fees apply to transactions.
+- **Source:** [Public source code on GitHub](https://github.com/devdasx/oath-wallet).
+- **Company:** STAGE AND STYLE COLLECTIVE LLC.
+- **Founder & CEO:** Marco Valenti — [@MarcoValentiX](https://x.com/MarcoValentiX).
+- **Previously known as:** Aperture. Please use Oath Wallet in new coverage.
+- **Press contact:** [care@oathwallet.org](mailto:care@oathwallet.org?subject=Press%20inquiry).
+- **Social:** [@OathWallet](https://x.com/OathWallet).
+
+## Short introduction
+
+Oath is a self-custody Bitcoin and crypto wallet for iPhone and iPad. It brings supported coins and tokens together in a native interface, with simple sending and receiving, WalletConnect for dApps, and public source code on GitHub.
+
+## Longer introduction
+
+Oath Wallet is a self-custody Bitcoin and crypto wallet built natively for iPhone and iPad. It brings supported assets, balances, and transaction activity into one place, with clear send and receive flows and WalletConnect for connecting to dApps. Wallet tools include watch-only addresses, multiple Bitcoin address formats, physical-entropy wallet creation, and optional encrypted iCloud backups restored with the matching passkey. Oath publishes its source code on GitHub, alongside documentation of its security scope and release process. The app is free to download; blockchain network fees apply to transactions. Oath Wallet is developed by STAGE AND STYLE COLLECTIVE LLC and was previously known as Aperture.
+
+## Source and builds
+
+Oath’s maintainers confirm that the App Store release corresponds to the published GitHub source. This is a maintainer statement, distinct from an independent reproducible-build comparison. For precise coverage, use the published scope and release documentation.
+
+[Security page](https://oathwallet.org/security) · [Source statement](https://github.com/devdasx/oath-wallet#app-store-source-correspondence)
+
+## Current identity
+
+Our two interlocking rings retain their original proportions. The current app icon pairs a white symbol with a Signal Blue to cobalt gradient. Use this blue identity instead of the former multicolour icon in new coverage.
+
+- **Signal Blue:** #247BFF.
+- **Cobalt:** #183ED4.
+- **White:** #FFFFFF.
+- **Ink:** #0B0B0D.
+- **App icon:** [PNG, 1024 × 1024](https://oathwallet.org/assets/press/2026-10/oath-app-icon.png) · [SVG](https://oathwallet.org/assets/press/2026-10/oath-app-icon.svg).
+- **White symbol:** [SVG](https://oathwallet.org/assets/press/2026-10/oath-mark-white.svg) · [PNG](https://oathwallet.org/assets/press/2026-10/oath-mark-white.png).
+- **Ink symbol:** [SVG](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.svg) · [PNG](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.png).
+- **Horizontal logo:** [Ink PNG](https://oathwallet.org/assets/press/2026-10/oath-wordmark-ink.png) · [White PNG](https://oathwallet.org/assets/press/2026-10/oath-wordmark-white.png).
+
+Use the supplied artwork, keep space around the mark, and choose a background with clear contrast. Please don’t stretch, redraw, recolour, or add shadows to the logo.
+
+## Product previews
+
+Full-resolution iPhone product previews, each 1206 × 2622 PNG:
+
+- [Your portfolio](https://oathwallet.org/assets/press/2026-10/oath-portfolio-iphone.png).
+- [Market context](https://oathwallet.org/assets/press/2026-10/oath-market-iphone.png).
+- [Simple receiving](https://oathwallet.org/assets/press/2026-10/oath-receive-iphone.png).
+
+Product previews use illustrative balances and activity. Features and availability vary by network and app version.
+
+## Press inquiries
+
+For interviews, product details, or a different asset, email [care@oathwallet.org](mailto:care@oathwallet.org?subject=Press%20inquiry) with the subject “Press inquiry”.

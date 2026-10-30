@@ -1,0 +1,724 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "Oath Wallet is the invariant app brand and bundle name.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oath Wallet"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "CFBundleName": {
+      "comment": "Oath Wallet is the invariant app brand and bundle name.",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oath Wallet"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "NSCameraUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የዋሌት አድራሻዎችን፣ የመመለሻ ሐረጎችንና WalletConnect QR ኮዶችን ስካን አድርግ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امسح عناوين المحافظ وعبارات الاسترداد ورموز QR لـ WalletConnect."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ওয়ালেট ঠিকানা, পুনরুদ্ধার বাক্যাংশ ও WalletConnect QR কোড স্ক্যান করুন।"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skenujte adresy peněženek, obnovovací fráze a QR kódy WalletConnect."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan walletadresser, gendannelsesfraser og WalletConnect-QR-koder."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scanne Wallet-Adressen, Wiederherstellungsphrasen und WalletConnect-QR-Codes."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σαρώστε διευθύνσεις πορτοφολιών, φράσεις ανάκτησης και κωδικούς QR WalletConnect."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan wallet addresses, recovery phrases and WalletConnect QR codes."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escanea direcciones de cartera, frases de recuperación y códigos QR de WalletConnect."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نشانی کیف پول، عبارت بازیابی و کدهای QR مربوط به WalletConnect را اسکن کنید."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skannaa lompakko-osoitteita, palautuslauseita ja WalletConnect-QR-koodeja."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mag-scan ng mga wallet address, recovery phrase at WalletConnect QR code."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scannez des adresses de portefeuille, des phrases de récupération et des codes QR WalletConnect."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "વૉલેટ સરનામાં, પુનઃપ્રાપ્તિ શબ્દસમૂહ અને WalletConnect QR કોડ સ્કૅન કરો."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duba adiresoshin walat, jimlolin dawo da walat da lambobin QR na WalletConnect."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סריקת כתובות ארנק, ביטויי שחזור וקודי QR של WalletConnect."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉलेट पते, रिकवरी फ़्रेज़ और WalletConnect QR कोड स्कैन करें।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skenirajte adrese novčanika, fraze za oporavak i WalletConnect QR kodove."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tárcacímek, helyreállító szósorok és WalletConnect QR-kódok beolvasása."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pindai alamat dompet, frasa pemulihan, dan kode QR WalletConnect."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scansiona indirizzi wallet, frasi di recupero e codici QR WalletConnect."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウォレットアドレス、リカバリーフレーズ、WalletConnectのQRコードをスキャンします。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "დაასკანირეთ საფულის მისამართები, აღდგენის ფრაზები და WalletConnect-ის QR კოდები."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ស្កេនអាសយដ្ឋានកាបូប ឃ្លាស្ដារ និងកូដ QR WalletConnect។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ವ್ಯಾಲೆಟ್ ವಿಳಾಸಗಳು, ಮರುಪಡೆಯುವ ನುಡಿಗಟ್ಟುಗಳು ಮತ್ತು WalletConnect QR ಕೋಡ್‌ಗಳನ್ನು ಸ್ಕ್ಯಾನ್ ಮಾಡಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지갑 주소, 복구 구문 및 WalletConnect QR 코드를 스캔합니다."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാലറ്റ് വിലാസങ്ങളും വീണ്ടെടുക്കൽ വാക്യങ്ങളും WalletConnect QR കോഡുകളും സ്കാൻ ചെയ്യുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉलेट पत्ते, पुनर्प्राप्ती वाक्यांश आणि WalletConnect QR कोड स्कॅन करा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imbas alamat dompet, frasa pemulihan dan kod QR WalletConnect."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ပိုက်ဆံအိတ်လိပ်စာများ၊ ပြန်လည်ရယူရေးစကားစုများနှင့် WalletConnect QR ကုဒ်များကို စကင်ဖတ်ပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skann lommebokadresser, gjenopprettingsfraser og WalletConnect-QR-koder."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वालेट ठेगाना, पुनःप्राप्ति वाक्यांश र WalletConnect QR कोड स्क्यान गर्नुहोस्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scan walletadressen, herstelzinnen en WalletConnect-QR-codes."
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ୱାଲେଟ ଠିକଣା, ରିକଭରି ଫ୍ରେଜ୍ ଓ WalletConnect QR କୋଡ୍ ସ୍କାନ୍ କରନ୍ତୁ।"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਵਾਲਿਟ ਪਤੇ, ਰਿਕਵਰੀ ਸ਼ਬਦ ਅਤੇ WalletConnect QR ਕੋਡ ਸਕੈਨ ਕਰੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skanuj adresy portfeli, frazy odzyskiwania i kody QR WalletConnect."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escaneie endereços de carteira, frases de recuperação e códigos QR do WalletConnect."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leia endereços de carteiras, frases de recuperação e códigos QR do WalletConnect."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scanează adrese de portofel, fraze de recuperare și coduri QR WalletConnect."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сканируйте адреса кошельков, фразы восстановления и QR-коды WalletConnect."
+          }
+        },
+        "sd": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "والٽ جا پتا، بحالي وارا جملا ۽ WalletConnect QR ڪوڊ اسڪين ڪريو."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පසුම්බි ලිපින, ප්‍රතිසාධන වාක්‍ය ඛණ්ඩ සහ WalletConnect QR කේත ස්කෑන් කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skenujte adresy peňaženiek, obnovovacie frázy a QR kódy WalletConnect."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skenirajte naslove denarnic, obnovitvene fraze in kode QR WalletConnect."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skanna plånboksadresser, återställningsfraser och WalletConnect-QR-koder."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changanua anwani za pochi, maneno ya kurejesha na misimbo ya QR ya WalletConnect."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பணப்பை முகவரிகள், மீட்புச் சொற்றொடர்கள் மற்றும் WalletConnect QR குறியீடுகளை ஸ்கேன் செய்யவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాలెట్ చిరునామాలు, రికవరీ పదబంధాలు, WalletConnect QR కోడ్‌లను స్కాన్ చేయండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "สแกนที่อยู่กระเป๋า วลีกู้คืน และรหัส QR WalletConnect"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cüzdan adreslerini, kurtarma ifadelerini ve WalletConnect QR kodlarını tarayın."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скануйте адреси гаманців, фрази відновлення та QR-коди WalletConnect."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "والیٹ پتے، بازیابی عبارتیں اور WalletConnect QR کوڈز اسکین کریں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamyon manzillari, tiklash iboralari va WalletConnect QR kodlarini skanerlang."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quét địa chỉ ví, cụm từ khôi phục và mã QR WalletConnect."
+          }
+        },
+        "yo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ṣàyẹ̀wò àdírẹ́sì àpamọ́wọ́, gbólóhùn ìmúpadàbọ̀ àti kóòdù QR WalletConnect."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "扫描钱包地址、助记词及 WalletConnect 二维码。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "掃描錢包地址、復原詞及 WalletConnect QR 碼。"
+          }
+        }
+      }
+    },
+    "NSFaceIDUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ዋሌትህን በፍጥነትና በደህና ለመክፈት Face ID ተጠቀም።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استخدم Face ID للوصول السريع والآمن إلى محفظتك."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "দ্রুত ও নিরাপদে ওয়ালেট খুলতে Face ID ব্যবহার করুন।"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Používejte Face ID pro rychlý a bezpečný přístup k peněžence."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brug Face ID til at få hurtig og sikker adgang til din wallet."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nutze Face ID für schnellen, sicheren Wallet-Zugriff."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Χρησιμοποιήστε το Face ID για γρήγορη και ασφαλή πρόσβαση στο πορτοφόλι σας."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Face ID for quick, secure access to your wallet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa Face ID para acceder a tu cartera de forma rápida y segura."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "برای دسترسی سریع و امن به کیف پول خود از Face ID استفاده کنید."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avaa lompakkosi nopeasti ja turvallisesti Face ID -tunnistuksella."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gamitin ang Face ID para sa mabilis at ligtas na pag-access sa wallet mo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisez Face ID pour accéder rapidement et en toute sécurité à votre portefeuille."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તમારા વૉલેટમાં ઝડપી, સુરક્ષિત પ્રવેશ માટે Face ID વાપરો."
+          }
+        },
+        "ha": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yi amfani da Face ID don samun damar walat ɗinka cikin sauri da tsaro."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניתן להשתמש ב־Face ID לגישה מהירה ומאובטחת לארנק שלך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने वॉलेट को जल्दी और सुरक्षित खोलने के लिए Face ID इस्तेमाल करें।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Koristite Face ID za brz i siguran pristup svom novčaniku."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Használd a Face ID-t a tárcád gyors és biztonságos eléréséhez."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gunakan Face ID untuk akses cepat dan aman ke dompet Anda."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa Face ID per accedere al wallet in modo rapido e sicuro."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face IDですばやく安全にウォレットにアクセスします。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თქვენს საფულეზე სწრაფი და უსაფრთხო წვდომისთვის გამოიყენეთ Face ID."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប្រើ Face ID សម្រាប់ចូលកាបូបរហ័ស និងសុវត្ថិភាព។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ನಿಮ್ಮ ವ್ಯಾಲೆಟ್‌ಗೆ ತ್ವರಿತ, ಸುರಕ್ಷಿತ ಪ್ರವೇಶಕ್ಕಾಗಿ Face ID ಬಳಸಿ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID로 지갑에 빠르고 안전하게 접근하세요."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "വാലറ്റിൽ വേഗത്തിലും സുരക്ഷിതമായും പ്രവേശിക്കാൻ Face ID ഉപയോഗിക്കുക."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वॉलेटमध्ये जलद आणि सुरक्षित प्रवेशासाठी Face ID वापरा."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gunakan Face ID untuk akses pantas dan selamat ke dompet anda."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ပိုက်ဆံအိတ်သို့ မြန်ဆန်လုံခြုံစွာ ဝင်ရောက်ရန် Face ID သုံးပါ။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bruk Face ID for rask og sikker tilgang til lommeboken din."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "वालेटमा छिटो र सुरक्षित पहुँचका लागि Face ID प्रयोग गर्नुहोस्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gebruik Face ID voor snelle en veilige toegang tot je wallet."
+          }
+        },
+        "or": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ୱାଲେଟକୁ ଦ୍ରୁତ ଓ ସୁରକ୍ଷିତ ପ୍ରବେଶ ପାଇଁ Face ID ବ୍ୟବହାର କରନ୍ତୁ।"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਆਪਣੇ ਵਾਲਿਟ ਤੱਕ ਤੇਜ਼ ਅਤੇ ਸੁਰੱਖਿਅਤ ਪਹੁੰਚ ਲਈ Face ID ਵਰਤੋ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Używaj Face ID, aby szybko i bezpiecznie uzyskiwać dostęp do portfela."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Face ID para acessar sua carteira com rapidez e segurança."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilize Face ID para aceder à carteira de forma rápida e segura."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Folosește Face ID pentru acces rapid și sigur la portofel."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используйте Face ID для быстрого и безопасного доступа к кошельку."
+          }
+        },
+        "sd": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پنهنجي والٽ تائين تڪڙي، محفوظ رسائي لاءِ Face ID استعمال ڪريو."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "පසුම්බියට ඉක්මන්, ආරක්ෂිත ප්‍රවේශයට Face ID භාවිත කරන්න."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Používajte Face ID pre rýchly a bezpečný prístup k peňaženke."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uporabite Face ID za hiter in varen dostop do denarnice."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Använd Face ID för snabb och säker åtkomst till din plånbok."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumia Face ID kwa ufikiaji wa haraka na salama wa pochi yako."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "பணப்பையை விரைவாகவும் பாதுகாப்பாகவும் அணுக Face ID-ஐப் பயன்படுத்தவும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ వాలెట్‌కు త్వరగా, సురక్షితంగా ప్రవేశించడానికి Face ID వాడండి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ Face ID เพื่อเข้าถึงกระเป๋าอย่างรวดเร็วและปลอดภัย"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cüzdanınıza hızlı ve güvenli erişim için Face ID kullanın."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Використовуйте Face ID для швидкого й безпечного доступу до гаманця."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "والیٹ تک تیز اور محفوظ رسائی کے لیے Face ID استعمال کریں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamyoningizga tez va xavfsiz kirish uchun Face ID dan foydalaning."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng Face ID để truy cập ví nhanh chóng, an toàn."
+          }
+        },
+        "yo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo Face ID fún ìwọlé tó yára tó sì ní ààbò sí àpamọ́wọ́ rẹ."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Face ID 快捷、安全地访问钱包。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Face ID，快速、安全地存取您的錢包。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

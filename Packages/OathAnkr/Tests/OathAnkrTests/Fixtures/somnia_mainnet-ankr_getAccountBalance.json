@@ -1,0 +1,1 @@
+{"id":1,"jsonrpc":"2.0","result":{"totalBalanceUsd":"0","totalCount":0,"assets":[],"syncStatus":{"timestamp":1791744347,"blockNumber":435904463,"lag":"-2s","status":"synced"}},"_fixtureNote":"Public response; balance inventory trimmed to first eight assets with adjusted totalCount. No other values changed."}

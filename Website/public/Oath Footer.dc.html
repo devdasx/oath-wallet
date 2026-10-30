@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<template data-oath-template>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<script src="oath-icons.js"></script>
+</helmet>
+<footer style="border-top:1px solid rgba(242,240,234,.12);background:#0A0A0B;color:#F2F0EA">
+  <div style="max-width:1320px;margin:0 auto;padding:56px clamp(20px,5vw,32px) 36px;display:flex;flex-direction:column;gap:clamp(40px,7vw,64px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:36px 32px">
+      <div style="display:flex;flex-direction:column;gap:14px;grid-column:{{ span }}">
+        <div style="display:flex;align-items:center;gap:10px"><img src="{{ mark }}" alt="" style="display:block;width:30px;height:20px" role="presentation"><span style="font:600 20px/1 'Instrument Sans',sans-serif;letter-spacing:-.03em">Oath</span></div>
+        <span style="font:400 italic 22px/1.2 'Instrument Serif',serif;color:#8E8C86">A wallet, not a marketplace.</span>
+      </div>
+      <sc-for list="{{ cols }}" as="col" hint-placeholder-count="3">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="margin-bottom:8px;font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">{{ col.h }}</span>
+          <sc-for list="{{ col.links }}" as="l" hint-placeholder-count="4"><a href="{{ l.href }}" style="display:flex;align-items:center;min-height:40px;font:400 15px/1 'Instrument Sans',sans-serif;color:#D6D4CD;text-decoration:none" style-hover="color:#FFFFFF">{{ l.t }}</a></sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div aria-hidden="true" style="font:400 clamp(80px,19vw,300px)/.8 'Instrument Serif',serif;letter-spacing:-.04em;color:#6E6C67;user-select:none">Oath</div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid rgba(242,240,234,.12);font:400 13px/1.4 'Instrument Sans',sans-serif;color:#8E8C86">
+      <span>© 2026 Oath. A self-custody wallet — Oath never holds or controls your funds.</span>
+      <div style="display:flex;gap:22px"><a href="https://x.com/OathWallet" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;min-height:44px;color:#8E8C86;text-decoration:none" style-hover="color:#FFFFFF"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:block"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.1l-4.8-6.3L6.6 22H3.5l7.3-8.3L1 2h6.2l4.4 5.8Zm-1.1 18.2h1.7L6.3 3.7H4.5Z"></path></svg>@OathWallet</a></div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+</template>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:560},&quot;mark&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/assets/brand/oath-mark-dark.svg&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { vw: typeof window !== 'undefined' ? window.innerWidth : 1200, ready: typeof window !== 'undefined' && !!window.OathIcons };
+  componentDidMount() {
+    const tick = () => { if (window.OathIcons) this.setState({ ready: true }); else this._t = setTimeout(tick, 40); };
+    if (!this.state.ready) tick();
+    this._r = () => this.setState({ vw: window.innerWidth });
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { clearTimeout(this._t); window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const I = this.state.ready && window.OathIcons;
+    const mark = this.props.mark || '/assets/brand/oath-mark-dark.svg';
+    return {
+      mark,
+      span: this.state.vw < 760 ? '1 / -1' : 'auto',
+      cols: [
+        { h: 'Product', links: [['Home', 'https://oathwallet.org/'], ['Features', 'https://oathwallet.org/features'], ['Networks', 'https://oathwallet.org/networks'], ['Security', 'https://oathwallet.org/security'], ['Open source', 'https://github.com/devdasx/oath-wallet'], ['Download', 'https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283']] },
+        { h: 'Help', links: [['About Oath', 'https://oathwallet.org/about'], ['Help Center', 'https://help.oathwallet.org/'], ['Articles', 'https://articles.oathwallet.org/'], ['Contact', 'mailto:care@oathwallet.org'], ['Press kit', 'https://oathwallet.org/press']] },
+        { h: 'Legal', links: [['Terms of Service', 'https://oathwallet.org/terms'], ['Privacy Policy', 'https://oathwallet.org/privacy']] },
+      ].map(c => ({ h: c.h, links: c.links.map(([t, href]) => ({ t, href })) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

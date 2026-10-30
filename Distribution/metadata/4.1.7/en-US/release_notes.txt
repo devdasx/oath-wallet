@@ -1,0 +1,1 @@
+Improved Bitcoin-family wallet discovery and refresh efficiency with fuller address-query batches, bounded parallel work and better Electrum provider fallback handling. Existing address-gap and balance-validation checks remain in place.

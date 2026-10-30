@@ -1,0 +1,1 @@
+Improved Solana WalletConnect compatibility and durable-nonce transaction review. Expanded swap and bridge history, including native-token execution and CCTP transfers. Improved token artwork recovery and handling of unavailable data providers.

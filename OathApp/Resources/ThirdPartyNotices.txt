@@ -1,0 +1,773 @@
+Muun iOS keypad
+
+OathNumericKeypad adapts the layout, font metrics, touch feedback, and delete artwork from Muun Wallet. Oath does not use Muun wallet services or wallet code.
+
+Source: https://github.com/muun/falcon/tree/d6719c00f96d2ecbde2ab6588f95e54975ceea0e
+Reference files: Presentation/Component/Keyboard/KeyboardView.swift and KeyboardView.xib; Resource/Constant/Constant.swift; Resource/Assets.xcassets/erase.imageset.
+
+The MIT License (MIT)
+
+Copyright (c) 2021 Muun Wallet, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+BIP-39 word lists and reference validation fixtures
+
+Official word lists: https://github.com/bitcoin/bips/tree/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0039
+BIP-39 specification: https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0039.mediawiki (MIT licensed).
+Word lists are also distributed by the reference implementation under the license below. The application includes only the word lists; the Python implementation is used only for development validation.
+
+The MIT License (MIT)
+
+Copyright (c) 2013-2016 Pavol Rusnak
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Trust Wallet Core 4.8.4
+https://github.com/trustwallet/wallet-core/releases/tag/4.8.4
+
+                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   Copyright 2017 Trust Wallet
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
+Receive asset artwork
+
+Network-specific example asset metadata and original project logos are sourced
+from CoinGecko token lists and coin metadata (retrieved 2026-10-11):
+https://tokens.coingecko.com/
+https://www.coingecko.com/
+
+Token names and logos belong to their respective projects. They identify example
+assets, not endorsements. WebP sources are decoded to PNG for the asset catalog.
+The source manifest records each network, contract or issuer, artwork URL and
+SHA-256 digest. Existing native network artwork retains its original attribution.
+
+Token search catalog
+
+The bundled discovery snapshot and selected common-token metadata were retrieved
+from CoinGecko on 2026-10-19. Search refreshes the public directory in the background.
+Data provided by CoinGecko: https://www.coingecko.com/
+Directory: https://api.coingecko.com/api/v3/coins/list?include_platform=true
+Metadata: https://docs.coingecko.com/reference/coins-id
+Catalog inclusion is not a security endorsement or a guarantee of issuer support.
+Token identity includes its network and contract, mint, issuer or denomination.
+
+
+Bitcoin Dev Kit Swift 3.1.1
+
+Source: https://github.com/bitcoindevkit/bdk-swift/tree/3.1.1
+Used for Bitcoin public derivation, script/address handling, and transaction parsing.
+Distributed under the MIT option of its dual MIT/Apache-2.0 license.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+SwiftDraw 0.29.0
+
+Source: https://github.com/swhitty/SwiftDraw/tree/0.29.0
+Used for native vector token artwork rendering.
+
+Copyright (c) 2019 Simon Whitty
+
+This software is provided 'as-is', without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+
+
+swift-secp256k1 0.23.2 and libsecp256k1
+
+Source: https://github.com/21-DOT-DEV/swift-secp256k1/tree/0.23.2
+Used for Bitcoin Cash replay-protected ECDSA signing. Only the libsecp256k1 C target is linked.
+
+MIT License
+
+Copyright (c) 2026 Timechain Software Initiative, Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Copyright (c) 2013 Pieter Wuille
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+@ton/ton 16.3.0 — pinned Wallet V4R2 contract bytecode
+
+Source: https://github.com/ton-org/ton
+
+The MIT License (MIT)
+
+Copyright (c) 2021-2023 Whales Corp.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+TweetNaCl.js — public-input field arithmetic for Solana PDA derivation
+Source: https://github.com/dchest/tweetnacl-js
+Public domain (Unlicense). Ported field multiplication, reduction and point
+decompression only. Private-key signing uses Apple's CryptoKit.
+
+
+Reown Swift WalletConnect SDK 2.4.0
+
+Portions © 2025 Reown, Inc. All Rights Reserved
+Source: https://github.com/reown-com/reown-swift/tree/2.4.0
+Local modifications: optional socket error reporting and propagation of native
+write failures in the relay dispatcher. Modified files carry dated notices.
+
+**WALLETCONNECT COMMUNITY LICENSE AGREEMENT**
+
+**Release Date: 20 August 2025**
+
+You, or the company or organization of which you are an employee, agent, or contractor (“**You**”, “**Your**”), desire a license from Reown, Inc. (“**We**”, “**Us**”, “**Our**”) to use the WalletKit software development kit, documentation and related materials (collectively, “**WalletKit Items**”).  Before You access the WalletKit Items, We need to establish what you can expect from Us, and what We expect from You. By accessing and using the WalletKit Items, You confirm that You reviewed and You agree to this License Agreement (“**License**”), and that You are authorized to bind the company or organization you represent to this License. ***By downloading, installing, integrating and/or using the*** *WalletKit **Items, you or the organization you represent, as applicable, agree to be bound by and become a party to this License as a "Licensee". If you do not agree to all of the terms of this License, you are not a Licensee and you may not download, install, or use (or must cease using) the WalletKit Items.*** 
+
+**1\.	LICENSE**
+
+**a.	Grant of Rights.** Subject to the terms and conditions of this License We grant You (and not Your affiliates or related persons), and You accept, a perpetual (subject to Section 8(b) Termination), non-exclusive, non-transferable (subject to Section 11(c) Assignment), non-sublicensable, and worldwide license under Our intellectual property rights to use, display, copy, transmit, distribute, modify, adapt, and create derivative works of the WalletKit Items. 
+
+**b.	Educational, Research and New Application Uses.**  If You are using the WalletKit Items for educational or non-commercial research purposes, the License We grant You is royalty-free. In addition, Your use of WalletKit Items for development, maintenance and enhancement of Your applications and wallets is royalty-free, subject to Section 3\.
+
+**c.	 Modification of WalletKit Items.** We own all right, title and interest to the intellectual property rights (including, but not limited to patent, copyright, and trademark rights) to any modification to or derivative work of the WalletKit Items that You may develop, and you hereby assign any and all such rights to such modifications and derivative works to Us, subject to the following:
+
+(i) We hereby grant back to You a perpetual, non-exclusive, non-transferable, royalty-free, worldwide right and license to use these modifications and derivative works solely in conjunction with the WalletKit Items and only while this License remains in effect. You must cause any modified files to carry prominent notices stating that You changed the files. We and our assignees and Our and their licensees may use such modifications and derivative works without any approval from You and without compensation or attribution to You. You also agree to provide the source and binary code of any such modifications and derivative works to Us at the email address We may designate from time to time. 
+
+	(ii) For the avoidance of doubt, Your applications and wallets that you develop using the WalletKit Items are not modifications or derivative works of the WalletKit Items. You retain all rights to your applications and wallets, and you have no obligation to share or license Your applications or wallets with Us or with any third parties; provided, however, We retain all rights to the WalletKit Items and any modifications or derivative works thereof that may be incorporated into your applications and wallets.
+
+**2\.	REDISTRIBUTION AND USE**
+
+**a.	Distribution Requirements.** If You distribute or make available the WalletKit Items (including any modifications to or derivative works thereof) or any product or service that uses them (including Your applications and wallets), You must (i) include the following copyright notice in the notices or readme.txt of the product, or the about section of the website for the services: “Portions © 2025 Reown, Inc. All Rights Reserved” ; (ii)  provide a copy of this License Agreement with any applications or wallets containing such WalletKit Items or that are required for the use thereof; and (iii) applicable logo and branding.
+
+**b.	Network Connection.** As a material condition of this License, all use, distribution or derivatives works of the WalletKit Items must connect to the proprietary Reown gateway infrastructure, or its successor, and its related WalletConnect messaging protocol (collectively, the “**Network**”) unless we explicitly approve you doing otherwise. You further agree not to circumvent this requirement, or instruct or suggest to Your end users to do so. 
+
+**c.	Compliance with Law.** We are not in a position to monitor and assess the legality and regulatory treatment of your business and operations. Your use of the WalletKit Items must comply with all applicable laws and regulations and Our Terms of Service and Acceptable Use Policy, as amended from time to time, the terms of which are incorporated herein by reference.
+
+**d.	Use of Marks.** This License does not grant permission to use Our trade names, trademarks, service marks, or product names (collectively, the “**Marks**”), except as permitted by Our Marks usage guidelines or as required for disclosure of the development of Your applications or wallets, reproducing the attribution notice in the readme.txt file, or Your redistribution of WalletKit Items. We reserve all rights not expressly granted to you under this License. Unless explicitly approved by Us, in no event will You use Our name, trademarks, or logos to endorse or imply Our endorsement of products derived from WalletKit Items or any products or services that use WalletKit Items. Where You are permitted to use the Marks, You must comply with Our then-current trademark and logo usage guidelines, as may be updated from time to time without notice from Us. All goodwill arising out of Your use of any Mark will inure solely to Us.
+
+**e.	Export Controls.** You and We acknowledge that the WalletKit Items and all related technical information, documents and materials are subject to export controls under the U.S. Export Administration Regulations. You and We will (i) comply strictly with all legal requirements established under these controls, (ii) cooperate fully with each other in any official or unofficial audit or inspection that relates to these controls and (iii) not export, re-export, divert or transfer, directly or indirectly, any such item or direct products thereof to Cuba, Iran, North Korea, Sudan, and the Crimea, Donetsk, Luhansk, Kherson and Zaporizhzhia region not controlled by the government of Ukraine, or any national thereof or to any country or national thereof that is embargoed by Executive order, unless such party has obtained the prior written authorization of the other party and U.S. Commerce Department.  We may modify this list to conform to changes in the U.S. Export Administration Regulations.
+
+**3\.	LIMITED COMMERCIAL USE** 
+
+If the number of remote processing calls (RPCs) made by, or monthly active users of (MAUs), associated with Your application or wallet developed using WalletKit Items, or your product or service that uses WalletKit Items exceed the thresholds set forth below, determined in our sole discretion, You must enter into and pay applicable fees and charges for a commercial license. You may contact Reown for these purposes using [this form](https://share.hsforms.com/1_oWa8QkwRXi6oR0nZ_SIxQnxw6s). 
+
+* Monthly RPC limit of 2,500,000 
+
+* Monthly MAU limit of 500
+
+MAU means, as applicable: (1) a  unique externally owned account that authenticates and connects to your app in a 30 day period; or (2) a unique embedded wallet that is created on, and authenticates and connects, to your app in a 30 day period
+
+We reserve the right to change the RPC and/or MAU limit thresholds and/or set different or additional triggers or thresholds for requiring a commercial license. The current thresholds or triggers for a commercial license may be published on Our [Terms of Service](https://reown.com/terms-of-service).
+
+**4\. 	DISCLAIMER OF WARRANTY**
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE WALLETKIT ITEMS ARE PROVIDED “AS IS” WITHOUT WARRANTIES OF ANY KIND. ALL WARRANTIES, CONDITIONS, REPRESENTATIONS, INDEMNITIES AND GUARANTEES WITH RESPECT TO THE WALLETKIT ITEMS, WHETHER EXPRESS OR IMPLIED, ARISING BY LAW, CUSTOM, PRIOR ORAL OR WRITTEN STATEMENTS BY US OR OTHERWISE (INCLUDING, BUT NOT LIMITED TO ANY WARRANTY OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR PARTICULAR PURPOSE AND NON-INFRINGEMENT) ARE HEREBY OVERRIDDEN, EXCLUDED AND DISCLAIMED. SOME JURISDICTIONS DO NOT PERMIT THE DISCLAIMER OF ALL WARRANTIES SO YOU MAY HAVE ADDITIONAL RIGHTS PROVIDED BY LAW.
+
+**5\.	LIMITATION OF LIABILITY**
+
+IN NO EVENT AND UNDER NO LEGAL THEORY, WHETHER IN TORT (INCLUDING NEGLIGENCE), CONTRACT, OR OTHERWISE, UNLESS REQUIRED BY APPLICABLE LAW DESPITE THIS LIMITATION OR AGREED TO IN WRITING BY US, WILL WE BE LIABLE TO YOU OR YOUR LICENSEES OR SUBLICENSEES FOR ANY DAMAGES, INCLUDING ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER ARISING AS A RESULT OF THIS LICENSE OR OUT OF THE USE OR INABILITY TO USE THE WALLETKIT ITEMS OR ANY PORTION THEREOF (INCLUDING BUT NOT LIMITED TO DAMAGES FOR LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER COMMERCIAL DAMAGES OR LOSSES), EVEN IF WE OR OUR AFFILIATES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. SOME JURISDICTIONS DO NOT PERMIT THE EXCLUSION OF ALL DAMAGES SO YOU MAY HAVE ADDITIONAL RIGHTS PROVIDED BY LAW.
+
+**6\.	INTELLECTUAL PROPERTY**
+
+All trademarks, service marks, patents, copyrights, trade secrets, or other proprietary rights in or related to the WalletKit Items are and will remain Our exclusive property (or that of Our licensors).  You will not take any action that jeopardizes those rights, nor will you acquire any right in the WalletKit Items, except the limited use rights specified in this License.  You acknowledge that We (or Our licensors) will own all rights in any copy, translation, modification, adaptation or derivative works of the WalletKit Items (whether or not authorized by Us), and You will provide any instrument We reasonably request that you obtain to give full legal effect to Our rights under this Section.
+
+**7\.	CONFIDENTIALITY**
+
+You acknowledge that the WalletKit Items incorporate nonpublic confidential and proprietary information We have developed or acquired or licensed ("**Confidential Information**").  You will keep the Confidential Information in the strictest confidence and will not use or copy any Confidential Information, or disclose it to any other person.  You will not permit removal or defacing of any confidentiality or proprietary notice placed on or in the WalletKit Items, and any copyright notices on or in these items does not constitute publication or make them non-confidential.
+
+**8\.	TERM AND TERMINATION** 
+
+**a.	Term.** The term of this Agreement will commence upon Your accessing the WalletKit Items and will continue in full force and effect until terminated in accordance with the terms and conditions of this License. As this License is updated for future releases of the WalletKit Items, You must abide by and meet all requirements of future updates of this License for those future releases of WalletKit  Items, and such future updates of this License will apply to such future applications and wallets that may be developed with that future release of WalletKit Items or any portion thereof. You may not use older versions of the SDK to circumvent the terms applicable to new versions you choose to download or use. 
+
+	**b.	Termination.** This License terminates (i) 30 days after either We notify you in writing that You have breached a material term of this License, if that breach is not cured before then, or (ii) immediately and automatically if You are declared bankrupt or become insolvent. Your right to access the Network ceases, if this License terminates, and We may disable Your access to the Network upon such termination. You may terminate this License at any time by disintegrating WalletKit  Items from your products and services and disabling access to the Network. If this License terminates, You must immediately cease all use of and delete the WalletKit Items, in whole or in part, as well as any Confidential Information, in Your possession or control.  At Our request, You will certify Your compliance with these obligations in writing. Sections 2, 4 through 7, 8(b), and 9 through 11 will survive any termination of this Agreement. 
+
+**9\.	GOVERNING LAW** 
+
+This Agreement will be governed and construed under the laws of the State of Delaware, U.S.A., without regard to choice of law principles, and the UN Convention on Contracts for the International Sale of Goods does not apply to this Agreement. 
+
+**10\.	DISPUTE RESOLUTION**
+
+PLEASE READ THE FOLLOWING SECTION CAREFULLY BECAUSE IT REQUIRES YOU TO SUBMIT TO BINDING ARBITRATION (JURY TRIAL WAIVER) OF ANY AND ALL DISPUTES (OTHER THAN SPECIFIED SMALL CLAIMS) WITH REOWN, INC. AND LIMITS THE MANNER IN WHICH YOU CAN SEEK RELIEF FROM REOWN, INC. (NO CLASS ARBITRATIONS, CLASS ACTIONS OR REPRESENTATIVE ACTIONS OR ARBITRATIONS).
+
+**a.	Binding Arbitration; Disputes; Small Claims.** **You and We waive any right to a jury trial, or the right to have any Dispute resolved in any court, and instead accept the use of binding arbitration (which is the referral of a Dispute to one or more impartial persons for a final and binding determination); provided, however, that you have the right to litigate any Dispute in small claims court, if all the requirements of the small claims court, including any limitations on jurisdiction and the amount at issue in the Dispute, are satisfied. You agree to bring a Dispute in small claims court in the State of Delaware**. “**Dispute**” **as used in this Section 10 means any dispute, cause of action, claim, or controversy arising out of or in any way related to Us, this License, the subject matter of this License, or access to and use of the WalletKit Items, in whole or in part, or the Network, including but not limited to personal injury disputes and disputes that involve third parties (such as developers of applications or wallets).**
+
+**b.	No Class Arbitrations, Class Actions or Representative Actions.** **You and We agree that any Dispute is personal to You and Us, and that any Dispute must only be resolved by an individual arbitration and may not be brought as a class arbitration, a class action, or any other representative proceeding. Neither party agrees to class arbitration, or an arbitration where a person brings a Dispute as a representative of any other person or persons. Neither You nor We agree that a Dispute can be brought as a class or representative action whether inside or outside of arbitration, or on behalf of any other person or persons**.
+
+**c.	Federal Arbitration Act.** You and We agree that the terms of this License affect interstate commerce and that the enforceability of Section 10 is governed by, construed, and enforced, both substantively and procedurally, by the Federal Arbitration Act, 9 U.S.C. § 1 et seq. (“**FAA**”) to the maximum extent permitted by applicable law.
+
+**d.	Confidentiality.** The arbitrator, You and We must maintain the confidentiality of any proceedings, including but not limited to, any and all information gathered, prepared, and presented for purposes of the arbitration or related to the Dispute(s) therein. The arbitrator has the authority to make appropriate rulings to safeguard that confidentiality, unless the law provides to the contrary.
+
+**e.	Process.** Our goal is to resolve claims fairly and quickly. Accordingly, for any Dispute that you have against Us, you must first contact Us and attempt to resolve the claim informally by sending a written notice of your claim (“**Notice**”) to Us. The Notice to Us must be sent by certified mail addressed to: Reown Inc., 200 Continental Drive, 401, Newark, DE 19713 USA and a copy must be sent on the same day via email to Legal@walletconnect.com. The Notice must (a) include Your name, residence address, projectID and the email address and/or mobile telephone number associated with your account; (b) describe the nature and basis of the claim; and (c) set forth the specific relief sought. If You and We cannot reach an agreement to resolve the claim within 30 days after such Notice is received, then either party may, as appropriate in accordance with this Section 10, commence an arbitration proceeding or file a claim in small claims court. 
+
+**f.	Binding Arbitration.** In the event that You and We cannot resolve a Dispute and do not pursue the matter through small claims court, You or We must promptly submit the Dispute to binding arbitration before the American Arbitration Association (“**AAA**”). In the event AAA declines or is unable to administer the arbitration, You and We agree to use an arbitration forum or arbitrator that You and We mutually agree upon. If, after making a reasonable effort, You and We are not able to agree upon an arbitration forum or arbitrator, AAA or a court having proper jurisdiction will appoint an arbitration forum or arbitrator. The arbitration will be conducted in accordance with the AAA Consumer Arbitration Rules (“**AAA Rules**”) then in effect. The AAA Rules and other information about AAA and arbitration are readily available at [http://www.adr.org](http://www.adr.org/), by calling 1-800-778-7879, or by mail at 120 Broadway, Floor 21, New York, NY 10271\. By entering into this License, you either (1) acknowledge that you have read and understand the AAA Rules or (2) waive reading the AAA Rules and waive any claim that the AAA Rules are unfair in any way. You and We agree that the terms of this License govern the arbitration, and that the applicable AAA Rules are subject to changes in procedures that AAA may make from time to time.
+
+**g.	Arbitrator Empowered.** As limited by the FAA, the terms of this License, and the applicable AAA Rules, the arbitrator will have the exclusive power and jurisdiction to make all procedural and substantive decisions concerning the Dispute; provided, however, that this power does not include: (i) the power to determine the question of arbitrability, which power You and We agree is vested solely in a court of competent jurisdiction; or (ii) the power to conduct a class arbitration or a representative action, which is prohibited by the terms of this License (as stated above). The arbitrator may only conduct an individual arbitration, and may not consolidate more than one person’s claims and may not preside over any form of representative or class proceeding, or any proceeding on behalf of or involving more than one person or persons.
+
+**11\.	MISCELLANEOUS**
+
+**a.	Amendment.** This License may be amended by Us on a prospective basis, and your usage of the License after such amendments or changes signifies your consent to and acceptance of any such amendments or changes on a going forward basis.
+
+**b.	Severability.** In the event any provision of this License is determined to be invalid, prohibited or unenforceable by a court or other body of competent jurisdiction, this License must be construed as if such invalid, prohibited or unenforceable provision has been more narrowly drawn so as not to be invalid, prohibited or unenforceable.
+
+**c.	Assignment.** You may not assign any rights or obligations under this License, including by operation of law, without Our prior written consent, which may be withheld in its sole discretion. We may assign Our rights or obligations under this License in Our sole discretion.
+
+**d.	Waiver.** Failure of either party at any time to enforce any of the provisions of this License will not be construed as a waiver of such provisions or in any way affect the validity of this License or parts thereof.
+
+
+TON original multisignature contract (@ton/ton 16.3.0)
+
+Source: https://github.com/ton-org/ton/blob/v16.3.0/src/multisig/MultisigWallet.ts
+Oath bundles the unmodified compiled contract cell and implements its message format.
+Code cell hash: 5a55840263d27945feb55b53fa85afa4f9dd61ea573e1eeba1ecac9c96581881
+
+The MIT License (MIT)
+
+Copyright (c) 2021-2023 Whales Corp.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Oath aezeed bridge: bundled third-party licenses
+
+github.com/Yawning/aez — LICENSE
+Creative Commons Legal Code
+
+CC0 1.0 Universal
+
+    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+    HEREUNDER.
+
+Statement of Purpose
+
+The laws of most jurisdictions throughout the world automatically confer
+exclusive Copyright and Related Rights (defined below) upon the creator
+and subsequent owner(s) (each and all, an "owner") of an original work of
+authorship and/or a database (each, a "Work").
+
+Certain owners wish to permanently relinquish those rights to a Work for
+the purpose of contributing to a commons of creative, cultural and
+scientific works ("Commons") that the public can reliably and without fear
+of later claims of infringement build upon, modify, incorporate in other
+works, reuse and redistribute as freely as possible in any form whatsoever
+and for any purposes, including without limitation commercial purposes.
+These owners may contribute to the Commons to promote the ideal of a free
+culture and the further production of creative, cultural and scientific
+works, or to gain reputation or greater distribution for their Work in
+part through the use and efforts of others.
+
+For these and/or other purposes and motivations, and without any
+expectation of additional consideration or compensation, the person
+associating CC0 with a Work (the "Affirmer"), to the extent that he or she
+is an owner of Copyright and Related Rights in the Work, voluntarily
+elects to apply CC0 to the Work and publicly distribute the Work under its
+terms, with knowledge of his or her Copyright and Related Rights in the
+Work and the meaning and intended legal effect of CC0 on those rights.
+
+1. Copyright and Related Rights. A Work made available under CC0 may be
+protected by copyright and related or neighboring rights ("Copyright and
+Related Rights"). Copyright and Related Rights include, but are not
+limited to, the following:
+
+  i. the right to reproduce, adapt, distribute, perform, display,
+     communicate, and translate a Work;
+ ii. moral rights retained by the original author(s) and/or performer(s);
+iii. publicity and privacy rights pertaining to a person's image or
+     likeness depicted in a Work;
+ iv. rights protecting against unfair competition in regards to a Work,
+     subject to the limitations in paragraph 4(a), below;
+  v. rights protecting the extraction, dissemination, use and reuse of data
+     in a Work;
+ vi. database rights (such as those arising under Directive 96/9/EC of the
+     European Parliament and of the Council of 11 March 1996 on the legal
+     protection of databases, and under any national implementation
+     thereof, including any amended or successor version of such
+     directive); and
+vii. other similar, equivalent or corresponding rights throughout the
+     world based on applicable law or treaty, and any national
+     implementations thereof.
+
+2. Waiver. To the greatest extent permitted by, but not in contravention
+of, applicable law, Affirmer hereby overtly, fully, permanently,
+irrevocably and unconditionally waives, abandons, and surrenders all of
+Affirmer's Copyright and Related Rights and associated claims and causes
+of action, whether now known or unknown (including existing as well as
+future claims and causes of action), in the Work (i) in all territories
+worldwide, (ii) for the maximum duration provided by applicable law or
+treaty (including future time extensions), (iii) in any current or future
+medium and for any number of copies, and (iv) for any purpose whatsoever,
+including without limitation commercial, advertising or promotional
+purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
+member of the public at large and to the detriment of Affirmer's heirs and
+successors, fully intending that such Waiver shall not be subject to
+revocation, rescission, cancellation, termination, or any other legal or
+equitable action to disrupt the quiet enjoyment of the Work by the public
+as contemplated by Affirmer's express Statement of Purpose.
+
+3. Public License Fallback. Should any part of the Waiver for any reason
+be judged legally invalid or ineffective under applicable law, then the
+Waiver shall be preserved to the maximum extent permitted taking into
+account Affirmer's express Statement of Purpose. In addition, to the
+extent the Waiver is so judged Affirmer hereby grants to each affected
+person a royalty-free, non transferable, non sublicensable, non exclusive,
+irrevocable and unconditional license to exercise Affirmer's Copyright and
+Related Rights in the Work (i) in all territories worldwide, (ii) for the
+maximum duration provided by applicable law or treaty (including future
+time extensions), (iii) in any current or future medium and for any number
+of copies, and (iv) for any purpose whatsoever, including without
+limitation commercial, advertising or promotional purposes (the
+"License"). The License shall be deemed effective as of the date CC0 was
+applied by Affirmer to the Work. Should any part of the License for any
+reason be judged legally invalid or ineffective under applicable law, such
+partial invalidity or ineffectiveness shall not invalidate the remainder
+of the License, and in such case Affirmer hereby affirms that he or she
+will not (i) exercise any of his or her remaining Copyright and Related
+Rights in the Work or (ii) assert any associated claims and causes of
+action with respect to the Work, in either case contrary to Affirmer's
+express Statement of Purpose.
+
+4. Limitations and Disclaimers.
+
+ a. No trademark or patent rights held by Affirmer are waived, abandoned,
+    surrendered, licensed or otherwise affected by this document.
+ b. Affirmer offers the Work as-is and makes no representations or
+    warranties of any kind concerning the Work, express, implied,
+    statutory or otherwise, including without limitation warranties of
+    title, merchantability, fitness for a particular purpose, non
+    infringement, or the absence of latent or other defects, accuracy, or
+    the present or absence of errors, whether or not discoverable, all to
+    the greatest extent permissible under applicable law.
+ c. Affirmer disclaims responsibility for clearing rights of other persons
+    that may apply to the Work or any use thereof, including without
+    limitation any person's Copyright and Related Rights in the Work.
+    Further, Affirmer disclaims responsibility for obtaining any necessary
+    consents, permissions or other rights required for any use of the
+    Work.
+ d. Affirmer understands and acknowledges that Creative Commons is not a
+    party to this document and has no duty or obligation with respect to
+    this CC0 or use of the Work.
+
+
+
+github.com/kkdai/bstream — LICENSE
+The MIT License (MIT)
+
+Copyright (c) 2015 Evan Lin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+github.com/lightningnetwork/lnd — LICENSE
+Copyright (C) 2015-2022 Lightning Labs and The Lightning Network Developers
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+gitlab.com/yawning/bsaes.git — LICENSE.txt
+Copyright (c) 2016 Thomas Pornin <pornin@bolet.org>
+Copyright (c) 2017 Yawning Angel <yawning at schwanenlied dot me>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+golang.org/x/crypto — LICENSE
+Copyright (c) 2009 The Go Authors. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+Go runtime — LICENSE
+Copyright 2009 The Go Authors.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google LLC nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

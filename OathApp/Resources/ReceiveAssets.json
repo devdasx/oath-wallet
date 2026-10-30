@@ -1,0 +1,1956 @@
+{
+  "networks": {
+    "ethereum": [
+      {
+        "id": "ethereum:0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x6b175474e89094c44da98b954eedeac495271d0f",
+        "name": "Dai",
+        "symbol": "DAI",
+        "artwork": "receive-asset-4b6246f94ce6dee6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+        "name": "Wrapped Bitcoin",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-e4378ba7147c9986",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x514910771af9ca656af840dff83e8264ecf986ca",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+        "name": "Uniswap",
+        "symbol": "UNI",
+        "artwork": "receive-asset-85e520545e9c8666",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+        "name": "Aave",
+        "symbol": "AAVE",
+        "artwork": "receive-asset-4ac951ba6df9ab17",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+        "name": "Ethena USDe",
+        "symbol": "USDE",
+        "artwork": "receive-asset-d13a1e9f105120f2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+        "name": "PayPal USD",
+        "symbol": "PYUSD",
+        "artwork": "receive-asset-5d8f15043dbac733",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ethereum:0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "name": "WETH",
+        "symbol": "WETH",
+        "artwork": "receive-asset-e5dfcae55cefd6d9",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "arbitrum": [
+      {
+        "id": "arbitrum:0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0x912ce59144191c1204e64559fe8253a0e49e6548",
+        "name": "Arbitrum",
+        "symbol": "ARB",
+        "artwork": "receive-asset-ab547326756bb7e3",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+        "name": "Arbitrum Bridged WBTC (Arbitrum One)",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-b742e723b813fc04",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+        "name": "Arbitrum Bridged WETH (Arbitrum One)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-2abc7026e423c4de",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0xf97f4df75117a78c1a5a0dbb814af92458539fb4",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
+        "name": "GMX",
+        "symbol": "GMX",
+        "artwork": "receive-asset-68252e093df0835f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0x0c880f6761f1af8d9aa9c466984b80dab9a8c9e8",
+        "name": "Pendle",
+        "symbol": "PENDLE",
+        "artwork": "receive-asset-f4f5109e55b24cc1",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+        "name": "MakerDAO Arbitrum Bridged DAI (Arbitrum One)",
+        "symbol": "DAI",
+        "artwork": "receive-asset-bc2464468fa2ce2f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arbitrum:0x3d9907f9a368ad0a51be60f7da3b97cf940982d8",
+        "name": "Camelot Token",
+        "symbol": "GRAIL",
+        "artwork": "receive-asset-51b5a309bf74e870",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "arc": [
+      {
+        "id": "arc:0x3600000000000000000000000000000000000000",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0xbef5f6d51cb62b58e6a8f77868681825c6fe21c1",
+        "name": "EURC",
+        "symbol": "EURC",
+        "artwork": "receive-asset-9d1d3dbad9bfdd57",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0x76a443768a5e3b8d1aed0105fc250877841deb40",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0x128cc466b61f542da60c70e3aa11c10e19b84edb",
+        "name": "Arc Bridged WETH (Arc)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-a4273c40dc8e0488",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0x8c4252c87081c88c6ad57d6dd97e1cafebf842b7",
+        "name": "Virtuals Protocol",
+        "symbol": "VIRTUAL",
+        "artwork": "receive-asset-5795da5275e0d606",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0x178b01f61cbea1d2a5581fe1621be607835ec349",
+        "name": "Matrixdock Gold",
+        "symbol": "XAUM",
+        "artwork": "receive-asset-262fd7a89d469f81",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0x4933a85b5b5466fbaf179f72d3de273c287ec2c2",
+        "name": "AllUnity EUR",
+        "symbol": "EURAU",
+        "artwork": "receive-asset-c018e143f464c0a7",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0xc6df1b92a6ae61a27059c41e541a91ce8dcb1605",
+        "name": "AllUnity CHF",
+        "symbol": "CHFAU",
+        "artwork": "receive-asset-3147e5dda03bfebf",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0xd70c2fa4232e054b373efaea98e4138511c2a309",
+        "name": "Stablecorp QCAD",
+        "symbol": "QCAD",
+        "artwork": "receive-asset-082f8436fafe59cc",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "arc:0x303dbb88ba14626c7a927e983b73267c575315f7",
+        "name": "KRW1",
+        "symbol": "KRW1",
+        "artwork": "receive-asset-3dd65801b85329b5",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "avalanche": [
+      {
+        "id": "avalanche:0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+        "name": "Wrapped AVAX",
+        "symbol": "WAVAX",
+        "artwork": "receive-asset-2f708a172b41eb5e",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x152b9d0fdc40c096757f570a51e494bd4b943e50",
+        "name": "Lombard BTC.b",
+        "symbol": "BTC.B",
+        "artwork": "receive-asset-d8363e8cc4007a45",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd",
+        "name": "JOE",
+        "symbol": "JOE",
+        "artwork": "receive-asset-c55750e5d9a1d768",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x5947bb275c521040051d82396192181b413227a3",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x63a72806098bd3d9520cc43356dd78afe5d386d9",
+        "name": "Aave",
+        "symbol": "AAVE",
+        "artwork": "receive-asset-4ac951ba6df9ab17",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x2b2c81e08f1af8835a78bb2a90ae924ace0ea4be",
+        "name": "BENQI Liquid Staked AVAX",
+        "symbol": "SAVAX",
+        "artwork": "receive-asset-83bd13e4a0b7221f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x8729438eb15e2c8b576fcc6aecda6a148776c0f5",
+        "name": "BENQI",
+        "symbol": "QI",
+        "artwork": "receive-asset-1e99b4331dd2e214",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "avalanche:0x60781c2586d68229fde47564546784ab3faca982",
+        "name": "Pangolin",
+        "symbol": "PNG",
+        "artwork": "receive-asset-989ade409dccbcd0",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "base": [
+      {
+        "id": "base:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+        "name": "Coinbase Wrapped BTC",
+        "symbol": "CBBTC",
+        "artwork": "receive-asset-6fbce09cd9822c87",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22",
+        "name": "Coinbase Wrapped Staked ETH",
+        "symbol": "CBETH",
+        "artwork": "receive-asset-7e9e7e23feb1fd52",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x940181a94a35a4569e4529a3cdfb74e38fd98631",
+        "name": "Aerodrome Finance",
+        "symbol": "AERO",
+        "artwork": "receive-asset-3c0ea3fdec804ac8",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+        "name": "Degen",
+        "symbol": "DEGEN",
+        "artwork": "receive-asset-389787093b08a07d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b",
+        "name": "Virtuals Protocol",
+        "symbol": "VIRTUAL",
+        "artwork": "receive-asset-5795da5275e0d606",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
+        "name": "EURC",
+        "symbol": "EURC",
+        "artwork": "receive-asset-9d1d3dbad9bfdd57",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842",
+        "name": "Morpho",
+        "symbol": "MORPHO",
+        "artwork": "receive-asset-8e3fda26e3f40d5e",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x50c5725949a6f0c72e6c4a641f24049a917db0cb",
+        "name": "L2 Standard Bridged DAI (Base)",
+        "symbol": "DAI",
+        "artwork": "receive-asset-d36f198b6b978f9f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "base:0x4200000000000000000000000000000000000006",
+        "name": "L2 Standard Bridged WETH (Base)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-d75228e7805f2579",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "bnb": [
+      {
+        "id": "bnb:0x55d398326f99059ff775485246999027b3197955",
+        "name": "Binance Bridged USDT (BNB Smart Chain)",
+        "symbol": "BSC-USD",
+        "artwork": "receive-asset-44d44f5f1a2c0b9b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+        "name": "Binance Bridged USDC (BNB Smart Chain)",
+        "symbol": "USDC",
+        "artwork": "receive-asset-7138c2bbdf701b91",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+        "name": "PancakeSwap",
+        "symbol": "CAKE",
+        "artwork": "receive-asset-1c9a00617e6a269c",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
+        "name": "Binance Bitcoin",
+        "symbol": "BTCB",
+        "artwork": "receive-asset-0e4c216cdf062b54",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+        "name": "Binance-Peg WETH",
+        "symbol": "WETH",
+        "artwork": "receive-asset-ae9da11641f321ef",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63",
+        "name": "Venus",
+        "symbol": "XVS",
+        "artwork": "receive-asset-edffa72fedb07ab3",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0xc5f0f7b66764f6ec8c8dff7ba683102295e16409",
+        "name": "First Digital USD",
+        "symbol": "FDUSD",
+        "artwork": "receive-asset-ef7abb06cc37c561",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0xbf5140a22578168fd562dccf235e5d43a02ce9b1",
+        "name": "Uniswap",
+        "symbol": "UNI",
+        "artwork": "receive-asset-85e520545e9c8666",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "bnb:0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+        "name": "Wrapped BNB",
+        "symbol": "WBNB",
+        "artwork": "receive-asset-f2fcb9e36d7275d1",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "gnosis": [
+      {
+        "id": "gnosis:0xddafbb505ad214d7b80b1f830fccc89b60fb7a83",
+        "name": "Gnosis xDAI Bridged USDC (Gnosis)",
+        "symbol": "USDC",
+        "artwork": "receive-asset-c8f376f824fe24d2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x4ecaba5870353805a9f068101a40e0f32ed605c6",
+        "name": "xDai Bridged USDT (Gnosis)",
+        "symbol": "USDT",
+        "artwork": "receive-asset-0a4c2462db5c4cc2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x9c58bacc331c9aa871afd802db6379a98e80cedb",
+        "name": "Gnosis",
+        "symbol": "GNO",
+        "artwork": "receive-asset-7fe21a2b5b60272c",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1",
+        "name": "Gnosis xDai Bridged WETH (Gnosis Chain)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-2ae513c6eb8be4f9",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x8e5bbbb09ed1ebde8674cda39a0c169401db4252",
+        "name": "Gnosis xDai Bridged WBTC (Gnosis Chain)",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-a65d106513c4ee9a",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x420ca0f9b9b604ce0fd9c18ef134c705e5fa3430",
+        "name": "Monerium EUR emoney",
+        "symbol": "EURE",
+        "artwork": "receive-asset-5aead6459cb40c58",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0xaf204776c7245bf4147c2612bf6e5972ee483701",
+        "name": "Savings xDAI",
+        "symbol": "SDAI",
+        "artwork": "receive-asset-83f91119ee8acf8b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x7ef541e2a22058048904fe5744f9c7e4c57af717",
+        "name": "Balancer",
+        "symbol": "BAL",
+        "artwork": "receive-asset-b146a0dbcf6c72b8",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0x177127622c4a00f3d409b75571e12cb3c8973d3c",
+        "name": "CoW Protocol",
+        "symbol": "COW",
+        "artwork": "receive-asset-85a858a5b691f3ac",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "gnosis:0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
+        "name": "XDAI",
+        "symbol": "XDAI",
+        "artwork": "receive-asset-f23c254e7ca52274",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "linea": [
+      {
+        "id": "linea:0x1789e0043623282d5dcc7f213d703c6d8bafbb04",
+        "name": "Linea",
+        "symbol": "LINEA",
+        "artwork": "receive-asset-d9f5c5f0c76bc7f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+        "name": "Linea Bridged USDC (Linea)",
+        "symbol": "USDC",
+        "artwork": "receive-asset-a63d2995fd6bd1a4",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0xa219439258ca9da29e9cc4ce5596924745e12b93",
+        "name": "Linea Bridged USDT (Linea)",
+        "symbol": "USDT",
+        "artwork": "receive-asset-64ea007bb00884bf",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
+        "name": "Bridged Wrapped Ether (Linea)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-b70462a2c501a753",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4",
+        "name": "Linea Bridged WBTC (Linea)",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-e44c0961b2d100c1",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0xa18152629128738a5c081eb226335fed4b9c95e9",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0x4af15ec2a0bd43db75dd04e62faa3b8ef36b00d5",
+        "name": "Bridged Dai Stablecoin (Linea)",
+        "symbol": "DAI",
+        "artwork": "receive-asset-0e3e1731caec236f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0xb5bedd42000b71fdde22d3ee8a79bd49a568fc8f",
+        "name": "Linea Bridged wstETH (Linea)",
+        "symbol": "WSTETH",
+        "artwork": "receive-asset-1acd4cf766ac0b34",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0x78354f8dccb269a615a7e0a24f9b0718fdc3c7a7",
+        "name": "ZeroLend",
+        "symbol": "ZERO",
+        "artwork": "receive-asset-8205cd16735d66ba",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "linea:0xaaaac83751090c6ea42379626435f805ddf54dc8",
+        "name": "Nile",
+        "symbol": "NILE",
+        "artwork": "receive-asset-9f17df0a6779e957",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "optimism": [
+      {
+        "id": "optimism:0x4200000000000000000000000000000000000042",
+        "name": "Optimism",
+        "symbol": "OP",
+        "artwork": "receive-asset-c5c473a7474f9dfa",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
+        "name": "Bridged USDT",
+        "symbol": "USDT",
+        "artwork": "receive-asset-0a4c2462db5c4cc2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+        "name": "MakerDAO Optimism Bridged DAI (Optimism)",
+        "symbol": "DAI",
+        "artwork": "receive-asset-bc2464468fa2ce2f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x4200000000000000000000000000000000000006",
+        "name": "L2 Standard Bridged WETH (Optimism)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-2abc7026e423c4de",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x68f180fcce6836688e9084f035309e29bf0a2095",
+        "name": "Wrapped Bitcoin",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-e4378ba7147c9986",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x8700daec35af8ff88c16bdf0418774cb3d7599b4",
+        "name": "Synthetix",
+        "symbol": "SNX",
+        "artwork": "receive-asset-9f5e67faab430176",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x9560e827af36c94d2ac33a39bce1fe78631088db",
+        "name": "Velodrome Finance",
+        "symbol": "VELO",
+        "artwork": "receive-asset-dd8d64d6f32e61f8",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0x1f32b1c2345538c0c6f582fcb022739c4a194ebb",
+        "name": "Superbridge Bridged wstETH (Optimism)",
+        "symbol": "WSTETH",
+        "artwork": "receive-asset-c4798f6a358f5d63",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "optimism:0xc40f949f8a4e094d1b49a23ea9241d289b7b2819",
+        "name": "Liquity USD",
+        "symbol": "LUSD",
+        "artwork": "receive-asset-5dc04cf9682e837d",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "polygon": [
+      {
+        "id": "polygon:0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+        "name": "Polygon PoS Bridged WETH (Polygon POS)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-2abc7026e423c4de",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+        "name": "Polygon Bridged WBTC (Polygon POS)",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-b742e723b813fc04",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+        "name": "Polygon PoS Bridged DAI (Polygon POS)",
+        "symbol": "DAI",
+        "artwork": "receive-asset-bc2464468fa2ce2f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x53e0bca35ec356bd5dddfebbd1fc0fd03fabad39",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0xd6df932a45c0f255f85145f286ea0b292b21c90b",
+        "name": "Aave",
+        "symbol": "AAVE",
+        "artwork": "receive-asset-4ac951ba6df9ab17",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0xb5c064f955d8e7f38fe0460c556a72987494ee17",
+        "name": "Quickswap",
+        "symbol": "QUICK",
+        "artwork": "receive-asset-77b6521188ac21ef",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x385eeac5cb85a38a9a07a70c73e0a3271cfb54a7",
+        "name": "Aavegotchi",
+        "symbol": "GHST",
+        "artwork": "receive-asset-852ca132af0b7205",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polygon:0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
+        "name": "Wrapped POL",
+        "symbol": "WPOL",
+        "artwork": "receive-asset-f9aab2688d512c75",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "scroll": [
+      {
+        "id": "scroll:0xd29687c813d741e2f938f4ac377128810e217b1b",
+        "name": "Scroll",
+        "symbol": "SCR",
+        "artwork": "receive-asset-637d430db18abd13",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x06efdbff2a14a7c8e15944d1f4a48f9f95f663a4",
+        "name": "Bridged USD Coin (Scroll)",
+        "symbol": "USDC",
+        "artwork": "receive-asset-2fe86b2b6dd3dbd2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0xf55bec9cafdbe8730f096aa55dad6d22d44099df",
+        "name": "Scroll Bridged USDT (Scroll)",
+        "symbol": "USDT",
+        "artwork": "receive-asset-fc90d5db881008a0",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x5300000000000000000000000000000000000004",
+        "name": "Bridged Wrapped Ether (Scroll)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-f9aa2ac14b790a9f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x3c1bca5a656e69edcd0d4e36bebb3fcdaca60cf1",
+        "name": "Bridged Wrapped Bitcoin (Scroll)",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-bc757de94493f037",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0xf610a9dfb7c89644979b4a0f27063e9e7d7cda32",
+        "name": "Bridged Wrapped Lido Staked Ether (Scroll)",
+        "symbol": "WSTETH",
+        "artwork": "receive-asset-523d334c246d6de2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x80137510979822322193fc997d400d5a6c747bf7",
+        "name": "StakeStone ETH",
+        "symbol": "STONE",
+        "artwork": "receive-asset-57647545d4005f13",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x01f0a31698c4d065659b9bdc21b3610292a1c506",
+        "name": "Wrapped eETH",
+        "symbol": "WEETH",
+        "artwork": "receive-asset-bd90523ba0d2b065",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+        "name": "Ethena USDe",
+        "symbol": "USDE",
+        "artwork": "receive-asset-d13a1e9f105120f2",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "scroll:0x548c6944cba02b9d1c0570102c89de64d258d3ac",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-7ed6f204a829d675",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "taiko": [
+      {
+        "id": "taiko:0xa9d23408b9ba935c230493c40c73824df71a0975",
+        "name": "Taiko",
+        "symbol": "TAIKO",
+        "artwork": "receive-asset-e91d0350cdd5b78b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0x07d83526730c7438048d55a4fc0b850e2aab6f0b",
+        "name": "Taiko Bridged USDC (Taiko)",
+        "symbol": "USDC",
+        "artwork": "receive-asset-25073c74d3719917",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0x9c2dc7377717603eb92b2655c5f2e7997a4945bd",
+        "name": "Stargate Bridged USDT",
+        "symbol": "USDT",
+        "artwork": "receive-asset-cb34402e5d2e5e43",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0xa51894664a773981c6c112c43ce576f315d5b1b6",
+        "name": "Wrapped ETH (Taiko)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-bd39c087e03ca0fc",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0x917a3964c37993e99a47c779beb5db1e9d13804d",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "artwork": "receive-asset-191802e85520793a",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0xc8f4518ed4bab9a972808a493107926ce8237068",
+        "name": "crvUSD",
+        "symbol": "CRVUSD",
+        "artwork": "receive-asset-810e67436aaad5ff",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0x541fd749419ca806a8bc7da8ac23d346f2df8b77",
+        "name": "Solv Protocol BTC",
+        "symbol": "SOLVBTC",
+        "artwork": "receive-asset-4254a781f131b235",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0xcc0966d8418d412c599a6421b760a847eb169a8c",
+        "name": "Solv Protocol Staked BTC",
+        "symbol": "XSOLVBTC",
+        "artwork": "receive-asset-6201df0ba0b07d7f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0x19e26b0638bf63aa9fa4d14c6baf8d52ebe86c5c",
+        "name": "Stargate Bridged USDC",
+        "symbol": "USDC.E",
+        "artwork": "receive-asset-a1f2455ceddbe84d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "taiko:0x2bd26ba2ef62ff90f807365c2bf363fb3bee9979",
+        "name": "Minterest",
+        "symbol": "MINTY",
+        "artwork": "receive-asset-5e9a51f270fe91a9",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "telos": [
+      {
+        "id": "telos:native",
+        "name": "Telos",
+        "symbol": "TLOS",
+        "artwork": "receive-asset-telos-native",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0xd102ce6a4db07d247fcc28f366a623df0938ca9e",
+        "name": "Wrapped Telos",
+        "symbol": "WTLOS",
+        "artwork": "receive-asset-46fd445856312166",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0xbab93b7ad7fe8692a878b95a8e689423437cc500",
+        "name": "Stargate Bridged WETH",
+        "symbol": "WETH",
+        "artwork": "receive-asset-44a5b7253522ab43",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0x7627b27594bc71e6ab0fce755ae8931eb1e12dac",
+        "name": "Wrapped Bitcoin",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-e4378ba7147c9986",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0x667fd83e24ca1d935d36717d305d54fa0cac991c",
+        "name": "ApeSwap",
+        "symbol": "BANANA",
+        "artwork": "receive-asset-1ec41b96ce643ac5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0xf1815bd50389c46847f0bda824ec8da914045d14",
+        "name": "Stargate Bridged USDC",
+        "symbol": "USDC.E",
+        "artwork": "receive-asset-2af875d5a4906f3d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0x332730a4f6e03d9c55829435f10360e13cfa41ff",
+        "name": "Wrapped POL",
+        "symbol": "WPOL",
+        "artwork": "receive-asset-f9aab2688d512c75",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0xc1be9a4d5d45beeacae296a7bd5fadbfc14602c4",
+        "name": "Wrapped Fantom",
+        "symbol": "WFTM",
+        "artwork": "receive-asset-9747c92ad89ac12b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+        "name": "Elk Finance",
+        "symbol": "ELK",
+        "artwork": "receive-asset-9b3e6d124b76a2c6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "telos:0x7e1cfe10949a6086a28c38aa4a43fdeab34f198a",
+        "name": "Destiny World",
+        "symbol": "DECO",
+        "artwork": "receive-asset-8ac19559c50c84a3",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "xlayer": [
+      {
+        "id": "xlayer:0x74b7f16337b8972027f6196a17a631ac6de26d22",
+        "name": "Polygon Hermez Bridged USDC (X Layer)",
+        "symbol": "USDC",
+        "artwork": "receive-asset-f964cebda9a668ad",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0x1e4a5963abfd975d8c9021ce480b42188849d41d",
+        "name": "Polygon Hermez Bridged USDT (x Layer)",
+        "symbol": "USDT",
+        "artwork": "receive-asset-fc90d5db881008a0",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0x87b4a8176b3df6b71e26cc095edcaf4db07506b4",
+        "name": "PayPal USD",
+        "symbol": "PYUSD",
+        "artwork": "receive-asset-5d8f15043dbac733",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0xe538905cf8410324e03a5a23c1c177a474d59b2b",
+        "name": "Wrapped OKB",
+        "symbol": "WOKB",
+        "artwork": "receive-asset-84cc0f370c4f395e",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0x5a77f1443d16ee5761d310e38b62f77f726bc71c",
+        "name": "x Layer Bridged WETH (x Layer)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-aa46645d86073e0e",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0xe7b000003a45145decf8a28fc755ad5ec5ea025a",
+        "name": "OKX Wrapped ETH",
+        "symbol": "XETH",
+        "artwork": "receive-asset-2b02df7916a24866",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0x505000008de8748dbd4422ff4687a4fc9beba15b",
+        "name": "OKX Wrapped SOL",
+        "symbol": "XSOL",
+        "artwork": "receive-asset-cf733422f9dfbe44",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0xb7c00000bcdeef966b20b3d884b98e64d2b06b4f",
+        "name": "OKX Wrapped BTC",
+        "symbol": "XBTC",
+        "artwork": "receive-asset-8d6b613001533dc4",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0xcef6c74ce218c0e1f48ca2430635d0a65cd3737a",
+        "name": "Satoshi Stablecoin",
+        "symbol": "SATUSD",
+        "artwork": "receive-asset-cebbff2a0f73b370",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xlayer:0x5bff88ca1442c2496f7e475e9e7786383bc070c0",
+        "name": "Frax Staked frxUSD",
+        "symbol": "SFRXUSD",
+        "artwork": "receive-asset-50930ea6817e7dff",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "tron": [
+      {
+        "id": "tron:TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TXDk8mbtRbXeYuMNS83CfKPaYYT8XWv9Hz",
+        "name": "USDD",
+        "symbol": "USDD",
+        "artwork": "receive-asset-55e7afd6d45b3fd6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9",
+        "name": "JUST",
+        "symbol": "JST",
+        "artwork": "receive-asset-d8660cbeadfee05b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S",
+        "name": "Sun Token",
+        "symbol": "SUN",
+        "artwork": "receive-asset-17846eef6a24be7c",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TAFjULxiVgT4qWk6UZwjqwZXTSaGaqnVp4",
+        "name": "BitTorrent",
+        "symbol": "BTT",
+        "artwork": "receive-asset-2ee0a7d3dc4c62ea",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7",
+        "name": "WINkLink",
+        "symbol": "WIN",
+        "artwork": "receive-asset-c58152fba4a7f798",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TFczxzPhnThNSqr5by8tvxsdCFRRz6cPNq",
+        "name": "AINFT",
+        "symbol": "NFT",
+        "artwork": "receive-asset-deec496cc760e98e",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TUpMhErZL2fhh4sVNULAbNKLokS4GjC1F4",
+        "name": "TrueUSD",
+        "symbol": "TUSD",
+        "artwork": "receive-asset-4e4499e272c3a89f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TUPM7K8REVzD2UdV4R5fe5M8XbnR2DdoJ6",
+        "name": "HTX DAO",
+        "symbol": "HTX",
+        "artwork": "receive-asset-ecf655393bacf498",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "tron:TPFqcBAaaUMCSVRCqPaQ9QnzKhmuoLR6Rc",
+        "name": "USD1",
+        "symbol": "USD1",
+        "artwork": "receive-asset-a22cf81864472faf",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "solana": [
+      {
+        "id": "solana:EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+        "name": "Jupiter",
+        "symbol": "JUP",
+        "artwork": "receive-asset-780cf73a15f761f7",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL",
+        "name": "Jito",
+        "symbol": "JTO",
+        "artwork": "receive-asset-14f1b81e369e96b4",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
+        "name": "PayPal USD",
+        "symbol": "PYUSD",
+        "artwork": "receive-asset-5d8f15043dbac733",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+        "name": "Bonk",
+        "symbol": "BONK",
+        "artwork": "receive-asset-4dc3505d4917eab6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+        "name": "Raydium",
+        "symbol": "RAY",
+        "artwork": "receive-asset-36e7c3f5d8bf57ca",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:rndrizKT3MK1iimdxRdWabcF7Zg7AR5T4nud4EkHBof",
+        "name": "Render",
+        "symbol": "RENDER",
+        "artwork": "receive-asset-244dc1a66cd0c604",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+        "name": "Pyth Network",
+        "symbol": "PYTH",
+        "artwork": "receive-asset-77c44b6ca2fefc4b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "solana:EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+        "name": "dogwifhat",
+        "symbol": "WIF",
+        "artwork": "receive-asset-6909d5b5e1708893",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "aptos": [
+      {
+        "id": "aptos:0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x7fd500c11216f0fe3095d0c4b8aa4d64a4e2e04f83758462f2b127255643615::thl_coin::THL",
+        "name": "Thala",
+        "symbol": "THL",
+        "artwork": "receive-asset-7d1bb9085b6b2827",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0xe4ccb6d39136469f376242c31b34d10515c8eaaa38092f804db8e08a8f53c5b2::assets_v1::EchoCoin002",
+        "name": "Gui Inu",
+        "symbol": "GUI",
+        "artwork": "receive-asset-e2d76769b9e10a11",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x2ebb2ccac5e027a87fa0e2e5f656a3a4238d6a48d93ec9b610d570fc0aa0df12",
+        "name": "Cellana Finance",
+        "symbol": "CELL",
+        "artwork": "receive-asset-694915661b6701aa",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x6f986d146e4a90b828d8c12c14b6f4e003fdff11a8eecceceb63744363eaac01::mod_coin::MOD",
+        "name": "Move Dollar",
+        "symbol": "MOD",
+        "artwork": "receive-asset-9f0a7f0649e43b91",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x111ae3e5bc816a5e63c2da97d0aa3886519e0cd5e4b046659fa35796bd11542a::stapt_token::StakedApt",
+        "name": "Amnis Staked Aptos Coin",
+        "symbol": "STAPT",
+        "artwork": "receive-asset-5bd1542ced9ecd41",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x84d7aeef42d38a5ffc3ccef853e1b82e4958659d16a7de736a29c55fbbeb0114::staked_aptos_coin::StakedAptosCoin",
+        "name": "Tortuga Staked Aptos",
+        "symbol": "TAPT",
+        "artwork": "receive-asset-7c6c6a9c736cf42e",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0x68844a0d7f2587e726ad0579f3d640865bb4162c08a4589eeda3f9689ec52a3d",
+        "name": "Wrapped Bitcoin",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-e4378ba7147c9986",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "aptos:0xcfea864b32833f157f042618bd845145256b1bf4c0da34a7013b76e42daa53cc",
+        "name": "Ondo US Dollar Yield",
+        "symbol": "USDY",
+        "artwork": "receive-asset-6bca3d127b4d61a4",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "near": [
+      {
+        "id": "near:usdt.tether-token.near",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near",
+        "name": "USD Coin  Rainbow Bridge",
+        "symbol": "USDCE",
+        "artwork": "receive-asset-02281ecf279a724c",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:token.v2.ref-finance.near",
+        "name": "Ref Finance",
+        "symbol": "REF",
+        "artwork": "receive-asset-49269a36b3e13b42",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:token.burrow.near",
+        "name": "Burrow",
+        "symbol": "BRRR",
+        "artwork": "receive-asset-d0ef2b1c9d998361",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:aaaaaa20d9e0e2461697782ef11675f668207961.factory.bridge.near",
+        "name": "Aurora",
+        "symbol": "AURORA",
+        "artwork": "receive-asset-04f6347dd774bbba",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:linear-protocol.near",
+        "name": "LiNEAR Protocol",
+        "symbol": "LINEAR",
+        "artwork": "receive-asset-91bc4c78541796cd",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:meta-pool.near",
+        "name": "Staked NEAR",
+        "symbol": "STNEAR",
+        "artwork": "receive-asset-bff5639f70010743",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:token.sweat",
+        "name": "Sweatcoin  Sweat Economy",
+        "symbol": "SWEAT",
+        "artwork": "receive-asset-bdbab47273e7d3dc",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:ftv2.nekotoken.near",
+        "name": "NEKO",
+        "symbol": "NEKO",
+        "artwork": "receive-asset-79f14d2c37716a45",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "near:f5cfbc74057c610c8ef151a439252680ac68c6dc.factory.bridge.near",
+        "name": "Octopus Network",
+        "symbol": "OCT",
+        "artwork": "receive-asset-8758d31231e536d2",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "stellar": [
+      {
+        "id": "stellar:CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:CCCRWH6Q3FNP3I2I57BDLM5AFAT7O6OF6GKQOC6SSJNDAVRZ57SPHGU2",
+        "name": "PayPal USD",
+        "symbol": "PYUSD",
+        "artwork": "receive-asset-5d8f15043dbac733",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:AQUA-GBNZILSTVQZ4R7IKQDGHYGY2QXL5QOFJYQMXPKWRRM5PAV7Y4M67AQUA",
+        "name": "Aquarius",
+        "symbol": "AQUA",
+        "artwork": "receive-asset-26beebc311eef969",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:SHX-GDSTRSHXHGJ7ZIVRBXEYE5Q74XUVCUSEKEBR7UCHEUUEK72N7I7KJ6JH",
+        "name": "Stronghold",
+        "symbol": "SHX",
+        "artwork": "receive-asset-4dab61e244b02049",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:VELO-GDM4RQUQQUVSKQA7S6EM7XBZP3FCGH4Q7CL6TABQ7B2BEJ5ERARM2M5M",
+        "name": "Velo",
+        "symbol": "VELO",
+        "artwork": "receive-asset-307650ce41febc70",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:BLND-GDJEHTBE6ZHUXSWFI642DCGLUOECLHPF3KSXHPXTSTJ7E3JF6MQ5EZYY",
+        "name": "Blend",
+        "symbol": "BLND",
+        "artwork": "receive-asset-5ebcbfe277378928",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:LSP-GAB7STHVD5BDH3EEYXPI3OM7PCS4V443PYB5FNT6CFGJVPDLMKDM24WK",
+        "name": "Lumenswap",
+        "symbol": "LSP",
+        "artwork": "receive-asset-e6f12d8b6c63ef32",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:EURC-GDHU6WRG4IEQXM5NZ4BMPKOXHW76MZM4Y2IEMFDVXBSDP6SJY4ITNPP2",
+        "name": "EURC",
+        "symbol": "EURC",
+        "artwork": "receive-asset-9d1d3dbad9bfdd57",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:USDY-GAJMPX5NBOG6TQFPQGRABJEEB2YE7RFRLUKJDZAZGAD5GFX4J7TADAZ6",
+        "name": "Ondo US Dollar Yield",
+        "symbol": "USDY",
+        "artwork": "receive-asset-6bca3d127b4d61a4",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "stellar:RIO-GBNLJIYH34UWO5YZFA3A3HD3N76R6DOI33N4JONUOHEEYZYCAYTEJ5AK",
+        "name": "Realio Network Token",
+        "symbol": "RIO",
+        "artwork": "receive-asset-1439a6089f324e4e",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "sui": [
+      {
+        "id": "sui:0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP",
+        "name": "DeepBook",
+        "symbol": "DEEP",
+        "artwork": "receive-asset-b8d82e481be1dc7b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0x6864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS",
+        "name": "Cetus Protocol",
+        "symbol": "CETUS",
+        "artwork": "receive-asset-431c9b0fec9faf93",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0xa99b8952d4f7d947ea77fe0ecdcc9e5fc0bcab2841d6e2a5aa00c3044e5544b5::navx::NAVX",
+        "name": "NAVI Protocol",
+        "symbol": "NAVX",
+        "artwork": "receive-asset-450c83c6d113fae8",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0x7016aae72cfc67f2fadf55769c0a7dd54291a583b63051a5ed71081cce836ac6::sca::SCA",
+        "name": "Scallop",
+        "symbol": "SCA",
+        "artwork": "receive-asset-998b103b64ce10fd",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0xce7ff77a83ea0cb6fd39bd8748e2ec89a3f41e8efdc3f4eb123e0ca37b184db2::buck::BUCK",
+        "name": "Bucket Protocol BUCK Stablecoin",
+        "symbol": "BUCK",
+        "artwork": "receive-asset-371b640f80cd4f76",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0xf325ce1300e8dac124071d3152c5c5ee6174914f8bc2161e88329cf579246efc::afsui::AFSUI",
+        "name": "Aftermath Staked SUI",
+        "symbol": "AFSUI",
+        "artwork": "receive-asset-b337ab7503b53410",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0xbde4ba4c2e274a60ce15c1cfff9e5c42e41654ac8b6d906a57efa4bd3c29f47d::hasui::HASUI",
+        "name": "Haedal Staked SUI",
+        "symbol": "HASUI",
+        "artwork": "receive-asset-6db26382bac8c04d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN",
+        "name": "Wormhole Bridged USDT",
+        "symbol": "USDT",
+        "artwork": "receive-asset-83be71dbea134aab",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sui:0x960b531667636f39e85867775f52f6b1f220a058c4de786905bdf761e06a56bb::usdy::USDY",
+        "name": "Ondo US Dollar Yield",
+        "symbol": "USDY",
+        "artwork": "receive-asset-6bca3d127b4d61a4",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "ton": [
+      {
+        "id": "ton:EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQAvlWFDxGF2lXm67y4yzC17wYKD9A0guwPkMs1gOsM__NOT",
+        "name": "Notcoin",
+        "symbol": "NOT",
+        "artwork": "receive-asset-717cbb9c04fe2efb",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQCvxJy4eG8hyHBFsZ7eePxrRsUQSFE_jpptRAYBmcG_DOGS",
+        "name": "Dogs",
+        "symbol": "DOGS",
+        "artwork": "receive-asset-1332b232308f655c",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQA2kCVNwVsil2EM2mB0SkXytxCqQjS4mttjDpnXmwG9T6bO",
+        "name": "STON",
+        "symbol": "STON",
+        "artwork": "receive-asset-5d252a25495e4958",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQC98_qAmNEptUtPc7W6xdHh_ZHrBUFpw5Ft_IzNU20QAJav",
+        "name": "Tonstakers",
+        "symbol": "TSTON",
+        "artwork": "receive-asset-31627891284da2e9",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQBZ_cafPyDr5KUTs0aNxh0ZTDhkpEZONmLJA2SNGlLm4Cko",
+        "name": "Resistance Dog",
+        "symbol": "REDO",
+        "artwork": "receive-asset-59f4a927e083300a",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQD-cvR0Nz6XAyRBvbhz-abTrRC6sI5tvHvvpeQraV9UAAD7",
+        "name": "Catizen",
+        "symbol": "CATI",
+        "artwork": "receive-asset-621c8eb4e5a65013",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQAJ8uWd7EBqsmpSWaRdf_I-8R8-XHwh3gsNKhy-UrdrPcUo",
+        "name": "Hamster Kombat",
+        "symbol": "HMSTR",
+        "artwork": "receive-asset-0996ededc52848a6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQDNhy-nxYFgUqzfUzImBEP67JqsyMIcyk2S5_RwNNEYku0k",
+        "name": "bemo Staked TON",
+        "symbol": "STTON",
+        "artwork": "receive-asset-26eb40c70a549bf3",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "ton:EQBlqsm144Dq6SjbPI4jjZvA1hqTIP3CvHovbIfW_t-SCALE",
+        "name": "DeDust",
+        "symbol": "DUST",
+        "artwork": "receive-asset-f6414fb5180706a7",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "xrpl": [
+      {
+        "id": "xrpl:524C555344000000000000000000000000000000.rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+        "name": "Ripple USD",
+        "symbol": "RLUSD",
+        "artwork": "receive-asset-ac61a8bf2a6402dc",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-816df62109661d5a",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
+        "name": "EUR CoinVertible",
+        "symbol": "EURCV",
+        "artwork": "receive-asset-0d6dc883f52c16c6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:EUROP.rMkEuRii9w9uBMQDnWV5AA43gvYZR9JxVK",
+        "name": "EURØP",
+        "symbol": "EUROP",
+        "artwork": "receive-asset-00c7c7ef403fa01a",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:EURQ.rDk1xiArDMjDqnrR2yWypwQAKg4mKnQYvs",
+        "name": "Quantoz EURQ",
+        "symbol": "EURQ",
+        "artwork": "receive-asset-ab4a3951669cfa09",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:USDQ.rDk1xiArDMjDqnrR2yWypwQAKg4mKnQYvs",
+        "name": "Quantoz USDQ",
+        "symbol": "USDQ",
+        "artwork": "receive-asset-babf4b74dd2511fd",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:4155444400000000000000000000000000000000.rUN5Zxt3K1AnMRJgEWywDJT8QDMMeLH5ok",
+        "name": "Australian Digital Dollar",
+        "symbol": "AUDD",
+        "artwork": "receive-asset-193ad9d92e1c6e37",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:XSGD.rK67JczCpaYXVtfw3qJVmqwpSfa1bYTptw",
+        "name": "XSGD",
+        "symbol": "XSGD",
+        "artwork": "receive-asset-789eec63d8964df0",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:534F4C4F00000000000000000000000000000000.rsoLo2S1kiGeCcn6hCUXVrCpGMWLrRrLZz",
+        "name": "Sologenic",
+        "symbol": "SOLO",
+        "artwork": "receive-asset-6ab8609821a212d9",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "xrpl:TBL.rJNE2NNz83GJYtWVLwMvchDWEon3huWnFn",
+        "name": "OpenEden TBILL",
+        "symbol": "TBILL",
+        "artwork": "receive-asset-d4dc5c715a8d5fc4",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "chiliz": [
+      {
+        "id": "chiliz:0x677f7e16c7dd57be1d4c8ad1244883214953dc47",
+        "name": "Wrapped Chiliz (Kayen)",
+        "symbol": "WCHZ",
+        "artwork": "receive-asset-39357b4ed9eaa3d4",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "chiliz:0xfe1d4a935df7a4a52f835f6104c97af9d72217f2",
+        "name": "Paris Saint-Germain Fan Token",
+        "symbol": "PSG",
+        "artwork": "receive-asset-93d9f24bf8ed9dd0",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "chiliz:0x1589248b4b61ed472cc21ca1f2114d93ab6910d5",
+        "name": "FC Barcelona Fan Token",
+        "symbol": "BAR",
+        "artwork": "receive-asset-22a63ba034ffaa05",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "chiliz:0xeaf368dadc22524def47e8a1c26bfc17ac16e6f5",
+        "name": "Juventus Fan Token",
+        "symbol": "JUV",
+        "artwork": "receive-asset-e1b829808a418120",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "filecoin": [
+      {
+        "id": "filecoin:0x60e1773636cf5e4a227d9ac24f20feca034ee25a",
+        "name": "Wrapped FIL",
+        "symbol": "WFIL",
+        "artwork": "receive-asset-57bb1b2bf4ef440d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "filecoin:0x80b98d3aa09ffff255c3ba4a241111ff1262f045",
+        "name": "USDFC",
+        "symbol": "USDFC",
+        "artwork": "receive-asset-ab3cd8ed17a29df6",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "filecoin:0xeb466342c4d449bc9f53a865d5cb90586f405215",
+        "name": "Axelar Bridged USDC",
+        "symbol": "AXLUSDC",
+        "artwork": "receive-asset-c60f17b11ebdaad9",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "filecoin:0xb829b68f57cc546da7e5806a929e53be32a4625d",
+        "name": "Axelar Wrapped Ether",
+        "symbol": "AXLETH",
+        "artwork": "receive-asset-33f08ded3ecf9524",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "polkadot": [
+      {
+        "id": "polkadot:assets:1337",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "polkadot:assets:1984",
+        "name": "Tether",
+        "symbol": "USDt",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "thorchain": [
+      {
+        "id": "thorchain:x/ruji",
+        "name": "Rujira",
+        "symbol": "RUJI",
+        "artwork": "receive-asset-656b63fb6ccff883",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "sei": [
+      {
+        "id": "sei:0xe15fc38f6d8c56af07bbcbe3baf5708a2bf42392",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sei:0xe30fedd158a2e3b13e9badaeabafc5516e95e8c7",
+        "name": "Wrapped SEI",
+        "symbol": "WSEI",
+        "artwork": "receive-asset-d990d0d6a33b28f9",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sei:0x9151434b16b9763660705744891fa906f660ecc5",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "sei:0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+        "name": "Wrapped Bitcoin",
+        "symbol": "WBTC",
+        "artwork": "receive-asset-e4378ba7147c9986",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "zerog": [
+      {
+        "id": "zerog:0x1cd0690ff9a693f5ef2dd976660a8dafc81a109c",
+        "name": "Wrapped 0G",
+        "symbol": "W0G",
+        "artwork": "receive-asset-e23114ef735e0b98",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "zerog:0x1f3aa82227281ca364bfb3d253b0f1af1da6473e",
+        "name": "XSwap Bridged USDC (0G)",
+        "symbol": "USDC.E",
+        "artwork": "receive-asset-2af875d5a4906f3d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "zerog:0x564770837ef8bbf077cfe54e5f6106538c815b22",
+        "name": "Stargate Bridged WETH",
+        "symbol": "WETH",
+        "artwork": "receive-asset-44a5b7253522ab43",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "iotex": [
+      {
+        "id": "iotex:0xa00744882684c3e4747faefd68d283ea44099d03",
+        "name": "Wrapped IoTex",
+        "symbol": "WIOTX",
+        "artwork": "receive-asset-b7e55dcb3116561d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "iotex:0x0258866edaf84d6081df17660357ab20a07d0c80",
+        "name": "ioETH",
+        "symbol": "IOETH",
+        "artwork": "receive-asset-c1947dc637f52c57",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "iotex:0x3b2bf2b523f54c4e454f08aa286d03115aff326c",
+        "name": "Bridged USD Coin (IoTeX)",
+        "symbol": "IOUSDC",
+        "artwork": "receive-asset-8aac9deddcc67293",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "iotex:0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1",
+        "name": "iotube Bridged USDT (IoTeX)",
+        "symbol": "IOUSDT",
+        "artwork": "receive-asset-69360b756caf089b",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "fantom": [
+      {
+        "id": "fantom:0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+        "name": "Wrapped Fantom",
+        "symbol": "WFTM",
+        "artwork": "receive-asset-9747c92ad89ac12b",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "fantom:0x1b6382dbdea11d97f24495c9a90b7c88469134a4",
+        "name": "Axelar Bridged USDC",
+        "symbol": "AXLUSDC",
+        "artwork": "receive-asset-c3956794db8e3ffc",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "fantom:0x1e4f97b9f9f913c46f1632781732927b9019c68b",
+        "name": "Curve DAO",
+        "symbol": "CRV",
+        "artwork": "receive-asset-d52cc71e0bd7ff38",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "flare": [
+      {
+        "id": "flare:0x1d80c49bbbcd1c0911346656b529df9e5c2f783d",
+        "name": "Wrapped Flare",
+        "symbol": "WFLR",
+        "artwork": "receive-asset-abb75feae95aa971",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "flare:0xe7cd86e13ac4309349f30b3435a9d337750fc82d",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "flare:0xfbda5f676cb37624f28265a144a48b0d6e87d3b6",
+        "name": "Stargate Bridged USDC",
+        "symbol": "USDC.E",
+        "artwork": "receive-asset-a1f2455ceddbe84d",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "hyperevm": [
+      {
+        "id": "hyperevm:0x5555555555555555555555555555555555555555",
+        "name": "Wrapped HYPE",
+        "symbol": "WHYPE",
+        "artwork": "receive-asset-6e45a59987e3cc22",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "hyperevm:0xb88339cb7199b77e23db6e890353e22632ba630f",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "hyperevm:0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "celo": [
+      {
+        "id": "celo:0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e",
+        "name": "Tether",
+        "symbol": "USDT",
+        "artwork": "receive-asset-bb67f99826459d4f",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "celo:0xceba9300f2b948710d2653dd7b07f33a8b32118c",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "monad": [
+      {
+        "id": "monad:0x3bd359c1119da7da1d913d1c4d2b7c461115433a",
+        "name": "Wrapped MON",
+        "symbol": "WMON",
+        "artwork": "receive-asset-433849caa1e0a14a",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "monad:0x754704bc059f8c67012fed69bc8a327a5aafb603",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "monad:0xe7cd86e13ac4309349f30b3435a9d337750fc82d",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "unichain": [
+      {
+        "id": "unichain:0x078d782b760474a361dda0af3839290b0ef57ad6",
+        "name": "USDC",
+        "symbol": "USDC",
+        "artwork": "receive-asset-4a3c074c940b44f5",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "unichain:0x9151434b16b9763660705744891fa906f660ecc5",
+        "name": "USDT0",
+        "symbol": "USDT0",
+        "artwork": "receive-asset-4489c579765d8cff",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "unichain:0x4200000000000000000000000000000000000006",
+        "name": "Unichain Bridged WETH (Unichain)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-44a5b7253522ab43",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "unichain:0x8f187aa05619a017077f5308904739877ce9ea21",
+        "name": "Uniswap",
+        "symbol": "UNI",
+        "artwork": "receive-asset-85e520545e9c8666",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "robinhood": [
+      {
+        "id": "robinhood:0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+        "name": "Robinhood Wrapped ETH (Robinhood Chain)",
+        "symbol": "WETH",
+        "artwork": "receive-asset-7b6b0224982e1647",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "somnia": [
+      {
+        "id": "somnia:0x046ede9564a72571df6f5e44d0405360c0f4dcab",
+        "name": "Wrapped SOMI",
+        "symbol": "WSOMI",
+        "artwork": "receive-asset-41d9a11a41aff303",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "somnia:0x28bec7e30e6faee657a03e19bf1128aad7632a00",
+        "name": "Stargate Bridged USDC",
+        "symbol": "USDC.E",
+        "artwork": "receive-asset-a1f2455ceddbe84d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "somnia:0x67b302e35aef5eee8c32d934f5856869ef428330",
+        "name": "Stargate Bridged USDT",
+        "symbol": "USDT",
+        "artwork": "receive-asset-cb34402e5d2e5e43",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "somnia:0x936ab8c674bcb567cd5deb85d8a216494704e9d8",
+        "name": "Stargate Bridged WETH",
+        "symbol": "WETH",
+        "artwork": "receive-asset-44a5b7253522ab43",
+        "usesRedesignedArtwork": true
+      }
+    ],
+    "story": [
+      {
+        "id": "story:0x1514000000000000000000000000000000000000",
+        "name": "Wrapped IP",
+        "symbol": "WIP",
+        "artwork": "receive-asset-035797bbe82c4bed",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "story:0xf1815bd50389c46847f0bda824ec8da914045d14",
+        "name": "Stargate Bridged USDC",
+        "symbol": "USDC.E",
+        "artwork": "receive-asset-a1f2455ceddbe84d",
+        "usesRedesignedArtwork": true
+      },
+      {
+        "id": "story:0xbab93b7ad7fe8692a878b95a8e689423437cc500",
+        "name": "Stargate Bridged WETH",
+        "symbol": "WETH",
+        "artwork": "receive-asset-44a5b7253522ab43",
+        "usesRedesignedArtwork": true
+      }
+    ]
+  }
+}

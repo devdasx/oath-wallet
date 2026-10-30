@@ -1,0 +1,25 @@
+{
+  "name": "oath-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build:search": "node scripts/build-search-content.mjs",
+    "predeploy": "npm run build:help-chrome && npm run build:walkthroughs && npm run build:seo && npm run build:search",
+    "build:seo": "node scripts/build-seo.mjs",
+    "deploy": "wrangler deploy",
+    "postdeploy": "node scripts/submit-indexnow.mjs",
+    "notify:search": "node scripts/submit-indexnow.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check-site.mjs",
+    "build:walkthroughs": "node scripts/build-walkthroughs.mjs",
+    "build:help-chrome": "node scripts/build-help-chrome.mjs",
+    "test:unit": "node scripts/test-unit.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0",
+    "undici": "7.30.1",
+    "wrangler": "4.154.0"
+  }
+}

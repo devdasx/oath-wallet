@@ -1,0 +1,1 @@
+{"id":1,"jsonrpc":"2.0","result":{"usdPrice":"0.20194101209804586","blockchain":"stellar_soroban","contractAddress":"CAS3J7GYLGXMF6TDJBBYYSE3HQ6BBSMLNUQ34T6TZMYMW2EVH34XOWMA","syncStatus":{"timestamp":1791772632,"blockNumber":64897370,"lag":"-3s","status":"synced"}}}

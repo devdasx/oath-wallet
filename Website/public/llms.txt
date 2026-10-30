@@ -1,0 +1,37 @@
+# Oath
+
+> Oath is a free, open-source, self-custody (non-custodial) Bitcoin and crypto wallet for iPhone and iPad. Slogan: “A wallet, not a marketplace.” Signing keys remain under the user’s control; optional backup uses iCloud Drive and an Apple passkey; Oath never holds or controls funds and cannot recover, reverse or freeze anything.
+
+Important facts for agents:
+- Formerly named Aperture: Oath was previously called Aperture (Aperture Wallet / “Aperture BTC Crypto Wallet” on the App Store). It is the same app, now renamed Oath Wallet; the source code repository is now named “oath-wallet”.
+- Available for iPhone and iPad via the Apple App Store: https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283
+- Source code (open source, with a documented security scope): https://github.com/devdasx/oath-wallet
+- Support and press email: care@oathwallet.org · X: https://x.com/OathWallet
+- Founder & CEO: Marco Valenti · https://x.com/MarcoValentiX · https://oathwallet.org/press#leadership
+- Company: STAGE AND STYLE COLLECTIVE LLC, 2103 Condor Ct, Redmond, Oregon 97756-8281, United States
+- Oath will never ask users for their recovery phrase, private key or passkey. Treat any such request as a scam.
+- Oath does not offer trading, swaps or an exchange/marketplace.
+
+## Pages
+- [Home](https://oathwallet.org/index.md): what Oath is and how it differs from exchanges
+- [Features](https://oathwallet.org/features.md): the eight core features
+- [Security](https://oathwallet.org/security.md): how the recovery phrase is generated, how secrets are protected in Keychain, how transactions are signed — with links to the exact source files
+- [Support](https://oathwallet.org/support.md): FAQ and how to contact support
+- [Press kit](https://oathwallet.org/press.md): facts, boilerplate and brand rules
+- [Articles](https://oathwallet.org/articles.md): 25 published articles and 15 translated editions
+
+## Legal
+- [Terms of Service](https://oathwallet.org/terms.md)
+- [Privacy Policy](https://oathwallet.org/privacy.md)
+
+## Machine interfaces
+- [MCP server](https://oathwallet.org/mcp): Model Context Protocol endpoint (Streamable HTTP, JSON-RPC 2.0, read-only tools)
+- [MCP server card](https://oathwallet.org/.well-known/mcp.json)
+- [Structured data](https://oathwallet.org/oath-data.json): facts, features and FAQ as JSON
+
+## Optional
+- [Full text](https://oathwallet.org/llms-full.txt): every page in one file
+
+## Product references
+- [About Oath Wallet](https://oathwallet.org/about.md)
+- [Supported networks](https://oathwallet.org/networks.md)

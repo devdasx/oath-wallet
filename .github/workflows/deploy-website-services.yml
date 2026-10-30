@@ -1,0 +1,32 @@
+name: Deploy website services
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: website-services-production
+  cancel-in-progress: false
+jobs:
+  checks:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/website-checks.yml
+  deploy:
+    needs: checks
+    runs-on: ubuntu-24.04
+    environment: production-website-services
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Deploy only the two website functions; retain schemas and data
+        working-directory: Website/services
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          test -n "$SUPABASE_ACCESS_TOKEN" || { echo 'Configure the website-service deployment secret first.'; exit 1; }
+          npx --yes supabase@2.111.0 functions deploy oath-newsletter --project-ref rfjdenxkgjgepgbmxxkd --use-api
+          npx --yes supabase@2.111.0 functions deploy website-analytics --project-ref rfjdenxkgjgepgbmxxkd --use-api

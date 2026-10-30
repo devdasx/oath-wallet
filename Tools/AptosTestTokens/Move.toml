@@ -1,0 +1,9 @@
+[package]
+name = "OathTestTokens"
+version = "1.0.0"
+[addresses]
+oath_test = "_"
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "ad8f79ad0f75e38e869d2e66509b9f7511aa6c86"
+subdir = "aptos-framework"

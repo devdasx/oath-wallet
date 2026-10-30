@@ -1,0 +1,1 @@
+Improved transaction history reliability across refreshes and restarts. Clearer transaction amounts and more consistent send amount editing, while Send Max keeps full precision. Smoother recovery import when using system paste permission. Explicit clipboard copies now remain until replaced.

@@ -1,0 +1,283 @@
+---
+name: OathAtmosphere
+options:
+  developmentLanguage: en
+  bundleIdPrefix: org.oathwallet
+  xcodeVersion: '27.0'
+  deploymentTarget:
+    iOS: '17.0'
+settings:
+  base:
+    SWIFT_VERSION: '6.0'
+    DEVELOPMENT_TEAM: ''
+    CODE_SIGN_STYLE: Automatic
+    MARKETING_VERSION: 4.1.14
+    CURRENT_PROJECT_VERSION: '98'
+    ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: true
+    STRING_CATALOG_GENERATE_SYMBOLS: true
+    ENABLE_USER_SCRIPT_SANDBOXING: true
+    SWIFT_STRICT_CONCURRENCY: complete
+packages:
+  Reown:
+    path: Vendor/Reown
+  OathSecp256k1:
+    path: Packages/OathSecp256k1
+  OathDiagnostics:
+    path: Packages/OathDiagnostics
+  OathTokenImages:
+    path: Packages/OathTokenImages
+  OathAezeed:
+    path: Packages/OathAezeed
+  OathBitcoin:
+    path: Packages/OathBitcoin
+  OathMarketData:
+    path: Packages/OathMarketData
+  OathExchangeRates:
+    path: Packages/OathExchangeRates
+  OathWalletHandoff:
+    path: Packages/OathWalletHandoff
+  OathCloudBackup:
+    path: Packages/OathCloudBackup
+  OathNativeLock:
+    path: Packages/OathNativeLock
+  OathDatabase:
+    path: Packages/OathDatabase
+  OathNativeRefresh:
+    path: Packages/OathNativeRefresh
+  WalletCore:
+    path: Packages/WalletCore
+targets:
+  OathAtmosphere:
+    type: application
+    platform: iOS
+    info:
+      path: OathApp/Info.plist
+      properties:
+        CFBundleDevelopmentRegion: en
+        CFBundleName: Oath Wallet
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLName: com.aperture.wallet.walletconnect
+            CFBundleURLSchemes: [oathwallet]
+          - CFBundleTypeRole: Viewer
+            CFBundleURLName: com.aperture.wallet.walletconnect.raw
+            CFBundleURLSchemes: [wc]
+          - CFBundleTypeRole: Viewer
+            CFBundleURLName: com.aperture.wallet.payments
+            CFBundleURLSchemes: [apt, aptos, arbitrum, arc, avalanche, base, bch, bitcoin, bitcoincash, bnb, bsc, btc, celo, chiliz, dai, doge, dogecoin, eth, ethereum, fantom, filecoin, flare, gnosis, gram, hyperevm, iotex, linea, litecoin, ltc, monad, near, optimism, polkadot, polygon, robinhood, rune, scroll, sei, sol, solana, somnia, stellar, story, sui, taiko, telos, thor, thorchain, ton, tron, trx, unichain, usdc, usdt, web+stellar, xlayer, xlm, xrp, xrpl, zerog]
+        OathWalletConnectKeychainGroup: "$(AppIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleLocalizations:
+        - en
+        - zh-Hans
+        - hi
+        - es
+        - fr
+        - ar
+        - bn
+        - pt-BR
+        - pt-PT
+        - ru
+        - ur
+        - id
+        - ms
+        - de
+        - ja
+        - sw
+        - mr
+        - te
+        - tr
+        - ta
+        - zh-Hant
+        - vi
+        - ko
+        - fa
+        - ha
+        - th
+        - gu
+        - pa
+        - fil
+        - it
+        - pl
+        - uk
+        - ml
+        - kn
+        - or
+        - my
+        - nl
+        - ro
+        - am
+        - uz
+        - sd
+        - yo
+        - ne
+        - si
+        - km
+        - cs
+        - sk
+        - sl
+        - hr
+        - ka
+        - el
+        - sv
+        - hu
+        - he
+        - da
+        - fi
+        - nb
+        UISupportedInterfaceOrientations:
+        - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+        - UIInterfaceOrientationPortrait
+        UIRequiresFullScreen: true
+        UIBackgroundModes:
+        - fetch
+        BGTaskSchedulerPermittedIdentifiers:
+        - org.oathwallet.send-status
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        NSUbiquitousContainers:
+          iCloud.com.aperture.wallet:
+            NSUbiquitousContainerIsDocumentScopePublic: true
+            NSUbiquitousContainerName: Oath Wallet
+            NSUbiquitousContainerSupportedFolderLevels: Any
+        UIAppFonts:
+        - IBMPlexSansArabic-Regular.ttf
+        - IBMPlexSansArabic-Medium.ttf
+        - IBMPlexSansArabic-SemiBold.ttf
+        - IBMPlexSansArabic-Bold.ttf
+    sources:
+    - path: OathApp
+      excludes:
+      - Private
+      - Info.plist
+    - OathAtmosphere
+    - Shaders
+    preBuildScripts: []
+    postBuildScripts:
+    - name: Include WalletCore release symbols
+      script: /bin/sh "${SRCROOT}/Tools/CopyWalletCoreSymbols.sh"
+      inputFileLists:
+      - "$(SRCROOT)/Tools/WalletCoreSymbols.inputs.xcfilelist"
+      outputFileLists:
+      - "$(SRCROOT)/Tools/WalletCoreSymbols.outputs.xcfilelist"
+      runOnlyWhenInstalling: true
+      basedOnDependencyAnalysis: false
+      showEnvVars: false
+    - name: Copy local token RPC configuration
+      script: /bin/sh "${SRCROOT}/Tools/CopyTokenRPC.sh"
+      inputFiles:
+      - "$(SRCROOT)/OathApp/Private/TokenRPC.plist"
+      - "$(SRCROOT)/Tools/CopyTokenRPC.sh"
+      outputFiles:
+      - "$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/TokenRPC.plist"
+      basedOnDependencyAnalysis: false
+      showEnvVars: false
+    dependencies:
+    - package: Reown
+      product: WalletConnect
+    - package: Reown
+      product: WalletConnectNetworking
+    - package: OathSecp256k1
+      embed: true
+    - package: OathDiagnostics
+      embed: true
+    - package: OathAezeed
+    - package: OathBitcoin
+      embed: true
+    - package: OathTokenImages
+    - package: OathMarketData
+    - package: OathExchangeRates
+    - package: OathCloudBackup
+    - package: OathWalletHandoff
+    - package: OathNativeLock
+    - package: OathDatabase
+    - package: OathNativeRefresh
+    - package: WalletCore
+      product: WalletCore
+    - package: WalletCore
+      product: WalletCoreSwiftProtobuf
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aperture.wallet
+        INFOPLIST_FILE: OathApp/Info.plist
+        CODE_SIGN_ENTITLEMENTS: OathApp/OathAtmosphere.entitlements
+        PRODUCT_NAME: Oath Wallet
+        PRODUCT_MODULE_NAME: OathAtmosphere
+        EXECUTABLE_NAME: OathAtmosphere
+        LM_SKIP_METADATA_EXTRACTION: true
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES: AppIconObsidian AppIconPorcelain
+          AppIconVerdant AppIconUltraviolet AppIconElectricLime AppIconEmber AppIconTitanium
+          AppIconGlacier AppIconChampagne
+        TARGETED_DEVICE_FAMILY: '1,2'
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_CFBundleDisplayName: Oath Wallet
+        INFOPLIST_KEY_NSFaceIDUsageDescription: Use Face ID for quick, secure access
+          to your wallet.
+        INFOPLIST_KEY_NSCameraUsageDescription: Scan wallet addresses, recovery phrases
+          and WalletConnect QR codes.
+        INFOPLIST_KEY_LSRequiresIPhoneOS: true
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UIStatusBarHidden: false
+        INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance: true
+        INFOPLIST_KEY_CADisableMinimumFrameDurationOnPhone: true
+  OathPasscodeNavigationUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+    - Tests
+    dependencies:
+    - target: OathAtmosphere
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.oathwallet.atmosphere.navigationtests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: OathAtmosphere
+  OathLocalizationTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+    - LocalizationTests
+    dependencies:
+    - target: OathAtmosphere
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.oathwallet.atmosphere.localizationtests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Oath Wallet.app/OathAtmosphere"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+schemes:
+  OathAtmosphere:
+    build:
+      targets:
+        OathAtmosphere: all
+    run:
+      config: Debug
+    test:
+      targets:
+      - OathPasscodeNavigationUITests
+      - OathLocalizationTests
+  OathWalletConnectValidation:
+    build:
+      targets:
+        OathAtmosphere: all
+    run:
+      config: Debug
+    test:
+      targets:
+      - name: OathPasscodeNavigationUITests
+        selectedTests:
+        - OathWalletConnectVisualUITests
+  OathWalletConnectLiveValidation:
+    build:
+      targets:
+        OathAtmosphere: all
+    run:
+      config: Debug
+    test:
+      targets:
+      - name: OathPasscodeNavigationUITests
+        selectedTests:
+        - OathWalletConnectLiveUITests

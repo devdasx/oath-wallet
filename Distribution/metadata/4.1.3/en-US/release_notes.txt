@@ -1,0 +1,1 @@
+Improved wallet recovery, multisignature wallets, network permissions, asset discovery and refresh performance. Includes BIP39, Electrum and aezeed recovery support.

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oath Wallet Security | Key Storage, Backups &amp; Source Code</title>
+<meta name="description" content="Oath’s open-source code, App Store source-correspondence statement, and security model. Understand maintainer confirmation and independent build verification.">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Oath">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://oathwallet.org/security">
+<meta property="og:title" content="Oath Wallet Security | Key Storage, Backups &amp; Source Code">
+<meta property="og:description" content="Oath’s open-source code, App Store source-correspondence statement, and security model. Understand maintainer confirmation and independent build verification.">
+<meta property="og:image" content="https://oathwallet.org/og/security.png">
+<meta property="og:image:secure_url" content="https://oathwallet.org/og/security.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Oath Security — how your keys are protected">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@OathWallet">
+<meta name="twitter:creator" content="@OathWallet">
+<meta name="twitter:title" content="Oath Wallet Security | Key Storage, Backups &amp; Source Code">
+<meta name="twitter:description" content="Oath’s open-source code, App Store source-correspondence statement, and security model. Understand maintainer confirmation and independent build verification.">
+<meta name="twitter:image" content="https://oathwallet.org/og/security.png">
+<meta name="twitter:image:alt" content="Oath Security — how your keys are protected">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="canonical" href="https://oathwallet.org/security">
+<link rel="alternate" type="text/markdown" href="security.md" title="Security — Oath (Markdown)">
+<link rel="alternate" type="text/plain" href="llms.txt" title="Guide for AI agents">
+<link rel="mcp-server" href="https://oathwallet.org/mcp">
+<meta name="apple-itunes-app" content="app-id=6780187283">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://oathwallet.org/#org","name":"Oath Wallet","alternateName":["Oath Wallet","Aperture"],"legalName":"STAGE AND STYLE COLLECTIVE LLC","url":"https://oathwallet.org/","logo":"https://oathwallet.org/apple-touch-icon.png","email":"care@oathwallet.org","address":{"@type":"PostalAddress","streetAddress":"2103 Condor Ct","addressLocality":"Redmond","addressRegion":"OR","postalCode":"97756-8281","addressCountry":"US"},"sameAs":["https://x.com/OathWallet","https://github.com/devdasx/oath-wallet","https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"],"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"care@oathwallet.org","availableLanguage":"en"}},{"@type":"WebSite","@id":"https://oathwallet.org/#site","url":"https://oathwallet.org/","name":"Oath Wallet","description":"A wallet, not a marketplace.","publisher":{"@id":"https://oathwallet.org/#org"}},{"@type":"WebPage","@id":"https://oathwallet.org/security","url":"https://oathwallet.org/security","name":"Oath Wallet Security | Key Storage, Backups & Source Code","description":"Oath’s open-source code, App Store source-correspondence statement, and security model. Understand maintainer confirmation and independent build verification.","isPartOf":{"@id":"https://oathwallet.org/#site"},"about":{"@id":"https://oathwallet.org/#app"}},{"@type":"WebPage","name":"Security","url":"https://oathwallet.org/security","dateModified":"2026-10-19"}]}</script>
+
+<script src="./support.js" defer></script>
+<!-- oath-runtime-preloads:start --><link rel="preload" as="script" href="/assets/vendor/react-18.3.1.min.js" crossorigin="anonymous" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z"><link rel="preload" as="script" href="/assets/vendor/react-dom-18.3.1.min.js" crossorigin="anonymous" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1"><!-- oath-runtime-preloads:end --></head>
+<body>
+<!-- oath-server-content:start --><style id="oath-readable-style">#oath-server-content{box-sizing:border-box;min-height:100vh;margin:0;background:#0A0A0B;color:#F2F0EA;font:17px/1.65 system-ui,sans-serif;padding:24px clamp(20px,5vw,64px) 64px}#oath-server-content a{color:inherit;text-decoration:underline;text-underline-offset:4px}#oath-server-content nav{display:flex;gap:22px;flex-wrap:wrap;padding:8px 0 40px;border-bottom:1px solid #333}#oath-server-content nav a{text-decoration:none}#oath-server-content main{max-width:920px;margin:64px auto}#oath-server-content h1{font:400 clamp(42px,7vw,86px)/1.05 Georgia,serif;letter-spacing:-.03em}#oath-server-content h2{font:400 clamp(28px,4vw,40px)/1.2 Georgia,serif;margin-top:48px}#oath-server-content h3{font-size:21px;margin-top:32px}#oath-server-content p,#oath-server-content li{max-width:78ch}#oath-server-content footer{max-width:920px;margin:auto;border-top:1px solid #333;padding-top:24px}#oath-server-content .oath-readable-table{overflow-x:auto}#oath-server-content th,#oath-server-content td{border-bottom:1px solid #333;padding:12px;text-align:left}#oath-server-content code{overflow-wrap:anywhere}</style><div id="oath-server-content"><nav aria-label="Main navigation"><a href="/">Oath Wallet</a><a href="/features">Features</a><a href="/networks">Networks</a><a href="/articles">Guides</a><a href="/security">Security</a><a href="/support">Support</a><a href="/about">About</a></nav><main><h1>Oath Wallet security</h1>
+<p>Oath Wallet keeps recovery input and signing credentials in its protected local vault. Optional encrypted iCloud backups, deliberate exports and WalletConnect requests have separate user-controlled boundaries.</p>
+<h2>Open source and App Store builds</h2>
+<p>The technical descriptions and source excerpts on this page were checked on 30 October 2026 against Oath Wallet <strong>4.1.14 (98)</strong>, source commit <strong>v4.1.14</strong>. Version 4.1.14 (98) is a public source release. No App Store Connect upload or review submission was started for this source release. See its release record for the completed checks; source publication does not establish a match to an App Store download.</p>
+<p>Read the <a href="https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14">4.1.14 release verification record</a>, <a href="https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md">current security model</a>, and <a href="https://github.com/devdasx/oath-wallet/security/policy">security reporting policy</a>. Provider configuration and Apple signing are supplied through encrypted GitHub deployment secrets and excluded from public source.</p>
+<h2>What the checks establish</h2>
+<p>The release record covers source inspection, secret scanning, compilation and focused host tests. No simulator or physical-device checks were run for build 98. It does not establish an independent security audit or an independently reproduced comparison with an App Store download. Apple approval alone would not establish either result.</p>
+<h2>Recovery formats and local signing</h2>
+<p>New standard wallets use a 12-word BIP39 recovery phrase. BIP39 imports validate supported word lists and checksums locally. Electrum and aezeed imports use their own formats and restore supported Bitcoin accounts; they are not reinterpreted as BIP39. Preserve any required original passphrase and compare known public addresses after import.</p>
+<p>Private-key imports retain their network scope. Multisignature wallets retain their signer material and policy locally; support and required setup differ by chain. Keeping several signing keys on one device does not provide independent-device security. A wallet name or successful import does not establish that every previous account has been recovered.</p>
+<p>Source: <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Import/OathMnemonicValidator.swift">mnemonic validation</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathWalletEngine.swift">wallet engine</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathPrivateKeyImport.swift">private-key import</a>, and <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathMultisigCreation.swift">multisignature creation</a>.</p>
+<h2>Local storage and app lock</h2>
+<p>Wallet secrets are sealed in an authenticated AES-GCM vault, stored through non-synchronizing, device-only Keychain storage. An additional installation key is kept in a protected, backup-excluded app-container file. When enabled, the app passcode protects the vault key using PBKDF2-HMAC-SHA256 with 600,000 rounds. Biometrics and the selected auto-lock delay control access. Disabling the app passcode changes that protection; device compromise remains a risk.</p>
+<p>Public wallet records, balances and history are stored separately in the local database. Removing the app also removes its installation key; do not treat reinstalling as a recovery method.</p>
+<p>Source: <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathVaultEnvelope.swift">vault envelope</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathInstallationVaultStorage.swift">vault storage</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathInstallationSecurity.swift">installation protection</a>, and <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Security/OathSecurityPolicy.swift">lock policy</a>.</p>
+<h2>Password-encrypted iCloud backup</h2>
+<p>For supported wallets, Oath creates a .oathbackup file encrypted on the device with AES-256-GCM. A separate backup password derives its key using PBKDF2-HMAC-SHA256 with 600,000 rounds and a fresh 32-byte salt. Restore needs both that encrypted file and its password. The app passcode, a passkey, or Apple Account access alone cannot decrypt it.</p>
+<p>Each eligible wallet has its own file. Electrum and aezeed wallets are excluded from iCloud backup in 4.1.14; preserve their original recovery words and required passphrase. Back Up All Wallets covers eligible active wallets, not Recently Deleted wallets. Verify each upload result. Existing iCloud files remain outside the local app-reset boundary.</p>
+<p>Source: <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift">backup format</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathWalletVault.swift">backup eligibility</a>, and <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathCloudRestoreModel.swift">restore flow</a>. See the <a href="https://help.oathwallet.org/articles/backup-password">backup guide</a>.</p>
+<h2>Network and diagnostic boundaries</h2>
+<p>This source release has no operator endpoint for wallet credentials, recovery typing, wallet records or diagnostic uploads. Privacy-filtered diagnostics remain in a bounded local outbox. Blockchain providers still receive public queries for balances, fees and history, and signed transactions for broadcast. WalletConnect uses encrypted relay connections for user-approved sessions and signing requests. A signature, accepted broadcast and confirmed transaction are different outcomes.</p>
+<p>Source: <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Wallet/OathEVMSigning.swift">local EVM signing</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Send/OathEVMSendService.swift">send service</a>, and <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/Documentation/WalletConnectReadableDetails.md">WalletConnect details</a>.</p>
+<h2>Recovery limits</h2>
+<p>The 4.1.14 source does not provide Silent Payments receiving or discovery, the former nearby-iPhone transfer flow, or dice/coin/digit wallet creation. Its Bitcoin receive options depend on the imported material. Aezeed recovery covers supported on-chain Bitcoin branches, not Lightning channels or arbitrary custom LND accounts. Do not erase an older wallet until a supported recovery method reproduces its intended accounts. Never fund a public tutorial phrase or an example address.</p>
+<p>Source: <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Import/OathImportCatalog.swift">import catalog</a>, <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/Packages/OathBitcoin/Sources/OathBitcoin/BitcoinKeys.swift">Bitcoin keys</a>, and <a href="https://github.com/devdasx/oath-wallet/blob/main/Packages/OathAezeed/README.md">aezeed scope</a>.</p>
+<h2>Report a vulnerability</h2>
+<p>Use <a href="https://github.com/devdasx/oath-wallet/security/advisories/new">GitHub private vulnerability reporting</a>. Include the affected version and reproduction steps using unfunded test material. Never send a real recovery phrase, private key, passphrase or backup password. Oath support cannot replace a missing recovery credential.</p></main><footer><a href="https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283">Download Oath Wallet on the App Store</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer></div><!-- oath-server-content:end -->
+
+<template data-oath-template>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<script src="oath-icons.js"></script>
+<style>html,body{margin:0;background:#0A0A0B;color:#F2F0EA;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#F2F0EA;text-decoration:none}a:hover{color:#FFFFFF}button{font-family:inherit}::selection{background:#F2F0EA;color:#0A0A0B}</style>
+</helmet>
+<div data-screen-label="Security" style="position:relative;background:#0A0A0B;color:#F2F0EA;overflow-x:clip">
+  <dc-import name="Oath Header" hint-size="100%,0px"></dc-import>
+  <main id="main-content">
+
+  <section data-screen-label="01 Hero" style="max-width:1320px;margin:0 auto;padding:clamp(128px,18vw,200px) clamp(20px,5vw,32px) 0;display:flex;flex-direction:column;gap:clamp(28px,4vw,40px)">
+    <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">Security</span>
+    <div data-oath-page-title style="margin:0;font:400 clamp(56px,10vw,168px)/.9 'Instrument Serif',serif;letter-spacing:-.03em;opacity:{{ heroO }};transform:{{ heroT }};transition:opacity 1s ease, transform 1.2s cubic-bezier(.16,1,.3,1)">Your keys. Your device.<br><em style="color:#8E8C86">Read the evidence.</em></div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px">
+      <p style="margin:0;max-width:560px;font:400 clamp(17px,1.6vw,20px)/1.55 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">Oath is open source. Our release record connects a specific public source commit to the build uploaded to App Store Connect. Explore the evidence, what independent build verification adds, and the source behind our security model.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="https://github.com/devdasx/oath-wallet" target="_blank" rel="noopener" style="height:52px;padding:0 22px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;gap:10px;font:600 15px/1 'Instrument Sans',sans-serif" style-hover="background:#FFFFFF;color:#0A0A0B">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          Read the code on GitHub
+        </a>
+        <a href="#demo" style="height:52px;padding:0 22px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(242,240,234,.2);display:flex;align-items:center;font:500 15px/1 'Instrument Sans',sans-serif" style-hover="background:#141416">Try it live ↓</a>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:1px solid rgba(242,240,234,.12);margin-top:clamp(16px,3vw,40px)">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+        <div style="padding:26px 24px 0 0;display:flex;flex-direction:column;gap:10px">
+          <span style="font:400 clamp(40px,4.4vw,60px)/1 'Instrument Serif',serif;letter-spacing:-.02em">{{ s.v }}</span>
+          <span style="font:400 14px/1.45 'Instrument Sans',sans-serif;color:#8E8C86;max-width:240px">{{ s.k }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="source-correspondence" data-screen-label="Open source and builds" aria-labelledby="source-correspondence-title" style="max-width:1320px;margin:0 auto;padding:clamp(48px,7vw,96px) clamp(20px,5vw,32px) 0;scroll-margin-top:100px">
+    <div style="max-width:920px;display:flex;flex-direction:column;gap:22px">
+      <span style="font:400 12.5px/1.4 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">Release verification · October 30, 2026</span>
+      <h2 id="source-correspondence-title" style="margin:0;font:400 clamp(36px,5vw,68px)/1.05 'Instrument Serif',serif;letter-spacing:-.02em">Open source and<br>App Store builds.</h2>
+      <p style="margin:0;font:400 clamp(17px,1.6vw,20px)/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">Oath Wallet 4.1.14 (98) is built from public source commit v4.1.14. Its release record separates source checks, host tests, compilation and App Store Connect delivery. Provider configuration and Apple signing are supplied through encrypted deployment secrets and excluded from Git. Version 4.1.14 (98) is a public source release. Its App Store Connect upload-only workflow was cancelled before upload at the maintainer’s request; it was not submitted for review. See its release record for delivery evidence.</p>
+      <p style="margin:0;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">Open source lets people inspect the code. Maintainer confirmation states how the publisher connects that code to its release. Independent reproducible-build verification adds a separate rebuild-and-compare result for a precisely identified artifact.</p>
+      <p style="margin:0;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">These are maintainer-directed release checks. This page does not supply a new binary comparison, independent reproducibility report, or security audit. A successful build, Apple approval, or GitHub’s Verified signature badge is not by itself proof of source-to-store equivalence.</p>
+      <p style="margin:0;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">For independent verification, look for the exact app version and build, source commit, toolchain, compared artifacts, method, exclusions, and result.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:16px 24px;font:500 15px/1.6 'Instrument Sans',sans-serif">
+        <a href="https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14" style="text-decoration:underline;text-underline-offset:4px">Read the 4.1.14 verification record ↗</a>
+        <a href="https://articles.oathwallet.org/open-source-wallets-verifiable-builds" style="text-decoration:underline;text-underline-offset:4px">Read our guide to verifiable builds ↗</a>
+        <a href="https://reproducible-builds.org/docs/definition/" style="text-decoration:underline;text-underline-offset:4px">Reproducible Builds definition ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <p style="max-width:900px;margin:32px auto;padding:0 24px;font:400 16px/1.6 system-ui;color:#B9B7B0">Technical descriptions and source excerpts checked 30 October 2026 against 4.1.14 (98), commit v4.1.14. <a href="https://github.com/devdasx/oath-wallet/security/policy" style="text-decoration:underline">Security reporting policy</a> · <a href="https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md" style="text-decoration:underline">Security model and limitations</a>. Optional backups and deliberate exports are separate authorization boundaries. Silent Payments receiving and discovery are not supported in 4.1.14. Electrum and aezeed wallets require manual recovery backups.</p>
+  <section id="demo" data-reveal="demo" data-screen-label="02 Live mnemonic" style="max-width:1320px;margin:0 auto;padding:clamp(112px,14vw,180px) clamp(20px,5vw,32px) 0;scroll-margin-top:80px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(28px,4vw,44px)">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">01 · How a recovery phrase is born</span>
+        <h2 style="margin:0;font:400 clamp(40px,6vw,92px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Randomness in.<br><em style="color:#8E8C86">Twelve words out.</em></h2>
+      </div>
+      <p style="margin:0;max-width:400px;font:400 16px/1.55 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">This educational browser demo illustrates BIP-39. Oath validates BIP39 phrases in <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Import/OathMnemonicValidator.swift" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">OathMnemonicValidator.swift</a>. This is a demonstration, not the app runtime. Never fund a phrase generated here.</p>
+    </div>
+
+    <div style="border-radius:clamp(24px,3vw,36px);background:#111113;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1);padding:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px">
+        <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#0A0A0B;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1)">
+          <sc-for list="{{ lens }}" as="ln" hint-placeholder-count="2">
+            <button onClick="{{ ln.go }}" style="height:38px;padding:0 16px;border:0;border-radius:999px;cursor:pointer;background:{{ ln.bg }};color:{{ ln.fg }};font:500 13.5px/1 'Instrument Sans',sans-serif">{{ ln.l }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button onClick="{{ vector }}" style="height:44px;padding:0 18px;border:0;border-radius:999px;cursor:pointer;background:transparent;box-shadow:inset 0 0 0 1px rgba(242,240,234,.2);color:#F2F0EA;font:500 14px/1 'Instrument Sans',sans-serif" style-hover="background:#1B1B1E">Spec test vector</button>
+          <button onClick="{{ generate }}" style="height:44px;padding:0 20px;border:0;border-radius:999px;cursor:pointer;background:#F2F0EA;color:#0A0A0B;font:600 14px/1 'Instrument Sans',sans-serif;display:flex;align-items:center;gap:8px" style-hover="background:#FFFFFF">↻ Generate</button>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px">
+        <div style="border-radius:20px;background:#0A0A0B;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:inset 0 0 0 1px {{ s1ring }};transition:box-shadow .4s ease">
+          <div style="display:flex;justify-content:space-between;gap:10px;font:400 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase"><span style="color:#F2F0EA">① Entropy</span><span style="color:#8E8C86">{{ entLabel }}</span></div>
+          <div style="display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:5px">
+            <sc-for list="{{ bytes }}" as="b" hint-placeholder-count="16">
+              <span style="height:30px;border-radius:7px;background:#1B1B1E;display:flex;align-items:center;justify-content:center;font:500 12.5px/1 'IBM Plex Mono',monospace;color:#F2F0EA;opacity:{{ b.o }};transform:{{ b.t }};transition:{{ b.tr }}">{{ b.h }}</span>
+            </sc-for>
+          </div>
+          <span style="font:400 12.5px/1.5 'Instrument Sans',sans-serif;color:#8E8C86">This educational browser example uses <span style="font-family:'IBM Plex Mono',monospace;color:#B9B7B0">crypto.getRandomValues</span>.</span>
+        </div>
+        <div style="border-radius:20px;background:#0A0A0B;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:inset 0 0 0 1px {{ s2ring }};transition:box-shadow .4s ease">
+          <div style="display:flex;justify-content:space-between;gap:10px;font:400 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase"><span style="color:#F2F0EA">② Checksum</span><span style="color:#8E8C86">SHA-256</span></div>
+          <div style="font:400 12.5px/1.6 'IBM Plex Mono',monospace;color:#6E6C67;word-break:break-all;opacity:{{ s2o }};transition:opacity .5s ease"><span style="color:#F0B25A">{{ hashHead }}</span>{{ hashTail }}</div>
+          <div style="display:flex;align-items:center;gap:10px;opacity:{{ s2o }};transform:{{ s2t }};transition:opacity .5s ease .15s, transform .7s cubic-bezier(.16,1,.3,1) .15s">
+            <div style="display:flex;gap:3px">
+              <sc-for list="{{ csBits }}" as="c" hint-placeholder-count="4">
+                <span style="width:14px;height:20px;border-radius:4px;background:{{ c.bg }};box-shadow:inset 0 0 0 1.5px #F0B25A"></span>
+              </sc-for>
+            </div>
+            <span style="font:400 12.5px/1.4 'Instrument Sans',sans-serif;color:#8E8C86">{{ csLabel }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;justify-content:space-between;gap:10px;font:400 11.5px/1 'IBM Plex Mono',monospace;letter-spacing:.05em;text-transform:uppercase"><span style="color:#F2F0EA">③ Split into 11-bit numbers → words</span><span style="color:#8E8C86">{{ totalLabel }}</span></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:8px">
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="12">
+            <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:#0A0A0B;box-shadow:inset 0 0 0 1px rgba(242,240,234,.07);opacity:{{ g.o }};transform:{{ g.t }};transition:{{ g.tr }}">
+              <span style="flex:none;width:20px;font:400 11.5px/1 'IBM Plex Mono',monospace;color:#6E6C67">{{ g.n }}</span>
+              <div style="flex:none;display:flex;gap:2px">
+                <sc-for list="{{ g.bits }}" as="bt" hint-placeholder-count="11">
+                  <span style="width:7px;height:16px;border-radius:2px;background:{{ bt.bg }};box-shadow:inset 0 0 0 1px {{ bt.ring }}"></span>
+                </sc-for>
+              </div>
+              <span style="flex:none;width:40px;text-align:right;font:400 12px/1 'IBM Plex Mono',monospace;color:#8E8C86">{{ g.idx }}</span>
+              <span style="flex:1;min-width:0;font:400 22px/1 'Instrument Serif',serif;color:#F2F0EA;overflow:hidden;text-overflow:ellipsis">{{ g.word }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin:0;padding-top:18px;border-top:1px solid rgba(242,240,234,.08);font:400 13px/1.55 'Instrument Sans',sans-serif;color:#8E8C86;text-wrap:pretty">{{ demoNote }}</p>
+    </div>
+  </section>
+
+  <section data-reveal="vault" data-screen-label="03 Key storage" style="max-width:1320px;margin:0 auto;padding:clamp(112px,14vw,180px) clamp(20px,5vw,32px) 0">
+    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(32px,5vw,52px)">
+      <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">02 · Where your keys live</span>
+      <h2 style="margin:0;font:400 clamp(40px,6vw,92px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Locked on the phone.<br><em style="color:#8E8C86">Protected by Keychain.</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:14px">
+      <div style="border-radius:clamp(24px,3vw,36px);background:#F2F0EA;color:#0A0A0B;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+          <span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#5E5C57">On your iPhone</span>
+          <span style="display:flex;align-items:center;gap:8px;font:500 12.5px/1 'Instrument Sans',sans-serif;color:#0A0A0B"><span style="width:8px;height:8px;border-radius:50%;background:#12A88E;box-shadow:0 0 0 4px rgba(18,168,142,.18)"></span>Stays here</span>
+        </div>
+        <sc-for list="{{ layers }}" as="ly" hint-placeholder-count="4">
+          <div style="border-radius:20px;padding:18px 20px;background:{{ ly.bg }};color:{{ ly.fg }};display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;align-items:start;opacity:{{ ly.o }};transform:{{ ly.t }};transition:{{ ly.tr }}">
+            <span style="grid-row:span 2;width:36px;height:36px;border-radius:50%;background:{{ ly.ib }};color:{{ ly.ic }};display:flex;align-items:center;justify-content:center;font:500 13px/1 'IBM Plex Mono',monospace">{{ ly.n }}</span>
+            <span style="font:600 16.5px/1.25 'Instrument Sans',sans-serif">{{ ly.h }}</span>
+            <span style="font:400 14px/1.5 'Instrument Sans',sans-serif;color:{{ ly.sub }};text-wrap:pretty">{{ ly.d }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="flex:1;border-radius:clamp(24px,3vw,36px);background:#111113;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1);padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:18px">
+          <span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">Custody boundaries</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ never }}" as="nv" hint-placeholder-count="4">
+              <span style="height:40px;padding:0 16px;border-radius:999px;background:#1B1B1E;display:flex;align-items:center;gap:8px;font:500 14px/1 'Instrument Sans',sans-serif"><span style="color:#E3124F">✕</span>{{ nv }}</span>
+            </sc-for>
+          </div>
+          <p style="margin:0;font:400 14.5px/1.55 'Instrument Sans',sans-serif;color:#8E8C86;text-wrap:pretty">The operator does not hold a recovery credential. User-authorized encrypted backups, transfers and exports are separate boundaries.</p>
+        </div>
+        <div style="flex:1;border-radius:clamp(24px,3vw,36px);background:#111113;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1);padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;gap:14px">
+          <span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">What does leave</span>
+          <sc-for list="{{ leaves }}" as="lv" hint-placeholder-count="3">
+            <div style="display:flex;gap:14px;align-items:flex-start;padding-top:14px;border-top:1px solid rgba(242,240,234,.08)">
+              <span style="flex:none;color:#12A88E;font:500 14px/1.4 'IBM Plex Mono',monospace">↗</span>
+              <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 15.5px/1.3 'Instrument Sans',sans-serif">{{ lv.h }}</span><span style="font:400 14px/1.5 'Instrument Sans',sans-serif;color:#8E8C86;text-wrap:pretty">{{ lv.d }}</span></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal="send" data-screen-label="04 Send pipeline" style="max-width:1320px;margin:0 auto;padding:clamp(112px,14vw,180px) clamp(20px,5vw,32px) 0">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(32px,5vw,52px)">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">03 · What happens when you slide to confirm</span>
+        <h2 style="margin:0;font:400 clamp(40px,6vw,92px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Signed on the phone.<br><em style="color:#8E8C86">Broadcast after review.</em></h2>
+      </div>
+      <p style="margin:0;max-width:400px;font:400 16px/1.55 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">A simplified signing journey; review <a href="https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Send/OathEVMSendService.swift" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:3px">OathEVMSendService.swift</a>. Broadcast acceptance is different from network confirmation.</p>
+    </div>
+    <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px">
+      <sc-for list="{{ pipe }}" as="p" hint-placeholder-count="5">
+        <div style="position:relative;border-radius:24px;padding:22px;min-height:230px;display:flex;flex-direction:column;gap:14px;background:{{ p.bg }};color:{{ p.fg }};box-shadow:{{ p.ring }};transform:{{ p.t }};transition:background .5s ease, color .5s ease, box-shadow .5s ease, transform .6s cubic-bezier(.16,1,.3,1)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font:400 12px/1 'IBM Plex Mono',monospace;color:{{ p.sub }}">{{ p.n }}</span>
+            <span style="width:10px;height:10px;border-radius:50%;background:{{ p.dot }};box-shadow:0 0 0 5px {{ p.halo }};transition:background .4s ease, box-shadow .4s ease"></span>
+          </div>
+          <span style="font:400 30px/1.02 'Instrument Serif',serif;letter-spacing:-.01em">{{ p.h }}</span>
+          <span style="font:400 14px/1.5 'Instrument Sans',sans-serif;color:{{ p.sub }};text-wrap:pretty">{{ p.d }}</span>
+          <span style="margin-top:auto;font:400 11.5px/1.3 'IBM Plex Mono',monospace;color:{{ p.sub }}">{{ p.f }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="margin-top:14px;height:2px;border-radius:1px;background:rgba(242,240,234,.1);overflow:hidden"><div style="height:100%;width:{{ pipeBar }};background:#F2F0EA;transition:width 1s cubic-bezier(.65,0,.35,1)"></div></div>
+  </section>
+
+  <section data-reveal="code" data-screen-label="05 Real code" style="max-width:1320px;margin:0 auto;padding:clamp(112px,14vw,180px) clamp(20px,5vw,32px) 0">
+    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(28px,4vw,44px)">
+      <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">04 · The real code</span>
+      <h2 style="margin:0;font:400 clamp(40px,6vw,92px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Read it line by line.</h2>
+    </div>
+    <div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * clamp(20px,5vw,32px)) 14px;padding:0 clamp(20px,5vw,32px)">
+      <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="6">
+        <button onClick="{{ tb.go }}" style="flex:none;height:44px;padding:0 18px;border:0;border-radius:999px;cursor:pointer;background:{{ tb.bg }};color:{{ tb.fg }};box-shadow:{{ tb.ring }};font:500 14px/1 'Instrument Sans',sans-serif;white-space:nowrap">{{ tb.l }}</button>
+      </sc-for>
+    </div>
+    <div style="border-radius:clamp(22px,3vw,32px);background:#0E0E10;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1);overflow:hidden">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:14px clamp(16px,2.4vw,24px);border-bottom:1px solid rgba(242,240,234,.08);background:#121214">
+        <div style="display:flex;align-items:center;gap:12px;min-width:0">
+          <div style="display:flex;gap:6px"><span style="width:11px;height:11px;border-radius:50%;background:#3A3A3E"></span><span style="width:11px;height:11px;border-radius:50%;background:#3A3A3E"></span><span style="width:11px;height:11px;border-radius:50%;background:#3A3A3E"></span></div>
+          <span style="font:400 12.5px/1.3 'IBM Plex Mono',monospace;color:#B9B7B0;overflow:hidden;text-overflow:ellipsis">{{ file.path }}</span>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button onClick="{{ copyCode }}" style="height:36px;padding:0 14px;border:0;border-radius:999px;cursor:pointer;background:#1B1B1E;color:#F2F0EA;font:500 12.5px/1 'Instrument Sans',sans-serif" style-hover="background:#26262A">{{ copyLabel }}</button>
+          <a href="{{ file.url }}" target="_blank" rel="noopener" style="height:36px;padding:0 14px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;font:600 12.5px/1 'Instrument Sans',sans-serif" style-hover="color:#0A0A0B;background:#FFFFFF">View on GitHub ↗</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
+        <div style="padding:clamp(20px,2.6vw,28px);border-right:1px solid rgba(242,240,234,.06);display:flex;flex-direction:column;gap:14px;max-width:420px">
+          <span style="font:400 clamp(26px,2.6vw,34px)/1.05 'Instrument Serif',serif">{{ file.title }}</span>
+          <span style="font:400 14.5px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">{{ file.what }}</span>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+            <sc-for list="{{ file.notes }}" as="nt" hint-placeholder-count="3">
+              <span style="display:flex;gap:10px;font:400 13.5px/1.5 'Instrument Sans',sans-serif;color:#8E8C86"><span style="color:#12A88E">✓</span>{{ nt }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="overflow-x:auto;padding:clamp(16px,2vw,22px) 0;opacity:{{ codeO }};transition:opacity .35s ease">
+          <sc-for list="{{ lines }}" as="ln" hint-placeholder-count="18">
+            <div style="display:flex;min-width:max-content;padding:0 22px 0 0">
+              <span style="flex:none;width:52px;padding-right:18px;text-align:right;font:400 12.5px/1.75 'IBM Plex Mono',monospace;color:#3E3E42;user-select:none">{{ ln.n }}</span>
+              <span style="white-space:pre;font:400 13px/1.75 'IBM Plex Mono',monospace;color:#D6D4CD"><sc-for list="{{ ln.tk }}" as="tk" hint-placeholder-count="1"><span style="color:{{ tk.c }};font-style:{{ tk.fs }}">{{ tk.t }}</span></sc-for></span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <p style="margin:14px 0 0;font:400 12px/1.5 'IBM Plex Mono',monospace;color:#6E6C67">Exact excerpts from public source release 4.1.14 (98), commit v4.1.14. Open each pinned file for full context and dependencies.</p>
+  </section>
+
+  <section data-reveal="rules" data-screen-label="06 Principles" style="max-width:1320px;margin:0 auto;padding:clamp(112px,14vw,180px) clamp(20px,5vw,32px) 0">
+    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:clamp(32px,5vw,52px)">
+      <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">05 · Rules the code follows</span>
+      <h2 style="margin:0;font:400 clamp(40px,6vw,92px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Boring on purpose.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));border-top:1px solid rgba(242,240,234,.12)">
+      <sc-for list="{{ rules }}" as="ru" hint-placeholder-count="8">
+        <div style="padding:26px 26px 30px 0;border-bottom:1px solid rgba(242,240,234,.12);display:flex;flex-direction:column;gap:12px;opacity:{{ ru.o }};transform:{{ ru.t }};transition:{{ ru.tr }}">
+          <span style="font:400 12px/1 'IBM Plex Mono',monospace;color:#8E8C86">{{ ru.n }}</span>
+          <span style="font:400 clamp(24px,2.2vw,30px)/1.1 'Instrument Serif',serif">{{ ru.h }}</span>
+          <span style="font:400 14.5px/1.55 'Instrument Sans',sans-serif;color:#8E8C86;text-wrap:pretty">{{ ru.d }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal="verify" data-screen-label="07 Verify" style="max-width:1320px;margin:0 auto;padding:clamp(112px,14vw,180px) clamp(20px,5vw,32px) clamp(96px,12vw,160px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(28px,5vw,64px);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <span style="font:400 12.5px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">06 · Verify it yourself</span>
+        <h2 style="margin:0;font:400 clamp(40px,6vw,92px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Trust,<br><em style="color:#8E8C86">then verify.</em></h2>
+        <p style="margin:0;max-width:460px;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0;text-wrap:pretty">Start with the <a href="https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14" style="text-decoration:underline;text-underline-offset:4px">current README and maintainer statement</a>, then inspect the 4.1.14 source files below. An independent source-to-store comparison needs its own documented method and result; building or inspecting source alone does not establish that result.</p>
+        <div style="display:flex;flex-direction:column;border-top:1px solid rgba(242,240,234,.12)">
+          <sc-for list="{{ files }}" as="fl" hint-placeholder-count="7">
+            <a href="{{ fl.url }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:56px;border-bottom:1px solid rgba(242,240,234,.12)" style-hover="color:#FFFFFF;padding-left:6px">
+              <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font:500 15px/1.2 'IBM Plex Mono',monospace">{{ fl.name }}</span><span style="font:400 13px/1.3 'Instrument Sans',sans-serif;color:#8E8C86">{{ fl.d }}</span></div>
+              <span style="flex:none;color:#8E8C86">↗</span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="border-radius:28px;background:#0E0E10;box-shadow:inset 0 0 0 1px rgba(242,240,234,.1);overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;background:#121214;border-bottom:1px solid rgba(242,240,234,.08)">
+            <span style="font:400 12px/1 'IBM Plex Mono',monospace;color:#8E8C86">Terminal</span>
+            <button onClick="{{ copyTerm }}" style="height:34px;padding:0 14px;border:0;border-radius:999px;cursor:pointer;background:#1B1B1E;color:#F2F0EA;font:500 12.5px/1 'Instrument Sans',sans-serif" style-hover="background:#26262A">{{ termLabel }}</button>
+          </div>
+          <div style="padding:20px 22px;overflow-x:auto;display:flex;flex-direction:column;gap:4px">
+            <sc-for list="{{ term }}" as="tl" hint-placeholder-count="8">
+              <span style="white-space:pre;font:400 13px/1.7 'IBM Plex Mono',monospace;color:{{ tl.c }};opacity:{{ tl.o }};transition:{{ tl.tr }}">{{ tl.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+        <div style="border-radius:28px;background:#F2F0EA;color:#0A0A0B;padding:clamp(22px,3vw,30px);display:flex;flex-direction:column;gap:14px">
+          <span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#5E5C57">Found a problem?</span>
+          <span style="font:400 clamp(26px,2.6vw,34px)/1.1 'Instrument Serif',serif">Tell us privately first. Follow the current reporting policy.</span>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <a href="https://github.com/devdasx/oath-wallet/security/advisories/new" style="height:48px;padding:0 20px;border-radius:999px;background:#0A0A0B;color:#F2F0EA;display:flex;align-items:center;font:600 14.5px/1 'Instrument Sans',sans-serif" style-hover="color:#FFFFFF">Report privately on GitHub</a>
+            <a href="https://github.com/devdasx/oath-wallet/security/policy" target="_blank" rel="noopener" style="height:48px;padding:0 20px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(10,10,11,.2);color:#0A0A0B;display:flex;align-items:center;font:500 14.5px/1 'Instrument Sans',sans-serif" style-hover="color:#0A0A0B;background:#E3E3E4">Security reporting policy ↗</a>
+          </div>
+          <span style="font:400 13px/1.5 'Instrument Sans',sans-serif;color:#5E5C57">Oath will never ask for your recovery phrase, private key or passkey.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+  <dc-import name="Oath Footer" hint-size="100%,520px"></dc-import>
+  <div style="position:fixed;left:50%;bottom:24px;z-index:60;transform:{{ toastT }};opacity:{{ toastO }};transition:opacity .3s ease, transform .4s cubic-bezier(.16,1,.3,1);pointer-events:none;padding:12px 18px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;font:500 14px/1 'Instrument Sans',sans-serif">{{ toast }}</div>
+</div>
+</x-dc>
+</template>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { mounted: false, seen: {}, n: 12, bytes: [], hash: [], step: 0, wl: null, isVector: false, tab: 0, codeO: 1, pipe: -1, toast: '', copied: '', term: false };
+
+  componentDidMount() {
+    this._m = setTimeout(() => this.setState({ mounted: true }), 60);
+    fetch('bip39-english.json').then(r => r.json()).then(wl => { this.setState({ wl }); }).catch(() => {});
+    this._done = {};
+    this._chk = () => {
+      const vh = window.innerHeight;
+      document.querySelectorAll('[data-reveal]').forEach(el => {
+        const k = el.getAttribute('data-reveal');
+        if (this._done[k]) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.78 && r.bottom > 0) {
+          this._done[k] = true;
+          this._seenAll = Object.assign({}, this._seenAll || {}, { [k]: true }); this.setState({ seen: this._seenAll });
+          if (k === 'demo') this.run(false);
+          if (k === 'send') this.startPipe();
+          if (k === 'verify') setTimeout(() => this.setState({ term: true }), 200);
+        }
+      });
+    };
+    window.addEventListener('scroll', this._chk, { passive: true });
+    window.addEventListener('resize', this._chk);
+    this._ci = setInterval(this._chk, 400);
+    this._chk();
+  }
+  componentWillUnmount() { clearTimeout(this._m); (this._q || []).forEach(clearTimeout); clearInterval(this._p); clearInterval(this._ci); clearTimeout(this._tt); window.removeEventListener('scroll', this._chk); window.removeEventListener('resize', this._chk); }
+
+  async run(vector, n) {
+    const generation = this._demoGeneration = (this._demoGeneration || 0) + 1;
+    n = n || this.state.n;
+    (this._q || []).forEach(clearTimeout);
+    const bytes = new Uint8Array(n === 24 ? 32 : 16);
+    let hash = [];
+    try {
+      if (!vector) crypto.getRandomValues(bytes);
+      hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)));
+    } catch (e) {
+      if (generation === this._demoGeneration) {
+        this.setState({ bytes: [], hash: [], step: 0 });
+        this.say('Example unavailable: browser cryptography could not run.');
+      }
+      return;
+    }
+    if (generation !== this._demoGeneration) return;
+    this.setState({ n: n, bytes: Array.from(bytes), hash: hash, step: 0, isVector: vector });
+    this._q = [setTimeout(() => this.setState({ step: 1 }), 60), setTimeout(() => this.setState({ step: 2 }), 1000), setTimeout(() => this.setState({ step: 3 }), 1900)];
+  }
+
+  startPipe() {
+    clearInterval(this._p);
+    this.setState({ pipe: 0 });
+    this._pi = 0; this._p = setInterval(() => { if (document.hidden) return; this._pi = (this._pi + 1) % 6; this.setState({ pipe: this._pi }); }, 1500);
+  }
+
+  say(t) { clearTimeout(this._tt); this.setState({ toast: t }); this._tt = setTimeout(() => this.setState({ toast: '' }), 1800); }
+  async copy(text, which) {
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) { this.setState({ copied: '' }); this.say('Could not copy. Select the text and copy it manually.'); return; }
+    this.setState({ copied: which }); this.say('Copied'); setTimeout(() => this.setState({ copied: '' }), 1800);
+  }
+
+  hl(src) {
+    const KW = /^(import|static|func|let|var|return|guard|else|throw|throws|try|for|in|if|enum|case|struct|private|nonisolated|async|await|do|catch|switch|default|extension|precondition)$/;
+    const re = /(\/\/.*$)|("(?:[^"\\]|\\.)*")|([A-Za-z_][A-Za-z0-9_]*)|(\d[\d_]*)|(\s+)|(.)/g;
+    return src.split('\n').map((line, i) => {
+      const tk = []; let m; re.lastIndex = 0;
+      while ((m = re.exec(line))) {
+        let c = '#D6D4CD', fs = 'normal', t = m[0];
+        if (m[1]) { c = '#6E6C67'; fs = 'italic'; }
+        else if (m[2]) c = '#7FD1B9';
+        else if (m[3]) c = KW.test(t) ? '#FF8FB1' : /^[A-Z]/.test(t) ? '#9DB9FF' : '#D6D4CD';
+        else if (m[4]) c = '#F0B25A';
+        const last = tk[tk.length - 1];
+        if (last && last.c === c && last.fs === fs) last.t += t; else tk.push({ t, c, fs });
+      }
+      return { n: i + 1, tk: tk.length ? tk : [{ t: ' ', c: '#D6D4CD', fs: 'normal' }] };
+    });
+  }
+
+  renderVals() {
+    const { seen, mounted, step, bytes, hash, n, wl, isVector, tab, pipe } = this.state;
+    const ease = 'cubic-bezier(.16,1,.3,1)';
+    const GH = "https://github.com/devdasx/oath-wallet/blob/v4.1.14/";
+    const hex = b => b.toString(16).padStart(2, '0');
+
+    // ---- live BIP-39 ----
+    const csN = n === 24 ? 8 : 4;
+    const bits = [];
+    bytes.forEach(b => { for (let s = 7; s >= 0; s--) bits.push((b >> s) & 1); });
+    const cs = [];
+    for (let i = 0; i < csN; i++) cs.push((hash[i >> 3] >> (7 - (i % 8))) & 1);
+    const all = bits.concat(cs);
+    const groups = [];
+    for (let g = 0; g < n; g++) {
+      const gb = all.slice(g * 11, g * 11 + 11);
+      if (gb.length < 11) break;
+      const idx = gb.reduce((v, b) => (v << 1) | b, 0);
+      groups.push({
+        n: String(g + 1).padStart(2, '0'), idx: String(idx), word: wl ? wl[idx] : '…',
+        bits: gb.map((b, k) => { const isCs = g * 11 + k >= bits.length; const col = isCs ? '#F0B25A' : '#F2F0EA'; return { bg: b ? col : 'transparent', ring: isCs ? '#F0B25A' : 'rgba(242,240,234,.35)' }; }),
+        o: step >= 3 ? 1 : 0, t: step >= 3 ? 'none' : 'translateY(14px)', tr: `opacity .45s ease ${step >= 3 ? g * 70 : 0}ms, transform .7s ${ease} ${step >= 3 ? g * 70 : 0}ms`,
+      });
+    }
+    const hashHex = hash.map(hex).join('');
+    const hc = Math.ceil(csN / 4);
+
+    // ---- code files ----
+    const FILES = [{"l": "Phrase", "title": "Validate a BIP-39 phrase", "path": "OathAtmosphere/Import/OathMnemonicValidator.swift", "what": "Checks the original word list and checksum locally. Electrum and aezeed use separate decoders.", "notes": ["Source excerpt from 4.1.14 (98); follow the pinned file for complete context.", "Lines 91–96. Source review is not an independent audit."], "code": "    func verifiedPhrase(_ text: String) -> OathValidatedMnemonic? {\n        guard case .valid(let language) = validate(text) else { return nil }\n        return OathValidatedMnemonic(phrase: Self.words(in: text).joined(separator: \" \"), language: language)\n    }\n\n    private static func checksumMatches(_ indices: [Int]) -> Bool {\n", "start": 91, "end": 96}, {"l": "Derive", "title": "Create and import locally", "path": "OathAtmosphere/Wallet/OathWalletEngine.swift", "what": "New wallets use Wallet Core. Imports keep BIP39, Electrum and aezeed material distinct.", "notes": ["Source excerpt from 4.1.14 (98); follow the pinned file for complete context.", "Lines 35–42. Source review is not an independent audit."], "code": "    static func create(id: UUID = UUID()) throws -> OathWalletSecret {\n        guard let wallet = HDWallet(strength: 128, passphrase: \"\") else {\n            throw OathWalletError.unavailable\n        }\n        return OathWalletSecret(id: id, mnemonic: wallet.mnemonic, language: \"english\",\n                                createdAt: .now, backedUp: false)\n    }\n\n", "start": 35, "end": 42}, {"l": "Store", "title": "Encrypt the local vault", "path": "OathAtmosphere/Wallet/OathInstallationSecurity.swift", "what": "Wraps stored vault data with installation-bound AES-GCM protection.", "notes": ["Source excerpt from 4.1.14 (98); follow the pinned file for complete context.", "Lines 61–69. Source review is not an independent audit."], "code": "    func seal(_ data: Data, context: String) throws -> Data {\n        try lock.withLock {\n            let record = try loadKey()\n            let sealed = try AES.GCM.seal(data, using: SymmetricKey(data: record.key),\n                                          authenticating: authenticationData(record.id, context: context))\n            guard let combined = sealed.combined else { throw OathInstallationSecurityError.invalidRecord }\n            return try JSONEncoder().encode(SealedRecord(version: 1, installationID: record.id, sealed: combined))\n        }\n    }\n", "start": 61, "end": 69}, {"l": "Sign & send", "title": "Sign for the intended account", "path": "OathAtmosphere/Wallet/OathEVMSigning.swift", "what": "Checks wallet, network and sender identity before using local signing material.", "notes": ["Source excerpt from 4.1.14 (98); follow the pinned file for complete context.", "Lines 8–19. Source review is not an independent audit."], "code": "    static func signEVM(_ plan: EVMSendPlan, secret: OathWalletSecret, account: AccountRecord) throws -> EVMSignedSend {\n        try Task.checkCancellation()\n        guard account.walletID == secret.id.uuidString, account.networkID == plan.network.rawValue,\n              let chain=OathImportChain(rawValue:account.networkID),chain.isEVM,\n              try EVMSendIdentity.address(account.address) == plan.sender else { throw EVMSendError.wrongOwner }\n        if let material = secret.evmMultisig {\n            guard material.network == account.networkID, account.derivationPath == \"evm-multisig-v1\",\n                  let context = plan.multisig, try context.policy == material.policy() else { throw EVMSendError.wrongOwner }\n            var keys = try material.signers.map { try $0.signingKey() }\n            defer { for i in keys.indices { keys[i].resetBytes(in: 0..<keys[i].count) } }\n            return try EVMMultisigCrypto.sign(plan, keys: keys, executorKey: material.executorKey)\n        }\n", "start": 8, "end": 19}, {"l": "Backup", "title": "Protect an iCloud backup with a password", "path": "Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift", "what": "Uses AES-256-GCM and PBKDF2-HMAC-SHA256 with 600,000 rounds and a fresh salt.", "notes": ["Source excerpt from 4.1.14 (98); follow the pinned file for complete context.", "Lines 99–114. Source review is not an independent audit."], "code": "public enum BackupDocument {\n    public static let fileExtension = \"oathbackup\"\n    public static let maximumBytes = 1_048_576\n    private static let iterations: UInt32 = 600_000\n\n    struct Header: Codable, Sendable {\n        var format = \"org.oathwallet.encrypted-wallet\"\n        var version = 1\n        var cipher = \"AES-256-GCM\"\n        var kdf = \"PBKDF2-HMAC-SHA256\"\n        var passwordNormalization = \"NFC\"\n        var rounds = BackupDocument.iterations\n        var salt: Data\n    }\n    struct Envelope: Codable { var header: Header; var sealed: Data }\n\n", "start": 99, "end": 114}, {"l": "Restore", "title": "Authenticate before restoring", "path": "Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift", "what": "Rejects unsupported formats and incorrect passwords before returning recovery material.", "notes": ["Source excerpt from 4.1.14 (98); follow the pinned file for complete context.", "Lines 138–156. Source review is not an independent audit."], "code": "    public static func open(_ data: Data, password: String) throws -> BackupWallet {\n        try validate(password: password)\n        guard data.count <= maximumBytes else { throw CloudBackupError.invalidDocument }\n        let envelope: Envelope\n        do { envelope = try JSONDecoder().decode(Envelope.self, from: data) }\n        catch { OathDiagnostics.record(error); throw CloudBackupError.invalidDocument }\n        let h = envelope.header\n        guard h.format == \"org.oathwallet.encrypted-wallet\", (1...21).contains(h.version),\n              h.cipher == \"AES-256-GCM\", h.kdf == \"PBKDF2-HMAC-SHA256\",\n              h.passwordNormalization == \"NFC\",\n              h.rounds == iterations, h.salt.count == 32, envelope.sealed.count >= 28 else {\n            throw CloudBackupError.invalidDocument\n        }\n        let key = try derive(password, salt: h.salt)\n        var plaintext: Data\n        do {\n            plaintext = try AES.GCM.open(AES.GCM.SealedBox(combined: envelope.sealed),\n                                         using: key, authenticating: encoder().encode(h))\n        } catch { OathDiagnostics.record(error); throw CloudBackupError.authenticationFailed }\n", "start": 138, "end": 156}];
+    const F = FILES[tab];
+
+    const P = [["Authorize", "Authenticate when the wallet requires approval.", "OathWalletVault.swift"], ["Prepare", "Resolve current transaction inputs and network fees.", "Network-specific send providers"], ["Sign", "Use wallet credentials locally to produce a signed transaction.", "Wallet signing services"], ["Broadcast", "Submit the signed transaction to a network provider.", "OathEVMSendService.swift"], ["Track", "Track pending state and network confirmation separately.", "Network-specific status tracking"]];
+    const TERM = [["$ git clone https://github.com/devdasx/oath-wallet", "#F2F0EA"], ["$ cd oath-wallet", "#F2F0EA"], ["$ git checkout v4.1.14", "#F2F0EA"], ["$ open README.md SECURITY.md Documentation/PublicBuild.md", "#F2F0EA"], ["  # inspect this published release and its limitations", "#8E8C86"]];
+    const reveal = (k, i, d) => ({ o: seen[k] ? 1 : 0, t: seen[k] ? 'none' : 'translateY(28px)', tr: `opacity .7s ease ${i * (d || 80)}ms, transform .9s ${ease} ${i * (d || 80)}ms` });
+
+    return {
+      heroO: mounted ? 1 : 0, heroT: mounted ? 'none' : 'translateY(40px)',
+      stats: [{"v": "On-device", "k": "wallet credential storage and local signing"}, {"v": "Keychain", "k": "encrypted, device-only local vault"}, {"v": "Password", "k": "protects each eligible iCloud backup"}, {"v": "Open source", "k": "public code and documented release scope"}],
+      lens: [12, 24].map(k => ({ l: k + ' words', bg: n === k ? '#F2F0EA' : 'transparent', fg: n === k ? '#0A0A0B' : '#B9B7B0', go: () => this.run(false, k) })),
+      generate: () => this.run(false),
+      vector: () => this.run(true),
+      entLabel: (n === 24 ? 256 : 128) + ' bits · ' + (n === 24 ? 32 : 16) + ' bytes',
+      bytes: bytes.map((b, i) => ({ h: hex(b), o: step >= 1 ? 1 : 0, t: step >= 1 ? 'none' : 'scale(.6)', tr: `opacity .3s ease ${step >= 1 ? i * 22 : 0}ms, transform .5s ${ease} ${step >= 1 ? i * 22 : 0}ms` })),
+      s1ring: step === 1 ? 'rgba(242,240,234,.5)' : 'rgba(242,240,234,.08)',
+      s2ring: step === 2 ? 'rgba(240,178,90,.6)' : 'rgba(242,240,234,.08)',
+      s2o: step >= 2 ? 1 : 0.15, s2t: step >= 2 ? 'none' : 'translateX(-10px)',
+      hashHead: hashHex.slice(0, hc), hashTail: hashHex.slice(hc, 40) + '…',
+      csBits: cs.map(b => ({ bg: b ? '#F0B25A' : 'transparent' })),
+      csLabel: 'First ' + csN + ' bits of the hash become the checksum',
+      totalLabel: (n === 24 ? 256 : 128) + ' + ' + csN + ' = ' + n * 11 + ' bits',
+      groups,
+      demoNote: isVector
+        ? 'All-zero entropy — the official BIP-39 test vector. This phrase is public test data and unsafe for funds.'
+        : 'Runs only in this browser tab with crypto.getRandomValues and SubtleCrypto — nothing is sent anywhere. It’s for learning: never put real funds on a phrase shown on a web page. Create your real phrase inside Oath.',
+
+      layers: [["App lock", "When enabled, biometrics or the app passcode protect access."], ["Keychain", "Authenticated vault ciphertext uses device-only Keychain storage and an installation key."], ["Database", "Public wallet metadata, balances and history are stored separately from credentials."], ["Backup boundary", "Eligible iCloud backups encrypt locally with a separate backup password."]      ].map(([h, d], i) => Object.assign({ n: String(i + 1).padStart(2, '0'), h, d, bg: i === 0 ? '#0A0A0B' : i === 1 ? '#E3E3E4' : i === 2 ? '#D6D6D4' : '#CACAC7', fg: i === 0 ? '#F2F0EA' : '#0A0A0B', sub: i === 0 ? '#B9B7B0' : '#48484E', ib: i === 0 ? '#F2F0EA' : '#0A0A0B', ic: i === 0 ? '#0A0A0B' : '#F2F0EA' }, reveal('vault', i, 120))),
+      never: ['No operator-held recovery phrase', 'No signing key sent for broadcast', 'No support access to your backup password'],
+      leaves: [
+        { h: 'Signed transactions', d: 'Authorized signed payloads are broadcast to the selected network.' },
+        { h: 'Public addresses', d: 'Sent to network nodes to read your balances. Public by design.' },
+        { h: 'Optional iCloud backup', d: 'Only when requested for an eligible wallet: password-encrypted payload. Restore requires the file and its backup password.' },
+      ],
+
+      pipe: P.map(([h, d, f], i) => {
+        const on = pipe === i, done = pipe > i || pipe === 5;
+        return { n: String(i + 1).padStart(2, '0'), h, d, f,
+          bg: on ? '#F2F0EA' : '#111113', fg: on ? '#0A0A0B' : '#F2F0EA', sub: on ? '#48484E' : '#8E8C86',
+          ring: on ? 'none' : 'inset 0 0 0 1px rgba(242,240,234,.1)', t: on ? 'translateY(-6px)' : 'none',
+          dot: on ? '#12A88E' : done ? '#F2F0EA' : '#3A3A3E', halo: on ? 'rgba(18,168,142,.2)' : 'transparent' };
+      }),
+      pipeBar: pipe < 0 ? '0%' : Math.min(100, ((pipe + 1) / 5) * 100) + '%',
+
+      tabs: FILES.map((f, i) => ({ l: f.l, bg: tab === i ? '#F2F0EA' : 'transparent', fg: tab === i ? '#0A0A0B' : '#B9B7B0', ring: tab === i ? 'none' : 'inset 0 0 0 1px rgba(242,240,234,.14)',
+        go: () => { if (i === tab) return; this.setState({ codeO: 0 }); setTimeout(() => this.setState({ tab: i, codeO: 1 }), 180); } })),
+      file: { path: F.path, url: GH + F.path, title: F.title, what: F.what, notes: F.notes },
+      lines: this.hl(F.code),
+      codeO: this.state.codeO,
+      copyLabel: this.state.copied === 'code' ? 'Copied ✓' : 'Copy',
+      copyCode: () => this.copy(F.code, 'code'),
+
+      rules: [["Read the source scope", "The public source release documents dependencies, boundaries and limitations."], ["Keep a recovery backup", "Store the phrase and any extra BIP-39 passphrase safely."], ["Understand network visibility", "Providers can see public addresses and queries needed to serve the wallet."], ["Understand the evidence", "Maintainer source correspondence, independent build verification and security audits answer different questions."], ["Check the destination", "Confirm the network, recipient and fee before approving a send."], ["Retain backup access", "An iCloud restore needs the encrypted file and its backup password."], ["Protect an old device", "Do not erase it until the new wallet and recovery method are verified."], ["Read release limitations", "Silent Payments and nearby-iPhone transfer are not supported in 4.1.14; Electrum and aezeed need manual recovery backups."]      ].map(([h, d], i) => Object.assign({ n: String(i + 1).padStart(2, '0'), h, d }, reveal('rules', i % 4, 90))),
+
+      files: FILES.map(f => ({ name: f.path.split("/").pop(), d: f.what, url: GH + f.path + "#L" + f.start })),
+
+      term: TERM.map(([t, c], i) => ({ t, c, o: this.state.term ? 1 : 0, tr: `opacity .35s ease ${i * 160}ms` })),
+      termLabel: this.state.copied === 'term' ? 'Copied ✓' : 'Copy',
+      copyTerm: () => this.copy(TERM.filter(x => x[0].startsWith('$')).map(x => x[0].slice(2)).join('\n'), 'term'),
+
+      toast: this.state.toast, toastO: this.state.toast ? 1 : 0, toastT: this.state.toast ? 'translate(-50%,0)' : 'translate(-50%,16px)',
+    };
+  }
+}
+</script>
+</body>
+</html>

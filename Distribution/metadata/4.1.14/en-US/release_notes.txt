@@ -1,0 +1,1 @@
+Improved WalletConnect access and swap reviews, payment QR scanning, and native-fee funding guidance. Updated Receive layouts and artwork, clearer transaction progress, Bitcoin on-chain message details, and more resilient balance and history recovery.

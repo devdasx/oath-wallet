@@ -1,0 +1,732 @@
+[
+  {
+    "component": "evm_send",
+    "operation": "eth_estimateGas",
+    "domain": "OathAnkr.EVMSendError",
+    "code": 1,
+    "chain": "base",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rpc(-32000)"
+  },
+  {
+    "component": "network",
+    "operation": "provider_response",
+    "domain": "Oath.Provider",
+    "code": -32000,
+    "chain": "base",
+    "host": "rpc.ankr.com",
+    "method": "eth_chainId,eth_estimateGas",
+    "messagePrefix": "gas required exceeds allowance ("
+  },
+  {
+    "component": "evm_send",
+    "operation": "rpc_response",
+    "domain": "OathDiagnostics.DiagnosticFailure",
+    "code": 1,
+    "chain": "base",
+    "host": "",
+    "method": "",
+    "messagePrefix": "gas required exceeds allowance ("
+  },
+  {
+    "component": "permissions",
+    "operation": "prepare",
+    "domain": "OathAnkr.EVMSendError",
+    "code": 1,
+    "chain": "base",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rpc(-32000)"
+  },
+  {
+    "component": "permissions",
+    "operation": "batch_prepare",
+    "domain": "OathAnkr.EVMSendError",
+    "code": 1,
+    "chain": "base",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rpc(-32000)"
+  },
+  {
+    "component": "electrum",
+    "operation": "snapshot_probe",
+    "domain": "OathBitcoin.BitcoinError",
+    "code": 7,
+    "chain": "bitcoin",
+    "host": "electrum.diynodes.com",
+    "method": "",
+    "messagePrefix": "disconnected"
+  },
+  {
+    "component": "electrum",
+    "operation": "request",
+    "domain": "OathBitcoin.BitcoinError",
+    "code": 7,
+    "chain": "bitcoin",
+    "host": "electrum.diynodes.com",
+    "method": "blockchain.headers.subscribe",
+    "messagePrefix": "disconnected"
+  },
+  {
+    "component": "electrum",
+    "operation": "request",
+    "domain": "OathBitcoin.BitcoinError",
+    "code": 7,
+    "chain": "bitcoin",
+    "host": "electrum.diynodes.com",
+    "method": "blockchain.block.header,blockchain.block.header",
+    "messagePrefix": "disconnected"
+  },
+  {
+    "component": "electrum",
+    "operation": "request",
+    "domain": "OathBitcoin.BitcoinError",
+    "code": 6,
+    "chain": "bitcoincash",
+    "host": "electron.jochen-hoenicke.de",
+    "method": "blockchain.scripthash.get_balance,blockchain.scripthash.get_history,blockchain.scripthash.listunspent,blockchain.scripthash.get_balance",
+    "messagePrefix": "timeout"
+  },
+  {
+    "component": "electrum",
+    "operation": "snapshot_retry",
+    "domain": "OathBitcoin.BitcoinError",
+    "code": 6,
+    "chain": "bitcoincash",
+    "host": "electron.jochen-hoenicke.de",
+    "method": "",
+    "messagePrefix": "timeout"
+  },
+  {
+    "component": "ThorchainClient",
+    "operation": "vault_node_fallback",
+    "domain": "OathAnkr.ThorchainError",
+    "code": 7,
+    "chain": "thorchain",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rateLimited"
+  },
+  {
+    "component": "ThorchainClient",
+    "operation": "market_fallback",
+    "domain": "OathAnkr.ThorchainError",
+    "code": 7,
+    "chain": "thorchain",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rateLimited"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "Oath.HTTP",
+    "code": 500,
+    "chain": "thorchain",
+    "host": "gateway.liquify.com",
+    "method": "",
+    "messagePrefix": "cannot query with height in the future; please provide a valid height: invalid height"
+  },
+  {
+    "component": "ThorchainClient",
+    "operation": "retry",
+    "domain": "OathAnkr.ThorchainError",
+    "code": 0,
+    "chain": "thorchain",
+    "host": "",
+    "method": "",
+    "messagePrefix": "http(500)"
+  },
+  {
+    "component": "network",
+    "operation": "provider_response",
+    "domain": "Oath.Provider",
+    "code": -1,
+    "chain": "thorchain",
+    "host": "api.rujira.network",
+    "method": "",
+    "messagePrefix": "rate bucket full ("
+  },
+  {
+    "component": "prices",
+    "operation": "public_market_request",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "get_:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "tron",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "nativePrice",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "tron",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "market_read",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "monad",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "market_read",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "unichain",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "ton_native_fallback",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "ton",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "aptos_native_fallback",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "aptos",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "sui_native_fallback",
+    "domain": "OathAnkr.SuiError",
+    "code": 10,
+    "chain": "sui",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "read_:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "sui",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "public_market_request",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "xrpl",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "public_market_request",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "monad",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "provider_response",
+    "domain": "Oath.Provider",
+    "code": 5,
+    "chain": "",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "rpc error: code = NotFound desc = rate found but was stale"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "ton",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "get_:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "solana",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1003,
+    "chain": "xrpl",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "nativePrice",
+    "domain": "OathAnkr.TronError",
+    "code": 0,
+    "chain": "tron",
+    "host": "",
+    "method": "",
+    "messagePrefix": "http(404)"
+  },
+  {
+    "component": "prices",
+    "operation": "public_market_request",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "aptos",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "read_:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "stellar",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "native_price_fallback",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "monad",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "xrpl_native_fallback",
+    "domain": "OathAnkr.XrplError",
+    "code": 11,
+    "chain": "xrpl",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "market_price",
+    "operation": "quote_cache_fallback",
+    "domain": "OathMarketData.MarketDataError",
+    "code": 0,
+    "chain": "litecoin",
+    "host": "",
+    "method": "",
+    "messagePrefix": "unavailable"
+  },
+  {
+    "component": "prices",
+    "operation": "read_:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "near",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "near_native_fallback",
+    "domain": "OathAnkr.NearError",
+    "code": 11,
+    "chain": "near",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1003,
+    "chain": "",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "market_load",
+    "domain": "OathMarketData.MarketDataError",
+    "code": 0,
+    "chain": "",
+    "host": "",
+    "method": "",
+    "messagePrefix": "unavailable"
+  },
+  {
+    "component": "prices",
+    "operation": "read_:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "xrpl",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "public_market_request",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "sui",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "prices",
+    "operation": "get_:",
+    "domain": "OathAnkr.TronError",
+    "code": 0,
+    "chain": "tron",
+    "host": "",
+    "method": "",
+    "messagePrefix": "http(404)"
+  },
+  {
+    "component": "prices",
+    "operation": "nativePrice",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "solana",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "sui",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "stellar_native_fallback",
+    "domain": "OathAnkr.StellarError",
+    "code": 10,
+    "chain": "stellar",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "wallet",
+    "operation": "refreshBitcoinPrice",
+    "domain": "OathMarketData.MarketDataError",
+    "code": 0,
+    "chain": "",
+    "host": "",
+    "method": "",
+    "messagePrefix": "unavailable"
+  },
+  {
+    "component": "prices",
+    "operation": "public_market_request",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "ton",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "aptos",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "native_price_fallback",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "unichain",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "monad",
+    "host": "api.coinbase.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "permissions",
+    "operation": "discover_tron",
+    "domain": "OathAnkr.AnkrError",
+    "code": 0,
+    "chain": "tron",
+    "host": "",
+    "method": "",
+    "messagePrefix": "http(429)"
+  },
+  {
+    "component": "network",
+    "operation": "provider_response",
+    "domain": "Oath.Provider",
+    "code": -1,
+    "chain": "tron",
+    "host": "apilist.tronscanapi.com",
+    "method": "",
+    "messagePrefix": "request rate exceeded the allowed_rps("
+  },
+  {
+    "component": "artwork",
+    "operation": "batch_metadata",
+    "domain": "OathAnkr.TokenDiscoveryError",
+    "code": 0,
+    "chain": "aptos",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": "http(429)"
+  },
+  {
+    "component": "network",
+    "operation": "load_:refs:id:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "solana",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "artwork",
+    "operation": "batch_metadata",
+    "domain": "OathAnkr.TokenDiscoveryError",
+    "code": 0,
+    "chain": "solana",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": "http(429)"
+  },
+  {
+    "component": "network",
+    "operation": "load_:refs:id:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "ton",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "network",
+    "operation": "load_:refs:id:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "aptos",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "aptos",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "ton",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "solana",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "artwork",
+    "operation": "batch_metadata",
+    "domain": "OathAnkr.TokenDiscoveryError",
+    "code": 0,
+    "chain": "ton",
+    "host": "api.geckoterminal.com",
+    "method": "",
+    "messagePrefix": "http(429)"
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "solana",
+    "host": "rpc.ankr.com",
+    "method": "getTokenAccountsByOwner",
+    "messagePrefix": ""
+  },
+  {
+    "component": "network",
+    "operation": "raw_:",
+    "domain": "NSURLErrorDomain",
+    "code": -1001,
+    "chain": "solana",
+    "host": "rpc.ankr.com",
+    "method": "getBalance,getTokenAccountsByOwner",
+    "messagePrefix": ""
+  },
+  {
+    "component": "provider",
+    "operation": "inventoryInContextowner:",
+    "domain": "OathAnkr.SolanaError",
+    "code": 5,
+    "chain": "solana",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "provider",
+    "operation": "exchange_:endpoint:",
+    "domain": "OathAnkr.AnkrError",
+    "code": 7,
+    "chain": "solana",
+    "host": "",
+    "method": "",
+    "messagePrefix": "transport"
+  },
+  {
+    "component": "wallet",
+    "operation": "refreshAnkr",
+    "domain": "OathAtmosphere.OathWalletError",
+    "code": 2,
+    "chain": "",
+    "host": "",
+    "method": "",
+    "messagePrefix": "unavailable"
+  },
+  {
+    "component": "wallet",
+    "operation": "refresh_ankr",
+    "domain": "OathAtmosphere.OathWalletError",
+    "code": 2,
+    "chain": "",
+    "host": "",
+    "method": "",
+    "messagePrefix": "unavailable"
+  },
+  {
+    "component": "prices",
+    "operation": "token_chart_fallback",
+    "domain": "OathMarketData.MarketDataError",
+    "code": 3,
+    "chain": "base",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rateLimited"
+  },
+  {
+    "component": "network",
+    "operation": "fetch_:",
+    "domain": "Oath.HTTP",
+    "code": 429,
+    "chain": "base",
+    "host": "api.coingecko.com",
+    "method": "",
+    "messagePrefix": ""
+  },
+  {
+    "component": "prices",
+    "operation": "market_load",
+    "domain": "OathMarketData.MarketDataError",
+    "code": 3,
+    "chain": "base",
+    "host": "",
+    "method": "",
+    "messagePrefix": "rateLimited"
+  },
+  {
+    "component": "authentication",
+    "operation": "enableIfAvailablestrings:credentialProvider:",
+    "domain": "com.apple.LocalAuthentication",
+    "code": -6,
+    "chain": "",
+    "host": "",
+    "method": "",
+    "messagePrefix": ""
+  }
+]
