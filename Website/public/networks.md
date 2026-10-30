@@ -4,7 +4,7 @@ Choose the exact network before sharing an address. A matching ticker, logo or a
 
 ## Source and availability
 
-This list follows all 36 networks in the [4.1.14 (98) import catalog](https://github.com/devdasx/oath-wallet/blob/v4.1.14/OathAtmosphere/Import/OathImportCatalog.swift), checked October 30, 2026. Build 98 is a source release with no Apple upload or review submission; installed versions can differ. Availability of tokens, imports and sending actions depends on the chain, wallet type and provider configuration.
+This list follows all 36 networks in the [4.1.14 (98) import catalog](https://github.com/devdasx/oath-wallet/blob/e98eba14186da8afe21c46fb9466afd464f498e1/OathAtmosphere/Import/OathImportCatalog.swift), checked October 30, 2026. Build 98 is a source release with no Apple upload or review submission; installed versions can differ. Availability of tokens, imports and sending actions depends on the chain, wallet type and provider configuration.
 
 ## Bitcoin family
 

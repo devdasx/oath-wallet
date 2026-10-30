@@ -8,7 +8,7 @@ Use the original recovery material or an eligible password-encrypted backup; ver
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/v4.1.14). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/e98eba14186da8afe21c46fb9466afd464f498e1). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Check the installed versions
 
@@ -27,6 +27,8 @@ Use Import wallet or Import private key and the original format. Include a requi
 Compare known public addresses, the expected networks and refreshed balances. A matching wallet name is not enough. For an older wallet with Silent Payments outputs, Lightning channels or unsupported custom accounts, retain the compatible original software and recovery material; 4.1.14 cannot discover those funds simply by importing the words.
 
 Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+
+
 
 
 
