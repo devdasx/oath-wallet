@@ -43,7 +43,7 @@
 .oath-site-header .oath-header-32{position:fixed;top:clamp(10px,2vw,16px);left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 clamp(10px,3vw,16px);pointer-events:none}
 .oath-site-header .oath-header-33{pointer-events:auto;width:100%;max-width:1120px;height:clamp(54px,8vw,60px);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 8px 0 clamp(14px,3vw,20px);border-radius:999px;background:rgba(255,255,255,.88);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:inset 0 0 0 1px rgba(10,10,11,.1);transition:background .4s ease}
 .oath-site-header .oath-header-34{display:flex;align-items:center;gap:10px;min-height:44px;color:#0A0A0B;text-decoration:none}
-.oath-site-header .oath-header-35{display:block;width:30px;height:30px}
+.oath-site-header .oath-header-35{display:block;width:30px;height:30px;border-radius:22%;overflow:hidden}
 .oath-site-header .oath-header-36{font:600 19px/1 'Instrument Sans',sans-serif;letter-spacing:-.03em}
 .oath-site-header .oath-header-37{display:flex;gap:28px;font:500 14px/1 'Instrument Sans',sans-serif}
 .oath-site-header .oath-header-38{display:flex;align-items:center;min-height:44px;color:#62605A;text-decoration:none}
@@ -65,7 +65,7 @@
 .oath-site-footer .oath-footer-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:36px 32px}
 .oath-site-footer .oath-footer-3{display:flex;flex-direction:column;gap:14px;grid-column:auto}
 .oath-site-footer .oath-footer-4{display:flex;align-items:center;gap:10px}
-.oath-site-footer .oath-footer-5{display:block;width:30px;height:30px}
+.oath-site-footer .oath-footer-5{display:block;width:30px;height:30px;border-radius:22%;overflow:hidden}
 .oath-site-footer .oath-footer-6{font:600 20px/1 'Instrument Sans',sans-serif;letter-spacing:-.03em}
 .oath-site-footer .oath-footer-7{font:400 italic 22px/1.2 'Instrument Serif',serif;color:#62605A}
 .oath-site-footer .oath-footer-8{display:flex;flex-direction:column;gap:2px}

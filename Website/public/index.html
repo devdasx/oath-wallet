@@ -144,7 +144,7 @@
     <div style="overflow-x:auto;margin:0 calc(-1 * clamp(20px,5vw,32px));padding:0 clamp(20px,5vw,32px) 8px">
       <div style="min-width:0;display:grid;grid-template-columns:minmax(120px,1fr) minmax(160px,1.4fr);border-radius:clamp(24px,3vw,32px);box-shadow:inset 0 0 0 1px rgba(242,240,234,.12);overflow:hidden">
         <div style="padding:22px clamp(18px,2.4vw,28px);border-bottom:1px solid rgba(242,240,234,.12)"></div>
-        <div style="padding:22px clamp(16px,2vw,24px);background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(10,10,11,.1)"><img src="{{ markLight }}" alt="Oath logo" style="display:block;width:30px;height:30px"><span style="font:600 18px/1 'Instrument Sans',sans-serif;letter-spacing:-.02em">Oath</span></div>
+        <div style="padding:22px clamp(16px,2vw,24px);background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(10,10,11,.1)"><img src="{{ markLight }}" alt="Oath logo" style="display:block;width:30px;height:30px;border-radius:22%;overflow:hidden"><span style="font:600 18px/1 'Instrument Sans',sans-serif;letter-spacing:-.02em">Oath</span></div>
         <sc-for list="{{ cmpRows }}" as="row" hint-placeholder-count="9">
           <div style="padding:20px clamp(18px,2.4vw,28px);border-bottom:1px solid rgba(242,240,234,.08);font:400 clamp(19px,1.8vw,24px)/1.2 'Instrument Serif',serif;display:flex;align-items:center;opacity:{{ row.o }};transform:{{ row.t }};transition:{{ row.tr }}">{{ row.k }}</div>
           <div style="padding:20px clamp(16px,2vw,24px);background:#F2F0EA;color:#0A0A0B;border-bottom:1px solid rgba(10,10,11,.08);display:flex;align-items:center;gap:10px;opacity:{{ row.o }};transform:{{ row.t }};transition:{{ row.tr }}">
@@ -215,7 +215,7 @@
 <p style="margin:40px 0 0;font:400 16px/1.6 'Instrument Sans',sans-serif">New to Oath? <a href="https://help.oathwallet.org/articles/create-wallet" style="text-decoration:underline">Create your first wallet</a>, learn to <a href="https://help.oathwallet.org/articles/receive-crypto" style="text-decoration:underline">receive crypto</a>, or browse the <a href="https://help.oathwallet.org/" style="text-decoration:underline">Help Center</a>.</p>
 </section><!-- oath-self-custody:end -->
 <section id="get" data-screen-label="08 Download" style="max-width:1400px;margin:0 auto;padding:clamp(120px,16vw,180px) clamp(20px,5vw,32px) clamp(96px,12vw,140px);display:flex;flex-direction:column;align-items:center;text-align:center">
-    <img src="{{ mark }}" alt="Oath" style="display:block;width:clamp(116px,20vw,180px);aspect-ratio:860/580;height:auto">
+    <img src="{{ mark }}" alt="Oath" style="display:block;width:clamp(116px,20vw,180px);aspect-ratio:1/1;height:auto;border-radius:22%;overflow:hidden">
     <p style="margin:36px 0 0;max-width:440px;font:400 18px/1.5 'Instrument Sans',sans-serif;color:#B9B7B0">Free on the App Store, for iPhone and iPad.</p>
     <div style="margin-top:40px;width:100%;display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
       <a href="https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283" target="_blank" rel="noopener" style="flex:{{ ctaF }};justify-content:center;height:60px;padding:0 30px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;font:600 16px/1 'Instrument Sans',sans-serif">Download on the App Store</a>
