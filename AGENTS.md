@@ -34,3 +34,9 @@ Before publishing, review release notes, tag annotations, commit messages and
 website copy for references to unpublished products or omitted implementation
 variants. Describe the shipped behavior directly, and keep audit and build
 verification claims limited to evidence actually obtained.
+
+Recovery phrases, private keys and passphrases must use the sensitive clipboard
+helper: device-only copying with a 60-second system pasteboard expiry. Public
+addresses and transaction identifiers use the ordinary helper. Preserve this
+boundary during feature updates and run `python3 Tools/CheckClipboard.py` when
+changing copy behavior.
