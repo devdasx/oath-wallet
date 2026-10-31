@@ -10,6 +10,7 @@ test('all ten web palettes match native Swift output to Float precision',()=>{
   PALETTES.forEach((palette,i)=>palette.forEach((x,j)=>assert.ok(Math.abs(x-native[i][j])<1e-7)));
 });
 test('palette holds, transitions continuously in 0.5s, and wraps without restarting motion',()=>{
+  assert.equal(paletteAt(0).name,'cobalt');
   assert.deepEqual(paletteAt(0).values,PALETTES[0]);
   assert.deepEqual(paletteAt(5).values,PALETTES[0]);
   assert.deepEqual(paletteAt(5.5).values,PALETTES[1]);
@@ -51,7 +52,7 @@ test('renderer is lazy, throttled, pauses offscreen/hidden/user pause, and fully
   assert.equal(h.doc.listeners.size,0);assert.equal(h.media.listeners.size,0);assert.equal(h.canvas.listeners.size,0);
 });
 test('reduced motion presents a still frame without starting animation',async t=>{
-  const h=harness(t,{reduced:true});h.visible(true);await h.settled();assert.equal(h.state.draws,1);assert.equal(h.state.pending,0);h.dispose();
+  const h=harness(t,{reduced:true});h.visible(true);await h.settled();assert.equal(h.state.draws,1);assert.equal(h.canvas.dataset.colorway,'cobalt');assert.equal(h.state.pending,0);h.dispose();
 });
 test('unavailable WebGL keeps poster and avoids repeated retries',async t=>{
   const h=harness(t,{unavailable:true});h.visible(true);await h.settled();assert.equal(h.canvas.dataset.motion,'fallback');assert.equal(h.canvas.style.opacity,'0');

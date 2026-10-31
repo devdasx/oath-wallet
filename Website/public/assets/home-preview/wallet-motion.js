@@ -1,8 +1,8 @@
 // Palette math mirrors OathAtmosphere/OathColorway.swift. No app data is used.
 export const COLORWAYS = [
-  ['ruby', 0xBC2835], ['cobalt', 0x244DE0], ['azure', 0x288CBC],
+  ['cobalt', 0x244DE0], ['azure', 0x288CBC],
   ['indigo', 0x5140C5], ['amethyst', 0x8B36C9], ['orchid', 0xBC39A2],
-  ['rose', 0xDF438D], ['copper', 0xCC6B35], ['champagne', 0xB2964F], ['platinum', 0x656977],
+  ['rose', 0xDF438D], ['ruby', 0xBC2835], ['copper', 0xCC6B35], ['champagne', 0xB2964F], ['platinum', 0x656977],
 ];
 export const HOLD_SECONDS = 5;
 export const TRANSITION_SECONDS = 0.5; // Native OathBackground.easeInOut(duration: 0.5).
@@ -58,7 +58,7 @@ export function paletteAt(seconds) {
 }
 
 // Lazy initialization: one small canvas, a 30fps cap, no rendering offscreen or in hidden tabs.
-// Existing Ruby poster stays visible if WebGL is unavailable or the context is lost.
+// Native Cobalt poster stays visible if WebGL is unavailable or the context is lost.
 export function mountWalletMotion(canvas) {
   let disposed=false, visible=false, lost=false, paused=false, frame=0, elapsed=0, last=null;
   let gl, program, buffer, shaders=[], uniforms, initializing=false, failed=false;

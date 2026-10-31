@@ -9,6 +9,8 @@ test('home preview uses the requested synthetic portfolio and app artwork',async
  const values=runInNewContext(script+';new Component().renderVals()', {DCLogic:class{},React:{createRef:()=>({current:null})}});
  assert.equal(values.assets.length,5);
  assert.match(source,/font-family:'SF Pro Rounded',ui-rounded/);
+ assert.match(source,/background:#244DE0 url\('\/assets\/home-preview\/cobalt.jpg'\)/);
+ assert.ok((await readFile(new URL('../public/assets/home-preview/cobalt.jpg',import.meta.url))).length>0);
  assert.match(source,/font-variant-numeric:tabular-nums/);
  assert.doesNotMatch(source,/Instrument Sans/);
  assert.equal(values.assets.reduce((sum,a)=>sum+Math.round(Number(a.val.replace(/[$,]/g,''))*1000),0),1259301765);
