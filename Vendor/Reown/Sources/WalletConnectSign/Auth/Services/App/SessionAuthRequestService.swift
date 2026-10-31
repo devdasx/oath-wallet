@@ -46,6 +46,7 @@ actor SessionAuthRequestService {
         let authResponseTopicRecord = AuthResponseTopicRecord(topic: responseTopic, unixTimestamp: sessionAuthenticateRequestParams.expiryTimestamp)
         authResponseTopicRecordsStore.set(authResponseTopicRecord, forKey: responseTopic)
         let request = RPCRequest(method: protocolMethod.method, params: sessionAuthenticateRequestParams)
+            .expectingResponse(on: responseTopic)
         try kms.setPublicKey(publicKey: pubKey, for: responseTopic)
         logger.debug("AppRequestService: Subscribibg for response topic: \(responseTopic)")
         try await networkingInteractor.request(request, topic: topic, protocolMethod: protocolMethod)

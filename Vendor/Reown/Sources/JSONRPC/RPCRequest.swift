@@ -17,6 +17,15 @@ public struct RPCRequest: Equatable {
 
     public let id: RPCID?
 
+    /// Local routing expectation, never accepted from or encoded into JSON-RPC.
+    public private(set) var expectedResponseTopic: String? = nil
+
+    public func expectingResponse(on topic: String) -> RPCRequest {
+        var request = self
+        request.expectedResponseTopic = topic
+        return request
+    }
+
     internal init(method: String, params: AnyCodable?, id: RPCID?) {
         self.jsonrpc = "2.0"
         self.method = method
@@ -88,6 +97,10 @@ extension RPCRequest {
 }
 
 extension RPCRequest: Codable {
+
+    private enum CodingKeys: String, CodingKey {
+        case jsonrpc, method, params, id
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

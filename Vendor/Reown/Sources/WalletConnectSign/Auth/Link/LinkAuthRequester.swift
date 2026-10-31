@@ -57,6 +57,7 @@ actor LinkAuthRequester {
         let authResponseTopicRecord = AuthResponseTopicRecord(topic: responseTopic, unixTimestamp: sessionAuthenticateRequestParams.expiryTimestamp)
         authResponseTopicRecordsStore.set(authResponseTopicRecord, forKey: responseTopic)
         let request = RPCRequest(method: protocolMethod.method, params: sessionAuthenticateRequestParams)
+            .expectingResponse(on: responseTopic)
         try kms.setPublicKey(publicKey: pubKey, for: responseTopic)
 
         logger.debug("LinkAuthRequester: sending request")        

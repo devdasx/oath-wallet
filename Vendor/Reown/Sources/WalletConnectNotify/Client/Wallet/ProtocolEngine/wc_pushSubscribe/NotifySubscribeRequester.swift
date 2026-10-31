@@ -57,6 +57,7 @@ class NotifySubscribeRequester {
             appDomain: appDomain
         )
         let request = RPCRequest(method: protocolMethod.method, params: subscriptionAuthWrapper)
+            .expectingResponse(on: responseTopic)
 
         logger.debug("Subscribing to response topic: \(responseTopic)")
 
