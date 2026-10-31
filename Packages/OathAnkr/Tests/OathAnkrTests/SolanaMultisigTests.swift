@@ -39,9 +39,18 @@ final class SolanaMultisigTests: XCTestCase {
             XCTAssertNotEqual(try SolanaMultisigCrypto.messages(original), try SolanaMultisigCrypto.messages(updated))
         }
     }
-    func testOfficialSquadsVectorsForSOLAndBothTokenPrograms() throws {
-        let f = try fixture(), rows = try XCTUnwrap(f["vectors"].array)
-        XCTAssertEqual(rows.count,76)
+    // Keep all 76 independent SDK vectors, split into bounded host cases so
+    // per-test timeouts do not discard the expensive signing/verification set.
+    func testOfficialSquadsSetupVectors() throws { try verifyOfficialSquadsVectors(kind: "setup") }
+    func testOfficialSquadsNativeVectors() throws { try verifyOfficialSquadsVectors(kind: "native") }
+    func testOfficialSquadsSPLVectors() throws { try verifyOfficialSquadsVectors(kind: "spl") }
+    func testOfficialSquadsToken2022Vectors() throws { try verifyOfficialSquadsVectors(kind: "token2022") }
+    private func verifyOfficialSquadsVectors(kind: String) throws {
+        let f = try fixture(), all = try XCTUnwrap(f["vectors"].array)
+        XCTAssertEqual(all.count, 76)
+        XCTAssertEqual(Set(all.compactMap { $0["kind"].string }), Set(["setup", "native", "spl", "token2022"]))
+        let rows = all.filter { $0["kind"].string == kind }
+        XCTAssertEqual(rows.count, 19)
         for row in rows {
             let p = try plan(row), policy = try XCTUnwrap(p.multisig?.policy)
             XCTAssertEqual(try policy.multisig,row["multisig"].string)
