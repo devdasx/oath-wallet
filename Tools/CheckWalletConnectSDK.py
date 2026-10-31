@@ -41,6 +41,7 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
  (schema/'Support.swift').write_text('enum WCSession { static let defaultTimeToLive: Int64 = 604800 }\nenum Request { static let minTtl: Double = 300; static let maxTtl: Double = 604800 }\n')
  targets.append('.target(name: "Schemas", dependencies: ["WalletConnectNetworking", "HTTPClient", "OathDiagnostics"])')
  tests=work/'Tests/SDKTests';shutil.copytree(root/'Tools/WalletConnectSDKValidation',tests,ignore=shutil.ignore_patterns('._*'))
+ shutil.copy(root/'Vendor/Reown/Tests/WalletConnectUtilsTests/WalletConnectURITests.swift', tests/'WalletConnectURITests.swift')
  for fixture in ['KeyManagementServiceMock.swift','NetworkingInteractorMock.swift']:
   candidates=list((root/'Vendor/Reown/Tests').rglob(fixture)); assert len(candidates)==1
   shutil.copy(candidates[0],tests/fixture)

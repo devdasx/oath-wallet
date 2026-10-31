@@ -42,27 +42,34 @@ public struct WalletConnectURI: Equatable {
     }
 
     public init(uriString: String) throws {
-        let decodedString = uriString.removingPercentEncoding ?? uriString
-        guard let components = Self.parseURIComponents(from: decodedString) else {
+        guard let components = Self.parseURIComponents(from: uriString) else {
             throw Errors.invalidFormat
         }
-        let query: [String: String]? = components.queryItems?.reduce(into: [:]) { $0[$1.name] = $1.value }
+        // Decode query values only through URLComponents. Decoding the whole
+        // URI first lets an encoded ampersand introduce another protocol field.
+        var query: [String: String] = [:]
+        for item in components.queryItems ?? [] {
+            guard query[item.name] == nil, let value = item.value else {
+                throw Errors.invalidFormat
+            }
+            query[item.name] = value
+        }
 
         guard
             let topic = components.user,
             let version = components.host,
-            let symKey = query?["symKey"],
-            let relayProtocol = query?["relay-protocol"]
+            let symKey = query["symKey"],
+            let relayProtocol = query["relay-protocol"]
         else {
             throw Errors.invalidFormat
         }
 
-        let relayData = query?["relay-data"]
-        let methodsString = query?["methods"]
+        let relayData = query["relay-data"]
+        let methodsString = query["methods"]
         let methods = methodsString?.components(separatedBy: ",")
 
         // Check if expiryTimestamp is provided and valid
-        if let expiryTimestampString = query?["expiryTimestamp"],
+        if let expiryTimestampString = query["expiryTimestamp"],
            let expiryTimestamp = UInt64(expiryTimestampString),
            expiryTimestamp <= UInt64(Date().timeIntervalSince1970) {
             throw Errors.expired
@@ -73,7 +80,7 @@ public struct WalletConnectURI: Equatable {
         self.symKey = symKey
         self.relay = RelayProtocolOptions(protocol: relayProtocol, data: relayData)
         self.methods = methods
-        self.expiryTimestamp = UInt64(query?["expiryTimestamp"] ?? "") ?? fiveMinutesFromNow
+        self.expiryTimestamp = UInt64(query["expiryTimestamp"] ?? "") ?? fiveMinutesFromNow
     }
 
 
@@ -83,24 +90,30 @@ public struct WalletConnectURI: Equatable {
     }
 
     private var queryString: String {
-        var parts = ["symKey=\(symKey)", "relay-protocol=\(relay.protocol)", "expiryTimestamp=\(expiryTimestamp)"]
+        var parts = [URLQueryItem(name: "symKey", value: symKey),
+                     URLQueryItem(name: "relay-protocol", value: relay.protocol),
+                     URLQueryItem(name: "expiryTimestamp", value: String(expiryTimestamp))]
         if let relayData = relay.data {
-            parts.append("relay-data=\(relayData)")
+            parts.append(URLQueryItem(name: "relay-data", value: relayData))
         }
         if let methods = methods {
             let encodedMethods = methods.joined(separator: ",")
-            parts.append("methods=\(encodedMethods)")
+            parts.append(URLQueryItem(name: "methods", value: encodedMethods))
         }
-        return parts.joined(separator: "&")
+        var components = URLComponents()
+        components.queryItems = parts
+        return components.percentEncodedQuery ?? ""
     }
 
     private static func parseURIComponents(from string: String) -> URLComponents? {
-        let decodedString = string.removingPercentEncoding ?? string
+        // Accept a fully encoded deep-link payload once, while leaving encoded
+        // field contents in an ordinary wc: URI intact until query parsing.
+        let decodedString = string.hasPrefix("wc:") ? string : (string.removingPercentEncoding ?? string)
         guard decodedString.hasPrefix("wc:") else {
             return nil
         }
 
-        let urlString = !decodedString.hasPrefix("wc://") ? decodedString.replacingOccurrences(of: "wc:", with: "wc://") : decodedString
+        let urlString = !decodedString.hasPrefix("wc://") ? "wc://" + decodedString.dropFirst(3) : decodedString
         return URLComponents(string: urlString)
     }
 }
