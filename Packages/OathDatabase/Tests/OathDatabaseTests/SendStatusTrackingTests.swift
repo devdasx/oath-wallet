@@ -136,7 +136,9 @@ private actor StatusDeadlineProbe {
             await probe.end()
         }
         await worker.resume()
-        for i in 0..<72 { try await journal(db, "batch-\(i)") }
+        // A signed send is already eligible. Do not race the worker with a
+        // synthetic signed-to-broadcast write after it has confirmed the send.
+        for i in 0..<72 { try await journal(db, "batch-\(i)", broadcast: false) }
         try await wait { try await self.count(db) == 0 }
         await worker.pause()
         let peak = await probe.peak, calls = await probe.calls
@@ -163,6 +165,29 @@ private actor StatusDeadlineProbe {
         try await wait { try await self.count(db) == 0 }
         await worker.pause()
     }
+    func testSignedConfirmationRejectsLateBroadcastWithoutReopeningJob() async throws {
+        let (db, _) = try await fixture()
+        try await journal(db, "settled-before-broadcast", broadcast: false)
+        let claims = try await db.claimSendStatusChecks(owner: "settlement")
+        let check = try XCTUnwrap(claims.first)
+        XCTAssertEqual(check.send.state, "signed")
+        // Force the ordering that made the old fixture intermittent: the
+        // checker settles the signed row before a later broadcast write.
+        try await Self.confirm(db, check.send)
+        do {
+            _ = try await db.transitionSend(check.send.id, from: "signed", to: "broadcast")
+            XCTFail("A stale broadcast write must not undo confirmation")
+        } catch let error as StoreError {
+            XCTAssertEqual(error, .invalidTransition)
+        }
+        try await db.finishSendStatusCheck(check, failed: false)
+        let final = try await db.send(check.send.id)
+        let pending = try await count(db)
+        XCTAssertEqual(final?.state, "confirmed")
+        XCTAssertEqual(final?.signedPayload, check.send.signedPayload)
+        XCTAssertEqual(pending, 0)
+    }
+
     func testRemovedWalletAndResetNeverRunChecks() async throws {
         let (db, _) = try await fixture()
         try await journal(db, "removed", wallet: "w2")
@@ -379,7 +404,7 @@ private actor StatusDeadlineProbe {
         // newly journaled sends and settle them without an app restart.
         let worker = SendStatusTracker(database: reopened) { send in try await Self.confirm(reopened, send) }
         await worker.resume()
-        try await journal(reopened, "after-observation")
+        try await journal(reopened, "after-observation", broadcast: false)
         try await wait { try await self.count(reopened) == 0 }
         await worker.pause()
         let final = try await reopened.send("after-observation")
