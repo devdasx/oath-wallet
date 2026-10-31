@@ -78,7 +78,7 @@ for (const d of demos) {
   const mdfile=new URL('articles/'+d.slug+'.md',root);
   let md=await readFile(mdfile,'utf8');
   md=md.replace(/\n<!-- oath-walkthrough:start -->[\s\S]*?<!-- oath-walkthrough:end -->\n/,'\n');
-  md+='\n<!-- oath-walkthrough:start -->\n## '+d.title+' — visual walkthrough transcript\n\nGuidance checked against 4.1.14 (98) source on October 30, 2026. Included screenshots are historical examples. This is an illustrated guide, not a recording of a current App Store test.\n\n'+d.steps.map(([title,text],i)=>`### ${i+1}. ${title}\n\n${text}`).join('\n\n')+'\n\n[Open the visual walkthrough](https://oathwallet.org/articles/'+d.slug+'#visual-walkthrough)\n<!-- oath-walkthrough:end -->\n';
+  md=md.trimEnd()+'\n\n<!-- oath-walkthrough:start -->\n## '+d.title+' — visual walkthrough transcript\n\nGuidance checked against 4.1.14 (98) source on October 30, 2026. Included screenshots are historical examples. This is an illustrated guide, not a recording of a current App Store test.\n\n'+d.steps.map(([title,text],i)=>`### ${i+1}. ${title}\n\n${text}`).join('\n\n')+'\n\n[Open the visual walkthrough](https://oathwallet.org/articles/'+d.slug+'#visual-walkthrough)\n<!-- oath-walkthrough:end -->\n';
   await writeFile(mdfile,md);
 }
 console.log('Built two illustrated walkthroughs with readable transcripts.');

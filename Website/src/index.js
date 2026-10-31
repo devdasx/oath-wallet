@@ -1,3 +1,4 @@
+import { handleAgentContent, addAgentDiscovery } from './agent-content.js';
 import { handleHelp } from './help/index.js';
 import { handleWalletLinks } from './wallet-links.js';
 import { handleArticleHost, migrateArticleLinks, migrateSupportLinks } from './article-host.js';
@@ -14,7 +15,7 @@ export default {
   async scheduled(_event, env, ctx) { ctx.waitUntil(newsletterScheduled(env)); },
   async fetch(request, env) {
     let response;
-    const special = await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
+    const special = await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
     const newsletter = special || await handleNewsletter(request, env);
     if (newsletter) {
       response = newsletter;
@@ -32,6 +33,7 @@ export default {
         response = new HTMLRewriter().on('head', {element(el) { el.append('<script src="/visitor-events.js" defer></script><link rel="stylesheet" href="/newsletter.css"><script src="/newsletter.js" defer></script>', {html:true}); }}).transform(response);
       }
     }
+    response = addAgentDiscovery(request, response);
     // Cover assets, redirects, API responses and 404s with the same HTTPS policy.
     if (new URL(request.url).protocol !== 'https:') return response;
     const secured = new Response(response.body, response);

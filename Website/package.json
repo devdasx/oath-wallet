@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "build:search": "node scripts/build-search-content.mjs",
-    "predeploy": "npm run build:help-chrome && npm run build:walkthroughs && npm run build:seo && npm run build:search",
+    "predeploy": "npm run build:help-chrome && npm run build:walkthroughs && npm run build:seo && npm run build:search && npm run build:agents",
     "build:seo": "node scripts/build-seo.mjs",
     "deploy": "wrangler deploy",
     "postdeploy": "node scripts/submit-indexnow.mjs",
@@ -15,7 +15,8 @@
     "check": "node scripts/check-site.mjs",
     "build:walkthroughs": "node scripts/build-walkthroughs.mjs",
     "build:help-chrome": "node scripts/build-help-chrome.mjs",
-    "test:unit": "node scripts/test-unit.mjs"
+    "test:unit": "node scripts/test-unit.mjs",
+    "build:agents": "node scripts/build-agent-content.mjs"
   },
   "devDependencies": {
     "playwright": "1.63.0",

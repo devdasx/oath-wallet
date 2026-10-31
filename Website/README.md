@@ -165,8 +165,7 @@ All three public hosts explicitly allow `OAI-SearchBot` (search discovery) and
 also advertises the other two. Public content is rendered before JavaScript.
 The main robots file is `public/robots.txt`; article/help rules share
 `src/search-crawlers.js`. Keep both covered by `tests/search-crawlers.test.mjs`.
-The article host's `/llms.txt` redirects to the existing site-wide reading guide
-instead of returning a missing-page response.
+Each host's `/llms.txt` serves a generated guide to its published documents.
 
 `GPTBot` is a separate training crawler. This change preserves its existing
 permission; allowing search does not require enabling training. `llms.txt` is
@@ -180,8 +179,8 @@ blocks them, adjust only that rule for verified search traffic. Do not exempt
 requests merely because their User-Agent says OAI-SearchBot, disable the WAF
 globally, or permit access to protected administration/API routes. Use OpenAI's
 current published IP ranges if an IP rule is necessary; never paste a permanent
-snapshot into application code. No zone-level security exemption is installed
-by this website deployment.
+snapshot into application code. The separately configured default-client exception is documented below;
+Worker deployments do not change zone security settings.
 
 Reference: https://developers.openai.com/api/docs/bots
 
@@ -205,3 +204,43 @@ submission, approval, internal release checks and an independent audit.
 
 Help pages use only `src/help/content.json` in Git. The deployed worker never fetches help text from a separate CMS.
 Screenshots retain their capture version independently of the text's app version.
+
+## Unified public documentation interfaces
+
+`src/agent-content.js` derives a 191-document catalog from the published core
+Markdown, article routes/metadata, and Help Center JSON used by the HTML renderer.
+Every catalog entry has a canonical URL and a Markdown URL. `GET`/`HEAD` with
+`Accept: text/markdown` serves the same document; HTML advertises the alternate
+through a Link header. Both negotiated formats use `Vary: Accept`. Wildcard or
+HTML-preferred requests retain HTML. No User-Agent determines document content.
+
+All three hosts expose `/llms.txt` and `/agent-documents.json`. The build generates
+the main guide, complete text, index, and MCP card. Help text, steps, related links,
+app versions and authored dates are taken directly from the visible help source.
+Editorial history is explicitly labeled; source evidence retains its pinned
+version and review date, and does not assert an independent audit or current
+App Store availability. Never update a review date merely because a build ran.
+
+MCP `search_help` searches all help instructions; `list_documents`, `read_document`
+and resources expose the same catalog. Reading accepts exact catalog URLs only,
+never arbitrary network destinations. Existing origin checks, body bounds,
+read-only behavior and private-route isolation remain in force.
+
+Run `npm run predeploy && npm run test:unit` before publication. After deployment,
+run `node scripts/check-agent-access.mjs`: it checks every catalog document with
+bounded concurrency, then exercises recovery search, network instructions and
+App Store link retrieval. This supplements `check-search-crawlers.py`.
+
+### Cloudflare default-client compatibility
+
+On 2026-10-31, a default Python User-Agent received Cloudflare error 1010 while
+browser and search clients received 200 on the same public document. Browser
+Integrity Check remains enabled globally. A configuration rule named
+“Public documentation — non-browser readers” turns off only that browser-specific
+header heuristic for GET/HEAD on the explicitly listed main-site documents,
+Help Center article/collection routes, and public Articles host paths (excluding
+admin, api and underscore-prefixed paths). It does not bypass WAF, rate limiting,
+DDoS, authentication or MCP origin validation, and grants no private access.
+Write requests and other hosts are outside this exception. Automated clients
+should identify themselves truthfully; never impersonate a verified crawler to
+obtain privileges. Cloudflare zone configuration is separate from Worker deploys.

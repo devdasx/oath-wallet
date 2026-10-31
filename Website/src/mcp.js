@@ -1,3 +1,4 @@
+import { documents, publicDocument, documentText, searchHelp, evidenceScope } from './agent-content.js';
 import { migrateArticleLinks } from './article-host.js';
 // Cloudflare implementation of the supplied read-only PHP MCP endpoint.
 // Public answers and resources are read from the same assets as the website.
@@ -10,23 +11,18 @@ const tool = (name, title, description, properties = {}, required = []) => ({
   annotations
 });
 const tools = [
+  tool('list_documents', 'Documentation index', 'List official pages, help articles and editorial articles with canonical URLs and version scope.'),
+  tool('read_document', 'Read an official document', 'Read a document from list_documents by exact canonical or Markdown URL. No arbitrary URL fetching.', {url:{type:'string'}}, ['url']),
   tool('get_overview', 'What is Oath?', 'Overview of the Oath self-custody iPhone wallet and key facts.'),
   tool('list_features', 'List features', 'List core features with short descriptions.'),
   tool('get_feature', 'Get a feature', 'Details about a feature by id or keywords.', { feature: { type: 'string' } }, ['feature']),
-  tool('search_help', 'Search support answers', 'Search the official support FAQ.', { query: { type: 'string' } }, ['query']),
+  tool('search_help', 'Search support answers', 'Search the complete official Help Center; results include source URLs and applicable versions.', { query: { type: 'string' } }, ['query']),
   tool('get_contact', 'Contact Oath', 'Official support and press email, X account and company details.'),
   tool('get_download', 'Download link', 'Official Apple App Store download link.'),
   tool('get_policy', 'Terms or privacy', 'Full text of the Terms of Service or Privacy Policy.', { document: { type: 'string', enum: ['terms', 'privacy'] } }, ['document']),
   tool('list_articles', 'List articles', 'Published Oath articles, which may be empty.')
 ];
-const resources = [
-  ['llms.txt', 'llms.txt', 'Site guide for AI agents'],
-  ['index.md', 'home', 'Home'], ['features.md', 'features', 'Features'],
-  ['support.md', 'support', 'Support & FAQ'], ['press.md', 'press', 'Press kit'],
-  ['articles.md', 'articles', 'Articles'], ['terms.md', 'terms', 'Terms of Service'],
-  ['privacy.md', 'privacy', 'Privacy Policy'],
-  ['security.md', 'security', 'Security & source code']
-].map(([file, name, title]) => ({ uri: `${base}/${file}`, name, title, mimeType: file.endsWith('.md') ? 'text/markdown' : 'text/plain', file }));
+const resources = documents.map(d=>({uri:d.markdown_url,name:d.url,title:d.title,mimeType:'text/markdown'}));
 const prompts = [{ name: 'explain_oath', title: 'Explain Oath to a user', description: 'Explain Oath using official facts.', arguments: [{ name: 'question', description: 'The user’s question or situation', required: false }] }];
 const text = value => ({ content: [{ type: 'text', text: value }] });
 const structured = (value, summary) => ({ ...text(`${summary}\n\n${JSON.stringify(value, null, 2)}`), structuredContent: value });
@@ -50,6 +46,11 @@ async function callTool(name, args, env) {
       Object.entries(args).some(([k, v]) => typeof v !== 'string' || (schema.properties[k].enum && !schema.properties[k].enum.includes(v)))) {
     return toolError('Arguments do not match this tool’s input schema.');
   }
+  if (name === 'list_documents') return structured({documents:documents.map(publicDocument),source_evidence:evidenceScope}, 'Official documentation index.');
+  if (name === 'read_document') {
+    const d=documents.find(d=>d.url===args.url||d.markdown_url===args.url);
+    return d ? structured({...publicDocument(d),text:await documentText(d,env)}, 'Official document.') : toolError('Unknown document. Use list_documents.');
+  }
   if (name === 'get_overview') return text(await readAsset(env, 'index.md'));
   if (name === 'get_policy') return text(await readAsset(env, `${args.document}.md`));
   const data = JSON.parse(await readAsset(env, 'oath-data.json'));
@@ -65,11 +66,8 @@ async function callTool(name, args, env) {
       return result ? structured(result, `${result.name} — ${result.summary}`) : toolError('No matching feature. Call list_features to see all ids.');
     }
     case 'search_help': {
-      const query = normalized(args.query);
-      if (!query) return toolError('Provide a query.');
-      const words = query.split(' ').filter(w => w.length > 2);
-      const hits = data.faq.map(item => ({ item, score: words.filter(w => normalized(`${item.q} ${item.a} ${item.category}`).includes(w)).length })).filter(h => h.score > 0).sort((a, b) => b.score - a.score).slice(0, 5).map(h => h.item);
-      return structured({ results: hits, contact: facts.email }, `For further help, email ${facts.email}. Oath will never ask for a recovery phrase.`);
+      if (!args.query.trim() || args.query.length>500) return toolError('Provide a query of 1–500 characters.');
+      return structured({results:searchHelp(args.query),contact:facts.email}, 'Official Help Center results; cite each result URL and preserve its version scope.');
     }
     case 'get_contact': return structured({ email: facts.email, x: facts.x, company: facts.company, leadership: facts.leadership, address: facts.address, press: 'Email with subject “Press”', warning: 'Oath will never ask for your recovery phrase, private key or passkey.' }, 'Official Oath contact details:');
     case 'get_download': return structured({ platform: facts.platform, price: facts.price, url: facts.download }, 'Download Oath:');
@@ -97,7 +95,7 @@ async function handle(message, env) {
     case 'resources/templates/list': return reply({ resourceTemplates: [] });
     case 'resources/read': {
       const resource = resources.find(r => r.uri === params.uri);
-      return resource ? reply({ contents: [{ uri: resource.uri, mimeType: resource.mimeType, text: await readAsset(env, resource.file) }] }) : fail(id, -32002, 'Resource not found');
+      return resource ? reply({ contents: [{ uri: resource.uri, mimeType: resource.mimeType, text: await documentText(documents.find(d=>d.markdown_url===resource.uri),env) }] }) : fail(id, -32002, 'Resource not found');
     }
     case 'prompts/list': return reply({ prompts });
     case 'prompts/get': {

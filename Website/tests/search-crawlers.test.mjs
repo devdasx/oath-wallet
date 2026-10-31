@@ -26,8 +26,8 @@ test('training permission remains unchanged and separate from search',async()=>{
 });
 test('article crawler reading-guide request resolves to the existing public guide',async()=>{
   const response=await worker.fetch(new Request('https://articles.oathwallet.org/llms.txt'),env);
-  assert.equal(response.status,308);
-  assert.equal(response.headers.get('Location'),'https://oathwallet.org/llms.txt');
+  assert.equal(response.status,200);
+  assert.ok((await response.text()).includes('https://articles.oathwallet.org'));
 });
 test('sensitive wallet-link routes retain noindex despite public crawl permission',async()=>{
   const response=await worker.fetch(new Request('https://oathwallet.org/wc'),env);

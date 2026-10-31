@@ -28,6 +28,8 @@
     "get_contact",
     "get_download",
     "get_policy",
-    "list_articles"
+    "list_articles",
+    "list_documents",
+    "read_document"
   ]
 }

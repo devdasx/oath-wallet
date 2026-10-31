@@ -46,3 +46,5 @@ jobs:
         run: node scripts/verify-live-deployment.mjs
       - name: Verify public search crawler access on all three hosts
         run: python3 scripts/check-search-crawlers.py
+      - name: Verify every public document and agent workflow
+        run: node scripts/check-agent-access.mjs

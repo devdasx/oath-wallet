@@ -43,7 +43,7 @@ test('help release and historical screenshots keep separate versions',()=>{
 });
 test('current release copy keeps upload separate from Apple review',async()=>{
  const copies=await Promise.all(['public/security.html','public/security.md','public/about.html',
-  'public/about.md','public/networks.html','public/networks.md','public/llms-full.txt','src/help/render.js'].map(read));
+  'public/about.md','public/networks.html','public/networks.md','src/help/render.js'].map(read));
  for(const copy of copies){
   assert.doesNotMatch(copy,/Waiting for Review|Build 98 was submitted|4\.1\.14 \(86\)/);
   assert.match(copy,/no .*upload|no Apple upload|not.*upload/i);

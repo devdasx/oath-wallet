@@ -1,0 +1,1815 @@
+{
+  "schema_version": 1,
+  "source_evidence": {
+    "version": "4.1.14",
+    "build": 98,
+    "reviewed_on": "2026-10-30",
+    "source_url": "https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946",
+    "scope": "Pinned source excerpts, not an independent audit or confirmation of the current App Store version.",
+    "app_store_url": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"
+  },
+  "documents": [
+    {
+      "url": "https://oathwallet.org/",
+      "markdown_url": "https://oathwallet.org/index.md",
+      "title": "Oath Wallet",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/features",
+      "markdown_url": "https://oathwallet.org/features.md",
+      "title": "Features",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/about",
+      "markdown_url": "https://oathwallet.org/about.md",
+      "title": "About",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/networks",
+      "markdown_url": "https://oathwallet.org/networks.md",
+      "title": "Networks",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/press",
+      "markdown_url": "https://oathwallet.org/press.md",
+      "title": "Press",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/security",
+      "markdown_url": "https://oathwallet.org/security.md",
+      "title": "Security",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/terms",
+      "markdown_url": "https://oathwallet.org/terms.md",
+      "title": "Terms",
+      "kind": "page"
+    },
+    {
+      "url": "https://oathwallet.org/privacy",
+      "markdown_url": "https://oathwallet.org/privacy.md",
+      "title": "Privacy",
+      "kind": "page"
+    },
+    {
+      "url": "https://help.oathwallet.org/",
+      "markdown_url": "https://help.oathwallet.org/index.md",
+      "title": "Help Center",
+      "kind": "help-index"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/start",
+      "markdown_url": "https://help.oathwallet.org/collections/start.md",
+      "title": "Getting started",
+      "summary": "Your first wallet, without the guesswork.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/wallets",
+      "markdown_url": "https://help.oathwallet.org/collections/wallets.md",
+      "title": "Your wallets",
+      "summary": "Organize, personalize and manage your wallets.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/backup",
+      "markdown_url": "https://help.oathwallet.org/collections/backup.md",
+      "title": "Backup & recovery",
+      "summary": "Keep a recovery route before you need it.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/security",
+      "markdown_url": "https://help.oathwallet.org/collections/security.md",
+      "title": "Security & privacy",
+      "summary": "Control access and protect sensitive information.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/assets",
+      "markdown_url": "https://help.oathwallet.org/collections/assets.md",
+      "title": "Assets & networks",
+      "summary": "Understand balances, prices and tokens.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/receive",
+      "markdown_url": "https://help.oathwallet.org/collections/receive.md",
+      "title": "Send & receive",
+      "summary": "Choose the right network, review a transfer and share an address.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/activity",
+      "markdown_url": "https://help.oathwallet.org/collections/activity.md",
+      "title": "Transactions & activity",
+      "summary": "Read, check and share transaction information.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/settings",
+      "markdown_url": "https://help.oathwallet.org/collections/settings.md",
+      "title": "Settings & support",
+      "summary": "Make Oath yours and find help.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/collections/dapps",
+      "markdown_url": "https://help.oathwallet.org/collections/dapps.md",
+      "title": "dApps & permissions",
+      "summary": "Connect apps, understand requests and revoke supported access.",
+      "kind": "collection"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/create-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/create-wallet.md",
+      "title": "Create your first wallet",
+      "summary": "Start with a new wallet, then give it a name and color you recognize.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/import-recovery-phrase",
+      "markdown_url": "https://help.oathwallet.org/articles/import-recovery-phrase.md",
+      "title": "Import a recovery phrase",
+      "summary": "Bring an existing wallet into Oath using supported BIP39, Electrum or aezeed recovery words and any required passphrase.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/scan-recovery-qr",
+      "markdown_url": "https://help.oathwallet.org/articles/scan-recovery-qr.md",
+      "title": "Scan a recovery-phrase QR code",
+      "summary": "Use the camera to import a compatible recovery phrase without typing every word.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/import-private-key",
+      "markdown_url": "https://help.oathwallet.org/articles/import-private-key.md",
+      "title": "Import a private key",
+      "summary": "Import the key for a particular network or the shared Ethereum & EVM group.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/private-key-formats",
+      "markdown_url": "https://help.oathwallet.org/articles/private-key-formats.md",
+      "title": "Which private-key formats can I import?",
+      "summary": "Choose the correct network before entering key material. Oath validates both format and key structure.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/first-passcode",
+      "markdown_url": "https://help.oathwallet.org/articles/first-passcode.md",
+      "title": "Set your first app passcode",
+      "summary": "Protect entry to Oath with the same six-digit keypad used to unlock it.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/home-screen",
+      "markdown_url": "https://help.oathwallet.org/articles/home-screen.md",
+      "title": "Find your way around Home",
+      "summary": "Use the Wallet, History and Search icons, and find the controls for your active wallet.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/add-another-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/add-another-wallet.md",
+      "title": "Add another wallet",
+      "summary": "Keep separate wallets in the same app without replacing the one you already use.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/switch-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/switch-wallet.md",
+      "title": "Switch wallets from Home",
+      "summary": "Use the glass name capsule above your balance to select another wallet or add one.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/customize-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/customize-wallet.md",
+      "title": "Change a wallet’s name and color",
+      "summary": "Give each wallet a visual identity that is easy to recognize.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/reorder-wallets",
+      "markdown_url": "https://help.oathwallet.org/articles/reorder-wallets.md",
+      "title": "Reorder your wallets",
+      "summary": "Put frequently used wallets where you want them in the list.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/remove-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/remove-wallet.md",
+      "title": "Move a wallet to Recently Deleted",
+      "summary": "Remove a wallet from the active list while keeping a short recovery window.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/recover-deleted-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/recover-deleted-wallet.md",
+      "title": "Recover a recently deleted wallet",
+      "summary": "Bring a wallet back before its retention window expires.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/permanently-delete-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/permanently-delete-wallet.md",
+      "title": "Permanently delete removed wallets",
+      "summary": "Clear wallets from Recently Deleted when you no longer need their local copies.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/add-passphrase",
+      "markdown_url": "https://help.oathwallet.org/articles/add-passphrase.md",
+      "title": "Create a wallet with a BIP-39 passphrase",
+      "summary": "Derive a separate wallet from the same recovery phrase plus an exact passphrase.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/backup-all-wallets",
+      "markdown_url": "https://help.oathwallet.org/articles/backup-all-wallets.md",
+      "title": "Back up all wallets to iCloud",
+      "summary": "Start an encrypted backup for every active wallet from one screen.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/backup-one-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/backup-one-wallet.md",
+      "title": "Back up one wallet to iCloud",
+      "summary": "Create an encrypted recovery file for a particular wallet.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/backup-password",
+      "markdown_url": "https://help.oathwallet.org/articles/backup-password.md",
+      "title": "Understand your backup password",
+      "summary": "The password for an iCloud backup is separate from your app passcode and BIP-39 passphrase.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/restore-icloud",
+      "markdown_url": "https://help.oathwallet.org/articles/restore-icloud.md",
+      "title": "Restore from an iCloud backup",
+      "summary": "Recover a wallet from an encrypted Oath backup file.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/backup-status",
+      "markdown_url": "https://help.oathwallet.org/articles/backup-status.md",
+      "title": "Check whether a backup has finished",
+      "summary": "Read the per-wallet result instead of assuming a switched-on toggle means success.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/icloud-troubleshooting",
+      "markdown_url": "https://help.oathwallet.org/articles/icloud-troubleshooting.md",
+      "title": "Fix an iCloud backup or restore problem",
+      "summary": "Check the Apple Account, storage and backup file before retrying.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/view-recovery-phrase",
+      "markdown_url": "https://help.oathwallet.org/articles/view-recovery-phrase.md",
+      "title": "View your recovery phrase",
+      "summary": "Open the recovery words for a phrase-based wallet when you need an offline backup.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/view-private-key",
+      "markdown_url": "https://help.oathwallet.org/articles/view-private-key.md",
+      "title": "View or copy a private key",
+      "summary": "Reveal the recovery key for a selected account only when you need it.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/move-to-new-phone",
+      "markdown_url": "https://help.oathwallet.org/articles/move-to-new-phone.md",
+      "title": "Restore your wallets on another iPhone",
+      "summary": "Use recovery material or an encrypted iCloud backup before removing the old installation.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/unlock-wallet",
+      "markdown_url": "https://help.oathwallet.org/articles/unlock-wallet.md",
+      "title": "Unlock Oath",
+      "summary": "Use your app passcode or enabled biometrics to open the app.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/enable-passcode",
+      "markdown_url": "https://help.oathwallet.org/articles/enable-passcode.md",
+      "title": "Enable passcode protection",
+      "summary": "Require authentication to enter Oath.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/change-passcode",
+      "markdown_url": "https://help.oathwallet.org/articles/change-passcode.md",
+      "title": "Change your app passcode",
+      "summary": "Replace your Oath unlock code without changing your wallet addresses.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/enable-face-id",
+      "markdown_url": "https://help.oathwallet.org/articles/enable-face-id.md",
+      "title": "Enable Face ID or Touch ID",
+      "summary": "Use the device’s biometric authentication for faster access.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/disable-security",
+      "markdown_url": "https://help.oathwallet.org/articles/disable-security.md",
+      "title": "Turn off Face ID or passcode protection",
+      "summary": "Change how Oath authenticates you from the security screen.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/auto-lock",
+      "markdown_url": "https://help.oathwallet.org/articles/auto-lock.md",
+      "title": "Choose when Oath locks",
+      "summary": "Control how long Oath stays unlocked after moving to the background.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/lock-now",
+      "markdown_url": "https://help.oathwallet.org/articles/lock-now.md",
+      "title": "Lock Oath immediately",
+      "summary": "End the current unlocked session without waiting for the automatic delay.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/app-switcher-privacy",
+      "markdown_url": "https://help.oathwallet.org/articles/app-switcher-privacy.md",
+      "title": "Hide the app preview in the app switcher",
+      "summary": "Cover the app’s preview when switching between apps.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/hide-balances",
+      "markdown_url": "https://help.oathwallet.org/articles/hide-balances.md",
+      "title": "Hide balances on screen",
+      "summary": "Temporarily replace visible amounts with dots.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/forgot-passcode",
+      "markdown_url": "https://help.oathwallet.org/articles/forgot-passcode.md",
+      "title": "What if I forget my app passcode?",
+      "summary": "Keep recovery options separate from the app lock.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/reset-app",
+      "markdown_url": "https://help.oathwallet.org/articles/reset-app.md",
+      "title": "Reset Oath on this device",
+      "summary": "Erase local app data and return to setup.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/asset-screen",
+      "markdown_url": "https://help.oathwallet.org/articles/asset-screen.md",
+      "title": "Open an asset’s screen",
+      "summary": "View one asset’s value, quantity, market information and activity.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/portfolio-values",
+      "markdown_url": "https://help.oathwallet.org/articles/portfolio-values.md",
+      "title": "Understand balances and portfolio value",
+      "summary": "Oath shows token quantities and a local-currency valuation.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/refresh-balances",
+      "markdown_url": "https://help.oathwallet.org/articles/refresh-balances.md",
+      "title": "Refresh balances and activity",
+      "summary": "Request updated data without leaving your wallet.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/search-assets",
+      "markdown_url": "https://help.oathwallet.org/articles/search-assets.md",
+      "title": "Search for a coin or token",
+      "summary": "Find an asset by its name, symbol, network or saved token address.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/add-custom-token",
+      "markdown_url": "https://help.oathwallet.org/articles/add-custom-token.md",
+      "title": "Find and add a token by address",
+      "summary": "Look up a supported contract or mint address and review its details before adding it.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/token-not-found",
+      "markdown_url": "https://help.oathwallet.org/articles/token-not-found.md",
+      "title": "Why isn’t a token appearing?",
+      "summary": "Check the wallet, network, address and lookup result before assuming funds are missing.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/asset-order",
+      "markdown_url": "https://help.oathwallet.org/articles/asset-order.md",
+      "title": "How assets are sorted",
+      "summary": "The list prioritizes portfolio value instead of alphabetical order alone.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/prices-chart",
+      "markdown_url": "https://help.oathwallet.org/articles/prices-chart.md",
+      "title": "Read an asset’s price and chart",
+      "summary": "View the latest available market quote and its recent movement.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/asset-information",
+      "markdown_url": "https://help.oathwallet.org/articles/asset-information.md",
+      "title": "View an asset’s information",
+      "summary": "Check the network, symbol, type and token identity.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/account-activation-and-reserves",
+      "markdown_url": "https://help.oathwallet.org/articles/account-activation-and-reserves.md",
+      "title": "Why does my address need funds to activate?",
+      "summary": "Understand account activation, minimum balances and storage on Stellar, XRP Ledger, Solana, TRON, NEAR and Gram (TON). Oath does not charge an activation fee.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-21T13:29:43.572099+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/receive-crypto",
+      "markdown_url": "https://help.oathwallet.org/articles/receive-crypto.md",
+      "title": "Receive crypto with a QR code",
+      "summary": "Share the receiving address for the wallet and network you intend to use.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/copy-share-address",
+      "markdown_url": "https://help.oathwallet.org/articles/copy-share-address.md",
+      "title": "Copy or share your receiving address",
+      "summary": "Use Oath’s receive actions instead of retyping a long address.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/receive-network-tokens",
+      "markdown_url": "https://help.oathwallet.org/articles/receive-network-tokens.md",
+      "title": "What does “and more” mean on Receive?",
+      "summary": "The example logos illustrate tokens on a network; they are not a limit on what its address can receive.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/bitcoin-address-types",
+      "markdown_url": "https://help.oathwallet.org/articles/bitcoin-address-types.md",
+      "title": "Choose a Bitcoin address type",
+      "summary": "Select the receiving format compatible with the service sending you BTC.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/bitcoin-gap-limit",
+      "markdown_url": "https://help.oathwallet.org/articles/bitcoin-gap-limit.md",
+      "title": "Why can a Bitcoin receiving address change?",
+      "summary": "HD wallets derive multiple addresses rather than reusing one address forever.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/solana-address-path",
+      "markdown_url": "https://help.oathwallet.org/articles/solana-address-path.md",
+      "title": "Choose Phantom or Trust Wallet’s Solana path",
+      "summary": "Match the Solana account derived by the wallet you are recovering.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/wrong-network",
+      "markdown_url": "https://help.oathwallet.org/articles/wrong-network.md",
+      "title": "Check the network before a transfer",
+      "summary": "Prevent address and network mismatches before the sender broadcasts.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/transaction-list",
+      "markdown_url": "https://help.oathwallet.org/articles/transaction-list.md",
+      "title": "Read your transaction activity",
+      "summary": "See the direction, time and amount for an asset’s transactions.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/transaction-details",
+      "markdown_url": "https://help.oathwallet.org/articles/transaction-details.md",
+      "title": "Open transaction details",
+      "summary": "Review the useful details without navigating raw blockchain data.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/transaction-status",
+      "markdown_url": "https://help.oathwallet.org/articles/transaction-status.md",
+      "title": "Understand pending, confirmed and failed activity",
+      "summary": "Use status to distinguish a submitted transaction from a settled one.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/canceled-replaced",
+      "markdown_url": "https://help.oathwallet.org/articles/canceled-replaced.md",
+      "title": "What do Canceled and Replaced mean?",
+      "summary": "These labels are shown only when the app has evidence of the corresponding transaction state.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/network-fee",
+      "markdown_url": "https://help.oathwallet.org/articles/network-fee.md",
+      "title": "Read the network fee",
+      "summary": "See a transaction’s available fee converted to your chosen currency.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/copy-transaction-id",
+      "markdown_url": "https://help.oathwallet.org/articles/copy-transaction-id.md",
+      "title": "Copy a transaction ID or address",
+      "summary": "Use the small copy controls beside shortened identifiers.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/view-explorer",
+      "markdown_url": "https://help.oathwallet.org/articles/view-explorer.md",
+      "title": "View a transaction on its explorer",
+      "summary": "Open the public network record inside Oath’s native browser.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/share-transaction",
+      "markdown_url": "https://help.oathwallet.org/articles/share-transaction.md",
+      "title": "Share a transaction image or link",
+      "summary": "Export a receipt-style image or a link to the explorer.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/send-availability",
+      "markdown_url": "https://help.oathwallet.org/articles/send-availability.md",
+      "title": "Send coins and tokens",
+      "summary": "Choose the right wallet, network, recipient and amount, then review and authorize a transfer.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/address-book",
+      "markdown_url": "https://help.oathwallet.org/articles/address-book.md",
+      "title": "Create a contact in the address book",
+      "summary": "Save a person’s name first, then add network-specific addresses.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/contact-address",
+      "markdown_url": "https://help.oathwallet.org/articles/contact-address.md",
+      "title": "Add an address to a contact",
+      "summary": "Associate a public address with the correct network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/edit-contact",
+      "markdown_url": "https://help.oathwallet.org/articles/edit-contact.md",
+      "title": "Edit a contact or saved address",
+      "summary": "Keep contact names, address labels and network entries up to date.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/delete-contact",
+      "markdown_url": "https://help.oathwallet.org/articles/delete-contact.md",
+      "title": "Delete a contact or remove an address",
+      "summary": "Clear address-book entries you no longer need.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/search-contacts",
+      "markdown_url": "https://help.oathwallet.org/articles/search-contacts.md",
+      "title": "Find a contact",
+      "summary": "Search the saved address book before opening a contact’s details.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/currency",
+      "markdown_url": "https://help.oathwallet.org/articles/currency.md",
+      "title": "Change your display currency",
+      "summary": "Show portfolio values, prices and available fees in your preferred local currency.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/language",
+      "markdown_url": "https://help.oathwallet.org/articles/language.md",
+      "title": "Change the app language",
+      "summary": "Choose an available language for Oath’s interface.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/appearance",
+      "markdown_url": "https://help.oathwallet.org/articles/appearance.md",
+      "title": "Use Light, Dark or System appearance",
+      "summary": "Choose a fixed appearance or follow the device’s setting.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/app-icon",
+      "markdown_url": "https://help.oathwallet.org/articles/app-icon.md",
+      "title": "Change the app icon",
+      "summary": "Choose an Oath icon from the available alternatives.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/permissions",
+      "markdown_url": "https://help.oathwallet.org/articles/permissions.md",
+      "title": "Review wallet permissions and connected apps",
+      "summary": "Inspect token allowances, NFT access, connected apps and supported account-control permissions for the selected wallet.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/in-app-browser",
+      "markdown_url": "https://help.oathwallet.org/articles/in-app-browser.md",
+      "title": "Open links without leaving Oath",
+      "summary": "Websites and explorer links open in a native iOS browser inside the app.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/request-feature",
+      "markdown_url": "https://help.oathwallet.org/articles/request-feature.md",
+      "title": "Request a feature",
+      "summary": "Suggest a specific improvement and explain how it would help.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/report-bug",
+      "markdown_url": "https://help.oathwallet.org/articles/report-bug.md",
+      "title": "Report a bug",
+      "summary": "Give enough detail for the problem to be reproduced without exposing secrets.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/contact-support",
+      "markdown_url": "https://help.oathwallet.org/articles/contact-support.md",
+      "title": "Contact Oath support",
+      "summary": "Email the team at care@oathwallet.org.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/about-legal",
+      "markdown_url": "https://help.oathwallet.org/articles/about-legal.md",
+      "title": "Find articles, privacy and terms",
+      "summary": "Open Oath’s published information from the About screen.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-bitcoin-cash",
+      "markdown_url": "https://help.oathwallet.org/articles/use-bitcoin-cash.md",
+      "title": "Use Bitcoin Cash in Oath",
+      "summary": "Receive, send and inspect Bitcoin Cash assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-dogecoin",
+      "markdown_url": "https://help.oathwallet.org/articles/use-dogecoin.md",
+      "title": "Use Dogecoin in Oath",
+      "summary": "Receive, send and inspect Dogecoin assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-litecoin",
+      "markdown_url": "https://help.oathwallet.org/articles/use-litecoin.md",
+      "title": "Use Litecoin in Oath",
+      "summary": "Receive, send and inspect Litecoin assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-solana",
+      "markdown_url": "https://help.oathwallet.org/articles/use-solana.md",
+      "title": "Use Solana in Oath",
+      "summary": "Receive, send and inspect Solana assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-tron",
+      "markdown_url": "https://help.oathwallet.org/articles/use-tron.md",
+      "title": "Use TRON in Oath",
+      "summary": "Receive, send and inspect TRON assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-gram",
+      "markdown_url": "https://help.oathwallet.org/articles/use-gram.md",
+      "title": "Use Gram in Oath",
+      "summary": "Receive, send and inspect Gram assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-aptos",
+      "markdown_url": "https://help.oathwallet.org/articles/use-aptos.md",
+      "title": "Use Aptos in Oath",
+      "summary": "Receive, send and inspect Aptos assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-sui",
+      "markdown_url": "https://help.oathwallet.org/articles/use-sui.md",
+      "title": "Use Sui Network in Oath",
+      "summary": "Receive, send and inspect Sui Network assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-near",
+      "markdown_url": "https://help.oathwallet.org/articles/use-near.md",
+      "title": "Use NEAR Protocol in Oath",
+      "summary": "Receive, send and inspect NEAR Protocol assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-xrp-ledger",
+      "markdown_url": "https://help.oathwallet.org/articles/use-xrp-ledger.md",
+      "title": "Use XRP Ledger in Oath",
+      "summary": "Receive, send and inspect XRP Ledger assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-stellar",
+      "markdown_url": "https://help.oathwallet.org/articles/use-stellar.md",
+      "title": "Use Stellar in Oath",
+      "summary": "Receive, send and inspect Stellar assets using the correct account and network.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/evm-networks",
+      "markdown_url": "https://help.oathwallet.org/articles/evm-networks.md",
+      "title": "Use Ethereum and EVM networks",
+      "summary": "One wallet can show the same public address across EVM networks while tracking each network separately.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/arc-usdc",
+      "markdown_url": "https://help.oathwallet.org/articles/arc-usdc.md",
+      "title": "Understand USDC on Arc",
+      "summary": "Arc uses USDC as its native asset in the app’s network integration.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/robinhood-chain",
+      "markdown_url": "https://help.oathwallet.org/articles/robinhood-chain.md",
+      "title": "Use Robinhood Chain",
+      "summary": "Find the Robinhood Chain account separately from an exchange account or other EVM networks.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/home-scanner",
+      "markdown_url": "https://help.oathwallet.org/articles/home-scanner.md",
+      "title": "Scan a token address from Home",
+      "summary": "Use the viewfinder button to bring QR text into asset search without typing it.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/wallet-settings-shortcut",
+      "markdown_url": "https://help.oathwallet.org/articles/wallet-settings-shortcut.md",
+      "title": "Open the current wallet’s settings from Home",
+      "summary": "Reach the active wallet’s management screen using the toolbar shortcut that appears after scrolling.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/wallet-balances",
+      "markdown_url": "https://help.oathwallet.org/articles/wallet-balances.md",
+      "title": "Read wallet balances and the active-wallet badge",
+      "summary": "Recognize each wallet by its color and check its available value beside the disclosure arrow.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/full-transaction-history",
+      "markdown_url": "https://help.oathwallet.org/articles/full-transaction-history.md",
+      "title": "View the active wallet’s full transaction history",
+      "summary": "Review available coin and token activity together across the active wallet’s networks.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/search-transactions",
+      "markdown_url": "https://help.oathwallet.org/articles/search-transactions.md",
+      "title": "Search transactions by ID, address or amount",
+      "summary": "Find a transaction using information you already know, within the active wallet’s available history.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/filter-transactions",
+      "markdown_url": "https://help.oathwallet.org/articles/filter-transactions.md",
+      "title": "Filter transaction history",
+      "summary": "Narrow activity by network, asset, direction, status, date and quantity without changing the underlying records.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/asset-transaction-history",
+      "markdown_url": "https://help.oathwallet.org/articles/asset-transaction-history.md",
+      "title": "View all transactions for one coin or token",
+      "summary": "Move from an asset’s five-entry preview to a dedicated history for that exact asset and account.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/spam-history",
+      "markdown_url": "https://help.oathwallet.org/articles/spam-history.md",
+      "title": "How Oath hides spam and phishing activity",
+      "summary": "Understand why suspicious or unverified token entries can be absent from your activity lists.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/zero-value-transactions",
+      "markdown_url": "https://help.oathwallet.org/articles/zero-value-transactions.md",
+      "title": "Why can a transaction show zero?",
+      "summary": "Distinguish a rounded fiat amount, a zero-value contract action and a hidden spam transfer.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/unverified-tokens",
+      "markdown_url": "https://help.oathwallet.org/articles/unverified-tokens.md",
+      "title": "Understand verified and manually added tokens",
+      "summary": "Learn why automatic discovery can omit a token and what changes when you choose to track it.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/confirmation-checkmark",
+      "markdown_url": "https://help.oathwallet.org/articles/confirmation-checkmark.md",
+      "title": "Use the checkmark to finish an action",
+      "summary": "The native checkmark replaces text Done controls in supported screens and sheets.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/security-settings-access",
+      "markdown_url": "https://help.oathwallet.org/articles/security-settings-access.md",
+      "title": "Authenticate before opening Passcode & Face ID",
+      "summary": "Protect changes to app security with a separate authentication step.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/help-center",
+      "markdown_url": "https://help.oathwallet.org/articles/help-center.md",
+      "title": "Open and search the Help Center",
+      "summary": "Find a feature’s instructions inside Oath and return to the app when you are finished.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-12T17:33:34.237657+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/send-max-and-fees",
+      "markdown_url": "https://help.oathwallet.org/articles/send-max-and-fees.md",
+      "title": "Use Max and understand spendable balance",
+      "summary": "See why the maximum you can send may be lower than the total displayed on Home.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/send-tags-and-memos",
+      "markdown_url": "https://help.oathwallet.org/articles/send-tags-and-memos.md",
+      "title": "Enter destination tags and memos",
+      "summary": "Include the extra reference an exchange or shared receiving account needs to credit your transfer.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/bitcoin-transfer-options",
+      "markdown_url": "https://help.oathwallet.org/articles/bitcoin-transfer-options.md",
+      "title": "Set Bitcoin transfer options",
+      "summary": "Understand Replace by fee and the optional public on-chain message before sending.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/send-troubleshooting",
+      "markdown_url": "https://help.oathwallet.org/articles/send-troubleshooting.md",
+      "title": "Resolve a transfer that cannot be sent",
+      "summary": "Work out whether the problem is validation, fees, authorization, provider access or an uncertain submission.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/connect-dapp",
+      "markdown_url": "https://help.oathwallet.org/articles/connect-dapp.md",
+      "title": "Connect a dApp with WalletConnect",
+      "summary": "Approve the intended website, wallet and networks before responding to a dApp request.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/dapp-disconnect",
+      "markdown_url": "https://help.oathwallet.org/articles/dapp-disconnect.md",
+      "title": "Disconnect a dApp safely",
+      "summary": "End a WalletConnect session and separately review any on-chain permissions you granted.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/dapp-swap",
+      "markdown_url": "https://help.oathwallet.org/articles/dapp-swap.md",
+      "title": "Review a token swap from a dApp",
+      "summary": "Understand which asset you pay, which asset you expect, and the network and limits you are authorizing.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/dapp-transaction-data",
+      "markdown_url": "https://help.oathwallet.org/articles/dapp-transaction-data.md",
+      "title": "Read human-readable transaction data",
+      "summary": "Use the decoded details to understand a contract request while keeping the exact technical payload available.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/dapp-signatures",
+      "markdown_url": "https://help.oathwallet.org/articles/dapp-signatures.md",
+      "title": "Review messages, sign-ins and token permits",
+      "summary": "Tell a login challenge apart from a message, token approval or spending authorization.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/walletconnect-solana",
+      "markdown_url": "https://help.oathwallet.org/articles/walletconnect-solana.md",
+      "title": "Use Solana dApps and test networks",
+      "summary": "Review Solana requests on the exact mainnet, Devnet or Testnet cluster approved for the session.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/walletconnect-thorchain",
+      "markdown_url": "https://help.oathwallet.org/articles/walletconnect-thorchain.md",
+      "title": "Review THORChain dApp requests",
+      "summary": "Check RUNE transfers, deposits and readable cross-chain swap instructions separately.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/revoke-token-access",
+      "markdown_url": "https://help.oathwallet.org/articles/revoke-token-access.md",
+      "title": "Revoke a token allowance or delegate",
+      "summary": "Remove a supported permission and verify that access is actually gone on-chain.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/bulk-revoke-access",
+      "markdown_url": "https://help.oathwallet.org/articles/bulk-revoke-access.md",
+      "title": "Revoke several permissions",
+      "summary": "Select a group of permissions, review the batch and check each result independently.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/permission-coverage",
+      "markdown_url": "https://help.oathwallet.org/articles/permission-coverage.md",
+      "title": "Understand permission scan coverage",
+      "summary": "Use scan status to distinguish checked, partial, unavailable and unindexed network results.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/check-contract-access",
+      "markdown_url": "https://help.oathwallet.org/articles/check-contract-access.md",
+      "title": "Check a contract and approved address",
+      "summary": "Look up a specific supported permission when you know the exact contract and spender.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/permit2-access",
+      "markdown_url": "https://help.oathwallet.org/articles/permit2-access.md",
+      "title": "Understand Permit2 and signed approvals",
+      "summary": "Separate an existing allowance from a signature that may authorize future spending.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/permission-removal-history",
+      "markdown_url": "https://help.oathwallet.org/articles/permission-removal-history.md",
+      "title": "Check revocation progress and failures",
+      "summary": "Confirm each permission removal rather than assuming a completed queue means every item succeeded.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/account-control-permissions",
+      "markdown_url": "https://help.oathwallet.org/articles/account-control-permissions.md",
+      "title": "Review account-control and permanent delegates",
+      "summary": "Recognize permissions that affect more than a single token allowance.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/last-wallet-reset",
+      "markdown_url": "https://help.oathwallet.org/articles/last-wallet-reset.md",
+      "title": "Remove the last active wallet",
+      "summary": "Understand the final-wallet reset and clear Recently Deleted only after protecting your recovery options.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/upgrade-existing-wallets",
+      "markdown_url": "https://help.oathwallet.org/articles/upgrade-existing-wallets.md",
+      "title": "Open existing wallets after an Oath update",
+      "summary": "Unlock normally and let Oath prepare compatible existing wallets without creating replacements.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/balance-change",
+      "markdown_url": "https://help.oathwallet.org/articles/balance-change.md",
+      "title": "Understand the balance-change capsule",
+      "summary": "Read the observed change under the portfolio total without mistaking deposits for investment profit.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/asset-filters",
+      "markdown_url": "https://help.oathwallet.org/articles/asset-filters.md",
+      "title": "Filter the Home assets list",
+      "summary": "Narrow the portfolio by network and available asset filters without changing ownership.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/token-prices-and-logos",
+      "markdown_url": "https://help.oathwallet.org/articles/token-prices-and-logos.md",
+      "title": "Understand token logos and missing prices",
+      "summary": "Distinguish token identity, balance, artwork and market data when searching by contract or mint.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/haptic-feedback",
+      "markdown_url": "https://help.oathwallet.org/articles/haptic-feedback.md",
+      "title": "Turn haptic feedback on or off",
+      "summary": "Choose whether Oath provides tactile feedback for supported controls and outcomes.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-thorchain",
+      "markdown_url": "https://help.oathwallet.org/articles/use-thorchain.md",
+      "title": "Use THORChain and RUNE",
+      "summary": "Receive RUNE, send on THORChain and distinguish a direct transfer from a dApp swap.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-hyperevm",
+      "markdown_url": "https://help.oathwallet.org/articles/use-hyperevm.md",
+      "title": "Use HyperEVM in Oath",
+      "summary": "Find the correct HyperEVM account, native fee asset and tokens without confusing other EVM deployments.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-monad",
+      "markdown_url": "https://help.oathwallet.org/articles/use-monad.md",
+      "title": "Use Monad in Oath",
+      "summary": "Find the correct Monad account, native fee asset and tokens without confusing other EVM deployments.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://help.oathwallet.org/articles/use-unichain",
+      "markdown_url": "https://help.oathwallet.org/articles/use-unichain.md",
+      "title": "Use Unichain in Oath",
+      "summary": "Find the correct Unichain account, native fee asset and tokens without confusing other EVM deployments.",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-16T12:00:00+00:00",
+      "app_version": "Oath 4.1.14",
+      "kind": "help"
+    },
+    {
+      "url": "https://articles.oathwallet.org/",
+      "markdown_url": "https://articles.oathwallet.org/index.md",
+      "title": "Articles",
+      "kind": "article-index"
+    },
+    {
+      "url": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
+      "markdown_url": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds.md",
+      "title": "The Missing Link Between Open Source and the Wallet on Your Phone",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-10-19T00:52:50.213485+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/oath-3-5-5-slide-to-send-transaction-activity",
+      "markdown_url": "https://articles.oathwallet.org/oath-3-5-5-slide-to-send-transaction-activity.md",
+      "title": "Oath 3.5.5: A Better Feel for Every Transfer",
+      "summary": "",
+      "updated_at": "2026-09-14T03:04:19.583784+00:00",
+      "published_at": "2026-09-14T03:04:17.934+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/oath-3-5-4-bitcoin-recovery-clearer-sending",
+      "markdown_url": "https://articles.oathwallet.org/oath-3-5-4-bitcoin-recovery-clearer-sending.md",
+      "title": "Inside Oath 3.5.4: Recovery With More Range",
+      "summary": "",
+      "updated_at": "2026-09-13T00:24:55.37272+00:00",
+      "published_at": "2026-09-13T00:24:54.837+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/bitcoin-settings-oath-address-types-indexes-complete-guide",
+      "markdown_url": "https://articles.oathwallet.org/bitcoin-settings-oath-address-types-indexes-complete-guide.md",
+      "title": "Bitcoin Address Types and Recovery Scope in Oath",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-09-11T05:44:15.57+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/why-oath-has-no-swaps-perps-web3-walletconnect",
+      "markdown_url": "https://articles.oathwallet.org/why-oath-has-no-swaps-perps-web3-walletconnect.md",
+      "title": "WalletConnect in Oath: Review the Request, Control the Permission",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-09-04T17:44:21.264+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard’s Weak-Seed Crisis: Complexity Is Not the Same as Security",
+      "summary": "",
+      "updated_at": "2026-09-03T10:58:48.685141+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools",
+      "markdown_url": "https://articles.oathwallet.org/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools.md",
+      "title": "Oath 2.40.12: Monero, Major Bitcoin Upgrades, and Safer Sending",
+      "summary": "",
+      "updated_at": "2026-09-02T13:41:48.980205+00:00",
+      "published_at": "2026-09-02T13:41:47.749+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/send-to-name-ens-sol-space-id-payment-ids",
+      "markdown_url": "https://articles.oathwallet.org/send-to-name-ens-sol-space-id-payment-ids.md",
+      "title": "Send to a Name, Not a String: ENS, .sol, SPACE ID, and Payment IDs",
+      "summary": "",
+      "updated_at": "2026-08-31T13:32:17.034915+00:00",
+      "published_at": "2026-08-31T13:32:14.967+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/understand-transaction-status-hash-fees-addresses-local-notes",
+      "markdown_url": "https://articles.oathwallet.org/understand-transaction-status-hash-fees-addresses-local-notes.md",
+      "title": "Understand Any Transaction: Status, Hash, Fees, Addresses, and Local Notes",
+      "summary": "",
+      "updated_at": "2026-08-31T13:12:33.994451+00:00",
+      "published_at": "2026-08-31T13:11:02.44+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/add-custom-token-without-trusting-name-symbol",
+      "markdown_url": "https://articles.oathwallet.org/add-custom-token-without-trusting-name-symbol.md",
+      "title": "Add a Custom Token Without Trusting Its Name or Symbol",
+      "summary": "",
+      "updated_at": "2026-08-31T12:46:46.986052+00:00",
+      "published_at": "2026-08-31T12:46:45.045+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy",
+      "markdown_url": "https://articles.oathwallet.org/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy.md",
+      "title": "Lock Oath Down: Passcode, Biometrics and Auto-Lock",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-31T12:27:08.913+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/what-never-leaves-iphone-oath-self-custody-security-model",
+      "markdown_url": "https://articles.oathwallet.org/what-never-leaves-iphone-oath-self-custody-security-model.md",
+      "title": "Oath’s Current Security Model: Local Keys and Explicit Network Boundaries",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-31T12:01:39.484+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/receive-crypto-safely-network-address-qr-requested-amounts",
+      "markdown_url": "https://articles.oathwallet.org/receive-crypto-safely-network-address-qr-requested-amounts.md",
+      "title": "Receive Crypto Safely: Match the Network and Address",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-31T11:37:15.61+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/find-anything-wallet-oath-universal-search",
+      "markdown_url": "https://articles.oathwallet.org/find-anything-wallet-oath-universal-search.md",
+      "title": "Find Anything in Your Wallet: Oath Universal Search",
+      "summary": "",
+      "updated_at": "2026-08-31T00:08:08.231578+00:00",
+      "published_at": "2026-08-31T00:08:06.408+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/silent-payments-oath-reusable-bitcoin-address-without-reuse",
+      "markdown_url": "https://articles.oathwallet.org/silent-payments-oath-reusable-bitcoin-address-without-reuse.md",
+      "title": "Silent Payments: What Oath 4.1.14 Does Not Support",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T23:55:17.18+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/why-bitcoin-wallets-generate-fresh-receiving-addresses",
+      "markdown_url": "https://articles.oathwallet.org/why-bitcoin-wallets-generate-fresh-receiving-addresses.md",
+      "title": "Why Bitcoin Receiving Addresses Change",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T23:43:31.639+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/one-wallet-many-mainnets-accounts-networks-separate",
+      "markdown_url": "https://articles.oathwallet.org/one-wallet-many-mainnets-accounts-networks-separate.md",
+      "title": "One Wallet, Many Mainnets: How Oath Keeps Accounts and Networks Separate",
+      "summary": "",
+      "updated_at": "2026-08-30T23:27:07.23786+00:00",
+      "published_at": "2026-08-30T23:27:05.536+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/recovery-phrase-private-key-icloud-iphone-transfer-import",
+      "markdown_url": "https://articles.oathwallet.org/recovery-phrase-private-key-icloud-iphone-transfer-import.md",
+      "title": "Recovery Phrase, Private Key or Encrypted Backup: Choose the Right Import",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T23:17:38.457+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/where-crypto-network-fees-actually-go",
+      "markdown_url": "https://articles.oathwallet.org/where-crypto-network-fees-actually-go.md",
+      "title": "Where Crypto Network Fees Actually Go",
+      "summary": "",
+      "updated_at": "2026-08-30T23:07:58.755836+00:00",
+      "published_at": "2026-08-30T23:07:57.492+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/send-crypto-without-guesswork-recipient-to-finality",
+      "markdown_url": "https://articles.oathwallet.org/send-crypto-without-guesswork-recipient-to-finality.md",
+      "title": "Send Crypto Without Guesswork: From Recipient to Finality",
+      "summary": "",
+      "updated_at": "2026-08-30T22:56:18.433562+00:00",
+      "published_at": "2026-08-30T22:56:16.534+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/move-oath-to-new-iphone-direct-encrypted-serverless",
+      "markdown_url": "https://articles.oathwallet.org/move-oath-to-new-iphone-direct-encrypted-serverless.md",
+      "title": "Move Oath to a New iPhone Using a Supported Recovery Method",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T22:46:06.663+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/backup-restore-oath-wallet",
+      "markdown_url": "https://articles.oathwallet.org/backup-restore-oath-wallet.md",
+      "title": "Backup and Restore in Oath: Files, Passwords and Recovery Words",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T22:33:18.253+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/add-bip39-passphrase-oath-wallet",
+      "markdown_url": "https://articles.oathwallet.org/add-bip39-passphrase-oath-wallet.md",
+      "title": "BIP39 Passphrases and Electrum Seed Extensions in Oath",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T21:59:10.378+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/oath-currency-converter-crypto-fiat-metals",
+      "markdown_url": "https://articles.oathwallet.org/oath-currency-converter-crypto-fiat-metals.md",
+      "title": "One Amount, Every Context: Meet Oath’s Currency Converter",
+      "summary": "",
+      "updated_at": "2026-08-30T22:08:35.490096+00:00",
+      "published_at": "2026-08-30T21:44:02.292+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/build-wallet-with-dice-coin-flips-random-digits",
+      "markdown_url": "https://articles.oathwallet.org/build-wallet-with-dice-coin-flips-random-digits.md",
+      "title": "Creating a Wallet in Oath: Current Recovery Options",
+      "summary": "",
+      "updated_at": "2026-10-28T00:00:00Z",
+      "published_at": "2026-08-30T21:30:44.629+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/bn/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/bn/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard-এর দুর্বল-সিড সংকট: জটিলতা নিরাপত্তার সমার্থক নয়",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:05.016484+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/ru/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/ru/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Кризис слабых сид-фраз Coldcard: сложность не равнозначна безопасности",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:12.692389+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/es/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/es/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Crisis de las semillas débiles de Coldcard: complejidad no equivale a seguridad",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:07.08046+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/ja/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/ja/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcardの脆弱シード危機――複雑さはセキュリティと同義ではない",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:10.0059+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/ur/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/ur/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard کے کمزور سیڈ کا بحران: پیچیدگی سکیورٹی کے مترادف نہیں",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:14.066592+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/zh-Hans/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/zh-Hans/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard 弱种子危机：复杂性不等于安全性",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:15.342517+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/id/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/id/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Krisis Seed Lemah Coldcard: Kompleksitas Tidak Sama dengan Keamanan",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:09.195389+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/de/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/de/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcards Krise um schwache Seeds: Komplexität ist nicht gleich Sicherheit",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:06.42525+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/fr/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/fr/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "La crise des graines faibles de Coldcard : la complexité n’est pas synonyme de sécurité",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:07.82832+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/hi/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/hi/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard का कमजोर-सीड संकट: जटिलता और सुरक्षा एक ही बात नहीं हैं",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:08.564067+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/ko/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/ko/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard 취약 시드 위기: 복잡성이 곧 보안은 아니다",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:10.626037+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/pt-BR/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/pt-BR/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "A crise das sementes fracas da Coldcard: complexidade não é o mesmo que segurança",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:12.006831+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/tr/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/tr/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Coldcard’ın Zayıf Tohum Krizi: Karmaşıklık Güvenlikle Aynı Şey Değildir",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:13.324423+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/ar/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/ar/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "أزمة البذور الضعيفة في Coldcard: التعقيد ليس مرادفًا للأمن",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:03.489863+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/vi/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
+      "markdown_url": "https://articles.oathwallet.org/vi/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md",
+      "title": "Khủng hoảng seed yếu của Coldcard: Phức tạp không đồng nghĩa với bảo mật",
+      "summary": "",
+      "updated_at": "2026-09-03T12:01:14.734021+00:00",
+      "published_at": "2026-09-03T10:58:31.215+00:00",
+      "kind": "article"
+    },
+    {
+      "url": "https://articles.oathwallet.org/bitget-388-million-hack-self-custody",
+      "markdown_url": "https://articles.oathwallet.org/bitget-388-million-hack-self-custody.md",
+      "title": "Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call",
+      "summary": "",
+      "updated_at": "2026-09-28T16:43:23.113114+00:00",
+      "published_at": "2026-09-28T16:43:23.113114+00:00",
+      "kind": "article"
+    }
+  ]
+}

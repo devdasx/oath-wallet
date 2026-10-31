@@ -28,27 +28,6 @@ Compare known public addresses, the expected networks and refreshed balances. A 
 
 Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- oath-walkthrough:start -->
 ## A new iPhone: recover and verify — visual walkthrough transcript
 

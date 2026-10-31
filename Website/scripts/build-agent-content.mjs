@@ -1,0 +1,11 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {documents,publicDocument,documentText,guide,evidenceScope} from '../src/agent-content.js';
+const root=new URL('../public/',import.meta.url);
+const env={ASSETS:{async fetch(req){try{return new Response(await readFile(new URL('.'+new URL(req.url).pathname,root)));}catch{return new Response(null,{status:404});}}}};
+if(new Set(documents.map(d=>d.url)).size!==documents.length)throw Error('Duplicate document');
+const texts=await Promise.all(documents.map(d=>documentText(d,env)));
+await writeFile(new URL('llms.txt',root),guide('https://oathwallet.org'));
+await writeFile(new URL('llms-full.txt',root),texts.join('\n---\n\n'));
+await writeFile(new URL('agent-documents.json',root),JSON.stringify({schema_version:1,source_evidence:evidenceScope,documents:documents.map(publicDocument)},null,2)+'\n');
+const cardURL=new URL('.well-known/mcp.json',root),card=JSON.parse(await readFile(cardURL));card.tools=[...new Set([...card.tools,'list_documents','read_document'])];await writeFile(cardURL,JSON.stringify(card,null,2)+'\n');
+console.log(`Generated ${documents.length} documents from published sources.`);

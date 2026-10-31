@@ -32,27 +32,6 @@ Confirm the exact network, full recipient address and required fee. Refresh and 
 
 Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- oath-walkthrough:start -->
 ## Bitcoin: know the address and recovery scope — visual walkthrough transcript
 
