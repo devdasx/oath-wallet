@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import worker from '../src/index.js';
+import catalog from '../content/networks.json' with {type:'json'};
 import { articleRoutes } from '../src/article-routes.js';
 import { Script } from 'node:vm';
 const publicURL = new URL('../public/', import.meta.url);
@@ -12,7 +13,7 @@ const env = { ASSETS: { async fetch(req) {
 test('main search sitemap excludes moved articles, support and machine representations', async () => {
   const xml = await readFile(new URL('sitemap.xml', publicURL), 'utf8');
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
-  const paths = ['/', '/features', '/press', '/terms', '/privacy', '/security', '/about', '/networks'];
+  const paths = ['/', '/features', '/press', '/terms', '/privacy', '/security', '/about', '/networks', ...catalog.networks.map(n => '/networks/'+n.slug)];
   const expectedURLs = await Promise.all(paths.map(async path => {
     const articleFile = articleRoutes[path];
     if (typeof articleFile !== 'string') return 'https://oathwallet.org' + path;

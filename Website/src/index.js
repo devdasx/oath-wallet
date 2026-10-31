@@ -1,3 +1,4 @@
+import networkCatalog from '../content/networks.json' with {type:'json'};
 import { handleAgentContent, addAgentDiscovery } from './agent-content.js';
 import { handleHelp } from './help/index.js';
 import { handleWalletLinks } from './wallet-links.js';
@@ -8,7 +9,7 @@ import { articleRoutes } from './article-routes.js';
 import { handleNewsletter, newsletterScheduled } from './newsletter.js';
 import { handleOusd } from './ousd.js';
 
-const pageNames = new Set(['features', 'articles', 'support', 'press', 'terms', 'privacy', 'security', 'about', 'networks']);
+const pageNames = new Set(['features', 'articles', 'support', 'press', 'terms', 'privacy', 'security', 'about', 'networks', ...networkCatalog.networks.map(n => 'networks/' + n.slug)]);
 const hstsPolicy = 'max-age=31536000; includeSubDomains; preload';
 
 export default {
@@ -79,6 +80,8 @@ async function serveRequest(request, env) {
     url.pathname = article;
     return env.ASSETS.fetch(new Request(url, request));
   }
+
+  if (/^\/networks\/ton(?:\/|\.html)?$/.test(url.pathname)) { url.pathname = '/networks/gram'; return Response.redirect(url.href, 308); }
 
   const page = url.pathname.replace(/^\//, '').replace(/\/$/, '').replace(/\.html$/, '');
   if (pageNames.has(page)) {

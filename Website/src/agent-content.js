@@ -1,3 +1,4 @@
+import networkCatalog from '../content/networks.json' with {type:'json'};
 import help from './help/content.json' with {type:'json'};
 import facts from '../public/oath-data.json' with {type:'json'};
 import evidence from '../content/release-evidence.json' with {type:'json'};
@@ -7,6 +8,7 @@ const main='https://oathwallet.org', support='https://help.oathwallet.org', arti
 const pages=['index','features','about','networks','press','security','terms','privacy'];
 const articlePath=p=>p.replace(/\/articles(?=\/|$)/,'')||'/';
 export const documents=[
+ ...networkCatalog.networks.map(n=>({url:main+'/networks/'+n.slug,markdown_url:main+'/networks/'+n.slug+'.md',title:n.name+' wallet: send, receive and dApp connections',summary:n.intro,kind:'network',file:'/networks/'+n.slug+'.md',updated_at:networkCatalog.reviewed})),
  ...pages.map(p=>({url:main+(p==='index'?'/':'/'+p),markdown_url:main+'/'+p+'.md',title:p==='index'?'Oath Wallet':p[0].toUpperCase()+p.slice(1),kind:'page',file:'/'+p+'.md'})),
  {url:support+'/',markdown_url:support+'/index.md',title:'Help Center',kind:'help-index'},
  ...help.categories.map(c=>({url:support+'/collections/'+c.id,markdown_url:support+'/collections/'+c.id+'.md',title:c.title,summary:c.description,kind:'collection',id:c.id})),

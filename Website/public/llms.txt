@@ -9,6 +9,48 @@ Public source and releases: https://github.com/devdasx/oath-wallet
 
 Help instructions carry their applicable app version and authored update dates. Source excerpts cover 4.1.14 (98), reviewed 2026-10-30; this is not an independent audit or proof of App Store availability.
 
+- [Bitcoin wallet: send, receive and dApp connections](https://oathwallet.org/networks/bitcoin.md): Receive native BTC with your Oath address and review your Bitcoin network fee before sending.
+- [Ethereum wallet: send, receive and dApp connections](https://oathwallet.org/networks/ethereum.md): Receive, send and manage assets on Ethereum with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Solana wallet: send, receive and dApp connections](https://oathwallet.org/networks/solana.md): Keep SOL and supported Solana tokens together, with receiving, sending and compatible dApp connections.
+- [Gram wallet: send, receive and dApp connections](https://oathwallet.org/networks/gram.md): Send and receive Gram on iPhone and iPad with Oath Wallet. Gram (GRAM) is the native coin of the TON blockchain, formerly called Toncoin.
+- [THORChain wallet: send, receive and dApp connections](https://oathwallet.org/networks/thorchain.md): Keep RUNE and supported THORChain assets in Oath, and connect to compatible THORChain dApps.
+- [BNB Smart Chain wallet: send, receive and dApp connections](https://oathwallet.org/networks/bnb-smart-chain.md): Receive, send and manage assets on BNB Smart Chain with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Polygon wallet: send, receive and dApp connections](https://oathwallet.org/networks/polygon.md): Receive, send and manage assets on Polygon with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Arbitrum wallet: send, receive and dApp connections](https://oathwallet.org/networks/arbitrum.md): Receive, send and manage assets on Arbitrum with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Base wallet: send, receive and dApp connections](https://oathwallet.org/networks/base.md): Receive, send and manage assets on Base with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Optimism wallet: send, receive and dApp connections](https://oathwallet.org/networks/optimism.md): Receive, send and manage assets on Optimism with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Avalanche C-Chain wallet: send, receive and dApp connections](https://oathwallet.org/networks/avalanche.md): Receive, send and manage assets on Avalanche C-Chain with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [TRON wallet: send, receive and dApp connections](https://oathwallet.org/networks/tron.md): Manage TRX and supported TRC-20 assets with clear send and receive details.
+- [XRP Ledger wallet: send, receive and dApp connections](https://oathwallet.org/networks/xrp-ledger.md): Receive XRP, manage supported XRP Ledger assets and review outgoing transfers in Oath.
+- [NEAR Protocol wallet: send, receive and dApp connections](https://oathwallet.org/networks/near.md): Receive NEAR and supported tokens, send from Oath and review compatible dApp requests.
+- [Sui Network wallet: send, receive and dApp connections](https://oathwallet.org/networks/sui.md): Manage SUI and supported Sui assets, with local transaction review and compatible dApp connections.
+- [Aptos wallet: send, receive and dApp connections](https://oathwallet.org/networks/aptos.md): Manage APT and supported Aptos assets in a native iPhone and iPad wallet.
+- [Polkadot wallet: send, receive and dApp connections](https://oathwallet.org/networks/polkadot.md): Manage DOT and supported Asset Hub assets in Oath on iPhone and iPad.
+- [Stellar wallet: send, receive and dApp connections](https://oathwallet.org/networks/stellar.md): Receive and send XLM and supported Stellar assets from Oath.
+- [Litecoin wallet: send, receive and dApp connections](https://oathwallet.org/networks/litecoin.md): Receive LTC, review activity and send Litecoin from your iPhone or iPad.
+- [Dogecoin wallet: send, receive and dApp connections](https://oathwallet.org/networks/dogecoin.md): Manage native DOGE with a clear receiving address and a fee review before you send.
+- [Bitcoin Cash wallet: send, receive and dApp connections](https://oathwallet.org/networks/bitcoin-cash.md): Send and receive BCH on Bitcoin Cash with a dedicated network account.
+- [Arc wallet: send, receive and dApp connections](https://oathwallet.org/networks/arc.md): Receive, send and manage assets on Arc with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Fantom wallet: send, receive and dApp connections](https://oathwallet.org/networks/fantom.md): Receive, send and manage assets on Fantom with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Flare wallet: send, receive and dApp connections](https://oathwallet.org/networks/flare.md): Receive, send and manage assets on Flare with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Gnosis wallet: send, receive and dApp connections](https://oathwallet.org/networks/gnosis.md): Receive, send and manage assets on Gnosis with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Linea wallet: send, receive and dApp connections](https://oathwallet.org/networks/linea.md): Receive, send and manage assets on Linea with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Chiliz wallet: send, receive and dApp connections](https://oathwallet.org/networks/chiliz.md): Receive, send and manage assets on Chiliz with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [IoTeX wallet: send, receive and dApp connections](https://oathwallet.org/networks/iotex.md): Receive, send and manage assets on IoTeX with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [0G wallet: send, receive and dApp connections](https://oathwallet.org/networks/0g.md): Receive, send and manage assets on 0G with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Sei wallet: send, receive and dApp connections](https://oathwallet.org/networks/sei.md): Receive, send and manage assets on Sei with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Filecoin wallet: send, receive and dApp connections](https://oathwallet.org/networks/filecoin.md): Receive, send and manage assets on Filecoin with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Celo wallet: send, receive and dApp connections](https://oathwallet.org/networks/celo.md): Receive, send and manage assets on Celo with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Monad wallet: send, receive and dApp connections](https://oathwallet.org/networks/monad.md): Receive, send and manage assets on Monad with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Unichain wallet: send, receive and dApp connections](https://oathwallet.org/networks/unichain.md): Receive, send and manage assets on Unichain with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [HyperEVM wallet: send, receive and dApp connections](https://oathwallet.org/networks/hyperevm.md): Receive, send and manage assets on HyperEVM with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Robinhood Chain wallet: send, receive and dApp connections](https://oathwallet.org/networks/robinhood-chain.md): Receive, send and manage assets on Robinhood Chain with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Scroll wallet: send, receive and dApp connections](https://oathwallet.org/networks/scroll.md): Receive, send and manage assets on Scroll with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Somnia wallet: send, receive and dApp connections](https://oathwallet.org/networks/somnia.md): Receive, send and manage assets on Somnia with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Story wallet: send, receive and dApp connections](https://oathwallet.org/networks/story.md): Receive, send and manage assets on Story with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Taiko wallet: send, receive and dApp connections](https://oathwallet.org/networks/taiko.md): Receive, send and manage assets on Taiko with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [Telos wallet: send, receive and dApp connections](https://oathwallet.org/networks/telos.md): Receive, send and manage assets on Telos with Oath for iPhone and iPad. Keep your network, address and fee details in view.
+- [X Layer wallet: send, receive and dApp connections](https://oathwallet.org/networks/x-layer.md): Receive, send and manage assets on X Layer with Oath for iPhone and iPad. Keep your network, address and fee details in view.
 - [Oath Wallet](https://oathwallet.org/index.md)
 - [Features](https://oathwallet.org/features.md)
 - [About](https://oathwallet.org/about.md)

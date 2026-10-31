@@ -1,6 +1,7 @@
 // Canonical metadata and visible navigation for the existing three-site layout.
 // Does not rewrite editorial dates to the build time or manufacture translations.
 import {readFile,writeFile} from 'node:fs/promises';
+import networkCatalog from '../content/networks.json' with {type:'json'};
 import {articleRoutes} from '../src/article-routes.js';
 import {articleURL,ARTICLE_ORIGIN} from '../src/article-host.js';
 const publicDir=new URL('../public/',import.meta.url);
@@ -92,9 +93,12 @@ await write('articles.html',archive);
 
 // The main sitemap must not retain moved support or article URLs.
 const oldSitemap=await read('sitemap.xml');
-const mainPaths=['/','/features','/press','/terms','/privacy','/security','/about','/networks'];
+const mainPaths=['/','/features','/press','/terms','/privacy','/security','/about','/networks',...networkCatalog.networks.map(n=>'/networks/'+n.slug)];
 const dates=new Map([...oldSitemap.matchAll(/<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>[\s\S]*?<\/url>/g)].map(m=>[m[1],m[2]]));
-for (const path of mainPaths) dates.set('https://oathwallet.org'+path,'2026-10-27');
+for (const path of mainPaths) {
+ if(path==='/' || path.startsWith('/networks')) dates.set('https://oathwallet.org'+path,networkCatalog.reviewed);
+ else if(!dates.has('https://oathwallet.org'+path)) dates.set('https://oathwallet.org'+path,'2026-10-27');
+}
 const xml=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${mainPaths.map(path=>{const url='https://oathwallet.org'+path;return `  <url><loc>${url}</loc>${dates.has(url)?`<lastmod>${esc(dates.get(url))}</lastmod>`:''}</url>`;}).join('\n')}\n</urlset>\n`;
 await write('sitemap.xml',xml);
 console.log('Built canonical sitemap, homepage answers, article breadcrumbs and site identity.');

@@ -42,8 +42,10 @@ test('help release and historical screenshots keep separate versions',()=>{
  for(const article of help.articles){assert.equal(article.app_version,'Oath 4.1.14');assert.equal(article.screenshot_version,'Oath 4.0.3');assert.ok(!article.tags.some(t=>t.includes('4.0.3')));}
 });
 test('current release copy keeps upload separate from Apple review',async()=>{
+ // Network guides describe installed-app availability instead of release uploads;
+ // their scope and canonical routes are checked in network-guides.test.mjs.
  const copies=await Promise.all(['public/security.html','public/security.md','public/about.html',
-  'public/about.md','public/networks.html','public/networks.md','src/help/render.js'].map(read));
+  'public/about.md','src/help/render.js'].map(read));
  for(const copy of copies){
   assert.doesNotMatch(copy,/Waiting for Review|Build 98 was submitted|4\.1\.14 \(86\)/);
   assert.match(copy,/no .*upload|no Apple upload|not.*upload/i);

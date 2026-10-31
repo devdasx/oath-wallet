@@ -1,0 +1,47 @@
+# Dogecoin wallet: send and receive DOGE
+
+Manage native DOGE with a clear receiving address and a fee review before you send.
+
+## Receive Dogecoin
+
+1. Open Oath, select your wallet and choose Dogecoin in Receive.
+2. Copy the receiving address or show its QR code. Confirm the exact network with the sender.
+3. Share the Dogecoin address from the selected wallet. Wrapped DOGE on an EVM network requires a different receiving route.
+4. After the sender broadcasts the transfer, follow its status in Oath. Network confirmation can take time.
+
+## Send DOGE
+
+1. Open Send and select the asset on Dogecoin. Paste the recipient’s address or scan their QR.
+2. Review the full DOGE destination and network fee. Small balances can be affected by the number of transaction inputs.
+3. Enter the amount and any required memo or tag. Compare the complete destination with the recipient’s instructions.
+4. Review the asset, network, amount and fee, then confirm in Oath. Follow the transaction status after broadcast.
+
+## dApp connections
+
+Dogecoin send and receive support does not include a supported dApp connection route in this guide. Use Oath for transfers; do not import your recovery phrase into a website to connect.
+
+
+
+## Questions
+
+### How do I receive Dogecoin in Oath?
+
+Open Oath, select your wallet and choose Dogecoin in Receive. Copy the receiving address or show its QR code. Confirm the exact network with the sender. Share the Dogecoin address from the selected wallet. Wrapped DOGE on an EVM network requires a different receiving route.
+
+### What pays the Dogecoin transaction fee?
+
+DOGE is the native fee asset for this network account. Review the full DOGE destination and network fee. Small balances can be affected by the number of transaction inputs.
+
+### Can I connect Dogecoin dApps?
+
+Dogecoin send and receive support does not include a supported dApp connection route in this guide. Use Oath for transfers; do not import your recovery phrase into a website to connect.
+
+### Can I send to the same address on another network?
+
+Only send using the network the recipient explicitly supports. A matching address or ticker does not bridge assets or make different chains interchangeable.
+
+Features depend on the app version, network, wallet type and the service you connect to. Check the available actions in your installed app before transferring.
+
+[Network catalog](https://github.com/devdasx/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
+
+[Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)

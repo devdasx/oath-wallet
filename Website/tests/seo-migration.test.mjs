@@ -1,3 +1,4 @@
+import networks from '../content/networks.json' with {type:'json'};
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -20,7 +21,7 @@ test('old support URLs permanently redirect to the canonical Help Center',async(
  }
  const sitemap=await(await worker.fetch(new Request('https://oathwallet.org/sitemap.xml'),env)).text();
  assert.doesNotMatch(sitemap,/\/support|\/articles|articles\.oathwallet/);
- assert.equal([...sitemap.matchAll(/<loc>/g)].length,8);
+ assert.equal([...sitemap.matchAll(/<loc>/g)].length,8 + networks.networks.length);
 });
 test('article sitemap covers canonical editions with real modification dates and correct Markdown canonicals',async()=>{
  const sitemap=await(await handleArticleHost(new Request('https://articles.oathwallet.org/sitemap.xml'),env)).text();

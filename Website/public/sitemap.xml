@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://oathwallet.org/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://oathwallet.org/</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://oathwallet.org/features</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://oathwallet.org/press</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://oathwallet.org/terms</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://oathwallet.org/privacy</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://oathwallet.org/security</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://oathwallet.org/about</loc><lastmod>2026-10-27</lastmod></url>
-  <url><loc>https://oathwallet.org/networks</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://oathwallet.org/networks</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/bitcoin</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/ethereum</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/solana</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/gram</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/thorchain</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/bnb-smart-chain</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/polygon</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/arbitrum</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/base</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/optimism</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/avalanche</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/tron</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/xrp-ledger</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/near</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/sui</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/aptos</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/polkadot</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/stellar</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/litecoin</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/dogecoin</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/bitcoin-cash</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/arc</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/fantom</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/flare</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/gnosis</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/linea</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/chiliz</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/iotex</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/0g</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/sei</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/filecoin</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/celo</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/monad</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/unichain</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/hyperevm</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/robinhood-chain</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/scroll</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/somnia</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/story</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/taiko</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/telos</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://oathwallet.org/networks/x-layer</loc><lastmod>2026-10-31</lastmod></url>
 </urlset>

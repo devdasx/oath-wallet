@@ -45,11 +45,56 @@ Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30
 
 [Supported networks](/networks) · [About Oath Wallet](/about) · [Backup and restore](/articles/backup-restore-oath-wallet) · [Security evidence](/security)
 
-## TON, in your wallet
+<!-- oath-network-links:start -->
+## Find your network
 
-Send and receive TON on iPhone and iPad with Oath Wallet. Manage your TON blockchain balance, share your receiving address, and review the network fee before sending.
+Explore send, receive and compatible dApp guidance for each network. Gram is the native coin of the TON blockchain.
 
-[Explore supported networks](https://oathwallet.org/networks) · [TON App profile](https://ton.app/app/oath-wallet)
+- [Bitcoin: send, receive and connection guide](https://oathwallet.org/networks/bitcoin)
+- [Ethereum: send, receive and connection guide](https://oathwallet.org/networks/ethereum)
+- [Solana: send, receive and connection guide](https://oathwallet.org/networks/solana)
+- [Gram: send, receive and connection guide](https://oathwallet.org/networks/gram)
+- [THORChain: send, receive and connection guide](https://oathwallet.org/networks/thorchain)
+- [BNB Smart Chain: send, receive and connection guide](https://oathwallet.org/networks/bnb-smart-chain)
+- [Polygon: send, receive and connection guide](https://oathwallet.org/networks/polygon)
+- [Arbitrum: send, receive and connection guide](https://oathwallet.org/networks/arbitrum)
+- [Base: send, receive and connection guide](https://oathwallet.org/networks/base)
+- [Optimism: send, receive and connection guide](https://oathwallet.org/networks/optimism)
+- [Avalanche C-Chain: send, receive and connection guide](https://oathwallet.org/networks/avalanche)
+- [TRON: send, receive and connection guide](https://oathwallet.org/networks/tron)
+- [XRP Ledger: send, receive and connection guide](https://oathwallet.org/networks/xrp-ledger)
+- [NEAR Protocol: send, receive and connection guide](https://oathwallet.org/networks/near)
+- [Sui Network: send, receive and connection guide](https://oathwallet.org/networks/sui)
+- [Aptos: send, receive and connection guide](https://oathwallet.org/networks/aptos)
+- [Polkadot: send, receive and connection guide](https://oathwallet.org/networks/polkadot)
+- [Stellar: send, receive and connection guide](https://oathwallet.org/networks/stellar)
+- [Litecoin: send, receive and connection guide](https://oathwallet.org/networks/litecoin)
+- [Dogecoin: send, receive and connection guide](https://oathwallet.org/networks/dogecoin)
+- [Bitcoin Cash: send, receive and connection guide](https://oathwallet.org/networks/bitcoin-cash)
+- [Arc: send, receive and connection guide](https://oathwallet.org/networks/arc)
+- [Fantom: send, receive and connection guide](https://oathwallet.org/networks/fantom)
+- [Flare: send, receive and connection guide](https://oathwallet.org/networks/flare)
+- [Gnosis: send, receive and connection guide](https://oathwallet.org/networks/gnosis)
+- [Linea: send, receive and connection guide](https://oathwallet.org/networks/linea)
+- [Chiliz: send, receive and connection guide](https://oathwallet.org/networks/chiliz)
+- [IoTeX: send, receive and connection guide](https://oathwallet.org/networks/iotex)
+- [0G: send, receive and connection guide](https://oathwallet.org/networks/0g)
+- [Sei: send, receive and connection guide](https://oathwallet.org/networks/sei)
+- [Filecoin: send, receive and connection guide](https://oathwallet.org/networks/filecoin)
+- [Celo: send, receive and connection guide](https://oathwallet.org/networks/celo)
+- [Monad: send, receive and connection guide](https://oathwallet.org/networks/monad)
+- [Unichain: send, receive and connection guide](https://oathwallet.org/networks/unichain)
+- [HyperEVM: send, receive and connection guide](https://oathwallet.org/networks/hyperevm)
+- [Robinhood Chain: send, receive and connection guide](https://oathwallet.org/networks/robinhood-chain)
+- [Scroll: send, receive and connection guide](https://oathwallet.org/networks/scroll)
+- [Somnia: send, receive and connection guide](https://oathwallet.org/networks/somnia)
+- [Story: send, receive and connection guide](https://oathwallet.org/networks/story)
+- [Taiko: send, receive and connection guide](https://oathwallet.org/networks/taiko)
+- [Telos: send, receive and connection guide](https://oathwallet.org/networks/telos)
+- [X Layer: send, receive and connection guide](https://oathwallet.org/networks/x-layer)
+
+[Oath on TON App](https://ton.app/app/oath-wallet)
+<!-- oath-network-links:end -->
 
 <!-- oath-questions:start -->
 ## Self-custody, explained
