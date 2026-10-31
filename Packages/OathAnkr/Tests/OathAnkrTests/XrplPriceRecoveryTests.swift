@@ -79,11 +79,16 @@ final class XrplPriceRecoveryTests: XCTestCase, @unchecked Sendable {
             XCTAssertEqual(calls, ["api.coinbase.com"])
         }
     }
+    func testExpiredFallbackIsUnavailableAndNeverReturnedAsFresh() async {
+        let transport = XrplQuoteReplies(.disconnected, fallback: xrplQuoteFixture(offset: -901))
+        do { _ = try await XrplMarkets(transport: transport).nativePrice(); XCTFail("Expired fallback accepted") }
+        catch { XCTAssertEqual(error as? DiagnosticDeferral, .publicMarketQuoteUnavailable) }
+    }
     func testInvalidFallbackNeverInventsNativePrice() async {
         for payload in [Data(#"{"coins":{}}"#.utf8), xrplQuoteFixture(key: "coingecko:ethereum"),
                         xrplQuoteFixture(symbol: "ETH"), xrplQuoteFixture(price: 0), xrplQuoteFixture(price: -1),
                         xrplQuoteFixture(confidence: 0.89), xrplQuoteFixture(confidence: 1.01),
-                        xrplQuoteFixture(offset: -901), xrplQuoteFixture(offset: 61)] {
+                        xrplQuoteFixture(offset: 61)] {
             let transport = XrplQuoteReplies(.disconnected, fallback: payload)
             do { _ = try await XrplMarkets(transport: transport).nativePrice(); XCTFail("Invalid fallback accepted") }
             catch { XCTAssertEqual(error as? AnkrError, .invalidResponse) }

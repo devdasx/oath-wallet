@@ -14,7 +14,9 @@ extension PublicSigningAuthority {
         "fantom": "https://rpcapi.fantom.network", "flare": "https://flare-api.flare.network/ext/C/rpc",
         "somnia": "https://api.infra.mainnet.somnia.network", "story": "https://mainnet.storyrpc.io",
         "monad": "https://rpc.monad.xyz", "unichain": "https://mainnet.unichain.org", "chiliz": "https://chiliz-rpc.publicnode.com", "celo": "https://forno.celo.org",
-        "hyperevm": "https://rpc.hyperliquid.xyz/evm", "robinhood": "https://rpc.mainnet.chain.robinhood.com"
+        "hyperevm": "https://rpc.hyperliquid.xyz/evm", "robinhood": "https://rpc.mainnet.chain.robinhood.com",
+        "filecoin": "https://api.node.glif.io/rpc/v1", "sei": "https://evm-rpc.sei-apis.com",
+        "zerog": "https://evmrpc.0g.ai", "iotex": "https://babel-api.mainnet.iotex.io"
     ]
 
     // Official Safe 1.3.0 / 1.4.1 artifacts. Match the proxy AND implementation

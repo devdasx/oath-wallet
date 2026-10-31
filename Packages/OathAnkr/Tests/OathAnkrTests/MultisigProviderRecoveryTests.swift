@@ -27,7 +27,12 @@ final class MultisigProviderRecoveryTests: XCTestCase {
             XCTAssertEqual(requests.count, 2)
             XCTAssertEqual(requests.first?.url, primary)
             XCTAssertEqual(requests.last?.url, XrplSendNetwork.mainnet.endpoint)
-            XCTAssertEqual(requests.first?.httpBody, requests.last?.httpBody)
+            // JSON object key ordering is not part of the JSON-RPC read identity.
+            // Compare the entire decoded body so account, ledger and policy fields stay identical.
+            let firstBody = try XCTUnwrap(requests.first?.httpBody)
+            let lastBody = try XCTUnwrap(requests.last?.httpBody)
+            XCTAssertEqual(try JSONDecoder().decode(TronJSON.self, from: firstBody),
+                           try JSONDecoder().decode(TronJSON.self, from: lastBody))
         }
     }
 
