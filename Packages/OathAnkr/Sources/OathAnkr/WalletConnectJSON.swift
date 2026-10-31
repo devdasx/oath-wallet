@@ -34,6 +34,7 @@ public enum WalletConnectJSON {
                 offset += 1; var object = [String: SolanaJSON]()
                 if take(125) { return .object(object) }
                 repeat {
+                    guard object.count < collectionLimit else { throw Failure.tooLarge }
                     whitespace(); let key = try string()
                     guard object[key] == nil, take(58) else { throw Failure.malformed }
                     object[key] = try value(depth: depth + 1)

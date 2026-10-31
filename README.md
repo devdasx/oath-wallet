@@ -116,3 +116,12 @@ App Store results must be reported separately from source and host tests.
 
 For security issues, use [private vulnerability reporting](https://github.com/devdasx/oath-wallet/security/advisories/new).
 See the bundled third-party notices and dependency licenses for attribution.
+
+## Reproducible security review
+
+A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
+starts at 4.1.15 (100), commit `c7cdbde5e9f136b595500e92fbc904b107dcd8ee`.
+It publishes its exact source targets, findings, tests, and outstanding coverage.
+The review is **in progress**, is not independent certification, and does not
+establish equivalence with Apple's distributed binary. Later changes do not
+automatically inherit its conclusions.
