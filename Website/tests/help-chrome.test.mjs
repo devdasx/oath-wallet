@@ -11,8 +11,8 @@ test('Help Center chrome is generated from the current main-site components',asy
   const generated=await buildHelpChrome();
   assert.equal(await readFile(new URL('../src/help/site-chrome.js',import.meta.url),'utf8'),generated.module);
   assert.equal(await readFile(new URL('../public/help/site-chrome.css',import.meta.url),'utf8'),generated.css);
-  assert.match(siteHeader,/\/assets\/brand\/oath-mark-dark.svg/);
-  assert.match(siteFooter,/\/assets\/brand\/oath-mark-dark.svg/);
+  assert.match(siteHeader,/\/assets\/brand\/oath-logo.svg/);
+  assert.match(siteFooter,/\/assets\/brand\/oath-logo.svg/);
   assert.match(generated.css,/background:#0A0A0B;color:#F2F0EA/);
   assert.match(generated.css,/background:rgba\(20,20,22,\.72\)/);
   assert.match(generated.css,/background:rgba\(10,10,11,\.94\)/);

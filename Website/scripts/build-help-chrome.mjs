@@ -49,8 +49,7 @@ function component(source,width,open=false,active='Help Center') {
 }
 function lightFooter(html) {
   const colors={'#0A0A0B':'#FFFFFF','#F2F0EA':'#0A0A0B','#8E8C86':'#62605A','#D6D4CD':'#383735','#6E6C67':'#D6D4CD','#FFFFFF':'#000000','rgba(242,240,234,.12)':'rgba(10,10,11,.12)'};
-  return html.replace(/#(?:0A0A0B|F2F0EA|8E8C86|D6D4CD|6E6C67|FFFFFF)|rgba\(242,240,234,\.12\)/g,c=>colors[c])
-    .replace('/assets/brand/oath-mark-dark.svg','/assets/brand/oath-mark-light.svg');
+  return html.replace(/#(?:0A0A0B|F2F0EA|8E8C86|D6D4CD|6E6C67|FFFFFF)|rgba\(242,240,234,\.12\)/g,c=>colors[c]);
 }
 function lightHeader(html) {
   const colors={
@@ -63,8 +62,7 @@ function lightHeader(html) {
     'rgba(242,240,234,.08)':'rgba(10,10,11,.06)',
     'rgba(242,240,234,.16)':'rgba(10,10,11,.12)',
   };
-  return html.replace(/#[\dA-F]{6}|rgba\([\d,.]+\)/g,color=>colors[color]??color)
-    .replace('/assets/brand/oath-mark-dark.svg','/assets/brand/oath-mark-light.svg');
+  return html.replace(/#[\dA-F]{6}|rgba\([\d,.]+\)/g,color=>colors[color]??color);
 }
 function extractStyles(html,part) {
   const styles=[];

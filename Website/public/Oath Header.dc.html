@@ -58,7 +58,7 @@
 </header>
 </x-dc>
 </template>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:100},&quot;links&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, href: string}[]&quot;},&quot;pages&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Record&lt;string,string&gt;&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mark&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/assets/brand/oath-mark-dark.svg&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:100},&quot;links&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{label: string, href: string}[]&quot;},&quot;pages&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;Record&lt;string,string&gt;&quot;},&quot;active&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;mark&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;/assets/brand/oath-logo.svg?v=e4c5dfe6ee7e&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { vw: typeof window !== 'undefined' ? window.innerWidth : 1200, open: false, ready: typeof window !== 'undefined' && !!window.OathIcons };
   componentDidMount() {
@@ -76,7 +76,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const I = this.state.ready && window.OathIcons;
-    const mark = this.props.mark || '/assets/brand/oath-mark-dark.svg';
+    const mark = this.props.mark || '/assets/brand/oath-logo.svg?v=e4c5dfe6ee7e';
     const { vw, open } = this.state;
     const compact = vw < 1024;
     const P = this.props.pages ?? { home: 'https://oathwallet.org/', features: 'https://oathwallet.org/features', networks: 'https://oathwallet.org/networks', articles: 'https://articles.oathwallet.org/', support: 'https://help.oathwallet.org/', press: 'https://oathwallet.org/press', terms: 'https://oathwallet.org/terms', privacy: 'https://oathwallet.org/privacy' };

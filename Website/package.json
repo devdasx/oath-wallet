@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "build:search": "node scripts/build-search-content.mjs",
-    "predeploy": "npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:agents",
+    "predeploy": "npm run build:brand && npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:agents",
     "build:seo": "node scripts/build-seo.mjs",
     "deploy": "wrangler deploy",
     "postdeploy": "node scripts/submit-indexnow.mjs",
@@ -20,10 +20,12 @@
     "build:networks": "node scripts/build-network-guides.mjs",
     "build:footer-networks": "node scripts/sync-footer-networks.mjs",
     "build:site-chrome": "node scripts/build-site-chrome.mjs",
-    "build:articles": "node scripts/build-article-index.mjs"
+    "build:articles": "node scripts/build-article-index.mjs",
+    "build:brand": "node scripts/build-brand.mjs"
   },
   "devDependencies": {
     "playwright": "1.63.0",
+    "sharp": "0.35.5",
     "undici": "7.30.1",
     "wrangler": "4.154.0"
   }

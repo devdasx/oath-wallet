@@ -1,6 +1,7 @@
 // All public marketing and editorial documents render the canonical components.
 // Pairing/deep-link and authenticated utility screens remain isolated.
 import {readFile,writeFile,readdir} from 'node:fs/promises';
+import {brandUrls} from './brand-urls.mjs';
 import {buildSiteChrome} from './build-help-chrome.mjs';
 const root=new URL('../public/',import.meta.url);
 const chrome=await buildSiteChrome();
@@ -33,7 +34,7 @@ for(const file of await files(root)){
  if(!html.includes(`href="${stylesheet}"`))html=html.replace('</head>',`<link rel="stylesheet" href="${stylesheet}"></head>`);
  if(!html.includes('src="/site-chrome.js"'))html=html.replace('</body>','<script src="/site-chrome.js" defer></script></body>');
  if(!notes&&!ousd&&!html.includes('fonts.googleapis.com/css2?'))html=html.replace('</head>','<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap"></head>');
- html=html.replace(/href="\/(favicon\.svg|favicon\.ico|favicon-32\.png)(?:\?[^"]*)?"/g,'href="/$1?v=20261031-rounded"');
+ html=brandUrls(html);
  await writeFile(file,html);count++;
 }
 console.log(`Applied shared navigation and the complete network footer to ${count} public documents.`);

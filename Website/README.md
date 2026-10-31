@@ -244,3 +244,12 @@ DDoS, authentication or MCP origin validation, and grants no private access.
 Write requests and other hosts are outside this exception. Automated clients
 should identify themselves truthfully; never impersonate a verified crawler to
 obtain privileges. Cloudflare zone configuration is separate from Worker deploys.
+
+### Shared website logo
+
+Edit `content/brand/oath-logo.svg` to update Oath's logo. `npm run build:brand`
+(runs first in `predeploy`) generates the website logo, compatibility aliases,
+favicon SVG/PNG/ICO, touch icon, install icons and press app-icon downloads.
+Header, footer, homepage, splash, Help Center and press previews use this source.
+The source hash versions logo URLs so each change also refreshes browser caches.
+Do not edit generated logo copies or introduce separate light/dark logo designs.
