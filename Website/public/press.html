@@ -185,7 +185,7 @@
       <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(12,1fr);pointer-events:none">
         <sc-for list="{{ gridCols }}" as="gc" hint-placeholder-count="12"><span style="border-right:1px solid rgba(242,240,234,.04)"></span></sc-for>
       </div>
-      <img src="{{ m.dark }}" alt="Oath mark" style="position:relative;display:block;width:clamp(180px,34%,440px);aspect-ratio:860/580;height:auto;transform:{{ markT }};transition:transform 1.6s cubic-bezier(.16,1,.3,1) .5s">
+      <img src="{{ m.iconL }}" alt="Oath mark" style="position:relative;display:block;width:clamp(180px,34%,440px);aspect-ratio:1;height:auto;transform:{{ markT }};transition:transform 1.6s cubic-bezier(.16,1,.3,1) .5s">
       <span style="position:absolute;left:clamp(18px,3vw,32px);bottom:clamp(16px,3vw,28px);font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#8E8C86">VOW — TWO RINGS, ONE PROMISE</span>
       <span style="position:absolute;right:clamp(18px,3vw,32px);bottom:clamp(16px,3vw,28px);font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#8E8C86">v1.0 · 2026</span>
     </div>
@@ -233,7 +233,7 @@
   <section id="logos" data-reveal="logos" data-screen-label="04 Logos" style="max-width:1320px;margin:0 auto;padding:clamp(96px,12vw,150px) clamp(20px,5vw,32px) 0;scroll-margin-top:80px;opacity:{{ rv.logos.o }};transform:{{ rv.logos.t }};transition:opacity 1s ease,transform 1.2s cubic-bezier(.16,1,.3,1)">
     <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:clamp(28px,4vw,44px)">
       <h2 style="margin:0;font:400 clamp(40px,5.4vw,80px)/.95 'Instrument Serif',serif;letter-spacing:-.02em">Logos &amp; <em style="color:#8E8C86">icon.</em></h2>
-      <p style="margin:0;max-width:380px;font:400 16px/1.55 'Instrument Sans',sans-serif;color:#B9B7B0">Vector SVG and high-resolution PNG. Use the light-background mark on light grounds and the dark-background mark on dark.</p>
+      <p style="margin:0;max-width:380px;font:400 16px/1.55 'Instrument Sans',sans-serif;color:#B9B7B0">Vector SVG and high-resolution PNG. The same rounded blue logo for light and dark backgrounds.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(12px,1.6vw,16px)">
       <sc-for list="{{ assets }}" as="a" hint-placeholder-count="6">
