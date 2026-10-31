@@ -359,7 +359,7 @@ public class NetworkingInteractor: NetworkInteracting {
 
     private func handleResponse(topic: String, response: RPCResponse, publishedAt: Date, derivedTopic: String?) {
         do {
-            let record = try rpcHistory.resolve(response)
+            let record = try rpcHistory.resolve(response, forResponseTopic: topic)
             responsePublisherSubject.send((topic, record.request, response, publishedAt, derivedTopic))
         } catch {
             logger.debug("Handle json rpc response error: \(error)")

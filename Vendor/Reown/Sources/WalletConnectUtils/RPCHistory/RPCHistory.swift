@@ -1,4 +1,5 @@
 import Foundation
+import CryptoKit
 
 public protocol RPCHistoryProtocol {
     
@@ -20,11 +21,33 @@ public final class RPCHistory: RPCHistoryProtocol {
         }
         public let id: RPCID
         public let topic: String
+        public let expectedResponseTopic: String?
         let origin: Origin
         public let request: RPCRequest
         public let response: RPCResponse?
         public var timestamp: Date?
         public let transportType: TransportType?
+
+        fileprivate var responseTopic: String? {
+            if let expectedResponseTopic { return expectedResponseTopic }
+            // Preserve authentication requests persisted before explicit routing
+            // metadata existed. The protocol response topic is SHA256(requester
+            // public key), not the pairing topic. Never accept an arbitrary topic.
+            if request.method == "wc_sessionAuthenticate" {
+                guard let routing = try? request.params?.get(AuthenticationRouting.self),
+                      routing.requester.publicKey.utf8.count == 64,
+                      routing.requester.publicKey.utf8.allSatisfy({
+                          (48...57).contains($0) || (65...70).contains($0) || (97...102).contains($0)
+                      }) else { return nil }
+                return Data(SHA256.hash(data: Data(hex: routing.requester.publicKey))).toHexString()
+            }
+            return topic
+        }
+
+        private struct AuthenticationRouting: Codable {
+            struct Requester: Codable { let publicKey: String }
+            let requester: Requester
+        }
     }
 
     enum HistoryError: Error, LocalizedError {
@@ -33,6 +56,7 @@ public final class RPCHistory: RPCHistoryProtocol {
         case requestDuplicateNotAllowed
         case responseDuplicateNotAllowed
         case requestMatchingResponseNotFound
+        case responseTopicMismatch
         var errorDescription: String? {
             switch self {
             case .unidentifiedRequest:
@@ -45,6 +69,8 @@ public final class RPCHistory: RPCHistoryProtocol {
                 return "Response duplicates are not allowed."
             case .requestMatchingResponseNotFound:
                 return "Matching request for the response not found."
+            case .responseTopicMismatch:
+                return "Response does not match the pending request topic."
             }
         }
     }
@@ -69,13 +95,19 @@ public final class RPCHistory: RPCHistoryProtocol {
         guard get(recordId: id) == nil else {
             throw HistoryError.requestDuplicateNotAllowed
         }
-        let record = Record(id: id, topic: topic, origin: origin, request: request, response: nil, timestamp: time.currentDate, transportType: transportType)
+        let record = Record(id: id, topic: topic, expectedResponseTopic: request.expectedResponseTopic, origin: origin, request: request, response: nil, timestamp: time.currentDate, transportType: transportType)
         storage.set(record, forKey: "\(record.id)")
     }
 
     @discardableResult
-    public func resolve(_ response: RPCResponse) throws -> Record {
+    public func resolve(_ response: RPCResponse, forResponseTopic topic: String? = nil) throws -> Record {
         let record = try validate(response)
+        if let topic {
+            guard record.origin == .local,
+                  record.responseTopic == topic else {
+                throw HistoryError.responseTopicMismatch
+            }
+        }
         storage.delete(forKey: "\(record.id)")
         return record
     }
