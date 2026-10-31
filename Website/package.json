@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "build:search": "node scripts/build-search-content.mjs",
-    "predeploy": "npm run build:brand && npm run build:bounty && npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:agents",
+    "predeploy": "npm run build:brand && npm run build:press && npm run build:bounty && npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:agents",
     "build:seo": "node scripts/build-seo.mjs",
     "deploy": "wrangler deploy",
     "postdeploy": "node scripts/submit-indexnow.mjs",
@@ -22,7 +22,8 @@
     "build:site-chrome": "node scripts/build-site-chrome.mjs",
     "build:articles": "node scripts/build-article-index.mjs",
     "build:brand": "node scripts/build-brand.mjs",
-    "build:bounty": "node scripts/build-bug-bounty.mjs"
+    "build:bounty": "node scripts/build-bug-bounty.mjs",
+    "build:press": "node scripts/build-press.mjs"
   },
   "devDependencies": {
     "playwright": "1.63.0",

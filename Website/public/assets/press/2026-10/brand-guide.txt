@@ -1,23 +1,64 @@
-OATH WALLET — BRAND NOTES
-Updated October 31, 2026
+OATH WALLET — BRAND USAGE GUIDE
+Edition 2026.10.31
+Official source: https://oathwallet.org/press
 
-Name: Oath Wallet. Short name: Oath.
-Current app icon: Solid Signal Blue with white interlocking rings.
-Colours: Signal Blue #247BFF; White #FFFFFF; Ink #0B0B0D.
-Use a flat #247BFF background. Do not add gradients.
+PERMITTED USES
 
-Use the provided SVG masters when a scalable symbol is required.
-Use the PNG artwork for layouts that need a raster image.
-The shared app logo is 1024 x 1024 with rounded corners and transparent
-outer corners. Use the same blue logo on light and dark backgrounds.
+Editorial coverage
+Use the supplied assets in articles, reviews, interviews, educational material and factual reporting about Oath Wallet. Critical or independent coverage does not need to imply endorsement.
 
-Preserve the supplied shapes and proportions. Leave clear space around
-the logo. Use the same rounded blue artwork on every background. Do not
-stretch, redraw, recolour, or add shadows to the logo.
+Accurate product listings
+Use the app icon or supplied logo to identify Oath in wallet directories, supported-wallet selectors and compatibility listings when the stated support is accurate.
 
-Product previews use illustrative balances and activity. They are
-editorial product images, not live balances or financial projections.
-Features and availability vary by network and app version.
+Faithful reproduction
+Resize proportionally, select an approved light or dark variant, and place it on a simple background with sufficient contrast and clear space.
 
-For other formats or questions: care@oathwallet.org
-Official press page: https://oathwallet.org/press
+USES THAT ARE NOT PERMITTED
+
+Changing the identity
+Do not stretch, rotate, redraw, recolour, rearrange or separate the rings. Do not add gradients, outlines, shadows, effects or decorative containers to the supplied artwork.
+
+Implying a relationship
+Do not imply sponsorship, certification, investment, employment, endorsement or partnership without written approval. A wallet listing or working connection alone is not a partnership.
+
+Impersonation or confusing branding
+Do not make Oath’s marks your own app icon, account identity, domain branding, token logo or company identity. Do not use them in phishing, deceptive promotions or counterfeit products.
+
+Unapproved commercial branding
+Ask before using Oath’s marks in co-branded campaigns, paid promotional creatives, merchandise, packaging or a modified lockup. Editorial coverage and accurate compatibility listings remain permitted as described above.
+
+Misleading product claims
+Do not claim guaranteed returns, guaranteed safety, insurance, regulatory approval, independent audits or a partnership without current supporting evidence. Do not present illustrative balances as customer funds or investment performance.
+
+ARTWORK GUIDELINES
+
+Clear space
+Keep at least one quarter of the visible symbol’s height clear on every side. For the horizontal logo, measure from the symbol. This space is outside the visible artwork; do not count transparent file padding twice.
+
+Minimum size
+Recommended screen widths: app icon 32 px, standalone symbol 24 px, horizontal logo 120 px. For print, start at 8 mm, 6 mm and 30 mm respectively. Always check legibility in the final output.
+
+Background & contrast
+Use the ink mark or wordmark on a light background and the white versions on a dark background. The blue app icon works on either. Avoid busy photographs and backgrounds that hide the mark.
+
+File choice
+Use SVG for scalable app icons and symbols. Use transparent PNG for raster layouts and the supplied horizontal wordmarks. Use the complete icon file without changing its rounded silhouette.
+
+Name & writing
+Use “Oath Wallet” on first mention and “Oath” thereafter. Keep this spelling and capitalisation. For historical context only, the app was previously called Aperture; use Oath Wallet in new headlines and listings.
+
+Product imagery
+Use the supplied product previews without changing interface labels, balances or controls. You may scale them proportionally and crop surrounding whitespace. Do not crop away context in a way that changes the meaning. Previews are illustrative and may differ from the current release.
+
+COLOUR
+Signal Blue: #247BFF · RGB 36, 123, 255
+Ink: #0B0B0D · RGB 11, 11, 13
+White: #FFFFFF · RGB 255, 255, 255
+Paper: #F2F0EA · RGB 242, 240, 234
+The app icon uses solid Signal Blue. Do not add a gradient.
+
+RIGHTS & PERMISSION
+The supplied assets may be used for the editorial and accurate identification purposes described here. Oath’s brand rights remain with their respective owner; downloading the kit does not transfer ownership or grant an exclusive licence. Permission applies to the supplied brand assets, not to third-party trademarks, app-store badges or fonts. Any source-code licence is separate from permission to use the Oath brand. For uses outside these guidelines, request written approval at care@oathwallet.org. We may ask for misleading or non-compliant uses to be corrected or removed.
+
+CONTACT
+care@oathwallet.org

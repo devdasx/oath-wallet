@@ -3,7 +3,7 @@ import {buildSiteChrome} from './build-help-chrome.mjs';
 import {readFile, writeFile} from 'node:fs/promises';
 
 const publicDir = new URL('../public/', import.meta.url);
-const pages = ['index','features','articles','support','press','security','terms','privacy'];
+const pages = ['index','features','articles','support','security','terms','privacy'];
 const runtime = await readFile(new URL('support.js',publicDir),'utf8');
 // Start the two required local dependencies with the document instead of
 // discovering them only after support.js executes. Match its CORS/SRI settings.

@@ -161,7 +161,7 @@ async function checkBrowser(browser, viewport) {
         if (route === '/press' && viewport.width > 600) {
           for (const extension of ['SVG', 'PNG']) {
             const downloadEvent = page.waitForEvent('download');
-            await page.getByRole('button', { name: `${extension} ↓`, exact: true }).first().click();
+            await page.getByRole('link', { name: extension, exact: true }).first().click();
             const download = await downloadEvent;
             await download.saveAs(path.join(output, download.suggestedFilename()));
             const content = await readFile(path.join(output, download.suggestedFilename()));

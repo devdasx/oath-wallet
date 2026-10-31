@@ -1,0 +1,45 @@
+{
+  "edition": "2026.10.31",
+  "updated": "October 31, 2026",
+  "short": "Oath Wallet is a self-custody Bitcoin and crypto wallet for iPhone and iPad. Built around ownership, it brings supported assets and wallet connections into a native experience, with public source code and a documented security model.",
+  "long": "Oath Wallet is a self-custody Bitcoin and crypto wallet for iPhone and iPad, developed by STAGE AND STYLE COLLECTIVE LLC. It brings supported assets, balances and transaction activity into one native app, alongside wallet connections to supported dApps. Oath is built around ownership: users manage their wallet and authorize their transactions. Its public GitHub repository and security documentation explain the product’s source, release process and security scope. Oath is free to download; blockchain network fees and any applicable service fees are separate. Features and connection methods vary by network and app version. Visit oathwallet.org for current product information.",
+  "facts": [
+    ["Product", "Oath Wallet · Oath for short"],
+    ["Category", "Self-custody Bitcoin & crypto wallet"],
+    ["Platforms", "iPhone and iPad"],
+    ["Company", "STAGE AND STYLE COLLECTIVE LLC"],
+    ["Founded", "June 2025"],
+    ["Based in", "United States"],
+    ["Founder & CEO", "Marco Valenti"],
+    ["Availability", "Free to download on the App Store"]
+  ],
+  "allowed": [
+    ["Editorial coverage", "Use the supplied assets in articles, reviews, interviews, educational material and factual reporting about Oath Wallet. Critical or independent coverage does not need to imply endorsement."],
+    ["Accurate product listings", "Use the app icon or supplied logo to identify Oath in wallet directories, supported-wallet selectors and compatibility listings when the stated support is accurate."],
+    ["Faithful reproduction", "Resize proportionally, select an approved light or dark variant, and place it on a simple background with sufficient contrast and clear space."]
+  ],
+  "notAllowed": [
+    ["Changing the identity", "Do not stretch, rotate, redraw, recolour, rearrange or separate the rings. Do not add gradients, outlines, shadows, effects or decorative containers to the supplied artwork."],
+    ["Implying a relationship", "Do not imply sponsorship, certification, investment, employment, endorsement or partnership without written approval. A wallet listing or working connection alone is not a partnership."],
+    ["Impersonation or confusing branding", "Do not make Oath’s marks your own app icon, account identity, domain branding, token logo or company identity. Do not use them in phishing, deceptive promotions or counterfeit products."],
+    ["Unapproved commercial branding", "Ask before using Oath’s marks in co-branded campaigns, paid promotional creatives, merchandise, packaging or a modified lockup. Editorial coverage and accurate compatibility listings remain permitted as described above."],
+    ["Misleading product claims", "Do not claim guaranteed returns, guaranteed safety, insurance, regulatory approval, independent audits or a partnership without current supporting evidence. Do not present illustrative balances as customer funds or investment performance."]
+  ],
+  "guidelines": [
+    ["Clear space", "Keep at least one quarter of the visible symbol’s height clear on every side. For the horizontal logo, measure from the symbol. This space is outside the visible artwork; do not count transparent file padding twice."],
+    ["Minimum size", "Recommended screen widths: app icon 32 px, standalone symbol 24 px, horizontal logo 120 px. For print, start at 8 mm, 6 mm and 30 mm respectively. Always check legibility in the final output."],
+    ["Background & contrast", "Use the ink mark or wordmark on a light background and the white versions on a dark background. The blue app icon works on either. Avoid busy photographs and backgrounds that hide the mark."],
+    ["File choice", "Use SVG for scalable app icons and symbols. Use transparent PNG for raster layouts and the supplied horizontal wordmarks. Use the complete icon file without changing its rounded silhouette."],
+    ["Name & writing", "Use “Oath Wallet” on first mention and “Oath” thereafter. Keep this spelling and capitalisation. For historical context only, the app was previously called Aperture; use Oath Wallet in new headlines and listings."],
+    ["Product imagery", "Use the supplied product previews without changing interface labels, balances or controls. You may scale them proportionally and crop surrounding whitespace. Do not crop away context in a way that changes the meaning. Previews are illustrative and may differ from the current release."]
+  ],
+  "rights": "The supplied assets may be used for the editorial and accurate identification purposes described here. Oath’s brand rights remain with their respective owner; downloading the kit does not transfer ownership or grant an exclusive licence. Permission applies to the supplied brand assets, not to third-party trademarks, app-store badges or fonts. Any source-code licence is separate from permission to use the Oath brand. For uses outside these guidelines, request written approval at care@oathwallet.org. We may ask for misleading or non-compliant uses to be corrected or removed.",
+  "faq": [
+    ["Which logo should I use?", "Use the blue app icon for app listings and wallet selectors. Use a standalone white or ink symbol where space is limited, or a supplied horizontal logo when the name should be visible. Choose the version with the best contrast."],
+    ["Can I use the assets without emailing first?", "Yes, for editorial coverage and accurate identification in directories or compatibility listings, while following these guidelines. Other promotional, co-branded or merchandise uses need written approval."],
+    ["Is a download proof of a partnership?", "No. These materials identify the product. They do not grant endorsement, partnership status, certification or permission to make claims on Oath’s behalf."],
+    ["Are the product images real account balances?", "No. They are editorial product previews with illustrative balances and activity. They are not evidence of assets under management, investment returns or an individual’s holdings."],
+    ["Can I translate the press copy?", "Yes. Preserve the meaning, keep the product name as Oath Wallet, and do not add unsupported claims. Contact us if a technical description needs clarification."],
+    ["Can I get another format or arrange an interview?", "Email care@oathwallet.org with the publication or project, intended use, requested format and deadline. For an interview, include the topic, format and time zone."]
+  ]
+}

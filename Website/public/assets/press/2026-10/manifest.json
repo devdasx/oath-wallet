@@ -1,0 +1,81 @@
+{
+  "edition": "2026.10.31",
+  "source": "https://oathwallet.org/press",
+  "files": [
+    {
+      "name": "brand-guide.txt",
+      "bytes": 4119,
+      "sha256": "3db7f469a8615691b8a252a8b7f5c8b42d291c647a178f31e653ae2e754af4f9"
+    },
+    {
+      "name": "brand-guidelines.html",
+      "bytes": 5505,
+      "sha256": "1eb9816c902d8d506457b8af06da42378f8d1dcf84f0a2957958f73d2f766e43"
+    },
+    {
+      "name": "press-facts.txt",
+      "bytes": 1746,
+      "sha256": "deef266727363ada948b470f8b75b21deefa6231841aa98d3a83070a641721a7"
+    },
+    {
+      "name": "colours.json",
+      "bytes": 558,
+      "sha256": "9203afa3fbeedd40ca2ba59cecca9ef65d6be1b9940663637867a1ec365c7fa8"
+    },
+    {
+      "name": "oath-app-icon.svg",
+      "bytes": 4353,
+      "sha256": "e4c5dfe6ee7e715a740a69203e476e1a8ced8317543a245eef08a79feaff5ed9"
+    },
+    {
+      "name": "oath-app-icon.png",
+      "bytes": 51361,
+      "sha256": "7a22627decdb6146a23600a0d322beb0b833c46a39687490be5d0ed86c3c9286"
+    },
+    {
+      "name": "oath-mark-ink.svg",
+      "bytes": 4275,
+      "sha256": "bfac6eb1f98b857a45160723fbe9e548fda1cb1b29938a71af0accaca68f4df2"
+    },
+    {
+      "name": "oath-mark-ink.png",
+      "bytes": 72029,
+      "sha256": "b66045516a4b281d36f1e76c78a241e8cca86bcd9a613073b091bbd608bb809e"
+    },
+    {
+      "name": "oath-mark-white.svg",
+      "bytes": 4275,
+      "sha256": "237305ee8f59c6bf4c8974dd2c16ba2b71d6ea7d874c82e64606a7b314144c1e"
+    },
+    {
+      "name": "oath-mark-white.png",
+      "bytes": 48410,
+      "sha256": "cc138147b0e4ba0b01b0280f6f06f1d2f4655cb1d148b234e3434d1ec8ee3c17"
+    },
+    {
+      "name": "oath-wordmark-ink.png",
+      "bytes": 40394,
+      "sha256": "50c6905df676444dffb97fd7ded0ca942401cd1eb1c97555ac116eb751569b83"
+    },
+    {
+      "name": "oath-wordmark-white.png",
+      "bytes": 42556,
+      "sha256": "7d8d2d659a6818eacb12e8babc286b0f9930e6a92b801b3dd6928faee3f9e013"
+    },
+    {
+      "name": "oath-portfolio-iphone.png",
+      "bytes": 901158,
+      "sha256": "70faac1dd05e7003be7491c39446ec70d1c2151a977f96ef4491166876446722"
+    },
+    {
+      "name": "oath-market-iphone.png",
+      "bytes": 829114,
+      "sha256": "9065fe1092f6dab726f1efd114654827a67dd168748505c2187a870d4c24c46c"
+    },
+    {
+      "name": "oath-receive-iphone.png",
+      "bytes": 553379,
+      "sha256": "cdb284b929bb59b07f6d87938a78bddf8fc8f376e0ddb9cf6f3bcb48497edebc"
+    }
+  ]
+}

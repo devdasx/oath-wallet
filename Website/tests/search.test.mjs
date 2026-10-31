@@ -39,7 +39,7 @@ test('alternate Markdown identifies its canonical web page while remaining acces
 });
 
 test('all core pages deliver readable content and navigation before JavaScript', async () => {
-  for (const page of ['index','features','articles','support','press','security','terms','privacy']) {
+  for (const page of ['index','features','articles','support','security','terms','privacy']) {
     const html = await readFile(new URL(page+'.html',publicURL),'utf8');
     assert.match(html, /<html lang="en">/, page);
     const readable = html.match(/<!-- oath-server-content:start -->([\s\S]*?)<!-- oath-server-content:end -->/)?.[1];
