@@ -45,6 +45,12 @@ Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30
 
 [Supported networks](/networks) · [About Oath Wallet](/about) · [Backup and restore](/articles/backup-restore-oath-wallet) · [Security evidence](/security)
 
+## TON, in your wallet
+
+Send and receive TON on iPhone and iPad with Oath Wallet. Manage your TON blockchain balance, share your receiving address, and review the network fee before sending.
+
+[Explore supported networks](https://oathwallet.org/networks) · [TON App profile](https://ton.app/app/oath-wallet)
+
 <!-- oath-questions:start -->
 ## Self-custody, explained
 
