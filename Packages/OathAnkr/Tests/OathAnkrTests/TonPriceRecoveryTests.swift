@@ -89,11 +89,16 @@ final class TonPriceRecoveryTests: XCTestCase, @unchecked Sendable {
             XCTAssertEqual(calls, ["api.coinbase.com"])
         }
     }
+    func testExpiredFallbackIsUnavailableAndNeverReturnedAsFresh() async {
+        let transport = TonQuoteReplies(.disconnected, fallback: tonQuoteFixture(offset: -901))
+        do { _ = try await TonMarkets(transport: transport).nativePrice(); XCTFail("Expired fallback accepted") }
+        catch { XCTAssertEqual(error as? DiagnosticDeferral, .publicMarketQuoteUnavailable) }
+    }
     func testInvalidFallbackNeverInventsNativePrice() async {
         for payload in [Data(#"{"coins":{}}"#.utf8), tonQuoteFixture(key: "coingecko:ethereum"),
                         tonQuoteFixture(symbol: "ETH"), tonQuoteFixture(price: 0), tonQuoteFixture(price: -1),
                         tonQuoteFixture(confidence: 0.89), tonQuoteFixture(confidence: 1.01),
-                        tonQuoteFixture(offset: -901), tonQuoteFixture(offset: 61)] {
+                        tonQuoteFixture(offset: 61)] {
             let transport = TonQuoteReplies(.disconnected, fallback: payload)
             do { _ = try await TonMarkets(transport: transport).nativePrice(); XCTFail("Invalid fallback accepted") }
             catch { XCTAssertEqual(error as? AnkrError, .invalidResponse) }

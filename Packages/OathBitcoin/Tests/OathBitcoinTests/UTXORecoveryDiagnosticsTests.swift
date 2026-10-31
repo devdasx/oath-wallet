@@ -8,7 +8,7 @@ private actor RecoveryDiagnosticsCapture: DiagnosticTransport {
     func upload(_ events: [DiagnosticEvent]) async throws { self.events += events }
 }
 final class UTXORecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
-    func testHealthyReadIsQuietAndRealDeadlineRetainsSafeContext() async throws {
+    func testDeadlineIsExcludedButInvalidTransactionRetainsSafeContext() async throws {
         let capture = RecoveryDiagnosticsCapture()
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: directory) }
@@ -32,16 +32,23 @@ final class UTXORecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
                 try await Task.sleep(for: .seconds(10)); return bytes
             })
         ] })
-        _ = await outage.submit(bytes, txid: hash, network: .bitcoin, reconcileFirst: true)
+        let recovered = await outage.submit(bytes, txid: hash, network: .bitcoin, reconcileFirst: true)
+        XCTAssertTrue(recovered, "A reconciliation timeout must not prevent a successful broadcast")
+        // Positive control through the production validation path. It also gives
+        // the diagnostic worker a retained event to drain before checking exclusions.
+        let rejected = await outage.submit(bytes, txid: String(repeating: "0", count: 64), network: .bitcoin)
+        XCTAssertFalse(rejected, "A transaction-id mismatch must never be accepted")
         for _ in 0..<100 {
-            if await capture.events.contains(where: { $0.operation == "reconcile_deadline" }) { break }
+            await OathDiagnostics.flush()
+            if await capture.events.contains(where: { $0.operation == "broadcast_validation" }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
-        let events = await capture.events.filter { $0.operation == "reconcile_deadline" }
-        XCTAssertEqual(events.count, 1)
-        let event = try XCTUnwrap(events.first)
+        let events = await capture.events
+        XCTAssertFalse(events.contains { $0.operation == "reconcile_deadline" }, "Availability failures are intentionally excluded")
+        let validation = events.filter { $0.operation == "broadcast_validation" }
+        XCTAssertEqual(validation.count, 1)
+        let event = try XCTUnwrap(validation.first)
         XCTAssertEqual(event.context["chain"], "bitcoin")
-        XCTAssertEqual(event.context["stage"], "reconcile")
         XCTAssertNotNil(event.operationID)
         let text = String(decoding: try JSONEncoder().encode(event), as: UTF8.self)
         XCTAssertFalse(text.contains(bytes.hex)); XCTAssertFalse(text.contains(hash))

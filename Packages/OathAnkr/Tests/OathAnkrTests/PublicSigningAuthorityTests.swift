@@ -138,6 +138,37 @@ final class PublicSigningAuthorityTests: XCTestCase {
         XCTAssertEqual(result.coverage, .unavailable)
         XCTAssertEqual(result.findings, [])
     }
+    func testAdditionalEVMAdaptersValidateChainBeforeReadingAccountCode() async throws {
+        let address = "0x1111111111111111111111111111111111111111"
+        func response(_ value: String) -> (Data, Int) {
+            (Data("{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":\"\(value)\"}".utf8), 200)
+        }
+        let cases: [(String, UInt64, String)] = [
+            ("filecoin", 314, "https://api.node.glif.io/rpc/v1"),
+            ("sei", 1329, "https://evm-rpc.sei-apis.com"),
+            ("zerog", 16661, "https://evmrpc.0g.ai"),
+            ("iotex", 4689, "https://babel-api.mainnet.iotex.io")
+        ]
+        for (network, chainID, endpoint) in cases {
+            for code in ["0x", "0xef0100" + String(repeating: "11", count: 20)] {
+                let transport = AuthorityTransport([response("0x" + String(chainID, radix: 16)), response("0x10"), response(code)])
+                let result = try await Checker(transport: transport).check(.init(network: network, address: address))
+                XCTAssertEqual(result.coverage, .checked, network)
+                XCTAssertEqual(result.findings, code == "0x" ? [] : [.delegatedCode], network)
+                let requests = await transport.requests
+                XCTAssertEqual(requests.count, 3, network)
+                XCTAssertTrue(requests.allSatisfy { $0.url?.absoluteString == endpoint }, network)
+                let methods = try requests.map { try JSONDecoder().decode(J.self, from: XCTUnwrap($0.httpBody))["method"].string }
+                XCTAssertEqual(methods, ["eth_chainId", "eth_blockNumber", "eth_getCode"], network)
+            }
+            let wrongChain = AuthorityTransport([response("0x1")])
+            let result = try await Checker(transport: wrongChain).check(.init(network: network, address: address))
+            XCTAssertEqual(result.coverage, .unavailable, network)
+            XCTAssertTrue(result.findings.isEmpty, network)
+            let calls = await wrongChain.count
+            XCTAssertEqual(calls, 1, "Wrong-chain providers must not be queried for account code")
+        }
+    }
     func testAllCurrentEVMMainnetsHaveAnAdapter() {
         XCTAssertEqual(Set(Checker.evmEndpoints.keys),
                        Set(EVMSendNetwork.allCases.filter { !$0.isTestnet }.map(\.rawValue)).union(["arc"]))
@@ -145,9 +176,11 @@ final class PublicSigningAuthorityTests: XCTestCase {
 }
 private actor AuthorityTransport: AnkrTransport {
     var responses: [(Data, Int)]; var count = 0
+    var requests: [URLRequest] = []
     init(_ responses: [(Data, Int)]) { self.responses = responses }
     func send(_ request: URLRequest) async throws -> (Data, Int) {
         count += 1
+        requests.append(request)
         guard !responses.isEmpty else { throw URLError(.badServerResponse) }
         return responses.removeFirst()
     }
