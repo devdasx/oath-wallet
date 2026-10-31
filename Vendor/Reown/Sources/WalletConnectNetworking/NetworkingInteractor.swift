@@ -327,6 +327,11 @@ public class NetworkingInteractor: NetworkInteracting {
     }
 
     private func manageSubscription(_ topic: String, _ encodedEnvelope: String, _ publishedAt: Date, _ attestation: String?) {
+        // Relay transport carries authenticated encrypted envelopes only.
+        // Type 2 is plaintext for the separate Link Mode boundary; accepting it
+        // here would let a sender without the topic key inject protocol requests.
+        guard let bytes = Data(base64Encoded: encodedEnvelope), let type = bytes.first,
+              type == 0 || type == 1 else { return }
         if let result = serializer.tryDeserializeRequestOrResponse(topic: topic, codingType: .base64Encoded, envelopeString: encodedEnvelope) {
             switch result {
             case .left(let result):
