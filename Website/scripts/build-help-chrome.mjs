@@ -87,7 +87,7 @@ function rules(part,styles,previous=[],state='') {
 }
 export async function buildSiteChrome({light=false}={}) {
   const sources=await Promise.all(['Header','Footer'].map(name=>readFile(new URL(`../public/Oath ${name}.dc.html`,import.meta.url),'utf8')));
-  const header=(width,open)=>extractStyles((light ? lightHeader : v=>v)(component(sources[0],width,open,light?'Help Center':'')),'header');
+  const header=(width,open)=>extractStyles((light ? lightHeader : v=>v)(component(sources[0],width,open,'')),'header');
   const footer=width=>extractStyles((light ? lightFooter : v=>v)(component(sources[1],width)),'footer');
   const desktop=header(1200,false), mobile=header(390,false), narrow=header(320,false), expanded=header(390,true);
   const wideFooter=footer(1200),smallFooter=footer(390);
