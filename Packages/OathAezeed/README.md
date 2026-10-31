@@ -27,7 +27,10 @@ this import. Channel backups must be restored in a Lightning-compatible wallet.
 
 `Tools/AezeedBridge/build.sh` rebuilds the checked-in static XCFramework for
 arm64 iOS, arm64 iOS Simulator and arm64 macOS. It requires Xcode and Go; this
-build was made with Go 1.26.5. `go.mod` and `go.sum` pin upstream dependencies.
+build was made with Go 1.26.5 and Xcode 27.0 (27A266a). `go.mod` and `go.sum` pin upstream dependencies.
+[BuildProvenance.json](BuildProvenance.json) records the rebuilt archive and input
+hashes. Two builds from separate paths matched all framework files. This does not
+establish equivalence to historical App Store binaries.
 The bridge exposes no network, filesystem or logging API and limits concurrent
 KDF work to one invocation. Mutable bridge buffers are cleared after use; this
 is not a guarantee that Swift/Go runtime copies are eliminated from memory.
