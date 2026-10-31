@@ -1,0 +1,13 @@
+#self-custody .custody-question-list{margin-top:40px;border-bottom:1px solid rgba(242,240,234,.18)}
+#self-custody .custody-question{border-top:1px solid rgba(242,240,234,.18)}
+#self-custody summary{display:flex;align-items:center;justify-content:space-between;gap:28px;list-style:none;cursor:pointer;padding:26px 0;font:500 22px/1.4 'Instrument Sans',sans-serif;color:#f2f0ea}
+#self-custody summary::-webkit-details-marker{display:none}
+#self-custody summary:focus-visible,#self-custody a:focus-visible{outline:2px solid #76aeff;outline-offset:6px;border-radius:3px}
+#self-custody .custody-question-toggle{position:relative;flex:0 0 24px;height:24px;color:#96948c}
+#self-custody .custody-question-toggle:before,#self-custody .custody-question-toggle:after{content:'';position:absolute;left:4px;right:4px;top:11px;height:1.5px;background:currentColor}
+#self-custody .custody-question-toggle:after{transform:rotate(90deg)}
+#self-custody details[open] .custody-question-toggle:after{display:none}
+#self-custody .custody-answer{max-width:78ch;padding:0 52px 28px 0}
+#self-custody .custody-answer p{margin:0 0 18px;font:400 17px/1.7 'Instrument Sans',sans-serif;color:#b9b7b0}
+#self-custody .custody-answer a{font:500 15px/1.5 'Instrument Sans',sans-serif;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:600px){#self-custody summary{font-size:18px;gap:20px;padding:22px 0}#self-custody .custody-answer{padding:0 0 24px}#self-custody .custody-answer p{font-size:16px}}

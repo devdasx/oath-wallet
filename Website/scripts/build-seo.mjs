@@ -16,10 +16,12 @@ const data=JSON.parse(await read('oath-data.json'));
 // after enhancement. Do not add FAQ rich-result markup: this is not a health
 // or government site eligible for Google's FAQ feature.
 let home=await read('index.html');
+home=home.replace(/<link rel="stylesheet" href="\/self-custody\.css[^"]*">\s*/g,'');
+home=home.replace('</head>','<link rel="stylesheet" href="/self-custody.css?v=20261031-list"></head>');
 const section=`<!-- oath-self-custody:start --><section id="self-custody" style="max-width:1320px;margin:0 auto;padding:80px clamp(20px,5vw,32px);border-top:1px solid rgba(242,240,234,.14)">
 <h2 style="margin:0 0 24px;font:400 clamp(36px,5vw,64px)/1.08 'Instrument Serif',serif">Self-custody, explained.</h2>
 <p style="max-width:64ch;font:400 18px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">A crypto wallet is a tool for using a blockchain. Understand the tradeoffs, prepare your backup, and check the network before moving funds.</p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:36px 56px;margin-top:40px">${questions.map(q=>`<div><h3 style="margin:0 0 14px;font:500 22px/1.3 'Instrument Sans',sans-serif">${esc(q.question)}</h3><p style="margin:0 0 14px;font:400 16px/1.65 'Instrument Sans',sans-serif;color:#B9B7B0">${esc(q.answer)}</p><a href="${esc(q.url)}" style="font:500 15px/1.5 'Instrument Sans',sans-serif;text-decoration:underline;text-underline-offset:4px">${esc(q.label)}</a></div>`).join('')}</div>
+<div class="custody-question-list">${questions.map(q=>`<details class="custody-question"><summary><span>${esc(q.question)}</span><span class="custody-question-toggle" aria-hidden="true"></span></summary><div class="custody-answer"><p>${esc(q.answer)}</p><a href="${esc(q.url)}">${esc(q.label)}</a></div></details>`).join('')}</div>
 <p style="margin:40px 0 0;font:400 16px/1.6 'Instrument Sans',sans-serif">New to Oath? <a href="https://help.oathwallet.org/articles/create-wallet" style="text-decoration:underline">Create your first wallet</a>, learn to <a href="https://help.oathwallet.org/articles/receive-crypto" style="text-decoration:underline">receive crypto</a>, or browse the <a href="https://help.oathwallet.org/" style="text-decoration:underline">Help Center</a>.</p>
 </section><!-- oath-self-custody:end -->`;
 home=home.replace(/<!-- oath-self-custody:start -->[\s\S]*?<!-- oath-self-custody:end -->\s*/g,'');
