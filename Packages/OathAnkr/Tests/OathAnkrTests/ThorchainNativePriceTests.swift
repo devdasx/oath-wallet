@@ -154,14 +154,22 @@ final class ThorchainNativePriceTests: XCTestCase, @unchecked Sendable {
             }
         }
         XCTAssertEqual(catalog.prices["native"], "1.2")
+        let invalid = ThorchainNativePriceTransport(stats: "private-response-fixture@example.com", status: 200)
+        let recovered = try await OathDiagnostics.withChain("thorchain") {
+            try await OathDiagnostics.$operationID.withValue(operation) {
+                try await ThorchainClient(transport: invalid).catalog()
+            }
+        }
+        XCTAssertEqual(recovered.prices["native"], "1.2")
         for _ in 0..<100 {
             await OathDiagnostics.flush()
-            if await reports.events.contains(where: { $0.operationID == operation && $0.operation == "thorchain_native_price" }) { break }
+            if await reports.events.contains(where: { $0.operationID == operation && $0.operation == "read" }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events.filter { $0.operationID == operation }
-        XCTAssertTrue(events.contains { $0.error.domain == "Oath.HTTP" && $0.error.code == 503 })
-        XCTAssertTrue(events.contains { $0.operation == "thorchain_native_price" && $0.error.message == "http(503)" })
+        XCTAssertFalse(events.contains { $0.error.domain == "Oath.HTTP" && $0.error.code == 503 })
+        XCTAssertEqual(events.count, 1)
+        XCTAssertTrue(events.contains { $0.operation == "read" && $0.error.message == "Corrupt response data" })
         XCTAssertTrue(events.allSatisfy { $0.context["chain"] == "thorchain" })
         let encoded = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         XCTAssertFalse(encoded.contains("private-response"))

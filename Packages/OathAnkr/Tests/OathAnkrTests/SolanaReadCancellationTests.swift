@@ -32,7 +32,7 @@ private enum ReadAction: CaseIterable {
 }
 
 private actor InterruptedSolanaRead: AnkrTransport {
-    enum Mode { case cancelled, timeout, held }
+    enum Mode { case cancelled, timeout, malformed, held }
     struct Request: Sendable { let primary: Bool; let method: String }
     let method: String
     let primary: Bool
@@ -56,6 +56,7 @@ private actor InterruptedSolanaRead: AnkrTransport {
             switch mode {
             case .cancelled: throw URLError(.cancelled)
             case .timeout: throw URLError(.timedOut)
+            case .malformed: return (Data("{}".utf8), 200)
             case .held: if !released { await withCheckedContinuation { pending = $0 } }
             }
         }
@@ -184,14 +185,25 @@ final class SolanaReadCancellationDiagnosticsTests: XCTestCase, @unchecked Senda
                 XCTAssertEqual(OathDiagnostics.chain, "ethereum")
             }
         }
+        // The independent provider may recover a malformed primary response,
+        // but that validation failure must still be recorded in Solana context.
+        let malformed = try SolanaClient(apiKey: "fixture", transport:
+            InterruptedSolanaRead(method: "getBalance", mode: .malformed))
+        try await OathDiagnostics.$operationID.withValue(identifier) {
+            try await OathDiagnostics.$chain.withValue("ethereum") {
+                try await ReadAction.inventory.run(malformed)
+                XCTAssertEqual(OathDiagnostics.chain, "ethereum")
+            }
+        }
         for _ in 0..<100 {
             await OathDiagnostics.flush()
-            if await reports.events.count >= 2 { break }
+            if await reports.events.count >= 3 { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events
-        XCTAssertEqual(events.count, 2)
-        XCTAssertTrue(events.contains { $0.error.domain == NSURLErrorDomain && $0.error.code == -1001 })
+        XCTAssertEqual(events.count, 3)
+        XCTAssertTrue(events.allSatisfy { $0.error.message == "malformed" })
+        XCTAssertFalse(events.contains { $0.error.domain == NSURLErrorDomain && $0.error.code == -1001 })
         XCTAssertTrue(events.allSatisfy { $0.operationID == identifier && $0.context["chain"] == "solana" && $0.privacyFiltered })
         let payload = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         XCTAssertFalse(payload.contains(readOwner)); XCTAssertFalse(payload.contains("https://"))

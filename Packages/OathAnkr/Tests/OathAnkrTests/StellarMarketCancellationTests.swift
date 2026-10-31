@@ -145,14 +145,21 @@ private actor StellarCancellationReports: DiagnosticTransport {
             try await markets.nativePrice { .init(reference: "native", usd: "0.2", source: "fixture", fetchedAt: .now) }
         }
         XCTAssertEqual(value.usd, "0.2")
+        let invalid = StellarMarkets(transport: InterruptedStellarMarketFeed(StellarError.malformed))
+        let recovered = try await OathDiagnostics.withChain("stellar") {
+            try await invalid.nativePrice { .init(reference: "native", usd: "0.2", source: "fixture", fetchedAt: .now) }
+        }
+        XCTAssertEqual(recovered.usd, "0.2")
         for _ in 0..<100 {
+            await OathDiagnostics.flush()
             if await reports.events.count >= 2 { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events
         XCTAssertEqual(events.count, 2)
-        XCTAssertEqual(events.filter { $0.error.domain == NSURLErrorDomain && $0.error.code == URLError.timedOut.rawValue }.count, 1)
-        XCTAssertEqual(events.filter { $0.error.domain == "OathAnkr.StellarError" && $0.error.code == (StellarError.transport as NSError).code }.count, 1)
+        XCTAssertTrue(events.allSatisfy { $0.error.message == "malformed" })
+        XCTAssertFalse(events.contains { $0.error.domain == NSURLErrorDomain })
+        XCTAssertTrue(events.contains { $0.operation == "stellar_native_fallback" })
         let operation = try XCTUnwrap(events.first?.operationID)
         XCTAssertTrue(events.allSatisfy { $0.operationID == operation && $0.context["chain"] == "stellar" && $0.privacyFiltered })
     }
