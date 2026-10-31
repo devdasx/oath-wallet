@@ -146,7 +146,7 @@ private actor MarketCancellationReports: DiagnosticTransport {
 }
 
 @MainActor final class MarketFallbackCancellationDiagnosticsTests: XCTestCase {
-    func testCancelledFallbacksStayQuietAndRealOutagesRemainCorrelated() async throws {
+    func testCancellationAndOutagesAreQuietButMalformedResponsesRemainCorrelated() async throws {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
         let reports = MarketCancellationReports()
@@ -169,6 +169,13 @@ private actor MarketCancellationReports: DiagnosticTransport {
                 if chain == "solana" { _ = try await SolanaMarkets(transport: outage).nativePrice() }
                 else { _ = try await TronMarkets(transport: outage).nativePrice() }
             }
+            // A non-availability failure still exercises both production
+            // reporting boundaries before independent, identity-checked fallback.
+            let malformed = InterruptedMarketFeed(host: "api.coinbase.com", failure: AnkrError.invalidResponse)
+            try await OathDiagnostics.withChain(chain) {
+                if chain == "solana" { _ = try await SolanaMarkets(transport: malformed).nativePrice() }
+                else { _ = try await TronMarkets(transport: malformed).nativePrice() }
+            }
             for _ in 0..<100 {
                 if await reports.events.count >= countBefore + 2 { break }
                 try await Task.sleep(for: .milliseconds(10))
@@ -176,7 +183,7 @@ private actor MarketCancellationReports: DiagnosticTransport {
             let events = Array(await reports.events.dropFirst(countBefore))
             XCTAssertEqual(events.count, 2)
             let operation = try XCTUnwrap(events.first?.operationID)
-            XCTAssertTrue(events.allSatisfy { $0.error.domain == "OathAnkr.AnkrError" && $0.error.code == 7 && $0.operationID == operation && $0.context["chain"] == chain && $0.privacyFiltered })
+            XCTAssertTrue(events.allSatisfy { $0.error.domain == "OathAnkr.AnkrError" && $0.error.message == "invalidResponse" && $0.operationID == operation && $0.context["chain"] == chain && $0.privacyFiltered })
         }
     }
 }

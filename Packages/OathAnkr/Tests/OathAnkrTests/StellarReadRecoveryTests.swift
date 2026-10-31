@@ -12,7 +12,7 @@ private final class StellarBrokenConnection: URLProtocol, @unchecked Sendable {
     override func stopLoading() { }
 }
 private actor StellarRecoveryTransport: AnkrTransport {
-    enum Failure: Sendable, Equatable { case tls, lost, http(Int), cancelled, malformed, rpc }
+    enum Failure: Sendable, Equatable { case tls, lost, http(Int), cancelled, malformed, rpc, invalidResponse }
     let failure:Failure
     let failures:Int
     let http:AnkrHTTPTransport
@@ -30,6 +30,7 @@ private actor StellarRecoveryTransport: AnkrTransport {
                 var failing = request
                 failing.url = URL(string:"https://rpc.test/" + (failure == .lost ? "lost":"tls"))!
                 return try await http.send(failing)
+            case .invalidResponse: throw URLError(.badServerResponse)
             case .http(let status): return (Data(),status)
             case .cancelled: throw CancellationError()
             case .malformed: return (Data("{}".utf8),200)
@@ -114,13 +115,26 @@ final class StellarReadRecoveryDiagnosticsTests:XCTestCase, @unchecked Sendable 
             try await OathDiagnostics.$chain.withValue("stellar") { try await client.latestLedger() }
         }
         XCTAssertEqual(height,20)
+        let invalid = StellarRecoveryTransport(.invalidResponse)
+        do {
+            _ = try await OathDiagnostics.$operationID.withValue(operation) {
+                try await OathDiagnostics.$chain.withValue("stellar") {
+                    try await StellarClient(apiKey:"privateFixtureKey",transport:invalid).latestLedger()
+                }
+            }
+            XCTFail("Invalid response must not yield a ledger")
+        } catch { XCTAssertEqual(error as? StellarError, .transport) }
+        let calls = await invalid.requests.count
+        XCTAssertEqual(calls, 1, "A permanent invalid response is not retryable")
         for _ in 0..<100 {
             await OathDiagnostics.flush()
             if await reports.events.contains(where: { $0.operation == "stellar_read" }) { break }
             try await Task.sleep(for:.milliseconds(10))
         }
         let events = await reports.events.filter { $0.operationID == operation }
-        XCTAssertTrue(events.contains { $0.error.domain == NSURLErrorDomain && $0.error.code == -1005 })
+        XCTAssertEqual(events.count, 1)
+        XCTAssertTrue(events.contains { $0.error.domain == NSURLErrorDomain && $0.error.code == URLError.badServerResponse.rawValue })
+        XCTAssertFalse(events.contains { $0.error.code == URLError.networkConnectionLost.rawValue })
         XCTAssertTrue(events.contains { $0.operation == "stellar_read" && $0.context["attempt"] == "1" })
         XCTAssertTrue(events.allSatisfy { $0.privacyFiltered && $0.context["chain"] == "stellar" })
         XCTAssertFalse(String(decoding:try JSONEncoder().encode(events),as:UTF8.self).contains("privateFixtureKey"))

@@ -490,14 +490,25 @@ final class HyperEVMRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
             }
         }
         XCTAssertTrue(result.complete)
+        let invalid = HyperEVMRecoveryTransport(.malformed)
+        do {
+            _ = try await OathDiagnostics.$operationID.withValue(operation) {
+                try await OathDiagnostics.$chain.withValue("hyperevm") {
+                    try await HyperEVMClient(apiKey: "privatePrimaryFixture", alchemyAPIKey: "privateRecoveryFixture",
+                                             transport: invalid).inventory(owner: hyperOwner)
+                }
+            }
+            XCTFail("Malformed primary must not become a recovered inventory")
+        } catch { XCTAssertEqual(error as? AnkrError, .invalidResponse) }
         for _ in 0..<100 {
             await OathDiagnostics.flush()
-            if await reports.events.contains(where: { $0.operation == "inventory_rpc_recovery" }) { break }
+            if await reports.events.contains(where: { $0.error.message == "invalidResponse" }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events.filter { $0.operationID == operation }
-        XCTAssertTrue(events.contains { $0.error.domain == NSURLErrorDomain && $0.error.code == -1200 })
-        XCTAssertEqual(events.filter { $0.operation == "inventory_rpc_recovery" }.count, 1)
+        XCTAssertEqual(events.count, 1)
+        XCTAssertEqual(events.first?.error.message, "invalidResponse")
+        XCTAssertFalse(events.contains { $0.error.domain == NSURLErrorDomain || $0.operation == "inventory_rpc_recovery" })
         XCTAssertTrue(events.allSatisfy { $0.privacyFiltered && $0.context["chain"] == "hyperevm" })
         let serialized = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         for secret in ["privatePrimaryFixture", "privateRecoveryFixture", hyperOwner, hyperToken] {

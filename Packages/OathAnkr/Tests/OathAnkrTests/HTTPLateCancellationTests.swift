@@ -36,9 +36,9 @@ private final class HeldHTTPReplies: @unchecked Sendable {
     private var loading: HeldHTTPProtocol?
     var started: Bool { lock.withLock { loading != nil } }
     func start(_ value: HeldHTTPProtocol) { lock.withLock { loading = value } }
-    func fail() {
+    func fail(_ code: URLError.Code = .networkConnectionLost) {
         let loading = lock.withLock { let value = loading; loading = nil; return value }
-        if let loading { loading.client?.urlProtocol(loading, didFailWithError: URLError(.networkConnectionLost)) }
+        if let loading { loading.client?.urlProtocol(loading, didFailWithError: URLError(code)) }
     }
 }
 private final class HeldHTTPProtocol: URLProtocol, @unchecked Sendable {
@@ -63,7 +63,7 @@ final class HTTPLateCancellationTests: XCTestCase, @unchecked Sendable {
     }
 
     // Run in isolation: the shared diagnostics destination configures once.
-    func testCancelledDeliveryIsQuietButActualConnectionLossStillReports() async throws {
+    func testCancelledDeliveryAndOutageAreQuietButInvalidResponseReports() async throws {
         guard #available(macOS 15.0, iOS 18.0, *) else { throw XCTSkip("Controlled executor requires macOS 15 or iOS 18") }
         let reports = LateHTTPReports()
         let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
@@ -96,6 +96,13 @@ final class HTTPLateCancellationTests: XCTestCase, @unchecked Sendable {
         HeldHTTPProtocol.replies.fail()
         do { _ = try await active.value; XCTFail("Disconnected request succeeded") }
         catch { XCTAssertEqual(error as? AnkrError, .transport) }
+        let invalid = Task {
+            try await OathDiagnostics.withChain("ethereum") { try await transport.send(request) }
+        }
+        try await wait { HeldHTTPProtocol.replies.started }
+        HeldHTTPProtocol.replies.fail(.badServerResponse)
+        do { _ = try await invalid.value; XCTFail("Invalid response succeeded") }
+        catch { XCTAssertEqual(error as? AnkrError, .transport) }
         for _ in 0..<200 {
             await OathDiagnostics.flush()
             if await reports.events.count >= 1 { break }
@@ -104,9 +111,9 @@ final class HTTPLateCancellationTests: XCTestCase, @unchecked Sendable {
         try await Task.sleep(for: .milliseconds(100))
         await OathDiagnostics.flush()
         let events = await reports.events
-        XCTAssertEqual(events.count, 1, "Only the active request's real outage belongs in local diagnostics")
+        XCTAssertEqual(events.count, 1, "Only the non-availability response failure belongs in local diagnostics")
         let event = try XCTUnwrap(events.last)
-        XCTAssertEqual(event.error.code, URLError.networkConnectionLost.rawValue)
+        XCTAssertEqual(event.error.code, URLError.badServerResponse.rawValue)
         XCTAssertEqual(event.context["chain"], "ethereum")
         XCTAssertEqual(event.context["host"], "rpc.fixture")
         XCTAssertNotNil(event.operationID)

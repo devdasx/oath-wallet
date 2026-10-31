@@ -174,14 +174,26 @@ final class TonReadRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
                 try await TonClient(apiKey: "FixtureKeyPrivate123", transport: transport).verifyNetwork()
             }
         }
+        let invalid = TonReadRecoveryTransport(.invalidJSON)
+        do {
+            try await OathDiagnostics.$chain.withValue("ton") {
+                try await OathDiagnostics.$operationID.withValue(operation) {
+                    try await TonClient(apiKey: "FixtureKeyPrivate123", transport: invalid).verifyNetwork()
+                }
+            }
+            XCTFail("Malformed response must not verify a network")
+        } catch { XCTAssertEqual(error as? TonError, .malformed) }
+        let calls = await invalid.requests.count
+        XCTAssertEqual(calls, 1, "Malformed replies must not retry or switch providers")
         for _ in 0..<30 {
             await OathDiagnostics.flush()
-            if await reports.events.contains(where: { $0.operationID == operation && $0.operation == "ton_read_recovery" }) { break }
+            if await reports.events.contains(where: { $0.operationID == operation && $0.error.message == "malformed" }) { break }
             try await Task.sleep(for: .milliseconds(50))
         }
         let events = await reports.events.filter { $0.operationID == operation }
-        XCTAssertTrue(events.contains { $0.error.domain == NSURLErrorDomain && $0.error.code == -1200 })
-        XCTAssertTrue(events.contains { $0.operation == "ton_read_recovery" })
+        XCTAssertTrue(events.contains { $0.error.message == "malformed" })
+        XCTAssertTrue(events.contains { $0.operation == "ton_read" && $0.context["attempt"] == "1" })
+        XCTAssertFalse(events.contains { $0.error.domain == NSURLErrorDomain || $0.operation == "ton_read_recovery" })
         XCTAssertTrue(events.allSatisfy { $0.privacyFiltered && $0.context["chain"] == "ton" })
         let text = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         XCTAssertFalse(text.contains("FixtureKeyPrivate123"))

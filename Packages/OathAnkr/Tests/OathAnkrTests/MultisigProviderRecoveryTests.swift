@@ -88,15 +88,28 @@ final class MultisigProviderRecoveryTests: XCTestCase {
         let checker = PublicMultisigCheck(endpoints: ["xrpl": primary.deletingLastPathComponent().appendingPathComponent(secret)], transport: transport)
         let result = await checker.check(account)
         XCTAssertEqual(result, .notDetected)
+        // A mismatched account must stay unavailable, must not fail over, and
+        // supplies a positive control for the privacy-preserving error path.
+        let wrong = Data(String(decoding: response(), as: UTF8.self)
+            .replacingOccurrences(of: owner, with: PublicMultisigTests.signer).utf8)
+        let invalid = MultisigRecoveryTransport([.response(wrong, 200)])
+        let rejected = await PublicMultisigCheck(
+            endpoints: ["xrpl": primary.deletingLastPathComponent().appendingPathComponent(secret)],
+            transport: invalid).check(account)
+        XCTAssertEqual(rejected, .unavailable)
+        let invalidCalls = await invalid.requests.count
+        XCTAssertEqual(invalidCalls, 1)
         for _ in 0..<100 {
             await OathDiagnostics.flush()
             if await !capture.events.isEmpty { break }
             try await Task.sleep(for: .milliseconds(10))
         }
-        let events = await capture.events.filter { $0.operation == "public_account_retry" }
+        let events = await capture.events
         XCTAssertEqual(events.count, 1)
+        XCTAssertEqual(events.first?.operation, "public_account_check")
+        XCTAssertEqual(events.first?.error.message, "provider")
         XCTAssertEqual(events.first?.context["chain"], "xrpl")
-        XCTAssertEqual(events.first?.context["host"], "rpc.ankr.com")
+        XCTAssertEqual(events.first?.context["stage"], "account_policy")
         XCTAssertNotNil(events.first?.operationID)
         let encoded = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         XCTAssertFalse(encoded.contains(secret))

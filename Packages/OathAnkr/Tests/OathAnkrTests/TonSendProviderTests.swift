@@ -92,10 +92,19 @@ private actor TonRecoveryTransport: AnkrTransport {
         catch { XCTAssertTrue(error is CancellationError) }
         let primary = await transport.primaryWrites, fallback = await transport.fallbackWrites
         XCTAssertEqual(primary, 1); XCTAssertEqual(fallback, 0)
-        try await Task.sleep(for: .milliseconds(200))
+        for _ in 0..<100 {
+            await OathDiagnostics.flush()
+            if await reports.events.count >= 2 { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
         let events = await reports.events
-        XCTAssertTrue(events.contains { $0.operation == "request_retry" && $0.error.message == "http(500)" })
-        XCTAssertTrue(events.contains { $0.operation == "provider_fallback" })
+        // Availability and cancellation are excluded; the rejected acceptance
+        // envelope and mismatched genesis remain genuine validation failures.
+        XCTAssertEqual(events.count, 2)
+        XCTAssertTrue(events.contains { $0.operation == "broadcast" && $0.error.message == "malformed" })
+        XCTAssertTrue(events.contains { $0.operation == "broadcast" && $0.error.message == "wrongNetwork" })
+        XCTAssertFalse(events.contains { $0.operation == "request_retry" || $0.operation == "provider_fallback" })
+        XCTAssertTrue(events.allSatisfy { $0.context["chain"] == "ton" && $0.privacyFiltered })
         let encoded = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         for privateValue in [plan.sender, plan.recipient, signed.bytes.base64EncodedString(), "isolatedfixture"] {
             XCTAssertFalse(encoded.contains(privateValue), "Diagnostics must not expose transfer data or credentials")
