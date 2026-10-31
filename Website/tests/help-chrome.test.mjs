@@ -11,11 +11,11 @@ test('Help Center chrome is generated from the current main-site components',asy
   const generated=await buildHelpChrome();
   assert.equal(await readFile(new URL('../src/help/site-chrome.js',import.meta.url),'utf8'),generated.module);
   assert.equal(await readFile(new URL('../public/help/site-chrome.css',import.meta.url),'utf8'),generated.css);
-  assert.match(siteHeader,/\/assets\/brand\/oath-mark-light.svg/);
-  assert.match(siteFooter,/\/assets\/brand\/oath-mark-light.svg/);
-  assert.match(generated.css,/background:#FFFFFF;color:#0A0A0B/);
-  assert.match(generated.css,/background:rgba\(255,255,255,\.88\)/);
-  assert.match(generated.css,/background:rgba\(248,249,252,\.96\)/);
+  assert.match(siteHeader,/\/assets\/brand\/oath-mark-dark.svg/);
+  assert.match(siteFooter,/\/assets\/brand\/oath-mark-dark.svg/);
+  assert.match(generated.css,/background:#0A0A0B;color:#F2F0EA/);
+  assert.match(generated.css,/background:rgba\(20,20,22,\.72\)/);
+  assert.match(generated.css,/background:rgba\(10,10,11,\.94\)/);
   assert.doesNotMatch(siteHeader+siteFooter,/style=|onClick=|{{|sc-for|dc-import/);
   assert.match(siteHeader,/aria-controls="oath-site-menu"/);
   assert.match(siteHeader,/inert aria-hidden="true"/);

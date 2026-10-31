@@ -109,10 +109,10 @@ export async function buildSiteChrome({light=false}={}) {
   const note='// Generated from public/Oath Header.dc.html and public/Oath Footer.dc.html. Run npm run build:help-chrome.\n';
   return {header:'<div class="oath-site-header">'+headerHTML+'</div>',footer:'<div class="oath-site-footer">'+wideFooter.html+'</div>',module:note+html,css:'/* Generated from the main website components. Do not edit directly. */\n@import url("/assets/fonts/oath-fonts.css");\n'+css};
 }
-export const buildHelpChrome = () => buildSiteChrome({light:true});
+export const buildHelpChrome = () => buildSiteChrome();
 if(process.argv[1]===fileURLToPath(import.meta.url)){
   const output=await buildHelpChrome();
   await writeFile(new URL('../src/help/site-chrome.js',import.meta.url),output.module);
   await writeFile(new URL('../public/help/site-chrome.css',import.meta.url),output.css);
-  console.log('Built Help Center navigation and light footer from the main website components.');
+  console.log('Built Help Center navigation and footer from the main website components.');
 }
