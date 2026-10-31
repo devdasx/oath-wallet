@@ -112,7 +112,7 @@ private actor NearPriceReports: DiagnosticTransport {
 
 final class NearPriceRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
     // The shared outbox configures once; run this class in its own process.
-    func testRecoveredOutageStaysCorrelatedAndCancellationStaysQuiet() async throws {
+    func testAvailabilityAndCancellationStayQuietButInvalidPricesAreReported() async throws {
         let reports = NearPriceReports()
         let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
         defer { try? FileManager.default.removeItem(at: file) }
@@ -127,18 +127,28 @@ final class NearPriceRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
         }
         do { _ = try await NearMarkets(transport: NearQuoteReplies(.urlCancelled)).nativePrice(); XCTFail() }
         catch { XCTAssertTrue(error is CancellationError) }
+        // Availability and cancellation are intentionally excluded. Exercise
+        // a real validation rejection as a positive control for delivery/privacy.
+        let invalid = await OathDiagnostics.$operationID.withValue(expectedID) {
+            await OathDiagnostics.withChain("near") {
+                await OathDiagnostics.attempt("price_validation_fixture") {
+                    try await NearMarkets(transport: NearQuoteReplies(.wrongAsset)).nativePrice()
+                }
+            }
+        }
+        XCTAssertNil(invalid, "A wrong native-asset identity must never return a price")
         for _ in 0..<200 {
             await OathDiagnostics.flush()
-            if await reports.events.count >= 2 { break }
+            if await reports.events.count >= 1 { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         try await Task.sleep(for: .milliseconds(100))
         await OathDiagnostics.flush()
         let events = await reports.events
-        XCTAssertEqual(events.count, 2)
+        XCTAssertEqual(events.count, 1)
         XCTAssertTrue(events.allSatisfy { $0.context["chain"] == "near" && $0.operationID == expectedID && $0.privacyFiltered })
-        XCTAssertTrue(events.contains { $0.context["host"] == "api.coinbase.com" && $0.error.domain == "OathAnkr.AnkrError" })
-        XCTAssertTrue(events.contains { $0.operation == "near_native_fallback" && $0.context["stage"] == "quote" })
+        XCTAssertEqual(events.first?.operation, "price_validation_fixture")
+        XCTAssertEqual(events.first?.error.message, "malformed")
         let payload = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         XCTAssertFalse(payload.contains("https://")); XCTAssertFalse(payload.contains("wrap.near"))
         XCTAssertNil(OathDiagnostics.chain); XCTAssertNil(OathDiagnostics.operationID)

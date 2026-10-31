@@ -132,7 +132,7 @@ private actor NearIndexReports: DiagnosticTransport {
 }
 
 final class NearIndexDiagnosticsTests: XCTestCase, @unchecked Sendable {
-    func testOriginalFailuresAreCorrelatedAndNeverContainAccountOrCursor() async throws {
+    func testOutagesAreExcludedButInvalidResponsesNeverContainAccountOrCursor() async throws {
         let reports = NearIndexReports()
         let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
         defer { try? FileManager.default.removeItem(at: file) }
@@ -145,15 +145,25 @@ final class NearIndexDiagnosticsTests: XCTestCase, @unchecked Sendable {
             }
             XCTFail()
         } catch { XCTAssertEqual(error as? NearError, .transport) }
+        let invalid = NearIndexTransport(replies: [:], path: "/v0/transfers",
+            failure: URLError.badServerResponse.rawValue, persistent: true)
+        do {
+            _ = try await OathDiagnostics.$operationID.withValue(correlation) {
+                try await NearClient(apiKey: "FixtureNearKey", transport: invalid).history(owner: "root.near", stream: "transfers", before: "private-fixture-cursor")
+            }
+            XCTFail("Invalid response succeeded")
+        } catch { XCTAssertEqual(error as? NearError, .transport) }
+        let requests = await invalid.requests
+        XCTAssertEqual(requests.count, 1, "Permanent failures must not retry")
         for _ in 0..<100 {
-            if await reports.events.count == 2 { break }
+            if await reports.events.count == 1 { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events
-        XCTAssertEqual(events.count, 2)
+        XCTAssertEqual(events.count, 1)
         XCTAssertTrue(events.allSatisfy { $0.operationID == correlation && $0.context["chain"] == "near" && $0.context["stage"] == "transfers" })
-        XCTAssertEqual(Set(events.compactMap { $0.context["attempt"] }), ["1", "2"])
-        XCTAssertTrue(events.allSatisfy { $0.error.code == NSURLErrorNetworkConnectionLost && $0.context["host"] == "transfers.main.fastnear.com" })
+        XCTAssertEqual(Set(events.compactMap { $0.context["attempt"] }), ["1"])
+        XCTAssertTrue(events.allSatisfy { $0.error.code == URLError.badServerResponse.rawValue && $0.context["host"] == "transfers.main.fastnear.com" })
         let encoded = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         for excluded in ["FixtureNearKey", "root.near", "private-fixture-cursor", "resume_token", "account_id"] {
             XCTAssertFalse(encoded.contains(excluded))

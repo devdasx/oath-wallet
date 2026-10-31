@@ -34,7 +34,13 @@ final class ThorchainCatalogDiagnosticsTests: XCTestCase, @unchecked Sendable {
         XCTAssertEqual(event.error.message, "malformed")
         XCTAssertEqual(event.operation, "catalog_load")
         XCTAssertEqual(event.operationID, operation)
-        XCTAssertEqual(event.context, ["chain": "thorchain", "stage": "catalog"])
+        XCTAssertEqual(event.context["chain"], "thorchain")
+        XCTAssertEqual(event.context["stage"], "catalog")
+        XCTAssertEqual(event.context["action"], "catalog_load")
+        XCTAssertEqual(event.context["step"], "catalog")
+        XCTAssertEqual(event.context["cause_status"], "original_error_only")
+        XCTAssertEqual(Set(event.context.keys), ["chain", "stage", "action", "step", "cause_status",
+            "origin_screen", "screen_source", "step_source", "app_state", "screen", "time_source"])
         XCTAssertTrue(event.privacyFiltered)
         _ = try await cache.value { ThorchainCatalog() }
     }
