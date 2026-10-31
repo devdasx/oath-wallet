@@ -1,0 +1,53 @@
+{
+  "updated": "2026-10-31",
+  "version": "1.0",
+  "reportURL": "https://github.com/devdasx/oath-wallet/security/advisories/new",
+  "email": "care@oathwallet.org",
+  "rewards": [
+    {"name":"Low","amount":0,"range":"CVSS 0.1–3.9","description":"Limited security impact. Useful findings that strengthen the details.","example":"A narrowly constrained information exposure with no sensitive wallet data or meaningful privilege gain."},
+    {"name":"Medium","amount":250,"range":"CVSS 4.0–6.9","description":"A meaningful security weakness with limited impact or significant prerequisites.","example":"An exploitable access-control or application vulnerability affecting limited non-public data, without exposing signing keys or enabling unauthorized transfers."},
+    {"name":"High","amount":1000,"range":"CVSS 7.0–8.9","description":"Substantial compromise of confidentiality, integrity or availability.","example":"A practical bypass of an important security boundary, significant sensitive-data exposure, or a serious signing flaw requiring constrained conditions."},
+    {"name":"Critical","amount":10000,"range":"CVSS 9.0–10.0","description":"A direct, severe threat to wallet keys or user funds.","example":"A reproducible flaw that permits unauthorized signing, extraction of protected private keys, or irreversible loss of funds under realistic conditions. Demonstrate it only with test assets."}
+  ],
+  "scope": [
+    {"name":"Oath for iOS & iPadOS","tag":"Application","description":"The current publicly released Oath Wallet app. Include the exact app build, OS version and affected network. Focus on key protection, authentication, recovery, transaction construction and signing.","url":"https://apps.apple.com/app/id6780187283","label":"View the app"},
+    {"name":"Public source","tag":"Code","description":"Security-relevant Oath code in devdasx/oath-wallet. Pin the commit and demonstrate a reachable impact in a current supported feature. A source-only finding must identify the affected code and must not claim it proves App Store binary behavior.","url":"https://github.com/devdasx/oath-wallet","label":"Explore the source"},
+    {"name":"Oath websites","tag":"Web","description":"Oath-controlled application behavior on oathwallet.org, help.oathwallet.org and articles.oathwallet.org. Use only your own account and test data. These exact hosts are in scope; other subdomains and infrastructure are not included automatically.","url":"https://oathwallet.org/","label":"Visit the website"}
+  ],
+  "rules": [
+    {"title":"Use a controlled environment","text":"Use local builds, isolated forks or testnets with disposable wallets and synthetic data. Website testing must be non-destructive and limited to accounts and data you control. Do not use real user funds or send mainnet transactions to prove impact."},
+    {"title":"Stop at the smallest proof","text":"Do not access, copy, change or delete another person’s data. If you encounter it unexpectedly, stop immediately and report the minimum redacted evidence privately. Do not continue exploiting the issue or retain unnecessary data."},
+    {"title":"Keep services available","text":"No denial-of-service, stress tests, bulk scanning, brute force, spam, phishing, social engineering or physical attacks. Do not persist access, install malware, weaken protections or target staff, users or third-party infrastructure."},
+    {"title":"Coordinate disclosure","text":"Report promptly through the private channel. Keep exploit details private while we investigate and coordinate a disclosure date with us. Do not put vulnerabilities, secrets or personal data in public GitHub issues or social posts."}
+  ],
+  "exclusions": [
+    "Third-party wallets, dApps, blockchains, RPC providers, Apple, GitHub, cloud providers and other services are not authorized targets. A demonstrated vulnerability in Oath’s own use of a dependency can still qualify.",
+    "Unverified scanner output, dependency version alerts, missing headers or best-practice recommendations without a reproducible security impact.",
+    "Cosmetic issues, ordinary product bugs, unsupported features, price differences, market losses and service interruptions without an Oath security vulnerability.",
+    "Expected behavior that requires the victim to disclose their recovery phrase, approve the accurately displayed malicious transaction, or grant the attacker full device control, unless a separate Oath security boundary is demonstrably bypassed.",
+    "Issues already publicly documented, already known to Oath, or duplicate reports of the same root cause. Still report a materially different exploit path or an incomplete fix with new evidence."
+  ],
+  "eligibility": [
+    "Submit an original, reproducible security issue affecting an in-scope target. Explain the attacker’s prerequisites, the violated security boundary and the demonstrated impact.",
+    "The first actionable report of a unique issue is eligible. Multiple symptoms of one root cause are assessed together, not paid separately. Findings from work already commissioned and paid for by Oath are not paid again under this program.",
+    "Follow the testing rules and applicable law. If the ownership of a target or the safety of a test is unclear, ask before testing. This program does not authorize access to third-party systems.",
+    "Oath validates the report and confirms its final severity with the researcher. Eligible accepted findings receive the listed USD reward for that severity; Low findings have no monetary reward. Informational reports are not paid. Submission alone does not establish eligibility.",
+    "Payment arrangements and any necessary payment-compliance information are handled privately after acceptance. Do not include payment details or identity documents in the initial report. Oath will never ask for a payment, recovery phrase or private key to release a bounty."
+  ],
+  "process": [
+    {"title":"Report privately","text":"Share the affected version, minimal reproduction and clear impact. Use the template below and redact sensitive information."},
+    {"title":"Reproduce & assess","text":"We review scope, reproduce the issue and discuss severity. We may request a smaller proof or additional environment details."},
+    {"title":"Resolve & reward","text":"We coordinate remediation, confirm eligibility and arrange the applicable reward privately. Response, fix and payment dates are confirmed in the report thread; no fixed turnaround is promised."},
+    {"title":"Disclose together","text":"Agree on a safe publication date after remediation. Researcher credit is optional and requires your consent."}
+  ],
+  "faq": [
+    {"question":"How is severity decided?","answer":"We assess demonstrated impact, exploitability, required privileges, user interaction and affected users. FIRST’s CVSS v4.0 ranges provide a reference, not an automatic payout calculation. Include a vector if helpful; Oath confirms the final category with an explanation. A theoretical maximum impact is not the same as a reproducible exploit."},
+    {"question":"Do Low findings receive a reward?","answer":"Low findings have a $0 monetary reward. We still welcome actionable reports that improve Oath. Informational feedback is also welcome, but is not eligible for payment."},
+    {"question":"Can I submit without a GitHub account?","answer":"Yes. Email care@oathwallet.org with the subject “Security report — Oath”. Start with a non-sensitive summary and ask for a private transfer route if your evidence needs one. Never send real recovery material, unredacted personal data or executable attachments."},
+    {"question":"Can I test with a funded wallet?","answer":"Use a disposable wallet with no real funds. Demonstrate financial impact locally or on a testnet using test assets. Do not move, freeze or recover anyone else’s assets, even to prove a vulnerability."},
+    {"question":"Is this a guarantee of legal immunity?","answer":"No. The permitted activities are limited to the scope and testing rules above. This page cannot authorize activity on third-party systems or waive another party’s rights. Ask us privately before any test whose authorization is unclear."},
+    {"question":"What if my report is a duplicate or I disagree with the assessment?","answer":"We assess one root cause as one issue and use the first actionable submission. If you believe the assessment missed an exploit path or impact, reply in the private thread with the additional evidence. Do not create public issues containing exploit details."},
+    {"question":"Does a bounty mean Oath has been independently audited?","answer":"No. This program invites vulnerability research; it is not an independent security audit, a certification, or a guarantee that software has no vulnerabilities."},
+    {"question":"What if the program changes?","answer":"The published scope and rewards may be updated prospectively. We assess a report using the program version in effect when it was received. This page identifies its version and effective date so researchers can reference them."}
+  ]
+}

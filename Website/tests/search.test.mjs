@@ -13,7 +13,7 @@ const env = { ASSETS: { async fetch(req) {
 test('main search sitemap excludes moved articles, support and machine representations', async () => {
   const xml = await readFile(new URL('sitemap.xml', publicURL), 'utf8');
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
-  const paths = ['/', '/features', '/press', '/terms', '/privacy', '/security', '/about', '/networks', ...catalog.networks.map(n => '/networks/'+n.slug)];
+  const paths = ['/', '/features', '/press', '/terms', '/privacy', '/security', '/bug-bounty', '/about', '/networks', ...catalog.networks.map(n => '/networks/'+n.slug)];
   const expectedURLs = await Promise.all(paths.map(async path => {
     const articleFile = articleRoutes[path];
     if (typeof articleFile !== 'string') return 'https://oathwallet.org' + path;

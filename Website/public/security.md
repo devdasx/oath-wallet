@@ -55,3 +55,8 @@ Source: [import catalog](https://github.com/devdasx/oath-wallet/blob/c21cc32c275
 ## Report a vulnerability
 
 Use [GitHub private vulnerability reporting](https://github.com/devdasx/oath-wallet/security/advisories/new). Include the affected version and reproduction steps using unfunded test material. Never send a real recovery phrase, private key, passphrase or backup password. Oath support cannot replace a missing recovery credential.
+
+
+## Bug bounty
+
+Help strengthen Oath through responsible security research. Our [bug bounty program](https://oathwallet.org/bug-bounty) defines scope, safe testing rules and rewards: Low $0, Medium $250, High $1,000 and Critical $10,000 for eligible, validated findings.

@@ -819,6 +819,11 @@
       "markdown": "https://oathwallet.org/networks.md",
       "title": "Oath Wallet Supported Networks — Bitcoin, Ethereum & More",
       "description": "Check Oath Wallet’s supported mainnets, native network-fee assets, token-network requirements and release-specific Bitcoin limitations before receiving crypto."
+    },
+    {
+      "url": "https://oathwallet.org/bug-bounty",
+      "title": "Bug Bounty | Oath Wallet",
+      "description": "Security research scope, testing rules and rewards up to $10,000 for eligible, validated vulnerabilities."
     }
   ],
   "security": {

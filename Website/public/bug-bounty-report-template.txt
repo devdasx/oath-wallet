@@ -1,0 +1,24 @@
+Oath Wallet security report
+Program version: 1.0 (2026-10-31)
+
+Title:
+Affected target / URL:
+App version and build / source commit:
+OS version and affected network (if relevant):
+
+Summary:
+Attacker prerequisites and permissions:
+Expected behavior:
+Observed behavior:
+
+Minimal reproduction (local or testnet; test assets only):
+1.
+2.
+3.
+
+Demonstrated impact:
+Proposed severity and reasoning (optional CVSS vector):
+Redacted evidence / proof of concept:
+Suggested remediation (optional):
+
+Do not include real recovery phrases, private keys, passcodes, backup files, session tokens, identity documents or other people’s data.

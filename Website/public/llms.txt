@@ -57,6 +57,7 @@ Help instructions carry their applicable app version and authored update dates. 
 - [Networks](https://oathwallet.org/networks.md)
 - [Press](https://oathwallet.org/press.md)
 - [Security](https://oathwallet.org/security.md)
+- [Bug-bounty](https://oathwallet.org/bug-bounty.md)
 - [Terms](https://oathwallet.org/terms.md)
 - [Privacy](https://oathwallet.org/privacy.md)
 - [Help Center](https://help.oathwallet.org/index.md)

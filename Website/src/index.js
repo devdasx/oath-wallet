@@ -9,7 +9,7 @@ import { articleRoutes } from './article-routes.js';
 import { handleNewsletter, newsletterScheduled } from './newsletter.js';
 import { handleOusd } from './ousd.js';
 
-const pageNames = new Set(['features', 'articles', 'support', 'press', 'terms', 'privacy', 'security', 'about', 'networks', ...networkCatalog.networks.map(n => 'networks/' + n.slug)]);
+const pageNames = new Set(['features', 'articles', 'support', 'press', 'terms', 'privacy', 'security', 'bug-bounty', 'about', 'networks', ...networkCatalog.networks.map(n => 'networks/' + n.slug)]);
 const hstsPolicy = 'max-age=31536000; includeSubDomains; preload';
 
 export default {

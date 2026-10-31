@@ -5,7 +5,7 @@ import evidence from '../content/release-evidence.json' with {type:'json'};
 import {migrateArticleLinks} from './article-host.js';
 import {articleRoutes} from './article-routes.js';
 const main='https://oathwallet.org', support='https://help.oathwallet.org', articles='https://articles.oathwallet.org';
-const pages=['index','features','about','networks','press','security','terms','privacy'];
+const pages=['index','features','about','networks','press','security','bug-bounty','terms','privacy'];
 const articlePath=p=>p.replace(/\/articles(?=\/|$)/,'')||'/';
 export const documents=[
  ...networkCatalog.networks.map(n=>({url:main+'/networks/'+n.slug,markdown_url:main+'/networks/'+n.slug+'.md',title:n.name+' wallet: send, receive and dApp connections',summary:n.intro,kind:'network',file:'/networks/'+n.slug+'.md',updated_at:networkCatalog.reviewed})),

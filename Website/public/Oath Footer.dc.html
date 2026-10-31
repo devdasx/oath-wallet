@@ -68,7 +68,7 @@ class Component extends DCLogic {
       span: this.state.vw < 760 ? '1 / -1' : 'auto',
       productLinks: [['Home', 'https://oathwallet.org/'], ['Features', 'https://oathwallet.org/features'], ['Security', 'https://oathwallet.org/security'], ['Open source', 'https://github.com/devdasx/oath-wallet'], ['Download', 'https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283']].map(([t, href]) => ({ t, href })),
       cols: [
-        { h: 'Help', links: [['About Oath', 'https://oathwallet.org/about'], ['Help Center', 'https://help.oathwallet.org/'], ['Articles', 'https://articles.oathwallet.org/'], ['Contact', 'mailto:care@oathwallet.org'], ['Press kit', 'https://oathwallet.org/press']] },
+        { h: 'Help', links: [['About Oath', 'https://oathwallet.org/about'], ['Help Center', 'https://help.oathwallet.org/'], ['Articles', 'https://articles.oathwallet.org/'], ['Bug bounty', 'https://oathwallet.org/bug-bounty'], ['Contact', 'mailto:care@oathwallet.org'], ['Press kit', 'https://oathwallet.org/press']] },
         { h: 'Legal', links: [['Terms of Service', 'https://oathwallet.org/terms'], ['Privacy Policy', 'https://oathwallet.org/privacy']] },
       ].map(c => ({ h: c.h, links: c.links.map(([t, href]) => ({ t, href })) })),
     };

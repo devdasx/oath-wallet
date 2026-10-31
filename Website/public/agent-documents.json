@@ -382,6 +382,12 @@
       "kind": "page"
     },
     {
+      "url": "https://oathwallet.org/bug-bounty",
+      "markdown_url": "https://oathwallet.org/bug-bounty.md",
+      "title": "Bug-bounty",
+      "kind": "page"
+    },
+    {
       "url": "https://oathwallet.org/terms",
       "markdown_url": "https://oathwallet.org/terms.md",
       "title": "Terms",

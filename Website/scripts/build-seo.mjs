@@ -93,10 +93,11 @@ await write('articles.html',archive);
 
 // The main sitemap must not retain moved support or article URLs.
 const oldSitemap=await read('sitemap.xml');
-const mainPaths=['/','/features','/press','/terms','/privacy','/security','/about','/networks',...networkCatalog.networks.map(n=>'/networks/'+n.slug)];
+const mainPaths=['/','/features','/press','/terms','/privacy','/security','/bug-bounty','/about','/networks',...networkCatalog.networks.map(n=>'/networks/'+n.slug)];
 const dates=new Map([...oldSitemap.matchAll(/<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>[\s\S]*?<\/url>/g)].map(m=>[m[1],m[2]]));
 for (const path of mainPaths) {
- if(path==='/' || path.startsWith('/networks')) dates.set('https://oathwallet.org'+path,networkCatalog.reviewed);
+ if(path==='/bug-bounty') dates.set('https://oathwallet.org'+path,'2026-10-31');
+ else if(path==='/' || path.startsWith('/networks')) dates.set('https://oathwallet.org'+path,networkCatalog.reviewed);
  else if(!dates.has('https://oathwallet.org'+path)) dates.set('https://oathwallet.org'+path,'2026-10-27');
 }
 const xml=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${mainPaths.map(path=>{const url='https://oathwallet.org'+path;return `  <url><loc>${url}</loc>${dates.has(url)?`<lastmod>${esc(dates.get(url))}</lastmod>`:''}</url>`;}).join('\n')}\n</urlset>\n`;
