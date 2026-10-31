@@ -2,11 +2,11 @@
 
 A native multichain wallet for iPhone and iPad.
 
-This repository contains the **4.1.15 source release, build 99**. The new app
+This repository contains the **4.1.15 source release, build 100**. The new app
 replaces the previous source layout with `OathApp`, `OathAtmosphere`, and local
 Swift packages. The application bundle identifier remains `com.aperture.wallet`.
 
-[Release notes](releases/4.1.15.md) · [Website](https://oathwallet.org) ·
+[Release notes](releases/4.1.15-build100.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
 
@@ -59,9 +59,9 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-Version 4.1.15 (99) is a source release for manual App Store Connect upload.
+Version 4.1.15 (100) is a source release for manual App Store Connect upload.
 No Apple upload or review submission was started for this release.
-See the [release record](releases/4.1.15.md) for completed validation.
+See the [release record](releases/4.1.15-build100.md) for completed validation.
 
 This release expands WalletConnect signing and transaction review to Bitcoin, TON,
 TRON, Polkadot, Sui, NEAR, Stellar and XRP Ledger, with local recovery journals. Requests still require review and signing authorization.

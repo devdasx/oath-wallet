@@ -1,6 +1,6 @@
 # Oath Wallet public source
 
-Version 4.1.15, build 99. Use `OathAtmosphere.xcodeproj`, scheme
+Version 4.1.15, build 100. Use `OathAtmosphere.xcodeproj`, scheme
 `OathAtmosphere`, sources `OathApp/` and `OathAtmosphere/`.
 Do not change stored Keychain, container, backup, or migration identities.
 
