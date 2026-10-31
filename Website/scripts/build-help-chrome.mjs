@@ -102,9 +102,10 @@ export async function buildSiteChrome({light=false}={}) {
     +'@media(max-width:759px){\n'+rules('footer',smallFooter.styles,wideFooter.styles)+'}\n'
     +rules('header',expanded.styles,mobile.styles,'[data-menu-open]')
     +(light ? '.oath-site-header + main{margin-top:96px}\n' : '')
-    +`.oath-site-header a:focus-visible,.oath-site-header button:focus-visible,.oath-site-footer a:focus-visible{outline:2px solid ${light?'#0A0A0B':'#F2F0EA'};outline-offset:4px}\n`
+    +`.oath-site-header a:focus-visible,.oath-site-header button:focus-visible,.oath-site-footer a:focus-visible,.oath-site-footer button:focus-visible{outline:2px solid ${light?'#0A0A0B':'#F2F0EA'};outline-offset:4px}\n`
     +'.oath-site-header,.oath-site-footer{direction:ltr}.oath-site-header *,.oath-site-footer *{box-sizing:border-box}.oath-site-header a[aria-current=page]{font-weight:600}\n'
     +'@media(prefers-reduced-motion:reduce){.oath-site-header *{transition:none!important}}\n'
+    +'#oath-network-menu::backdrop{background:rgba(0,0,0,.45);backdrop-filter:blur(5px)}\n'
     +'@media print{.oath-site-header,.oath-site-footer{display:none}.oath-site-header + main{margin-top:0}}\n';
   const note='// Generated from public/Oath Header.dc.html and public/Oath Footer.dc.html. Run npm run build:help-chrome.\n';
   return {header:'<div class="oath-site-header">'+headerHTML+'</div>',footer:'<div class="oath-site-footer">'+wideFooter.html+'</div>',module:note+html,css:'/* Generated from the main website components. Do not edit directly. */\n@import url("/assets/fonts/oath-fonts.css");\n'+css};
