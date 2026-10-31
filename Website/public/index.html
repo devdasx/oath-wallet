@@ -229,7 +229,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
 <script src="oath-icons.js"></script>
-<style>html,body{margin:0;background:#0A0A0B;color:#F2F0EA;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#F2F0EA;text-decoration:none}a:hover{color:#FFFFFF}button{font-family:inherit}::selection{background:#F2F0EA;color:#0A0A0B}@keyframes oathMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}</style>
+<style>html,body{margin:0;background:#0A0A0B;color:#F2F0EA;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}a{color:#F2F0EA;text-decoration:none}a:hover{color:#FFFFFF}button{font-family:inherit}::selection{background:#F2F0EA;color:#0A0A0B}@keyframes oathMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:760px){
+  [data-preview-stage]{height:auto!important;padding-bottom:48px;perspective:none!important}
+  [data-preview-device]{transform:none!important;transition:none!important}
+}
+</style>
 </helmet>
 
 <div style="position:relative;background:#0A0A0B;color:#F2F0EA;overflow-x:clip">
@@ -255,7 +260,7 @@
     <div data-preview-stage ref="{{ r.phone }}" style="position:relative;margin-top:clamp(48px,8vw,80px);height:clamp(340px,56vw,640px);overflow:hidden;display:flex;justify-content:center;border-bottom:1px solid rgba(242,240,234,.12);perspective:1600px">
       
       
-      <div style="flex:none;width:min(380px,76vw);aspect-ratio:440/956;height:auto;align-self:flex-start;margin-top:10px;border-radius:clamp(44px,13vw,64px);padding:clamp(8px,2.4vw,11px);background:#1B1B1E;box-shadow:inset 0 0 0 1px rgba(242,240,234,.14),0 0 0 1px #000000,0 80px 120px -40px rgba(0,0,0,.9);transform-origin:50% 0%;transform:{{ phoneT }};transition:{{ phoneTr }}">
+      <div data-preview-device style="flex:none;width:min(380px,76vw);aspect-ratio:440/956;height:auto;align-self:flex-start;margin-top:10px;border-radius:clamp(44px,13vw,64px);padding:clamp(8px,2.4vw,11px);background:#1B1B1E;box-shadow:inset 0 0 0 1px rgba(242,240,234,.14),0 0 0 1px #000000,0 80px 120px -40px rgba(0,0,0,.9);transform-origin:50% 0%;transform:{{ phoneT }};transition:{{ phoneTr }}">
         <div style="position:relative;width:100%;height:100%;border-radius:clamp(36px,11vw,54px);overflow:hidden;background:#000000">
           <dc-import name="Oath App Home" theme="light" hint-size="100%,100%" style="position:absolute;left:0;top:0;width:100%;height:100%"></dc-import>
           <div style="position:absolute;top:2.2%;left:50%;transform:translateX(-50%);width:29%;aspect-ratio:104/30;border-radius:999px;background:#000000"></div>
