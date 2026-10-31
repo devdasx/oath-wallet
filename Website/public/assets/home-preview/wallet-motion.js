@@ -60,18 +60,10 @@ export function paletteAt(seconds) {
 // Lazy initialization: one small canvas, a 30fps cap, no rendering offscreen or in hidden tabs.
 // Native Cobalt poster stays visible if WebGL is unavailable or the context is lost.
 export function mountWalletMotion(canvas) {
-  let disposed=false, visible=false, lost=false, paused=false, frame=0, elapsed=0, last=null;
+  let disposed=false, visible=false, lost=false, frame=0, elapsed=0, last=null;
   let gl, program, buffer, shaders=[], uniforms, initializing=false, failed=false;
   const abort=new AbortController();
   const media=window.matchMedia('(prefers-reduced-motion: reduce)');
-  const button=document.createElement('button');
-  button.type='button';
-  button.textContent='Pause animation';
-  button.setAttribute('aria-label','Pause wallet preview animation');
-  // Keep the drawn app untouched. The quiet playback control lives in the phone's containing figure.
-  button.style.cssText='position:absolute;right:8px;bottom:8px;z-index:3;padding:6px 10px;border:1px solid #ffffff40;border-radius:20px;background:#161616;color:#fff;font:11px system-ui;cursor:pointer;display:none';
-  const controls=canvas.closest('[data-preview-stage]');
-  controls?.append(button);
   const stop=()=>{cancelAnimationFrame(frame);frame=0;last=null;};
   const release=()=>{
     if(gl){if(buffer)gl.deleteBuffer(buffer);if(program)gl.deleteProgram(program);shaders.forEach(s=>gl.deleteShader(s));}
@@ -91,7 +83,7 @@ export function mountWalletMotion(canvas) {
   };
   const tick=now=>{
     frame=0;
-    if(disposed || !visible || document.hidden || media.matches || paused || lost)return;
+    if(disposed || !visible || document.hidden || media.matches || lost)return;
     if(last===null){last=now;draw();}
     else if(now-last>=1000/30){elapsed+=(now-last)/1000;last=now;draw();}
     frame=requestAnimationFrame(tick);
@@ -101,8 +93,7 @@ export function mountWalletMotion(canvas) {
     if(disposed || !visible || document.hidden || lost || failed)return;
     if(!program){initialize();return;}
     draw();
-    button.style.display=media.matches?'none':'block';
-    if(!media.matches && !paused)frame=requestAnimationFrame(tick);
+    if(!media.matches)frame=requestAnimationFrame(tick);
   };
   async function initialize(){
     if(initializing || failed || disposed)return;
@@ -130,24 +121,21 @@ export function mountWalletMotion(canvas) {
       canvas.dataset.motion='ready';sync();
     }catch(error){
       if(!disposed && error.name!=='AbortError'){
-        failed=true;release();canvas.style.opacity='0';canvas.dataset.motion='fallback';button.style.display='none';
+        failed=true;release();canvas.style.opacity='0';canvas.dataset.motion='fallback';
       }
     }finally{initializing=false;}
   }
-  const onLost=event=>{event.preventDefault();lost=true;stop();canvas.style.opacity='0';canvas.dataset.motion='fallback';button.style.display='none';};
+  const onLost=event=>{event.preventDefault();lost=true;stop();canvas.style.opacity='0';canvas.dataset.motion='fallback';};
   const onRestored=()=>{lost=false;failed=false;release();sync();};
-  const onToggle=()=>{paused=!paused;button.textContent=paused?'Resume animation':'Pause animation';button.setAttribute('aria-label',paused?'Resume wallet preview animation':'Pause wallet preview animation');sync();};
   const observer=new IntersectionObserver(entries=>{visible=entries.some(entry=>entry.isIntersecting);sync();});
   observer.observe(canvas);
   document.addEventListener('visibilitychange',sync);
   media.addEventListener('change',sync);
   canvas.addEventListener('webglcontextlost',onLost);
   canvas.addEventListener('webglcontextrestored',onRestored);
-  button.addEventListener('click',onToggle);
   return ()=>{
-    disposed=true;abort.abort();stop();observer.disconnect();release();button.remove();
+    disposed=true;abort.abort();stop();observer.disconnect();release();
     document.removeEventListener('visibilitychange',sync);media.removeEventListener('change',sync);
     canvas.removeEventListener('webglcontextlost',onLost);canvas.removeEventListener('webglcontextrestored',onRestored);
-    button.removeEventListener('click',onToggle);
   };
 }

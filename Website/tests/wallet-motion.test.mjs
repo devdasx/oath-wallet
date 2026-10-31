@@ -36,7 +36,7 @@ function harness(t,{reduced=false,unavailable=false}={}){
   const dispose=mountWalletMotion(canvas);
   return {canvas,button,media,doc,dispose,visible(value){observer.cb([{isIntersecting:value}]);},async settled(){await new Promise(resolve=>setImmediate(resolve));},step(now){const callbacks=[...pending.values()];pending.clear();callbacks.forEach(cb=>cb(now));},get state(){return {draws,time,pending:pending.size,fetches,released,disconnected:observer.disconnected};}};
 }
-test('renderer is lazy, throttled, pauses offscreen/hidden/user pause, and fully cleans up',async t=>{
+test('renderer is lazy, throttled, pauses offscreen/hidden, and fully cleans up',async t=>{
   const h=harness(t);assert.equal(h.state.fetches,0);
   h.visible(true);await h.settled();assert.equal(h.canvas.dataset.motion,'ready');assert.equal(h.state.pending,1);
   h.step(0);const draws=h.state.draws;h.step(16);assert.equal(h.state.draws,draws);
@@ -45,10 +45,8 @@ test('renderer is lazy, throttled, pauses offscreen/hidden/user pause, and fully
   h.visible(true);h.step(100000);assert.equal(h.state.time,.04);
   h.doc.hidden=true;h.doc.emit('visibilitychange');assert.equal(h.state.pending,0);
   h.doc.hidden=false;h.doc.emit('visibilitychange');h.step(200000);assert.equal(h.state.time,.04);
-  h.button.emit('click');assert.equal(h.state.pending,0);assert.equal(h.button.textContent,'Resume animation');
-  h.button.emit('click');assert.equal(h.state.pending,1);
   h.media.matches=true;h.media.emit('change');assert.equal(h.state.pending,0);
-  h.dispose();assert.equal(h.state.pending,0);assert.ok(h.state.disconnected);assert.ok(h.button.removed);assert.equal(h.state.released,4);
+  h.dispose();assert.equal(h.state.pending,0);assert.ok(h.state.disconnected);assert.equal(h.state.released,4);
   assert.equal(h.doc.listeners.size,0);assert.equal(h.media.listeners.size,0);assert.equal(h.canvas.listeners.size,0);
 });
 test('reduced motion presents a still frame without starting animation',async t=>{
