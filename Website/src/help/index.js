@@ -1,4 +1,5 @@
 import bundled from './content.json' with { type: 'json' };
+import { publicSearchRobots } from '../search-crawlers.js';
 import { home, collection, article, searchResults, notFound, HELP_ORIGIN, esc } from './render.js';
 
 const slug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -24,7 +25,7 @@ export async function handleHelp(request, env) {
   else if (url.pathname === '/search') body=searchResults(data,(url.searchParams.get('q')||'').trim().slice(0,120));
   else if (url.pathname === '/robots.txt') {
     // Search pages carry noindex. Let Google crawl them to see that directive.
-    type='text/plain';body=`User-agent: *\nAllow: /\nSitemap: ${HELP_ORIGIN}/sitemap.xml\n`;
+    type='text/plain; charset=utf-8';body=publicSearchRobots(HELP_ORIGIN);
   }
   else if (url.pathname === '/sitemap.xml') {
     const latest = articles => articles.map(a=>a.updated_at).sort((a,b)=>Date.parse(b)-Date.parse(a))[0];

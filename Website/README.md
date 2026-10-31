@@ -158,6 +158,41 @@ Google's restricted Indexing API as a substitute for Search Console.
 
 The October 20 audit and deployment evidence is in `Reports/seo-2026-10-20/`.
 
+## ChatGPT search crawler access
+
+All three public hosts explicitly allow `OAI-SearchBot` (search discovery) and
+`ChatGPT-User` (user-requested retrieval). Each serves its own sitemap; the apex
+also advertises the other two. Public content is rendered before JavaScript.
+The main robots file is `public/robots.txt`; article/help rules share
+`src/search-crawlers.js`. Keep both covered by `tests/search-crawlers.test.mjs`.
+The article host's `/llms.txt` redirects to the existing site-wide reading guide
+instead of returning a missing-page response.
+
+`GPTBot` is a separate training crawler. This change preserves its existing
+permission; allowing search does not require enabling training. `llms.txt` is
+an optional reading guide, not a required indexing or recommendation mechanism.
+Robots rules are public preferences, not authorization. Keep authentication,
+newsletter administration protection, and wallet-link `noindex` unchanged.
+
+Cloudflare checks are separate from robots.txt. Inspect Security Events and AI
+Crawl Control for verified `OAI-SearchBot` requests on the public hosts. If a rule
+blocks them, adjust only that rule for verified search traffic. Do not exempt
+requests merely because their User-Agent says OAI-SearchBot, disable the WAF
+globally, or permit access to protected administration/API routes. Use OpenAI's
+current published IP ranges if an IP rule is necessary; never paste a permanent
+snapshot into application code. No zone-level security exemption is installed
+by this website deployment.
+
+Reference: https://developers.openai.com/api/docs/bots
+
+After deployment run `python3 scripts/check-search-crawlers.py`. It verifies all
+sitemap URLs against robots rules and samples three pages per host using search,
+user-retrieval and browser User-Agents (27 page requests). It checks HTTP status,
+content type, challenges, indexability and readable HTML. Requests come from the
+runner, not OpenAI's IPs, so this proves public access only. Confirm verified-bot
+access separately in Cloudflare logs. Neither check guarantees indexing, a
+citation, a recommendation, or ranking. Run `audit-search.py` for the full site.
+
 ## Current release documentation
 
 `content/release-evidence.json` pins the security page's source revision and exact

@@ -1,4 +1,5 @@
 import { articleRoutes } from './article-routes.js';
+import { publicSearchRobots } from './search-crawlers.js';
 import published from '../public/oath-data.json' with { type: 'json' };
 export const ARTICLE_ORIGIN='https://articles.oathwallet.org';
 export function migrateSupportLinks(html) {
@@ -27,6 +28,7 @@ export async function handleArticleHost(request,env) {
   }
   if (url.protocol!=='https:') {url.protocol='https:';return Response.redirect(url.href,301);}
   if (!['GET','HEAD'].includes(request.method)) return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
+  if (url.pathname==='/llms.txt') return Response.redirect('https://oathwallet.org/llms.txt',308);
   if (legacyPattern.test(url.pathname)) return Response.redirect(articleURL(url.pathname)+url.search,308);
   if (['/features','/networks','/security','/about','/press','/privacy','/terms'].includes(url.pathname)) return Response.redirect('https://oathwallet.org'+url.pathname+url.search,308);
   if (url.pathname==='/support') return Response.redirect('https://help.oathwallet.org/',308);
@@ -37,7 +39,7 @@ export async function handleArticleHost(request,env) {
   const entry=articleRoutes[oldPath.replace(/\.md$/,'')];
   if (entry && typeof entry !== 'string') return Response.redirect(articleURL(entry.redirect)+(clean.endsWith('.md')?'.md':'')+url.search,308);
   if (entry && clean!==url.pathname) return Response.redirect(ARTICLE_ORIGIN+clean+url.search,308);
-  if (url.pathname==='/robots.txt') return new Response(`User-agent: *\nAllow: /\nSitemap: ${ARTICLE_ORIGIN}/sitemap.xml\n`,{headers:{'Content-Type':'text/plain'}});
+  if (url.pathname==='/robots.txt') return new Response(request.method==='HEAD'?null:publicSearchRobots(ARTICLE_ORIGIN),{headers:{'Content-Type':'text/plain; charset=utf-8'}});
   if (url.pathname==='/sitemap.xml') {
     const modified = new Map(published.articles.map(a=>[
       new URL(a.url).hostname === 'articles.oathwallet.org' ? a.url : articleURL(new URL(a.url).pathname),

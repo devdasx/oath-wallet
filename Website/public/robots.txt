@@ -1,5 +1,11 @@
 # Oath — https://oathwallet.org
-# AI agents and search crawlers are welcome. Start with /llms.txt
+# Public website content is available to search crawlers.
+# OAI-SearchBot: ChatGPT search discovery (not model-training permission).
+# ChatGPT-User: visits requested by users; robots rules may not apply to these visits.
+# GPTBot: separate model-training crawler; its existing permission is unchanged.
+# /llms.txt is an optional reading guide, not a ranking or indexing directive.
+# Allowing crawling does not guarantee indexing, citations, or recommendations.
+# These rules do not replace authentication or Cloudflare security controls.
 
 User-agent: GPTBot
 Allow: /
