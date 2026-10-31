@@ -23,3 +23,12 @@ There is no guaranteed response time or paid bug bounty promised by this policy.
 
 Public test fixtures are deliberately unsafe for holding funds. They are documented
 in the fixture READMEs and are not production service credentials.
+
+## Reproducible security review
+
+A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
+starts at 4.1.15 (100), commit `c7cdbde5e9f136b595500e92fbc904b107dcd8ee`.
+It publishes its exact source targets, findings, tests, and outstanding coverage.
+The review is **in progress**, is not independent certification, and does not
+establish equivalence with Apple's distributed binary. Later changes do not
+automatically inherit its conclusions.
