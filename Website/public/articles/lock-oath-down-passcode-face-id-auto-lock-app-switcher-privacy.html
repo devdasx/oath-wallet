@@ -7,8 +7,151 @@
 <meta property="og:type" content="article"><meta property="og:site_name" content="Oath"><meta property="og:title" content="Lock Oath Down: Passcode, Face ID, Auto-Lock"><meta property="og:description" content="Configure Oath’s app passcode, Face ID, automatic locking, and app-switcher privacy—and understand what each layer does and does not protect."><meta property="og:url" content="https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy"><meta property="og:image" content="https://oathwallet.org/assets/articles/oath-blue-2026-10-18/app-lock.jpg"><meta property="og:image:alt" content="Oath — Your wallet. Under lock. A white padlock and six passcode dots on blue."><meta property="article:published_time" content="2026-08-31T12:27:08.913+00:00"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@OathWallet">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/article.css"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Lock Oath Down: Passcode, Biometrics and Auto-Lock", "description": "Choose access controls deliberately and keep a separate recovery method.", "datePublished": "2026-08-31T12:27:08.913+00:00", "dateModified": "2026-10-28T00:00:00Z", "inLanguage": "en", "mainEntityOfPage": "https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy", "image": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/app-lock.jpg", "author": {"@type": "Organization", "name": "Oath Editorial", "url": "https://oathwallet.org/about#editorial"}, "publisher": {"@type": "Organization", "name": "Oath", "url": "https://oathwallet.org", "logo": {"@type": "ImageObject", "url": "https://oathwallet.org/apple-touch-icon.png"}}, "citation": ["https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946", "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md", "https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14"], "timeRequired": "PT2M"}</script>
-<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://oathwallet.org/assets/articles/oath-blue-2026-10-18/app-lock.jpg"><meta name="twitter:image:alt" content="Oath — Your wallet. Under lock. A white padlock and six passcode dots on blue."><meta name="robots" content="max-image-preview:large"><!-- oath-breadcrumb-schema:start --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Oath articles","item":"https://articles.oathwallet.org/"},{"@type":"ListItem","position":2,"name":"Lock Oath Down: Passcode, Biometrics and Auto-Lock","item":"https://articles.oathwallet.org/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy"}]}</script><!-- oath-breadcrumb-schema:end --></head><body><a class="skip" href="#content">Skip to article</a><header class="site-header"><div class="nav-shell"><a class="brand" href="/"><img src="/favicon.svg" alt="" width="30" height="30">Oath</a><nav aria-label="Main navigation"><a href="/">Home</a><a href="/features">Features</a><a href="/articles" aria-current="page">Articles</a><a href="/support">Support</a></nav><a class="download" href="https://apps.apple.com/app/id6780187283">Get the app ↗</a></div></header><main id="content"><article>
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:image" content="https://oathwallet.org/assets/articles/oath-blue-2026-10-18/app-lock.jpg"><meta name="twitter:image:alt" content="Oath — Your wallet. Under lock. A white padlock and six passcode dots on blue."><meta name="robots" content="max-image-preview:large"><link rel="stylesheet" href="/site-chrome.css"><!-- oath-breadcrumb-schema:start --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Oath articles","item":"https://articles.oathwallet.org/"},{"@type":"ListItem","position":2,"name":"Lock Oath Down: Passcode, Biometrics and Auto-Lock","item":"https://articles.oathwallet.org/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy"}]}</script><!-- oath-breadcrumb-schema:end --></head><body><a class="skip" href="#content">Skip to article</a><!-- oath-shared-header:start --><div class="oath-site-header"><div id="oath-site-menu" inert aria-hidden="true" class="oath-header-0">
+  <div class="oath-header-1">
+    <nav aria-label="Mobile navigation" class="oath-header-2">
+        <a href="https://oathwallet.org/" data-oath-close class="oath-header-3">
+          <span class="oath-header-4">01</span>
+          <span class="oath-header-5">Home</span>
+          <span class="oath-header-6">→</span>
+        </a>
+        <a href="https://oathwallet.org/features" data-oath-close class="oath-header-7">
+          <span class="oath-header-8">02</span>
+          <span class="oath-header-9">Features</span>
+          <span class="oath-header-10">→</span>
+        </a>
+        <a href="https://oathwallet.org/networks" data-oath-close class="oath-header-11">
+          <span class="oath-header-12">03</span>
+          <span class="oath-header-13">Networks</span>
+          <span class="oath-header-14">→</span>
+        </a>
+        <a href="https://articles.oathwallet.org/" data-oath-close class="oath-header-15">
+          <span class="oath-header-16">04</span>
+          <span class="oath-header-17">Articles</span>
+          <span class="oath-header-18">→</span>
+        </a>
+        <a href="https://help.oathwallet.org/" data-oath-close class="oath-header-19">
+          <span class="oath-header-20">05</span>
+          <span class="oath-header-21">Help Center</span>
+          <span class="oath-header-22">→</span>
+        </a>
+        <a href="https://oathwallet.org/press" data-oath-close class="oath-header-23">
+          <span class="oath-header-24">06</span>
+          <span class="oath-header-25">Press</span>
+          <span class="oath-header-26">→</span>
+        </a>
+    </nav>
+    <div class="oath-header-27">
+      <a href="https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283" target="_blank" rel="noopener" class="oath-header-28">Download on the App Store <span>→</span></a>
+      <div class="oath-header-29">
+        <div class="oath-header-30">
+            <a href="https://oathwallet.org/terms" data-oath-close class="oath-header-31">Terms</a>
+            <a href="https://oathwallet.org/privacy" data-oath-close class="oath-header-32">Privacy</a>
+        </div>
+        <div class="oath-header-33">
+          <a href="mailto:care@oathwallet.org" class="oath-header-34">care@oathwallet.org</a>
+          <a href="https://x.com/OathWallet" target="_blank" rel="noopener" class="oath-header-35">X · @OathWallet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<header class="oath-header-36">
+  <div class="oath-header-37">
+    <a href="https://oathwallet.org/" data-oath-close class="oath-header-38"><img src="/assets/brand/oath-mark-dark.svg" alt="" role="presentation" class="oath-header-39"><span class="oath-header-40">Oath</span></a>
+    <nav aria-label="Main navigation" class="oath-header-41">
+        <a href="https://oathwallet.org/" class="oath-header-42">Home</a>
+        <a href="https://oathwallet.org/features" class="oath-header-43">Features</a>
+        <a href="https://oathwallet.org/networks" class="oath-header-44">Networks</a>
+        <a href="https://articles.oathwallet.org/" class="oath-header-45">Articles</a>
+        <a href="https://help.oathwallet.org/" class="oath-header-46">Help Center</a>
+    </nav>
+    <div class="oath-header-47">
+      <a href="https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283" target="_blank" rel="noopener" class="oath-header-48">Get the app</a>
+      <button data-oath-toggle aria-controls="oath-site-menu" aria-label="Open menu" aria-expanded="false" class="oath-header-49">
+        <span class="oath-header-50"></span>
+        <span class="oath-header-51"></span>
+      </button>
+    </div>
+  </div>
+</header></div><!-- oath-shared-header:end --><main id="content"><article>
 <div class="article-hero"><nav aria-label="Breadcrumb" style="font:14px/1.5 'Instrument Sans',sans-serif;margin-bottom:24px"><a href="https://articles.oathwallet.org/">Oath articles</a> / <span aria-current="page">Lock Oath Down: Passcode, Biometrics and Auto-Lock</span></nav><a class="back" href="/articles">← All articles</a><div class="eyebrow">Security <span>·</span> <time datetime="2026-08-31T12:27:08.913+00:00">August 31, 2026</time></div><h1>Lock Oath Down: Passcode, Biometrics and Auto-Lock</h1><p class="dek">Choose access controls deliberately and keep a separate recovery method.</p><div class="byline"><span>Oath Editorial <span>·</span> 2 min read</span></div><p class="archive-note">Screenshots reflect the app version available at the time of original publication.</p></div>
 <div class="cover"><img src="/assets/articles/oath-blue-2026-10-18/app-lock.jpg" alt="Oath — Your wallet. Under lock. A white padlock and six passcode dots on blue." fetchpriority="high" width="1200" height="630"></div>
 <div class="reading-layout"><aside><div class="toc"><p>In this guide</p><ol><li><a href="#current-guidance">Current release guidance</a></li><li><a href="#section-1">App passcode</a></li><li><a href="#section-2">Biometrics</a></li><li><a href="#section-3">Auto-lock</a></li><li><a href="#section-4">Privacy and recovery</a></li></ol></div></aside><div class="article-body"><section class="guide-update" aria-labelledby="current-guidance"><p class="eyebrow">Updated October 30, 2026 · source 4.1.14 (98)</p><h2 id="current-guidance">Current release guidance</h2><p>Checked against the <a href="https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946">4.1.14 source</a>. No Apple upload has been started for build 98; check the version installed on your phone. Older screenshots are illustrative and may show controls absent from this release.</p></section><section><h2 id="section-1">App passcode</h2><p>The app passcode controls local access. In 4.1.14, enabled passcode protection derives a wrapping key using PBKDF2-HMAC-SHA256 with 600,000 rounds. It does not replace recovery words or decrypt an iCloud file protected with a different backup password.</p></section><section><h2 id="section-2">Biometrics</h2><p>Enable supported Face ID or Touch ID if you want it to unlock Oath. iOS handles the biometric templates. Biometric success is an access check; it is not proof of a safe transaction or a substitute for reading what you authorize.</p></section><section><h2 id="section-3">Auto-lock</h2><p>Select the delay offered in Security settings: immediately, one minute, five minutes or ten minutes. The policy uses a continuous clock so device sleep does not extend the grace period. A cold launch does not inherit an unlocked in-process grace period.</p></section><section><h2 id="section-4">Privacy and recovery</h2><p>Use the app-switcher privacy setting where available, and protect the phone’s own passcode. Do not erase or reinstall as a way to fix a forgotten recovery credential: removal discards the installation key. Verify an independent supported backup first.</p></section><p>See the <a href="https://oathwallet.org/security">current security model</a>, <a href="https://help.oathwallet.org/">Help Center</a>, and <a href="https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14">release verification record</a>. Never share recovery words, private keys or backup passwords with support.</p><div class="article-end"><a href="/articles">← Explore all articles</a><a href="mailto:care@oathwallet.org">Questions? Contact Oath ↗</a></div></div></div>
-</article><section class="related"><div class="section-heading"><span class="eyebrow">Keep reading</span><h2>More to <em>keep.</em></h2></div><div class="related-grid"><a href="/articles/why-oath-has-no-swaps-perps-web3-walletconnect"><img src="/assets/articles/oath-blue-2026-10-18/wallet-boundaries.jpg" alt="Oath — A wallet. With boundaries. A white circular boundary surrounds a coin on blue." loading="lazy" width="1200" height="630"><span>Security</span><h3>The Feature Is the Boundary: Why Oath Has No Swaps, Perps, Web3 Browser, or WalletConnect</h3></a><a href="/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security"><img src="/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg" alt="Oath logo and a white circular maze around a blue cube, on a blue background." loading="lazy" width="1200" height="630"><span>Security</span><h3>Coldcard’s Weak-Seed Crisis: Complexity Is Not the Same as Security</h3></a><a href="/articles/add-custom-token-without-trusting-name-symbol"><img src="/assets/articles/oath-blue-2026-10-18/custom-token.jpg" alt="Oath — Know your token. A magnifying glass over a blue token, with white coins behind it." loading="lazy" width="1200" height="630"><span>Security</span><h3>Add a Custom Token Without Trusting Its Name or Symbol</h3></a></div></section></main><footer class="site-footer"><a class="brand" href="/"><img src="/favicon.svg" alt="" width="32" height="32">Oath</a><p>A wallet, not a marketplace.</p><nav aria-label="Footer"><a href="/articles">Articles</a><a href="/features">Features</a><a href="/support">Support</a><a href="/about">About</a><a href="/networks">Networks</a><a href="/press">Press</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:care@oathwallet.org">care@oathwallet.org</a></nav><small>© 2026 Oath · STAGE AND STYLE COLLECTIVE LLC</small></footer></body></html>
+</article><section class="related"><div class="section-heading"><span class="eyebrow">Keep reading</span><h2>More to <em>keep.</em></h2></div><div class="related-grid"><a href="/articles/why-oath-has-no-swaps-perps-web3-walletconnect"><img src="/assets/articles/oath-blue-2026-10-18/wallet-boundaries.jpg" alt="Oath — A wallet. With boundaries. A white circular boundary surrounds a coin on blue." loading="lazy" width="1200" height="630"><span>Security</span><h3>The Feature Is the Boundary: Why Oath Has No Swaps, Perps, Web3 Browser, or WalletConnect</h3></a><a href="/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security"><img src="/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg" alt="Oath logo and a white circular maze around a blue cube, on a blue background." loading="lazy" width="1200" height="630"><span>Security</span><h3>Coldcard’s Weak-Seed Crisis: Complexity Is Not the Same as Security</h3></a><a href="/articles/add-custom-token-without-trusting-name-symbol"><img src="/assets/articles/oath-blue-2026-10-18/custom-token.jpg" alt="Oath — Know your token. A magnifying glass over a blue token, with white coins behind it." loading="lazy" width="1200" height="630"><span>Security</span><h3>Add a Custom Token Without Trusting Its Name or Symbol</h3></a></div></section></main><!-- oath-shared-footer:start --><div class="oath-site-footer"><footer class="oath-footer-0">
+  <div class="oath-footer-1">
+    <div class="oath-footer-2">
+      <div class="oath-footer-3">
+        <div class="oath-footer-4"><img src="/assets/brand/oath-mark-dark.svg" alt="" role="presentation" class="oath-footer-5"><span class="oath-footer-6">Oath</span></div>
+        <span class="oath-footer-7">A wallet, not a marketplace.</span>
+      </div>
+        <div class="oath-footer-8">
+          <span class="oath-footer-9">Product</span>
+          <a href="https://oathwallet.org/" class="oath-footer-10">Home</a><a href="https://oathwallet.org/features" class="oath-footer-11">Features</a><a href="https://oathwallet.org/networks" class="oath-footer-12">Networks</a><a href="https://oathwallet.org/security" class="oath-footer-13">Security</a><a href="https://github.com/devdasx/oath-wallet" class="oath-footer-14">Open source</a><a href="https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283" class="oath-footer-15">Download</a>
+        </div>
+        <div class="oath-footer-16">
+          <span class="oath-footer-17">Help</span>
+          <a href="https://oathwallet.org/about" class="oath-footer-18">About Oath</a><a href="https://help.oathwallet.org/" class="oath-footer-19">Help Center</a><a href="https://articles.oathwallet.org/" class="oath-footer-20">Articles</a><a href="mailto:care@oathwallet.org" class="oath-footer-21">Contact</a><a href="https://oathwallet.org/press" class="oath-footer-22">Press kit</a>
+        </div>
+        <div class="oath-footer-23">
+          <span class="oath-footer-24">Legal</span>
+          <a href="https://oathwallet.org/terms" class="oath-footer-25">Terms of Service</a><a href="https://oathwallet.org/privacy" class="oath-footer-26">Privacy Policy</a>
+        </div>
+    </div>
+    <section aria-labelledby="footer-networks-title" class="oath-footer-27">
+      <div class="oath-footer-28">
+        <h2 id="footer-networks-title" class="oath-footer-29">Find your network.</h2>
+        <a href="https://oathwallet.org/networks" class="oath-footer-30">Explore all networks ↗</a>
+      </div>
+      <nav aria-label="Supported networks" class="oath-footer-31">
+          <a href="https://oathwallet.org/networks/bitcoin" class="oath-footer-32"><img src="/assets/networks/bitcoin.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-33"><span>Bitcoin</span></a>
+          <a href="https://oathwallet.org/networks/ethereum" class="oath-footer-34"><img src="/assets/networks/ethereum.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-35"><span>Ethereum</span></a>
+          <a href="https://oathwallet.org/networks/solana" class="oath-footer-36"><img src="/assets/networks/solana.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-37"><span>Solana</span></a>
+          <a href="https://oathwallet.org/networks/gram" class="oath-footer-38"><img src="/assets/networks/ton.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-39"><span>Gram</span></a>
+          <a href="https://oathwallet.org/networks/thorchain" class="oath-footer-40"><img src="/assets/networks/thorchain.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-41"><span>THORChain</span></a>
+          <a href="https://oathwallet.org/networks/bnb-smart-chain" class="oath-footer-42"><img src="/assets/networks/bnb.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-43"><span>BNB Smart Chain</span></a>
+          <a href="https://oathwallet.org/networks/polygon" class="oath-footer-44"><img src="/assets/networks/polygon.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-45"><span>Polygon</span></a>
+          <a href="https://oathwallet.org/networks/arbitrum" class="oath-footer-46"><img src="/assets/networks/arbitrum.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-47"><span>Arbitrum</span></a>
+          <a href="https://oathwallet.org/networks/base" class="oath-footer-48"><img src="/assets/networks/base.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-49"><span>Base</span></a>
+          <a href="https://oathwallet.org/networks/optimism" class="oath-footer-50"><img src="/assets/networks/optimism.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-51"><span>Optimism</span></a>
+          <a href="https://oathwallet.org/networks/avalanche" class="oath-footer-52"><img src="/assets/networks/avalanche.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-53"><span>Avalanche C-Chain</span></a>
+          <a href="https://oathwallet.org/networks/tron" class="oath-footer-54"><img src="/assets/networks/tron.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-55"><span>TRON</span></a>
+          <a href="https://oathwallet.org/networks/xrp-ledger" class="oath-footer-56"><img src="/assets/networks/xrpl.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-57"><span>XRP Ledger</span></a>
+          <a href="https://oathwallet.org/networks/near" class="oath-footer-58"><img src="/assets/networks/near.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-59"><span>NEAR Protocol</span></a>
+          <a href="https://oathwallet.org/networks/sui" class="oath-footer-60"><img src="/assets/networks/sui.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-61"><span>Sui Network</span></a>
+          <a href="https://oathwallet.org/networks/aptos" class="oath-footer-62"><img src="/assets/networks/aptos.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-63"><span>Aptos</span></a>
+          <a href="https://oathwallet.org/networks/polkadot" class="oath-footer-64"><img src="/assets/networks/polkadot.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-65"><span>Polkadot</span></a>
+          <a href="https://oathwallet.org/networks/stellar" class="oath-footer-66"><img src="/assets/networks/stellar.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-67"><span>Stellar</span></a>
+          <a href="https://oathwallet.org/networks/litecoin" class="oath-footer-68"><img src="/assets/networks/litecoin.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-69"><span>Litecoin</span></a>
+          <a href="https://oathwallet.org/networks/dogecoin" class="oath-footer-70"><img src="/assets/networks/dogecoin.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-71"><span>Dogecoin</span></a>
+          <a href="https://oathwallet.org/networks/bitcoin-cash" class="oath-footer-72"><img src="/assets/networks/bitcoincash.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-73"><span>Bitcoin Cash</span></a>
+          <a href="https://oathwallet.org/networks/arc" class="oath-footer-74"><img src="/assets/networks/arc.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-75"><span>Arc</span></a>
+          <a href="https://oathwallet.org/networks/fantom" class="oath-footer-76"><img src="/assets/networks/fantom.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-77"><span>Fantom</span></a>
+          <a href="https://oathwallet.org/networks/flare" class="oath-footer-78"><img src="/assets/networks/flare.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-79"><span>Flare</span></a>
+          <a href="https://oathwallet.org/networks/gnosis" class="oath-footer-80"><img src="/assets/networks/gnosis.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-81"><span>Gnosis</span></a>
+          <a href="https://oathwallet.org/networks/linea" class="oath-footer-82"><img src="/assets/networks/linea.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-83"><span>Linea</span></a>
+          <a href="https://oathwallet.org/networks/chiliz" class="oath-footer-84"><img src="/assets/networks/chiliz.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-85"><span>Chiliz</span></a>
+          <a href="https://oathwallet.org/networks/iotex" class="oath-footer-86"><img src="/assets/networks/iotex.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-87"><span>IoTeX</span></a>
+          <a href="https://oathwallet.org/networks/0g" class="oath-footer-88"><img src="/assets/networks/zerog.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-89"><span>0G</span></a>
+          <a href="https://oathwallet.org/networks/sei" class="oath-footer-90"><img src="/assets/networks/sei.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-91"><span>Sei</span></a>
+          <a href="https://oathwallet.org/networks/filecoin" class="oath-footer-92"><img src="/assets/networks/filecoin.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-93"><span>Filecoin</span></a>
+          <a href="https://oathwallet.org/networks/celo" class="oath-footer-94"><img src="/assets/networks/celo.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-95"><span>Celo</span></a>
+          <a href="https://oathwallet.org/networks/monad" class="oath-footer-96"><img src="/assets/networks/monad.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-97"><span>Monad</span></a>
+          <a href="https://oathwallet.org/networks/unichain" class="oath-footer-98"><img src="/assets/networks/unichain.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-99"><span>Unichain</span></a>
+          <a href="https://oathwallet.org/networks/hyperevm" class="oath-footer-100"><img src="/assets/networks/hyperevm.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-101"><span>HyperEVM</span></a>
+          <a href="https://oathwallet.org/networks/robinhood-chain" class="oath-footer-102"><img src="/assets/networks/robinhood.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-103"><span>Robinhood Chain</span></a>
+          <a href="https://oathwallet.org/networks/scroll" class="oath-footer-104"><img src="/assets/networks/scroll.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-105"><span>Scroll</span></a>
+          <a href="https://oathwallet.org/networks/somnia" class="oath-footer-106"><img src="/assets/networks/somnia.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-107"><span>Somnia</span></a>
+          <a href="https://oathwallet.org/networks/story" class="oath-footer-108"><img src="/assets/networks/story.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-109"><span>Story</span></a>
+          <a href="https://oathwallet.org/networks/taiko" class="oath-footer-110"><img src="/assets/networks/taiko.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-111"><span>Taiko</span></a>
+          <a href="https://oathwallet.org/networks/telos" class="oath-footer-112"><img src="/assets/networks/telos.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-113"><span>Telos</span></a>
+          <a href="https://oathwallet.org/networks/x-layer" class="oath-footer-114"><img src="/assets/networks/xlayer.webp" alt="" width="20" height="20" loading="lazy" class="oath-footer-115"><span>X Layer</span></a>
+      </nav>
+    </section>
+    <div aria-hidden="true" class="oath-footer-116">Oath</div>
+    <div class="oath-footer-117">
+      <span>© 2026 Oath. A self-custody wallet — Oath never holds or controls your funds.</span>
+      <div class="oath-footer-118"><a href="https://x.com/OathWallet" target="_blank" rel="noopener" class="oath-footer-119"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="oath-footer-120"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.1l-4.8-6.3L6.6 22H3.5l7.3-8.3L1 2h6.2l4.4 5.8Zm-1.1 18.2h1.7L6.3 3.7H4.5Z"></path></svg>@OathWallet</a></div>
+    </div>
+  </div>
+</footer></div><!-- oath-shared-footer:end --><script src="/site-chrome.js" defer></script></body></html>

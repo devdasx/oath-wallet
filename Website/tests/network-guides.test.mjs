@@ -67,12 +67,19 @@ test('network slider moves only through explicit controls and respects reduced m
  assert.equal((html.match(/id="network-track"/g)||[]).length,1,'one enhanced slider');
 });
 
-test('directory search handles TON aliases, empty results and resetting the filter',async()=>{
- let callback;const cards=catalog.networks.map(n=>({hidden:false,dataset:{networkKeywords:n.name+' '+n.symbol+' '+n.id}}));
- const input={value:'',addEventListener:(name,cb)=>{callback=cb;}};const count={};const empty={};
- const document={querySelector:s=>s==='[data-network-search]'?input:s==='[data-network-count]'?count:empty,querySelectorAll:()=>cards};
+test('directory search and family filters combine, reset and preserve TON aliases',async()=>{
+ const element=(dataset={})=>({dataset,events:{},attributes:{},addEventListener(name,cb){this.events[name]=cb;},setAttribute(name,value){this.attributes[name]=value;}});
+ const cards=catalog.networks.map(n=>({hidden:false,dataset:{networkKeywords:n.name+' '+n.symbol+' '+n.id,networkGroup:n.group}}));
+ const input=Object.assign(element(),{value:'',focus(){this.focused=true;}}),count={},empty={},reset=element();
+ const groups=['all',...new Set(catalog.networks.map(n=>n.group))];const filters=groups.map(g=>element({networkFilter:g}));
+ const nodes={'[data-network-search]':input,'[data-network-count]':count,'[data-network-empty]':empty,'[data-network-reset]':reset};
+ const document={querySelector:s=>nodes[s],querySelectorAll:s=>s==='[data-network-filter]'?filters:cards};
  runInNewContext(await read('network-guides.js'),{document});
- input.value='ton';callback();assert.ok(cards.some(c=>!c.hidden&&c.dataset.networkKeywords.includes('Gram')));
- input.value='no-such-chain';callback();assert.equal(cards.filter(c=>!c.hidden).length,0);assert.equal(empty.hidden,false);
- input.value='';callback();assert.equal(cards.filter(c=>!c.hidden).length,42);assert.equal(empty.hidden,true);
+ input.value='ton';input.events.input();assert.ok(cards.some(c=>!c.hidden&&c.dataset.networkKeywords.includes('Gram')));
+ filters.find(f=>f.dataset.networkFilter==='EVM').events.click();assert.equal(cards.filter(c=>!c.hidden).length,0);assert.equal(empty.hidden,false);
+ reset.events.click();assert.equal(cards.filter(c=>!c.hidden).length,42);assert.equal(input.focused,true);assert.equal(empty.hidden,true);
+ filters.find(f=>f.dataset.networkFilter==='Bitcoin family').events.click();assert.equal(cards.filter(c=>!c.hidden).length,catalog.networks.filter(n=>n.group==='Bitcoin family').length);
+ input.value='bitcoin';input.events.input();assert.ok(cards.filter(c=>!c.hidden).every(c=>c.dataset.networkGroup==='Bitcoin family'));
+ input.value='no-such-chain';input.events.input();assert.equal(count.textContent,'0 networks');
+ reset.events.click();input.value='ethereum';input.events.input();assert.equal(count.textContent,'1 network');assert.equal(filters[0].attributes['aria-pressed'],'true');
 });

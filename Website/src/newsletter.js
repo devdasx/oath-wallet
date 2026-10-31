@@ -87,7 +87,7 @@ export async function handleNewsletter(request,env){
    const paths={'/':'/news/index.html','/admin':'/news/admin.html','/admin/':'/news/admin.html','/confirm':'/news/preferences.html','/preferences':'/news/preferences.html','/unsubscribe':'/news/preferences.html','/newsletter-preview':'/news/index.html'};
    const mapped=paths[url.pathname];
    if(mapped){url.pathname=mapped;url.search='';return newsletterSecurity(await env.ASSETS.fetch(new Request(url,request)));}
-   if(url.pathname.startsWith('/news/')||url.pathname==='/newsletter.js'||url.pathname==='/newsletter.css'||url.pathname.startsWith('/assets/brand/')||url.pathname==='/favicon.svg')return newsletterSecurity(await env.ASSETS.fetch(request));
+   if(url.pathname.startsWith('/news/')||url.pathname.startsWith('/assets/fonts/')||['/site-chrome.js','/help/site-chrome.css'].includes(url.pathname)||/^\/assets\/networks\/[a-z0-9-]+\.webp$/.test(url.pathname)||url.pathname==='/newsletter.js'||url.pathname==='/newsletter.css'||url.pathname.startsWith('/assets/brand/')||url.pathname==='/favicon.svg')return newsletterSecurity(await env.ASSETS.fetch(request));
    return newsletterSecurity(new Response('Page not found',{status:404}));
   }
   return null;

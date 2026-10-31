@@ -46,8 +46,8 @@ test('all core pages deliver readable content and navigation before JavaScript',
     assert.ok(readable, page+' has server HTML');
     assert.match(readable, /<h1>[\s\S]+?<\/h1>/,page);
     assert.equal((html.match(/<h1(?:\s|>)/gi)||[]).length,1,page+' has one H1 even when inert templates are parsed');
-    assert.match(readable, /<nav aria-label="Main navigation">/,page);
-    assert.match(readable, /href="\/security"/,page);
+    assert.match(readable, /<nav aria-label="Main navigation"[^>]*>/,page);
+    assert.match(readable, /href="(?:https:\/\/oathwallet.org)?\/security"/,page);
     assert.match(readable, /href="https:\/\/apps.apple.com\//,page);
     assert.doesNotMatch(readable, /<noscript|<template|\{\{/,page);
     const enhancedTemplate=html.match(/<template data-oath-template>([\s\S]*?)<\/template>/)?.[1];

@@ -1,5 +1,5 @@
-// Render the website's canonical exported components at build time. The Help
-// Center stays server-rendered, with no client template evaluator or inline CSS.
+// Render the canonical website components for static pages and the Help Center.
+// Both retain server-rendered navigation without a client template evaluator.
 import {readFile, writeFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
 import {fileURLToPath} from 'node:url';
@@ -35,17 +35,17 @@ function render(template, scope) {
     return ` data-oath-${action}`;
   }).replace(/{{\s*([^{}]+?)\s*}}/g,(_,expression)=>escape(value(expression,scope)));
 }
-function component(source,width,open=false) {
+function component(source,width,open=false,active='Help Center') {
   const template=/<x-dc>([\s\S]*?)<\/x-dc>/.exec(source)?.[1].replace(/<helmet>[\s\S]*?<\/helmet>/,'').trim();
   const script=/<script\b[^>]*data-dc-script[^>]*>([\s\S]*?)<\/script>/.exec(source)?.[1];
   if (!template || !script) throw Error('Shared website component is missing its template or logic');
   // Only trusted repository code is evaluated, during the build, never content
   // from Supabase or a request. Lifecycle effects are not run.
   const values=runInNewContext(script+`;const instance=new Component(); instance.state.open=${open}; instance.renderVals();`, {
-    DCLogic: class { constructor(){this.props={active:'Help Center'};} },
+    DCLogic: class { constructor(){this.props={active};} },
     window:{innerWidth:width,OathIcons:{}},
   },{timeout:1000});
-  return render(template,values);
+  return render(template,values).replace(/[ \t]+\n/g,'\n').replace(/\n{2,}/g,'\n');
 }
 function lightFooter(html) {
   const colors={'#0A0A0B':'#FFFFFF','#F2F0EA':'#0A0A0B','#8E8C86':'#62605A','#D6D4CD':'#383735','#6E6C67':'#D6D4CD','#FFFFFF':'#000000','rgba(242,240,234,.12)':'rgba(10,10,11,.12)'};
@@ -85,10 +85,10 @@ function rules(part,styles,previous=[],state='') {
       +(entry.hover!==previous[i]?.hover && entry.hover ? `${selector}:hover{${entry.hover}}\n` : '');
   }).join('');
 }
-export async function buildHelpChrome() {
+export async function buildSiteChrome({light=false}={}) {
   const sources=await Promise.all(['Header','Footer'].map(name=>readFile(new URL(`../public/Oath ${name}.dc.html`,import.meta.url),'utf8')));
-  const header=(width,open)=>extractStyles(lightHeader(component(sources[0],width,open)),'header');
-  const footer=width=>extractStyles(lightFooter(component(sources[1],width)),'footer');
+  const header=(width,open)=>extractStyles((light ? lightHeader : v=>v)(component(sources[0],width,open,light?'Help Center':'')),'header');
+  const footer=width=>extractStyles((light ? lightFooter : v=>v)(component(sources[1],width)),'footer');
   const desktop=header(1200,false), mobile=header(390,false), narrow=header(320,false), expanded=header(390,true);
   const wideFooter=footer(1200),smallFooter=footer(390);
   let headerHTML=desktop.html.replace(/^<div aria-hidden="true"/, '<div id="oath-site-menu" inert aria-hidden="true"')
@@ -101,13 +101,15 @@ export async function buildHelpChrome() {
     +'@media(max-width:359px){\n'+rules('header',narrow.styles,mobile.styles)+'}\n'
     +'@media(max-width:759px){\n'+rules('footer',smallFooter.styles,wideFooter.styles)+'}\n'
     +rules('header',expanded.styles,mobile.styles,'[data-menu-open]')
-    +'.oath-site-header + main{margin-top:96px}\n'
-    +'.oath-site-header a:focus-visible,.oath-site-header button:focus-visible{outline:2px solid #0A0A0B;outline-offset:4px}\n'
+    +(light ? '.oath-site-header + main{margin-top:96px}\n' : '')
+    +`.oath-site-header a:focus-visible,.oath-site-header button:focus-visible,.oath-site-footer a:focus-visible{outline:2px solid ${light?'#0A0A0B':'#F2F0EA'};outline-offset:4px}\n`
+    +'.oath-site-header,.oath-site-footer{direction:ltr}.oath-site-header *,.oath-site-footer *{box-sizing:border-box}.oath-site-header a[aria-current=page]{font-weight:600}\n'
     +'@media(prefers-reduced-motion:reduce){.oath-site-header *{transition:none!important}}\n'
     +'@media print{.oath-site-header,.oath-site-footer{display:none}.oath-site-header + main{margin-top:0}}\n';
   const note='// Generated from public/Oath Header.dc.html and public/Oath Footer.dc.html. Run npm run build:help-chrome.\n';
-  return {module:note+html,css:'/* Generated from the main website components. Do not edit directly. */\n'+css};
+  return {header:'<div class="oath-site-header">'+headerHTML+'</div>',footer:'<div class="oath-site-footer">'+wideFooter.html+'</div>',module:note+html,css:'/* Generated from the main website components. Do not edit directly. */\n@import url("/assets/fonts/oath-fonts.css");\n'+css};
 }
+export const buildHelpChrome = () => buildSiteChrome({light:true});
 if(process.argv[1]===fileURLToPath(import.meta.url)){
   const output=await buildHelpChrome();
   await writeFile(new URL('../src/help/site-chrome.js',import.meta.url),output.module);

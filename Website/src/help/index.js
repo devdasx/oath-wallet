@@ -18,7 +18,9 @@ export async function handleHelp(request, env) {
   if (url.hostname !== 'help.oathwallet.org' && !(env.HELP_PREVIEW === 'true' && ['localhost','127.0.0.1'].includes(url.hostname))) return null;
   if (!['GET','HEAD'].includes(request.method)) return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
   if (url.hostname === 'help.oathwallet.org' && url.protocol !== 'https:') {url.protocol='https:';return Response.redirect(url.href,301);}
-  if (url.pathname.startsWith('/help/') || ['/favicon.svg','/assets/brand/oath-mark-dark.svg','/assets/brand/oath-mark-light.svg'].includes(url.pathname)) return env.ASSETS.fetch(request);
+  if (url.pathname.startsWith('/help/') || url.pathname.startsWith('/assets/fonts/')
+    || /^\/assets\/networks\/[a-z0-9-]+\.webp$/.test(url.pathname)
+    || ['/site-chrome.js','/favicon.svg','/assets/brand/oath-mark-dark.svg','/assets/brand/oath-mark-light.svg'].includes(url.pathname)) return env.ASSETS.fetch(request);
   if (url.pathname.length > 1 && url.pathname.endsWith('/')) {url.pathname=url.pathname.replace(/\/+$/,'');return Response.redirect(url.href,308);}
   let body, status=200, type='text/html; charset=utf-8';
   if (url.pathname === '/') body=home(data);
