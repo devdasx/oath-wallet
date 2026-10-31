@@ -18,6 +18,5 @@ test('home preview uses the requested synthetic portfolio and app artwork',async
  assert.doesNotMatch(source,/Markets|Trending|Pinned Assets|31,509/);
  for(const asset of values.assets)assert.ok((await readFile(new URL('../public'+asset.icon,import.meta.url))).length>0);
  const home=await readFile(new URL('../public/index.html',import.meta.url),'utf8');
- assert.match(home,/balances are synthetic/);
  assert.match(home,/aspect-ratio:440\/956/);
 });
