@@ -3,7 +3,7 @@
   "release": "https://github.com/trustwallet/wallet-core/releases/tag/4.8.4",
   "registry_url": "https://raw.githubusercontent.com/trustwallet/wallet-core/4.8.4/registry.json",
   "registry_sha256": "9b6d3202e009dc5634531b84b4590d3d3fe6d08f1205f93f8eaae98444017240",
-  "package_manifest_sha256": "129ab0722c6e6cd8490923079c3bbb2e517cfbfa66497778ef918458281a0a57",
+  "package_manifest_sha256": "4c68ba46c8dc206b7ac1e8031d38f892b3fbf8e84d3e2ab3f1d0b83614328830",
   "defaults": "Account zero, first external address, empty BIP39 passphrase; all EVM networks use the Ethereum path. No network calls are required to create addresses.",
   "upstream_commit": "d40d24a63d92619167903369308bf0e2f7eb3a59",
   "artifact_release": "https://github.com/devdasx/oath-wallet-security-review/releases/tag/review-4.1.15-build100-progress19",
