@@ -2,6 +2,9 @@
 import Foundation
 
 final class LinkSessionRequester {
+    enum Errors: Error {
+        case missingPeerUniversalLink
+    }
     private let sessionStore: WCSessionStorage
     private let linkEnvelopesDispatcher: LinkEnvelopesDispatcher
     private let logger: ConsoleLogging
@@ -29,8 +32,9 @@ final class LinkSessionRequester {
             logger.debug("Invalid namespaces")
             throw WalletConnectError.invalidPermissions
         }
-        // it's safe to force unwrap because redirect was used during session creation before
-        let peerUniversalLink = session.peerParticipant.metadata.redirect!.universal!
+        guard let peerUniversalLink = session.peerParticipant.metadata.redirect?.universal else {
+            throw Errors.missingPeerUniversalLink
+        }
         let chainRequest = SessionType.RequestParams.Request(method: request.method, params: request.params, expiryTimestamp: request.expiryTimestamp)
         let sessionRequestParams = SessionType.RequestParams(request: chainRequest, chainId: request.chainId)
         let ttl = try request.calculateTtl()

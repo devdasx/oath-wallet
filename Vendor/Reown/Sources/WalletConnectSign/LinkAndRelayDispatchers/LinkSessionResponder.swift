@@ -36,7 +36,7 @@ class LinkSessionResponder {
             throw error
         }
 
-        guard let peerUniversalLink = session.peerParticipant.metadata.redirect!.universal else {
+        guard let peerUniversalLink = session.peerParticipant.metadata.redirect?.universal else {
             let error = Errors.missingPeerUniversalLink
             logger.debug("failed: \(error)")
             throw error

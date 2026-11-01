@@ -62,7 +62,6 @@ class LinkSessionRequestSubscriber {
             logger.debug("Session for topic not found")
             return
         }
-        upgradeSessionToLinkModeIfNeeded(&session)
         guard let peerUniversalLink = session.peerParticipant.metadata.redirect?.universal else {
             logger.debug("Peer universal link not found")
             return
@@ -80,6 +79,8 @@ class LinkSessionRequestSubscriber {
             return respondError(payload: payload, reason: .sessionRequestExpired, peerUniversalLink: peerUniversalLink)
         }
 
+        // Rejected input must not change how later session messages are routed.
+        upgradeSessionToLinkModeIfNeeded(&session)
         logger.debug("will emit request")
         sessionRequestsProvider.emitRequestIfPending()
     }
