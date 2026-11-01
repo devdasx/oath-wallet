@@ -1,4 +1,4 @@
-# Official device symbols prepared by PrepareWalletCoreSymbols.py.
+# Matching device symbols prepared by PrepareWalletCoreSymbols.py.
 $(SRCROOT)/Tools/CopyWalletCoreSymbols.sh
 $(TARGET_BUILD_DIR)/$(FRAMEWORKS_FOLDER_PATH)/WalletCore.framework/WalletCore
 $(SRCROOT)/Packages/WalletCore/.build/symbols/ios-arm64/WalletCore.framework.dSYM/Contents/Info.plist
