@@ -34,7 +34,7 @@
     "macos-arm64/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
     "macos-arm64/libOathAezeedCore.a": "c82a4a16b512f95d1a0285ce0d8a9ccf4d0cfcc5e7311952c7e219a362898d49"
   },
-  "reproducibility": "Replacement dependency repairs: two isolated rebuild checks pending; historical shipped binary equivalence remains unproven.",
+  "reproducibility": "All ten framework files matched across two isolated source/output/cache paths using the recorded toolchain. Dependency repair source preparation is hash-verified. Historical shipped binary equivalence remains unproven.",
   "compatibility": "Production seed-format and password semantics unchanged; compile settings omit debug metadata and normalize archive and plist metadata.",
   "source_preparation": "Pinned modules verified before isolated vendoring; DependencyRepairs.json binds exact upstream and patched file hashes; shared module cache is unchanged."
 }
