@@ -22,11 +22,11 @@ final class SessionStorage: WCSessionStorage {
 
     init(storage: SequenceStore<WCSession>) {
         self.storage = storage
-        storage.onSequenceUpdate = { [unowned self] in
-            onSessionsUpdate?()
+        storage.onSequenceUpdate = { [weak self] in
+            self?.onSessionsUpdate?()
         }
-        storage.onSequenceExpiration = { [unowned self] session in
-            onSessionExpiration?(session)
+        storage.onSequenceExpiration = { [weak self] session in
+            self?.onSessionExpiration?(session)
         }
     }
 

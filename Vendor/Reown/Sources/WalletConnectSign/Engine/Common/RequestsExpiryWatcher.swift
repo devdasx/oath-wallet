@@ -24,9 +24,14 @@ class RequestsExpiryWatcher {
         setUpExpiryCheckTimer()
     }
 
+    deinit {
+        checkTimer?.invalidate()
+    }
+
     func setUpExpiryCheckTimer() {
-        checkTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [unowned self] _ in
-            checkForRequestExpiry()
+        checkTimer?.invalidate()
+        checkTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
+            self?.checkForRequestExpiry()
         }
     }
 
