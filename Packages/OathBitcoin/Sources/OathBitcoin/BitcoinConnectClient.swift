@@ -72,18 +72,22 @@ public struct BitcoinConnectClient: Sendable {
     public func parents(psbt: String, network: BitcoinConnectNetwork) async throws -> [String: Data] {
         let hashes = try BitcoinConnectSigning.previousTransactions(psbt)
         var result: [String:Data] = [:]
+        var remainingParentBytes = BitcoinConnectPSBT.maximumBytes
         for start in stride(from: 0, to: hashes.count, by: 8) {
             let batch = Array(hashes[start..<min(start + 8, hashes.count)])
-            let rows = try await withThrowingTaskGroup(of: (String,Data).self) { group in
+            try await withThrowingTaskGroup(of: (String,Data).self) { group in
                 for hash in batch { group.addTask {
                     let bytes = try await fetch("/tx/\(hash)/hex", network:network)
                     guard let text = String(data:bytes, encoding:.utf8), let raw = Data(hex:text.trimmingCharacters(in:.whitespacesAndNewlines)),
                           try Transaction(transactionBytes:raw).computeTxid().description == hash else { throw BitcoinConnectError.wrongInput }
                     return (hash,raw)
                 } }
-                var rows: [(String,Data)] = []; for try await row in group { rows.append(row) }; return rows
+                for try await (hash, raw) in group {
+                    guard raw.count <= remainingParentBytes else { throw BitcoinConnectError.tooLarge }
+                    remainingParentBytes -= raw.count
+                    result[hash] = raw
+                }
             }
-            for (hash,raw) in rows { result[hash] = raw }
         }
         return result
     }

@@ -112,7 +112,7 @@ public struct BitcoinConnectRequest: Codable, Equatable, Sendable {
             if let changeAddress { _ = try network.script(changeAddress) }
             if let memo { guard memo.count <= 160, memo.count % 2 == 0, Data(hex: memo) != nil else { throw BitcoinConnectError.invalidRequest } }
         case "signPsbt":
-            guard let psbt, let bytes = Data(base64Encoded: psbt), bytes.count <= 500_000,
+            guard let psbt, let bytes = Data(base64Encoded: psbt), bytes.count <= BitcoinConnectPSBT.maximumBytes,
                   let signInputs, !signInputs.isEmpty, signInputs.count <= 128,
                   Set(signInputs.map(\.index)).count == signInputs.count else { throw BitcoinConnectError.invalidPSBT }
             for input in signInputs {
