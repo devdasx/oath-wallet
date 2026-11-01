@@ -33,7 +33,7 @@ struct OathWCCallDetails: View {
                 .accessibilityIdentifier("walletconnect.call.summary")
 
             if !swap.routes.isEmpty {
-                OathWCSwapSummary(request: request, review: swap, identities: identities)
+                OathWCSwapSummary(request: request, review: swap, identities: identities, showsOperations: false)
             }
             if (action.kind == .contract && !details.isRouter) || (details.isRouter && !details.fullyDecoded) {
                 OathSettingsFooter { Text(strings.text(.wcDecodedUnavailable)) }
@@ -44,18 +44,8 @@ struct OathWCCallDetails: View {
 
             if details.isRouter {
                 if let deadline = details.deadline { value(.init(label: .deadline, value: deadline)) }
-                ForEach(Array(details.steps.enumerated()), id: \.offset) { index, step in
-                    OathSettingsSectionRule()
-                    HStack(spacing: 12) {
-                        Text(strings.number(index + 1)).oathFont(.subheadline, weight: .semibold)
-                            .padding(10).background(Color(uiColor: OathSurfaceColors.field), in: Circle())
-                        Text(strings.text(title(step.operation))).oathFont(.headline)
-                        Spacer(minLength: 0)
-                    }.padding(20)
-                    if step.optional { OathSettingsFooter { Text(strings.text(.wcOptionalStep)) } }
-                    if step.operation == .unknown { OathSettingsFooter { Text(strings.text(.wcDecodedUnavailable)) } }
-                    ForEach(Array(step.values.enumerated()), id: \.offset) { _, field in value(field) }
-                }
+                OathWCCommandSteps(request: request, steps: details.steps, identities: identities,
+                                   approvalToken: approvalToken)
             } else {
                 ForEach(Array(action.fields.enumerated()), id: \.offset) { _, field in
                     // Approve is shared by ERC-20/ERC-721. Only verified allowance
@@ -83,16 +73,6 @@ struct OathWCCallDetails: View {
         }
     }
 
-    private func title(_ operation: WalletConnectCallDetails.Operation) -> OathStringKey {
-        switch operation {
-        case .swap: .wcReviewSwap
-        case .transfer: .send
-        case .wrap: .wcWrapNative
-        case .unwrap: .wcUnwrapNative
-        case .balanceCheck: .wcTokenBalance
-        case .unknown: .wcContractCall
-        }
-    }
     private func nativeAmount(_ amount: String) -> String {
         (OathSendAmount.units(amount, decimals: 18) ?? amount) + " " + (network?.symbol ?? "")
     }
@@ -103,7 +83,63 @@ struct OathWCCallDetails: View {
         }
         return label == .amount && (action.kind == .transfer || approvalToken != nil) ? request.recipient : nil
     }
-    @ViewBuilder private func value(_ field: WalletConnectCallDetails.Value) -> some View {
+    private func value(_ field: WalletConnectCallDetails.Value) -> some View {
+        OathWCCallValue(request: request, field: field, identities: identities, approvalToken: approvalToken)
+    }
+
+}
+
+
+/// Both approval and expanded details render the same ordered command list.
+/// Amounts fall back to exact raw units while optional metadata is unavailable.
+private struct OathWCCommandSteps: View {
+    let request: WalletConnectEVMRequest
+    let steps: [WalletConnectCallDetails.Step]
+    let identities: [String: ContractIdentity]
+    var approvalToken: WalletConnectApprovalToken? = nil
+    @Environment(\.oathLocalizer) private var strings
+    var body: some View {
+        VStack(spacing: 0) {
+            ForEach(Array(steps.enumerated()), id: \.offset) { index, step in
+                OathSettingsSectionRule()
+                HStack(spacing: 12) {
+                    Text(strings.number(index + 1)).oathFont(.subheadline, weight: .semibold)
+                        .padding(10).background(Color(uiColor: OathSurfaceColors.field), in: Circle())
+                    Text(strings.text(title(step.operation))).oathFont(.headline)
+                    Spacer(minLength: 0)
+                    Text(verbatim: step.command).oathFont(.caption).foregroundStyle(.secondary)
+                }.padding(20)
+                if step.optional { OathSettingsFooter { Text(strings.text(.wcOptionalStep)) } }
+                if step.operation == .unknown { OathSettingsFooter { Text(strings.text(.wcDecodedUnavailable)) } }
+                ForEach(Array(step.values.enumerated()), id: \.offset) { _, field in
+                    OathWCCallValue(request: request, field: field, identities: identities, approvalToken: approvalToken)
+                }
+            }
+        }.accessibilityIdentifier("walletconnect.call.operations")
+    }
+    private func title(_ operation: WalletConnectCallDetails.Operation) -> OathStringKey {
+        switch operation {
+        case .swap: .wcReviewSwap
+        case .transfer: .send
+        case .wrap: .wcWrapNative
+        case .unwrap: .wcUnwrapNative
+        case .balanceCheck: .wcTokenBalance
+        case .unknown: .wcContractCall
+        }
+    }
+}
+
+private struct OathWCCallValue: View {
+    let request: WalletConnectEVMRequest
+    let field: WalletConnectCallDetails.Value
+    let identities: [String: ContractIdentity]
+    var approvalToken: WalletConnectApprovalToken? = nil
+    @Environment(\.oathLocalizer) private var strings
+    private var network: EVMSendNetwork? { EVMSendNetwork.allCases.first { $0.chainID == request.chainID } }
+    private func nativeAmount(_ amount: String) -> String {
+        (OathSendAmount.units(amount, decimals: 18) ?? amount) + " " + (network?.symbol ?? "")
+    }
+    var body: some View {
         let metadata = field.token.flatMap { identities[$0] }
         let decimals = field.token == request.recipient ? approvalToken?.decimals ?? metadata?.decimals : metadata?.decimals
         let formatted = field.token == "native" || field.token == "0x" + String(repeating: "0", count: 40)
@@ -129,7 +165,6 @@ struct OathWCCallDetails: View {
             OathSettingsFooter { Text(strings.text(.wcRawAmount)) }
         }
     }
-
 }
 
 private struct OathWCRawCallDetails: View {
@@ -172,6 +207,7 @@ struct OathWCSwapSummary: View {
     let request: WalletConnectEVMRequest
     let review: WalletConnectSwapReview
     let identities: [String: ContractIdentity]
+    var showsOperations = true
     @Environment(\.oathLocalizer) private var strings
     private var network: EVMSendNetwork? { EVMSendNetwork.allCases.first { $0.chainID == review.chainID } }
 
@@ -199,14 +235,11 @@ struct OathWCSwapSummary: View {
                     OathWCValue(title: strings.text(.sendRecipient), value: route.recipient, leftToRight: true)
                 }
             }
-            ForEach(Array(review.nativeConversions.enumerated()), id: \.offset) { _, step in
-                OathSettingsSectionRule()
-                OathWCValue(title: strings.text(step.operation == .wrap ? .wcWrapNative : .wcUnwrapNative),
-                    value: network?.symbol ?? "—", leftToRight: true)
-                if step.optional { OathSettingsFooter { Text(strings.text(.wcOptionalStep)) } }
-                if let recipient = step.values.first(where: { $0.label == .recipient })?.value {
-                    OathWCValue(title: strings.text(.sendRecipient), value: recipient, leftToRight: true)
+            if showsOperations {
+                if let deadline = review.deadline {
+                    OathWCCallValue(request: request, field: .init(label: .deadline, value: deadline), identities: identities)
                 }
+                OathWCCommandSteps(request: request, steps: review.operations, identities: identities)
             }
         }
     }

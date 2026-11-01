@@ -120,7 +120,9 @@ public struct WalletConnectCallDetails: Sendable, Equatable {
             case 0x02, 0x04, 0x05:
                 if bytes.count == 96, let token = abi.address(0), let recipient = abi.address(1), let value = abi.uint(2),
                    code != 2 || abi.word(2)?.prefix(12).allSatisfy({ $0 == 0 }) == true {
-                    values = [.init(label: .tokenIn, value: token), .init(label: .recipient, value: mapped(recipient)),
+                    values = [.init(label: .tokenIn, value: token),
+                              .init(label: .owner, value: code == 2 ? request.sender : request.recipient),
+                              .init(label: .recipient, value: mapped(recipient)),
                               // Native transfers use the literal amount. Only
                               // ERC-20 transfers recognize CONTRACT_BALANCE.
                               amount(code == 4 ? .minimumReceived : .amount, value, token: token,

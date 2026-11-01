@@ -191,7 +191,7 @@ struct OathWCEVMReview: View {
                     Text(strings.text(.wcCallValue)).oathFont(.subheadline).foregroundStyle(.secondary)
                 }
             }.frame(maxWidth: .infinity).multilineTextAlignment(.center).padding(24)
-            if !swap.routes.isEmpty {
+            if !swap.routes.isEmpty || !swap.operations.isEmpty {
                 OathWCSwapSummary(request: request, review: swap, identities: identities)
             } else if swap.incomplete {
                 OathSettingsFooter { Text(strings.text(.wcDecodedUnavailable)) }
