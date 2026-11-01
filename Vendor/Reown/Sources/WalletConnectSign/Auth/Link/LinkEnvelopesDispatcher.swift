@@ -186,11 +186,17 @@ final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
     }
 
     private func manageEnvelope(_ topic: String, _ encodedEnvelope: String) {
+        guard let bytes = Data(base64url: encodedEnvelope), let type = bytes.first,
+              type == 0 || type == 1 || type == 2 else { return }
         if let result = serializer.tryDeserializeRequestOrResponse(topic: topic, codingType: .base64UrlEncoded, envelopeString: encodedEnvelope) {
             switch result {
             case .left(let result):
+                // Link authentication begins without an established topic key.
+                // All session messages still require an encrypted envelope.
+                guard type != 2 || result.request.method == SessionAuthenticatedProtocolMethod.responseApprove().method else { return }
                 handleRequest(topic: topic, request: result.request)
             case .right(let result):
+                guard type != 2 else { return }
                 handleResponse(topic: topic, response: result.response)
             }
         } else {
@@ -211,7 +217,7 @@ final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
     private func handleResponse(topic: String, response: RPCResponse) {
         do {
             logger.debug("handling link mode response")
-            let record = try rpcHistory.resolve(response)
+            let record = try rpcHistory.resolve(response, forResponseTopic: topic)
             responsePublisherSubject.send((topic, record.request, response))
         } catch {
             logger.debug("Handling link mode response failed: \(error)")
