@@ -15,7 +15,7 @@ import sys
 import tempfile
 
 root = Path(__file__).resolve().parents[1]
-if "--walletconnect-transactions" in sys.argv or "--permission-batch" in sys.argv:
+if "--walletconnect-transactions" in sys.argv or "--permission-batch" in sys.argv or "--permission-batch-races" in sys.argv:
     sys.argv.append("--evm-send")
 with tempfile.TemporaryDirectory(prefix="oath-multiwallet-") as temporary:
     work = Path(temporary)
@@ -560,7 +560,7 @@ struct FixtureMarketService: Sendable {
 extension OathPostSendBalanceRefresh { func submitted(walletID: String, networkID: String) async {} }
 ''')
         else:
-            shutil.copyfile(root / ("Tools/CheckPermissionBatchAuthorization.swift" if "--permission-batch" in sys.argv else "Tools/CheckEVMSendAuthorization.swift"), sources / "CheckEVMSendAuthorization.swift")
+            shutil.copyfile(root / ("Tools/CheckPermissionBatchRaces.swift" if "--permission-batch-races" in sys.argv else "Tools/CheckPermissionBatchAuthorization.swift" if "--permission-batch" in sys.argv else "Tools/CheckEVMSendAuthorization.swift"), sources / "CheckEVMSendAuthorization.swift")
     if "--arc-send" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))

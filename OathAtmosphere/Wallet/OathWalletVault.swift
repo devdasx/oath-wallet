@@ -90,6 +90,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     private var biometricEnrollment: UUID?
     private var removalAuthorization: (id: UUID, action: OathWalletRemovalAction, deadline: ContinuousClock.Instant)?
     private var resetAuthorization: (id: UUID, deadline: ContinuousClock.Instant)?
+    private let permissionClock: @Sendable () -> ContinuousClock.Instant
     private var permissionAuthorization: (id: UUID, scopes: [String: PermissionBatchScope], deadline: ContinuousClock.Instant)?
     private var resetting = false
     private var resetWorkInProgress = false
@@ -102,11 +103,13 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
          biometricStore: any OathBiometricCredentialStoring = OathBiometricCredentialStore(
             service: OathWalletVault.biometricService, installation: .shared),
          database: OathDatabase? = nil,
-         resetEnvironment: any OathResetEnvironment = OathLocalResetEnvironment()) {
+         resetEnvironment: any OathResetEnvironment = OathLocalResetEnvironment(),
+         permissionClock: @escaping @Sendable () -> ContinuousClock.Instant = { .now }) {
         self.storage = storage
         self.biometricStore = biometricStore
         self.suppliedDatabase = database
         self.resetEnvironment = resetEnvironment
+        self.permissionClock = permissionClock
     }
 
 
@@ -404,7 +407,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard opened.activeWallets.contains(where: { $0.id.uuidString == scopes[0].walletID }) else { throw OathWalletError.locked }
         let id = UUID()
         permissionAuthorization = (id, Dictionary(uniqueKeysWithValues: scopes.map { ($0.sendID, $0) }),
-                                   ContinuousClock.now.advanced(by: .seconds(1_800)))
+                                   permissionClock().advanced(by: .seconds(1_800)))
         return id
     }
     func endPermissionBatch(_ id: UUID) {
@@ -412,10 +415,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     }
     func permissionBatchIsAuthorized(_ id: UUID) -> Bool {
         guard let grant = permissionAuthorization else { return false }
-        return grant.id == id && ContinuousClock.now <= grant.deadline && encryptionKey != nil && !resetting
+        return grant.id == id && permissionClock() <= grant.deadline && encryptionKey != nil && !resetting
     }
     private func consumePermissionAuthorization(_ id: UUID, scope: PermissionBatchScope) throws {
-        guard var grant = permissionAuthorization, grant.id == id, ContinuousClock.now <= grant.deadline,
+        guard var grant = permissionAuthorization, grant.id == id, permissionClock() <= grant.deadline,
               let reviewed = grant.scopes[scope.sendID], reviewed.permits(scope) else { throw PermissionError.changed }
         grant.scopes.removeValue(forKey: scope.sendID)
         permissionAuthorization = grant
