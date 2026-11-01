@@ -27,6 +27,19 @@ public final class RPCHistory: RPCHistoryProtocol {
         public let response: RPCResponse?
         public var timestamp: Date?
         public let transportType: TransportType?
+        // Local entry identity, never part of a JSON-RPC request or response.
+        // Optional so existing persisted records continue to decode.
+        fileprivate let generation: UUID?
+
+        fileprivate func matches(_ other: Record) -> Bool {
+            guard id == other.id, generation == other.generation else { return false }
+            if generation != nil { return true }
+            // Legacy records have no entry identity; compare their full stored
+            // snapshot. Every replacement written by this SDK has a generation.
+            return topic == other.topic && expectedResponseTopic == other.expectedResponseTopic
+                && origin == other.origin && request == other.request && response == other.response
+                && timestamp == other.timestamp && transportType == other.transportType
+        }
 
         fileprivate var responseTopic: String? {
             if let expectedResponseTopic { return expectedResponseTopic }
@@ -57,6 +70,7 @@ public final class RPCHistory: RPCHistoryProtocol {
         case responseDuplicateNotAllowed
         case requestMatchingResponseNotFound
         case responseTopicMismatch
+        case requestReplaced
         var errorDescription: String? {
             switch self {
             case .unidentifiedRequest:
@@ -69,6 +83,8 @@ public final class RPCHistory: RPCHistoryProtocol {
                 return "Response duplicates are not allowed."
             case .requestMatchingResponseNotFound:
                 return "Matching request for the response not found."
+            case .requestReplaced:
+                return "The pending request was replaced."
             case .responseTopicMismatch:
                 return "Response does not match the pending request topic."
             }
@@ -95,7 +111,8 @@ public final class RPCHistory: RPCHistoryProtocol {
         return try? storage.get(key: recordId.string)
     }
 
-    public func set(_ request: RPCRequest, forTopic topic: String, emmitedBy origin: Record.Origin, time: TimeProvider = DefaultTimeProvider(), transportType: RPCHistory.Record.TransportType) throws {
+    @discardableResult
+    public func set(_ request: RPCRequest, forTopic topic: String, emmitedBy origin: Record.Origin, time: TimeProvider = DefaultTimeProvider(), transportType: RPCHistory.Record.TransportType) throws -> Record {
         Self.storageLock.lock()
         defer { Self.storageLock.unlock() }
         guard let id = request.id else {
@@ -104,15 +121,16 @@ public final class RPCHistory: RPCHistoryProtocol {
         guard get(recordId: id) == nil else {
             throw HistoryError.requestDuplicateNotAllowed
         }
-        let record = Record(id: id, topic: topic, expectedResponseTopic: request.expectedResponseTopic, origin: origin, request: request, response: nil, timestamp: time.currentDate, transportType: transportType)
+        let record = Record(id: id, topic: topic, expectedResponseTopic: request.expectedResponseTopic, origin: origin, request: request, response: nil, timestamp: time.currentDate, transportType: transportType, generation: UUID())
         storage.set(record, forKey: "\(record.id)")
+        return record
     }
 
     @discardableResult
-    public func resolve(_ response: RPCResponse, forResponseTopic topic: String? = nil) throws -> Record {
+    public func resolve(_ response: RPCResponse, forResponseTopic topic: String? = nil, matching expected: Record? = nil) throws -> Record {
         Self.storageLock.lock()
         defer { Self.storageLock.unlock() }
-        let record = try validate(response)
+        let record = try validate(response, matching: expected)
         if let topic {
             guard record.origin == .local,
                   record.responseTopic == topic else {
@@ -124,7 +142,7 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     @discardableResult
-    public func validate(_ response: RPCResponse) throws -> Record {
+    public func validate(_ response: RPCResponse, matching expected: Record? = nil) throws -> Record {
         Self.storageLock.lock()
         defer { Self.storageLock.unlock() }
         guard let id = response.id else {
@@ -132,6 +150,9 @@ public final class RPCHistory: RPCHistoryProtocol {
         }
         guard let record = get(recordId: id) else {
             throw HistoryError.requestMatchingResponseNotFound
+        }
+        if let expected, !record.matches(expected) {
+            throw HistoryError.requestReplaced
         }
         guard record.response == nil else {
             throw HistoryError.responseDuplicateNotAllowed
@@ -169,6 +190,15 @@ public final class RPCHistory: RPCHistoryProtocol {
             else { return nil }
             return (record.id, object)
         }
+    }
+
+    @discardableResult
+    public func delete(ifMatching expected: Record) -> Bool {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
+        guard let current = get(recordId: expected.id), current.matches(expected) else { return false }
+        storage.delete(forKey: expected.id.string)
+        return true
     }
 
     public func delete(id: RPCID) {

@@ -226,7 +226,7 @@ public class NetworkingInteractor: NetworkInteracting {
     }
 
     public func request(_ request: RPCRequest, topic: String, protocolMethod: ProtocolMethod, envelopeType: Envelope.EnvelopeType, tvfData: TVFData?) async throws {
-        try rpcHistory.set(request, forTopic: topic, emmitedBy: .local, transportType: .relay)
+        let pending = try rpcHistory.set(request, forTopic: topic, emmitedBy: .local, transportType: .relay)
 
         let correlationId = request.id
 
@@ -244,9 +244,7 @@ public class NetworkingInteractor: NetworkInteracting {
                 coorelationId: correlationId
             )
         } catch {
-            if let id = request.id {
-                rpcHistory.delete(id: id)
-            }
+            rpcHistory.delete(ifMatching: pending)
             throw error
         }
     }
@@ -270,7 +268,7 @@ public class NetworkingInteractor: NetworkInteracting {
         
         let correlationId = sessionProposalResponse.id
 
-        try rpcHistory.validate(sessionProposalResponse)
+        let pending = try rpcHistory.validate(sessionProposalResponse)
         try rpcHistory.set(sessionSettleRequest, forTopic: sessionTopic, emmitedBy: .local, transportType: .relay)
         
         let serialisedSessionProposalResponse = try await serialize(topic: pairingTopic, encodable: sessionProposalResponse, envelopeType: .type0)
@@ -288,16 +286,16 @@ public class NetworkingInteractor: NetworkInteracting {
             approvedEvents: approvedEvents
         )
         
-        try rpcHistory.resolve(sessionProposalResponse)
+        try rpcHistory.resolve(sessionProposalResponse, matching: pending)
 
     }
     
     public func respond(topic: String, response: RPCResponse, protocolMethod: ProtocolMethod, envelopeType: Envelope.EnvelopeType, tvfData: TVFData?) async throws {
-        try rpcHistory.validate(response)
+        let pending = try rpcHistory.validate(response)
         let message = try await serialize(topic: topic, encodable: response, envelopeType: envelopeType)
         let coorelationId = response.id
         try await relayClient.publish(topic: topic, payload: message, tag: protocolMethod.responseConfig.tag, prompt: protocolMethod.responseConfig.prompt, ttl: protocolMethod.responseConfig.ttl, tvfData: tvfData, coorelationId: coorelationId)
-        try rpcHistory.resolve(response)
+        try rpcHistory.resolve(response, matching: pending)
     }
 
     public func respondSuccess(topic: String, requestId: RPCID, protocolMethod: ProtocolMethod, envelopeType: Envelope.EnvelopeType) async throws {
