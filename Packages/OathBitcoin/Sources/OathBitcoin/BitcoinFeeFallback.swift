@@ -8,9 +8,9 @@ public struct BitcoinFeeFallback: Sendable {
     private let fetch: Fetch
     public init() {
         fetch = { request in
-            let (data,response) = try await DiagnosticHTTP.data(for: request, session: .shared)
+            let (data,response) = try await DiagnosticHTTP.boundedData(for: request, session: .shared, maximumBytes: 65_536)
             guard let http = response as? HTTPURLResponse, http.statusCode == 200,
-                  data.count <= 65_536 else { throw BitcoinSendError.feeUnavailable }
+                  let data else { throw BitcoinSendError.feeUnavailable }
             return data
         }
     }
