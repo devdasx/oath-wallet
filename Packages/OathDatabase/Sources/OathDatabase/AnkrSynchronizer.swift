@@ -24,6 +24,7 @@ public actor AnkrSynchronizer {
     private let client: AnkrClient
     private var flights: [String: (UUID, Task<AnkrSyncOutcome, Never>)] = [:]
     private var epoch = UUID()
+    private var requestScope = AnkrRequestScope()
     private var catalogFlights: [AnkrChain: (UUID, Task<Void, Never>)] = [:]
     private var catalogAttempts: [AnkrChain: Date] = [:]
     private let catalogTransport: any AnkrTransport
@@ -113,7 +114,7 @@ public actor AnkrSynchronizer {
         let key = account.id + ":" + stream
         if let flight = flights[key] { return await flight.1.value }
         let id = UUID()
-        let task = Task { [database,client] in
+        let task = Task { [database,client,requestScope] in
             var ticket: AnkrSyncTicket?
             do {
                 try Task.checkCancellation()
@@ -127,7 +128,7 @@ public actor AnkrSynchronizer {
                 let onlyWhitelisted = stream == "balances"
                     ? try await database.portfolioFilter(walletID: account.walletID).hidesUnverifiedTokens : true
                 // Independent inventories share the client's bounded permit pool.
-                async let verificationPages = onlyWhitelisted ? [] : Self.whitelistInventory(client: client, chain: chain, address: account.address)
+                async let verificationPages = onlyWhitelisted ? [] : Self.whitelistInventory(client: client, chain: chain, address: account.address, requestScope: requestScope)
                 var cursor = start.state.cursor
                 var restarted = false
                 var seen: Set<String> = []
@@ -138,17 +139,17 @@ public actor AnkrSynchronizer {
                     do {
                     if stream == "balances" {
                         let page = try await client.balances(chain: chain, address: account.address, cursor: cursor,
-                                                             onlyWhitelisted: onlyWhitelisted)
+                                                             onlyWhitelisted: onlyWhitelisted, requestScope: requestScope)
                         pages.append(page); cursor = page.value.nextPageToken
                     } else if stream == "transactions" {
                         let page = try await client.transactions(chain: chain, address: account.address, cursor: cursor,
-                            fromTimestamp: start.state.windowStart, toTimestamp: start.state.windowEnd)
+                            fromTimestamp: start.state.windowStart, toTimestamp: start.state.windowEnd, requestScope: requestScope)
                         try Task.checkCancellation()
                         try await database.commitAnkrTransactions(page, ticket: start, cursor: cursor)
                         cursor = page.value.nextPageToken
                     } else {
                         let page = try await client.transfers(chain: chain, address: account.address, cursor: cursor,
-                            fromTimestamp: start.state.windowStart, toTimestamp: start.state.windowEnd)
+                            fromTimestamp: start.state.windowStart, toTimestamp: start.state.windowEnd, requestScope: requestScope)
                         try Task.checkCancellation()
                         try await database.commitAnkrTransfers(page, ticket: start, cursor: cursor)
                         cursor = page.value.nextPageToken
@@ -203,7 +204,8 @@ public actor AnkrSynchronizer {
         return result
     }
 
-    private static func whitelistInventory(client: AnkrClient, chain: AnkrChain, address: String) async throws -> [AnkrPage<AnkrBalanceResult>] {
+    private static func whitelistInventory(client: AnkrClient, chain: AnkrChain, address: String,
+                                           requestScope: AnkrRequestScope) async throws -> [AnkrPage<AnkrBalanceResult>] {
         var cursor: String?
         var seen: Set<String> = []
         var pages: [AnkrPage<AnkrBalanceResult>] = []
@@ -213,7 +215,8 @@ public actor AnkrSynchronizer {
             try Task.checkCancellation()
             if let cursor, !seen.insert(cursor).inserted { throw AnkrError.paginationLoop }
             do {
-                let page = try await client.balances(chain: chain, address: address, cursor: cursor, onlyWhitelisted: true)
+                let page = try await client.balances(chain: chain, address: address, cursor: cursor,
+                                                     onlyWhitelisted: true, requestScope: requestScope)
                 pages.append(page); bytes += page.raw.count
                 guard seen.count < 100_000, bytes <= 128 * 1024 * 1024 else { throw AnkrError.responseTooLarge }
                 cursor = page.value.nextPageToken
@@ -230,6 +233,10 @@ public actor AnkrSynchronizer {
         }
     }
     public func cancel() async {
+        // Close old request admission before any task cancellation handler can
+        // release a permit. Fresh refreshes get a distinct, never-reset scope.
+        requestScope.cancel()
+        requestScope = AnkrRequestScope()
         epoch = UUID()
         let catalogs = catalogFlights.values.map(\.1)
         catalogFlights.removeAll()

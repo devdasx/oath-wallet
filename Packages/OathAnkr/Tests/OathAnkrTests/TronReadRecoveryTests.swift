@@ -167,7 +167,11 @@ final class TronReadRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
         XCTAssertEqual(calls, 1, "Malformed replies must not retry or switch providers")
         for _ in 0..<30 {
             await OathDiagnostics.flush()
-            if await reports.events.contains(where: { $0.operationID == operation && $0.error.message == "malformed" }) { break }
+            let observed = await reports.events.filter { $0.operationID == operation }
+            // Reporting is detached: the wrapper and original read failure can
+            // arrive in either order. Wait for both assertions' evidence.
+            if observed.contains(where: { $0.error.message == "malformed" }) &&
+                observed.contains(where: { $0.operation == "tron_read" && $0.context["attempt"] == "1" }) { break }
             try await Task.sleep(for: .milliseconds(50))
         }
         let events = await reports.events.filter { $0.operationID == operation }

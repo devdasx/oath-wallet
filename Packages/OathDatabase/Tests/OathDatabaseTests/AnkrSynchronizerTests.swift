@@ -68,6 +68,56 @@ private struct UnavailableCatalogTransport: AnkrTransport {
     func send(_ request: URLRequest) async throws -> (Data, Int) { throw URLError(.notConnectedToInternet) }
 }
 
+// Hold the first cancellation handler open after releasing its request. This
+// gives queued callers time to acquire that permit while cancel() is still
+// marking the other worker tasks. No provider or network is involved.
+private final class CancellationWindowTransport: AnkrTransport, @unchecked Sendable {
+    private let lock = NSLock()
+    private var waiters: [UUID: CheckedContinuation<Void, Error>] = [:]
+    private var firstCancellation = true
+    private var respond = false
+    private var count = 0
+    private let admittedAfterCancellation = DispatchSemaphore(value: 0)
+
+    var requests: Int { lock.withLock { count } }
+    func finishHolding() { lock.withLock { respond = true } }
+
+    func send(_ request: URLRequest) async throws -> (Data, Int) {
+        let holding = lock.withLock {
+            count += 1
+            if !firstCancellation { admittedAfterCancellation.signal() }
+            return !respond
+        }
+        if holding {
+            let id = UUID()
+            try await withTaskCancellationHandler {
+                try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                    lock.withLock {
+                        if Task.isCancelled { continuation.resume(throwing: CancellationError()) }
+                        else { waiters[id] = continuation }
+                    }
+                }
+            } onCancel: {
+                let continuation = self.lock.withLock {
+                    self.firstCancellation = false
+                    return self.waiters.removeValue(forKey: id)
+                }
+                continuation?.resume(throwing: CancellationError())
+                _ = self.admittedAfterCancellation.wait(timeout: .now() + 0.1)
+            }
+        }
+        let call = try JSONSerialization.jsonObject(with: request.httpBody!) as! [String: Any]
+        var result: [String: Any]
+        switch call["method"] as? String {
+        case "ankr_getAccountBalance": result = ["assets": [], "totalBalanceUsd": "0", "totalCount": 0]
+        case "ankr_getTokenTransfers": result = ["transfers": []]
+        default: result = ["transactions": []]
+        }
+        result["syncStatus"] = ["status": "synced", "timestamp": 200, "blockNumber": 10]
+        return (try JSONSerialization.data(withJSONObject: ["jsonrpc": "2.0", "id": 1, "result": result]), 200)
+    }
+}
+
 private actor RateLimitedCatalogTransport: AnkrTransport {
     private let pool = PublicMarketRequests(spacing: .zero)
     private(set) var hosts: [String] = []
@@ -177,6 +227,31 @@ private actor RateLimitedCatalogTransport: AnkrTransport {
         XCTAssertEqual(fresh.count,18); XCTAssertTrue(fresh.allSatisfy(\.success))
         let after = await transport.requests.count
         XCTAssertEqual(after,22,"All permits and flights can be reused after cancellation")
+    }
+    func testCancellationClosesQueuedAdmissionBeforeIndividualWorkersUnwind() async throws {
+        let db = try await fixture([.eth,.bsc,.base,.arbitrum,.polygon,.scroll])
+        let transport = CancellationWindowTransport()
+        let sync = AnkrSynchronizer(database: db,
+            client: try AnkrClient(apiKey: "fixture", transport: transport),
+            catalogTransport: UnavailableCatalogTransport())
+        let pending = Task { try await sync.refresh(walletID: "wallet") }
+        for _ in 0..<200 {
+            if transport.requests == 4 { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        XCTAssertEqual(transport.requests, 4)
+        // Let all streams enqueue behind the four held requests. Cancellation
+        // must close admission as one operation, not one worker at a time.
+        try await Task.sleep(for: .milliseconds(50))
+        await sync.cancel()
+        do { _ = try await pending.value; XCTFail("Expected cancellation") }
+        catch is CancellationError { }
+        XCTAssertEqual(transport.requests, 4, "No old queued request may enter the transport during cancellation")
+        transport.finishHolding()
+        let fresh = try await sync.refresh(walletID: "wallet")
+        XCTAssertEqual(fresh.count, 18)
+        XCTAssertTrue(fresh.allSatisfy(\.success))
+        XCTAssertEqual(transport.requests, 22, "Fresh work must reuse every released permit")
     }
     func testLateResponsesDuringResetStopWithoutFailureWrites() async throws {
         let db = try await fixture()

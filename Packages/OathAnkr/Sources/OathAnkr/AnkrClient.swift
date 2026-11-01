@@ -51,6 +51,20 @@ public struct AnkrHTTPTransport: AnkrTransport {
     }
 }
 
+/// A monotonic cancellation boundary shared by one refresh generation. Invalidate
+/// it before cancelling individual workers: an unwinding worker can release a
+/// permit before a later worker's Task cancellation flag has been set.
+public final class AnkrRequestScope: @unchecked Sendable {
+    private let lock = NSLock()
+    private var cancelled = false
+    public init() {}
+    public func cancel() { lock.withLock { cancelled = true } }
+    func checkCancellation() throws {
+        try Task.checkCancellation()
+        if lock.withLock({ cancelled }) { throw CancellationError() }
+    }
+}
+
 public struct AnkrClient: Sendable {
     private let endpoint: URL
     private let transport: any AnkrTransport
@@ -64,13 +78,13 @@ public struct AnkrClient: Sendable {
         self.transport = transport
     }
     public func balances(chain: AnkrChain, address: String, cursor: String? = nil,
-                         onlyWhitelisted: Bool = true) async throws -> AnkrPage<AnkrBalanceResult> {
+                         onlyWhitelisted: Bool = true, requestScope: AnkrRequestScope? = nil) async throws -> AnkrPage<AnkrBalanceResult> {
         // Explicit on every page. Unfiltered discovery is a per-wallet opt-in;
         // callers retain whitelist evidence separately from token visibility.
         var params: [String: Any] = ["blockchain": [chain.rawValue], "walletAddress": address, "onlyWhitelisted": onlyWhitelisted, "nativeFirst": true, "pageSize": 1000]
         if let cursor { params["pageToken"] = cursor }
         let request = try makeRequest("ankr_getAccountBalance", address: address, params: params)
-        let page: AnkrPage<AnkrBalanceResult> = try await call(request)
+        let page: AnkrPage<AnkrBalanceResult> = try await call(request, scope: requestScope)
         for asset in page.value.assets {
             guard asset.blockchain == chain.rawValue else { throw AnkrError.wrongChain }
             guard asset.holderAddress.lowercased() == address.lowercased() else { throw AnkrError.wrongAccount }
@@ -81,10 +95,11 @@ public struct AnkrClient: Sendable {
         return page
     }
     public func transactions(chain: AnkrChain, address: String, cursor: String? = nil,
-                             fromTimestamp: Int? = nil, toTimestamp: Int? = nil, pageSize: Int = 100) async throws -> AnkrPage<AnkrTransactionResult> {
+                             fromTimestamp: Int? = nil, toTimestamp: Int? = nil, pageSize: Int = 100,
+                             requestScope: AnkrRequestScope? = nil) async throws -> AnkrPage<AnkrTransactionResult> {
         let params = historyParams(chain, address, cursor, fromTimestamp, toTimestamp, pageSize, transfers: false)
         let request = try makeRequest("ankr_getTransactionsByAddress", address: address, params: params)
-        let page: AnkrPage<AnkrTransactionResult> = try await call(request)
+        let page: AnkrPage<AnkrTransactionResult> = try await call(request, scope: requestScope)
         for tx in page.value.transactions {
             guard tx.blockchain == chain.rawValue else { throw AnkrError.wrongChain }
             guard tx.from.lowercased() == address.lowercased() || tx.to?.lowercased() == address.lowercased() else { throw AnkrError.wrongAccount }
@@ -95,10 +110,11 @@ public struct AnkrClient: Sendable {
         return page
     }
     public func transfers(chain: AnkrChain, address: String, cursor: String? = nil,
-                          fromTimestamp: Int? = nil, toTimestamp: Int? = nil, pageSize: Int = 100) async throws -> AnkrPage<AnkrTransferResult> {
+                          fromTimestamp: Int? = nil, toTimestamp: Int? = nil, pageSize: Int = 100,
+                          requestScope: AnkrRequestScope? = nil) async throws -> AnkrPage<AnkrTransferResult> {
         let params = historyParams(chain, address, cursor, fromTimestamp, toTimestamp, pageSize, transfers: true)
         let request = try makeRequest("ankr_getTokenTransfers", address: address, params: params)
-        let page: AnkrPage<AnkrTransferResult> = try await call(request)
+        let page: AnkrPage<AnkrTransferResult> = try await call(request, scope: requestScope)
         for item in page.value.transfers {
             guard item.blockchain == chain.rawValue else { throw AnkrError.wrongChain }
             guard item.fromAddress.lowercased() == address.lowercased() || item.toAddress.lowercased() == address.lowercased() else { throw AnkrError.wrongAccount }
@@ -127,19 +143,23 @@ public struct AnkrClient: Sendable {
         request.httpBody = try JSONSerialization.data(withJSONObject: ["jsonrpc": "2.0", "id": 1, "method": method, "params": params])
         return request
     }
-    private func call<T: Decodable & Sendable>(_ request: URLRequest) async throws -> AnkrPage<T> {
+    private func call<T: Decodable & Sendable>(_ request: URLRequest, scope: AnkrRequestScope?) async throws -> AnkrPage<T> {
+        try scope?.checkCancellation()
         try await permits.acquire()
         do {
-            let page: AnkrPage<T> = try await exchange(request)
+            try scope?.checkCancellation()
+            let page: AnkrPage<T> = try await exchange(request, scope: scope)
             await permits.release()
             return page
         } catch { OathDiagnostics.record(error); await permits.release(); throw error }
     }
-    private func exchange<T: Decodable & Sendable>(_ request: URLRequest) async throws -> AnkrPage<T> {
+    private func exchange<T: Decodable & Sendable>(_ request: URLRequest, scope: AnkrRequestScope?) async throws -> AnkrPage<T> {
         for attempt in 0..<3 {
             try Task.checkCancellation()
+            try scope?.checkCancellation()
             do {
                 let (data, status) = try await transport.send(request)
+                try scope?.checkCancellation()
                 guard data.count <= 64 * 1024 * 1024 else { throw AnkrError.responseTooLarge }
                 guard status == 200 else { throw AnkrError.http(status) }
                 let envelope = try JSONDecoder().decode(Envelope<T>.self, from: data)
