@@ -60,7 +60,7 @@ final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
     func request(topic: String, request: RPCRequest, peerUniversalLink: String, envelopeType: Envelope.EnvelopeType) async throws -> String {
 
         logger.debug("Will send request with link mode")
-        try rpcHistory.set(request, forTopic: topic, emmitedBy: .local, transportType: .relay)
+        let pending = try rpcHistory.set(request, forTopic: topic, emmitedBy: .local, transportType: .relay)
 
         let envelopeUrl: URL
         do {
@@ -86,9 +86,7 @@ final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
 
         } catch {
             logger.error("Failed to open url, error: \(error) ")
-            if let id = request.id {
-                rpcHistory.delete(id: id)
-            }
+            rpcHistory.delete(ifMatching: pending)
             throw error
         }
 
@@ -97,7 +95,7 @@ final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
 
     func respond(topic: String, response: RPCResponse, peerUniversalLink: String, envelopeType: Envelope.EnvelopeType) async throws -> String {
         logger.debug("will redpond for a request id: \(String(describing: response.id))")
-        try rpcHistory.validate(response)
+        let pending = try rpcHistory.validate(response)
         let envelopeUrl = try serializeAndCreateUrl(peerUniversalLink: peerUniversalLink, encodable: response, envelopeType: envelopeType, topic: topic)
         logger.debug("Prepared envelopeUrl: \(envelopeUrl)")
 
@@ -117,7 +115,7 @@ final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
             }
         }
 
-        try rpcHistory.resolve(response)
+        try rpcHistory.resolve(response, matching: pending)
 
         return envelopeUrl.absoluteString
     }
