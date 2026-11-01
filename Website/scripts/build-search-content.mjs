@@ -54,7 +54,7 @@ for (const page of pages) {
   // support.js already handles both loading and fully parsed documents.
   html=html.replace(/<script src="\.\/support\.js"(?: defer)?><\/script>/g,'<script src="./support.js" defer></script>');
   html=html.replace(/<!-- oath-runtime-preloads:start -->[\s\S]*?<!-- oath-runtime-preloads:end -->/g,'')
-    .replace('</head>',`<!-- oath-runtime-preloads:start -->${runtimePreloads}<!-- oath-runtime-preloads:end --></head>`);
+    .replace('</head>',`<!-- oath-runtime-preloads:start -->${runtimePreloads}${page==='index'?'<link rel="preload" as="image" href="/assets/home-preview/cobalt.jpg" fetchpriority="high">':''}<!-- oath-runtime-preloads:end --></head>`);
   html=html.replace('<body>','<body>\n'+content+'\n');
   await writeFile(file,html);
 }
