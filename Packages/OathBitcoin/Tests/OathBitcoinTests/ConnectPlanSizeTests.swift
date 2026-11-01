@@ -39,9 +39,28 @@ final class ConnectPlanSizeTests: XCTestCase {
             XCTAssertEqual(error as? BitcoinConnectError, .tooLarge)
         }
     }
+
     func testSmallerRequestStillValidates() throws {
         let plan = try review(parentOutputs: 1_800)
         try BitcoinConnectSigning.validate(plan)
         XCTAssertEqual(plan.fee, 1_000)
+    }
+
+    func testPacketLimitIncludesMapFieldsAndTerminators() throws {
+        let plan = try review(parentOutputs: 8)
+        var parsed = try BitcoinConnectPSBT(plan.psbt)
+        let original = try XCTUnwrap(Data(base64Encoded: parsed.encoded))
+        // A one-byte key uses two bytes on wire. This value needs a five-byte length.
+        let length = 500_000 - original.count - 7
+        let key = Data([0xee])
+        parsed.maps[0].append(.init(key: key, value: Data(repeating: 0, count: length)))
+        let exact = try parsed.encoded
+        XCTAssertEqual(try XCTUnwrap(Data(base64Encoded: exact)).count, 500_000)
+        XCTAssertNoThrow(try BitcoinConnectPSBT(exact))
+        parsed.maps[0].removeLast()
+        parsed.maps[0].append(.init(key: key, value: Data(repeating: 0, count: length + 1)))
+        XCTAssertThrowsError(try parsed.encoded) { error in
+            XCTAssertEqual(error as? BitcoinConnectError, .tooLarge)
+        }
     }
 }
