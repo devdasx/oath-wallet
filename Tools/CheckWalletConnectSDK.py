@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
     else:f.unlink()
   targets.append('.target(name: '+json.dumps(name)+', dependencies: '+json.dumps(deps)+', resources: ['+','.join(resources)+'])')
  schema=work/'Sources/Schemas';schema.mkdir()
- for file in ['Events/InitEvent.swift','Events/MessageEvent.swift','WalletConnectVerify/VerifyContextFactory.swift','WalletConnectVerify/VerifyContext.swift','WalletConnectVerify/OriginVerifier.swift','WalletConnectVerify/Register/VerifyService.swift','WalletConnectVerify/Register/VerifyResponse.swift','WalletConnectSign/Auth/Types/AuthRequestParams.swift','WalletConnectSign/Namespace.swift','WalletConnectSign/Types/Session/WCSession.swift','WalletConnectSign/Types/Session/SessionType.swift','WalletConnectSign/Types/Session/SessionProposal.swift','WalletConnectSign/Types/Common/Participant.swift','WalletConnectSign/WalletConnectError.swift','WalletConnectSign/Types/SignReasonCode.swift','WalletConnectSign/Auth/Types/AuthPayload.swift','WalletConnectSign/Types/AuthObject.swift','WalletConnectSign/Request.swift','WalletConnectSign/Constants/Time.swift','WalletConnectPairing/Types/AppMetadata.swift']:
+ for file in ['Events/InitEvent.swift','Events/MessageEvent.swift','WalletConnectVerify/VerifyContextFactory.swift','WalletConnectVerify/VerifyContext.swift','WalletConnectVerify/OriginVerifier.swift','WalletConnectVerify/Register/VerifyService.swift','WalletConnectVerify/Register/VerifyResponse.swift','WalletConnectSign/Auth/Types/AuthRequestParams.swift','WalletConnectSign/Namespace.swift','WalletConnectSign/Types/Session/WCSession.swift','WalletConnectSign/Types/Session/SessionType.swift','WalletConnectSign/Types/Session/SessionProposal.swift','WalletConnectSign/Types/Common/Participant.swift','WalletConnectSign/WalletConnectError.swift','WalletConnectSign/Types/SignReasonCode.swift','WalletConnectSign/Auth/Types/AuthPayload.swift','WalletConnectSign/Types/AuthObject.swift','WalletConnectSign/Request.swift','WalletConnectSign/Storage/SessionStorage.swift','WalletConnectSign/Types/ProtocolMethods/SessionRequestProtocolMethod.swift','WalletConnectSign/LinkAndRelayDispatchers/SessionReq.swift','WalletConnectSign/LinkAndRelayDispatchers/WalletServiceFinder.swift','WalletConnectSign/LinkAndRelayDispatchers/WalletServiceSessionRequestable.swift','WalletConnectSign/LinkAndRelayDispatchers/WalletServiceSessionRequester.swift','WalletConnectSign/Constants/Time.swift','WalletConnectPairing/Types/AppMetadata.swift']:
   source=sdk/file
   if not source.exists():
    candidates=list(sdk.rglob(source.name));assert len(candidates)==1, (source.name, candidates);source=candidates[0]
@@ -43,6 +43,8 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
  for test_name in ['NamespaceValidationTests.swift', 'BlockchainTests.swift', 'AccountTests.swift']:
   upstream_test=root/'Vendor/Reown/Tests/WalletConnectSignTests'/test_name
   (tests/test_name).write_text(upstream_test.read_text().replace('@testable import WalletConnectSign', '@testable import Schemas\nimport WalletConnectNetworking'))
+ storage_mock=root/'Vendor/Reown/Tests/WalletConnectSignTests/Mocks/WCSessionStorageMock.swift'
+ (tests/storage_mock.name).write_text(storage_mock.read_text().replace('@testable import WalletConnectSign', '@testable import Schemas'))
  for fixture in ['KeyManagementServiceMock.swift','NetworkingInteractorMock.swift']:
   candidates=list((root/'Vendor/Reown/Tests').rglob(fixture)); assert len(candidates)==1
   shutil.copy(candidates[0],tests/fixture)
