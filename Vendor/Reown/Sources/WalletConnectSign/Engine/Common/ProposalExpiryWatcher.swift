@@ -22,9 +22,14 @@ class ProposalExpiryWatcher {
         setUpExpiryCheckTimer()
     }
 
+    deinit {
+        checkTimer?.invalidate()
+    }
+
     func setUpExpiryCheckTimer() {
-        checkTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [unowned self] _ in
-            checkForProposalsExpiry()
+        checkTimer?.invalidate()
+        checkTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { [weak self] _ in
+            self?.checkForProposalsExpiry()
         }
     }
 
