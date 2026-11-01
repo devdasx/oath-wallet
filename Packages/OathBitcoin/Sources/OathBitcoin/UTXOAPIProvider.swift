@@ -209,15 +209,35 @@ struct UTXOAPIProvider: Sendable {
                       session: URLSession = .shared, budget: UTXOAPIBudget = .shared) async throws -> Data {
         let host = request.url?.host ?? "unknown"
         try await budget.acquire(host)
-        let data: Data, response: URLResponse
-        do { (data, response) = try await session.data(for: request) }
+        let bytes: URLSession.AsyncBytes, response: URLResponse
+        do { (bytes, response) = try await session.bytes(for: request) }
         catch {
             await budget.release(host)
             OathDiagnostics.record(error, component: "network", context: DiagnosticHTTP.context(request))
             throw error
         }
         guard let http = response as? HTTPURLResponse else {
+            bytes.task.cancel()
             await budget.release(host); throw APIError.invalidResponse
+        }
+        let retryAfter = http.value(forHTTPHeaderField: "Retry-After")
+        if allowMissing, http.statusCode == 404 {
+            bytes.task.cancel()
+            await budget.finish(host, statuses: [404], retryAfter: retryAfter)
+            try Task.checkCancellation()
+            return Data()
+        }
+        let body: Data?
+        do { body = try await DiagnosticHTTP.readBody(bytes, maximumBytes: limit) }
+        catch {
+            await budget.finish(host, statuses: [http.statusCode], retryAfter: retryAfter)
+            OathDiagnostics.record(error, component: "network", context: DiagnosticHTTP.context(request))
+            throw error
+        }
+        guard let data = body else {
+            await budget.finish(host, statuses: [http.statusCode], retryAfter: retryAfter)
+            DiagnosticHTTP.response(Data(), status: http.statusCode, request: request)
+            throw APIError.invalidResponse
         }
         var statuses = [http.statusCode]
         // Some providers encode throttling inside HTTP 200. Inspect only this
@@ -227,9 +247,7 @@ struct UTXOAPIProvider: Sendable {
         if let code = (envelope?["error"] as? [String: Any])?["code"] as? Int, code == 429 {
             statuses.append(code) // Alchemy can throttle with a JSON-RPC envelope.
         }
-        await budget.finish(host, statuses: statuses, retryAfter: http.value(forHTTPHeaderField: "Retry-After"))
-        // A 404 during propagation is absence, not an app/provider failure.
-        if allowMissing, http.statusCode == 404 { return Data() }
+        await budget.finish(host, statuses: statuses, retryAfter: retryAfter)
         // An absent transaction during reconciliation is expected. Restrict the
         // exclusion to this exact Alchemy read and correlated -5 response; all
         // broadcast rejections and provider outages still reach diagnostics.
@@ -240,7 +258,6 @@ struct UTXOAPIProvider: Sendable {
             return data
         }
         DiagnosticHTTP.response(data, status: http.statusCode, request: request)
-        guard data.count <= limit else { throw APIError.invalidResponse }
         guard (200...299).contains(http.statusCode) else {
             // Preserve Blockchair's nested error envelope through shared filters.
             if request.url?.host == "api.blockchair.com" {

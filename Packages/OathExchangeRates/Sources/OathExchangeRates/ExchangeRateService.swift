@@ -27,12 +27,12 @@ public struct URLSessionRateTransport: ExchangeRateTransport {
     public func data(from url: URL) async throws -> Data {
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        let (data, response) = try await DiagnosticHTTP.data(for: request, session: session)
+        let (data, response) = try await DiagnosticHTTP.boundedData(for: request, session: session, maximumBytes: 131_072)
         guard let response = response as? HTTPURLResponse else { throw ExchangeRateError.invalidResponse }
         // DiagnosticHTTP records the filtered provider envelope. Preserve its
         // status for callers too, rather than turning an outage into corrupt data.
         guard response.statusCode == 200 else { throw NSError(domain: "Oath.HTTP", code: response.statusCode) }
-        guard data.count <= 131_072 else { throw ExchangeRateError.invalidResponse }
+        guard let data else { throw ExchangeRateError.invalidResponse }
         return data
     }
 }

@@ -143,7 +143,12 @@ enum OathAppUpdateLookup {
 
     init(bundle: Bundle = .main, region: String? = Locale.current.region?.identifier,
          lookup: @escaping @Sendable (URLRequest) async throws -> (Data, URLResponse) = {
-             try await DiagnosticHTTP.data(for: $0, session: .shared)
+             let (body, response) = try await DiagnosticHTTP.boundedData(for: $0, session: .shared, maximumBytes: 1_048_576)
+             // The status check in check() runs before decoding the lookup.
+             if let http = response as? HTTPURLResponse, (200...299).contains(http.statusCode), body == nil {
+                 throw DiagnosticFailure("app_update_response_too_large")
+             }
+             return (body ?? Data(), response)
          }) {
         version = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—"
         build = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"

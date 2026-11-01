@@ -299,8 +299,8 @@ actor OathTokenService: OathTokenLookingUp {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONEncoder().encode(OathTokenJSON.object([
             "jsonrpc": .string("2.0"), "id": .string(id), "method": .string(method), "params": .array(params)]))
-        let data: Data, response: URLResponse
-        do { (data, response) = try await DiagnosticHTTP.data(for: request, session: session) }
+        let data: Data?, response: URLResponse
+        do { (data, response) = try await DiagnosticHTTP.boundedData(for: request, session: session, maximumBytes: 1_048_576) }
         catch {
             OathDiagnostics.record(error)
             if Task.isCancelled || error is CancellationError { throw CancellationError() }
@@ -313,7 +313,7 @@ actor OathTokenService: OathTokenLookingUp {
         guard http.statusCode == 200 else {
             throw ProviderFailure(cause: NSError(domain: "Oath.HTTP", code: http.statusCode))
         }
-        guard data.count <= 1_048_576, let json = try? JSONDecoder().decode(OathTokenJSON.self, from: data),
+        guard let data, let json = try? JSONDecoder().decode(OathTokenJSON.self, from: data),
               case .object(let fields) = json, json["jsonrpc"].string == "2.0", json["id"].string == id else {
             throw OathTokenLookupError.malformedResponse
         }

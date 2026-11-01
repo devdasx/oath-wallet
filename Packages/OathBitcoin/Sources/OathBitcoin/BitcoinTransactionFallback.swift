@@ -9,8 +9,8 @@ actor BitcoinTransactionFallback {
     private let fetch: Fetch
     private var active = 0
     init(fetch: @escaping Fetch = { request in
-        let (data, response) = try await DiagnosticHTTP.data(for: request, session: .shared)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw BitcoinError.invalidResponse }
+        let (data, response) = try await DiagnosticHTTP.boundedData(for: request, session: .shared, maximumBytes: 4_000_000)
+        guard (response as? HTTPURLResponse)?.statusCode == 200, let data else { throw BitcoinError.invalidResponse }
         return data
     }) { self.fetch = fetch }
 
