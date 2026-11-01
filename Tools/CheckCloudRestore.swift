@@ -121,6 +121,40 @@ extension CheckMultiWallet {
             do { _ = try OathRestoredWallet(backup: invalid, validator: validator); preconditionFailure("Malformed account metadata restored") }
             catch { check(error as? CloudBackupError == .invalidDocument, "Malformed account descriptor must fail closed") }
         }
+        // Wallet Core 4.8.4 silently skips non-hardened steps for these curves.
+        // Restoring old metadata must describe the effective path without
+        // changing the recovered key. Real Core equivalence has separate
+        // simulator-framework evidence; this host test exercises restoration.
+        let legacyPaths = [
+            ("m/44'/501'/0'/7", "m/44'/501'/0'"),
+            ("m/7/44'/0'/9/3'", "m/44'/0'/3'"),
+            ("m/0/1/2", "m"),
+            ("m/0'/1'/2147483647'", "m/0'/1'/2147483647'")
+        ]
+        for network in ["aptos", "near", "solana", "polkadot", "stellar", "sui", "ton"] {
+            for (originalPath, effectivePath) in legacyPaths {
+                let account = BackupWallet.Account(network: network, derivationPath: originalPath, index: 0,
+                    solanaReceivePath: network == "solana" ? originalPath : nil)
+                let backup = BackupWallet(id: UUID(), name: "Public path fixture", mnemonic: words, language: "english",
+                    createdAt: Date(timeIntervalSince1970: 1), accounts: [account])
+                let prepared = try OathRestoredWallet(backup: backup, validator: validator)
+                guard let restored = prepared.secret.restoration?.accounts.first else {
+                    preconditionFailure("Restoration omitted the recovered account")
+                }
+                check(restored.derivationPath == effectivePath && prepared.profile.addresses.first?.path == effectivePath,
+                      "Restoration must record the effective Ed25519 path, not a skipped child")
+                check(restored.index == account.index && restored.network == account.network,
+                      "Canonicalization must preserve account identity")
+                check(restored.solanaReceivePath == (network == "solana" ? effectivePath : nil),
+                      "The selected Solana receive path must follow the recovered path")
+                let exported = BackupWallet(id: backup.id, name: backup.name, mnemonic: words, language: "english",
+                    createdAt: backup.createdAt, accounts: prepared.secret.restoration!.accounts)
+                let reopened = try OathRestoredWallet(backup: BackupDocument.open(
+                    BackupDocument.seal(exported, password: "public-path-fixture"), password: "public-path-fixture"), validator: validator)
+                check(reopened.secret.restoration?.accounts == prepared.secret.restoration?.accounts,
+                      "Canonical root and hardened paths must survive encrypted backup round trips")
+            }
+        }
         print("Passed \(checks) cloud-restore integration checks (local synthetic backups; no live iCloud).")
         return checks
     }

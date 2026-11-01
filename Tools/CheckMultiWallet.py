@@ -610,6 +610,16 @@ extension OathPostSendBalanceRefresh { func submitted(walletID: String, networkI
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
         shutil.copyfile(root / "Tools/CheckLegacyUpgrade.swift", sources / "CheckLegacyUpgrade.swift")
+    if "--cloud-restore" in sys.argv:
+        check = sources / "CheckMultiWallet.swift"
+        check.write_text(check.read_text().replace("@main", ""))
+        (sources / "CheckCloudRestoreMain.swift").write_text("""
+@main struct CheckCloudRestoreMain {
+    @MainActor static func main() async throws {
+        _ = try await CheckMultiWallet.checkCloudRestore()
+    }
+}
+""")
     if "--envelope" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))

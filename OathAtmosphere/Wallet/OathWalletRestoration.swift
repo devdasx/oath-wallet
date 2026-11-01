@@ -26,8 +26,9 @@ struct OathRestoredWallet: Sendable {
             throw CloudBackupError.invalidDocument
         }
         var accountIDs = Set<String>()
-        for account in backup.accounts {
-            guard OathImportChain(rawValue: account.network) != nil,
+        var restoredAccounts = backup.accounts
+        for (position, account) in backup.accounts.enumerated() {
+            guard let chain = OathImportChain(rawValue: account.network),
                   account.index >= 0, account.index < 2_147_483_648,
                   accountIDs.insert(account.network + ":" + String(account.index)).inserted else {
                 throw CloudBackupError.invalidDocument
@@ -68,7 +69,11 @@ struct OathRestoredWallet: Sendable {
             } else if backup.privateKey != nil {
                 guard account.derivationPath == "imported", account.index == 0 else { throw CloudBackupError.invalidDocument }
             } else {
-                guard Self.validPath(account.derivationPath) else { throw CloudBackupError.invalidDocument }
+                guard let path = Self.restoredPath(account.derivationPath, chain: chain) else {
+                    throw CloudBackupError.invalidDocument
+                }
+                restoredAccounts[position] = .init(network: account.network, derivationPath: path, index: account.index,
+                    solanaReceivePath: account.solanaReceivePath == account.derivationPath ? path : account.solanaReceivePath)
             }
             if let path = account.solanaReceivePath {
                 let index = SolanaDerivation.accountIndex(in: account.derivationPath) ?? account.index
@@ -160,7 +165,7 @@ struct OathRestoredWallet: Sendable {
             parentWalletID: passphrase != nil && backup.parentWalletID != backup.id ? backup.parentWalletID : nil,
             // A new iCloud restore gets its own localized Restored Wallet name.
             // Keeping the automatic marker in ciphertext also survives SQL repair.
-            restoration: .init(name: "", colorHex: backup.colorHex, accounts: backup.accounts, legacyPassphrase: backup.legacyPassphrase),
+            restoration: .init(name: "", colorHex: backup.colorHex, accounts: restoredAccounts, legacyPassphrase: backup.legacyPassphrase),
             bitcoinMultisig: backup.bitcoinMultisig, tronMultisig: backup.tronMultisig, solanaMultisig: backup.solanaMultisig, xrplMultisig: backup.xrplMultisig, evmMultisig: backup.evmMultisig, tonMultisig: backup.tonMultisig, thorchainMultisig: backup.thorchainMultisig, nearMultisig: backup.nearMultisig, suiMultisig: backup.suiMultisig, aptosMultisig: backup.aptosMultisig, stellarMultisig: backup.stellarMultisig)
         let profile = try OathWalletEngine.profile(for: secret)
         // SQL enforces one address per network per wallet. Reject conflicting
@@ -174,16 +179,30 @@ struct OathRestoredWallet: Sendable {
         self.secret = secret
     }
 
-    private static func validPath(_ path: String) -> Bool {
-        guard path.utf8.count <= 128 else { return false }
+    private static func restoredPath(_ path: String, chain: OathImportChain) -> String? {
+        guard path.utf8.count <= 128 else { return nil }
+        let hardenedOnly: Bool
+        switch chain {
+        case .aptos, .near, .solana, .polkadot, .stellar, .sui, .ton: hardenedOnly = true
+        default: hardenedOnly = false
+        }
         let components = path.split(separator: "/", omittingEmptySubsequences: false)
-        guard components.first == "m", (2...11).contains(components.count) else { return false }
-        return components.dropFirst().allSatisfy { part in
+        // An old Ed25519 path made entirely of skipped steps recovered the root.
+        // Accept its canonical spelling so that a repaired backup restores again.
+        if hardenedOnly && path == "m" { return path }
+        guard components.first == "m", (2...11).contains(components.count) else { return nil }
+        guard components.dropFirst().allSatisfy({ part in
             let digits = part.last == "'" ? part.dropLast() : part[...]
             guard !digits.isEmpty, digits.utf8.allSatisfy({ (48...57).contains($0) }),
                   let index = UInt32(digits), index < 0x8000_0000 else { return false }
             return true
-        }
+        }) else { return nil }
+        guard hardenedOnly else { return path }
+        // Wallet Core 4.8.4 skips unsupported non-hardened Ed25519 steps without
+        // reporting failure. Preserve the recovered key of an existing backup,
+        // but never persist a path that falsely claims those steps succeeded.
+        let effective = components.dropFirst().filter { $0.last == "'" }
+        return (["m"] + effective.map(String.init)).joined(separator: "/")
     }
 }
 
