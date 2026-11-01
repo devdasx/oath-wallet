@@ -16,6 +16,10 @@ public class EventsClient: EventsClientProtocol {
     private let messageEventsStorage: MessageEventsStorage
     private let initEventsStorage: InitEventsStorage
     private let clientID: () -> String
+    private let lock = NSLock()
+    private var generation = UUID()
+    private var revision = UUID()
+    private var delivery: Task<Void, Never>?
 
     init(
         eventsCollector: EventsCollector,
@@ -33,106 +37,135 @@ public class EventsClient: EventsClientProtocol {
         self.messageEventsStorage = messageEventsStorage
         self.initEventsStorage = initEventsStorage
         self.clientID = clientID
-
-        if !stateStorage.telemetryEnabled {
-            self.eventsCollector.storage.clearErrorEvents()
+        lock.withLock {
+            if stateStorage.telemetryEnabled {
+                saveInitEventLocked()
+                scheduleDeliveryLocked()
+            } else {
+                clearEventsLocked()
+            }
         }
-        saveInitEvent()
-        Task { await sendStoredEvents() }
     }
 
     public func setLogging(level: LoggingLevel) {
-        logger.setLogging(level: level)
+        lock.withLock { logger.setLogging(level: level) }
     }
 
-    // Public method to start trace
     public func startTrace(topic: String) {
-        guard stateStorage.telemetryEnabled else { return }
-        logger.debug("Will start trace with topic: \(topic)")
-        eventsCollector.startTrace(topic: topic)
+        lock.withLock {
+            guard stateStorage.telemetryEnabled else { return }
+            eventsCollector.startTrace(topic: topic)
+        }
     }
 
     public func setTopic(_ topic: String) {
-        guard stateStorage.telemetryEnabled else { return }
-        eventsCollector.setTopic(topic)
+        lock.withLock {
+            guard stateStorage.telemetryEnabled else { return }
+            eventsCollector.setTopic(topic)
+        }
     }
 
-    // Public method to save event
     public func saveTraceEvent(_ event: TraceEventItem) {
-        guard stateStorage.telemetryEnabled else { return }
-        logger.debug("Will store a trace event: \(event)")
-        eventsCollector.saveEvent(event)
+        lock.withLock {
+            guard stateStorage.telemetryEnabled else { return }
+            revision = UUID()
+            eventsCollector.saveEvent(event)
+        }
     }
 
     public func saveMessageEvent(_ event: MessageEventType) {
-        logger.debug("Will store a message event: \(event)")
-        messageEventsStorage.saveMessageEvent(event)
+        lock.withLock {
+            guard stateStorage.telemetryEnabled else { return }
+            revision = UUID()
+            messageEventsStorage.saveMessageEvent(event)
+        }
     }
 
     public func saveInitEvent() {
-            logger.debug("Will store an init event")
-
-            let bundleId = Bundle.main.bundleIdentifier ?? "Unknown"
-            let clientId = clientID()
-            let userAgent = EnvironmentInfo.userAgent
-
-            let props = InitEvent.Props(
-                properties: InitEvent.Properties(
-                    clientId: clientId,
-                    userAgent: userAgent
-                )
-            )
-
-            let event = InitEvent(
-                eventId: UUID().uuidString,
-                bundleId: bundleId,
-                timestamp: Int64(Date().timeIntervalSince1970 * 1000),
-                props: props
-            )
-
-            initEventsStorage.saveInitEvent(event)
+        lock.withLock {
+            guard stateStorage.telemetryEnabled else { return }
+            saveInitEventLocked()
         }
+    }
 
-    // Public method to set telemetry enabled or disabled
+    private func saveInitEventLocked() {
+        revision = UUID()
+        let props = InitEvent.Props(properties: InitEvent.Properties(
+            clientId: clientID(), userAgent: EnvironmentInfo.userAgent))
+        initEventsStorage.saveInitEvent(InitEvent(
+            eventId: UUID().uuidString,
+            bundleId: Bundle.main.bundleIdentifier ?? "Unknown",
+            timestamp: Int64(Date().timeIntervalSince1970 * 1000), props: props))
+    }
+
     public func setTelemetryEnabled(_ enabled: Bool) {
-        stateStorage.telemetryEnabled = enabled
-        if enabled {
-            Task { await sendStoredEvents() }
-        } else {
-            eventsCollector.storage.clearErrorEvents()
-        }
-    }
-
-    private func sendStoredEvents() async {
-        guard stateStorage.telemetryEnabled else { return }
-
-        let traceEvents = eventsCollector.storage.fetchErrorEvents()
-        let messageEvents = messageEventsStorage.fetchMessageEvents()
-        let initEvents = initEventsStorage.fetchInitEvents()
-
-        guard !traceEvents.isEmpty || !messageEvents.isEmpty || !initEvents.isEmpty else { return }
-
-        var combinedEvents: [AnyCodable] = []
-
-        combinedEvents.append(contentsOf: traceEvents.map { AnyCodable($0) })
-
-        combinedEvents.append(contentsOf: messageEvents.map { AnyCodable($0) })
-
-        combinedEvents.append(contentsOf: initEvents.map { AnyCodable($0) })
-
-        logger.debug("Will send combined events")
-        do {
-            let success: Bool = try await eventsDispatcher.executeWithRetry(events: combinedEvents)
-            if success {
-                logger.debug("Combined events sent successfully")
-                eventsCollector.storage.clearErrorEvents()
-                messageEventsStorage.clearMessageEvents()
-                initEventsStorage.clearInitEvents()
+        lock.withLock {
+            // A repeated enable joins the existing worker rather than spawning
+            // competing deliveries and acknowledgements.
+            if enabled && stateStorage.telemetryEnabled && delivery != nil { return }
+            generation = UUID()
+            delivery?.cancel()
+            delivery = nil
+            stateStorage.telemetryEnabled = enabled
+            if enabled {
+                scheduleDeliveryLocked()
+            } else {
+                clearEventsLocked()
             }
-        } catch {
-            logger.debug("Failed to send events after multiple attempts: \(error)")
         }
     }
+
+    private func clearEventsLocked() {
+        clearQueuesLocked()
+        eventsCollector.trace = []
+        eventsCollector.topic = nil
+    }
+
+    private func clearQueuesLocked() {
+        revision = UUID()
+        eventsCollector.storage.clearErrorEvents()
+        messageEventsStorage.clearMessageEvents()
+        initEventsStorage.clearInitEvents()
+    }
+
+    private func scheduleDeliveryLocked() {
+        let token = generation
+        delivery = Task { [weak self] in await self?.sendStoredEvents(generation: token) }
+    }
+
+    private func authorized(_ token: UUID) -> Bool {
+        lock.withLock { generation == token && stateStorage.telemetryEnabled }
+    }
+
+    private func sendStoredEvents(generation token: UUID) async {
+        let batch: (events: [AnyCodable], revision: UUID)? = lock.withLock {
+            guard generation == token, stateStorage.telemetryEnabled else { return nil }
+            let events = eventsCollector.storage.fetchErrorEvents().map { AnyCodable($0) }
+                + messageEventsStorage.fetchMessageEvents().map { AnyCodable($0) }
+                + initEventsStorage.fetchInitEvents().map { AnyCodable($0) }
+            return (events, revision)
+        }
+        defer { lock.withLock { if generation == token { delivery = nil } } }
+        guard let batch, !batch.events.isEmpty else { return }
+        do {
+            let success = try await eventsDispatcher.executeWithRetry(events: batch.events,
+                isAuthorized: { [weak self] in self?.authorized(token) == true })
+            lock.withLock {
+                guard success, generation == token, stateStorage.telemetryEnabled,
+                      revision == batch.revision else { return }
+                // Never erase events saved during an unfinished request, nor
+                // events belonging to a later opt-in generation. A changed
+                // batch may be redelivered; it must not be silently discarded.
+                clearQueuesLocked()
+            }
+        } catch is CancellationError {
+            // Opt-out is expected; no retry or diagnostic upload.
+        } catch {
+            lock.withLock { logger.debug("Event delivery failed") }
+        }
+    }
+
+    deinit { delivery?.cancel() }
 }
 
 #if DEBUG

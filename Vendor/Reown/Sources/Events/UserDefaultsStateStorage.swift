@@ -11,7 +11,7 @@ class UserDefaultsTelemetryStateStorage: TelemetryStateStorage {
     var telemetryEnabled: Bool {
         get {
             if defaults.object(forKey: telemetryEnabledKey) == nil {
-                return true
+                return false
             }
             return defaults.bool(forKey: telemetryEnabledKey)
         }
@@ -24,7 +24,7 @@ class UserDefaultsTelemetryStateStorage: TelemetryStateStorage {
         self.defaults = defaults
         if defaults.object(forKey: telemetryEnabledKey) == nil {
             // Set default value if not already set
-            defaults.set(true, forKey: telemetryEnabledKey)
+            defaults.set(false, forKey: telemetryEnabledKey)
         }
     }
 }
