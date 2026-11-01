@@ -202,7 +202,7 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
         for coin in coins { try coin.validate(chain: chain) }
         guard walletBalance > 0, walletBalance <= chain.maximumMoney,
               recipientAmount <= chain.maximumOutput, changeAmount <= chain.maximumOutput, fee <= chain.maximumSendFee,
-              change.index < 0x7fff_ffff,
+              change.index < BitcoinKeys.firstHardenedChild,
               chain.sendFeeRates.contains(ratePerKVByte), requestedAmount > 0,
               requestedAmount <= walletBalance, requestedAmount <= chain.maximumOutput, recipientAmount > 0, changeAmount >= 0, fee >= 0,
               let changeScript = Data(hex: change.script), Self.standardScript(changeScript, chain: chain), Self.standardScript(recipientScript, chain: chain),

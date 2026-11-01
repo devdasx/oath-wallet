@@ -88,6 +88,8 @@ public struct BitcoinDerivedAddress: Codable, Equatable, Sendable, Identifiable 
 }
 
 public enum BitcoinKeys {
+    static let firstHardenedChild: UInt32 = 0x8000_0000
+
     /// Verifies legacy import ownership without installing its address policy.
     /// The caller supplies a bounded relative path; only public bytes escape.
     public static func importPublicKey(_ encoded: String, relativePath: String) throws -> Data {
@@ -214,7 +216,7 @@ public enum BitcoinKeys {
     }
 
     public static func addresses(branch: BitcoinBranch, range: Range<UInt32>) throws -> [BitcoinDerivedAddress] {
-        guard range.upperBound < 0x8000_0000, branch.isHD || range == 0..<1 else { throw BitcoinError.invalidAddress }
+        guard range.upperBound <= firstHardenedChild, branch.isHD || range == 0..<1 else { throw BitcoinError.invalidAddress }
         if branch.electrumLegacyPublicKey != nil { return try ElectrumBitcoin.legacyAddresses(branch: branch, range: range) }
         let descriptor = try Descriptor(descriptor: branch.descriptor, networkKind: .main)
         // Reject accidental secret-bearing descriptors at this public boundary.

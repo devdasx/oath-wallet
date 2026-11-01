@@ -74,7 +74,7 @@ public enum ElectrumBitcoin {
         }
     }
     private static func validate(_ address: BitcoinDerivedAddress, wallet: BitcoinWalletDescriptor) throws {
-        guard address.index < 0x7fff_ffff, let branch = wallet.branches.first(where: { $0.id == address.branchID }),
+        guard address.index < BitcoinKeys.firstHardenedChild, let branch = wallet.branches.first(where: { $0.id == address.branchID }),
               try BitcoinKeys.addresses(branch: branch, range: address.index..<(address.index+1)).first == address else { throw BitcoinError.invalidAddress }
     }
     private static func leafWIF(_ root: DescriptorSecretKey, address: BitcoinDerivedAddress) throws -> String {
