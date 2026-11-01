@@ -4,7 +4,7 @@ import XCTest
 @testable import WalletConnectNetworking
 
 @MainActor final class RelayMetadataPrivacyTests: XCTestCase {
-    private let hash = "0x" + String(repeating: "a", count: 64)
+    private let transactionHash = "0x" + String(repeating: "a", count: 64)
     private let contract = "0x" + String(repeating: "b", count: 40)
 
     private func outer(_ metadata: TVFData?, message: String = "fixture-encrypted-message") throws -> [String: Any] {
@@ -18,7 +18,7 @@ import XCTest
 
     func testOptionalTransactionMetadataNotPublished() throws {
         let metadata = TVFData(rpcMethods: ["eth_sendTransaction"], chainId: Blockchain("eip155:1"),
-            txHashes: [hash], contractAddresses: [contract])
+            txHashes: [transactionHash], contractAddresses: [contract])
         let params = try outer(metadata)
         for key in ["rpcMethods", "chainId", "txHashes", "contractAddresses"] {
             XCTAssertNil(params[key], "Optional transaction metadata must stay inside the encrypted session: \(key)")
@@ -28,8 +28,8 @@ import XCTest
     func testCollectorResponseDoesNotBypassPrivacyBoundary() throws {
         let metadata = TVFCollector().collect(rpcMethod: "eth_sendTransaction",
             rpcParams: AnyCodable([String]()), chainID: try XCTUnwrap(Blockchain("eip155:1")),
-            rpcResult: .response(AnyCodable(hash)), tag: 1109)
-        XCTAssertEqual(metadata?.txHashes, [hash], "The production collector must exercise the metadata path")
+            rpcResult: .response(AnyCodable(transactionHash)), tag: 1109)
+        XCTAssertEqual(metadata?.txHashes, [transactionHash], "The production collector must exercise the metadata path")
         let params = try outer(metadata)
         for key in ["rpcMethods", "chainId", "txHashes", "contractAddresses"] {
             XCTAssertNil(params[key], "Optional transaction metadata must stay inside the encrypted session: \(key)")
@@ -40,7 +40,7 @@ import XCTest
         let kms = KeyManagementServiceMock(), topic = "fixture-topic"
         _ = try kms.createSymmetricKey(topic)
         let serializer = Serializer(kms: kms, logger: ConsoleLoggerMock())
-        let response = RPCResponse(id: RPCID(42), result: hash)
+        let response = RPCResponse(id: RPCID(42), result: transactionHash)
         let encrypted = try await QueuedSerializer(serializer: serializer).serialize(
             topic: topic, json: response.json(), envelopeType: .type0)
         let params = try outer(nil, message: encrypted)
@@ -54,6 +54,6 @@ import XCTest
             topic: topic, codingType: .base64Encoded, envelopeString: encrypted)
         XCTAssertEqual(try JSONSerialization.jsonObject(with: Data(decoded.json().utf8)) as? NSDictionary,
                        try JSONSerialization.jsonObject(with: Data(response.json().utf8)) as? NSDictionary)
-        XCTAssertFalse(encrypted.contains(hash))
+        XCTAssertFalse(encrypted.contains(transactionHash))
     }
 }
