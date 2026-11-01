@@ -42,7 +42,7 @@ jobs:
         run: npm run deploy
       - name: Verify production pages and links
         run: python3 scripts/audit-search.py /tmp/oath-search-audit.json
-      - name: Verify Git-owned help content
+      - name: Verify Git-owned help and articles
         run: node scripts/verify-live-deployment.mjs
       - name: Verify public search crawler access on all three hosts
         run: python3 scripts/check-search-crawlers.py

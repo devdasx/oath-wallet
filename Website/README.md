@@ -8,6 +8,10 @@ Website, help, articles, public service implementations and deployment workflows
 See [deployment instructions](../Distribution/README.md). The npm `private` flag only prevents accidental npm-package publication; this source is public.
 Public support address: `care@oathwallet.org`.
 
+## Publish articles from GitHub
+
+Add a folder in [Website/content/articles](content/articles/README.md) and merge its pull request into `main`. GitHub builds, checks and deploys the Articles site to Cloudflare automatically.
+
 ## WalletConnect mobile links
 
 WalletGuide bases are `https://oathwallet.org` and `oathwallet://`.
@@ -107,8 +111,7 @@ URL and the actual image response using crawler user agents.
 - `/mcp` is stateless, supports Streamable HTTP versions 2025-06-18 and 2025-03-26,
   and exposes the supplied eight tools, nine resources and one prompt. It has no
   wallet access, data storage or email-sending capability.
-- Editing published articles requires updating `articles.html`, `articles.md` and
-  `oath-data.json`, as described in `EXPORT-README.txt`.
+- To publish or update an editorial, follow the [GitHub article publishing guide](content/articles/README.md).
 
 The support form opens an email draft in the visitor's mail app. Hosting the website
 does not create the `care@oathwallet.org` mailbox; mail receiving must be configured

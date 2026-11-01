@@ -12,7 +12,7 @@ OATH WEBSITE — upload guide
 Pages
   /               Home
   /features.html  Features
-  /articles.html  Articles (add posts in the ARTICLES list inside articles.html)
+  /articles.html  Articles (generated from website content)
   /support.html   Support — care@oathwallet.org
   /press.html     Press kit
   /terms.html     Terms of Service
@@ -55,8 +55,7 @@ MCP server (Model Context Protocol):
       -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
   Add to an MCP client (e.g. Claude, Cursor):  { "type": "http", "url": "https://oathwallet.org/mcp" }
 
-When you publish articles, add them to the ARTICLES list in articles.html AND to "articles" in
-oath-data.json, and add a line to articles.md, so agents see them too.
+Publish new articles through GitHub as described in content/articles/README.md. The build updates the archive and discovery files.
 If your host uses Nginx instead of Apache, add:  location = /mcp { rewrite ^ /mcp.php last; }
 
 

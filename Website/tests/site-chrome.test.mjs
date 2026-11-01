@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
 import {buildSiteChrome} from '../scripts/build-help-chrome.mjs';
+import published from '../public/oath-data.json' with {type:'json'};
 import catalog from '../content/networks.json' with {type:'json'};
 import {handleHelp} from '../src/help/index.js';
 const root=new URL('../public/',import.meta.url);
@@ -22,7 +23,7 @@ test('all marketing and editorial pages use the canonical header and complete ne
   assert.doesNotMatch(html,/<header class="site-header"|<footer class="site-footer"/);
   checked++;
  }
- assert.equal(checked,86,`checked ${checked} current pages`);
+ assert.equal(checked,86+published.articles.filter(a=>a.github_editorial).length,`checked ${checked} current pages`);
  for(const n of catalog.networks){assert.ok(chrome.footer.includes(`href="https://oathwallet.org/networks/${n.slug}"`));assert.ok(chrome.footer.includes(`src="${n.icon}"`));}
  assert.equal((chrome.footer.match(/href="https:\/\/oathwallet.org\/networks\//g)||[]).length,42);
 });
