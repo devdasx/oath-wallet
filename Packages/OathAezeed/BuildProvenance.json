@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "source_base_commit": "90b5b28a6f3852319a24d74143863f2b57837c4d",
+  "go_version": "go1.26.5",
+  "xcode_version": "27.0 (27A266a)",
+  "host_architecture": "arm64",
+  "input_hashes": {
+    "Tools/AezeedBridge/README.md": "a3a04dec909d90cc9ee1c2c8d885515721f984af8ee6b05e57a8f04abe17096e",
+    "Tools/AezeedBridge/build.sh": "1c3db90a210cc464e7aa47de724aebc3d6adbe7ab97d898b08b72c61edb8d4f8",
+    "Tools/AezeedBridge/cmd/seedvectors/main.go": "c7fc8658969ba2417e4fec878ba0b588b86a460ae9b46ce457fe21508c0d699e",
+    "Tools/AezeedBridge/cmd/vectors/main.go": "ab5b0345ab0d2c80e861e71bdc7d747ab3eed1d5a9b065f0b896dbeb98704979",
+    "Tools/AezeedBridge/go.mod": "8ea9e98f39671a80c7d044d70d2b508952e31b0992f2cec535cec1aa4fb957f5",
+    "Tools/AezeedBridge/go.sum": "f0ba1a4d26ca957ee4c809afd8924b606617bf64637d4d06a67932f152b5b5a5",
+    "Tools/AezeedBridge/include/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
+    "Tools/AezeedBridge/include/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
+    "Tools/AezeedBridge/main.go": "686d5d9fe6a9d25860e4dda155ee6f3917be1d293d5f3dda7832c03d93b19403",
+    "Tools/AezeedBridge/main_test.go": "8f3b94a5470fa4f7cf48e05709630b8382dc4bf3009001fa9c37fb7b6bf31360"
+  },
+  "framework_files": {
+    "Info.plist": "fc9e62571e097e0c19cdf45734acedca4f39c5cb60e16091870716a2835eedcc",
+    "ios-arm64/Headers/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
+    "ios-arm64/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
+    "ios-arm64/libOathAezeedCore.a": "7387b502ef1f7cc9fcca8ef8214c21b98618c926f01334add66a925a86cd397e",
+    "ios-arm64-simulator/Headers/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
+    "ios-arm64-simulator/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
+    "ios-arm64-simulator/libOathAezeedCore.a": "626bc44fee34614cbbae4dfb9186624d18eea6a955da7c09cbe0a92b9349a78f",
+    "macos-arm64/Headers/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
+    "macos-arm64/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
+    "macos-arm64/libOathAezeedCore.a": "ccd26b2ad5d9c35206ff118cb55c2bb56ac6494d392a5b25e08d873823942213"
+  },
+  "reproducibility": "All ten files identical across two separate source/output/cache paths with the same toolchain. Historical shipped binary equivalence is not established.",
+  "compatibility": "Production seed-format and password semantics unchanged; compile settings omit debug metadata and normalize archive and plist metadata."
+}
