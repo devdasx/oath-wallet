@@ -28,6 +28,21 @@ final class WalletConnectSwapReviewTests: XCTestCase {
             XCTAssertEqual(route.recipient, owner)
         }
     }
+    func testPrimaryReviewRetainsEveryCommandIncludingFoldedAndUnknownOperations() throws {
+        for name in ["token-native", "native-token", "nested-swap-sweep", "optional-nested", "unknown-and-sweep", "permit-transfer", "wrap-transfer", "partial-native"] {
+            let input = try request(name, value: name == "native-token" ? "0x75bcd15" : "0x0")
+            let details = WalletConnectCallDetails(input), review = WalletConnectSwapReview(input)
+            XCTAssertFalse(review.operations.isEmpty, name)
+            XCTAssertEqual(review.operations, details.steps, name)
+            XCTAssertEqual(review.deadline, details.deadline, name)
+        }
+        let transfer = WalletConnectSwapReview(try request("permit-transfer"))
+        XCTAssertTrue(transfer.routes.isEmpty)
+        XCTAssertEqual(transfer.operations.first?.values.first(where: { $0.label == .owner })?.value, owner)
+        let routerTransfer = WalletConnectSwapReview(try request("wrap-transfer"))
+        XCTAssertEqual(routerTransfer.operations.last?.values.first(where: { $0.label == .owner })?.value, router)
+        XCTAssertEqual(routerTransfer.operations.last?.values.first(where: { $0.label == .amount })?.routerBalance, true)
+    }
     func testNativeBoundariesRetainCorrectAmountsAndRecipient() throws {
         let outgoing = WalletConnectSwapReview(try request("token-native"))
         XCTAssertEqual(outgoing.routes[0].input.reference, a)

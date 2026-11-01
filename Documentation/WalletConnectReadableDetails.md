@@ -9,6 +9,13 @@ away, selectable in a technical view. THORChain details retain their decoded
 amounts, account, destination and memo; the original signing document is collapsed.
 Neither view edits a request or signs anything.
 
+The first EVM approval screen also shows the complete ordered decoded router
+commands, including standalone transfers, transfer sources, optional steps,
+balance conditions and native conversions. Compact swap routes do not replace
+this command list. Expanded details reuse the same field renderer; unknown
+operations remain visibly unknown. This describes requested operations, not
+simulated balance changes.
+
 Token amounts use on-chain decimals when available. Missing precision remains
 explicit exact units; there is no guessed 18-decimal fallback for tokens. Token
 names are sanitized metadata, never a contract safety guarantee. Metadata lookup
@@ -36,8 +43,9 @@ and arbitrary contract ABIs are not claimed to be decoded. This is a request
 summary, not simulated balance changes or a guarantee of execution.
 
 The same EVM page is used by every dApp and every EVM network offered by the app.
-Current WalletConnect transaction namespaces are EVM and THORChain. Ordinary send
-support on another chain is not WalletConnect transaction support for that chain.
+Other WalletConnect chain namespaces have separate request-review implementations
+and are outside this EVM router decoder's scope. Ordinary send support alone does
+not establish WalletConnect transaction support for a chain.
 
 ## Primary references
 

@@ -20,11 +20,18 @@ public struct WalletConnectSwapReview: Sendable, Equatable {
     public let routes: [Route]
     public let incomplete: Bool
     public let nativeConversions: [WalletConnectCallDetails.Step]
+    /// Complete decoded execution order, including transfers, balance checks,
+    /// unknown commands and native boundaries folded into the compact routes.
+    /// A route summary alone is never a complete approval for a router batch.
+    public let operations: [WalletConnectCallDetails.Step]
+    public let deadline: String?
 
     public init(_ request: WalletConnectEVMRequest) {
         chainID = request.chainID
         let details = WalletConnectCallDetails(request)
         let action = WalletConnectEVMAction(request)
+        operations = details.steps
+        deadline = details.deadline
         var routes: [Route] = []
         for step in details.steps where step.operation == .swap {
             func field(_ label: WalletConnectEVMAction.Label) -> String? {
