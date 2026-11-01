@@ -35,6 +35,10 @@ final class BitcoinMultisigTests: XCTestCase {
             XCTAssertTrue(policy.branches.allSatisfy { !$0.descriptor.contains("prv") })
         }
     }
+    func testFinalNormalChildMultisigInputAndChange() throws {
+        try checkSigning(required: 2, keys: [.seed(Data(0..<32)), .seed(Data(32..<64))], index: 0x7fff_ffff)
+    }
+
     func testEveryThresholdSignsWithBoundedFeesAndRejectsWrongChange() throws {
         for count in [2, 3, 5, 15] {
             let keys = try (1...count).map { try fixed(UInt8($0)) }
@@ -88,10 +92,10 @@ final class BitcoinMultisigTests: XCTestCase {
         }
         print("Bitcoin Core regtest: fixed, HD, mixed, 1-of-2, 2-of-3 and 15-of-15 multisig transactions accepted and mined")
     }
-    private func checkSigning(required: Int, keys: [BitcoinMultisigKey]) throws {
+    private func checkSigning(required: Int, keys: [BitcoinMultisigKey], index: UInt32 = 0) throws {
         let policy = try BitcoinMultisig.wallet(required: required, keys: keys)
-        let address = try BitcoinKeys.addresses(branch: policy.branches[0], range: 0..<1)[0]
-        let change = try BitcoinKeys.addresses(branch: policy.branches.last!, range: 0..<1)[0]
+        let address = try BitcoinKeys.addresses(branch: policy.branches[0], range: index..<(index + 1))[0]
+        let change = try BitcoinKeys.addresses(branch: policy.branches.last!, range: index..<(index + 1))[0]
         var raw = BitcoinWire.little(UInt32(2)) + Data([1]) + Data(repeating: 1, count: 32)
         raw += BitcoinWire.little(UInt32(0)) + Data([0]) + BitcoinWire.little(UInt32.max) + Data([1])
         raw += BitcoinWire.little(UInt64(100_000)) + BitcoinWire.vector(Data(hex: address.script)!) + BitcoinWire.little(UInt32(0))

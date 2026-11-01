@@ -11,6 +11,16 @@ final class ElectrumMnemonicTests: XCTestCase, @unchecked Sendable {
     func vectors() throws -> [Vector] {
         try JSONDecoder().decode([Vector].self, from: Data(contentsOf: XCTUnwrap(Bundle.module.url(forResource: "electrum-reference", withExtension: "json"))))
     }
+    func testFinalNormalChildElectrumLeafExport() throws {
+        let vector = try XCTUnwrap(vectors().first { $0.kind == "segwit" })
+        let material = try ElectrumMnemonic.decode(vector.phrase, passphrase: vector.password)
+        let branch = try XCTUnwrap(ElectrumBitcoin.wallet(material).branches.first)
+        let address = try XCTUnwrap(BitcoinKeys.addresses(branch: branch, range: 0x7fff_ffff..<0x8000_0000).first)
+        let key = try BitcoinKeys.decodeImport(ElectrumBitcoin.privateKey(material, address: address))
+        let single = try XCTUnwrap(BitcoinKeys.singleKey(bytes: key.bytes, compressed: key.compressed).branches.first { $0.type == address.type })
+        XCTAssertEqual(try BitcoinKeys.addresses(branch: single, range: 0..<1).first?.script, address.script)
+    }
+
     func testUpstreamAddressesAndPrivateKeys() throws {
         let vectors = try vectors()
         XCTAssertGreaterThan(vectors.count, 15)

@@ -11,6 +11,33 @@ final class BitcoinKeysTests: XCTestCase {
         let key = DescriptorSecretKey(networkKind: .main, mnemonic: mnemonic, password: nil)
         return try BitcoinKeys.extended(key.description, defaultType: .nativeSegwit)
     }
+    func testFinalNormalChildMatchesIndependentBIP44ScriptsAndExports() throws {
+        // Synthetic seed 00...1f. Expected P2PKH scripts computed with OpenSSL and BIP32 HMAC-SHA512.
+        let scripts: [UTXONetwork: String] = [
+            .bitcoin: "76a91428a14196f50a64075abed24de16d6b0e8b56256688ac",
+            .bitcoincash: "76a91489d703ce6370ecb5721bcd00a55939f37ccfc8a188ac",
+            .dogecoin: "76a91450e4725efe58aabadf8f50dbb4b6208d5eb1a71e88ac",
+            .litecoin: "76a91425231776cdd41631012a1ae248160f7137d1b1c188ac",
+        ]
+        let seed = Data(0..<32)
+        for (network, expected) in scripts {
+            let branch = try XCTUnwrap(network.wallet(seed: seed).branches.first { $0.change == 0 && $0.type == .legacy })
+            let leaf = try XCTUnwrap(BitcoinKeys.addresses(branch: branch, range: 0x7fff_ffff..<0x8000_0000).first)
+            XCTAssertEqual(leaf.script, expected)
+            let wif = try network.privateKeyWIF(source: .seed(seed, account: 0), address: leaf)
+            let decoded = try network.decodeImport(wif)
+            let single = try XCTUnwrap(network.singleKey(bytes: decoded.bytes, compressed: decoded.compressed).branches.first { $0.type == .legacy })
+            XCTAssertEqual(try BitcoinKeys.addresses(branch: single, range: 0..<1).first?.script, expected)
+        }
+    }
+
+    func testFinalNormalChildStillRejectsHardenedAndFixedKeys() throws {
+        let branch = try XCTUnwrap(Self.wallet().branches.first)
+        XCTAssertThrowsError(try BitcoinKeys.addresses(branch: branch, range: 0x8000_0000..<0x8000_0001))
+        let fixed = try XCTUnwrap(BitcoinKeys.singleKey(bytes: Data(1...32), compressed: true).branches.first)
+        XCTAssertThrowsError(try BitcoinKeys.addresses(branch: fixed, range: 0x7fff_ffff..<0x8000_0000))
+    }
+
     func testPublishedBIPAddresses() throws {
         let wallet = try Self.wallet()
         let expected: [BitcoinAddressType: String] = [

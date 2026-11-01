@@ -27,6 +27,15 @@ final class BitcoinSendTests: XCTestCase {
                   change: address(change: 1), ratePerKVByte: rate)
     }
 
+    func testFinalNormalChildSignsInputAndChange() throws {
+        let index: UInt32 = 0x7fff_ffff
+        let plan = try BitcoinSendPlan.make(coins: [coin(100_000, index: index)], recipient: address(index: 1).address,
+                                            amount: 50_000, change: address(change: 1, index: index), ratePerKVByte: 2000)
+        let signed = try BitcoinSendSigner.sign(plan) { _ in .seed(self.seed, account: 0) }
+        XCTAssertEqual(try BitcoinTransactions.txid(signed.raw), signed.txid)
+        XCTAssertEqual(signed.fee, plan.fee)
+    }
+
     func testMixedTypesBothPathsAndAllRecipientsSign() throws {
         for target in BitcoinAddressType.allCases {
             let coins = try BitcoinAddressType.allCases.enumerated().flatMap { offset, type in
