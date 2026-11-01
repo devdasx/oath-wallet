@@ -16,7 +16,7 @@ final class ArtworkHostPolicyTests: XCTestCase, @unchecked Sendable {
     func testResolverRecognizedIPv4SpellingsAreRejected() throws {
         for (input, canonical) in [
             ("0x7f.0.0.1", "127.0.0.1"), ("127.0x0.1", "127.0.0.1"),
-            ("0x7f.1","127.0.0.1"), ("0xA9.0xfe.0.1","169.254.0.1"),
+            ("0x7f.1","127.0.0.1"), ("0x7f.0x1","127.0.0.1"), ("0xA9.0xfe.0.1","169.254.0.1"),
             ("%30%78%37%66.1","127.0.0.1"), ("0xc0.0250.1.1","192.168.1.1")
         ] {
             let url = try XCTUnwrap(URL(string: "https://"+input+"/icon"))
@@ -82,6 +82,7 @@ final class ArtworkHostPolicyTests: XCTestCase, @unchecked Sendable {
             XCTAssertEqual(ArtworkSource.normalized(value),value)
         }
         XCTAssertNotNil(ArtworkSource.normalized("https://bücher.example/img"))
+        XCTAssertNotNil(ArtworkSource.normalized("https://%62%C3%BCcher.example/img"))
         XCTAssertEqual(ArtworkSource.normalized("http://cdn.example.org/a"),"https://cdn.example.org/a")
         XCTAssertEqual(ArtworkSource.normalized("ipfs://bafyexample/image"),"https://ipfs.io/ipfs/bafyexample/image")
         XCTAssertEqual(ArtworkSource.normalized("ar://abc/icon"),"https://arweave.net/abc/icon")
