@@ -98,6 +98,7 @@ public enum BitcoinCashKeys {
         case 0x0488b21e: secret = false
         default: throw BitcoinError.wrongNetwork
         }
+        try Base58Check.validateExtendedKeyData(data, privateVersion: secret)
         data.replaceSubrange(0..<4, with: secret ? [0x04,0x88,0xad,0xe4] : [0x04,0x88,0xb2,0x1e])
         return (data, Base58Check.encode(data), secret)
     }

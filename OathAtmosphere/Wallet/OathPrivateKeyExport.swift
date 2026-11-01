@@ -14,8 +14,7 @@ extension OathWalletEngine {
             let source: BitcoinPrivateKeySource
             if let material = secret.privateKey {
                 guard material.isValidStructure, material.networks == [account.chain] else { throw OathWalletError.derivationFailed }
-                if let extended = material.extendedKey(for: network) {
-                    guard try network.decodeImport(extended).bytes == material.bytes else { throw OathWalletError.derivationFailed }
+                if let extended = try material.extendedKey(for: network) {
                     source = .extended(extended)
                 }
                 else { source = .single(material.bytes, compressed: material.compressed != false) }
@@ -39,7 +38,7 @@ extension OathWalletEngine {
             if let network = UTXONetwork(rawValue: account.chain.id) {
                 let expected = try importedKeyProfile(for: secret, material: material)
                 guard expected.addresses.contains(where: { $0.address == account.address && $0.path == account.path }) else { throw OathWalletError.derivationFailed }
-                if let extended = material.extendedKey(for: network) { return .init(value: extended, format: "BIP32") }
+                if let extended = try material.extendedKey(for: network) { return .init(value: extended, format: "BIP32") }
                 return .init(value: try network.wif(bytes: material.bytes, compressed: material.compressed != false), format: "WIF")
             }
             guard material.isValidStructure,

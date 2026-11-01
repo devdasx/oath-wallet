@@ -87,6 +87,27 @@ public enum UTXONetwork: String, Codable, Sendable, CaseIterable {
         case .bitcoincash: try BitcoinCashKeys.singleKey(bytes: bytes, compressed: compressed)
         }
     }
+    /// Older vaults can contain a noncanonical private marker alongside the
+    /// exact scalar they used. New imports always use the strict decoder.
+    public func restoredExtendedPrivateKey(_ text: String, storedScalar: Data) throws -> String {
+        var payload = try Base58Check.decode(text)
+        defer { payload.resetBytes(in: 0..<payload.count) }
+        guard payload.count == 78, storedScalar.count == 32,
+              payload.suffix(32) == storedScalar else { throw BitcoinError.invalidKey }
+        let canonical: String
+        if payload[45] == 0 {
+            canonical = text
+        } else {
+            payload[45] = 0
+            canonical = Base58Check.encode(payload)
+        }
+        // Recheck private version, network, scalar validity, node depth and
+        // original scope. A public version can never become a private import.
+        let parsed = try decodeImport(canonical)
+        guard parsed.extended == canonical, parsed.bytes == storedScalar else { throw BitcoinError.invalidKey }
+        return canonical
+    }
+
     public func decodeImport(_ text: String) throws -> (bytes: Data, compressed: Bool, extended: String?) {
         switch self {
         case .bitcoin: try BitcoinKeys.decodeImport(text)

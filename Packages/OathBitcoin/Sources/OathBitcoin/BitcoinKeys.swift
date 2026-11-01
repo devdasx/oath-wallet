@@ -254,6 +254,7 @@ public enum BitcoinKeys {
             versions[0x01b26792] = (true, .nestedSegwit); versions[0x01b26ef6] = (false, .nestedSegwit)
         }
         guard let (privateKey, type) = versions[version] else { throw BitcoinError.invalidKey }
+        try Base58Check.validateExtendedKeyData(data, privateVersion: privateKey)
         data.replaceSubrange(0..<4, with: privateKey ? [0x04,0x88,0xad,0xe4] : [0x04,0x88,0xb2,0x1e])
         return (Base58Check.encode(data), data, privateKey, type)
     }
@@ -271,6 +272,18 @@ extension Data {
 
 /// Base58Check encoding only; elliptic curve and BIP32 operations stay in BDK.
 enum Base58Check {
+    /// A version alias changes only the four version bytes. Validate the
+    /// original key data before a descriptor parser can discard its type byte.
+    static func validateExtendedKeyData(_ payload: Data, privateVersion: Bool) throws {
+        guard payload.count == 78 else { throw BitcoinError.invalidKey }
+        let marker = payload[45]
+        if privateVersion {
+            guard marker == 0 else { throw BitcoinError.invalidKey }
+        } else {
+            guard marker == 2 || marker == 3 else { throw BitcoinError.invalidKey }
+        }
+    }
+
     static let alphabet = Array("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".utf8)
     static func encode(_ payload: Data) -> String {
         let data = payload + SHA256.hash(data: Data(SHA256.hash(data: payload))).prefix(4)

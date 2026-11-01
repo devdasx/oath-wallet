@@ -2,14 +2,12 @@ import XCTest
 import OathDiagnostics
 @testable import OathBitcoin
 
-private actor BitcoinCashMultisigDiagnosticCapture: DiagnosticTransport {
-    var events: [DiagnosticEvent] = []
-    func upload(_ events: [DiagnosticEvent]) async throws { self.events += events }
-}
 final class BitcoinCashMultisigDiagnosticsTests: XCTestCase, @unchecked Sendable {
     // Run in its own process: OathDiagnostics configures its outbox once.
     func testSigningFailureReportsOnlySafeCodeAndOperationContext() async throws {
-        let capture = BitcoinCashMultisigDiagnosticCapture()
+        let operation = UUID()
+        let delivery = expectation(description: "Correlated multisig signing diagnostic delivered")
+        let capture = MultisigSigningDiagnosticCapture(operation: operation, delivery: delivery)
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: directory) }
         OathDiagnostics.configure(file: directory.appendingPathComponent("events.json"), transport: capture)
@@ -22,7 +20,6 @@ final class BitcoinCashMultisigDiagnosticsTests: XCTestCase, @unchecked Sendable
         let coin = BitcoinSendCoin(accountID: "private-fixture-identifier", txid: try BitcoinTransactions.txid(raw, network: .bitcoincash), vout: 0,
             value: 100_000, address: address, previousTransaction: raw)
         let plan = try BitcoinSendPlan.make(coins: [coin], recipient: address.address, amount: 50_000, change: address, ratePerKVByte: 2000, chain: .bitcoincash)
-        let operation = UUID()
         XCTAssertThrowsError(try OathDiagnostics.$operationID.withValue(operation) {
             try BitcoinMultisig.sign(plan, required: 3, keys: keys.map(BitcoinMultisigKey.wif), network: .bitcoincash)
         })
@@ -30,12 +27,9 @@ final class BitcoinCashMultisigDiagnosticsTests: XCTestCase, @unchecked Sendable
         XCTAssertThrowsError(try BitcoinMultisig.validateWIF("T" + String(repeating: "1", count: 51), network: .bitcoincash)) {
             XCTAssertEqual($0 as? BitcoinMultisigError, .invalidKey)
         }
-        for _ in 0..<100 {
-            if await capture.events.contains(where: { $0.operationID == operation }) { break }
-            try await Task.sleep(for: .milliseconds(10))
-        }
-        let events = await capture.events.filter { $0.operationID == operation }
-        let event = try XCTUnwrap(events.first)
+        await fulfillment(of: [delivery], timeout: 10)
+        let delivered = await capture.event
+        let event = try XCTUnwrap(delivered)
         XCTAssertEqual(event.operation, "multisig_sign")
         XCTAssertEqual(event.context["chain"], "bitcoincash")
         XCTAssertTrue(event.privacyFiltered)

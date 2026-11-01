@@ -191,7 +191,7 @@ enum OathWalletEngine {
         if let origin = account.utxo, let network = UTXONetwork(rawValue: account.chain.id) {
             let source: BitcoinPrivateKeySource
             if let key = secret.privateKey {
-                if let extended = key.extendedKey(for: network) { source = .extended(extended) }
+                if let extended = try key.extendedKey(for: network) { source = .extended(extended) }
                 else { source = .single(key.bytes, compressed: key.compressed != false) }
             } else { source = .seed(Data(0..<32), account: origin.accountIndex) }
             return .init(value: try network.privateKeyWIF(source: source, address: origin.address), format: "WIF")
