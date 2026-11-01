@@ -62,7 +62,8 @@ public struct Account: Equatable, Hashable {
      [CAIP-2](https://github.com/ChainAgnostic/CAIPs/blob/master/CAIPs/caip-2.md) or if the `address` format is invalid.
      */
     public init?(chainIdentifier: String, address: String) {
-        self.init("\(chainIdentifier):\(address)")
+        guard let blockchain = Blockchain(chainIdentifier) else { return nil }
+        self.init(blockchain: blockchain, address: address)
     }
 
     /**
