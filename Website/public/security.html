@@ -220,9 +220,9 @@
       <p style="margin:0;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">These are maintainer-directed release checks. This page does not supply a new binary comparison, independent reproducibility report, or security audit. A successful build, Apple approval, or GitHub’s Verified signature badge is not by itself proof of source-to-store equivalence.</p>
       <p style="margin:0;font:400 16px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">For independent verification, look for the exact app version and build, source commit, toolchain, compared artifacts, method, exclusions, and result.</p>
       <div style="display:flex;flex-wrap:wrap;gap:16px 24px;font:500 15px/1.6 'Instrument Sans',sans-serif">
-        <a href="https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14" style="text-decoration:underline;text-underline-offset:4px">Read the 4.1.14 verification record ↗</a>
-        <a href="https://articles.oathwallet.org/open-source-wallets-verifiable-builds" style="text-decoration:underline;text-underline-offset:4px">Read our guide to verifiable builds ↗</a>
-        <a href="https://reproducible-builds.org/docs/definition/" style="text-decoration:underline;text-underline-offset:4px">Reproducible Builds definition ↗</a>
+        <a href="https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14" style="text-decoration:underline;text-underline-offset:4px">Read the 4.1.14 verification record</a>
+        <a href="https://articles.oathwallet.org/open-source-wallets-verifiable-builds" style="text-decoration:underline;text-underline-offset:4px">Read our guide to verifiable builds</a>
+        <a href="https://reproducible-builds.org/docs/definition/" style="text-decoration:underline;text-underline-offset:4px">Reproducible Builds definition</a>
       </div>
     </div>
   </section>
@@ -328,7 +328,7 @@
           <span style="font:400 12px/1 'IBM Plex Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:#8E8C86">What does leave</span>
           <sc-for list="{{ leaves }}" as="lv" hint-placeholder-count="3">
             <div style="display:flex;gap:14px;align-items:flex-start;padding-top:14px;border-top:1px solid rgba(242,240,234,.08)">
-              <span style="flex:none;color:#12A88E;font:500 14px/1.4 'IBM Plex Mono',monospace">↗</span>
+
               <div style="display:flex;flex-direction:column;gap:4px"><span style="font:600 15.5px/1.3 'Instrument Sans',sans-serif">{{ lv.h }}</span><span style="font:400 14px/1.5 'Instrument Sans',sans-serif;color:#8E8C86;text-wrap:pretty">{{ lv.d }}</span></div>
             </div>
           </sc-for>
@@ -379,7 +379,7 @@
         </div>
         <div style="display:flex;gap:6px">
           <button onClick="{{ copyCode }}" style="height:36px;padding:0 14px;border:0;border-radius:999px;cursor:pointer;background:#1B1B1E;color:#F2F0EA;font:500 12.5px/1 'Instrument Sans',sans-serif" style-hover="background:#26262A">{{ copyLabel }}</button>
-          <a href="{{ file.url }}" target="_blank" rel="noopener" style="height:36px;padding:0 14px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;font:600 12.5px/1 'Instrument Sans',sans-serif" style-hover="color:#0A0A0B;background:#FFFFFF">View on GitHub ↗</a>
+          <a href="{{ file.url }}" target="_blank" rel="noopener" style="height:36px;padding:0 14px;border-radius:999px;background:#F2F0EA;color:#0A0A0B;display:flex;align-items:center;font:600 12.5px/1 'Instrument Sans',sans-serif" style-hover="color:#0A0A0B;background:#FFFFFF">View on GitHub</a>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
@@ -431,7 +431,7 @@
           <sc-for list="{{ files }}" as="fl" hint-placeholder-count="7">
             <a href="{{ fl.url }}" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;gap:14px;min-height:56px;border-bottom:1px solid rgba(242,240,234,.12)" style-hover="color:#FFFFFF;padding-left:6px">
               <div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font:500 15px/1.2 'IBM Plex Mono',monospace">{{ fl.name }}</span><span style="font:400 13px/1.3 'Instrument Sans',sans-serif;color:#8E8C86">{{ fl.d }}</span></div>
-              <span style="flex:none;color:#8E8C86">↗</span>
+
             </a>
           </sc-for>
         </div>
@@ -453,8 +453,8 @@
           <span style="font:400 clamp(26px,2.6vw,34px)/1.1 'Instrument Serif',serif">Tell us privately first. Follow the current reporting policy.</span>
           <div style="display:flex;flex-wrap:wrap;gap:8px">
             <a href="https://github.com/devdasx/oath-wallet/security/advisories/new" style="height:48px;padding:0 20px;border-radius:999px;background:#0A0A0B;color:#F2F0EA;display:flex;align-items:center;font:600 14.5px/1 'Instrument Sans',sans-serif" style-hover="color:#FFFFFF">Report privately on GitHub</a>
-            <a href="/bug-bounty" style="display:flex;align-items:center;min-height:44px;font:500 15px/1.5 'Instrument Sans',sans-serif;text-decoration:underline;text-underline-offset:4px">Explore the bug bounty program ↗</a>
-            <a href="https://github.com/devdasx/oath-wallet/security/policy" target="_blank" rel="noopener" style="height:48px;padding:0 20px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(10,10,11,.2);color:#0A0A0B;display:flex;align-items:center;font:500 14.5px/1 'Instrument Sans',sans-serif" style-hover="color:#0A0A0B;background:#E3E3E4">Security reporting policy ↗</a>
+            <a href="/bug-bounty" style="display:flex;align-items:center;min-height:44px;font:500 15px/1.5 'Instrument Sans',sans-serif;text-decoration:underline;text-underline-offset:4px">Explore the bug bounty program</a>
+            <a href="https://github.com/devdasx/oath-wallet/security/policy" target="_blank" rel="noopener" style="height:48px;padding:0 20px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(10,10,11,.2);color:#0A0A0B;display:flex;align-items:center;font:500 14.5px/1 'Instrument Sans',sans-serif" style-hover="color:#0A0A0B;background:#E3E3E4">Security reporting policy</a>
           </div>
           <span style="font:400 13px/1.5 'Instrument Sans',sans-serif;color:#5E5C57">Oath will never ask for your recovery phrase, private key or passkey.</span>
         </div>
