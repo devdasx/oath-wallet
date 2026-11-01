@@ -65,6 +65,58 @@ final class EventsPrivacyLifecycleTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(transport.count, 3, "The real client must combine stored event kinds")
         client.setTelemetryEnabled(false)
     }
+
+    func testLateSuccessCannotEraseEventsFromNewGeneration() async {
+        let started = expectation(description: "held old generation")
+        let erased = expectation(description: "new generation must survive old acknowledgement")
+        erased.isInverted = true
+        let transport = HeldEventsTransport(first: started, second: nil)
+        let fixture = EventsFixture(enabled: true, transport: transport)
+        let client = fixture.client()
+        await fulfillment(of: [started], timeout: 2)
+        client.setTelemetryEnabled(false)
+        client.setTelemetryEnabled(true)
+        client.saveMessageEvent(.sessionRequestLinkModeSent(RPCID(42)))
+        fixture.messages.onClear = { erased.fulfill() }
+        transport.releaseSuccess()
+        await fulfillment(of: [erased], timeout: 0.3)
+        XCTAssertFalse(fixture.messages.fetchMessageEvents().isEmpty, "Old delivery must not erase a new opt-in generation")
+        fixture.messages.onClear = nil
+        client.setTelemetryEnabled(false)
+    }
+
+    func testEventsAddedDuringDeliveryAreNotErased() async {
+        let started = expectation(description: "held snapshot")
+        let erased = expectation(description: "new events must survive snapshot acknowledgement")
+        erased.isInverted = true
+        let transport = HeldEventsTransport(first: started, second: nil)
+        let fixture = EventsFixture(enabled: true, transport: transport)
+        let client = fixture.client()
+        await fulfillment(of: [started], timeout: 2)
+        client.saveMessageEvent(.sessionRequestLinkModeSent(RPCID(42)))
+        fixture.messages.onClear = { erased.fulfill() }
+        transport.releaseSuccess()
+        await fulfillment(of: [erased], timeout: 0.3)
+        XCTAssertFalse(fixture.messages.fetchMessageEvents().isEmpty, "Acknowledgement must not erase events absent from its snapshot")
+        fixture.messages.onClear = nil
+        client.setTelemetryEnabled(false)
+    }
+
+    func testAcknowledgementPreservesActiveTrace() async {
+        let started = expectation(description: "held snapshot")
+        let acknowledged = expectation(description: "snapshot acknowledged")
+        let transport = HeldEventsTransport(first: started, second: nil)
+        let fixture = EventsFixture(enabled: true, transport: transport)
+        let client = fixture.client()
+        await fulfillment(of: [started], timeout: 2)
+        client.startTrace(topic: "synthetic-active-topic")
+        fixture.messages.onClear = { acknowledged.fulfill() }
+        transport.releaseSuccess()
+        await fulfillment(of: [acknowledged], timeout: 2)
+        XCTAssertEqual(fixture.collector.topic, "synthetic-active-topic")
+        fixture.messages.onClear = nil
+        client.setTelemetryEnabled(false)
+    }
 }
 
 private struct FixtureTrace: TraceEventItem { var description: String { "synthetic trace" } }
@@ -80,6 +132,11 @@ private final class MemoryEvents: EventStorage, MessageEventsStorage, InitEvents
         props: .init(type: "1125", properties: .init(correlationId: 42, clientId: "synthetic", direction: .sent)))]
     private var initial = [InitEvent(eventId: "synthetic-init", bundleId: "audit", timestamp: 0,
         props: .init(properties: .init(clientId: "synthetic", userAgent: "audit")))]
+    private var clearObserver: (() -> Void)?
+    var onClear: (() -> Void)? {
+        get { lock.withLock { clearObserver } }
+        set { lock.withLock { clearObserver = newValue } }
+    }
     func saveErrorEvent(_ value: TraceEvent) { lock.withLock { errors.append(value) } }
     func fetchErrorEvents() -> [TraceEvent] { lock.withLock { errors } }
     func clearErrorEvents() { lock.withLock { errors.removeAll() } }
@@ -88,7 +145,10 @@ private final class MemoryEvents: EventStorage, MessageEventsStorage, InitEvents
             props: .init(type: "1125", properties: .init(correlationId: 43, clientId: "synthetic", direction: .sent))))
     } }
     func fetchMessageEvents() -> [MessageEvent] { lock.withLock { messages } }
-    func clearMessageEvents() { lock.withLock { messages.removeAll() } }
+    func clearMessageEvents() {
+        let callback = lock.withLock { messages.removeAll(); return clearObserver }
+        callback?()
+    }
     func saveInitEvent(_ value: InitEvent) { lock.withLock { initial.append(value) } }
     func fetchInitEvents() -> [InitEvent] { lock.withLock { initial } }
     func clearInitEvents() { lock.withLock { initial.removeAll() } }
@@ -107,12 +167,17 @@ private final class HeldEventsTransport: NetworkingServiceProtocol {
     private let lock = NSLock()
     private var continuation: CheckedContinuation<Bool, Error>?
     private var count = 0
-    let first: XCTestExpectation, second: XCTestExpectation
+    let first: XCTestExpectation
+    let second: XCTestExpectation?
     var attempts: Int { lock.withLock { count } }
-    init(first: XCTestExpectation, second: XCTestExpectation) { self.first = first; self.second = second }
+    init(first: XCTestExpectation, second: XCTestExpectation?) { self.first = first; self.second = second }
     func sendEvents<T: Encodable>(_ events: [T]) async throws -> Bool {
         let attempt = lock.withLock { count += 1; return count }
-        if attempt > 1 { second.fulfill(); return true }
+        if attempt > 1 {
+            second?.fulfill()
+            // Fail subsequent attempts so they never acknowledge another batch.
+            throw NSError(domain: "SyntheticRetry", code: 2)
+        }
         return try await withCheckedThrowingContinuation { pending in
             lock.withLock { continuation = pending }; first.fulfill()
         }
@@ -120,6 +185,10 @@ private final class HeldEventsTransport: NetworkingServiceProtocol {
     func releaseFailure() {
         let pending = lock.withLock { let value = continuation; continuation = nil; return value }
         pending?.resume(throwing: NSError(domain: "SyntheticFailure", code: 1))
+    }
+    func releaseSuccess() {
+        let pending = lock.withLock { let value = continuation; continuation = nil; return value }
+        pending?.resume(returning: true)
     }
 }
 private final class EventsFixture {
