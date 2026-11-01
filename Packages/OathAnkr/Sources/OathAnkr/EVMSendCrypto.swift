@@ -24,6 +24,9 @@ public enum EVMSendCrypto {
              integer(String(plan.maxFeePerGas)),integer(String(plan.gasLimit)),rlp(TronIdentity.hex(plan.receiver)),
              integer(plan.value),rlp(data(plan)),list([])]
         if plan.removal?.kind == .delegation {
+            // This helper also sizes provisional plans before funding validation.
+            // Bound the self-sponsored authorization nonce before adding one.
+            guard plan.nonce<UInt64.max-1 else {throw EVMSendError.signing}
             // Fee-oracle sizing uses worst-case nonzero signature bytes. Actual
             // signing always supplies the separately verified authorization.
             let sig=authorization ?? Data(repeating:0xff,count:64)+Data([1])
