@@ -257,6 +257,18 @@ enum OathWalletEngine {
     (sources / "PolkadotSigningAdapter.swift").write_text("import Foundation\nimport OathAnkr\nimport OathDatabase\nextension OathWalletEngine { static func signPolkadot(_ plan:PolkadotSendPlan, secret:OathWalletSecret, account:AccountRecord) throws -> PolkadotSignedSend { throw PolkadotSendError.signing } }\n")
     evm_types = (root / "OathAtmosphere/Send/OathEVMSendService.swift").read_text().split("/// App-lifetime")[0]
     (sources / "EVMSendTypes.swift").write_text(evm_types)
+    if "--permission-batch-races" in sys.argv:
+        # This mode exercises all three imported-key signers in one process.
+        # Select addresses with the same real crypto modules as each signer.
+        fixture = fixture.replace('address: $0.network == "solana" ?', 'address: secret.privateKey != nil ? (try! permissionRaceAddress(network: $0.network, bytes: secret.privateKey!.bytes)) : $0.network == "solana" ?')
+        fixture += '''
+func permissionRaceAddress(network: String, bytes: Data) throws -> String {
+    if OathImportChain(rawValue: network)?.isEVM == true { return try EVMSendCrypto.address(privateKey: bytes) }
+    if network == "tron" { return try TronSendCrypto.address(privateKey: bytes) }
+    if network == "solana" { return try SolanaSendCrypto.address(privateKey: bytes) }
+    throw OathWalletError.derivationFailed
+}
+'''
     if "--evm-send" in sys.argv or "--evm-multisig" in sys.argv:
         fixture = fixture.replace('address: $0.network == "solana" ?', 'address: OathImportChain(rawValue:$0.network)?.isEVM == true && secret.privateKey != nil ? (try! EVMSendCrypto.address(privateKey:secret.privateKey!.bytes)) : $0.network == "solana" ?')
         adapter = (root / "OathAtmosphere/Wallet/OathEVMSigning.swift").read_text().replace("import WalletCore\n", "")
@@ -279,7 +291,7 @@ enum OathWalletEngine {
         (sources / "ArcSigningAdapter.swift").write_text("import Foundation\nimport OathAnkr\nimport OathDatabase\nextension OathWalletEngine { static func signArc(_ plan:ArcSendPlan, secret:OathWalletSecret, account:AccountRecord) throws -> ArcSignedSend { throw ArcSendError.signing } }")
     tron_types = (root / "OathAtmosphere/Send/OathTronSendService.swift").read_text().split("/// App-lifetime")[0]
     (sources / "TronSendTypes.swift").write_text(tron_types)
-    if "--tron-send" in sys.argv:
+    if "--tron-send" in sys.argv or "--permission-batch-races" in sys.argv:
         fixture = fixture.replace('address: $0.network == "solana" ?', 'address: $0.network == "tron" && secret.privateKey != nil ? (try! TronSendCrypto.address(privateKey:secret.privateKey!.bytes)) : $0.network == "solana" ?')
         adapter = (root / "OathAtmosphere/Wallet/OathTronWallet.swift").read_text().replace("import WalletCore\n", "")
         start = adapter.index('            let passphrase =')
@@ -323,7 +335,7 @@ enum OathWalletEngine {
         (sources / "ThorchainSigningAdapter.swift").write_text("import Foundation\nimport OathAnkr\nimport OathDatabase\nextension OathWalletEngine { static func signThorchain(_ plan:ThorchainSendPlan, secret:OathWalletSecret, account:AccountRecord) throws -> ThorchainSignedSend { throw ThorchainSendError.signing }; static func thorchainPublicKey(secret:OathWalletSecret,account:AccountRecord) throws -> Data { throw ThorchainSendError.signing }; static func signThorchainWalletConnect(_ request:ThorchainWalletConnectRequest,secret:OathWalletSecret,account:AccountRecord) throws -> SolanaJSON { throw ThorchainSendError.signing } }")
     solana_types = (root / "OathAtmosphere/Send/OathSolanaSendService.swift").read_text().split("/// App-lifetime")[0]
     (sources / "SolanaSendTypes.swift").write_text(solana_types)
-    if "--solana-send" in sys.argv or "--solana-multisig" in sys.argv:
+    if "--solana-send" in sys.argv or "--solana-multisig" in sys.argv or "--permission-batch-races" in sys.argv:
         fixture = fixture.replace('address: $0.network == "solana" ?', 'address: $0.network == "solana" && secret.privateKey != nil ? (try! SolanaSendCrypto.address(privateKey:secret.privateKey!.bytes)) : $0.network == "solana" ?')
         adapter = (root / "OathAtmosphere/Wallet/OathSolanaSigning.swift").read_text().replace("import WalletCore\n", "")
         start = adapter.index('            let passphrase =')
