@@ -83,11 +83,15 @@ for(const [route,file] of Object.entries(articleRoutes).filter(([,v])=>typeof v=
  await write(file.slice(1),html);
 }
 let archive=await read('articles.html');
+const publishedArticles=JSON.parse(await read('oath-data.json')).articles;
 archive=archive.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,raw)=>{
  const schema=JSON.parse(raw);
  for(const node of schema['@graph']||[]) {
   if(node['@type']==='WebSite'){node['@id']=ARTICLE_ORIGIN+'/#site';node.url=ARTICLE_ORIGIN+'/';node.name='Oath articles';node.alternateName='Oath Wallet articles';}
   if(node['@type']==='WebPage')node.isPartOf={'@id':ARTICLE_ORIGIN+'/#site'};
+  if(node['@type']==='Blog')node.blogPost=publishedArticles.filter(a=>a.locale==='en').map(a=>({
+   '@type':'BlogPosting',headline:a.title,url:new URL(a.url).origin===ARTICLE_ORIGIN?a.url:articleURL(new URL(a.url).pathname),datePublished:a.published_at
+  }));
  }
  return `<script type="application/ld+json">${json(schema)}</script>`;
 });

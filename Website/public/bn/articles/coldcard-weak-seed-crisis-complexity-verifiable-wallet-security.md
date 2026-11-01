@@ -254,7 +254,7 @@ Coldcard-এর ব্যর্থতা প্রমাণ করে না য
 
 দীর্ঘস্থায়ী উপসংহারটি আরও সরল: নিরাপত্তা বাক্সের উপাদানে নয়; তা নিহিত গোপন তথ্যের গুণমানে, সম্পূর্ণ ব্যবস্থার আচরণে, প্রতিরক্ষা স্তরগুলোর স্বাধীনতায়, ইন্টারফেসের স্বচ্ছতায় এবং প্রতিটি গুরুত্বপূর্ণ দাবি যাচাইয়ের জন্য উপলভ্য প্রমাণে। জটিলতা প্রয়োজনীয় হতে পারে, তবে প্রতিবার একটি সুনির্দিষ্ট হুমকি নিয়ন্ত্রণের মাধ্যমে তাকে নিজের স্থান ন্যায্য প্রমাণ করতে হবে।
 
-Oath-এর নির্দেশিকাগুলোতে পরবর্তী পাঠ চালিয়ে যান: [ভৌত দৈবতা থেকে এনট্রপি নির্মাণ](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [BIP39 পাসফ্রেজ](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [স্ব-হেফাজত নিরাপত্তা-মডেল](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), এবং [অ্যাপ পাসকোড ও গোপনীয়তা নিয়ন্ত্রণ](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)।
+Oath-এর নির্দেশিকাগুলোতে পরবর্তী পাঠ চালিয়ে যান: [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [BIP39 পাসফ্রেজ](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [স্ব-হেফাজত নিরাপত্তা-মডেল](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), এবং [অ্যাপ পাসকোড ও গোপনীয়তা নিয়ন্ত্রণ](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)।
 
 ## প্রাথমিক ও কারিগরি উৎস
 

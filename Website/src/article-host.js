@@ -69,7 +69,6 @@ export async function handleArticleHost(request,env) {
     text=migrateSupportLinks(text);
     // Shared archive assets stay local; main-site navigation stays on the main site.
     text=text.replace(/href=(['"])(\/(?:features|support|press|terms|privacy|security|about|networks)?(?:#[^'"]*)?)\1/g,(_,q,path)=>`href=${q}https://oathwallet.org${path}${q}`);
-    if (entry) text=text.replace(/(<article\b[^>]*>)/,'$1<aside style="padding:16px 20px;border:1px solid #dfe3eb;border-radius:16px;margin-bottom:28px;font:14px/1.6 system-ui">This is an editorial or release article. For instructions matching the current Oath Atmosphere app, visit the <a href="https://help.oathwallet.org">Help Center</a>.</aside>');
   }
   const headers=new Headers(asset.headers);headers.delete('Content-Length');headers.delete('ETag');
   if (file.endsWith('.md')) {

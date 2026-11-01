@@ -254,7 +254,7 @@ De même, Oath ne saurait hériter de la confiance au seul motif qu’elle criti
 
 La conclusion durable est plus simple : la sécurité ne tient pas au matériau du boîtier ; elle tient à la qualité du secret, au comportement du système complet, à l’indépendance de ses défenses, à la clarté de son interface et aux preuves disponibles pour vérifier chaque affirmation importante. La complexité peut être nécessaire, mais elle doit justifier sa place, une menace maîtrisée à la fois.
 
-Poursuivez votre lecture avec les guides d’Oath sur [la création d’entropie à partir d’un aléa physique](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [les phrases secrètes BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [le modèle de sécurité de l’auto-conservation](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) et [le code d’accès de l’application et les contrôles de confidentialité](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Poursuivez votre lecture avec les guides d’Oath sur [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [les phrases secrètes BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [le modèle de sécurité de l’auto-conservation](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) et [le code d’accès de l’application et les contrôles de confidentialité](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Sources primaires et techniques
 

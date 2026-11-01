@@ -254,7 +254,7 @@ Ebenso wenig sollte Oath allein dadurch Vertrauen erben, dass es eine andere Arc
 
 Die dauerhafte Schlussfolgerung ist einfacher: Sicherheit ist nicht das Material des Gehäuses; sie ist die Qualität des Geheimnisses, das Verhalten des Gesamtsystems, die Unabhängigkeit seiner Verteidigungsschichten, die Klarheit seiner Benutzeroberfläche und die verfügbare Evidenz zur Überprüfung jeder wichtigen Aussage. Komplexität kann notwendig sein, doch sie muss sich ihren Platz verdienen, indem sie eine Bedrohung nach der anderen nachweislich kontrolliert.
 
-Lesen Sie als Nächstes Oaths Leitfäden zum [Erzeugen von Entropie aus physikalischem Zufall](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), zu [BIP39-Passphrasen](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), zum [Sicherheitsmodell der Selbstverwahrung](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) und zu [App-Passcode und Datenschutzkontrollen](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Lesen Sie als Nächstes Oaths Leitfäden zum [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), zu [BIP39-Passphrasen](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), zum [Sicherheitsmodell der Selbstverwahrung](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) und zu [App-Passcode und Datenschutzkontrollen](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Primärquellen und technische Quellen
 

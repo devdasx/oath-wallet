@@ -20,7 +20,7 @@ test('all help words, steps and version scope use the HTML content source',async
 });
 test('generated guides, full text and index cannot silently become stale',async()=>{
  assert.equal(await readFile(new URL('../public/llms.txt',import.meta.url),'utf8'),guide('https://oathwallet.org'));
- const full=await readFile(new URL('../public/llms-full.txt',import.meta.url),'utf8');assert.match(full,/Editorial article: historical statements describe their publication context/);for(const d of documents)assert.ok(full.includes(await documentText(d,env)),d.url);
+ const full=await readFile(new URL('../public/llms-full.txt',import.meta.url),'utf8');assert.doesNotMatch(full,/Editorial article: historical statements describe their publication context/);for(const d of documents)assert.ok(full.includes(await documentText(d,env)),d.url);
  const index=JSON.parse(await readFile(new URL('../public/agent-documents.json',import.meta.url),'utf8'));assert.equal(index.documents.length,documents.length);
 });
 test('MCP finds recovery guides, networks and the official download',async()=>{

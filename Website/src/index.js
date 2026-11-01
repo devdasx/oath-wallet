@@ -1,4 +1,5 @@
 import networkCatalog from '../content/networks.json' with {type:'json'};
+import { handleRetiredArticle } from './retired-articles.js';
 import { handleAgentContent, addAgentDiscovery } from './agent-content.js';
 import { handleHelp } from './help/index.js';
 import { handleWalletLinks } from './wallet-links.js';
@@ -16,7 +17,7 @@ export default {
   async scheduled(_event, env, ctx) { ctx.waitUntil(newsletterScheduled(env)); },
   async fetch(request, env) {
     let response;
-    const special = await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
+    const special = handleRetiredArticle(request) || await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
     const newsletter = special || await handleNewsletter(request, env);
     if (newsletter) {
       response = newsletter;

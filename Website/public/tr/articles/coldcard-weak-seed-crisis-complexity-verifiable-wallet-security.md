@@ -254,7 +254,7 @@ Aynı şekilde Oath da yalnızca başka bir mimariyi eleştirerek güveni miras 
 
 Kalıcı sonuç daha basittir: güvenlik kutunun malzemesi değildir; sırrın niteliği, sistemin bütününün davranışı, savunmalarının bağımsızlığı, arayüzünün açıklığı ve her önemli iddiayı doğrulamak için erişilebilen kanıtlardır. Karmaşıklık gerekli olabilir; ancak denetim altına aldığı her bir tehditle yerini ayrı ayrı hak etmelidir.
 
-Oath’ın şu konulardaki kılavuzlarıyla devam edin: [fiziksel rastgelelikten entropi oluşturma](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [BIP39 parola ifadeleri](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [öz saklama güvenlik modeli](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) ve [uygulama parolası ile gizlilik denetimleri](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Oath’ın şu konulardaki kılavuzlarıyla devam edin: [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [BIP39 parola ifadeleri](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [öz saklama güvenlik modeli](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) ve [uygulama parolası ile gizlilik denetimleri](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Birincil ve teknik kaynaklar
 

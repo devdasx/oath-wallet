@@ -254,7 +254,7 @@ Del mismo modo, Oath no debe merecer confianza solo por criticar otra arquitectu
 
 La conclusión perdurable es más sencilla: la seguridad no reside en el material de la caja, sino en la calidad del secreto, el comportamiento del sistema completo, la independencia de sus defensas, la claridad de su interfaz y las pruebas disponibles para verificar cada afirmación importante. La complejidad puede ser necesaria, pero debe ganarse su lugar controlando una amenaza concreta cada vez.
 
-Continúe con las guías de Oath sobre [cómo generar entropía a partir de aleatoriedad física](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [frases de contraseña BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [el modelo de seguridad de la autocustodia](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), y [los controles de código de acceso y privacidad de la aplicación](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Continúe con las guías de Oath sobre [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [frases de contraseña BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [el modelo de seguridad de la autocustodia](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), y [los controles de código de acceso y privacidad de la aplicación](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Fuentes primarias y técnicas
 

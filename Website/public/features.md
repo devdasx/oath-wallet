@@ -41,10 +41,10 @@ See available price quotes for supported assets. Quotes can be delayed or unavai
 Step-by-step help, with release notes and recovery limitations. Start with the guide that matches what you need to do.
 
 - [Choose a backup and restore method](/articles/backup-restore-oath-wallet)
-- [Move Oath to a new iPhone](/articles/move-oath-to-new-iphone-direct-encrypted-serverless)
+- [Restore your wallets on another iPhone](https://help.oathwallet.org/articles/move-to-new-phone)
 - [Import an existing or older wallet](/articles/recovery-phrase-private-key-icloud-iphone-transfer-import)
 - [Understand Bitcoin address types](/articles/bitcoin-settings-oath-address-types-indexes-complete-guide)
 - [Receive on the correct network](/articles/receive-crypto-safely-network-address-qr-requested-amounts)
-- [Check Silent Payments availability and limits](/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse)
+- [Receive crypto with a QR code](https://help.oathwallet.org/articles/receive-crypto)
 
 [Check supported networks](/networks) · [Read the security evidence](/security)

@@ -254,7 +254,7 @@ Oath также намеренно ограничивает функционал
 
 Итоговый вывод проще: безопасность определяется не материалом корпуса, а качеством секрета, поведением всей системы, независимостью её средств защиты, ясностью интерфейса и доступными доказательствами каждого значимого утверждения. Сложность может быть необходима, но каждый раз она должна оправдывать своё место тем, что контролирует конкретную угрозу.
 
-Продолжите знакомство с материалами Oath о [создании энтропии из физических источников случайности](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [кодовых фразах BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [модели безопасности самостоятельного хранения](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) и [коде доступа к приложению и средствах защиты конфиденциальности](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Продолжите знакомство с материалами Oath о [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [кодовых фразах BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [модели безопасности самостоятельного хранения](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) и [коде доступа к приложению и средствах защиты конфиденциальности](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Основные и технические источники
 

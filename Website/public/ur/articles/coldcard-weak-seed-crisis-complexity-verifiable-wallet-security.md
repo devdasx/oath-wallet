@@ -254,7 +254,7 @@ Coldcard کی ناکامی یہ ثابت نہیں کرتی کہ ہر موجود�
 
 پائیدار نتیجہ زیادہ سادہ ہے: سکیورٹی ڈبے کے مادے کا نام نہیں؛ یہ راز کا معیار، پورے نظام کا رویہ، اس کے دفاع کی آزادی، انٹرفیس کی وضاحت، اور ہر اہم دعوے کی تصدیق کے لیے دستیاب شواہد ہیں۔ پیچیدگی ضروری ہو سکتی ہے، مگر اسے ہر قابو یافتہ خطرے کے مقابل اپنی جگہ کا جواز الگ سے ثابت کرنا چاہیے۔
 
-Oath کی ان رہنماؤں سے مطالعہ جاری رکھیں: [طبعی بے ترتیبی سے اینٹروپی بنانا](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits)، [BIP39 پاس فریز](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)، [خود تحویلی کا سکیورٹی ماڈل](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)، اور [ایپ پاس کوڈ اور رازداری کے کنٹرول](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)۔
+Oath کی ان رہنماؤں سے مطالعہ جاری رکھیں: [Create your first wallet](https://help.oathwallet.org/articles/create-wallet)، [BIP39 پاس فریز](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)، [خود تحویلی کا سکیورٹی ماڈل](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)، اور [ایپ پاس کوڈ اور رازداری کے کنٹرول](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)۔
 
 ## بنیادی اور تکنیکی ماخذ
 

@@ -254,7 +254,7 @@ Coldcard의 실패는 현재의 모든 Coldcard가 안전하지 않다거나, �
 
 지속적으로 유효한 결론은 더 단순하다. 보안은 상자의 재질이 아니다. 비밀의 품질, 전체 시스템의 동작, 방어 수단의 독립성, 인터페이스의 명료성, 그리고 모든 중요한 주장을 검증할 수 있게 하는 증거가 곧 보안이다. 복잡성은 필요할 수 있지만, 통제하는 위협 하나하나에 대해 그 필요성을 입증해야 한다.
 
-Oath의 다음 가이드도 이어서 살펴보라. [물리적 무작위성으로 엔트로피 만들기](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [BIP39 패스프레이즈](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [자가 보관 보안 모델](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) 및 [앱 암호 및 프라이버시 제어](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Oath의 다음 가이드도 이어서 살펴보라. [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [BIP39 패스프레이즈](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [자가 보관 보안 모델](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) 및 [앱 암호 및 프라이버시 제어](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## 주요 자료 및 기술 자료
 

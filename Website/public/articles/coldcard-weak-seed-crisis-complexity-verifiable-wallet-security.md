@@ -254,7 +254,7 @@ Likewise, Oath should not inherit trust merely by criticizing another architectu
 
 The durable conclusion is simpler: security is not the material of the box; it is the quality of the secret, the behavior of the complete system, the independence of its defenses, the clarity of its interface, and the evidence available to verify every important claim. Complexity may be necessary, but it must earn its place one controlled threat at a time.
 
-Continue with Oath’s guides to [building entropy from physical randomness](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [BIP39 passphrases](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [the self-custody security model](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), and [app passcode and privacy controls](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Continue with Oath’s guides to [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [BIP39 passphrases](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [the self-custody security model](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), and [app passcode and privacy controls](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Primary and technical sources
 

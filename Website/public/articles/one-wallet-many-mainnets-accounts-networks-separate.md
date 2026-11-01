@@ -158,7 +158,7 @@ When an exchange shows several withdrawal networks for the same symbol, compare 
 
 Oath’s global Send action begins with network-aware asset selection. Sending from an asset detail screen already owns one exact asset and network variant, so it goes directly to the recipient step without asking you to choose again. The selected variant carries its network ID, source account, native-or-token identity, exact balance, decimals, and contract or mint into review and signing.
 
-The network also determines address validation, amount encoding, fee estimation, signing logic, provider, explorer, and broadcast method. Review is therefore about more than the recipient and amount. It is the final chance to verify the complete tuple: asset, network, recipient, amount, and network fee. Read [Send Crypto Without Guesswork](https://oathwallet.org/articles/send-crypto-without-guesswork-recipient-to-finality) for the full flow and [Where Crypto Network Fees Actually Go](https://oathwallet.org/articles/where-crypto-network-fees-actually-go) for the fee model.
+The network also determines address validation, amount encoding, fee estimation, signing logic, provider, explorer, and broadcast method. Review is therefore about more than the recipient and amount. It is the final chance to verify the complete tuple: asset, network, recipient, amount, and network fee. Read [Send coins and tokens](https://help.oathwallet.org/articles/send-availability) for the full flow and [Where Crypto Network Fees Actually Go](https://oathwallet.org/articles/where-crypto-network-fees-actually-go) for the fee model.
 
 ## What stays separate behind the interface
 

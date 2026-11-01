@@ -41,7 +41,7 @@ export async function documentText(d,env,asset) {
  }
  body=migrateArticleLinks(body).replace(/\]\((\/[^)]+)\)/g,(_,path)=>`](${new URL(path,main).href})`);
  body=body.replace(/^[-*][ \t]*\n(?:[ \t]*\n)+(?=\S)/gm,'- ').replace(/[ \t]+$/gm,'');
- return `Canonical: ${d.url}\n${d.updated_at?'Updated: '+d.updated_at+'\n':''}${d.app_version?'Applies to app version: '+d.app_version+'\n':''}${d.kind==='article'?'Editorial article: historical statements describe their publication context. For current instructions, see https://help.oathwallet.org/.\n':''}\n${body.trim()}\n`;
+ return `Canonical: ${d.url}\n${d.updated_at?'Updated: '+d.updated_at+'\n':''}${d.app_version?'Applies to app version: '+d.app_version+'\n':''}\n${body.trim()}\n`;
 }
 export function searchHelp(query) {
  const words=query.toLowerCase().match(/[\p{L}\p{N}]+/gu)||[];
