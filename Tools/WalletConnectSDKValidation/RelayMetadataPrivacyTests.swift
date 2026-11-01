@@ -56,4 +56,16 @@ import XCTest
                        try JSONSerialization.jsonObject(with: Data(response.json().utf8)) as? NSDictionary)
         XCTAssertFalse(encrypted.contains(transactionHash))
     }
+
+    func testDecodedMetadataCannotBeRepublished() throws {
+        let object: [String: Any] = ["topic": "fixture-topic", "message": "fixture-encrypted-message",
+            "ttl": 300, "rpcMethods": ["eth_sendTransaction"], "chainId": "eip155:1",
+            "txHashes": [transactionHash], "contractAddresses": [contract]]
+        let stored = try JSONDecoder().decode(Publish.Params.self, from: JSONSerialization.data(withJSONObject: object))
+        let encoded = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(stored)) as? [String: Any])
+        for key in ["rpcMethods", "chainId", "txHashes", "contractAddresses"] {
+            XCTAssertNil(encoded[key], "Optional transaction metadata must stay inside the encrypted session: \(key)")
+        }
+        XCTAssertEqual(encoded["message"] as? String, object["message"] as? String)
+    }
 }
