@@ -34,13 +34,14 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
   if not source.exists():
    candidates=list(sdk.rglob(source.name));assert len(candidates)==1, (source.name, candidates);source=candidates[0]
   contents=source.read_text()
-  if source.name=='Namespace.swift': contents=contents.split('enum Namespace {')[0]
   (schema/source.name).write_text('import WalletConnectNetworking\nimport HTTPClient\nimport OathDiagnostics\n'+contents)
  session=(sdk/'WalletConnectSign/Session.swift').read_text()
  (schema/'Session.swift').write_text('import WalletConnectNetworking\n'+session)
  targets.append('.target(name: "Schemas", dependencies: ["WalletConnectNetworking", "HTTPClient", "OathDiagnostics"])')
  tests=work/'Tests/SDKTests';shutil.copytree(root/'Tools/WalletConnectSDKValidation',tests,ignore=shutil.ignore_patterns('._*'))
  shutil.copy(root/'Vendor/Reown/Tests/WalletConnectUtilsTests/WalletConnectURITests.swift', tests/'WalletConnectURITests.swift')
+ namespace_tests=root/'Vendor/Reown/Tests/WalletConnectSignTests/NamespaceValidationTests.swift'
+ (tests/namespace_tests.name).write_text(namespace_tests.read_text().replace('@testable import WalletConnectSign', '@testable import Schemas\nimport WalletConnectNetworking'))
  for fixture in ['KeyManagementServiceMock.swift','NetworkingInteractorMock.swift']:
   candidates=list((root/'Vendor/Reown/Tests').rglob(fixture)); assert len(candidates)==1
   shutil.copy(candidates[0],tests/fixture)
