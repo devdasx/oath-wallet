@@ -208,7 +208,7 @@ private final class HeldEventsTransport: NetworkingServiceProtocol {
     func sendEvents<T: Encodable>(_ events: [T]) async throws -> Bool {
         let attempt = lock.withLock { count += 1; return count }
         if attempt > 1 {
-            second?.fulfill()
+            if attempt == 2 { second?.fulfill() }
             // Fail subsequent attempts so they never acknowledge another batch.
             throw NSError(domain: "SyntheticRetry", code: 2)
         }
