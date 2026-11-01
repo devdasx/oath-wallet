@@ -540,10 +540,10 @@
       "path": "Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift",
       "reason": "Literal FixtureKeyPrivate123 is a dummy injected into a mocked transport to test diagnostic privacy; not a service key.",
       "fingerprints": [
-        "Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift:generic-api-key:174",
-        "Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift:generic-api-key:181"
+        "Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift:generic-api-key:175",
+        "Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift:generic-api-key:182"
       ],
-      "sha256": "9b6ccf99c187babf5e2d7ff2859e55fe851d8068f43f95d914b62389f43fc951"
+      "sha256": "4ad16249c6d438f9e13025d4077e0468d993dc1b9ea20e8a585266984c814354"
     },
     {
       "path": "Packages/OathBitcoin/Tests/OathBitcoinTests/AlchemyUTXOTests.swift",

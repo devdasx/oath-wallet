@@ -157,17 +157,18 @@ final class TonReadRecoveryTests: XCTestCase, @unchecked Sendable {
     }
 }
 
-private actor TonReadReports: DiagnosticTransport {
-    var events: [DiagnosticEvent] = []
-    func upload(_ events: [DiagnosticEvent]) async throws { self.events += events }
-}
+
 final class TonReadRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
     func testOriginalTLSAndRecoveryReportsRemainPrivacyFiltered() async throws {
-        let reports = TonReadReports()
+        let operation = UUID()
+        let ready = expectation(description: "Both malformed and transport boundary failures delivered")
+        let reports = CorrelatedDiagnosticTestCapture(operation: operation, ready: ready) { events in
+            events.contains { $0.error.message == "malformed" } &&
+                events.contains { $0.operation == "ton_read" && $0.context["attempt"] == "1" }
+        }
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
         OathDiagnostics.configure(file: folder.appendingPathComponent("events.json"), transport: reports)
-        let operation = UUID()
         let transport = TonReadRecoveryTransport(.tls)
         try await OathDiagnostics.$chain.withValue("ton") {
             try await OathDiagnostics.$operationID.withValue(operation) {
@@ -185,12 +186,8 @@ final class TonReadRecoveryDiagnosticsTests: XCTestCase, @unchecked Sendable {
         } catch { XCTAssertEqual(error as? TonError, .malformed) }
         let calls = await invalid.requests.count
         XCTAssertEqual(calls, 1, "Malformed replies must not retry or switch providers")
-        for _ in 0..<30 {
-            await OathDiagnostics.flush()
-            if await reports.events.contains(where: { $0.operationID == operation && $0.error.message == "malformed" }) { break }
-            try await Task.sleep(for: .milliseconds(50))
-        }
-        let events = await reports.events.filter { $0.operationID == operation }
+        await fulfillment(of: [ready], timeout: 10)
+        let events = await reports.events
         XCTAssertTrue(events.contains { $0.error.message == "malformed" })
         XCTAssertTrue(events.contains { $0.operation == "ton_read" && $0.context["attempt"] == "1" })
         XCTAssertFalse(events.contains { $0.error.domain == NSURLErrorDomain || $0.operation == "ton_read_recovery" })
