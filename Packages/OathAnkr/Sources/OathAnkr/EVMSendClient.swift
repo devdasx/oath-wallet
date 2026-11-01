@@ -52,6 +52,9 @@ public actor EVMSendClient {
                         let (data,status)=try await transport.send(request)
                         DiagnosticHTTP.response(data,status:status,request:request)
                         guard (200...299).contains(status) else { throw EVMSendError.http(status) }
+                        // The standalone pre-broadcast check has the same
+                        // decoding bound as ordinary batched RPC responses.
+                        guard data.count<=Self.maximumRPCResponseBytes else { throw EVMSendError.malformed }
                         let reply=try JSONDecoder().decode(SolanaJSON.self,from:data)
                         guard reply["id"].integer==0,reply["jsonrpc"].string=="2.0",try Self.uint(result(reply))==network.chainID else { throw EVMSendError.wrongNetwork }
                     }
