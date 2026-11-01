@@ -164,9 +164,11 @@ struct WCSession: SequenceObject, Equatable {
     /// updates session expiry by given ttl
     /// - Parameter ttl: time the session expiry should be updated by - in seconds
     mutating func updateExpiry(by ttl: Int64) throws {
-        let newExpiryDate = Date(timeIntervalSinceNow: TimeInterval(ttl))
-        let maxExpiryDate = Date(timeIntervalSinceNow: TimeInterval(WCSession.defaultTimeToLive))
-        guard newExpiryDate > expiryDate && newExpiryDate <= maxExpiryDate else {
+        guard ttl > 0 && ttl <= WCSession.defaultTimeToLive else {
+            throw WalletConnectError.invalidUpdateExpiryValue
+        }
+        let newExpiryDate = Date().addingTimeInterval(TimeInterval(ttl))
+        guard newExpiryDate > expiryDate else {
             throw WalletConnectError.invalidUpdateExpiryValue
         }
         self.expiryDate = newExpiryDate
@@ -176,8 +178,15 @@ struct WCSession: SequenceObject, Equatable {
     /// - Parameter expiry: timestamp in the future in seconds
     mutating func updateExpiry(to expiry: Int64) throws {
         let newExpiryDate = Date(timeIntervalSince1970: TimeInterval(expiry))
-        let maxExpiryDate = Date(timeIntervalSinceNow: TimeInterval(WCSession.defaultTimeToLive))
-        guard newExpiryDate.millisecondsSince1970 >= (expiryDate.millisecondsSince1970 / 1000) && newExpiryDate <= maxExpiryDate else {
+        let now = Date()
+        let maxExpiryDate = now.addingTimeInterval(TimeInterval(WCSession.defaultTimeToLive))
+        // The wire timestamp is in whole seconds. Accept an acknowledgement
+        // of our own extension without comparing milliseconds to seconds or
+        // converting an untrusted date to an unsigned integer.
+        let currentExpirySecond = expiryDate.timeIntervalSince1970.rounded(.down)
+        guard newExpiryDate > now,
+              newExpiryDate.timeIntervalSince1970 >= currentExpirySecond,
+              newExpiryDate <= maxExpiryDate else {
             throw WalletConnectError.invalidUpdateExpiryValue
         }
         self.expiryDate = newExpiryDate
