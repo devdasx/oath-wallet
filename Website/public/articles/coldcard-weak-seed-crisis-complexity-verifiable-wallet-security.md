@@ -158,8 +158,6 @@ Oath is built around a different custody architecture: a source-available iPhone
 
 Apple’s [platform-security documentation](https://support.apple.com/guide/security/intro-app-security-ios-ipados-visionos-secf49cad4db/web) describes mandatory code signing, identified developers, automated and human App Store review, sandboxing, and runtime signature enforcement. Its [Keychain documentation](https://support.apple.com/guide/security/secb0694df1a/1/web/1) describes per-item protection and Secure Enclave involvement in Keychain key handling. These are real platform controls. They are not a claim that Oath’s blockchain private keys themselves are Secure Enclave keys, and Oath does not make that claim.
 
-Oath also deliberately narrows product surface. It does not operate a custodial account or a company-held recovery copy, and its core design avoids turning the wallet into a buy/sell desk, swap engine, or general in-wallet browser. Version 2.40.12 added physical-randomness health checks for extreme repetition, dominance, and predictable cycles when users build entropy from dice, coin flips, or digits. Those checks can detect obvious failure patterns; they cannot prove a physical process was fair or private.
-
 ### Can Oath be safer than a hardware wallet?
 
 For some threat models, yes. As a universal claim, no. A phone wallet can avoid a dedicated device’s manufacturing and shipping path, reduce the number of objects that visibly signal valuable custody, use a platform with rapid signed updates and mature sandboxing, and place an inspectable implementation in a familiar interface that users are more likely to operate correctly. A smaller feature surface can also remove whole classes of browser, swap, approval, and cross-device translation risk.
