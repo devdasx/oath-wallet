@@ -41,10 +41,7 @@ private actor PublicArtworkMetadataProbe: AnkrTransport {
     }
 }
 
-private actor ArtworkDiagnosticsCapture: DiagnosticTransport {
-    var events: [DiagnosticEvent] = []
-    func upload(_ values: [DiagnosticEvent]) async throws { events += values }
-}
+
 
 final class TokenDiscoveryArtworkTests: XCTestCase, @unchecked Sendable {
     private let reference = "bridge.near"
@@ -106,7 +103,11 @@ final class TokenDiscoveryArtworkTests: XCTestCase, @unchecked Sendable {
     func testArtworkDiagnosticsPreserveFailureAndCorrelationWithoutBodyOrContract() async throws {
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: directory) }
-        let capture = ArtworkDiagnosticsCapture(), operation = UUID()
+        let operation = UUID()
+        let ready = expectation(description: "Both catalog and HTTP failures delivered")
+        let capture = CorrelatedDiagnosticTestCapture(operation: operation, ready: ready) { events in
+            events.contains { $0.operation == "catalog_metadata" } && events.contains { $0.context["http_status"] == "401" }
+        }
         OathDiagnostics.configure(file: directory.appendingPathComponent("events.json"), transport: capture)
         // Authentication errors remain reportable; 5xx availability errors are
         // deliberately excluded by the shared diagnostics policy.
@@ -118,10 +119,7 @@ final class TokenDiscoveryArtworkTests: XCTestCase, @unchecked Sendable {
                 _ = await catalog.sources(for: identity, cachedOnly: false)
             }
         }
-        for _ in 0..<100 {
-            if await capture.events.contains(where: { $0.operation == "catalog_metadata" }) { break }
-            try await Task.sleep(for: .milliseconds(10))
-        }
+        await fulfillment(of: [ready], timeout: 10)
         let events = await capture.events
         let failure = try XCTUnwrap(events.first { $0.operation == "catalog_metadata" })
         XCTAssertEqual(failure.operationID, operation)
