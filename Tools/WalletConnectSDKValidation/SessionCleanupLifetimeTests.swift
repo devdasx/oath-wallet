@@ -66,8 +66,9 @@ final class SessionCleanupLifetimeTests: XCTestCase {
     func testHistoryReadFiltersExpiredAndMalformedRequests() throws {
         let rpc = history(); try add(41, topic: "synthetic-a", to: rpc, expired: true)
         try add(42, topic: "synthetic-b", to: rpc)
-        try rpc.set(RPCRequest(method: "wc_sessionRequest", params: AnyCodable("invalid"), rpcid: RPCID(43)),
+        try rpc.set(RPCRequest(method: "wc_sessionRequest", params: AnyCodable(["unexpected": "invalid"]), rpcid: RPCID(43)),
                     forTopic: "synthetic-c", emmitedBy: .remote, transportType: .relay)
+        XCTAssertNotNil(rpc.get(recordId: RPCID(43)), "Fixture must be readable JSON-RPC with invalid session params")
         let owner = service(rpc, queue: DispatchQueue(label: "synthetic.cleanup.read"))
         XCTAssertEqual(owner.getPendingRequests().map { $0.request.id }, [RPCID(42)])
         XCTAssertEqual(owner.getPendingExpirableRequestsWithId().map { $0.1 }.sorted { $0.string < $1.string }, [RPCID(41), RPCID(42)])
