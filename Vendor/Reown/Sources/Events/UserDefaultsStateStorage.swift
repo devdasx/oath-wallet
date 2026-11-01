@@ -5,24 +5,26 @@ protocol TelemetryStateStorage {
 }
 
 class UserDefaultsTelemetryStateStorage: TelemetryStateStorage {
+    private let defaults: UserDefaults
     private let telemetryEnabledKey = "com.walletconnect.sdk.telemetryEnabled"
 
     var telemetryEnabled: Bool {
         get {
-            if UserDefaults.standard.object(forKey: telemetryEnabledKey) == nil {
+            if defaults.object(forKey: telemetryEnabledKey) == nil {
                 return true
             }
-            return UserDefaults.standard.bool(forKey: telemetryEnabledKey)
+            return defaults.bool(forKey: telemetryEnabledKey)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: telemetryEnabledKey)
+            defaults.set(newValue, forKey: telemetryEnabledKey)
         }
     }
 
-    init() {
-        if UserDefaults.standard.object(forKey: telemetryEnabledKey) == nil {
+    init(defaults: UserDefaults = .standard) {
+        self.defaults = defaults
+        if defaults.object(forKey: telemetryEnabledKey) == nil {
             // Set default value if not already set
-            UserDefaults.standard.set(true, forKey: telemetryEnabledKey)
+            defaults.set(true, forKey: telemetryEnabledKey)
         }
     }
 }

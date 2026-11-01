@@ -15,6 +15,7 @@ public class EventsClient: EventsClientProtocol {
     private var stateStorage: TelemetryStateStorage
     private let messageEventsStorage: MessageEventsStorage
     private let initEventsStorage: InitEventsStorage
+    private let clientID: () -> String
 
     init(
         eventsCollector: EventsCollector,
@@ -22,7 +23,8 @@ public class EventsClient: EventsClientProtocol {
         logger: ConsoleLogging,
         stateStorage: TelemetryStateStorage,
         messageEventsStorage: MessageEventsStorage,
-        initEventsStorage: InitEventsStorage
+        initEventsStorage: InitEventsStorage,
+        clientID: @escaping () -> String = { (try? Networking.interactor.getClientId()) ?? "Unknown" }
     ) {
         self.eventsCollector = eventsCollector
         self.eventsDispatcher = eventsDispatcher
@@ -30,6 +32,7 @@ public class EventsClient: EventsClientProtocol {
         self.stateStorage = stateStorage
         self.messageEventsStorage = messageEventsStorage
         self.initEventsStorage = initEventsStorage
+        self.clientID = clientID
 
         if !stateStorage.telemetryEnabled {
             self.eventsCollector.storage.clearErrorEvents()
@@ -70,7 +73,7 @@ public class EventsClient: EventsClientProtocol {
             logger.debug("Will store an init event")
 
             let bundleId = Bundle.main.bundleIdentifier ?? "Unknown"
-            let clientId = (try? Networking.interactor.getClientId()) ?? "Unknown"
+            let clientId = clientID()
             let userAgent = EnvironmentInfo.userAgent
 
             let props = InitEvent.Props(

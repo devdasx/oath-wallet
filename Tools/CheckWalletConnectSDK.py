@@ -45,7 +45,7 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
  for fixture in ['KeyManagementServiceMock.swift','NetworkingInteractorMock.swift']:
   candidates=list((root/'Vendor/Reown/Tests').rglob(fixture)); assert len(candidates)==1
   shutil.copy(candidates[0],tests/fixture)
- targets.append('.testTarget(name: "SDKTests", dependencies: ["Schemas", "HTTPClient", "WalletConnectNetworking", "WalletConnectKMS", "WalletConnectRelay", "WalletConnectPairing", "OathDiagnostics"])')
+ targets.append('.testTarget(name: "SDKTests", dependencies: ["Schemas", "HTTPClient", "WalletConnectNetworking", "WalletConnectKMS", "WalletConnectRelay", "WalletConnectPairing", "Events", "OathDiagnostics"])')
  (work/'Package.swift').write_text('// swift-tools-version: 6.1\nimport PackageDescription\nlet package=Package(name:"SDKValidation",platforms:[.macOS(.v14)],dependencies:[.package(path:'+json.dumps(str(root/'Packages/OathDiagnostics'))+')],targets:['+','.join(targets)+'],swiftLanguageModes:[.v5])\n')
  result=subprocess.run(['swift','test','--package-path',str(work),'--scratch-path','/tmp/oath-sdk-warning-host']+sys.argv[1:],timeout=240)
  raise SystemExit(result.returncode)
