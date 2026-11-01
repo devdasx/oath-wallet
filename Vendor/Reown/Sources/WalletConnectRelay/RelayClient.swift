@@ -142,28 +142,14 @@ public final class RelayClient {
         
         logger.debug("[Publish] Sending payload on topic: \(topic)")
 
-        try await dispatcher.protectedSend(message, connectUnconditionally: true)
-
-        return try await withUnsafeThrowingContinuation { continuation in
-            var cancellable: AnyCancellable?
-            cancellable = requestAcknowledgePublisher
-                .filter { $0 == request.id }
-                .setFailureType(to: RelayError.self)
-                .timeout(.seconds(60), scheduler: concurrentQueue, customError: { .requestTimeout })
-                .sink(receiveCompletion: { [unowned self] result in
-                    switch result {
-                    case .failure(let error):
-                        cancellable?.cancel()
-                        logger.debug("[Publish] Relay request timeout for topic: \(topic)")
-                        continuation.resume(throwing: error)
-                    case .finished: break
-                    }
-                }, receiveValue: { [unowned self] _ in
-                    cancellable?.cancel()
-                    logger.debug("[Publish] Published payload on topic: \(topic)")
-                    continuation.resume(returning: ())
-                })
+        let replies = requestAcknowledgePublisher
+            .filter { $0 == request.id }
+            .map { _ in () }
+            .eraseToAnyPublisher()
+        try await sendAwaitingResponse(replies, timeout: .seconds(60)) {
+            try await dispatcher.protectedSend(message, connectUnconditionally: true)
         }
+        logger.debug("[Publish] Published payload on topic: \(topic)")
     }
     
     public func proposeSession(pairingTopic: String, sessionProposal: String, correlationId: RPCID?) async throws {
@@ -200,14 +186,9 @@ public final class RelayClient {
         let request = rpc.asRPCRequest()
         let message = try request.asJSONEncodedString()
 
-        try await dispatcher.protectedSend(message, connectUnconditionally: connectUnconditionally)
-
-        // Wait for relay's subscription response
-        try await waitForSubscriptionResponse(
-            requestId: request.id!,
-            topics: [topic],
-            logPrefix: "[Subscribe]"
-        )
+        try await sendSubscription(request, topics: [topic], logPrefix: "[Subscribe]") {
+            try await dispatcher.protectedSend(message, connectUnconditionally: connectUnconditionally)
+        }
     }
 
     public func batchSubscribe(topics: [String]) async throws {
@@ -220,63 +201,47 @@ public final class RelayClient {
         let request = rpc.asRPCRequest()
         let message = try request.asJSONEncodedString()
 
-        try await dispatcher.protectedSend(message)
-
-        // Same wait, but for multiple topics
-        try await waitForSubscriptionResponse(
-            requestId: request.id!,
-            topics: topics,
-            logPrefix: "[BatchSubscribe]"
-        )
+        try await sendSubscription(request, topics: topics, logPrefix: "[BatchSubscribe]") {
+            try await dispatcher.protectedSend(message)
+        }
     }
 
-    private func waitForSubscriptionResponse(
-        requestId: RPCID,
-        topics: [String],
-        logPrefix: String
-    ) async throws {
-        try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
-            var cancellable: AnyCancellable?
-
-            cancellable = subscriptionResponsePublisher
-                // Only handle responses matching this request ID
-                .filter { $0.0 == requestId }
-                // Convert Never to RelayError so we can throw on timeout
-                .setFailureType(to: RelayError.self)
-                // Enforce a 30-second timeout
-                .timeout(.seconds(30), scheduler: concurrentQueue, customError: { .requestTimeout })
-                .sink(
-                    receiveCompletion: { [unowned self] completion in
-                        switch completion {
-                        case .failure(let error):
-                            cancellable?.cancel()
-                            logger.debug("\(logPrefix) Relay request timeout for topics: \(topics)")
-                            continuation.resume(throwing: error)
-                        case .finished:
-                            // Not typically called in this pattern, but required by Combine
-                            break
-                        }
-                    },
-                    receiveValue: { [unowned self] (_, subscriptionIds) in
-                        cancellable?.cancel()
-                        logger.debug("\(logPrefix) Subscribed to topics: \(topics)")
-
-                        // Check ID counts, warn if mismatch
-                        guard topics.count == subscriptionIds.count else {
-                            logger.warn("\(logPrefix) Number of returned subscription IDs != number of topics")
-                            continuation.resume(returning: ())
-                            return
-                        }
-
-                        // Track each subscription
-                        for (i, topic) in topics.enumerated() {
-                            subscriptionsTracker.setSubscription(for: topic, id: subscriptionIds[i])
-                        }
-
-                        continuation.resume(returning: ())
-                    }
-                )
+    private func sendSubscription(_ request: RPCRequest, topics: [String], logPrefix: String,
+                                  send: () async throws -> Void) async throws {
+        let replies = subscriptionResponsePublisher
+            .filter { $0.0 == request.id }
+            .map { $0.1 }
+            .eraseToAnyPublisher()
+        let ids = try await sendAwaitingResponse(replies, timeout: .seconds(30), send: send)
+        guard topics.count == ids.count else {
+            logger.warn("\(logPrefix) Number of returned subscription IDs != number of topics")
+            return
         }
+        for (topic, id) in zip(topics, ids) {
+            subscriptionsTracker.setSubscription(for: topic, id: id)
+        }
+        logger.debug("\(logPrefix) Subscribed to topics: \(topics)")
+    }
+
+    private func sendAwaitingResponse<Value>(_ replies: AnyPublisher<Value, Never>,
+                                             timeout: DispatchQueue.SchedulerTimeType.Stride,
+                                             send: () async throws -> Void) async throws -> Value {
+        // Install before writing. Retain at most one matching reply during the
+        // write, but start the response timeout only after a successful send.
+        try Task.checkCancellation()
+        let firstReply = CurrentValueSubject<Value?, Never>(nil)
+        let subscription = replies.prefix(1).sink { firstReply.send($0) }
+        defer { subscription.cancel() }
+        try await send()
+        try Task.checkCancellation()
+
+        let responses = firstReply.compactMap { $0 }
+            .setFailureType(to: RelayError.self)
+            .timeout(timeout, scheduler: concurrentQueue, customError: { .requestTimeout })
+        for try await value in responses.values {
+            return value
+        }
+        throw CancellationError()
     }
 
     public func unsubscribe(topic: String) async throws {
