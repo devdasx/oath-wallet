@@ -34,6 +34,7 @@ final class SessionRequester {
             logger.debug("Invalid namespaces")
             throw WalletConnectError.invalidPermissions
         }
+        let ttl = try request.calculateTtl()
         
         // Check if this request should be redirected to a wallet service
         if let walletServiceURL = walletServiceFinder.findMatchingWalletService(for: request, in: session) {
@@ -51,13 +52,12 @@ final class SessionRequester {
         // Default flow - send through relay
         let chainRequest = SessionType.RequestParams.Request(method: request.method, params: request.params, expiryTimestamp: request.expiryTimestamp)
         let sessionRequestParams = SessionType.RequestParams(request: chainRequest, chainId: request.chainId)
-        let ttl = try request.calculateTtl()
         let protocolMethod = SessionRequestProtocolMethod(ttl: ttl)
 
         let rpcRequest = RPCRequest(method: protocolMethod.method, params: sessionRequestParams, rpcid: request.id)
 
         let tvfData = tvfCollector.collect(rpcMethod: request.method, rpcParams: request.params, chainID: request.chainId, rpcResult: nil, tag: protocolMethod.requestConfig.tag)
 
-        try await networkingInteractor.request(rpcRequest, topic: request.topic, protocolMethod: SessionRequestProtocolMethod(), tvfData: tvfData)
+        try await networkingInteractor.request(rpcRequest, topic: request.topic, protocolMethod: protocolMethod, tvfData: tvfData)
     }
 }
