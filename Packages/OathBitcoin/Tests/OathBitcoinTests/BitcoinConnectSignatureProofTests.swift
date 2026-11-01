@@ -69,6 +69,30 @@ final class BitcoinConnectSignatureProofTests: XCTestCase, BitcoinConnectFixture
     func testForeignFinalNativeProofRejected() throws { try checkWrongFinal(.nativeSegwit) }
     func testForeignFinalTaprootProofRejected() throws { try checkWrongFinal(.taproot) }
 
+    func testTaprootProofMustUseReviewedHashType() throws {
+        let (funding, original, _) = try packets(.taproot)
+        func approval(flag: UInt32) throws -> BitcoinConnectPlan {
+            var packet = try BitcoinConnectPSBT(original.psbt)
+            packet.set(3, BitcoinWire.little(flag), input: 0)
+            let encoded = try packet.encoded
+            let input = original.inputs[0]
+            let req = try request("signPsbt", extra: ["psbt": encoded, "signInputs": [
+                ["address": input.address, "index": input.index, "sighashTypes": [flag]] as [String: Any]
+            ]])
+            return try BitcoinConnectSigning.review(request: req, psbt: encoded, inputs: try XCTUnwrap(req.signInputs),
+                addresses: original.reviewedAddresses, previous: [funding.txid: funding.previousTransaction])
+        }
+        let standard = try approval(flag: 1), implicit = try approval(flag: 0)
+        let all = try BitcoinConnectSigning.sign(standard, source: .seed(seed, account: 0))
+        let defaultSigned = try BitcoinConnectSigning.sign(implicit, source: .seed(seed, account: 0))
+        try BitcoinConnectSigning.verify(defaultSigned, plan: implicit)
+        var altered = try BitcoinConnectPSBT(all.psbt)
+        let witness = try XCTUnwrap(BitcoinConnectPSBT(defaultSigned.psbt).field(8, input: 0))
+        altered.set(8, witness, input: 0)
+        let wrong = try BitcoinConnectSigned(psbt: altered.encoded, raw: nil, txid: nil)
+        XCTAssertThrowsError(try BitcoinConnectSigning.verify(wrong, plan: standard))
+    }
+
     func testValidRequestedInputsRemainVerifiable() throws {
         for type in BitcoinAddressType.allCases {
             let approved = try plan([coin(100_000, type: type)])
