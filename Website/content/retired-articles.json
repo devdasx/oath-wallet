@@ -1,0 +1,83 @@
+{
+  "reviewed_source": "db7f3340e652160f1b5eefa16afb9817f395786e",
+  "articles": [
+    {
+      "slug": "oath-3-5-5-slide-to-send-transaction-activity",
+      "reason": "Retired release instructions for Slide to Send, transaction notes and the previous navigation.",
+      "aliases": [
+        "aperture-3-5-5-slide-to-send-transaction-activity"
+      ]
+    },
+    {
+      "slug": "oath-3-5-4-bitcoin-recovery-clearer-sending",
+      "reason": "Retired BRD settings, Silent Payment output exports and Coin Control instructions.",
+      "aliases": [
+        "aperture-3-5-4-bitcoin-recovery-clearer-sending"
+      ]
+    },
+    {
+      "slug": "oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools",
+      "reason": "Retired Monero, Silent Payments, physical entropy and tools release.",
+      "aliases": [
+        "aperture-2-40-12-monero-bitcoin-safer-sending-wallet-tools"
+      ]
+    },
+    {
+      "slug": "send-to-name-ens-sol-space-id-payment-ids",
+      "reason": "ENS, Solana names, SPACE ID and Payment ID recipient resolution are not in the current Send flow.",
+      "aliases": []
+    },
+    {
+      "slug": "understand-transaction-status-hash-fees-addresses-local-notes",
+      "reason": "The transaction-note editing feature described here is absent from the current receipt screen.",
+      "aliases": []
+    },
+    {
+      "slug": "find-anything-wallet-oath-universal-search",
+      "reason": "Current search finds assets; the former app-wide settings/actions search is absent.",
+      "aliases": [
+        "find-anything-wallet-aperture-universal-search"
+      ]
+    },
+    {
+      "slug": "silent-payments-oath-reusable-bitcoin-address-without-reuse",
+      "reason": "Silent Payments receiving and discovery are unsupported.",
+      "aliases": [
+        "silent-payments-aperture-reusable-bitcoin-address-without-reuse"
+      ]
+    },
+    {
+      "slug": "move-oath-to-new-iphone-direct-encrypted-serverless",
+      "reason": "The original nearby-device transfer feature is absent; current recovery instructions remain in Help.",
+      "aliases": [
+        "move-aperture-to-new-iphone-direct-encrypted-serverless"
+      ]
+    },
+    {
+      "slug": "oath-currency-converter-crypto-fiat-metals",
+      "reason": "The multi-row currency converter and its Home shortcut are absent.",
+      "aliases": [
+        "aperture-currency-converter-crypto-fiat-metals"
+      ]
+    },
+    {
+      "slug": "build-wallet-with-dice-coin-flips-random-digits",
+      "reason": "Dice, coin-flip and typed-digit creation are absent.",
+      "aliases": []
+    },
+    {
+      "slug": "send-crypto-without-guesswork-recipient-to-finality",
+      "reason": "Instructions include retired name resolution, custom speed controls and post-send local notes.",
+      "aliases": []
+    }
+  ],
+  "source_checks": [
+    "OathAtmosphere/Send/OathSendRecipientPage.swift",
+    "OathAtmosphere/Send/OathSendReviewPage.swift",
+    "OathAtmosphere/Assets/OathTransactionDetailScreen.swift",
+    "OathAtmosphere/Home/OathHomePortfolioModel.swift",
+    "OathAtmosphere/Home/OathHomeBottomSearch.swift",
+    "OathApp/OathAtmosphereApp.swift",
+    "Website/src/help/content.json"
+  ]
+}

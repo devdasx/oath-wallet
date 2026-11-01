@@ -254,7 +254,7 @@ Coldcard की विफलता यह सिद्ध नहीं करत
 
 स्थायी निष्कर्ष और भी सरल है: सुरक्षा बॉक्स के पदार्थ में नहीं; वह रहस्य की गुणवत्ता, संपूर्ण प्रणाली के व्यवहार, उसकी प्रतिरक्षाओं की स्वतंत्रता, उसके इंटरफ़ेस की स्पष्टता और हर महत्वपूर्ण दावे को सत्यापित करने के लिए उपलब्ध साक्ष्य में है। जटिलता आवश्यक हो सकती है, पर नियंत्रित किए गए प्रत्येक खतरे के लिए उसे अपना स्थान सार्थक सिद्ध करना होगा।
 
-Oath की इन मार्गदर्शिकाओं से आगे पढ़ें: [भौतिक यादृच्छिकता से एंट्रॉपी बनाना](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [BIP39 पासफ़्रेज़](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [स्व-कस्टडी सुरक्षा मॉडल](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) और [ऐप पासकोड तथा गोपनीयता नियंत्रण](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)।
+Oath की इन मार्गदर्शिकाओं से आगे पढ़ें: [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [BIP39 पासफ़्रेज़](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [स्व-कस्टडी सुरक्षा मॉडल](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) और [ऐप पासकोड तथा गोपनीयता नियंत्रण](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)।
 
 ## प्राथमिक और तकनीकी स्रोत
 

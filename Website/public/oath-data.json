@@ -213,34 +213,6 @@
       "markdown_url": "https://oathwallet.org/articles/bitget-388-million-hack-self-custody.md"
     },
     {
-      "title": "Oath 3.5.5: A Better Feel for Every Transfer",
-      "excerpt": "Meet Slide to Send, clearer transaction activity, better Max fee handling, and simpler transaction details. A complete guide with real app screenshots and a hands-on video.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-09-14T03:04:17.934+00:00",
-      "updated_at": "2026-09-14T03:04:19.583784+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 12,
-      "url": "https://oathwallet.org/articles/oath-3-5-5-slide-to-send-transaction-activity",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/release-3-5-5.jpg",
-      "markdown_url": "https://oathwallet.org/articles/oath-3-5-5-slide-to-send-transaction-activity.md"
-    },
-    {
-      "title": "Inside Oath 3.5.4: Recovery With More Range",
-      "excerpt": "A detailed guide to broader Bitcoin recovery, BRD wallets, Silent Payment output exports, clearer Coin Control, fee funding, and everyday improvements—with real app screenshots.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-09-13T00:24:54.837+00:00",
-      "updated_at": "2026-09-13T00:24:55.37272+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 17,
-      "url": "https://oathwallet.org/articles/oath-3-5-4-bitcoin-recovery-clearer-sending",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/release-3-5-4.jpg",
-      "markdown_url": "https://oathwallet.org/articles/oath-3-5-4-bitcoin-recovery-clearer-sending.md"
-    },
-    {
       "title": "Bitcoin Address Types and Recovery Scope in Oath",
       "excerpt": "Match the address type and imported key scope; changing the visible format does not change the blockchain.",
       "category": "Product",
@@ -281,48 +253,6 @@
       "url": "https://oathwallet.org/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security",
       "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/coldcard-security.jpg",
       "markdown_url": "https://oathwallet.org/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md"
-    },
-    {
-      "title": "Oath 2.40.12: Monero, Major Bitcoin Upgrades, and Safer Sending",
-      "excerpt": "Oath 2.40.12 adds complete Monero mainnet support, five Bitcoin receiving standards, EVM permission controls, safer sending, local wallet tools, seven languages, and system-wide reliability improvements.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-09-02T13:41:47.749+00:00",
-      "updated_at": "2026-09-02T13:41:48.980205+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 18,
-      "url": "https://oathwallet.org/articles/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/release-2-40-12.jpg",
-      "markdown_url": "https://oathwallet.org/articles/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools.md"
-    },
-    {
-      "title": "Send to a Name, Not a String: ENS, .sol, SPACE ID, and Payment IDs",
-      "excerpt": "Oath resolves human-readable recipient names into validated mainnet addresses—while keeping the network, final address, and your verification in control.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-31T13:32:14.967+00:00",
-      "updated_at": "2026-08-31T13:32:17.034915+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 12,
-      "url": "https://oathwallet.org/articles/send-to-name-ens-sol-space-id-payment-ids",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/send-to-name.jpg",
-      "markdown_url": "https://oathwallet.org/articles/send-to-name-ens-sol-space-id-payment-ids.md"
-    },
-    {
-      "title": "Understand Any Transaction: Status, Hash, Fees, Addresses, and Local Notes",
-      "excerpt": "Read an Oath transaction from status to settlement: verify its ID, separate the network fee, inspect both addresses, and attach a private local note.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-31T13:11:02.44+00:00",
-      "updated_at": "2026-08-31T13:12:33.994451+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 13,
-      "url": "https://oathwallet.org/articles/understand-transaction-status-hash-fees-addresses-local-notes",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/transaction-details.jpg",
-      "markdown_url": "https://oathwallet.org/articles/understand-transaction-status-hash-fees-addresses-local-notes.md"
     },
     {
       "title": "Add a Custom Token Without Trusting Its Name or Symbol",
@@ -381,34 +311,6 @@
       "markdown_url": "https://oathwallet.org/articles/receive-crypto-safely-network-address-qr-requested-amounts.md"
     },
     {
-      "title": "Find Anything in Your Wallet: Oath Universal Search",
-      "excerpt": "Search wallet actions, settings, managed wallets, mainnets, assets, prices, and selected-wallet activity from one local field—then jump directly to the result.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-31T00:08:06.408+00:00",
-      "updated_at": "2026-08-31T00:08:08.231578+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 13,
-      "url": "https://oathwallet.org/articles/find-anything-wallet-oath-universal-search",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/universal-search.jpg",
-      "markdown_url": "https://oathwallet.org/articles/find-anything-wallet-oath-universal-search.md"
-    },
-    {
-      "title": "Silent Payments: What Oath 4.1.14 Does Not Support",
-      "excerpt": "Silent Payments receiving and discovery are not available in the current source release; retain compatible recovery tools.",
-      "category": "Security",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-30T23:55:17.18+00:00",
-      "updated_at": "2026-10-28T00:00:00Z",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 2,
-      "url": "https://oathwallet.org/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/silent-payments.jpg",
-      "markdown_url": "https://oathwallet.org/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse.md"
-    },
-    {
       "title": "Why Bitcoin Receiving Addresses Change",
       "excerpt": "A fresh address can belong to the same supported HD wallet; verify the wallet and network.",
       "category": "Security",
@@ -465,34 +367,6 @@
       "markdown_url": "https://oathwallet.org/articles/where-crypto-network-fees-actually-go.md"
     },
     {
-      "title": "Send Crypto Without Guesswork: From Recipient to Finality",
-      "excerpt": "Oath turns a transfer into a chain of explicit checks: exact asset, validated destination, lossless amount, visible network fee, locally bound authorization, one-shot broadcast, and exact-hash finality.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-30T22:56:16.534+00:00",
-      "updated_at": "2026-08-30T22:56:18.433562+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 12,
-      "url": "https://oathwallet.org/articles/send-crypto-without-guesswork-recipient-to-finality",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/send-finality.jpg",
-      "markdown_url": "https://oathwallet.org/articles/send-crypto-without-guesswork-recipient-to-finality.md"
-    },
-    {
-      "title": "Move Oath to a New iPhone Using a Supported Recovery Method",
-      "excerpt": "Use the original recovery material or an eligible password-encrypted backup; verify the new wallet before erasing the old phone.",
-      "category": "Security",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-30T22:46:06.663+00:00",
-      "updated_at": "2026-10-28T00:00:00Z",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 3,
-      "url": "https://oathwallet.org/articles/move-oath-to-new-iphone-direct-encrypted-serverless",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/iphone-transfer.jpg",
-      "markdown_url": "https://oathwallet.org/articles/move-oath-to-new-iphone-direct-encrypted-serverless.md"
-    },
-    {
       "title": "Backup and Restore in Oath: Files, Passwords and Recovery Words",
       "excerpt": "Choose a recovery method supported by 4.1.14 and verify it before replacing or erasing your phone.",
       "category": "Security",
@@ -519,34 +393,6 @@
       "url": "https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet",
       "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/bip39-passphrase.jpg",
       "markdown_url": "https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet.md"
-    },
-    {
-      "title": "One Amount, Every Context: Meet Oath’s Currency Converter",
-      "excerpt": "Convert crypto, fiat currencies, and precious metals together in one editable view—then keep the tool one tap from Home.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-30T21:44:02.292+00:00",
-      "updated_at": "2026-08-30T22:08:35.490096+00:00",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 4,
-      "url": "https://oathwallet.org/articles/oath-currency-converter-crypto-fiat-metals",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/currency-converter.jpg",
-      "markdown_url": "https://oathwallet.org/articles/oath-currency-converter-crypto-fiat-metals.md"
-    },
-    {
-      "title": "Creating a Wallet in Oath: Current Recovery Options",
-      "excerpt": "The current source uses standard BIP39 creation; historical dice and coin controls are not in 4.1.14.",
-      "category": "Product",
-      "author_name": "Oath Editorial",
-      "published_at": "2026-08-30T21:30:44.629+00:00",
-      "updated_at": "2026-10-28T00:00:00Z",
-      "locale": "en",
-      "language_name": "English",
-      "reading_minutes": 2,
-      "url": "https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits",
-      "cover_image_url": "https://oathwallet.org/assets/articles/oath-blue-2026-10-18/physical-entropy.jpg",
-      "markdown_url": "https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits.md"
     },
     {
       "title": "Coldcard-এর দুর্বল-সিড সংকট: জটিলতা নিরাপত্তার সমার্থক নয়",

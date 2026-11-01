@@ -254,7 +254,7 @@ Demikian pula, Oath tidak seharusnya begitu saja mewarisi kepercayaan hanya kare
 
 Kesimpulan yang bertahan lebih sederhana: keamanan bukanlah bahan pembentuk kotaknya; keamanan adalah mutu rahasia, perilaku sistem secara keseluruhan, independensi pertahanannya, kejelasan antarmukanya, dan bukti yang tersedia untuk memverifikasi setiap klaim penting. Kompleksitas mungkin diperlukan, tetapi keberadaannya harus dibenarkan oleh satu ancaman terkendali pada satu waktu.
 
-Lanjutkan dengan panduan Oath tentang [membangun entropi dari keacakan fisik](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [passphrase BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [model keamanan swasimpan](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), serta [kode sandi aplikasi dan kontrol privasi](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Lanjutkan dengan panduan Oath tentang [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [passphrase BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [model keamanan swasimpan](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model), serta [kode sandi aplikasi dan kontrol privasi](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Sumber primer dan teknis
 

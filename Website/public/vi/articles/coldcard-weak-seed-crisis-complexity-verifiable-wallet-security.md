@@ -254,7 +254,7 @@ Tương tự, Oath không nên mặc nhiên được tin cậy chỉ vì phê ph
 
 Kết luận bền vững đơn giản hơn: bảo mật không nằm ở vật liệu của chiếc hộp; nó nằm ở chất lượng của bí mật, hành vi của toàn bộ hệ thống, tính độc lập của các lớp phòng thủ, sự rõ ràng của giao diện và bằng chứng sẵn có để xác minh mọi tuyên bố quan trọng. Độ phức tạp có thể cần thiết, nhưng nó phải chứng minh giá trị của mình qua từng mối đe dọa được kiểm soát.
 
-Hãy đọc tiếp các hướng dẫn của Oath về [tạo entropy từ tính ngẫu nhiên vật lý](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits), [passphrase BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [mô hình bảo mật tự lưu ký](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) và [mã khóa ứng dụng cùng các biện pháp kiểm soát quyền riêng tư](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+Hãy đọc tiếp các hướng dẫn của Oath về [Create your first wallet](https://help.oathwallet.org/articles/create-wallet), [passphrase BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet), [mô hình bảo mật tự lưu ký](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model) và [mã khóa ứng dụng cùng các biện pháp kiểm soát quyền riêng tư](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## Nguồn chính và nguồn kỹ thuật
 

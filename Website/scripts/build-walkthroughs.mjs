@@ -3,36 +3,6 @@ const root=new URL('../public/',import.meta.url);
 const esc=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 const demos=[
   {
-    "slug": "move-oath-to-new-iphone-direct-encrypted-serverless",
-    "title": "A new iPhone: recover and verify",
-    "steps": [
-      [
-        "Choose a supported route",
-        "Use original recovery material or an eligible password-encrypted iCloud file. The former nearby-iPhone transfer flow is not included in 4.1.14.",
-        null,
-        "Keep the old phone until the new account is verified."
-      ],
-      [
-        "Keep the correct credentials",
-        "BIP39, Electrum and aezeed have different rules. Preserve the required passphrase or password. A private key keeps its original network scope.",
-        null,
-        "The app passcode is not the backup password."
-      ],
-      [
-        "Restore an eligible file",
-        "Enable the correct iCloud Drive account, choose Restore from iCloud, select the file and enter the password used to encrypt it. Electrum and aezeed wallets are not eligible.",
-        null,
-        "Each eligible wallet has its own encrypted file."
-      ],
-      [
-        "Verify before erasing",
-        "Compare known public addresses and refreshed activity. Unsupported Silent Payments, Lightning channels and custom accounts require compatible recovery tools.",
-        null,
-        "Check addresses → Check activity → Verify recovery."
-      ]
-    ]
-  },
-  {
     "slug": "bitcoin-settings-oath-address-types-indexes-complete-guide",
     "title": "Bitcoin: know the address and recovery scope",
     "steps": [
@@ -58,7 +28,7 @@ const demos=[
         "Check current limits",
         "Silent Payments receiving and discovery are not supported in 4.1.14. Preserve the original format, account information and any required passphrase.",
         null,
-        "Correct network → Your own address → Supported recovery."
+        "Correct network \u2192 Your own address \u2192 Supported recovery."
       ]
     ]
   }
@@ -81,4 +51,4 @@ for (const d of demos) {
   md=md.trimEnd()+'\n\n<!-- oath-walkthrough:start -->\n## '+d.title+' — visual walkthrough transcript\n\nGuidance checked against 4.1.14 (98) source on October 30, 2026. Included screenshots are historical examples. This is an illustrated guide, not a recording of a current App Store test.\n\n'+d.steps.map(([title,text],i)=>`### ${i+1}. ${title}\n\n${text}`).join('\n\n')+'\n\n[Open the visual walkthrough](https://oathwallet.org/articles/'+d.slug+'#visual-walkthrough)\n<!-- oath-walkthrough:end -->\n';
   await writeFile(mdfile,md);
 }
-console.log('Built two illustrated walkthroughs with readable transcripts.');
+console.log('Built supported illustrated walkthroughs with readable transcripts.');

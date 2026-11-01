@@ -254,7 +254,7 @@ https://oathwallet.org/ar/articles/coldcard-weak-seed-crisis-complexity-verifiab
 
 والخلاصة الراسخة أبسط: الأمن ليس مادة الصندوق؛ بل هو جودة السر، وسلوك المنظومة الكاملة، واستقلال دفاعاتها، ووضوح واجهتها، والأدلة المتاحة للتحقق من كل ادعاء مهم. قد يكون التعقيد ضروريًا، لكنه يجب أن يبرر مكانه بإثبات أنه يضبط تهديدًا واحدًا محددًا في كل مرة.
 
-تابع القراءة في أدلة Oath حول [توليد الإنتروبيا من العشوائية المادية](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits)، و[عبارات مرور BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)، و[نموذج أمن الوصاية الذاتية](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)، و[رمز دخول التطبيق وضوابط الخصوصية](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
+تابع القراءة في أدلة Oath حول [Create your first wallet](https://help.oathwallet.org/articles/create-wallet)، و[عبارات مرور BIP39](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)، و[نموذج أمن الوصاية الذاتية](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)، و[رمز دخول التطبيق وضوابط الخصوصية](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy).
 
 ## المصادر الأولية والتقنية
 

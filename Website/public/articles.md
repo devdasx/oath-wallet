@@ -14,18 +14,6 @@ Bitget’s $388 million breach exposes the difference between a protected balanc
 
 English · Published 2026-09-28 · Updated 2026-09-28
 
-## [Oath 3.5.5: A Better Feel for Every Transfer](https://oathwallet.org/articles/oath-3-5-5-slide-to-send-transaction-activity)
-
-Meet Slide to Send, clearer transaction activity, better Max fee handling, and simpler transaction details. A complete guide with real app screenshots and a hands-on video.
-
-English · Published 2026-09-14 · Updated 2026-09-14
-
-## [Inside Oath 3.5.4: Recovery With More Range](https://oathwallet.org/articles/oath-3-5-4-bitcoin-recovery-clearer-sending)
-
-A detailed guide to broader Bitcoin recovery, BRD wallets, Silent Payment output exports, clearer Coin Control, fee funding, and everyday improvements—with real app screenshots.
-
-English · Published 2026-09-13 · Updated 2026-09-13
-
 ## [Bitcoin Address Types and Recovery Scope in Oath](https://oathwallet.org/articles/bitcoin-settings-oath-address-types-indexes-complete-guide)
 
 Match the address type and imported key scope; changing the visible format does not change the blockchain.
@@ -43,24 +31,6 @@ English · Published 2026-09-04 · Updated 2026-10-27
 The 2026 Coldcard incident did not remotely compromise the devices. It exposed something more fundamental: a sophisticated enclosure cannot protect a seed that was predictable at birth.
 
 English · Published 2026-09-03 · Updated 2026-09-03
-
-## [Oath 2.40.12: Monero, Major Bitcoin Upgrades, and Safer Sending](https://oathwallet.org/articles/oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools)
-
-Oath 2.40.12 adds complete Monero mainnet support, five Bitcoin receiving standards, EVM permission controls, safer sending, local wallet tools, seven languages, and system-wide reliability improvements.
-
-English · Published 2026-09-02 · Updated 2026-09-02
-
-## [Send to a Name, Not a String: ENS, .sol, SPACE ID, and Payment IDs](https://oathwallet.org/articles/send-to-name-ens-sol-space-id-payment-ids)
-
-Oath resolves human-readable recipient names into validated mainnet addresses—while keeping the network, final address, and your verification in control.
-
-English · Published 2026-08-31 · Updated 2026-08-31
-
-## [Understand Any Transaction: Status, Hash, Fees, Addresses, and Local Notes](https://oathwallet.org/articles/understand-transaction-status-hash-fees-addresses-local-notes)
-
-Read an Oath transaction from status to settlement: verify its ID, separate the network fee, inspect both addresses, and attach a private local note.
-
-English · Published 2026-08-31 · Updated 2026-08-31
 
 ## [Add a Custom Token Without Trusting Its Name or Symbol](https://oathwallet.org/articles/add-custom-token-without-trusting-name-symbol)
 
@@ -86,18 +56,6 @@ Use the address displayed for your selected wallet and exact asset network.
 
 English · Published 2026-08-31 · Updated 2026-10-27
 
-## [Find Anything in Your Wallet: Oath Universal Search](https://oathwallet.org/articles/find-anything-wallet-oath-universal-search)
-
-Search wallet actions, settings, managed wallets, mainnets, assets, prices, and selected-wallet activity from one local field—then jump directly to the result.
-
-English · Published 2026-08-31 · Updated 2026-08-31
-
-## [Silent Payments: What Oath 4.1.14 Does Not Support](https://oathwallet.org/articles/silent-payments-oath-reusable-bitcoin-address-without-reuse)
-
-Silent Payments receiving and discovery are not available in the current source release; retain compatible recovery tools.
-
-English · Published 2026-08-30 · Updated 2026-10-27
-
 ## [Why Bitcoin Receiving Addresses Change](https://oathwallet.org/articles/why-bitcoin-wallets-generate-fresh-receiving-addresses)
 
 A fresh address can belong to the same supported HD wallet; verify the wallet and network.
@@ -122,18 +80,6 @@ A network fee is not one universal charge. Follow it through miner rewards, vali
 
 English · Published 2026-08-30 · Updated 2026-08-30
 
-## [Send Crypto Without Guesswork: From Recipient to Finality](https://oathwallet.org/articles/send-crypto-without-guesswork-recipient-to-finality)
-
-Oath turns a transfer into a chain of explicit checks: exact asset, validated destination, lossless amount, visible network fee, locally bound authorization, one-shot broadcast, and exact-hash finality.
-
-English · Published 2026-08-30 · Updated 2026-08-30
-
-## [Move Oath to a New iPhone Using a Supported Recovery Method](https://oathwallet.org/articles/move-oath-to-new-iphone-direct-encrypted-serverless)
-
-Use the original recovery material or an eligible password-encrypted backup; verify the new wallet before erasing the old phone.
-
-English · Published 2026-08-30 · Updated 2026-10-27
-
 ## [Backup and Restore in Oath: Files, Passwords and Recovery Words](https://oathwallet.org/articles/backup-restore-oath-wallet)
 
 Choose a recovery method supported by 4.1.14 and verify it before replacing or erasing your phone.
@@ -143,18 +89,6 @@ English · Published 2026-08-30 · Updated 2026-10-27
 ## [BIP39 Passphrases and Electrum Seed Extensions in Oath](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)
 
 A passphrase derives another wallet; it is not an app lock or backup-file password.
-
-English · Published 2026-08-30 · Updated 2026-10-27
-
-## [One Amount, Every Context: Meet Oath’s Currency Converter](https://oathwallet.org/articles/oath-currency-converter-crypto-fiat-metals)
-
-Convert crypto, fiat currencies, and precious metals together in one editable view—then keep the tool one tap from Home.
-
-English · Published 2026-08-30 · Updated 2026-08-30
-
-## [Creating a Wallet in Oath: Current Recovery Options](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits)
-
-The current source uses standard BIP39 creation; historical dice and coin controls are not in 4.1.14.
 
 English · Published 2026-08-30 · Updated 2026-10-27
 

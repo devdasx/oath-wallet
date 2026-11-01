@@ -254,7 +254,7 @@ Coldcard 的失误并不能证明目前每一台 Coldcard 都不安全、每一�
 
 历久不衰的结论更为简单：安全不取决于盒子的材质；它取决于秘密的质量、完整系统的行为、防御措施的独立性、界面的清晰度，以及可用于验证每一项重要声明的证据。复杂性或许必不可少，但它必须针对每一种所要控制的威胁，逐一证明自身存在的价值。
 
-继续阅读 Oath 关于[利用物理随机性构造熵](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits)、[BIP39 密码短语](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)、[自主保管安全模型](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)以及[应用密码与隐私控制](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)的指南。
+继续阅读 Oath 关于[Create your first wallet](https://help.oathwallet.org/articles/create-wallet)、[BIP39 密码短语](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)、[自主保管安全模型](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)以及[应用密码与隐私控制](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)的指南。
 
 ## 主要与技术资料来源
 

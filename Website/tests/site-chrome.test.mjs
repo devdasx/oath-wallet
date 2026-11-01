@@ -22,7 +22,7 @@ test('all marketing and editorial pages use the canonical header and complete ne
   assert.doesNotMatch(html,/<header class="site-header"|<footer class="site-footer"/);
   checked++;
  }
- assert.ok(checked>90,`checked ${checked} pages`);
+ assert.equal(checked,86,`checked ${checked} current pages`);
  for(const n of catalog.networks){assert.ok(chrome.footer.includes(`href="https://oathwallet.org/networks/${n.slug}"`));assert.ok(chrome.footer.includes(`src="${n.icon}"`));}
  assert.equal((chrome.footer.match(/href="https:\/\/oathwallet.org\/networks\//g)||[]).length,42);
 });

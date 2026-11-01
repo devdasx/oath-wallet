@@ -254,7 +254,7 @@ Coldcardの障害は、現行のColdcardがすべて安全でないこと、あ�
 
 長期にわたって有効な結論は、より単純である。すなわち、セキュリティを決めるのは箱の材質ではなく、秘密の質、システム全体の挙動、防御の独立性、インターフェースの明瞭さ、そして重要な主張の一つひとつを検証するために利用できる証拠である。複雑さが必要な場合もあるが、制御する脅威ごとに、その複雑さを採用する価値があることを示さなければならない。
 
-Oathの以下のガイドも参照されたい。[物理的な乱数からエントロピーを構築する方法](https://oathwallet.org/articles/build-wallet-with-dice-coin-flips-random-digits)、[BIP39パスフレーズ](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)、[セルフカストディのセキュリティモデル](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)、および[アプリのパスコードとプライバシー制御](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)。
+Oathの以下のガイドも参照されたい。[Create your first wallet](https://help.oathwallet.org/articles/create-wallet)、[BIP39パスフレーズ](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)、[セルフカストディのセキュリティモデル](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)、および[アプリのパスコードとプライバシー制御](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)。
 
 ## 一次資料および技術資料
 
