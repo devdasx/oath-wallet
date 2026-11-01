@@ -26,6 +26,9 @@ extension OathDatabase {
         try await pool.write { db in
             guard try SendRecord.fetchOne(db,key:sendID)?.state=="confirmed" else { throw StoreError.invalidTransition }
             try db.execute(sql:"UPDATE permissionRemovals SET status=?,checkedAt=? WHERE sendID=? AND status='pending'",arguments:[removed ? "removed":"active",Date.now.timeIntervalSince1970,sendID])
+            // Only the callback that completes the pending readback may update
+            // its batch and tracking job. A duplicate must preserve all three.
+            guard db.changesCount == 1 else { return }
             try db.execute(sql:"UPDATE permissionBatchItems SET state=? WHERE id=?",arguments:[removed ? "removed":"active",sendID])
             try db.execute(sql:"DELETE FROM sendStatusChecks WHERE sendID=?",arguments:[sendID])
         }
