@@ -6,13 +6,13 @@ actor SessionAuthRequestService {
     }
     private let networkingInteractor: NetworkInteracting
     private let appMetadata: AppMetadata
-    private let kms: KeyManagementService
+    private let kms: KeyManagementServiceProtocol
     private let logger: ConsoleLogging
     private let iatProvader: IATProvider
     private let authResponseTopicRecordsStore: CodableStore<AuthResponseTopicRecord>
 
     init(networkingInteractor: NetworkInteracting,
-         kms: KeyManagementService,
+         kms: KeyManagementServiceProtocol,
          appMetadata: AppMetadata,
          logger: ConsoleLogging,
          iatProvader: IATProvider,

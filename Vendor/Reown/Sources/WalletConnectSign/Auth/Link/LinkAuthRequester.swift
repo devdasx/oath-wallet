@@ -7,20 +7,20 @@ actor LinkAuthRequester {
         case walletLinkSupportNotProven
     }
     private let appMetadata: AppMetadata
-    private let kms: KeyManagementService
+    private let kms: KeyManagementServiceProtocol
     private let logger: ConsoleLogging
     private let iatProvader: IATProvider
     private let authResponseTopicRecordsStore: CodableStore<AuthResponseTopicRecord>
-    private let linkEnvelopesDispatcher: LinkEnvelopesDispatcher
+    private let linkEnvelopesDispatcher: LinkEnvelopeRequesting
     private let linkModeLinksStore: CodableStore<Bool>
     private let eventsClient: EventsClientProtocol
 
-    init(kms: KeyManagementService,
+    init(kms: KeyManagementServiceProtocol,
          appMetadata: AppMetadata,
          logger: ConsoleLogging,
          iatProvader: IATProvider,
          authResponseTopicRecordsStore: CodableStore<AuthResponseTopicRecord>,
-         linkEnvelopesDispatcher: LinkEnvelopesDispatcher,
+         linkEnvelopesDispatcher: LinkEnvelopeRequesting,
          linkModeLinksStore: CodableStore<Bool>,
          eventsClient: EventsClientProtocol) {
         self.kms = kms

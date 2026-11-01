@@ -5,7 +5,7 @@ import UIKit
 
 import Combine
 
-final class LinkEnvelopesDispatcher {
+final class LinkEnvelopesDispatcher: LinkEnvelopeRequesting {
     enum Errors: Error {
         case invalidURL
         case envelopeNotFound
