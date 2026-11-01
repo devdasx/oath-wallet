@@ -2839,7 +2839,9 @@ Canonical: https://oathwallet.org/bug-bounty
 
 # Oath Wallet Bug Bounty
 
-Program v1.0. Effective 2026-10-31.
+Program v1.1. Updated 2026-11-01.
+
+Bounty program opens December 1, 2026 · 00:00 UTC. Private security reports remain welcome before launch.
 
 Help us find vulnerabilities in Oath and make self-custody stronger for everyone.
 

@@ -1,5 +1,5 @@
 Oath Wallet security report
-Program version: 1.0 (2026-10-31)
+Program version: 1.1 (2026-11-01)
 
 Title:
 Affected target / URL:

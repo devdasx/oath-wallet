@@ -34,7 +34,33 @@ test('report template copying succeeds or offers an accessible fallback without 
  const template={textContent:await read('bug-bounty-report-template.txt'),closest:()=>details};
  const nodes={'copy-report':{addEventListener:(event,cb)=>{assert.equal(event,'click');click=cb;}},'report-template':template,'copy-status':status};
  const clipboard={writeText:async value=>{copied=value;}};
- runInNewContext(source,{document:{getElementById:id=>nodes[id]},navigator:{clipboard}});
+ runInNewContext(source,{document:{getElementById:id=>nodes[id],querySelector:()=>null},navigator:{clipboard}});
  await click();assert.equal(copied,template.textContent);assert.match(status.textContent,/Template copied/);assert.equal(details.open,false);
  clipboard.writeText=async()=>{throw new Error('Permission denied');};await click();assert.equal(details.open,true);assert.match(status.textContent,/download/);
+});
+
+test('countdown uses the policy launch instant, rolls over and stops at launch',async()=>{
+ const source=await read('bug-bounty.js');
+ const policy=JSON.parse(await readFile(new URL('../content/bug-bounty.json',import.meta.url),'utf8'));
+ const start=Date.parse(policy.startsAt);
+ assert.equal(policy.startsAt,'2026-12-01T00:00:00Z');
+ const html=await read('bug-bounty.html');
+ assert.ok(html.includes(`data-bounty-start="${policy.startsAt}"`));
+ assert.match(html,/December 1, 2026 · 00:00 UTC/);
+ assert.match(await read('bug-bounty.md'),/Bounty program opens December 1, 2026/);
+ let now=start-90061000,tick,cleared=false;
+ const status={textContent:'Program opens'},time={hidden:false};
+ const fields=Object.fromEntries(['days','hours','minutes','seconds'].map(x=>[x,{textContent:''}]));
+ const timer={hidden:true,querySelector:selector=>fields[selector.match(/"(\w+)"/)[1]]};
+ const launch={dataset:{bountyStart:policy.startsAt},querySelector:s=>s==='time'?time:timer};
+ const context={document:{getElementById:id=>id==='bounty-launch-status'?status:null,querySelector:()=>launch},Date:{parse:Date.parse,now:()=>now},setInterval:fn=>{tick=fn;return 1;},clearInterval:id=>{assert.equal(id,1);cleared=true;}};
+ runInNewContext(source,{...context});
+ assert.deepEqual(Object.values(fields).map(x=>x.textContent),['01','01','01','01']);
+ assert.equal(timer.hidden,false);
+ now=start-1;tick();assert.deepEqual(Object.values(fields).map(x=>x.textContent),['00','00','00','01']);
+ now=start;tick();assert.equal(timer.hidden,true);assert.equal(time.hidden,true);assert.equal(status.textContent,'Program is open');assert.equal(cleared,true);
+ let scheduled=false;context.setInterval=()=>{scheduled=true;};now=start+86400000;
+ runInNewContext(source,{...context});assert.equal(scheduled,false);assert.equal(status.textContent,'Program is open');
+ launch.dataset.bountyStart='invalid';status.textContent='Program opens';
+ runInNewContext(source,{...context});assert.equal(scheduled,false);assert.equal(status.textContent,'Program opens');
 });
