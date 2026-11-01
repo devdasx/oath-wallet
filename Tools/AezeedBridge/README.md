@@ -7,11 +7,7 @@ is Go 1.26.5 and Xcode 27.0 (27A266a), on arm64 macOS.
 From this directory:
 
 ```sh
-go mod verify
-go test -race -count=1 ./...
-go vet ./...
-go run ./cmd/seedvectors
-go run ./cmd/vectors
+bash test.sh
 bash build.sh
 ```
 
@@ -35,3 +31,28 @@ archives is **not established** and is not implied by the new reproducible build
 All test inputs are deliberately public fixtures. Never fund these keys.
 The bridge and its dependencies are covered by the notices in
 ../../Packages/OathAezeed/THIRD_PARTY_NOTICES.txt.
+
+## Dependency repairs
+
+Both scripts prepare a disposable vendor tree from the pinned Go modules.
+`prepare_source.py` verifies downloaded modules, verifies the exact upstream
+hashes of three files, applies `dependency-repairs.patch`, then verifies every
+changed path and its repaired hash against `DependencyRepairs.json`. It never
+patches the shared module cache. `prepared-source.json` records all vendor and
+bridge input hashes. The runtime uses the resulting vendor tree explicitly.
+
+These repairs reject partial CBC blocks and short outputs before mutation,
+reject out-of-range BLAKE2b state parameters before changing the receiver, and
+encode all three GCM length fields with 64-bit bit lengths. These APIs are
+outside the bridge's traced aezeed decoding path; this is dependency hardening,
+not a claim that an exploitable wallet vulnerability was found.
+
+The tests exercise real dependency implementations, including 512 MiB synthetic
+GCM AAD, nonce and plaintext boundaries. Allow several GiB of memory for the
+race-instrumented tests. Plain `go test` in this directory uses the unpatched
+upstream modules and deliberately fails the new regressions. Use `test.sh` to
+test the same patched source preparation used by `build.sh`.
+
+The serialized wallet format, aezeed scrypt settings and C ABI are unchanged.
+Successful host tests or reproducible archives do not imply historical App
+Store binary equivalence or whole-wallet security certification.

@@ -12,7 +12,7 @@ import (
 
 // These are public LND-derived vectors, never live wallet credentials.
 func TestProductionVectorsAndRejection(t *testing.T) {
-	data, err := os.ReadFile("../../Packages/OathAezeed/Tests/OathAezeedTests/Fixtures/lnd-production.json")
+	data, err := os.ReadFile("testdata/lnd-production.json")
 	if err != nil {
 		t.Fatal(err)
 	}

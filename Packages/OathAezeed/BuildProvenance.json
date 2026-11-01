@@ -1,33 +1,40 @@
 {
-  "schema": 1,
-  "source_base_commit": "90b5b28a6f3852319a24d74143863f2b57837c4d",
+  "schema": 2,
+  "source_base_commit": "02a6e8ab66c7629dcb9dd36637c683457e821d98",
   "go_version": "go1.26.5",
   "xcode_version": "27.0 (27A266a)",
   "host_architecture": "arm64",
   "input_hashes": {
-    "Tools/AezeedBridge/README.md": "a3a04dec909d90cc9ee1c2c8d885515721f984af8ee6b05e57a8f04abe17096e",
-    "Tools/AezeedBridge/build.sh": "1c3db90a210cc464e7aa47de724aebc3d6adbe7ab97d898b08b72c61edb8d4f8",
+    "Tools/AezeedBridge/DependencyRepairs.json": "78735d1b068d70de8239aff14120c7c5f047568bc85549d2e712f99320263973",
+    "Tools/AezeedBridge/README.md": "25e7166996146215f3a92e5ab019f3f76eb0e3327ed787d182a4374e5ef05b8a",
+    "Tools/AezeedBridge/build.sh": "fdb93dc1c0f6df47f4d850ea0df932a73ca196943ea39f387cf8e8471b243423",
     "Tools/AezeedBridge/cmd/seedvectors/main.go": "c7fc8658969ba2417e4fec878ba0b588b86a460ae9b46ce457fe21508c0d699e",
     "Tools/AezeedBridge/cmd/vectors/main.go": "ab5b0345ab0d2c80e861e71bdc7d747ab3eed1d5a9b065f0b896dbeb98704979",
+    "Tools/AezeedBridge/dependency-repairs.patch": "f07e90feceb2a11ccd9d871e9d5ffb92d6c4eba319d973224827ab8e4d1c5203",
+    "Tools/AezeedBridge/dependency_repairs_test.go": "6c5b6c62aad8b3937c1df378d08873572fef18d028e6ff6ac17dd5edf8f78647",
     "Tools/AezeedBridge/go.mod": "8ea9e98f39671a80c7d044d70d2b508952e31b0992f2cec535cec1aa4fb957f5",
     "Tools/AezeedBridge/go.sum": "f0ba1a4d26ca957ee4c809afd8924b606617bf64637d4d06a67932f152b5b5a5",
     "Tools/AezeedBridge/include/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
     "Tools/AezeedBridge/include/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
     "Tools/AezeedBridge/main.go": "686d5d9fe6a9d25860e4dda155ee6f3917be1d293d5f3dda7832c03d93b19403",
-    "Tools/AezeedBridge/main_test.go": "8f3b94a5470fa4f7cf48e05709630b8382dc4bf3009001fa9c37fb7b6bf31360"
+    "Tools/AezeedBridge/main_test.go": "2cb9b44b3e13db34faf5e975758ff47e6553e5bd904ea7dbf12ac7cf7d813605",
+    "Tools/AezeedBridge/prepare_source.py": "9dc4174be00b66618bbecf12047797c5d6aa1d313fc018ec9534194794a67554",
+    "Tools/AezeedBridge/test.sh": "12e5137d378bfdfcadd53560664a90798895a35d286e038341434832341c1ef4",
+    "Tools/AezeedBridge/testdata/lnd-production.json": "ca0d5f593699bc1b4def10d0122d89b05e140f129eab01cad49d6676695d12e7"
   },
   "framework_files": {
     "Info.plist": "fc9e62571e097e0c19cdf45734acedca4f39c5cb60e16091870716a2835eedcc",
     "ios-arm64/Headers/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
     "ios-arm64/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
-    "ios-arm64/libOathAezeedCore.a": "7387b502ef1f7cc9fcca8ef8214c21b98618c926f01334add66a925a86cd397e",
+    "ios-arm64/libOathAezeedCore.a": "0cc6ec0c16816babbf5970d4a7853bfc663fa38845b8685792f992eec674a1f0",
     "ios-arm64-simulator/Headers/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
     "ios-arm64-simulator/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
-    "ios-arm64-simulator/libOathAezeedCore.a": "626bc44fee34614cbbae4dfb9186624d18eea6a955da7c09cbe0a92b9349a78f",
+    "ios-arm64-simulator/libOathAezeedCore.a": "328093ccb95f750f72438651a2e9f3f1bdcb5ee45f00f4de231f631486a73f17",
     "macos-arm64/Headers/OathAezeedCore.h": "c7aec0a7606b0ea91dec53d30df047c978f0bcd7489739206546e7b35bbb519b",
     "macos-arm64/Headers/module.modulemap": "6e9ac06b16608f8b5db8ba25af99a09375fa8bd210ddc9764d3159927d3c95b1",
-    "macos-arm64/libOathAezeedCore.a": "ccd26b2ad5d9c35206ff118cb55c2bb56ac6494d392a5b25e08d873823942213"
+    "macos-arm64/libOathAezeedCore.a": "c82a4a16b512f95d1a0285ce0d8a9ccf4d0cfcc5e7311952c7e219a362898d49"
   },
-  "reproducibility": "All ten files identical across two separate source/output/cache paths with the same toolchain. Historical shipped binary equivalence is not established.",
-  "compatibility": "Production seed-format and password semantics unchanged; compile settings omit debug metadata and normalize archive and plist metadata."
+  "reproducibility": "Replacement dependency repairs: two isolated rebuild checks pending; historical shipped binary equivalence remains unproven.",
+  "compatibility": "Production seed-format and password semantics unchanged; compile settings omit debug metadata and normalize archive and plist metadata.",
+  "source_preparation": "Pinned modules verified before isolated vendoring; DependencyRepairs.json binds exact upstream and patched file hashes; shared module cache is unchanged."
 }

@@ -1,0 +1,63 @@
+--- a/vendor/gitlab.com/yawning/bsaes.git/internal/modes/cbc.go
++++ b/vendor/gitlab.com/yawning/bsaes.git/internal/modes/cbc.go
+@@ -48,6 +48,12 @@
+ 
+ func (c *cbcDecImpl) CryptBlocks(dst, src []byte) {
+ 	sLen := len(src)
++	if sLen%blockSize != 0 {
++		panic("bsaes/CryptBlocks: input not full blocks")
++	}
++	if len(dst) < sLen {
++		panic("bsaes/CryptBlocks: output smaller than input")
++	}
+ 	if sLen == 0 {
+ 		return
+ 	}
+--- a/vendor/gitlab.com/yawning/bsaes.git/internal/modes/gcm.go
++++ b/vendor/gitlab.com/yawning/bsaes.git/internal/modes/gcm.go
+@@ -69,7 +69,7 @@
+ 	} else {
+ 		var p [blockSize]byte
+ 		ghash.Ghash(j, h, nonce)
+-		binary.BigEndian.PutUint32(p[12:], uint32(len(nonce))<<3)
++		binary.BigEndian.PutUint64(p[8:], uint64(len(nonce))<<3)
+ 		ghash.Ghash(j, h, p[:])
+ 	}
+ 	g.ecb.Encrypt(preCounterBlock[:], j[:])
+@@ -130,8 +130,8 @@
+ 	var s, p [blockSize]byte
+ 	ghash.Ghash(&s, &h, additionalData)
+ 	ghash.Ghash(&s, &h, out[:sz])
+-	binary.BigEndian.PutUint32(p[4:], uint32(len(additionalData))<<3)
+-	binary.BigEndian.PutUint32(p[12:], uint32(sz)<<3)
++	binary.BigEndian.PutUint64(p[:8], uint64(len(additionalData))<<3)
++	binary.BigEndian.PutUint64(p[8:], uint64(sz)<<3)
+ 	ghash.Ghash(&s, &h, p[:])
+ 
+ 	// Let T = MSB t(GCTR K(J0, S))
+@@ -167,8 +167,8 @@
+ 	var s, p [blockSize]byte
+ 	ghash.Ghash(&s, &h, additionalData)
+ 	ghash.Ghash(&s, &h, ciphertext[:sz])
+-	binary.BigEndian.PutUint32(p[4:], uint32(len(additionalData))<<3)
+-	binary.BigEndian.PutUint32(p[12:], uint32(sz)<<3)
++	binary.BigEndian.PutUint64(p[:8], uint64(len(additionalData))<<3)
++	binary.BigEndian.PutUint64(p[8:], uint64(sz)<<3)
+ 	ghash.Ghash(&s, &h, p[:])
+ 	for i, v := range preCounterBlock {
+ 		s[i] ^= v
+--- a/vendor/golang.org/x/crypto/blake2b/blake2b.go
++++ b/vendor/golang.org/x/crypto/blake2b/blake2b.go
+@@ -184,6 +184,12 @@
+ 	if len(b) != marshaledSize {
+ 		return errors.New("crypto/blake2b: invalid hash state size")
+ 	}
++	// Validate before mutating the receiver so rejected state preserves it.
++	size := int(b[len(magic)+8*8+2*8])
++	offset := int(b[marshaledSize-1])
++	if size < 1 || size > Size || offset > BlockSize {
++		return errors.New("crypto/blake2b: invalid hash state parameters")
++	}
+ 	b = b[len(magic):]
+ 	for i := 0; i < 8; i++ {
+ 		b, d.h[i] = consumeUint64(b)

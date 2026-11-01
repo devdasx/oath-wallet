@@ -2,12 +2,15 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 root="$(cd ../.. && pwd)"
+bridge_source="$PWD"
 # Pin the Go compiler and remove host/VCS/debug-path metadata from archives.
 # ZERO_AR_DATE also normalizes Apple's archive symbol-table timestamp.
 export GOTOOLCHAIN=go1.26.5 GOWORK=off GOFLAGS= ZERO_AR_DATE=1
 export CGO_CFLAGS="-O2 -g0" CGO_CPPFLAGS= CGO_CXXFLAGS="-O2 -g0" CGO_LDFLAGS="-O2 -g0"
 build="$(mktemp -d /tmp/oath-aezeed.XXXXXX)"
 trap 'rm -rf "$build"' EXIT
+python3 "$bridge_source/prepare_source.py" "$build/source"
+cd "$build/source/Tools/AezeedBridge"
 for target in mac ios sim; do
   mkdir -p "$build/$target/headers"
   case "$target" in
@@ -16,7 +19,7 @@ for target in mac ios sim; do
     sim) sdk=iphonesimulator; os=ios; triple=arm64-apple-ios17.0-simulator ;;
   esac
   CGO_ENABLED=1 GOOS="$os" GOARCH=arm64 CC="$(xcrun --find clang) -target $triple -isysroot $(xcrun --sdk "$sdk" --show-sdk-path)" \
-    go build -mod=readonly -buildvcs=false -buildmode=c-archive -trimpath -ldflags='-s -w -buildid=' -o "$build/$target/libOathAezeedCore.a" .
+    go build -mod=vendor -buildvcs=false -buildmode=c-archive -trimpath -ldflags='-s -w -buildid=' -o "$build/$target/libOathAezeedCore.a" .
   cp include/OathAezeedCore.h "$build/$target/headers/"
   cp include/module.modulemap "$build/$target/headers/"
 done

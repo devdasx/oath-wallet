@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "patch_sha256": "f07e90feceb2a11ccd9d871e9d5ffb92d6c4eba319d973224827ab8e4d1c5203",
+  "files": [
+    {
+      "path": "vendor/gitlab.com/yawning/bsaes.git/internal/modes/cbc.go",
+      "upstream_module": "gitlab.com/yawning/bsaes.git",
+      "upstream_version": "v0.0.0-20190805113838-0a714cd429ec",
+      "before_sha256": "267823ab4de1731824daf9c0237d3dd4fb083b8ba15cc4da26123cecb0050f70",
+      "after_sha256": "eca40a4e1f57de1f3bdb850697735042ee33a37d33669c53d1d452be4ded8a60"
+    },
+    {
+      "path": "vendor/gitlab.com/yawning/bsaes.git/internal/modes/gcm.go",
+      "upstream_module": "gitlab.com/yawning/bsaes.git",
+      "upstream_version": "v0.0.0-20190805113838-0a714cd429ec",
+      "before_sha256": "55e3ae5c68a7234bf5f3055ac64d3f9a50d6b372c1572b247efdb4a7cd8eecd4",
+      "after_sha256": "670aee5ef610230c06ce016ee3b8bea1f3dce9666b597f4bda6b6a97a24f8523"
+    },
+    {
+      "path": "vendor/golang.org/x/crypto/blake2b/blake2b.go",
+      "upstream_module": "golang.org/x/crypto",
+      "upstream_version": "v0.22.0",
+      "before_sha256": "f370186a863f5ef09589b842c688747c480dfd4d3d6bb89661e08de78ed49bb8",
+      "after_sha256": "bc134a815697dcce10c84dee42dc06b9f2337bfce0409be6148e205362d48cf3"
+    }
+  ],
+  "scope": "Unused dependency API correctness repairs; no wallet format or key derivation change."
+}
