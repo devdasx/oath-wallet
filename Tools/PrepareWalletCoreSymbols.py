@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Fetch authentic, checksum-pinned WalletCore 4.8.4 device debug symbols.
+"""Fetch checksum-pinned debug symbols for the reviewed Core source build.
 
 Run once on each build machine, or pass --downloads for a previously downloaded
-release directory. Only public upstream assets are accessed. The Xcode build
+release directory. Only public review-release assets are accessed. The Xcode build
 phase stays offline; this cache is ignored by Git and never bundled in the app.
 """
 import argparse
@@ -16,15 +16,16 @@ import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "4.8.4"
+VERSION = "4.8.4-oath-review1"
+RELEASE_BASE = "https://github.com/devdasx/oath-wallet-security-review/releases/download/review-4.1.15-build100-progress19"
 ASSETS = {
     "WalletCore": (
-        "8b1fca956d1150b7a0386694cdf1ac6a7800c202689b576df70a95abe2b57279",
-        "4C0AD6A9-0446-35B1-9BC1-4A75400B2C5A",
+        "225c99906b3ba08474e4453ba05e9d6f7ed9a332603836bcac159009cf963dc1",
+        "08FFD60A-E21D-354B-AD70-C02731D58624",
     ),
     "WalletCoreSwiftProtobuf": (
-        "64299469ac01844d9286e9e503186d13260173c8fc45d02d17132bd1e1fcddfe",
-        "0941ECD2-9EC2-391C-9DB4-B155227B4DDF",
+        "004153aa53ab67321016e2372a806972405ea3e3c08e902a0dfa70046b2074f7",
+        "2C12FA7A-E54F-3CFB-9BA1-3F11EA73A18D",
     ),
 }
 
@@ -41,7 +42,7 @@ def main():
             filename = f"{name}.xcframework.dSYM.zip"
             archive = args.downloads / filename if args.downloads else scratch / filename
             if not args.downloads:
-                url = f"https://github.com/trustwallet/wallet-core/releases/download/{VERSION}/{filename}"
+                url = f"{RELEASE_BASE}/{filename}"
                 with urllib.request.urlopen(url, timeout=60) as response, archive.open("wb") as output:
                     shutil.copyfileobj(response, output)
             with archive.open("rb") as data:
@@ -59,7 +60,7 @@ def main():
                         continue
                     relative = PurePosixPath(entry.filename[len(prefix):])
                     if relative.is_absolute() or ".." in relative.parts:
-                        raise ValueError("Invalid upstream symbol path")
+                        raise ValueError("Invalid published symbol path")
                     output = dsym / relative
                     output.parent.mkdir(parents=True, exist_ok=True)
                     with bundle.open(entry) as source, output.open("wb") as destination:
@@ -76,7 +77,7 @@ def main():
             if destination.exists():
                 shutil.rmtree(destination)
             shutil.copytree(dsym, destination)
-            print(f"Prepared authentic {name} {VERSION} device symbols.")
+            print(f"Prepared verified {name} {VERSION} device symbols.")
 
 
 if __name__ == "__main__":

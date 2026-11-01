@@ -2,7 +2,7 @@
 
 Version: 4.1.15 (100). Scheme: `OathAtmosphere`. Product: `Oath Wallet`.
 
-Run `sh Tools/PreparePublicBuild.sh` before the first build. Before creating a device archive, run `python3 Tools/PrepareWalletCoreSymbols.py` to fetch and verify the pinned upstream debug symbols. It creates an empty
+Run `sh Tools/PreparePublicBuild.sh` before the first build. Before creating a device archive, run `python3 Tools/PrepareWalletCoreSymbols.py` to fetch and verify the pinned matching debug symbols. It creates an empty
 `OathApp/Private/TokenRPC.plist` only when one does not exist. This directory is
 ignored. Existing local values are never overwritten or printed.
 

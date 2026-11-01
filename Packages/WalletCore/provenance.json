@@ -3,6 +3,43 @@
   "release": "https://github.com/trustwallet/wallet-core/releases/tag/4.8.4",
   "registry_url": "https://raw.githubusercontent.com/trustwallet/wallet-core/4.8.4/registry.json",
   "registry_sha256": "9b6d3202e009dc5634531b84b4590d3d3fe6d08f1205f93f8eaae98444017240",
-  "package_manifest_sha256": "d42da244cc010a3247fc9af80057dd2ec7c9d22989f8d36124d5aa15f66e4e4e",
-  "defaults": "Account zero, first external address, empty BIP39 passphrase; all EVM networks use the Ethereum path. No network calls are required to create addresses."
+  "package_manifest_sha256": "4c68ba46c8dc206b7ac1e8031d38f892b3fbf8e84d3e2ab3f1d0b83614328830",
+  "defaults": "Account zero, first external address, empty BIP39 passphrase; all EVM networks use the Ethereum path. No network calls are required to create addresses.",
+  "upstream_commit": "d40d24a63d92619167903369308bf0e2f7eb3a59",
+  "artifact_release": "https://github.com/devdasx/oath-wallet-security-review/releases/tag/review-4.1.15-build100-progress19",
+  "review_source_commit": "7babe744fc63d7342c918fc8a7d6c02f80fcf15b",
+  "patch_sha256": "2dc70e8dbfb31dee39d6e27ba54b92257ec742c2e594d46ee7e4d3bff68e0d18",
+  "repair_ids": [
+    "DEP-CORE-001",
+    "DEP-CORE-002",
+    "DEP-CORE-003",
+    "DEP-CORE-004",
+    "DEP-CORE-005",
+    "DEP-CORE-006",
+    "DEP-CORE-007",
+    "DEP-CORE-008"
+  ],
+  "rebuild_recipe": "https://github.com/devdasx/oath-wallet-security-review/blob/7babe744fc63d7342c918fc8a7d6c02f80fcf15b/review/CORE-EIGHT-INTEGRATION.md",
+  "swift_protobuf_generator_commit": "7e2c5f3cbbeea68e004915e3a8961e20bd11d824",
+  "swift_protobuf_runtime_commit": "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
+  "artifacts": {
+    "WalletCore": {
+      "url": "https://github.com/devdasx/oath-wallet-security-review/releases/download/review-4.1.15-build100-progress19/WalletCore.xcframework.zip",
+      "sha256": "2f11aff95cbaaf0890e7584fbeefc6a4e747e83846a9393bed9d2dbe235a7fa6",
+      "symbols_url": "https://github.com/devdasx/oath-wallet-security-review/releases/download/review-4.1.15-build100-progress19/WalletCore.xcframework.dSYM.zip",
+      "symbols_sha256": "225c99906b3ba08474e4453ba05e9d6f7ed9a332603836bcac159009cf963dc1",
+      "device_uuid": "08FFD60A-E21D-354B-AD70-C02731D58624"
+    },
+    "WalletCoreSwiftProtobuf": {
+      "url": "https://github.com/devdasx/oath-wallet-security-review/releases/download/review-4.1.15-build100-progress19/WalletCoreSwiftProtobuf.xcframework.zip",
+      "sha256": "c63dbf567c42d83c4939ca06c85249ce17fb3d7762fba778971c35f160098f9f",
+      "symbols_url": "https://github.com/devdasx/oath-wallet-security-review/releases/download/review-4.1.15-build100-progress19/WalletCoreSwiftProtobuf.xcframework.dSYM.zip",
+      "symbols_sha256": "004153aa53ab67321016e2372a806972405ea3e3c08e902a0dfa70046b2074f7",
+      "device_uuid": "2C12FA7A-E54F-3CFB-9BA1-3F11EA73A18D"
+    }
+  },
+  "limitations": [
+    "Maintainer-commissioned Codex review in progress, not independent certification.",
+    "No historical App Store binary equivalence or byte-identical independent compiler-output claim."
+  ]
 }
