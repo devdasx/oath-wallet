@@ -44,18 +44,18 @@ struct OathImportedPrivateKey: Codable, Equatable, Sendable {
         guard isValidStructure, other.isValidStructure, bytes == other.bytes,
               (Set(networks) == Set(other.networks) || (isFullEVMScope && other.isFullEVMScope)),
               (compressed != false) == (other.compressed != false) else { return false }
-        return Self.sameExtended(bitcoinExtendedKey, other.bitcoinExtendedKey, network: .bitcoin)
-            && Self.sameExtended(dogecoinExtendedKey, other.dogecoinExtendedKey, network: .dogecoin)
-            && Self.sameExtended(litecoinExtendedKey, other.litecoinExtendedKey, network: .litecoin)
-            && Self.sameExtended(bitcoinCashExtendedKey, other.bitcoinCashExtendedKey, network: .bitcoincash)
+        return sameExtended(bitcoinExtendedKey, other.bitcoinExtendedKey, network: .bitcoin)
+            && sameExtended(dogecoinExtendedKey, other.dogecoinExtendedKey, network: .dogecoin)
+            && sameExtended(litecoinExtendedKey, other.litecoinExtendedKey, network: .litecoin)
+            && sameExtended(bitcoinCashExtendedKey, other.bitcoinCashExtendedKey, network: .bitcoincash)
     }
 
-    private static func sameExtended(_ lhs: String?, _ rhs: String?, network: UTXONetwork) -> Bool {
+    private func sameExtended(_ lhs: String?, _ rhs: String?, network: UTXONetwork) -> Bool {
         if lhs == rhs { return true }
         guard let lhs, let rhs else { return false }
         do {
-            let left = try network.extended(lhs)
-            let right = try network.extended(rhs)
+            let left = try network.extended(network.restoredExtendedPrivateKey(lhs, storedScalar: bytes))
+            let right = try network.extended(network.restoredExtendedPrivateKey(rhs, storedScalar: bytes))
             return left.branches == right.branches
         } catch { OathDiagnostics.record(error); return false }
     }

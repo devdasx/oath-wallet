@@ -5,21 +5,21 @@ import OathCloudBackup
 import OathDatabase
 
 extension OathImportedPrivateKey {
-    func extendedKey(for network: UTXONetwork) -> String? {
-        switch network {
+    func extendedKey(for network: UTXONetwork) throws -> String? {
+        let stored: String? = switch network {
         case .bitcoin: bitcoinExtendedKey
         case .dogecoin: dogecoinExtendedKey
         case .litecoin: litecoinExtendedKey
         case .bitcoincash: bitcoinCashExtendedKey
         }
+        guard let stored else { return nil }
+        return try network.restoredExtendedPrivateKey(stored, storedScalar: bytes)
     }
 
     func bitcoinDescriptor() throws -> BitcoinWalletDescriptor {
         guard isValidStructure, networks.count == 1,
               let network = UTXONetwork(rawValue: networks[0].id) else { throw OathWalletError.invalidPrivateKey }
-        if let extended = extendedKey(for: network) {
-            let decoded = try network.decodeImport(extended)
-            guard decoded.bytes == bytes else { throw OathWalletError.invalidPrivateKey }
+        if let extended = try extendedKey(for: network) {
             return try network.extended(extended)
         }
         return try network.singleKey(bytes: bytes, compressed: compressed != false)
@@ -56,8 +56,7 @@ extension OathWalletEngine {
                   account.networkID == plan.chain.rawValue, account.accountIndex >= 0, account.accountIndex < 0x8000_0000 else { throw BitcoinSendError.invalidInput }
             if let material = secret.privateKey {
                 guard material.isValidStructure, material.networks.map(\.rawValue) == [plan.chain.rawValue] else { throw BitcoinSendError.invalidInput }
-                if let extended = material.extendedKey(for: plan.chain) {
-                    guard try plan.chain.decodeImport(extended).bytes == material.bytes else { throw BitcoinSendError.invalidInput }
+                if let extended = try material.extendedKey(for: plan.chain) {
                     return .extended(extended)
                 }
                 return .single(material.bytes, compressed: material.compressed != false)
@@ -111,8 +110,7 @@ extension OathWalletEngine {
         if let material = secret.electrum { source = .electrum(material) }
         else if let key = secret.privateKey {
             guard key.isValidStructure, key.networks.map(\.rawValue) == ["bitcoin"] else { throw BitcoinConnectError.wrongAccount }
-            if let extended = key.bitcoinExtendedKey {
-                guard try BitcoinKeys.decodeImport(extended).bytes == key.bytes else { throw BitcoinConnectError.wrongAccount }
+            if let extended = try key.extendedKey(for: .bitcoin) {
                 source = .extended(extended)
             } else { source = .single(key.bytes,compressed:key.compressed != false) }
         } else if let material = secret.aezeed {
