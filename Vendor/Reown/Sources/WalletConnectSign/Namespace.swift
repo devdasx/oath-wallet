@@ -61,24 +61,25 @@ public struct SessionNamespace: Equatable, Codable {
 
 enum Namespace {
 
+    /// Resolve a proposal entry without interpreting malformed keys or
+    /// assuming that a chain-qualified entry has a separate chains array.
+    private static func requiredChains(key: String, namespace: ProposalNamespace) throws -> [Blockchain] {
+        if key.contains(":") {
+            guard let chain = Blockchain(key), namespace.chains == nil else {
+                throw WalletConnectError.unsupportedNamespace(.unsupportedChains)
+            }
+            return [chain]
+        }
+        guard let chains = namespace.chains, !chains.isEmpty,
+              chains.allSatisfy({ $0.namespace == key }) else {
+            throw WalletConnectError.unsupportedNamespace(.unsupportedChains)
+        }
+        return chains
+    }
+
     static func validate(_ namespaces: [String: ProposalNamespace]) throws {
         for (key, namespace) in namespaces {
-            let caip2Namespace = key.components(separatedBy: ":")
-            
-            if caip2Namespace.count > 1 {
-                if let chain = caip2Namespace.last, !chain.isEmpty, namespace.chains != nil {
-                    throw WalletConnectError.unsupportedNamespace(.unsupportedChains)
-                }
-            } else {
-                guard let chains = namespace.chains, !chains.isEmpty else {
-                    throw WalletConnectError.unsupportedNamespace(.unsupportedChains)
-                }
-                for chain in chains {
-                    if key != chain.namespace {
-                        throw WalletConnectError.unsupportedNamespace(.unsupportedChains)
-                    }
-                }
-            }
+            _ = try requiredChains(key: key, namespace: namespace)
         }
     }
 
@@ -103,53 +104,30 @@ enum Namespace {
         _ sessionNamespaces: [String: SessionNamespace],
         against proposalNamespaces: [String: ProposalNamespace]
     ) throws {
-        var requiredNamespaces = [String: ProposalNamespace]()
-        proposalNamespaces.forEach {
-            let caip2Namespace = $0.key
-            let proposalNamespace = $0.value
-
-            if proposalNamespace.chains != nil {
-                requiredNamespaces[caip2Namespace] = proposalNamespace
-            } else {
-                if let network = $0.key.components(separatedBy: ":").first {
-                    let proposalNamespace = ProposalNamespace(chains: [Blockchain($0.key)!], methods: proposalNamespace.methods, events: proposalNamespace.events)
-                    if requiredNamespaces[network] == nil {
-                        requiredNamespaces[network] = proposalNamespace
-                    } else {
-                        let unionChains = requiredNamespaces[network]?.chains!.orderedUnion(proposalNamespace.chains ?? [])
-                        let unionMethods = requiredNamespaces[network]?.methods.union(proposalNamespace.methods)
-                        let unionEvents = requiredNamespaces[network]?.events.union(proposalNamespace.events)
-                        
-                        let namespace = ProposalNamespace(chains: unionChains, methods: unionMethods ?? [], events: unionEvents ?? [])
-                        requiredNamespaces[network] = namespace
-                    }
+        try validate(proposalNamespaces)
+        try validate(sessionNamespaces)
+        // Validate each requirement at its own chain scope. Flattening a mixed
+        // base/qualified dictionary can overwrite requirements by iteration order
+        // or incorrectly share one chain's permissions with another chain.
+        for (key, proposedNamespace) in proposalNamespaces {
+            for chain in try requiredChains(key: key, namespace: proposedNamespace) {
+                let entries = [sessionNamespaces[chain.namespace], sessionNamespaces[chain.absoluteString]].compactMap { $0 }
+                guard !entries.isEmpty else {
+                    throw WalletConnectError.unsupportedNamespace(.unsupportedNamespaceKey)
                 }
-            }
-        }
-        
-        for (key, proposedNamespace) in requiredNamespaces {
-            guard let approvedNamespace = sessionNamespaces[key] else {
-                throw WalletConnectError.unsupportedNamespace(.unsupportedNamespaceKey)
-            }
-            try proposedNamespace.methods.forEach {
-                if !approvedNamespace.methods.contains($0) {
+                let matching = entries.filter { entry in
+                    entry.accounts.contains { $0.blockchain == chain }
+                }
+                guard !matching.isEmpty else {
+                    throw WalletConnectError.unsupportedNamespace(.unsupportedAccounts)
+                }
+                let methods = matching.reduce(into: Set<String>()) { $0.formUnion($1.methods) }
+                let events = matching.reduce(into: Set<String>()) { $0.formUnion($1.events) }
+                guard proposedNamespace.methods.isSubset(of: methods) else {
                     throw WalletConnectError.unsupportedNamespace(.unsupportedMethods)
                 }
-            }
-            try proposedNamespace.events.forEach {
-                if !approvedNamespace.events.contains($0) {
+                guard proposedNamespace.events.isSubset(of: events) else {
                     throw WalletConnectError.unsupportedNamespace(.unsupportedEvents)
-                }
-            }
-            if let chains = proposedNamespace.chains {
-                try chains.forEach { chain in
-                    if !approvedNamespace.accounts.contains(where: { $0.blockchain == chain }) {
-                        throw WalletConnectError.unsupportedNamespace(.unsupportedAccounts)
-                    }
-                }
-            } else {
-                if !approvedNamespace.accounts.contains(where: { $0.blockchain == Blockchain(key) }) {
-                    throw WalletConnectError.unsupportedNamespace(.unsupportedChains)
                 }
             }
         }
@@ -173,6 +151,7 @@ public enum AutoNamespaces {
         events: [String],
         accounts: [Account]
     ) throws -> [String: SessionNamespace] {
+        try Namespace.validate(sessionProposal.requiredNamespaces)
         var sessionNamespaces = [String: SessionNamespace]()
 
         let chains = chains.removeDuplicates()
@@ -199,7 +178,7 @@ public enum AutoNamespaces {
                 }
                 
                 let availableAccountsBlockchains = accounts.map { $0.blockchain }
-                guard !sessionChains.intersection(availableAccountsBlockchains).isEmpty else {
+                guard Set(sessionChains).isSubset(of: Set(availableAccountsBlockchains)) else {
                     throw AutoNamespacesError.requiredAccountsNotSatisfied
                 }
 
@@ -242,7 +221,7 @@ public enum AutoNamespaces {
                     }
                     
                     let availableAccountsBlockchains = accounts.map { $0.blockchain }
-                    guard !sessionChains.intersection(availableAccountsBlockchains).isEmpty else {
+                    guard Set(sessionChains).isSubset(of: Set(availableAccountsBlockchains)) else {
                         throw AutoNamespacesError.requiredAccountsNotSatisfied
                     }
 
@@ -269,11 +248,15 @@ public enum AutoNamespaces {
         }
         
         sessionProposal.optionalNamespaces?.forEach {
+            // Unsupported or malformed optional entries grant nothing.
+            guard (try? Namespace.validate([$0.key: $0.value])) != nil else { return }
             let caip2Namespace = $0.key
             let proposalNamespace = $0.value
 
             if let proposalChains = proposalNamespace.chains {
-                let sessionChains = proposalChains.intersection(chains)
+                let sessionChains = proposalChains.intersection(chains).filter { chain in
+                    accounts.contains { $0.blockchain == chain }
+                }
                 guard !sessionChains.isEmpty else {
                     return
                 }
@@ -308,7 +291,9 @@ public enum AutoNamespaces {
                 if let network = $0.key.components(separatedBy: ":").first,
                    let chain = $0.key.components(separatedBy: ":").last
                 {
-                    let sessionChains = [Blockchain(namespace: network, reference: chain)].intersection(chains)
+                    let sessionChains = [Blockchain(namespace: network, reference: chain)].intersection(chains).filter { chain in
+                        accounts.contains { $0.blockchain == chain }
+                    }
                     guard !sessionChains.isEmpty else {
                         return
                     }
@@ -344,6 +329,7 @@ public enum AutoNamespaces {
         }
         guard !sessionNamespaces.isEmpty else { throw AutoNamespacesError.emptySessionNamespacesForbidden }
 
+        try Namespace.validateApproved(sessionNamespaces, against: sessionProposal.requiredNamespaces)
         return sessionNamespaces
     }
 }

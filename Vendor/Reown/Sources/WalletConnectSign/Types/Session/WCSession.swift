@@ -147,15 +147,10 @@ struct WCSession: SequenceObject, Equatable {
     }
 
     mutating func updateNamespaces(_ namespaces: [String: SessionNamespace], timestamp: Date = Date()) throws {
-        for item in requiredNamespaces {
-            guard
-                let compliantNamespace = namespaces[item.key],
-                SessionNamespace.accountsAreCompliant(compliantNamespace.accounts, toChains: item.value.chains!),
-                compliantNamespace.methods.isSuperset(of: item.value.methods),
-                compliantNamespace.events.isSuperset(of: item.value.events)
-            else {
-                throw Error.unsatisfiedUpdateNamespaceRequirement
-            }
+        do {
+            try Namespace.validateApproved(namespaces, against: requiredNamespaces)
+        } catch {
+            throw Error.unsatisfiedUpdateNamespaceRequirement
         }
         self.namespaces = namespaces
         self.timestamp = timestamp
