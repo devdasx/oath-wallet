@@ -33,6 +33,9 @@ class AuthenticateTransportTypeSwitcher {
             throw Errors.badUniversalLink
         }
 
+        try AuthRequestParams.validateTtl(params.ttl)
+        guard params.hasLegacyEVMChains else { throw SessionAuthRequestService.Errors.invalidChain }
+
         do {
             if let walletUniversalLink = walletUniversalLink {
                 let _ = try await linkAuthRequester.request(params: params, walletUniversalLink: walletUniversalLink)

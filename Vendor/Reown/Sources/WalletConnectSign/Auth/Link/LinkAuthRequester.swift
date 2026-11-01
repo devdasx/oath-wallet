@@ -36,15 +36,12 @@ actor LinkAuthRequester {
     func request(params: AuthRequestParams, walletUniversalLink: String) async throws -> String {
         guard try linkModeLinksStore.get(key: walletUniversalLink) != nil else { throw Errors.walletLinkSupportNotProven }
 
+        try AuthRequestParams.validateTtl(params.ttl)
+        guard params.hasLegacyEVMChains else { throw Errors.invalidChain }
         var params = params
         let pubKey = try kms.createX25519KeyPair()
         let responseTopic = pubKey.rawRepresentation.sha256().toHexString()
         let protocolMethod = SessionAuthenticatedProtocolMethod.responseApprove(ttl: params.ttl)
-        guard let chainNamespace = Blockchain(params.chains.first!)?.namespace,
-              chainNamespace == "eip155"
-        else {
-            throw Errors.invalidChain
-        }
         if let methods = params.legacyMethods,
            !methods.isEmpty {
             let namespaceRecap = try createRecapUrn(methods: methods)
@@ -53,7 +50,7 @@ actor LinkAuthRequester {
         let requester = Participant(publicKey: pubKey.hexRepresentation, metadata: appMetadata)
         let payload = AuthPayload(requestParams: params, iat: iatProvader.iat)
 
-        let sessionAuthenticateRequestParams = SessionAuthenticateRequestParams(requester: requester, authPayload: payload, ttl: params.ttl)
+        let sessionAuthenticateRequestParams = try SessionAuthenticateRequestParams(requester: requester, authPayload: payload, ttl: params.ttl)
         let authResponseTopicRecord = AuthResponseTopicRecord(topic: responseTopic, unixTimestamp: sessionAuthenticateRequestParams.expiryTimestamp)
         authResponseTopicRecordsStore.set(authResponseTopicRecord, forKey: responseTopic)
         let request = RPCRequest(method: protocolMethod.method, params: sessionAuthenticateRequestParams)

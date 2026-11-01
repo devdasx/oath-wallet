@@ -55,9 +55,7 @@ public struct AuthRequestParams: Codable {
         signatureTypes: [String: [String]]? = nil,
         ttl: TimeInterval = 3600
     ) throws {
-        guard ttl >= Request.minTtl && ttl <= Request.maxTtl else {
-            throw Errors.invalidTtl
-        }
+        try Self.validateTtl(ttl)
 
         self.domain = domain
         self.chains = chains
@@ -71,6 +69,36 @@ public struct AuthRequestParams: Codable {
         self.legacyMethods = methods
         self.signatureTypes = signatureTypes
         self.ttl = ttl
+    }
+
+    static func validateTtl(_ ttl: TimeInterval) throws {
+        guard ttl.isFinite, ttl >= minTtl, ttl <= maxTtl else {
+            throw Errors.invalidTtl
+        }
+    }
+
+    // The legacy authentication senders support EVM chains. The general model
+    // remains available to newer authentication flows for other chain families.
+    var hasLegacyEVMChains: Bool {
+        !chains.isEmpty && chains.allSatisfy { Blockchain($0)?.namespace == "eip155" }
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        try self.init(
+            domain: values.decode(String.self, forKey: .domain),
+            chains: values.decode([String].self, forKey: .chains),
+            nonce: values.decode(String.self, forKey: .nonce),
+            uri: values.decode(String.self, forKey: .uri),
+            nbf: values.decodeIfPresent(String.self, forKey: .nbf),
+            exp: values.decodeIfPresent(String.self, forKey: .exp),
+            statement: values.decodeIfPresent(String.self, forKey: .statement),
+            requestId: values.decodeIfPresent(String.self, forKey: .requestId),
+            resources: values.decodeIfPresent([String].self, forKey: .resources),
+            methods: values.decodeIfPresent([String].self, forKey: .legacyMethods),
+            signatureTypes: values.decodeIfPresent([String: [String]].self, forKey: .signatureTypes),
+            ttl: values.decode(TimeInterval.self, forKey: .ttl)
+        )
     }
 
     mutating func addResource(resource: String) {
