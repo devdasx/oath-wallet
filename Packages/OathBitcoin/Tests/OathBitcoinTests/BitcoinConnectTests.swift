@@ -2,9 +2,11 @@ import Foundation
 import XCTest
 @testable import OathBitcoin
 
-final class BitcoinConnectTests: XCTestCase {
+protocol BitcoinConnectFixture {}
+
+extension BitcoinConnectFixture {
     // Published, deterministic test material. Never used on mainnet.
-    let seed = Data(0..<32)
+    var seed: Data { Data(0..<32) }
     func address(_ type: BitcoinAddressType = .nativeSegwit, change: UInt32 = 0, index: UInt32 = 0) throws -> BitcoinDerivedAddress {
         let branch = try BitcoinKeys.wallet(seed: seed).branches.first { $0.type == type && $0.change == change }!
         return try BitcoinKeys.addresses(branch: branch, range: index..<(index + 1))[0]
@@ -39,6 +41,9 @@ final class BitcoinConnectTests: XCTestCase {
         let (psbt,inputs) = try BitcoinConnectClient.transfer(request,coins:coins.map { .init(txid:$0.txid,vout:UInt32($0.vout),value:UInt64($0.value),address:$0.address) },change:change,rate:2)
         return try BitcoinConnectSigning.review(request:request,psbt:psbt,inputs:inputs,addresses:coins.map(\.address)+[change],previous:Dictionary(uniqueKeysWithValues:coins.map { ($0.txid,$0.previousTransaction) }))
     }
+}
+
+final class BitcoinConnectTests: XCTestCase, BitcoinConnectFixture {
     func testAllAddressTypesAndNetworks() throws {
         for network in BitcoinConnectNetwork.allCases {
             for type in BitcoinAddressType.allCases {
