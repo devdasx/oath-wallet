@@ -117,6 +117,40 @@ final class EventsPrivacyLifecycleTests: XCTestCase {
         fixture.messages.onClear = nil
         client.setTelemetryEnabled(false)
     }
+
+    func testTransportCancellationStopsURLSessionRequest() async {
+        let started = expectation(description: "URLProtocol accepted synthetic request")
+        let stopped = expectation(description: "cancellation reached URLSession")
+        HeldEventURLProtocol.configure(started: started, stopped: stopped)
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [HeldEventURLProtocol.self]
+        let session = URLSession(configuration: configuration)
+        let service = NetworkingService(session: session, projectId: "synthetic-project", sdkVersion: "audit")
+        let task = Task { try await service.sendEvents(["synthetic-event"]) }
+        await fulfillment(of: [started], timeout: 2)
+        task.cancel()
+        await fulfillment(of: [stopped], timeout: 0.3)
+        // Cleanup also releases the old implementation's un-cancelled task;
+        // it happens only after the cancellation assertion has been observed.
+        HeldEventURLProtocol.configure(started: nil, stopped: nil)
+        session.invalidateAndCancel()
+        do { _ = try await task.value; XCTFail("Cancelled transport must not succeed") }
+        catch is CancellationError { }
+        catch { XCTAssertEqual((error as? URLError)?.code, .cancelled) }
+    }
+}
+
+private final class HeldEventURLProtocol: URLProtocol {
+    private static let lock = NSLock()
+    private static var started: XCTestExpectation?
+    private static var stopped: XCTestExpectation?
+    static func configure(started: XCTestExpectation?, stopped: XCTestExpectation?) {
+        lock.withLock { self.started = started; self.stopped = stopped }
+    }
+    override class func canInit(with request: URLRequest) -> Bool { true }
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
+    override func startLoading() { Self.lock.withLock { Self.started }?.fulfill() }
+    override func stopLoading() { Self.lock.withLock { Self.stopped }?.fulfill() }
 }
 
 private struct FixtureTrace: TraceEventItem { var description: String { "synthetic trace" } }
