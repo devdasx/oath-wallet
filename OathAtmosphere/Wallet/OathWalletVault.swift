@@ -90,6 +90,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     private var biometricEnrollment: UUID?
     private var removalAuthorization: (id: UUID, action: OathWalletRemovalAction, deadline: ContinuousClock.Instant)?
     private var resetAuthorization: (id: UUID, deadline: ContinuousClock.Instant)?
+    private let permissionClock: @Sendable () -> ContinuousClock.Instant
     private var permissionAuthorization: (id: UUID, scopes: [String: PermissionBatchScope], deadline: ContinuousClock.Instant)?
     private var resetting = false
     private var resetWorkInProgress = false
@@ -102,11 +103,13 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
          biometricStore: any OathBiometricCredentialStoring = OathBiometricCredentialStore(
             service: OathWalletVault.biometricService, installation: .shared),
          database: OathDatabase? = nil,
-         resetEnvironment: any OathResetEnvironment = OathLocalResetEnvironment()) {
+         resetEnvironment: any OathResetEnvironment = OathLocalResetEnvironment(),
+         permissionClock: @escaping @Sendable () -> ContinuousClock.Instant = { .now }) {
         self.storage = storage
         self.biometricStore = biometricStore
         self.suppliedDatabase = database
         self.resetEnvironment = resetEnvironment
+        self.permissionClock = permissionClock
     }
 
 
@@ -404,7 +407,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard opened.activeWallets.contains(where: { $0.id.uuidString == scopes[0].walletID }) else { throw OathWalletError.locked }
         let id = UUID()
         permissionAuthorization = (id, Dictionary(uniqueKeysWithValues: scopes.map { ($0.sendID, $0) }),
-                                   ContinuousClock.now.advanced(by: .seconds(1_800)))
+                                   permissionClock().advanced(by: .seconds(1_800)))
         return id
     }
     func endPermissionBatch(_ id: UUID) {
@@ -412,10 +415,15 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     }
     func permissionBatchIsAuthorized(_ id: UUID) -> Bool {
         guard let grant = permissionAuthorization else { return false }
-        return grant.id == id && ContinuousClock.now <= grant.deadline && encryptionKey != nil && !resetting
+        return grant.id == id && permissionClock() <= grant.deadline && encryptionKey != nil && !resetting
+    }
+    // Scope consumption is single-use, but it does not outlive the batch grant.
+    // Recheck after suspension and before returning any newly signed bytes.
+    private func checkPermissionAuthorization(_ id: UUID?) throws {
+        if let id, !permissionBatchIsAuthorized(id) { throw PermissionError.changed }
     }
     private func consumePermissionAuthorization(_ id: UUID, scope: PermissionBatchScope) throws {
-        guard var grant = permissionAuthorization, grant.id == id, ContinuousClock.now <= grant.deadline,
+        guard var grant = permissionAuthorization, grant.id == id, permissionClock() <= grant.deadline,
               let reviewed = grant.scopes[scope.sendID], reviewed.permits(scope) else { throw PermissionError.changed }
         grant.scopes.removeValue(forKey: scope.sendID)
         permissionAuthorization = grant
@@ -675,8 +683,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard let wallet = opened.activeWallets.first(where:{$0.id.uuidString == quote.walletID}),
               let account = try await db.accounts(walletID:quote.walletID).first(where:{$0.id == quote.accountID}) else { throw OathWalletError.locked }
         try checkAuthentication(token)
+        try checkPermissionAuthorization(permissionAuthorization)
         let signed = try OathWalletEngine.signTron(quote.plan,secret:wallet,account:account)
         try checkAuthentication(token)
+        try checkPermissionAuthorization(permissionAuthorization)
         return signed
     }
 
@@ -1036,8 +1046,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         let account = try await db.solanaSigningAccount(accountID:quote.accountID)
         guard original.walletID==quote.walletID,account.address==quote.plan.sender else { throw SolanaSendError.changed }
         try checkAuthentication(token)
+        try checkPermissionAuthorization(permissionAuthorization)
         let signed = try OathWalletEngine.signSolana(quote.plan,secret:wallet,account:account)
         try checkAuthentication(token)
+        try checkPermissionAuthorization(permissionAuthorization)
         return signed
     }
 
@@ -1178,8 +1190,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard let wallet = opened.activeWallets.first(where:{$0.id.uuidString == quote.walletID}),
               let account = try await db.accounts(walletID:quote.walletID).first(where:{$0.id == quote.accountID}) else { throw OathWalletError.locked }
         try checkAuthentication(token)
+        try checkPermissionAuthorization(permissionAuthorization)
         let signed = try OathWalletEngine.signEVM(quote.plan,secret:wallet,account:account)
         try checkAuthentication(token)
+        try checkPermissionAuthorization(permissionAuthorization)
         return signed
     }
 
