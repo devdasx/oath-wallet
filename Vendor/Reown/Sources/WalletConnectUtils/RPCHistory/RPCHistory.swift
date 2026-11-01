@@ -22,7 +22,7 @@ public final class RPCHistory: RPCHistoryProtocol {
         public let id: RPCID
         public let topic: String
         public let expectedResponseTopic: String?
-        let origin: Origin
+        public let origin: Origin
         public let request: RPCRequest
         public let response: RPCResponse?
         public var timestamp: Date?

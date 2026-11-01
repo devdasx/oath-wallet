@@ -28,7 +28,9 @@ final class HistoryService: HistoryServiceProtocol {
     }
     
     func getSessionRequest(id: RPCID) -> (request: Request, context: VerifyContext?)? {
-        guard let record = history.get(recordId: id) else { return nil }
+        guard let record = history.get(recordId: id),
+              record.origin == .remote,
+              record.request.method == "wc_sessionRequest" else { return nil }
         guard let (request, recordId, _) = mapRequestRecord(record) else {
             return nil
         }
