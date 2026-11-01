@@ -15,13 +15,16 @@ final class HistoryService: HistoryServiceProtocol {
 
     private let history: RPCHistory
     private let verifyContextStore: CodableStore<VerifyContext>
+    private let cleanupQueue: DispatchQueue
 
     init(
         history: RPCHistory,
-        verifyContextStore: CodableStore<VerifyContext>
+        verifyContextStore: CodableStore<VerifyContext>,
+        cleanupQueue: DispatchQueue = .global(qos: .background)
     ) {
         self.history = history
         self.verifyContextStore = verifyContextStore
+        self.cleanupQueue = cleanupQueue
     }
     
     func getSessionRequest(id: RPCID) -> (request: Request, context: VerifyContext?)? {
@@ -33,7 +36,7 @@ final class HistoryService: HistoryServiceProtocol {
     }
     
     func removePendingRequest(topic: String) {
-        DispatchQueue.global(qos: .background).async { [unowned self] in
+        cleanupQueue.async { [history] in
             history.deleteAll(forTopic: topic)
         }
     }
