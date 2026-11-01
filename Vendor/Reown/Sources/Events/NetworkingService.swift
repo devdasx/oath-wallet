@@ -26,23 +26,12 @@ class NetworkingService: NetworkingServiceProtocol {
 
         request.httpBody = try JSONEncoder().encode(events)
 
-        return try await withCheckedThrowingContinuation { continuation in
-            let task = session.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                if let httpResponse = response as? HTTPURLResponse, (200..<300).contains(httpResponse.statusCode) {
-                    continuation.resume(returning: true)
-                } else {
-                    continuation.resume(returning: false)
-                }
-            }
-
-            task.priority = URLSessionTask.lowPriority
-            task.resume()
-        }
+        try Task.checkCancellation()
+        // URLSession's async API propagates task cancellation to the request.
+        // A request already accepted by the server cannot be recalled.
+        let (_, response) = try await session.data(for: request)
+        try Task.checkCancellation()
+        return (response as? HTTPURLResponse).map { (200..<300).contains($0.statusCode) } ?? false
     }
 }
 
