@@ -36,7 +36,7 @@ final class HistoryService: HistoryServiceProtocol {
     }
     
     func removePendingRequest(topic: String) {
-        cleanupQueue.async { [unowned self] in
+        cleanupQueue.async { [history] in
             history.deleteAll(forTopic: topic)
         }
     }

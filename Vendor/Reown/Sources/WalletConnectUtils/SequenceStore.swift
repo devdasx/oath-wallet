@@ -21,6 +21,10 @@ public final class SequenceStore<T> where T: SequenceObject {
         startExpiryMonitor()
     }
 
+    deinit {
+        expiryMonitorTimer?.invalidate()
+    }
+
     public func hasSequence(forTopic topic: String) -> Bool {
         (try? getSequence(forTopic: topic)) != nil
     }
