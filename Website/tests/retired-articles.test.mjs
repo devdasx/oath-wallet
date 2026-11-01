@@ -43,5 +43,9 @@ test('every retained article renders without the removed editorial notice',async
     const html=await r.text();
     assert.doesNotMatch(html,/This is an editorial or release article|For instructions matching the current Oath Atmosphere app/);
     assert.doesNotMatch(html,/<div class="related-grid">\s*<\/div>/);
+    if (d.url.includes("coldcard-weak-seed")) {
+      assert.doesNotMatch(html,/2\.40\.12/);
+      assert.doesNotMatch(await readFile(new URL("."+d.file,root),"utf8"),/2\.40\.12/);
+    }
   }
 });
