@@ -196,7 +196,8 @@ public enum BitcoinConnectSigning {
     public static func sign(_ plan: BitcoinConnectPlan, key: (BitcoinDerivedAddress) throws -> Data) throws -> BitcoinConnectSigned {
         guard Date.now.timeIntervalSince(plan.createdAt) < 180, plan.createdAt <= .now else { throw BitcoinConnectError.expired }
         try validate(plan)
-        var result = try BitcoinConnectPSBT(plan.psbt)
+        let reviewed = try BitcoinConnectPSBT(plan.psbt)
+        var result = reviewed
         for requested in plan.inputs {
             try Task.checkCancellation()
             guard let address = plan.ownedInputs[requested.index], address.multisigInputWeight == nil else { throw BitcoinConnectError.unsupported }
@@ -207,6 +208,11 @@ public enum BitcoinConnectSigning {
             }
             guard try descriptor.deriveAddress(index: 0, network: .bitcoin).scriptPubkey().toBytes().hex == address.script else { throw BitcoinConnectError.wrongAccount }
             var scoped = result
+            // This single-key input was explicitly requested for signing. BDK
+            // may otherwise finalize a peer-supplied signature without signing.
+            scoped.maps[requested.index + 1].removeAll { pair in
+                pair.key.first == 0x02 || pair.key == Data([0x13])
+            }
             for index in 0..<result.transaction.input().count where index != requested.index {
                 scoped.set(7, Data(), input: index)
             }
@@ -222,8 +228,9 @@ public enum BitcoinConnectSigning {
         let encoded = try result.encoded
         let signed = try Psbt(psbtBase64: encoded)
         guard try signed.fee() == plan.fee else { throw BitcoinConnectError.invalidFee }
+        let transaction = try signed.extractTx()
+        try BitcoinConnectProof.check(plan: plan, reviewed: reviewed, final: transaction)
         if plan.request.broadcasts {
-            let transaction = try signed.extractTx()
             guard transaction.input().allSatisfy({ !$0.scriptSig.toBytes().isEmpty || !$0.witness.isEmpty }) else { throw BitcoinSendError.signing }
             return .init(psbt: encoded, raw: transaction.serialize(), txid: transaction.computeTxid().description)
         }

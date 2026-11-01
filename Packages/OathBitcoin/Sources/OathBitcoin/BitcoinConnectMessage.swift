@@ -78,9 +78,11 @@ extension BitcoinConnectSigning {
                 guard original.maps[index + 1] == result.maps[index + 1] else { throw BitcoinConnectError.changed }
             }
         }
+        let tx = try Psbt(psbtBase64:signed.psbt).extractTx()
+        try BitcoinConnectProof.check(plan: plan, reviewed: original, final: tx)
         if plan.request.broadcasts {
-            let tx = try Psbt(psbtBase64:signed.psbt).extractTx()
-            guard tx.serialize() == signed.raw, tx.computeTxid().description == signed.txid else { throw BitcoinConnectError.changed }
+            guard tx.input().allSatisfy({ !$0.scriptSig.toBytes().isEmpty || !$0.witness.isEmpty }),
+                  tx.serialize() == signed.raw, tx.computeTxid().description == signed.txid else { throw BitcoinConnectError.changed }
         } else if signed.raw != nil || signed.txid != nil { throw BitcoinConnectError.changed }
     }
 }
