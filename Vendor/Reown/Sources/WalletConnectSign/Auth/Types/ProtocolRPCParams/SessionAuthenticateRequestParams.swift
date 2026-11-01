@@ -7,7 +7,8 @@ struct SessionAuthenticateRequestParams: Codable, Equatable, Expirable {
     let authPayload: AuthPayload
     let expiryTimestamp: UInt64
 
-    init(requester: Participant, authPayload: AuthPayload, ttl: TimeInterval) {
+    init(requester: Participant, authPayload: AuthPayload, ttl: TimeInterval) throws {
+        try AuthRequestParams.validateTtl(ttl)
         self.requester = requester
         self.authPayload = authPayload
         self.expiryTimestamp = UInt64(Date().timeIntervalSince1970) + UInt64(ttl)
