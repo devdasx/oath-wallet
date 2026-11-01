@@ -76,6 +76,12 @@ public struct Request: Codable, Equatable, Expirable {
             throw Errors.requestExpired
         }
 
+        // Decoding and mutation can bypass the initializer's TTL bounds.
+        // Validate before converting to Int, which traps for extreme values.
+        guard diff.isFinite && diff <= Self.maxTtl else {
+            throw Errors.invalidTtl
+        }
+
         return Int(diff)
     }
 }
