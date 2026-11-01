@@ -16,7 +16,7 @@ body=re.sub(r'<a href="(https://[^"]+)"',r'<a href="\1" rel="noopener noreferrer
 data=json.loads((P/'oath-data.json').read_text());old=[x for x in data['articles'] if x['url']!=url]
 sample=(P/'articles/what-never-leaves-iphone-oath-self-custody-security-model.html').read_text()
 header=re.search(r'<a class="skip".*?</header>',sample,re.S)[0];footer=re.search(r'<footer class="site-footer">.*?</footer>',sample,re.S)[0]
-toc='<details class="toc"><summary>In this article <span>↗</span></summary><ol>'+''.join('<li><a href="#'+i+'">'+t+'</a></li>' for i,t in headings)+'</ol></details>'
+toc='<details class="toc"><summary>In this article</summary><ol>'+''.join('<li><a href="#'+i+'">'+t+'</a></li>' for i,t in headings)+'</ol></details>'
 related=[x for x in old if x['locale']=='en' and x['category']==a['category']][:3]
 related_html=''.join('<a href="'+x['url'].replace(base,'')+'"><img src="'+x['cover_image_url'].replace(base,'')+'" alt="" loading="lazy"><span>'+esc(x['category'])+'</span><h3>'+esc(x['title'])+'</h3></a>' for x in related)
 date=datetime.fromisoformat(a['published_at'].replace('Z','+00:00')).strftime('%B %-d, %Y')
@@ -31,7 +31,7 @@ page=f'''<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><m
 </head><body>{header}<main id="content"><article>
 <div class="article-hero"><a class="back" href="/articles">← All articles</a><div class="eyebrow">{esc(a['category'])} <span>·</span> <time datetime="{a['published_at']}">{date}</time></div><h1>{esc(a['title'])}</h1><p class="dek">{esc(a['excerpt'])}</p><div class="byline"><span>Oath Wallet <span>·</span> {a['reading_minutes']} min read</span></div></div>
 <div class="cover"><img src="{cover}" alt="{esc(a['cover_image_alt'])}" fetchpriority="high" width="1200" height="630"></div>
-<div class="reading-layout"><aside>{toc}</aside><div class="article-body">{body}<div class="article-end"><a href="/articles">← Explore all articles</a><a href="mailto:care@oathwallet.org">Questions? Contact Oath ↗</a></div></div></div>
+<div class="reading-layout"><aside>{toc}</aside><div class="article-body">{body}<div class="article-end"><a href="/articles">← Explore all articles</a><a href="mailto:care@oathwallet.org">Questions? Contact Oath</a></div></div></div>
 </article><section class="related"><div class="section-heading"><span class="eyebrow">Keep reading</span><h2>More to <em>keep.</em></h2></div><div class="related-grid">{related_html}</div></section></main>{footer}</body></html>'''
 (P/(path.lstrip('/')+'.html')).write_text(page);(P/(path.lstrip('/')+'.md')).write_text((folder/'article.md').read_text());shutil.copy2(folder/'cover.png',P/cover.lstrip('/'))
 routes_file=ROOT/'src/article-routes.js';routes=json.loads(routes_file.read_text().split(' = ',1)[1].rstrip().removesuffix(';'));routes[path]=path+'.html'
