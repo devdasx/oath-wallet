@@ -76,6 +76,11 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
 
+    // Networking, pairing and signing create separate histories over the same
+    // persisted namespace. Serialize complete local operations across instances,
+    // not just individual storage calls. No network await runs under this lock.
+    private static let storageLock = NSRecursiveLock()
+
     private let storage: CodableStore<Record>
 
     init(keyValueStore: CodableStore<Record>) {
@@ -85,10 +90,14 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     public func get(recordId: RPCID) -> Record? {
-        try? storage.get(key: recordId.string)
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
+        return try? storage.get(key: recordId.string)
     }
 
     public func set(_ request: RPCRequest, forTopic topic: String, emmitedBy origin: Record.Origin, time: TimeProvider = DefaultTimeProvider(), transportType: RPCHistory.Record.TransportType) throws {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         guard let id = request.id else {
             throw HistoryError.unidentifiedRequest
         }
@@ -101,6 +110,8 @@ public final class RPCHistory: RPCHistoryProtocol {
 
     @discardableResult
     public func resolve(_ response: RPCResponse, forResponseTopic topic: String? = nil) throws -> Record {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         let record = try validate(response)
         if let topic {
             guard record.origin == .local,
@@ -114,6 +125,8 @@ public final class RPCHistory: RPCHistoryProtocol {
 
     @discardableResult
     public func validate(_ response: RPCResponse) throws -> Record {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         guard let id = response.id else {
             throw HistoryError.unidentifiedResponse
         }
@@ -127,6 +140,8 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     public func deleteAll(forTopics topics: [String]){
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         storage.getAll().forEach { record in
             if topics.contains(record.topic) {
                 storage.delete(forKey: "\(record.id)")
@@ -135,6 +150,8 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     public func getAll<Object: Codable>(of type: Object.Type, topic: String) -> [Object] {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         return storage.getAll()
             .filter{$0.topic == topic}
             .compactMap { try? $0.request.params?.get(Object.self) }
@@ -145,6 +162,8 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     public func getAllWithIDs<Object: Codable>(of type: Object.Type) -> [(id: RPCID, value: Object)] {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         return storage.getAll().compactMap { record in
             guard let object = try? record.request.params?.get(Object.self)
             else { return nil }
@@ -153,6 +172,8 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     public func delete(id: RPCID) {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         storage.delete(forKey: id.string)
     }
 
@@ -161,10 +182,14 @@ public final class RPCHistory: RPCHistoryProtocol {
     }
 
     public func getPending() -> [Record] {
-        storage.getAll().filter { $0.response == nil }
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
+        return storage.getAll().filter { $0.response == nil }
     }
 
     public func deleteAll() {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         storage.deleteAll()
     }
 }
@@ -172,6 +197,8 @@ public final class RPCHistory: RPCHistoryProtocol {
 extension RPCHistory {
 
     func removeOutdated() {
+        Self.storageLock.lock()
+        defer { Self.storageLock.unlock() }
         let records = storage.getAll()
 
         let thirtyDays: TimeInterval = 30*86400
