@@ -4,6 +4,7 @@ import Foundation
 class SessionResponder {
     enum Errors: Error {
         case sessionRequestExpired
+        case sessionRequestNotFound
     }
     private let logger: ConsoleLogging
     private let sessionStore: WCSessionStorage
@@ -32,15 +33,18 @@ class SessionResponder {
     }
 
     func respondSessionRequest(topic: String, requestId: RPCID, response: RPCResult) async throws {
-        guard sessionStore.hasSession(forTopic: topic),
-        let (request, _) = historyService.getSessionRequest(id: requestId)
-        else {
+        guard sessionStore.hasSession(forTopic: topic) else {
             throw WalletConnectError.noSessionMatchingTopic(topic)
+        }
+
+        guard let (request, _) = historyService.getSessionRequest(id: requestId),
+              request.topic == topic else {
+            throw Errors.sessionRequestNotFound
         }
 
         let protocolMethod = SessionRequestProtocolMethod()
 
-        guard sessionRequestNotExpired(requestId: requestId) else {
+        guard !request.isExpired() else {
             try await networkingInteractor.respondError(
                 topic: topic,
                 requestId: requestId,
@@ -65,10 +69,4 @@ class SessionResponder {
         sessionRequestsProvider.emitRequestAfterResponse()
     }
 
-    private func sessionRequestNotExpired(requestId: RPCID) -> Bool {
-        guard let request = historyService.getSessionRequest(id: requestId)?.request
-        else { return false }
-
-        return !request.isExpired()
-    }
 }

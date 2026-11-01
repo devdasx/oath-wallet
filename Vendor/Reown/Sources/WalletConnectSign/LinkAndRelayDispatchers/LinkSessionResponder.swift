@@ -3,6 +3,7 @@ import Foundation
 class LinkSessionResponder {
     enum Errors: Error {
         case sessionRequestExpired
+        case sessionRequestNotFound
         case missingPeerUniversalLink
     }
     private let logger: ConsoleLogging
@@ -36,13 +37,18 @@ class LinkSessionResponder {
             throw error
         }
 
+        guard let request = historyService.getSessionRequest(id: requestId)?.request,
+              request.topic == topic else {
+            throw Errors.sessionRequestNotFound
+        }
+
         guard let peerUniversalLink = session.peerParticipant.metadata.redirect?.universal else {
             let error = Errors.missingPeerUniversalLink
             logger.debug("failed: \(error)")
             throw error
         }
 
-        guard sessionRequestNotExpired(requestId: requestId) else {
+        guard !request.isExpired() else {
             logger.debug("request expired")
             
             _ = try await linkEnvelopesDispatcher.respondError(
@@ -71,10 +77,4 @@ class LinkSessionResponder {
         return responseEnvelope
     }
 
-    private func sessionRequestNotExpired(requestId: RPCID) -> Bool {
-        guard let request = historyService.getSessionRequest(id: requestId)?.request
-        else { return false }
-
-        return !request.isExpired()
-    }
 }
