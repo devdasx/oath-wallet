@@ -1,6 +1,7 @@
 import Foundation
 import CoreGraphics
 import ImageIO
+import UniformTypeIdentifiers
 import SwiftDraw
 import SwiftUI
 import OathArtworkSource
@@ -50,6 +51,7 @@ public enum ArtworkImage: Sendable {
     public static func decode(_ data: Data) throws -> Self {
         guard !data.isEmpty, data.count <= ArtworkSource.byteLimit else { throw ArtworkError.oversized }
         if let source = CGImageSourceCreateWithData(data as CFData, [kCGImageSourceShouldCache: false] as CFDictionary),
+           CGImageSourceGetType(source) as String? != UTType.svg.identifier,
            let info = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
            let width = info[kCGImagePropertyPixelWidth] as? Int, let height = info[kCGImagePropertyPixelHeight] as? Int {
             guard width > 0, height > 0, width <= 8192, height <= 8192, width * height <= 16_777_216 else { throw ArtworkError.oversized }
@@ -107,20 +109,27 @@ private final class ArtworkSVGValidation: NSObject, XMLParserDelegate {
         for (owner, target) in delegate.refs {
             if let node = delegate.ids[target] { delegate.edges[owner].append(node) }
         }
-        var visiting = Set<Int>(), costs: [Int: Int] = [:]
-        func cost(_ node: Int, depth: Int) -> Int? {
-            if let value = costs[node] { return value }
+        // A shared subtree has a fixed height, but the depth at which a later
+        // reference enters it can change. Check that path even on a cache hit.
+        typealias Budget = (nodes: Int, height: Int)
+        var visiting = Set<Int>(), budgets: [Int: Budget] = [:]
+        func budget(_ node: Int, depth: Int) -> Budget? {
+            if let saved = budgets[node] { return depth + saved.height <= 64 ? saved : nil }
             guard depth < 64, visiting.insert(node).inserted else { return nil }
-            var total = 1
+            var nodes = 1, height = 1
             for child in delegate.edges[node] {
-                guard let childCost = cost(child, depth: depth + 1), total + childCost <= 20_000 else { return nil }
-                total += childCost
+                guard let subtree = budget(child, depth: depth + 1),
+                      nodes + subtree.nodes <= 20_000 else { return nil }
+                nodes += subtree.nodes
+                height = max(height, subtree.height + 1)
             }
-            visiting.remove(node); costs[node] = total; return total
+            visiting.remove(node)
+            budgets[node] = (nodes, height)
+            return (nodes, height)
         }
-        // Acyclic <use> trees can still expand exponentially. Bound the expanded
-        // drawing as well as the source bytes/nodes before creating commands.
-        for node in delegate.edges.indices { guard cost(node, depth: 0) != nil else { throw ArtworkDecodeFailure(stage: .svgSafety) } }
+        for node in delegate.edges.indices {
+            guard budget(node, depth: 0) != nil else { throw ArtworkDecodeFailure(stage: .svgSafety) }
+        }
     }
     func parser(_ parser: XMLParser, didStartElement name: String, namespaceURI: String?, qualifiedName: String?, attributes: [String: String]) {
         if edges.isEmpty { root = name.lowercased() == "svg" }
@@ -130,7 +139,12 @@ private final class ArtworkSVGValidation: NSObject, XMLParserDelegate {
         edges.append([])
         if let parent = stack.last { edges[parent].append(index) }
         stack.append(index)
-        if let id = attributes["id"] { ids[id] = index }
+        if let id = attributes["id"] {
+            // A duplicate can make the drawing library resolve a different
+            // element from the one whose reference graph was checked.
+            guard ids[id] == nil else { valid = false; parser.abortParsing(); return }
+            ids[id] = index
+        }
         for (key, value) in attributes {
             let key = key.lowercased(), trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
             if key.hasPrefix("on") { valid = false }
