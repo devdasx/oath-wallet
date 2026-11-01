@@ -68,8 +68,9 @@ final class WalletConnectCallDetailsTests: XCTestCase {
         XCTAssertEqual(detail.steps.first?.values.first?.value, router)
         XCTAssertTrue(try details("contract-balance-swap").steps[0].values[1].routerBalance)
         let permit = try details("permit-transfer")
-        XCTAssertEqual(permit.steps[0].values[1].value, router)
-        XCTAssertFalse(permit.steps[0].values[2].routerBalance)
+        XCTAssertEqual(permit.steps[0].values.first(where: { $0.label == .recipient })?.value, router)
+        XCTAssertEqual(permit.steps[0].values.first(where: { $0.label == .owner })?.value, sender)
+        XCTAssertFalse(try XCTUnwrap(permit.steps[0].values.first(where: { $0.label == .amount })).routerBalance)
     }
     func testRouterTrustRequiresChainAndAddress() throws {
         let data = try bytes("v3-exact-in")
