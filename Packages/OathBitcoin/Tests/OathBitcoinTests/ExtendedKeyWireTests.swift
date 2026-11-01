@@ -31,4 +31,21 @@ final class ExtendedKeyWireTests: XCTestCase {
             XCTAssertTrue(decoded.bytes == knownX && decoded.extended == valid)
         }
     }
+
+    func testAlternatePrivateVersionsRejectMalformedMarker() throws {
+        for (network,version) in [(UTXONetwork.bitcoin,UInt32(0x049d7878)),(.bitcoin,0x04b2430c),(.litecoin,0x01b26792)] {
+            for marker: UInt8 in [1,3,4,255] {
+                do {
+                    _ = try network.decodeImport(key(version, marker:marker))
+                    XCTFail("Alternate private version accepted a nonzero marker")
+                    return
+                } catch BitcoinError.invalidKey {}
+            }
+        }
+    }
+    func testPublicVersionCannotBeImportedAsPrivate() throws {
+        for network in [UTXONetwork.bitcoin,.litecoin,.dogecoin,.bitcoincash] {
+            XCTAssertThrowsError(try network.decodeImport(key(0x0488b21e,marker:2)))
+        }
+    }
 }
