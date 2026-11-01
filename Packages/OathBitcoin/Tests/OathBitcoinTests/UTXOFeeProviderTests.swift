@@ -8,38 +8,51 @@ private actor FeeCounter {
     func increment() { count += 1 }
 }
 private actor FeeReports: DiagnosticTransport {
-    private(set) var events: [DiagnosticEvent] = []
-    func upload(_ events: [DiagnosticEvent]) async throws { self.events += events }
+    let invalidQuoteID: UUID
+    let invalidSource = XCTestExpectation(description: "Invalid fee source reported")
+    let invalidFallback = XCTestExpectation(description: "Invalid fee fallback reported")
+    let unexpected = XCTestExpectation(description: "A timeout was reported as an invalid fee")
+
+    init(invalidQuoteID: UUID) {
+        self.invalidQuoteID = invalidQuoteID
+        unexpected.isInverted = true
+    }
+
+    func upload(_ events: [DiagnosticEvent]) async throws {
+        for event in events {
+            if event.operationID != invalidQuoteID { unexpected.fulfill(); continue }
+            if event.operation == "fee_source" { invalidSource.fulfill() }
+            if event.operation == "fee_primary_fallback" { invalidFallback.fulfill() }
+        }
+    }
 }
 final class UTXOFeeProviderTests: XCTestCase, @unchecked Sendable {
     func testPreferredFailoverPreservesAvailabilityAndInvalidQuoteDiagnostics() async throws {
-        let reports = FeeReports()
+        let invalidQuoteID = UUID()
+        let reports = FeeReports(invalidQuoteID: invalidQuoteID)
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: directory) }
         // Diagnostics configuration is process-lifetime: use one sink for all
         // cases, with this test selected in a fresh host-test process.
         OathDiagnostics.configure(file: directory.appendingPathComponent("events.json"), transport: reports)
         for fault in 0..<3 {
-            let before = await reports.events.count
-            let provider = UTXOFeeProvider(preferredDeadline: .milliseconds(20), preferred: { _ in
+            // Only the intentionally hung source races a short timer. The invalid
+            // quote must reach fee validation even on a busy test runner.
+            let provider = UTXOFeeProvider(deadline: .seconds(30),
+                preferredDeadline: fault == 1 ? .milliseconds(20) : .seconds(30), preferred: { _ in
                 .init(name: "preferred.test", delay: .zero) {
                     if fault == 1 { try await Task.sleep(for: .seconds(10)) }
                     if fault == 2 { return Int64.max }
                     throw URLError(.timedOut)
                 }
             }) { _ in [.init(name: "fallback.test", delay: .zero) { 2000 }] }
-            let quote = try await provider.rate(for: .bitcoin)
-            XCTAssertEqual(quote, 2000)
-            try await Task.sleep(for: .milliseconds(100))
-            await OathDiagnostics.flush()
-            let fresh = Array(await reports.events.dropFirst(before))
-            if fault < 2 {
-                XCTAssertTrue(fresh.isEmpty, "A timed-out preferred provider must not manufacture an app fee error after fallback succeeds")
-            } else {
-                XCTAssertTrue(fresh.contains { $0.operation == "fee_source" }, "Invalid fees must still be reported")
-                XCTAssertTrue(fresh.contains { $0.operation == "fee_primary_fallback" })
+            let quote = try await OathDiagnostics.$operationID.withValue(fault == 2 ? invalidQuoteID : UUID()) {
+                try await provider.rate(for: .bitcoin)
             }
+            XCTAssertEqual(quote, 2000)
         }
+        await fulfillment(of: [reports.invalidSource, reports.invalidFallback], timeout: 10)
+        await fulfillment(of: [reports.unexpected], timeout: 0.2)
     }
 
     func testPreferredSuccessAvoidsPublicAPIsAndServersAndIsCached() async throws {
