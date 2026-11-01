@@ -1,5 +1,6 @@
 import Foundation
 import CryptoKit
+import Darwin
 
 /// Artwork identity is its full URI, never a ticker. Accept provider CDN hosts
 /// without a chain-specific allowlist. Networking remains HTTPS and anonymous.
@@ -32,11 +33,37 @@ public enum ArtworkSource {
 
     public static func permits(_ url: URL) -> Bool {
         guard url.scheme?.lowercased() == "https", url.user == nil, url.password == nil,
-              url.port == nil || url.port == 443, let name = url.host?.lowercased(),
-              name.contains("."), !name.contains(":"), !name.hasSuffix("."),
-              !["localhost", "local", "internal", "home", "lan"].contains(name.split(separator: ".").last.map(String.init) ?? ""),
-              name.range(of: "^[0-9.]+$", options: .regularExpression) == nil else { return false }
-        return true
+              url.port == nil || url.port == 443, let host = dnsName(url),
+              host.utf8.count <= 253 else { return false }
+        let labels = host.split(separator: ".", omittingEmptySubsequences: false)
+        guard labels.count >= 2, labels.allSatisfy(validDNSLabel),
+              let suffix = labels.last, !suffix.utf8.allSatisfy({ (48...57).contains($0) }),
+              !["localhost", "local", "internal", "home", "lan"].contains(suffix),
+              host != "home.arpa", !host.hasSuffix(".home.arpa") else { return false }
+
+        // Darwin accepts shortened, hexadecimal and mixed-base IPv4 literals.
+        // Validate the whole decoded DNS name before passing it to a C-string API.
+        var address = in_addr()
+        return inet_aton(host, &address) == 0
+    }
+
+    private static func dnsName(_ url: URL) -> String? {
+        guard let decoded = url.host?.lowercased() else { return nil }
+        if decoded.utf8.allSatisfy({ $0 < 128 }) { return decoded }
+        // Foundation leaves a percent-encoded international label decoded in
+        // URL.host. Apply the same IDNA conversion as an ordinary Unicode URL.
+        var authority = URLComponents()
+        authority.scheme = "https"
+        authority.host = decoded
+        return authority.encodedHost
+    }
+
+    private static func validDNSLabel(_ label: Substring) -> Bool {
+        guard (1...63).contains(label.utf8.count),
+              label.first != "-", label.last != "-" else { return false }
+        return label.utf8.allSatisfy { byte in
+            (97...122).contains(byte) || (48...57).contains(byte) || byte == 45
+        }
     }
 
     public static func inlineData(_ value: String) -> Data? {
