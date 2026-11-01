@@ -40,8 +40,9 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
  targets.append('.target(name: "Schemas", dependencies: ["WalletConnectNetworking", "HTTPClient", "OathDiagnostics"])')
  tests=work/'Tests/SDKTests';shutil.copytree(root/'Tools/WalletConnectSDKValidation',tests,ignore=shutil.ignore_patterns('._*'))
  shutil.copy(root/'Vendor/Reown/Tests/WalletConnectUtilsTests/WalletConnectURITests.swift', tests/'WalletConnectURITests.swift')
- namespace_tests=root/'Vendor/Reown/Tests/WalletConnectSignTests/NamespaceValidationTests.swift'
- (tests/namespace_tests.name).write_text(namespace_tests.read_text().replace('@testable import WalletConnectSign', '@testable import Schemas\nimport WalletConnectNetworking'))
+ for test_name in ['NamespaceValidationTests.swift', 'BlockchainTests.swift', 'AccountTests.swift']:
+  upstream_test=root/'Vendor/Reown/Tests/WalletConnectSignTests'/test_name
+  (tests/test_name).write_text(upstream_test.read_text().replace('@testable import WalletConnectSign', '@testable import Schemas\nimport WalletConnectNetworking'))
  for fixture in ['KeyManagementServiceMock.swift','NetworkingInteractorMock.swift']:
   candidates=list((root/'Vendor/Reown/Tests').rglob(fixture)); assert len(candidates)==1
   shutil.copy(candidates[0],tests/fixture)
