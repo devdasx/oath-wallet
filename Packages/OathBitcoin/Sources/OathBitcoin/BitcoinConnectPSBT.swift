@@ -33,11 +33,13 @@ public struct BitcoinConnectSigned: Codable, Equatable, Sendable {
 /// Parses only the PSBT container. BDK validates the unsigned transaction and
 /// performs all consensus signing. Unknown fields and unselected inputs survive.
 struct BitcoinConnectPSBT {
+    static let maximumBytes = 500_000
     struct Pair: Equatable { let key: Data; var value: Data }
     var maps: [[Pair]]
     let transaction: Transaction
     init(_ base64: String) throws {
-        guard let raw = Data(base64Encoded: base64), raw.count <= 500_000,
+        guard base64.utf8.count <= ((Self.maximumBytes + 2) / 3) * 4,
+              let raw = Data(base64Encoded: base64), raw.count <= Self.maximumBytes,
               raw.prefix(5) == Data([0x70,0x73,0x62,0x74,0xff]) else { throw BitcoinConnectError.invalidPSBT }
         _ = try Psbt(psbtBase64: base64)
         let bytes = Array(raw); var offset = 5, result: [[Pair]] = []
@@ -78,12 +80,24 @@ struct BitcoinConnectPSBT {
         maps[input + 1].removeAll { $0.key == Data([type]) }; maps[input + 1].append(.init(key: Data([type]), value: value))
     }
     var encoded: String {
-        var data = Data([0x70,0x73,0x62,0x74,0xff])
-        for map in maps {
-            for pair in map { data += BitcoinWire.vector(pair.key) + BitcoinWire.vector(pair.value) }
-            data.append(0)
+        get throws {
+            var data = Data([0x70,0x73,0x62,0x74,0xff])
+            for map in maps {
+                for pair in map {
+                    for field in [pair.key, pair.value] {
+                        let prefix = BitcoinWire.compact(UInt64(field.count))
+                        guard prefix.count + field.count <= Self.maximumBytes - data.count else {
+                            throw BitcoinConnectError.tooLarge
+                        }
+                        data.append(prefix)
+                        data.append(field)
+                    }
+                }
+                guard data.count < Self.maximumBytes else { throw BitcoinConnectError.tooLarge }
+                data.append(0)
+            }
+            return data.base64EncodedString()
         }
-        return data.base64EncodedString()
     }
 }
 
@@ -103,9 +117,13 @@ public enum BitcoinConnectSigning {
         guard !inputs.isEmpty, inputs.count <= 128, Set(inputs.map(\.index)).count == inputs.count else { throw BitcoinConnectError.wrongInput }
         let txInputs = parsed.transaction.input()
         var total: UInt64 = 0, owned: UInt64 = 0, ownedInputs: [Int: BitcoinDerivedAddress] = [:]
+        // Each input map retains its own complete parent, even for siblings.
+        var remainingParentBytes = BitcoinConnectPSBT.maximumBytes
         for (index, input) in txInputs.enumerated() {
             let hash = input.previousOutput.txid.description
-            guard let raw = previous[hash], raw.count <= 4_000_000 else { throw BitcoinConnectError.wrongInput }
+            guard let raw = previous[hash] else { throw BitcoinConnectError.wrongInput }
+            guard raw.count <= remainingParentBytes else { throw BitcoinConnectError.tooLarge }
+            remainingParentBytes -= raw.count
             let parent = try Transaction(transactionBytes: raw)
             guard parent.computeTxid().description == hash, Int(input.previousOutput.vout) < parent.output().count else { throw BitcoinConnectError.wrongInput }
             let output = parent.output()[Int(input.previousOutput.vout)], value = output.value.toSat(), script = output.scriptPubkey.toBytes()
@@ -141,7 +159,7 @@ public enum BitcoinConnectSigning {
         guard total >= outputTotal else { throw BitcoinConnectError.invalidFee }
         let fee = total - outputTotal
         guard fee <= 10_000_000, fee <= UInt64(parsed.transaction.serialize().count) * 1_000 else { throw BitcoinConnectError.invalidFee }
-        return .init(request: request, psbt: parsed.encoded, inputs: inputs, ownedInputs: ownedInputs,
+        return .init(request: request, psbt: try parsed.encoded, inputs: inputs, ownedInputs: ownedInputs,
                      reviewedAddresses: addresses, outputs: outputs, fee: fee, debit: owned > change ? owned - change : 0, createdAt: now)
     }
 
@@ -201,13 +219,14 @@ public enum BitcoinConnectSigning {
                   signed.field(7, input: requested.index) != nil || signed.field(8, input: requested.index) != nil else { throw BitcoinSendError.signing }
             result.maps[requested.index + 1] = signed.maps[requested.index + 1]
         }
-        let signed = try Psbt(psbtBase64: result.encoded)
+        let encoded = try result.encoded
+        let signed = try Psbt(psbtBase64: encoded)
         guard try signed.fee() == plan.fee else { throw BitcoinConnectError.invalidFee }
         if plan.request.broadcasts {
             let transaction = try signed.extractTx()
             guard transaction.input().allSatisfy({ !$0.scriptSig.toBytes().isEmpty || !$0.witness.isEmpty }) else { throw BitcoinSendError.signing }
-            return .init(psbt: result.encoded, raw: transaction.serialize(), txid: transaction.computeTxid().description)
+            return .init(psbt: encoded, raw: transaction.serialize(), txid: transaction.computeTxid().description)
         }
-        return .init(psbt: result.encoded, raw: nil, txid: nil)
+        return .init(psbt: encoded, raw: nil, txid: nil)
     }
 }
