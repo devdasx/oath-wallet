@@ -39,19 +39,92 @@ final class SolanaMultisigTests: XCTestCase {
             XCTAssertNotEqual(try SolanaMultisigCrypto.messages(original), try SolanaMultisigCrypto.messages(updated))
         }
     }
-    // Keep all 76 independent SDK vectors, split into bounded host cases so
-    // per-test timeouts do not discard the expensive signing/verification set.
-    func testOfficialSquadsSetupVectors() throws { try verifyOfficialSquadsVectors(kind: "setup") }
-    func testOfficialSquadsNativeVectors() throws { try verifyOfficialSquadsVectors(kind: "native") }
-    func testOfficialSquadsSPLVectors() throws { try verifyOfficialSquadsVectors(kind: "spl") }
-    func testOfficialSquadsToken2022Vectors() throws { try verifyOfficialSquadsVectors(kind: "token2022") }
-    private func verifyOfficialSquadsVectors(kind: String) throws {
+    // Each independent SDK vector is one bounded host test. This preserves all
+    // 76 signing/verification cases without charging 19 vectors to one timeout.
+    func testOfficialSquadsSetupVector00() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 0) }
+    func testOfficialSquadsSetupVector01() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 1) }
+    func testOfficialSquadsSetupVector02() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 2) }
+    func testOfficialSquadsSetupVector03() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 3) }
+    func testOfficialSquadsSetupVector04() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 4) }
+    func testOfficialSquadsSetupVector05() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 5) }
+    func testOfficialSquadsSetupVector06() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 6) }
+    func testOfficialSquadsSetupVector07() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 7) }
+    func testOfficialSquadsSetupVector08() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 8) }
+    func testOfficialSquadsSetupVector09() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 9) }
+    func testOfficialSquadsSetupVector10() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 10) }
+    func testOfficialSquadsSetupVector11() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 11) }
+    func testOfficialSquadsSetupVector12() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 12) }
+    func testOfficialSquadsSetupVector13() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 13) }
+    func testOfficialSquadsSetupVector14() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 14) }
+    func testOfficialSquadsSetupVector15() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 15) }
+    func testOfficialSquadsSetupVector16() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 16) }
+    func testOfficialSquadsSetupVector17() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 17) }
+    func testOfficialSquadsSetupVector18() throws { try verifyOfficialSquadsVectors(kind: "setup", index: 18) }
+    func testOfficialSquadsNativeVector00() throws { try verifyOfficialSquadsVectors(kind: "native", index: 0) }
+    func testOfficialSquadsNativeVector01() throws { try verifyOfficialSquadsVectors(kind: "native", index: 1) }
+    func testOfficialSquadsNativeVector02() throws { try verifyOfficialSquadsVectors(kind: "native", index: 2) }
+    func testOfficialSquadsNativeVector03() throws { try verifyOfficialSquadsVectors(kind: "native", index: 3) }
+    func testOfficialSquadsNativeVector04() throws { try verifyOfficialSquadsVectors(kind: "native", index: 4) }
+    func testOfficialSquadsNativeVector05() throws { try verifyOfficialSquadsVectors(kind: "native", index: 5) }
+    func testOfficialSquadsNativeVector06() throws { try verifyOfficialSquadsVectors(kind: "native", index: 6) }
+    func testOfficialSquadsNativeVector07() throws { try verifyOfficialSquadsVectors(kind: "native", index: 7) }
+    func testOfficialSquadsNativeVector08() throws { try verifyOfficialSquadsVectors(kind: "native", index: 8) }
+    func testOfficialSquadsNativeVector09() throws { try verifyOfficialSquadsVectors(kind: "native", index: 9) }
+    func testOfficialSquadsNativeVector10() throws { try verifyOfficialSquadsVectors(kind: "native", index: 10) }
+    func testOfficialSquadsNativeVector11() throws { try verifyOfficialSquadsVectors(kind: "native", index: 11) }
+    func testOfficialSquadsNativeVector12() throws { try verifyOfficialSquadsVectors(kind: "native", index: 12) }
+    func testOfficialSquadsNativeVector13() throws { try verifyOfficialSquadsVectors(kind: "native", index: 13) }
+    func testOfficialSquadsNativeVector14() throws { try verifyOfficialSquadsVectors(kind: "native", index: 14) }
+    func testOfficialSquadsNativeVector15() throws { try verifyOfficialSquadsVectors(kind: "native", index: 15) }
+    func testOfficialSquadsNativeVector16() throws { try verifyOfficialSquadsVectors(kind: "native", index: 16) }
+    func testOfficialSquadsNativeVector17() throws { try verifyOfficialSquadsVectors(kind: "native", index: 17) }
+    func testOfficialSquadsNativeVector18() throws { try verifyOfficialSquadsVectors(kind: "native", index: 18) }
+    func testOfficialSquadsSPLVector00() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 0) }
+    func testOfficialSquadsSPLVector01() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 1) }
+    func testOfficialSquadsSPLVector02() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 2) }
+    func testOfficialSquadsSPLVector03() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 3) }
+    func testOfficialSquadsSPLVector04() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 4) }
+    func testOfficialSquadsSPLVector05() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 5) }
+    func testOfficialSquadsSPLVector06() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 6) }
+    func testOfficialSquadsSPLVector07() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 7) }
+    func testOfficialSquadsSPLVector08() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 8) }
+    func testOfficialSquadsSPLVector09() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 9) }
+    func testOfficialSquadsSPLVector10() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 10) }
+    func testOfficialSquadsSPLVector11() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 11) }
+    func testOfficialSquadsSPLVector12() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 12) }
+    func testOfficialSquadsSPLVector13() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 13) }
+    func testOfficialSquadsSPLVector14() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 14) }
+    func testOfficialSquadsSPLVector15() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 15) }
+    func testOfficialSquadsSPLVector16() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 16) }
+    func testOfficialSquadsSPLVector17() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 17) }
+    func testOfficialSquadsSPLVector18() throws { try verifyOfficialSquadsVectors(kind: "spl", index: 18) }
+    func testOfficialSquadsToken2022Vector00() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 0) }
+    func testOfficialSquadsToken2022Vector01() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 1) }
+    func testOfficialSquadsToken2022Vector02() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 2) }
+    func testOfficialSquadsToken2022Vector03() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 3) }
+    func testOfficialSquadsToken2022Vector04() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 4) }
+    func testOfficialSquadsToken2022Vector05() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 5) }
+    func testOfficialSquadsToken2022Vector06() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 6) }
+    func testOfficialSquadsToken2022Vector07() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 7) }
+    func testOfficialSquadsToken2022Vector08() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 8) }
+    func testOfficialSquadsToken2022Vector09() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 9) }
+    func testOfficialSquadsToken2022Vector10() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 10) }
+    func testOfficialSquadsToken2022Vector11() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 11) }
+    func testOfficialSquadsToken2022Vector12() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 12) }
+    func testOfficialSquadsToken2022Vector13() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 13) }
+    func testOfficialSquadsToken2022Vector14() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 14) }
+    func testOfficialSquadsToken2022Vector15() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 15) }
+    func testOfficialSquadsToken2022Vector16() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 16) }
+    func testOfficialSquadsToken2022Vector17() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 17) }
+    func testOfficialSquadsToken2022Vector18() throws { try verifyOfficialSquadsVectors(kind: "token2022", index: 18) }
+    private func verifyOfficialSquadsVectors(kind: String, index: Int) throws {
         let f = try fixture(), all = try XCTUnwrap(f["vectors"].array)
         XCTAssertEqual(all.count, 76)
         XCTAssertEqual(Set(all.compactMap { $0["kind"].string }), Set(["setup", "native", "spl", "token2022"]))
         let rows = all.filter { $0["kind"].string == kind }
         XCTAssertEqual(rows.count, 19)
-        for row in rows {
+        let row = try XCTUnwrap(rows.indices.contains(index) ? rows[index] : nil)
+        do {
             let p = try plan(row), policy = try XCTUnwrap(p.multisig?.policy)
             XCTAssertEqual(try policy.multisig,row["multisig"].string)
             XCTAssertEqual(try policy.vault,row["vault"].string)
