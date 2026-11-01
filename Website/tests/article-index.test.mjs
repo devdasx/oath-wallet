@@ -8,6 +8,7 @@ import {articleURL} from '../src/article-host.js';
 const root=new URL('../public/',import.meta.url);
 const data=JSON.parse(await readFile(new URL('oath-data.json',root)));
 const cards=articleCards(data.articles);
+const englishCount = cards.filter(a => a.locale === 'en').length;
 const html=await readFile(new URL('articles.html',root),'utf8');
 function component(){
  const source=html.match(/<script type="text\/x-dc" data-dc-script>([\s\S]*?)<\/script>/)[1];
@@ -24,8 +25,8 @@ test('every archive edition has a real article route and an existing preview ima
 });
 test('English is the default with one card per article, and language changes select the matching edition',()=>{
  const ui=component(), en=ui.renderVals();
- assert.equal(ui.state.locale,'en');assert.equal(en.resultCount,15);
- const initial=[en.featured,...en.list];assert.equal(new Set(initial.map(a=>a.id)).size,15);
+ assert.equal(ui.state.locale,'en');assert.equal(en.resultCount,englishCount);
+ const initial=[en.featured,...en.list];assert.equal(new Set(initial.map(a=>a.id)).size,englishCount);
  assert.ok(initial.every(a=>a.locale==='en'));
  assert.equal(en.languages.length,16);
  for(const lang of articleLanguages(cards))assert.ok(html.includes(`<option value="${lang.code}">${lang.label}</option>`));
@@ -40,11 +41,11 @@ test('search and categories retain working card URLs, and empty results can be c
  const ui=component();ui.renderVals().onQ({target:{value:'BIP39 Passphrases'}});
  let view=ui.renderVals();assert.equal(view.resultCount,1);assert.match(view.list[0].href,/add-bip39-passphrase/);assert.ok(view.list[0].cover);
  view.onQ({target:{value:'no-such-article-987654'}});view=ui.renderVals();assert.equal(view.isEmpty,true);
- view.onQ({target:{value:''}});assert.equal(ui.renderVals().resultCount,15);
+ view.onQ({target:{value:''}});assert.equal(ui.renderVals().resultCount,englishCount);
 });
 test('server-rendered fallback includes all English links and images without translation duplicates',()=>{
  const fallback=html.match(/<!-- oath-server-content:start -->([\s\S]*?)<!-- oath-server-content:end -->/)[1];
- assert.equal((fallback.match(/<article>/g)||[]).length,15);
+ assert.equal((fallback.match(/<article>/g)||[]).length,englishCount);
  for(const a of cards.filter(a=>a.locale==='en')){assert.ok(fallback.includes(`href="${a.href}"`));assert.ok(fallback.includes(`src="${a.cover}"`));}
  assert.doesNotMatch(fallback,/href="https:\/\/articles\.oathwallet\.org\/ar\//);
  assert.match(html,/aria-label="Article language"/);

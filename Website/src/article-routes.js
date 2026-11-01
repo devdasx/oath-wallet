@@ -1,5 +1,6 @@
+import catalog from '../public/oath-data.json' with {type:'json'};
 // Published articles and supported legacy aliases.
-export const articleRoutes = {
+export const archiveRoutes = {
   "/articles/open-source-wallets-verifiable-builds": "/articles/open-source-wallets-verifiable-builds.html",
   "/articles/bitcoin-settings-oath-address-types-indexes-complete-guide": "/articles/bitcoin-settings-oath-address-types-indexes-complete-guide.html",
   "/articles/bitcoin-settings-aperture-address-types-indexes-complete-guide": {
@@ -49,3 +50,9 @@ export const articleRoutes = {
   "/vi/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security": "/vi/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.html",
   "/articles/bitget-388-million-hack-self-custody": "/articles/bitget-388-million-hack-self-custody.html"
 };
+
+export const articleRoutes = {...archiveRoutes};
+for (const article of catalog.articles.filter(a => a.github_editorial)) {
+  const route = '/articles' + new URL(article.url).pathname;
+  articleRoutes[route] = route + '.html';
+}

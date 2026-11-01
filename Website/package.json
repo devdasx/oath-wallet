@@ -20,7 +20,7 @@
     "build:networks": "node scripts/build-network-guides.mjs",
     "build:footer-networks": "node scripts/sync-footer-networks.mjs",
     "build:site-chrome": "node scripts/build-site-chrome.mjs",
-    "build:articles": "node scripts/build-article-index.mjs",
+    "build:articles": "node scripts/build-editorials.mjs && node scripts/build-article-index.mjs",
     "build:brand": "node scripts/build-brand.mjs",
     "build:bounty": "node scripts/build-bug-bounty.mjs",
     "build:press": "node scripts/build-press.mjs",
