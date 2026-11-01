@@ -96,7 +96,7 @@ public enum BitcoinMultisig {
         let accountPath = try accountPath(network: network)
         let roots = try validatedRoots(required: required, keys: keys, network: network)
         func validate(_ address: BitcoinDerivedAddress) throws {
-            guard address.index < 0x7fff_ffff,
+            guard address.index < BitcoinKeys.firstHardenedChild,
                   let branch = policy.branches.first(where: { $0.id == address.branchID }),
                   try BitcoinKeys.addresses(branch: branch, range: address.index..<(address.index + 1)).first == address else {
                 throw BitcoinSendError.signing

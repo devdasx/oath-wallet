@@ -47,7 +47,7 @@ extension UTXONetwork {
             root = nil
         }
         guard let branch = wallet.branches.first(where: { $0.id == address.branchID }),
-              address.index < 0x7fff_ffff,
+              address.index < BitcoinKeys.firstHardenedChild,
               try BitcoinKeys.addresses(branch: branch, range: address.index..<(address.index + 1)).first == address else {
             throw BitcoinError.invalidAddress
         }
