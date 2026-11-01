@@ -65,7 +65,8 @@ public struct ThorchainSwapProgress: Sendable, Equatable {
     }
     private static func sameDestination(_ first: String?, _ second: String, chain: String) -> Bool {
         guard let first else { return false }
-        return ["ETH", "BSC", "AVAX", "BASE"].contains(chain) ? first.lowercased() == second.lowercased() : first == second
+        return ThorchainSwapAsset.evmChains.values.contains(chain)
+            ? first.lowercased() == second.lowercased() : first == second
     }
     private static func validHash(_ hash: String) -> Bool {
         hash.count == 64 && hash.utf8.allSatisfy { (48...57).contains($0) || (65...70).contains($0) || (97...102).contains($0) }
