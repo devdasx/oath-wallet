@@ -12,6 +12,42 @@ import GRDB
         return (db, url)
     }
 
+    func testExistingMaximumDisplayIndexAllowsAnUnrelatedWallet() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        try await db.importWalletIfNeeded(.init(id: "existing", name: "", kind: "passphrase", vaultReference: "existing",
+            createdAt: 1, nameGroup: "passphrase", nameIndex: Int.max), accounts: [])
+        try await add(db, "next", kind: "passphrase", group: "passphrase")
+        let existing = try await db.wallet("existing")
+        let next = try await db.wallet("next")
+        XCTAssertEqual(existing?.nameIndex, Int.max)
+        XCTAssertEqual(next?.nameIndex, 1)
+        try await add(db, "another", kind: "passphrase", group: "passphrase")
+        let another = try await db.wallet("another")
+        XCTAssertEqual(another?.nameIndex, 2, "The next recovery must skip the newly occupied label")
+
+    }
+
+    func testMaximumSortOrderKeepsRelativeOrderWhenAppending() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        try await add(db, "first")
+        try await add(db, "last")
+        try await db.pool.write { database in
+            try database.execute(sql: "UPDATE wallets SET sortOrder=? WHERE id='last'", arguments: [Int.max])
+        }
+        do {
+            try await db.importWalletIfNeeded(.init(id: "rejected", name: "", kind: "hd", vaultReference: "rejected", createdAt: 1),
+                accounts: [.init(id: "wrong", walletID: "different", networkID: "ethereum", address: "fixture", derivationPath: "")])
+            XCTFail("Expected the account mismatch to abort the write")
+        } catch StoreError.conflictingIdentity { }
+        let afterFailure = try await db.wallet("last")
+        XCTAssertEqual(afterFailure?.sortOrder, Int.max, "A failed append rolls back the order repair")
+        try await add(db, "new")
+        let wallets = try await db.wallets()
+        XCTAssertEqual(wallets.map(\.id), ["first", "last", "new"])
+    }
+
     private func add(_ db: OathDatabase, _ id: String, kind: String = "hd", group: String? = nil, network: String = "ethereum") async throws {
         try await db.importWalletIfNeeded(.init(id: id, name: "", kind: kind, vaultReference: id, createdAt: 1, nameGroup: group),
             accounts: [.init(id: id + ":account", walletID: id, networkID: network, address: "public-fixture", derivationPath: "")])

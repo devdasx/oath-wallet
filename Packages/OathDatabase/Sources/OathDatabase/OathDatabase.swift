@@ -127,6 +127,32 @@ public final class OathDatabase: Sendable {
         }
     }
 
+    private static func nextWalletSortOrder(in db: Database) throws -> Int {
+        let last = try Int.fetchOne(db, sql: "SELECT MAX(sortOrder) FROM wallets") ?? -1
+        if last < Int.max { return last + 1 }
+        // Compact in the same order used by the wallet list, including removed wallets.
+        let ids = try String.fetchAll(db, sql: "SELECT id FROM wallets ORDER BY sortOrder, createdAt, id")
+        for (index, id) in ids.enumerated() {
+            try db.execute(sql: "UPDATE wallets SET sortOrder=? WHERE id=?", arguments: [index, id])
+        }
+        return ids.count
+    }
+
+    private static func nextWalletNameIndex(for group: String, in db: Database) throws -> Int {
+        let first = group == "passphrase" ? 1 : 0
+        let highest = try Int.fetchOne(db, sql: "SELECT MAX(nameIndex) FROM wallets WHERE nameGroup=?", arguments: [group]) ?? (first - 1)
+        if highest < Int.max { return highest + 1 }
+        // Keep existing labels. Only scan for a gap once there is no larger integer.
+        let assigned = try Int.fetchCursor(db, sql: "SELECT DISTINCT nameIndex FROM wallets WHERE nameGroup=? AND nameIndex>=? ORDER BY nameIndex",
+                                           arguments: [group, first])
+        var available = first
+        while let index = try assigned.next(), index == available {
+            guard available < Int.max else { throw StoreError.invalidValue("wallet name index exhausted") }
+            available += 1
+        }
+        return available
+    }
+
     public func importWalletIfNeeded(_ wallet: WalletRecord, accounts: [AccountRecord]) async throws {
         guard ["electrum", "electrum2fa", "aezeed", "hd", "imported", "privateKey", "watchOnly", "passphrase", "bitcoinMultisig", "litecoinMultisig", "bitcoinCashMultisig", "dogecoinMultisig", "evmMultisig", "tronMultisig", "solanaMultisig", "xrplMultisig", "stellarMultisig", "aptosMultisig", "tonMultisig", "thorchainMultisig", "nearMultisig", "suiMultisig"].contains(wallet.kind), wallet.createdAt.isFinite,
               !wallet.id.isEmpty, !wallet.vaultReference.isEmpty else { throw StoreError.invalidValue("wallet") }
@@ -142,9 +168,9 @@ public final class OathDatabase: Sendable {
                     throw StoreError.invalidValue("wallet name group")
                 }
                 wallet.nameGroup = group
-                wallet.sortOrder = (try Int.fetchOne(db, sql: "SELECT MAX(sortOrder) FROM wallets") ?? -1) + 1
+                wallet.sortOrder = try Self.nextWalletSortOrder(in: db)
                 if group != "passphrase" || wallet.nameIndex <= 0 {
-                    wallet.nameIndex = (try Int.fetchOne(db, sql: "SELECT MAX(nameIndex) FROM wallets WHERE nameGroup=?", arguments: [group]) ?? (group == "passphrase" ? 0 : -1)) + 1
+                    wallet.nameIndex = try Self.nextWalletNameIndex(for: group, in: db)
                 }
                 try wallet.insert(db)
             }
