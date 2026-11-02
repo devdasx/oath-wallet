@@ -1499,6 +1499,12 @@ enum Schema {
         migrations.registerMigration("v89_walletconnect_xrpl") { db in
             try OathDatabase.migrateWalletConnectXrpl(db)
         }
+        migrations.registerMigration("v90_litecoin_history_destinations") { db in
+            try OathDatabase.clearInvalidLitecoinHistoryAddresses(db)
+        }
+        migrations.registerMigration("v101_store_account_compatibility", foreignKeyChecks: .immediate) { db in
+            try LegacyAccountDirectory.install(db)
+        }
         migrations.registerMigration("v103_wallet_backup_offer") { db in
             try db.alter(table: "wallets") { table in
                 table.add(column: "pendingBackupOffer", .text)
