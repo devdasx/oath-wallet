@@ -1,5 +1,6 @@
 import OathDiagnostics
 import Foundation
+import Darwin
 
 public enum CloudRestoreError: Error, Equatable, Sendable {
     case discoveryFailed, downloadFailed, downloadTimedOut, missingFile
@@ -111,13 +112,27 @@ enum CloudBackupFiles {
     }
 
     static func boundedContents(of url: URL) throws -> Data {
-        let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
-        guard values.isRegularFile == true, values.isSymbolicLink != true,
-              let size = values.fileSize, size > 0, size <= BackupDocument.maximumBytes else {
+        // The directory entry can change even while a coordinated accessor is
+        // running. Check the object we opened, and never follow its final symlink.
+        guard url.isFileURL else { throw CloudBackupError.invalidDocument }
+        let descriptor = try url.withUnsafeFileSystemRepresentation { path -> Int32 in
+            guard let path else { throw CloudBackupError.invalidDocument }
+            let fd = Darwin.open(path, O_RDONLY | O_NOFOLLOW | O_NONBLOCK | O_CLOEXEC)
+            guard fd >= 0 else {
+                let code = errno
+                if code == ELOOP { throw CloudBackupError.invalidDocument }
+                if code == ENOENT { throw CloudRestoreError.missingFile }
+                throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO)
+            }
+            return fd
+        }
+        let file = FileHandle(fileDescriptor: descriptor, closeOnDealloc: true)
+        defer { _ = OathDiagnostics.attempt("close_restore_file") { try file.close() } }
+        var info = stat()
+        guard fstat(descriptor, &info) == 0 else { throw POSIXError(POSIXErrorCode(rawValue: errno) ?? .EIO) }
+        guard info.st_mode & S_IFMT == S_IFREG, info.st_size > 0, info.st_size <= BackupDocument.maximumBytes else {
             throw CloudBackupError.invalidDocument
         }
-        let file = try FileHandle(forReadingFrom: url)
-        defer { _ = OathDiagnostics.attempt("close_restore_file") { try file.close() } }
         // Never allocate an unbounded file, including one that grows
         // between its metadata check and this coordinated read.
         let data = try file.read(upToCount: BackupDocument.maximumBytes + 1) ?? Data()
