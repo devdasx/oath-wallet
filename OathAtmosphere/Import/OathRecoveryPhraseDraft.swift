@@ -11,8 +11,14 @@ enum OathRecoveryFormat: String, Hashable {
 
 /// Recovery input stays in this local editor until the user confirms an import.
 @MainActor @Observable final class OathRecoveryPhraseDraft {
+    private(set) var importRequestID = UUID()
     var text = "" {
-        didSet { if oldValue != text { preferredFormat = nil } }
+        didSet {
+            if oldValue != text {
+                preferredFormat = nil
+                importRequestID = UUID()
+            }
+        }
     }
     private(set) var preferredFormat: OathRecoveryFormat?
     var electrumKind: ElectrumSeedKind? { ElectrumMnemonic.kind(text) }
@@ -38,7 +44,9 @@ enum OathRecoveryFormat: String, Hashable {
 
     func selectFormat(_ format: OathRecoveryFormat?) {
         if let format, !matchingFormats.contains(format) { return }
+        guard preferredFormat != format else { return }
         preferredFormat = format
+        importRequestID = UUID()
     }
 
     var hasAmbiguousFormat: Bool { matchingFormats.count > 1 }

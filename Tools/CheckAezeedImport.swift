@@ -83,15 +83,50 @@ import OathDatabase
         check(dual.hasAmbiguousFormat && dual.isAezeed && dual.submit() == nil, "A recognized aezeed keeps its default without silently using BIP39")
         let decoded = try Aezeed.decode(words)
         let lndPhrase = OathValidatedMnemonic(phrase: words, language: "english", aezeed: decoded)
-        let lndWallet = try await vault.addWallet(requestID: UUID(), importing: lndPhrase)
-        check(lndWallet.addresses.count == 1 && lndWallet.addresses[0].address == sample.bitcoinAezeed, "LND overlap derives its independent address")
+        let request = UUID()
+        // Interrupt the public metadata write after the encrypted wallet has committed.
+        try await db.importWalletIfNeeded(WalletRecord(id: request.uuidString, name: "Conflict fixture",
+            kind: "watchOnly", vaultReference: "unrelated", createdAt: 0), accounts: [])
+        do {
+            _ = try await vault.addWallet(requestID: request, importing: lndPhrase)
+            preconditionFailure("Expected an interrupted import")
+        } catch OathWalletError.corruptVault { check(true, "Injected metadata conflict interrupted the import") }
+        try await db.deleteWalletMetadata(request.uuidString)
         guard let unselected = OathMnemonicValidator.bundled?.verifiedPhrase(words) else { preconditionFailure("Bad synthetic overlap") }
         do {
             _ = try OathWalletEngine.imported(unselected)
             preconditionFailure("An untyped overlap silently imported as BIP39")
         } catch OathWalletError.invalidPhrase { check(true, "Automatic aezeed-to-BIP39 downgrade stays rejected") }
+        let originalRequest = dual.importRequestID
         dual.selectFormat(.bip39)
+        let changedRequest = dual.importRequestID
+        check(changedRequest != originalRequest, "Changing recovery format starts a new import request")
+        dual.selectFormat(.bip39)
+        check(dual.importRequestID == changedRequest, "Retrying an unchanged format preserves the request identity")
         guard let chosen = dual.submit() else { preconditionFailure("Selected BIP39 overlap is unavailable") }
+        let priorProfile = try await vault.unlockedProfile()
+        let committedBytes = try storage.read("vault-v1")
+        var mismatches = 0
+        do {
+            _ = try await vault.addWallet(requestID: request, importing: chosen)
+            mismatches += 1
+            print("FAIL: reused request accepted BIP39 for a committed aezeed wallet")
+        } catch OathWalletError.invalidPhrase { check(true, "Reused request rejects a different recovery format") }
+        do {
+            let key = OathImportedPrivateKey(bytes: Data(repeating: 1, count: 32), networks: [.tron])
+            _ = try await vault.addWallet(requestID: request, importing: nil, privateKey: key)
+            mismatches += 1
+            print("FAIL: reused request accepted a private key for a committed aezeed wallet")
+        } catch OathWalletError.invalidPrivateKey { check(true, "Reused request rejects unrelated private key material") }
+        if mismatches != 0 { exit(1) }
+        let unchanged = try await vault.unlockedProfile()
+        let bytesAfterRejection = try storage.read("vault-v1")
+        check(unchanged.id == priorProfile.id && bytesAfterRejection == committedBytes,
+              "Rejected retries preserve selected wallet and encrypted storage")
+        check(try await db.wallet(request.uuidString) == nil, "A rejected retry does not create SQL metadata")
+        let lndWallet = try await vault.addWallet(requestID: request, importing: lndPhrase)
+        check(lndWallet.id == request && lndWallet.addresses.count == 1 && lndWallet.addresses[0].address == sample.bitcoinAezeed,
+              "Retry with the original material repairs metadata and restores the independent aezeed address")
         let hdWallet = try await vault.addWallet(requestID: UUID(), importing: chosen)
         check(hdWallet.id != lndWallet.id && hdWallet.addresses.count == OathImportChain.allCases.count,
               "The BIP39 interpretation gets its own multi-chain wallet")
@@ -115,6 +150,20 @@ import OathDatabase
         dual.replace(with: fixture.phrase)
         dual.replace(with: words)
         check(dual.preferredFormat == nil && dual.isAezeed, "A format selection cannot carry over to another phrase")
+        // Non-mnemonic secrets store empty mnemonic and language fields.
+        let keyRequest = UUID()
+        let key = OathImportedPrivateKey(bytes: Data(repeating: 1, count: 32), networks: [.tron])
+        let keyWallet = try await vault.addWallet(requestID: keyRequest, importing: nil, privateKey: key)
+        let keyBytes = try storage.read("vault-v1")
+        do {
+            _ = try await vault.addWallet(requestID: keyRequest, importing: .init(phrase: "", language: ""))
+            print("FAIL: empty mnemonic request matched a committed private key")
+            exit(1)
+        } catch OathWalletError.invalidPhrase {
+            let active = try await vault.unlockedProfile()
+            let currentBytes = try storage.read("vault-v1")
+            check(active == keyWallet && currentBytes == keyBytes, "An empty mnemonic cannot activate or alter a private-key wallet")
+        }
         print("Passed \(checks) aezeed host integration checks: actual import, local vault, Bitcoin-only SQL/receive, lock/unlock, recovery display, BIP39 separation and cloud exclusion.")
     }
 }

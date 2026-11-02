@@ -1520,6 +1520,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     /// existing PIN/Face ID key. A stable request ID makes save retries safe.
     func addWallet(requestID: UUID, importing phrase: OathValidatedMnemonic?, privateKey: OathImportedPrivateKey? = nil, multisig: OathMultisigMaterial? = nil) async throws -> OathWalletProfile {
         guard phrase == nil || privateKey == nil else { throw OathWalletError.invalidPrivateKey }
+        guard phrase?.phrase.isEmpty != true else { throw OathWalletError.invalidPhrase }
         guard multisig == nil || (phrase == nil && privateKey == nil) else { throw OathWalletError.invalidPrivateKey }
         guard var contents, let key = encryptionKey, let envelope, profile != nil else { throw OathWalletError.locked }
         guard walletMutation == nil else { throw OathWalletError.unavailable }
@@ -1528,14 +1529,27 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         defer {
             if walletMutation == mutation { walletMutation = nil }
         }
-        let matches = contents.wallets.filter { wallet in
-            wallet.id == requestID || (phrase != nil && wallet.mnemonic == phrase?.phrase && wallet.passphrase == nil && wallet.aezeed == phrase?.aezeed && wallet.electrum == phrase?.electrum)
-                || (privateKey.map { wallet.privateKey?.hasSameIdentity(as: $0) == true } ?? false)
-        }
-        if let existing = matches.first(where: { $0.deletedAt == nil }) ?? matches.first {
-            if let multisig {
-                guard Self.sameRecoveryMaterial(existing, try multisig.secret(id: requestID)) else { throw OathWalletError.invalidPrivateKey }
+        let matchesImport: (OathWalletSecret) -> Bool = { wallet in
+            if let phrase {
+                return wallet.mnemonic == phrase.phrase && wallet.language == phrase.language &&
+                    wallet.passphrase == nil && wallet.aezeed == phrase.aezeed && wallet.electrum == phrase.electrum
             }
+            if let privateKey { return wallet.privateKey?.hasSameIdentity(as: privateKey) == true }
+            return false
+        }
+        let prior = contents.wallets.first { $0.id == requestID }
+        if let prior {
+            if let multisig {
+                guard Self.sameRecoveryMaterial(prior, try multisig.secret(id: requestID)) else { throw OathWalletError.invalidPrivateKey }
+            } else if phrase != nil || privateKey != nil {
+                guard matchesImport(prior) else { throw privateKey == nil ? OathWalletError.invalidPhrase : .invalidPrivateKey }
+            } else {
+                guard prior.imported != true, prior.privateKey == nil, prior.restoration == nil, prior.legacy == nil,
+                      !prior.isMultisig, !prior.isLocalMnemonic, !prior.isDerivedWallet else { throw OathWalletError.unavailable }
+            }
+        }
+        let matches = contents.wallets.filter(matchesImport)
+        if let existing = matches.first(where: { $0.deletedAt == nil }) ?? matches.first ?? prior {
             return try await activateImportedWallet(existing, token: token, offer: phrase != nil || privateKey != nil ? .cloudOnly : .cloudOrManual)
         }
         var candidate = try multisig?.secret(id: requestID)
