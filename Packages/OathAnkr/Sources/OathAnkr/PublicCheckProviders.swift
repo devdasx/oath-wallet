@@ -75,7 +75,6 @@ public actor PublicCheckTransport: AnkrTransport {
             }
             let result = try await base.send(request)
             try Task.checkCancellation()
-            await total.release(); await gate.release()
             // Only tiny, successful network metadata; never cache account or
             // token results, errors or provider response bodies in diagnostics.
             if let key, result.1 == 200, result.0.count < 4096,
@@ -86,6 +85,8 @@ public actor PublicCheckTransport: AnkrTransport {
                     metadata[key] = .init(value: result.0, expires: .now.advanced(by: .seconds(5)))
                 }
             }
+            // Publish the cached reply before a queued request can acquire capacity.
+            await total.release(); await gate.release()
             return result
         } catch {
             await total.release(); await gate.release()
