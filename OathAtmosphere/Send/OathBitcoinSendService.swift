@@ -152,18 +152,16 @@ actor OathBitcoinSendService {
         guard !flights.contains(send.id) else { return }
         try Task.checkCancellation()
         flights.insert(send.id); defer { flights.remove(send.id) }
-        guard let current = try await db.send(send.id), ["signed", "broadcast"].contains(current.state) else { return }
-        guard let raw = current.signedPayload, let plan = try await db.bitcoinSendPlan(sendID: send.id),
-              plan.chain == network, plan.network == .mainnet else { throw BitcoinSendError.changed }
-        let txid = try BitcoinTransactions.txid(raw, network: network)
-        if current.state == "signed" { _ = try await db.transitionSend(send.id, from: "signed", to: "broadcast") }
+        guard let journal = try await db.bitcoinPaymentForRecovery(sendID: send.id, network: network) else { return }
+        let payment = journal.payment
+        if journal.state == "signed" { _ = try await db.transitionSend(send.id, from: "signed", to: "broadcast") }
         let peer = ElectrumPool(network: network)
         do {
-            let receipt = try await BitcoinSendStatus.confirmation(raw: raw, plan: plan, client: peer)
+            let receipt = try await BitcoinSendStatus.confirmation(payment, client: peer)
             await peer.close()
             if let receipt { try await db.settleBitcoinSend(send.id, confirmation: receipt) }
-            else if await submitPersisted(raw: raw, txid: txid, reconcileFirst: true) {
-                try await db.acknowledgeBitcoinSend(send.id, hash: txid)
+            else if await submitPersisted(raw: payment.raw, txid: payment.txid, reconcileFirst: true) {
+                try await db.acknowledgeBitcoinSend(send.id, hash: payment.txid)
             }
         } catch {
             OathDiagnostics.record(error, component: "send", operation: "bitcoin_status", context: ["chain": network.rawValue])

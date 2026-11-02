@@ -231,10 +231,21 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
     // fully validating entry point above.
     func checkSigned(_ signed: BitcoinSignedSend) throws {
         let tx = try Transaction(transactionBytes: signed.raw)
+        guard signed.fee == fee, signed.txid == tx.computeTxid().description,
+              signed.virtualBytes == tx.vsize() else { throw BitcoinSendError.changed }
+        try checkSignedTransaction(tx)
+    }
+
+    func recoveredTransactionID(_ raw: Data) throws -> String {
+        try validate(checkExpiry: false)
+        let tx = try Transaction(transactionBytes: raw)
+        try checkSignedTransaction(tx)
+        return tx.computeTxid().description
+    }
+
+    private func checkSignedTransaction(_ tx: Transaction) throws {
         let actualInputs = tx.input(), actualOutputs = tx.output()
-        guard tx.version() == 2, tx.lockTime() == 0,
-              tx.computeTxid().description == signed.txid,
-              signed.fee == fee, signed.virtualBytes == tx.vsize(), tx.vsize() <= UInt64(maximumVBytes),
+        guard tx.version() == 2, tx.lockTime() == 0, tx.vsize() <= UInt64(maximumVBytes),
               actualInputs.count == coins.count,
               zip(actualInputs, coins).allSatisfy({ input, coin in
                   input.previousOutput.txid.description == coin.txid && input.previousOutput.vout == UInt32(coin.vout) &&

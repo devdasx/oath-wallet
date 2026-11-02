@@ -1518,6 +1518,11 @@ enum Schema {
             }
             try db.execute(sql: "UPDATE wallets SET needsBackupOfferReview = 1 WHERE pendingBackupOffer IS NULL")
         }
+        migrations.registerMigration("v105_bitcoin_signed_payload_digest") { db in
+            try db.alter(table: "bitcoinSendPlans") { table in
+                table.add(column: "signedPayloadDigest", .blob)
+            }
+        }
         return migrations
     }
 }

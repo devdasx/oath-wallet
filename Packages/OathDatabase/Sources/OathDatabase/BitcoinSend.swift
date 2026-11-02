@@ -1,3 +1,4 @@
+import CryptoKit
 import Foundation
 import GRDB
 import OathBitcoin
@@ -56,6 +57,29 @@ extension OathDatabase {
         }
     }
 
+    /// Read identity, plan and bytes in one snapshot before contacting peers.
+    public func bitcoinPaymentForRecovery(sendID: String, network: UTXONetwork) async throws -> (payment: BitcoinSendStatus.Payment, state: String)? {
+        try await pool.read { db in
+            guard let send = try SendRecord.fetchOne(db, key: sendID),
+                  ["signed", "broadcast"].contains(send.state) else { return nil }
+            guard send.networkID == network.rawValue, let raw = send.signedPayload, raw.count <= 1_000_000,
+                  let row = try Row.fetchOne(db, sql: "SELECT plan, signedPayloadDigest FROM bitcoinSendPlans WHERE sendID=?", arguments: [sendID])
+            else { throw BitcoinSendError.changed }
+            // Older journals have no witness-inclusive digest. Their reviewed
+            // plan and independently saved transaction identity still have to match.
+            if let digest: Data = row["signedPayloadDigest"], Data(SHA256.hash(data: raw)) != digest {
+                throw BitcoinSendError.changed
+            }
+            let plan = try JSONDecoder().decode(BitcoinSendPlan.self, from: row["plan"] as Data)
+            guard plan.chain == network, plan.network == .mainnet,
+                  plan.recipient == send.recipient, String(plan.recipientAmount) == send.amountAtomic
+            else { throw BitcoinSendError.changed }
+            let payment = try BitcoinSendStatus.Payment(raw: raw, plan: plan)
+            guard send.transactionID == network.rawValue + ":" + payment.txid else { throw BitcoinSendError.changed }
+            return (payment, send.state)
+        }
+    }
+
     /// Journal signed bytes and their history identity in one transaction,
     /// before the first network submission. A crash cannot lose reservations.
     public func journalBitcoinSignature(sendID: String, signed: BitcoinSignedSend) async throws {
@@ -90,6 +114,8 @@ extension OathDatabase {
                 try Self.saveBitcoinParticipants(db, accountID: accountID, transactionID: id,
                     addresses: Set(plan.coins.map { $0.address.address }).union([plan.recipient]))
             }
+            try db.execute(sql: "UPDATE bitcoinSendPlans SET signedPayloadDigest=? WHERE sendID=?",
+                           arguments: [Data(SHA256.hash(data: signed.raw)), sendID])
             send.state = "signed"; send.signedPayload = signed.raw; send.transactionID = id; send.updatedAt = now
             try send.update(db)
         }
