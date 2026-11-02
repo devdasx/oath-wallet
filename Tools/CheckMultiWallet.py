@@ -387,6 +387,18 @@ extension OathWalletEngine {
     }
 }
 """)
+    if "--aezeed" in sys.argv or "--electrum" in sys.argv:
+        # Use the shipped descriptor builder for these real Bitcoin receive tests.
+        # Its mnemonic-to-seed dependency is the CommonCrypto BIP39 host adapter above.
+        generated = sources / "FixtureDerivation.swift"
+        text = generated.read_text()
+        shipped = (root / "OathAtmosphere/Wallet/OathBitcoinWallet.swift").read_text()
+        signature = "    static func bitcoinDescriptor(for secret:"
+        def descriptor_method(code):
+            start = code.index(signature)
+            end = code.index("\n    }\n", start) + len("\n    }")
+            return code[start:end]
+        generated.write_text(text.replace(descriptor_method(text), descriptor_method(shipped), 1))
     (sources / "FixturePublicNetworking.swift").write_text("""
 import OathAnkr
 import Foundation

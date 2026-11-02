@@ -93,8 +93,17 @@ import OathDatabase
         dual.selectFormat(.bip39)
         guard let chosen = dual.submit() else { preconditionFailure("Selected BIP39 overlap is unavailable") }
         let hdWallet = try await vault.addWallet(requestID: UUID(), importing: chosen)
-        check(hdWallet.id != lndWallet.id && hdWallet.addresses.count == OathImportChain.allCases.count &&
-              hdWallet.addresses.first(where: { $0.chain == .bitcoin })?.address == sample.bitcoinBIP39, "BIP39 overlap creates a distinct wallet with the independent Bitcoin address")
+        check(hdWallet.id != lndWallet.id && hdWallet.addresses.count == OathImportChain.allCases.count,
+              "The BIP39 interpretation gets its own multi-chain wallet")
+        // The general host profile supplies synthetic display addresses. Exercise actual
+        // Bitcoin descriptor preparation and the database receive API for the known-answer check.
+        let hdSnapshot = try await db.snapshot(walletID: hdWallet.id.uuidString, currency: "USD")
+        guard let bitcoin = hdSnapshot.accounts.first(where: { $0.networkID == "bitcoin" && $0.accountIndex == 0 }) else {
+            preconditionFailure("Missing Bitcoin account for the BIP39 overlap")
+        }
+        try await vault.prepareBitcoin(accountID: bitcoin.id)
+        let hdReceive = try await db.bitcoinReceiveAddress(accountID: bitcoin.id)
+        check(hdReceive.address == sample.bitcoinBIP39, "BIP39 overlap yields the independent Bitcoin receive address")
         let data = try storage.read("vault-v1")!
         let sealed = try JSONDecoder().decode(OathVaultEnvelope.self, from: data)
         let durable = try sealed.openContents(using: sealed.key(for: pin))
