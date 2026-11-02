@@ -21,6 +21,14 @@ private actor StartupReports: DiagnosticTransport {
         return waiter != nil
     }
 
+    func eventsAfterDelivery(of count: Int) async throws -> [DiagnosticEvent] {
+        let deadline = ContinuousClock.now.advanced(by: .seconds(5))
+        while events.count < count && ContinuousClock.now < deadline {
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        return events
+    }
+
     func upload(_ batch: [DiagnosticEvent]) async throws {
         if holdDelivery { await withCheckedContinuation { waiter = $0 } }
         events += batch
@@ -134,11 +142,8 @@ private final class ProtectedStorage: OathVaultStorage, @unchecked Sendable {
         }
         let held = try await reports.waitUntilDeliveryStarts()
         check(held, "Genuine failures start delivery without blocking wallet startup")
-        if !held { await reports.releaseDelivery() }
-        try await Task.sleep(for: .milliseconds(200))
-        await OathDiagnostics.flush()
-        let events = await reports.events
         await reports.releaseDelivery()
+        let events = try await reports.eventsAfterDelivery(of: 3)
         check(events.count == 3, "Exactly the three genuine failures reach the shared outbox")
         check(events.allSatisfy { $0.operationID != nil && $0.context["stage"] == "vault_read" && $0.privacyFiltered },
               "Genuine startup failures carry a safe stage and correlation ID")
