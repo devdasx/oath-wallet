@@ -8,7 +8,7 @@ Match the address type and imported key scope; changing the visible format does 
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Available address families
 
@@ -30,7 +30,7 @@ Silent Payments receiving and discovery are not supported in 5.0.0. Do not treat
 
 Confirm the exact network, full recipient address and required fee. Refresh and compare known addresses before relying on a restore. A published example address or screenshot is not a receiving address for your wallet.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 <!-- oath-walkthrough:start -->
 ## Bitcoin: know the address and recovery scope — visual walkthrough transcript

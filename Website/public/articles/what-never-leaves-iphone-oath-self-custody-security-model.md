@@ -8,7 +8,7 @@ Understand the protected local vault, password-encrypted backups, and what publi
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Local credentials
 
@@ -30,4 +30,4 @@ User-approved dApp connections can share public accounts and signatures through 
 
 The public release has no operator upload path for wallet credentials, recovery typing, wallet records or diagnostics. Its source, archive and upload checks are documented. They are not an independent audit or a proof that compromised devices cannot expose secrets.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).

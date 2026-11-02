@@ -8,7 +8,7 @@ Use the address displayed for your selected wallet and exact asset network.
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Select the wallet and network
 
@@ -26,4 +26,4 @@ Bitcoin formats depend on the imported material. A fresh receiving address can b
 
 Check the transaction on the correct network and allow the app to refresh. A QR code or successful address copy does not prove that a transfer occurred. Never send funds to an address shown only in a help screenshot.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).

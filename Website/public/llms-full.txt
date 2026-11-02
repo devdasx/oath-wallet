@@ -2573,7 +2573,7 @@ Use oathwallet.org for the website and the official App Store link below for the
 
 ## Open source and review scope
 
-The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 2, 2026 against version 5.0.0 (102), tag v5.0.0-build102. The release record identifies the tagged source and the GitHub Actions delivery workflow. See the release record for completed checks.
+The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 2, 2026 against version 5.0.0 (102), tag v5.0.0-build102-r2. The release record identifies the tagged source and the GitHub Actions delivery workflow. See the release record for completed checks.
 
 Public source does not establish an independent security audit or prove that a particular App Store binary matches that source. [Read the security evidence and limitations](https://oathwallet.org/security), including the release-specific Silent Payments restrictions.
 
@@ -2776,9 +2776,9 @@ Oath Wallet keeps recovery input and signing credentials in its protected local 
 
 ## Open source and App Store builds
 
-The technical descriptions and source excerpts on this page were checked on 2 November 2026 against Oath Wallet **5.0.0 (102)**, source tag **v5.0.0-build102**. The release record identifies the tagged source and the GitHub Actions delivery workflow. See its release record for the completed checks; source publication does not establish a match to an App Store download.
+The technical descriptions and source excerpts on this page were checked on 2 November 2026 against Oath Wallet **5.0.0 (102)**, source tag **v5.0.0-build102-r2**. The release record identifies the tagged source and the GitHub Actions delivery workflow. See its release record for the completed checks; source publication does not establish a match to an App Store download.
 
-Read the [5.0.0 release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102), [current security model](https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md), and [security reporting policy](https://github.com/devdasx/oath-wallet/security/policy). Provider configuration and Apple signing are supplied through encrypted GitHub deployment secrets and excluded from public source.
+Read the [5.0.0 release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2), [current security model](https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md), and [security reporting policy](https://github.com/devdasx/oath-wallet/security/policy). Provider configuration and Apple signing are supplied through encrypted GitHub deployment secrets and excluded from public source.
 
 ## What the checks establish
 
@@ -2790,7 +2790,7 @@ New standard wallets use a 12-word BIP39 recovery phrase. BIP39 imports validate
 
 Private-key imports retain their network scope. Multisignature wallets retain their signer material and policy locally; support and required setup differ by chain. Keeping several signing keys on one device does not provide independent-device security. A wallet name or successful import does not establish that every previous account has been recovered.
 
-Source: [mnemonic validation](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Import/OathMnemonicValidator.swift), [wallet engine](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathWalletEngine.swift), [private-key import](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathPrivateKeyImport.swift), and [multisignature creation](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathMultisigCreation.swift).
+Source: [mnemonic validation](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Import/OathMnemonicValidator.swift), [wallet engine](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathWalletEngine.swift), [private-key import](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathPrivateKeyImport.swift), and [multisignature creation](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathMultisigCreation.swift).
 
 ## Local storage and app lock
 
@@ -2798,7 +2798,7 @@ Wallet secrets are sealed in an authenticated AES-GCM vault, stored through non-
 
 Public wallet records, balances and history are stored separately in the local database. Removing the app also removes its installation key; do not treat reinstalling as a recovery method.
 
-Source: [vault envelope](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathVaultEnvelope.swift), [vault storage](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathInstallationVaultStorage.swift), [installation protection](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathInstallationSecurity.swift), and [lock policy](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Security/OathSecurityPolicy.swift).
+Source: [vault envelope](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathVaultEnvelope.swift), [vault storage](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathInstallationVaultStorage.swift), [installation protection](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathInstallationSecurity.swift), and [lock policy](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Security/OathSecurityPolicy.swift).
 
 ## Password-encrypted iCloud backup
 
@@ -2806,23 +2806,23 @@ For supported wallets, Oath creates a .oathbackup file encrypted on the device w
 
 Each eligible wallet has its own file. Electrum and aezeed wallets are excluded from iCloud backup in 5.0.0; preserve their original recovery words and required passphrase. Back Up All Wallets covers eligible active wallets, not Recently Deleted wallets. Verify each upload result. Existing iCloud files remain outside the local app-reset boundary.
 
-Source: [backup format](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift), [backup eligibility](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathWalletVault.swift), and [restore flow](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathCloudRestoreModel.swift). See the [backup guide](https://help.oathwallet.org/articles/backup-password).
+Source: [backup format](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift), [backup eligibility](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathWalletVault.swift), and [restore flow](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathCloudRestoreModel.swift). See the [backup guide](https://help.oathwallet.org/articles/backup-password).
 
 ## Network and diagnostic boundaries
 
 This source release has no operator endpoint for wallet credentials, recovery typing, wallet records or diagnostic uploads. Privacy-filtered diagnostics remain in a bounded local outbox. Blockchain providers still receive public queries for balances, fees and history, and signed transactions for broadcast. WalletConnect uses encrypted relay connections for user-approved sessions and signing requests. A signature, accepted broadcast and confirmed transaction are different outcomes.
 
-Source: [local EVM signing](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Wallet/OathEVMSigning.swift), [send service](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Send/OathEVMSendService.swift), and [WalletConnect details](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/Documentation/WalletConnectReadableDetails.md).
+Source: [local EVM signing](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Wallet/OathEVMSigning.swift), [send service](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Send/OathEVMSendService.swift), and [WalletConnect details](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/Documentation/WalletConnectReadableDetails.md).
 
 ## Copying recovery material
 
-Explicit copies of recovery phrases, private keys and passphrases stay on the current device and expire from the system clipboard after 60 seconds. Information already pasted into another app is outside that expiry. Ordinary address and transaction-ID copies keep standard clipboard behavior. [Clipboard policy](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Shared/OathSensitiveClipboard.swift).
+Explicit copies of recovery phrases, private keys and passphrases stay on the current device and expire from the system clipboard after 60 seconds. Information already pasted into another app is outside that expiry. Ordinary address and transaction-ID copies keep standard clipboard behavior. [Clipboard policy](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Shared/OathSensitiveClipboard.swift).
 
 ## Recovery limits
 
 The 5.0.0 source does not provide Silent Payments receiving or discovery, the former nearby-iPhone transfer flow, or dice/coin/digit wallet creation. Its Bitcoin receive options depend on the imported material. Aezeed recovery covers supported on-chain Bitcoin branches, not Lightning channels or arbitrary custom LND accounts. Do not erase an older wallet until a supported recovery method reproduces its intended accounts. Never fund a public tutorial phrase or an example address.
 
-Source: [import catalog](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/OathAtmosphere/Import/OathImportCatalog.swift), [Bitcoin keys](https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/Packages/OathBitcoin/Sources/OathBitcoin/BitcoinKeys.swift), and [aezeed scope](https://github.com/devdasx/oath-wallet/blob/main/Packages/OathAezeed/README.md).
+Source: [import catalog](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/OathAtmosphere/Import/OathImportCatalog.swift), [Bitcoin keys](https://github.com/devdasx/oath-wallet/blob/dc104f46ab53823bd8545ca5be807c941b4283a4/Packages/OathBitcoin/Sources/OathBitcoin/BitcoinKeys.swift), and [aezeed scope](https://github.com/devdasx/oath-wallet/blob/main/Packages/OathAezeed/README.md).
 
 ## Report a vulnerability
 
@@ -8112,7 +8112,7 @@ Match the address type and imported key scope; changing the visible format does 
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Available address families
 
@@ -8134,7 +8134,7 @@ Silent Payments receiving and discovery are not supported in 5.0.0. Do not treat
 
 Confirm the exact network, full recipient address and required fee. Refresh and compare known addresses before relying on a restore. A published example address or screenshot is not a receiving address for your wallet.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 <!-- oath-walkthrough:start -->
 ## Bitcoin: know the address and recovery scope — visual walkthrough transcript
@@ -8175,7 +8175,7 @@ Oath now supports WalletConnect. Understand the difference between a session, a 
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## What changed
 
@@ -8197,7 +8197,7 @@ Disconnecting closes a session. Existing on-chain token or account permissions c
 
 A legitimate connection uses public accounts and requested signatures, not your recovery phrase or private key. Never type recovery material into a dApp, support message or web-based troubleshooting form.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -8652,7 +8652,7 @@ Choose access controls deliberately and keep a separate recovery method.
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## App passcode
 
@@ -8670,7 +8670,7 @@ Select the delay offered in Security settings: immediately, one minute, five min
 
 Use the app-switcher privacy setting where available, and protect the phone’s own passcode. Do not erase or reinstall as a way to fix a forgotten recovery credential: removal discards the installation key. Verify an independent supported backup first.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -8687,7 +8687,7 @@ Understand the protected local vault, password-encrypted backups, and what publi
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Local credentials
 
@@ -8709,7 +8709,7 @@ User-approved dApp connections can share public accounts and signatures through 
 
 The public release has no operator upload path for wallet credentials, recovery typing, wallet records or diagnostics. Its source, archive and upload checks are documented. They are not an independent audit or a proof that compromised devices cannot expose secrets.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -8726,7 +8726,7 @@ Use the address displayed for your selected wallet and exact asset network.
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Select the wallet and network
 
@@ -8744,7 +8744,7 @@ Bitcoin formats depend on the imported material. A fresh receiving address can b
 
 Check the transaction on the correct network and allow the app to refresh. A QR code or successful address copy does not prove that a transfer occurred. Never send funds to an address shown only in a help screenshot.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -8761,7 +8761,7 @@ A fresh address can belong to the same supported HD wallet; verify the wallet an
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## One recovery method, several addresses
 
@@ -8779,7 +8779,7 @@ Oath scans supported branches with bounded discovery rules. A single imported pr
 
 Select the intended wallet and supported address type. Copy the address shown by your app, check sender compatibility and retain the original recovery material. Do not substitute a demonstration address from an article.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -9003,7 +9003,7 @@ Match the recovery format, network and required passphrase to the original walle
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Recovery phrase
 
@@ -9025,7 +9025,7 @@ Restore an eligible .oathbackup file with the password that encrypted it. Keep i
 
 Compare a known receiving address on the original network. Allow balances and history to refresh. If it differs, stop and check the original format, account path and passphrase before deleting the source wallet or assuming funds are missing.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -9237,7 +9237,7 @@ Choose a recovery method supported by 5.0.0 and verify it before replacing or er
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Choose the recovery material
 
@@ -9259,7 +9259,7 @@ Enable iCloud Drive for the Apple Account holding the file. Choose Restore from 
 
 Oath cannot reset a forgotten backup password. If the original wallet still opens, create a new supported backup and retain its password. Removing the app does not delete separate iCloud files. Do not erase the old phone until the replacement wallet and recovery material are verified.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 
@@ -9276,7 +9276,7 @@ A passphrase derives another wallet; it is not an app lock or backup-file passwo
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## BIP39 passphrase wallets
 
@@ -9294,7 +9294,7 @@ Keep the original words and correct extension together in a secure recovery plan
 
 Eligible BIP39 passphrase backups encrypt the passphrase with the recovery payload. Electrum and aezeed wallets are excluded from iCloud backup in 5.0.0, so retain their original manual recovery material. Verify known public addresses before receiving funds.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).
 
 ---
 

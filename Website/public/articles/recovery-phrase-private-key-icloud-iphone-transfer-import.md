@@ -8,7 +8,7 @@ Match the recovery format, network and required passphrase to the original walle
 
 ## Current release guidance
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/4e1aabded5a3b04db348cbbff061ed77cff551cc). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/dc104f46ab53823bd8545ca5be807c941b4283a4). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Recovery phrase
 
@@ -30,4 +30,4 @@ Restore an eligible .oathbackup file with the password that encrypted it. Keep i
 
 Compare a known receiving address on the original network. Allow balances and history to refresh. If it differs, stop and check the original format, account path and passphrase before deleting the source wallet or assuming funds are missing.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r2).

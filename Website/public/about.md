@@ -33,7 +33,7 @@ Use oathwallet.org for the website and the official App Store link below for the
 
 ## Open source and review scope
 
-The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 2, 2026 against version 5.0.0 (102), tag v5.0.0-build102. The release record identifies the tagged source and the GitHub Actions delivery workflow. See the release record for completed checks.
+The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 2, 2026 against version 5.0.0 (102), tag v5.0.0-build102-r2. The release record identifies the tagged source and the GitHub Actions delivery workflow. See the release record for completed checks.
 
 Public source does not establish an independent security audit or prove that a particular App Store binary matches that source. [Read the security evidence and limitations](/security), including the release-specific Silent Payments restrictions.
 
