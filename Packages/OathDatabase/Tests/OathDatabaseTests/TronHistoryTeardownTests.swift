@@ -9,10 +9,14 @@ private actor TronHistoryGate: AnkrTransport {
     let owner: String
     private(set) var historyRequestCount = 0
     var historyStarted: Bool { historyRequestCount > 0 }
-    private var waiting: CheckedContinuation<Void, Never>?
+    private var waiters: [CheckedContinuation<Void, Never>] = []
     private var released = false
     init(owner: String) { self.owner = owner }
-    func release() { released = true; waiting?.resume(); waiting = nil }
+    func release() {
+        released = true
+        for waiter in waiters { waiter.resume() }
+        waiters.removeAll()
+    }
     func send(_ request: URLRequest) async throws -> (Data, Int) {
         let url = try XCTUnwrap(request.url)
         if url.host == "api.coinbase.com" { return (Data(#"{"data":{"base":"TRX","currency":"USD","amount":"0.2"}}"#.utf8), 200) }
@@ -23,7 +27,7 @@ private actor TronHistoryGate: AnkrTransport {
         if url.host != "rpc.ankr.com" && url.host != "api.trongrid.io" { throw URLError(.notConnectedToInternet) }
         if url.path.contains("/transactions") || url.path.contains("/internal-transactions") {
             historyRequestCount += 1
-            if !released { await withCheckedContinuation { waiting = $0 } }
+            if !released { await withCheckedContinuation { waiters.append($0) } }
             return (Data(#"{"success":true,"data":[]}"#.utf8), 200)
         }
         if url.path.contains("/v1/accounts/") { return (Data(#"{"success":true,"data":[]}"#.utf8), 200) }
@@ -45,7 +49,8 @@ extension TronLedgerTests {
         let url = try XCTUnwrap(URL(string: "https://api.trongrid.io/v1/accounts/fixture/transactions"))
         for _ in 0..<2 {
             Task {
-                _ = try await feed.send(URLRequest(url: url))
+                do { _ = try await feed.send(URLRequest(url: url)) }
+                catch { XCTFail("Unexpected synthetic transport error: \(error)") }
                 completed.fulfill()
             }
         }
