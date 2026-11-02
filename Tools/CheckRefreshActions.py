@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run the production refresh action boundary on the host, without UIKit or a simulator."""
 import json
+import re
+import sys
 from pathlib import Path
 import shutil
 import subprocess
@@ -29,6 +31,12 @@ let package = Package(name: "RefreshActionValidation", platforms: [.macOS(.v14)]
     for suite in ["RefreshActionTests.BackgroundRefreshTests", "RefreshActionTests.RefreshActionTests"]:
         result = subprocess.run(["swift", "test", "--package-path", str(work),
                                  "--scratch-path", "/tmp/oath-refresh-action-host",
-                                 "--filter", suite], timeout=120)
+                                 "--filter", suite], timeout=120, capture_output=True, text=True)
+        output = result.stdout + result.stderr
+        sys.stdout.write(output)
         if result.returncode:
             raise SystemExit(result.returncode)
+        class_name = suite.rsplit(".", 1)[1]
+        completed = re.findall(r"^Test Case .+\." + re.escape(class_name) + r" test\w+\].+passed \(", output, re.MULTILINE)
+        if not completed:
+            raise SystemExit("No passing test case executed for " + suite)

@@ -57,10 +57,10 @@ extension TronLedgerTests {
         try await db.pool.write { try $0.execute(sql: "UPDATE tronHistoryCursors SET end=end+1 WHERE accountID='a1'") }
         await feed.release()
         await sync.waitForHistory(accountID: "a1")
-        try await Task.sleep(for: .milliseconds(100))
-        await OathDiagnostics.flush()
-        let reports = await sink.events().filter { $0.operationID == operation }
-        XCTAssertTrue(reports.contains { $0.error.domain == "OathDatabase.StoreError" && $0.error.message == "staleSync" })
+        let reported = try await sink.waitForEvent(operation: operation) {
+            $0.error.domain == "OathDatabase.StoreError" && $0.error.message == "staleSync"
+        }
+        XCTAssertTrue(reported, "The current conflict must reach this refresh's diagnostic stream")
         let failure = try await db.pool.read { try String.fetchOne($0, sql: "SELECT historyFailure FROM tronSync WHERE accountID='a1'") }
         XCTAssertEqual(failure, "storage")
         await sync.cancel()
