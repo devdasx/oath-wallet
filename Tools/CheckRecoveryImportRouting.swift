@@ -30,6 +30,16 @@ import OathBitcoin
             guard ElectrumMnemonic.kind(input) == .standard else { throw ProbeError.fixture }
             draft.replace(with: f.bip39)
             passed = !draft.receiveScan(input) && draft.text == f.bip39 && draft.submit() != nil
+        case "paste-url", "paste-json", "paste-address":
+            let input = args[3] == "paste-url" ? f.url : (args[3] == "paste-json" ? f.json : f.address)
+            guard ElectrumMnemonic.kind(input) == .standard else { throw ProbeError.fixture }
+            draft.replace(with: input)
+            let needsChoice = !draft.isElectrum && draft.submit() == nil
+            draft.selectFormat(.electrum)
+            passed = needsChoice && draft.isElectrum && draft.submit() == nil
+        case "legacy-hex":
+            draft.replace(with: String(repeating: "ab", count: 16))
+            passed = draft.electrumKind == .old && draft.isElectrum
         case "dual-choice":
             guard validator.verifiedPhrase(f.dual) != nil, try Aezeed.decode(f.dual).entropy.count == 16 else { throw ProbeError.fixture }
             draft.replace(with: f.dual)
