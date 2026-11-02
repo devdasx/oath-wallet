@@ -23,3 +23,5 @@ now iOS 15; the application's iOS 26 minimum is unchanged.
 The two pinned XCFrameworks include their matching device symbols. Xcode copies them into the archive. The release workflow checks the UUIDs of both archived frameworks and their dSYMs against the package provenance before uploading the IPA.
 
 To perform the same check on an archive, run `python3 Tools/CheckArchiveSymbols.py "/path/to/Oath.xcarchive"`.
+
+The SwiftProtobuf XCFramework uses the reviewed binaries with corrected resource metadata. Its privacy-manifest resource bundle has no executable. To reproduce the pinned distribution ZIP, download the packaging source URL from `provenance.json` and run `python3 repair_protobuf_resources.py original.zip distribution.zip`. The two resource Info.plists are the only changed members.

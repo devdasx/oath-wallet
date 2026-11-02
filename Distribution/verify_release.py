@@ -7,10 +7,15 @@ import subprocess
 from pathlib import Path
 
 
+def matches_release_tag(tag, version, build):
+    base = "v" + version
+    return tag == base or re.fullmatch(re.escape(base + "-build" + build) + r"(?:-r[1-9][0-9]*)?", tag) is not None
+
+
 def inspect_release(root, tag, version, build):
     if not re.fullmatch(r"[0-9]+\.[0-9]+\.[0-9]+", version):
         raise ValueError("Use a numeric three-part version")
-    if not re.fullmatch(r"[1-9][0-9]*", build) or tag not in {"v" + version, "v" + version + "-build" + build}:
+    if not re.fullmatch(r"[1-9][0-9]*", build) or not matches_release_tag(tag, version, build):
         raise ValueError("Tag must identify this version/build and build must be a positive integer")
     pbx = (root / "OathAtmosphere.xcodeproj/project.pbxproj").read_text()
     for key, expected in [("MARKETING_VERSION", version), ("CURRENT_PROJECT_VERSION", build)]:

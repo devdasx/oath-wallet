@@ -46,6 +46,13 @@ class ReleaseIdentityTests(unittest.TestCase):
         self.git("tag", "v4.1.3-build86")
         self.assertEqual(self.verify(tag="v4.1.3-build86")["build"], "86")
 
+    def test_archive_revision_is_bound_to_its_exact_version_and_build(self):
+        self.git("tag", "v4.1.3-build86-r2")
+        self.assertEqual(self.verify(tag="v4.1.3-build86-r2")["build"], "86")
+        for tag in ["v4.1.3-build87-r2", "v4.1.3-build86-r0", "v4.1.3-build86-r2/other"]:
+            with self.assertRaises(ValueError):
+                self.verify(tag=tag)
+
     def test_wrong_build(self):
         with self.assertRaises(ValueError): self.verify(build="87")
 

@@ -10,7 +10,16 @@ import subprocess
 def verify(archive):
     with (archive / "Info.plist").open("rb") as stream:
         application = plistlib.load(stream)["ApplicationProperties"]["ApplicationPath"]
-    frameworks = archive / "Products" / application / "Frameworks"
+    app = archive / "Products" / application
+    for bundle in app.rglob("*.bundle"):
+        info = bundle / "Info.plist"
+        if not info.is_file():
+            continue
+        with info.open("rb") as stream:
+            executable = plistlib.load(stream).get("CFBundleExecutable")
+        if executable and not (bundle / executable).is_file():
+            raise ValueError(f"{bundle.name} declares a missing executable")
+    frameworks = app / "Frameworks"
     provenance = Path(__file__).resolve().parents[1] / "Packages/WalletCore/provenance.json"
     artifacts = json.loads(provenance.read_text())["artifacts"]
     for name in ("WalletCore", "WalletCoreSwiftProtobuf"):
