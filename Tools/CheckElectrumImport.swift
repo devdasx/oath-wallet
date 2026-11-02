@@ -65,6 +65,16 @@ import OathDatabase
             check(duplicate.id == profile.id, "Reimport is idempotent")
             do { _ = try await vault.encryptedCloudBackup(walletID: profile.id.uuidString, password: "fixture-password"); preconditionFailure("Local-only seed entered cloud") } catch { check(true, "Cloud export cannot misencode Electrum as BIP39") }
         }
+        for (count, iteration) in [(12, 1581), (24, 2725)] {
+            let last = String(UnicodeScalar(0x4e00 + iteration % 512)!) + String(UnicodeScalar(0x5000 + iteration / 512)!)
+            let words = (0..<(count - 1)).map { String(UnicodeScalar(0x4e00 + $0)!) } + [last]
+            let input = words.joined(separator: " ")
+            let material = try ElectrumMnemonic.decode(input)
+            let profile = try await vault.addWallet(requestID: UUID(), importing: .init(phrase: input, language: "electrum", electrum: material))
+            let recovered = try await vault.recoveryMaterial(walletID: profile.id.uuidString, digits: pin)
+            let decoded = try ElectrumMnemonic.decode(recovered.words.joined(separator: " "))
+            check(decoded == material, "Recovered CJK two-factor words reproduce the saved cosigners")
+        }
         let overlap = fixtures.first { $0.name == "bip39_electrum_overlap" }!
         let overlapDraft = OathRecoveryPhraseDraft()
         overlapDraft.replace(with: overlap.phrase)
