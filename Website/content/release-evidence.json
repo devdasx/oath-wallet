@@ -1,8 +1,8 @@
 {
-  "version": "4.1.14",
-  "build": 98,
-  "source_commit": "c21cc32c275b51f2a6c32af4475b279bde59c946",
-  "reviewed_on": "2026-10-30",
+  "version": "5.0.0",
+  "build": 102,
+  "source_commit": "7f40ec1158237c9358a30cf127efb26eef16a7a0",
+  "reviewed_on": "2026-11-02",
   "files": [
     {
       "l": "Phrase",
@@ -10,12 +10,12 @@
       "path": "OathAtmosphere/Import/OathMnemonicValidator.swift",
       "what": "Checks the original word list and checksum locally. Electrum and aezeed use separate decoders.",
       "notes": [
-        "Source excerpt from 4.1.14 (98); follow the pinned file for complete context.",
-        "Lines 91–96. Source review is not an independent audit."
+        "Source excerpt from 5.0.0 (102). Follow the pinned file for its full context.",
+        "Lines 96–99."
       ],
-      "code": "    func verifiedPhrase(_ text: String) -> OathValidatedMnemonic? {\n        guard case .valid(let language) = validate(text) else { return nil }\n        return OathValidatedMnemonic(phrase: Self.words(in: text).joined(separator: \" \"), language: language)\n    }\n\n    private static func checksumMatches(_ indices: [Int]) -> Bool {\n",
-      "start": 91,
-      "end": 96
+      "code": "    func verifiedPhrase(_ text: String, explicitBIP39: Bool = false) -> OathValidatedMnemonic? {\n        guard case .valid(let language) = validate(text) else { return nil }\n        return OathValidatedMnemonic(phrase: Self.words(in: text).joined(separator: \" \"), language: language, explicitBIP39: explicitBIP39)\n    }\n",
+      "start": 96,
+      "end": 99
     },
     {
       "l": "Derive",
@@ -23,8 +23,8 @@
       "path": "OathAtmosphere/Wallet/OathWalletEngine.swift",
       "what": "New wallets use Wallet Core. Imports keep BIP39, Electrum and aezeed material distinct.",
       "notes": [
-        "Source excerpt from 4.1.14 (98); follow the pinned file for complete context.",
-        "Lines 35–42. Source review is not an independent audit."
+        "Source excerpt from 5.0.0 (102). Follow the pinned file for its full context.",
+        "Lines 35–42."
       ],
       "code": "    static func create(id: UUID = UUID()) throws -> OathWalletSecret {\n        guard let wallet = HDWallet(strength: 128, passphrase: \"\") else {\n            throw OathWalletError.unavailable\n        }\n        return OathWalletSecret(id: id, mnemonic: wallet.mnemonic, language: \"english\",\n                                createdAt: .now, backedUp: false)\n    }\n\n",
       "start": 35,
@@ -36,8 +36,8 @@
       "path": "OathAtmosphere/Wallet/OathInstallationSecurity.swift",
       "what": "Wraps stored vault data with installation-bound AES-GCM protection.",
       "notes": [
-        "Source excerpt from 4.1.14 (98); follow the pinned file for complete context.",
-        "Lines 61–69. Source review is not an independent audit."
+        "Source excerpt from 5.0.0 (102). Follow the pinned file for its full context.",
+        "Lines 61–69."
       ],
       "code": "    func seal(_ data: Data, context: String) throws -> Data {\n        try lock.withLock {\n            let record = try loadKey()\n            let sealed = try AES.GCM.seal(data, using: SymmetricKey(data: record.key),\n                                          authenticating: authenticationData(record.id, context: context))\n            guard let combined = sealed.combined else { throw OathInstallationSecurityError.invalidRecord }\n            return try JSONEncoder().encode(SealedRecord(version: 1, installationID: record.id, sealed: combined))\n        }\n    }\n",
       "start": 61,
@@ -49,8 +49,8 @@
       "path": "OathAtmosphere/Wallet/OathEVMSigning.swift",
       "what": "Checks wallet, network and sender identity before using local signing material.",
       "notes": [
-        "Source excerpt from 4.1.14 (98); follow the pinned file for complete context.",
-        "Lines 8–19. Source review is not an independent audit."
+        "Source excerpt from 5.0.0 (102). Follow the pinned file for its full context.",
+        "Lines 8–19."
       ],
       "code": "    static func signEVM(_ plan: EVMSendPlan, secret: OathWalletSecret, account: AccountRecord) throws -> EVMSignedSend {\n        try Task.checkCancellation()\n        guard account.walletID == secret.id.uuidString, account.networkID == plan.network.rawValue,\n              let chain=OathImportChain(rawValue:account.networkID),chain.isEVM,\n              try EVMSendIdentity.address(account.address) == plan.sender else { throw EVMSendError.wrongOwner }\n        if let material = secret.evmMultisig {\n            guard material.network == account.networkID, account.derivationPath == \"evm-multisig-v1\",\n                  let context = plan.multisig, try context.policy == material.policy() else { throw EVMSendError.wrongOwner }\n            var keys = try material.signers.map { try $0.signingKey() }\n            defer { for i in keys.indices { keys[i].resetBytes(in: 0..<keys[i].count) } }\n            return try EVMMultisigCrypto.sign(plan, keys: keys, executorKey: material.executorKey)\n        }\n",
       "start": 8,
@@ -62,8 +62,8 @@
       "path": "Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift",
       "what": "Uses AES-256-GCM and PBKDF2-HMAC-SHA256 with 600,000 rounds and a fresh salt.",
       "notes": [
-        "Source excerpt from 4.1.14 (98); follow the pinned file for complete context.",
-        "Lines 99–114. Source review is not an independent audit."
+        "Source excerpt from 5.0.0 (102). Follow the pinned file for its full context.",
+        "Lines 99–114."
       ],
       "code": "public enum BackupDocument {\n    public static let fileExtension = \"oathbackup\"\n    public static let maximumBytes = 1_048_576\n    private static let iterations: UInt32 = 600_000\n\n    struct Header: Codable, Sendable {\n        var format = \"org.oathwallet.encrypted-wallet\"\n        var version = 1\n        var cipher = \"AES-256-GCM\"\n        var kdf = \"PBKDF2-HMAC-SHA256\"\n        var passwordNormalization = \"NFC\"\n        var rounds = BackupDocument.iterations\n        var salt: Data\n    }\n    struct Envelope: Codable { var header: Header; var sealed: Data }\n\n",
       "start": 99,
@@ -75,8 +75,8 @@
       "path": "Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift",
       "what": "Rejects unsupported formats and incorrect passwords before returning recovery material.",
       "notes": [
-        "Source excerpt from 4.1.14 (98); follow the pinned file for complete context.",
-        "Lines 138–156. Source review is not an independent audit."
+        "Source excerpt from 5.0.0 (102). Follow the pinned file for its full context.",
+        "Lines 138–156."
       ],
       "code": "    public static func open(_ data: Data, password: String) throws -> BackupWallet {\n        try validate(password: password)\n        guard data.count <= maximumBytes else { throw CloudBackupError.invalidDocument }\n        let envelope: Envelope\n        do { envelope = try JSONDecoder().decode(Envelope.self, from: data) }\n        catch { OathDiagnostics.record(error); throw CloudBackupError.invalidDocument }\n        let h = envelope.header\n        guard h.format == \"org.oathwallet.encrypted-wallet\", (1...21).contains(h.version),\n              h.cipher == \"AES-256-GCM\", h.kdf == \"PBKDF2-HMAC-SHA256\",\n              h.passwordNormalization == \"NFC\",\n              h.rounds == iterations, h.salt.count == 32, envelope.sealed.count >= 28 else {\n            throw CloudBackupError.invalidDocument\n        }\n        let key = try derive(password, salt: h.salt)\n        var plaintext: Data\n        do {\n            plaintext = try AES.GCM.open(AES.GCM.SealedBox(combined: envelope.sealed),\n                                         using: key, authenticating: encoder().encode(h))\n        } catch { OathDiagnostics.record(error); throw CloudBackupError.authenticationFailed }\n",
       "start": 138,

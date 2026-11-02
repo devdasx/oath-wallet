@@ -1,6 +1,6 @@
 # BIP39 Passphrases and Electrum Seed Extensions in Oath
 
-Oath Editorial · Originally published 2026-08-30 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-08-30 · Updated November 2, 2026
 
 https://articles.oathwallet.org/add-bip39-passphrase-oath-wallet
 
@@ -8,7 +8,7 @@ A passphrase derives another wallet; it is not an app lock or backup-file passwo
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## BIP39 passphrase wallets
 
@@ -24,6 +24,6 @@ Keep the original words and correct extension together in a secure recovery plan
 
 ## Backup eligibility
 
-Eligible BIP39 passphrase backups encrypt the passphrase with the recovery payload. Electrum and aezeed wallets are excluded from iCloud backup in 4.1.14, so retain their original manual recovery material. Verify known public addresses before receiving funds.
+Eligible BIP39 passphrase backups encrypt the passphrase with the recovery payload. Electrum and aezeed wallets are excluded from iCloud backup in 5.0.0, so retain their original manual recovery material. Verify known public addresses before receiving funds.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).

@@ -1,6 +1,6 @@
 # Bitcoin Address Types and Recovery Scope in Oath
 
-Oath Editorial · Originally published 2026-09-11 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-09-11 · Updated November 2, 2026
 
 https://articles.oathwallet.org/bitcoin-settings-oath-address-types-indexes-complete-guide
 
@@ -8,7 +8,7 @@ Match the address type and imported key scope; changing the visible format does 
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Available address families
 
@@ -24,18 +24,18 @@ These are Bitcoin-specific recovery formats. Preserve the original seed extensio
 
 ## Unsupported recovery methods
 
-Silent Payments receiving and discovery are not supported in 4.1.14. Do not treat an sp1 destination as ordinary Taproot, and do not assume an old BRD-specific recovery menu or screenshot exists in this build. Keep the original wallet when the required account format is unsupported.
+Silent Payments receiving and discovery are not supported in 5.0.0. Do not treat an sp1 destination as ordinary Taproot, and do not assume an old BRD-specific recovery menu or screenshot exists in this build. Keep the original wallet when the required account format is unsupported.
 
 ## Before sending or receiving
 
 Confirm the exact network, full recipient address and required fee. Refresh and compare known addresses before relying on a restore. A published example address or screenshot is not a receiving address for your wallet.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).
 
 <!-- oath-walkthrough:start -->
 ## Bitcoin: know the address and recovery scope — visual walkthrough transcript
 
-Guidance checked against 4.1.14 (98) source on October 30, 2026. Included screenshots are historical examples. This is an illustrated guide, not a recording of a current App Store test.
+Guidance checked against 5.0.0 (102) source on November 2, 2026. Included screenshots are historical examples. This is an illustrated guide, not a recording of a current App Store test.
 
 ### 1. Match the address family
 
@@ -51,7 +51,7 @@ Change returns unspent value to an address controlled by the wallet. Generated a
 
 ### 4. Check current limits
 
-Silent Payments receiving and discovery are not supported in 4.1.14. Preserve the original format, account information and any required passphrase.
+Silent Payments receiving and discovery are not supported in 5.0.0. Preserve the original format, account information and any required passphrase.
 
 [Open the visual walkthrough](https://oathwallet.org/articles/bitcoin-settings-oath-address-types-indexes-complete-guide#visual-walkthrough)
 <!-- oath-walkthrough:end -->

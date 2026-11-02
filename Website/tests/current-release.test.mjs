@@ -16,14 +16,14 @@ function component(overrides={}) {
  return context.subject;
 }
 test('current source evidence agrees with the interactive code viewer and metadata',()=>{
- assert.equal(evidence.version,'4.1.14');assert.equal(evidence.build,98);
+ assert.equal(evidence.version,'5.0.0');assert.equal(evidence.build,102);
  assert.equal(data.security.reviewed_source_commit,evidence.source_commit);
  assert.equal(data.security.reviewed_on,evidence.reviewed_on);
  const files=JSON.parse(security.match(/const FILES = (\[[\s\S]*?\]);/)[1]);
  assert.deepEqual(files,evidence.files);assert.equal(files.length,6);
  for(const f of files){assert.ok(f.code.trim().length>60);assert.equal(f.code.trimEnd().split('\n').length <= f.end-f.start+1,true);assert.ok(f.start>0);}
  assert.ok(security.includes('const GH = "https://github.com/devdasx/oath-wallet/blob/'+evidence.source_commit+'/"') || security.includes("const GH = 'https://github.com/devdasx/oath-wallet/blob/"+evidence.source_commit+"/'"));
- assert.match(security,/October 30, 2026|30 October 2026/);
+ assert.match(security,/November 2, 2026|2 November 2026/);
  assert.doesNotMatch(security,/4\.0\.0|580cf943|210,000|passkey-backed/);
 });
 test('current guides agree across article text, HTML, feeds and modification dates',async()=>{
@@ -32,14 +32,14 @@ test('current guides agree across article text, HTML, feeds and modification dat
   const [html,md]=await Promise.all([read('public/articles/'+slug+'.html'),read('public/articles/'+slug+'.md')]);
   const a=data.articles.find(a=>a.url.endsWith('/'+slug));const item=feed.items.find(a=>a.url.endsWith('/'+slug));
   assert.ok(a&&item,slug);assert.equal(item.title,a.title);assert.equal(item.date_modified,a.updated_at);
-  assert.match(a.updated_at,/2026-10-28/);assert.match(html,/4\.1\.14/);assert.match(md,/4\.1\.14/);assert.match(item.content_html,/4\.1\.14/);
+  assert.match(a.updated_at,/2026-11-02/);assert.match(html,/5\.0\.0/);assert.match(md,/5\.0\.0/);assert.match(item.content_html,/5\.0\.0/);
   assert.match(html,/Current release guidance/);assert.ok(html.includes(evidence.source_commit));
   assert.doesNotMatch(html,/580cf943|docs\/AUDIT_SCOPE\.md|4\.0\.0/,slug+' has no retired citations, including structured metadata');
   assert.ok(html.includes(a.reading_minutes+' min read'),slug+' reading time agrees with the listing');
  }
 });
 test('help release and historical screenshots keep separate versions',()=>{
- for(const article of help.articles){assert.equal(article.app_version,'Oath 4.1.14');assert.equal(article.screenshot_version,'Oath 4.0.3');assert.ok(!article.tags.some(t=>t.includes('4.0.3')));}
+ for(const article of help.articles){assert.equal(article.app_version,'Oath 5.0.0');assert.equal(article.screenshot_version,'Oath 4.0.3');assert.ok(!article.tags.some(t=>t.includes('4.0.3')));}
 });
 test('current release copy keeps upload separate from Apple review',async()=>{
  // Network guides describe installed-app availability instead of release uploads;
@@ -47,10 +47,11 @@ test('current release copy keeps upload separate from Apple review',async()=>{
  const copies=await Promise.all(['public/security.html','public/security.md','public/about.html',
   'public/about.md','src/help/render.js'].map(read));
  for(const copy of copies){
-  assert.doesNotMatch(copy,/Waiting for Review|Build 98 was submitted|4\.1\.14 \(86\)/);
-  assert.match(copy,/no .*upload|no Apple upload|not.*upload/i);
+  assert.doesNotMatch(copy,/Waiting for Review|Build 102 was submitted|5\.0\.0 \(86\)/);
+  assert.match(copy,/release record identifies the tagged source/i);
  }
- assert.match(data.facts.source_release_status,/no review submission|not submitted for review/i);
+ assert.equal(data.facts.source_version,'5.0.0 (102)');
+ assert.match(data.facts.source_release_status,/build 102.*GitHub release/i);
 });
 test('copy reports success only after the clipboard accepts text',async()=>{
  let resolve;const pending=new Promise(r=>resolve=r);let copied;

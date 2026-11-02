@@ -1,6 +1,6 @@
 # Lock Oath Down: Passcode, Biometrics and Auto-Lock
 
-Oath Editorial · Originally published 2026-08-31 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-08-31 · Updated November 2, 2026
 
 https://articles.oathwallet.org/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy
 
@@ -8,11 +8,11 @@ Choose access controls deliberately and keep a separate recovery method.
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## App passcode
 
-The app passcode controls local access. In 4.1.14, enabled passcode protection derives a wrapping key using PBKDF2-HMAC-SHA256 with 600,000 rounds. It does not replace recovery words or decrypt an iCloud file protected with a different backup password.
+The app passcode controls local access. In 5.0.0, enabled passcode protection derives a wrapping key using PBKDF2-HMAC-SHA256 with 600,000 rounds. It does not replace recovery words or decrypt an iCloud file protected with a different backup password.
 
 ## Biometrics
 
@@ -26,4 +26,4 @@ Select the delay offered in Security settings: immediately, one minute, five min
 
 Use the app-switcher privacy setting where available, and protect the phone’s own passcode. Do not erase or reinstall as a way to fix a forgotten recovery credential: removal discards the installation key. Verify an independent supported backup first.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).

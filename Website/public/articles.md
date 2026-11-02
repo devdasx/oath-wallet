@@ -2,11 +2,17 @@
 
 Current product guidance and dated editorial archives.
 
+## [Binance Lost $6.3 Billion. Who Signed the Withdrawals?](https://articles.oathwallet.org/binance-withdrawals-who-signed)
+
+Most of the money moved in about twenty minutes. The blockchain recorded valid instructions. The harder question was who had the power to give them.
+
+English · Published 2026-11-01 · Updated 2026-11-01
+
 ## [The Missing Link Between Open Source and the Wallet on Your Phone](https://articles.oathwallet.org/open-source-wallets-verifiable-builds)
 
 What connects public source code to the app you install? A practical guide to reproducible builds, signed releases, App Store approval, and Oath’s current evidence.
 
-English · Published 2026-10-19 · Updated 2026-10-27
+English · Published 2026-10-19 · Updated 2026-10-28
 
 ## [Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call](https://oathwallet.org/articles/bitget-388-million-hack-self-custody)
 
@@ -18,79 +24,19 @@ English · Published 2026-09-28 · Updated 2026-09-28
 
 Match the address type and imported key scope; changing the visible format does not change the blockchain.
 
-English · Published 2026-09-11 · Updated 2026-10-27
+English · Published 2026-09-11 · Updated 2026-11-02
 
 ## [WalletConnect in Oath: Review the Request, Control the Permission](https://oathwallet.org/articles/why-oath-has-no-swaps-perps-web3-walletconnect)
 
 Oath now supports WalletConnect. Understand the difference between a session, a signature and an on-chain approval.
 
-English · Published 2026-09-04 · Updated 2026-10-27
+English · Published 2026-09-04 · Updated 2026-11-02
 
 ## [Coldcard’s Weak-Seed Crisis: Complexity Is Not the Same as Security](https://oathwallet.org/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security)
 
 The 2026 Coldcard incident did not remotely compromise the devices. It exposed something more fundamental: a sophisticated enclosure cannot protect a seed that was predictable at birth.
 
 English · Published 2026-09-03 · Updated 2026-09-03
-
-## [Add a Custom Token Without Trusting Its Name or Symbol](https://oathwallet.org/articles/add-custom-token-without-trusting-name-symbol)
-
-Add a token by the identity that matters—mainnet plus contract or mint address—then understand what names, symbols, decimals, logos, and prices can and cannot prove.
-
-English · Published 2026-08-31 · Updated 2026-08-31
-
-## [Lock Oath Down: Passcode, Biometrics and Auto-Lock](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)
-
-Choose access controls deliberately and keep a separate recovery method.
-
-English · Published 2026-08-31 · Updated 2026-10-27
-
-## [Oath’s Current Security Model: Local Keys and Explicit Network Boundaries](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)
-
-Understand the protected local vault, password-encrypted backups, and what public network requests reveal.
-
-English · Published 2026-08-31 · Updated 2026-10-27
-
-## [Receive Crypto Safely: Match the Network and Address](https://oathwallet.org/articles/receive-crypto-safely-network-address-qr-requested-amounts)
-
-Use the address displayed for your selected wallet and exact asset network.
-
-English · Published 2026-08-31 · Updated 2026-10-27
-
-## [Why Bitcoin Receiving Addresses Change](https://oathwallet.org/articles/why-bitcoin-wallets-generate-fresh-receiving-addresses)
-
-A fresh address can belong to the same supported HD wallet; verify the wallet and network.
-
-English · Published 2026-08-30 · Updated 2026-10-27
-
-## [One Wallet, Many Mainnets: How Oath Keeps Accounts and Networks Separate](https://oathwallet.org/articles/one-wallet-many-mainnets-accounts-networks-separate)
-
-One Oath wallet can manage many mainnet identities, but every address, asset, balance, fee, nonce, and transaction remains attached to its exact network.
-
-English · Published 2026-08-30 · Updated 2026-08-30
-
-## [Recovery Phrase, Private Key or Encrypted Backup: Choose the Right Import](https://oathwallet.org/articles/recovery-phrase-private-key-icloud-iphone-transfer-import)
-
-Match the recovery format, network and required passphrase to the original wallet.
-
-English · Published 2026-08-30 · Updated 2026-10-27
-
-## [Where Crypto Network Fees Actually Go](https://oathwallet.org/articles/where-crypto-network-fees-actually-go)
-
-A network fee is not one universal charge. Follow it through miner rewards, validator tips, burns, L1 settlement, storage funds, and protocol pools—and see exactly what Oath does with none of it.
-
-English · Published 2026-08-30 · Updated 2026-08-30
-
-## [Backup and Restore in Oath: Files, Passwords and Recovery Words](https://oathwallet.org/articles/backup-restore-oath-wallet)
-
-Choose a recovery method supported by 4.1.14 and verify it before replacing or erasing your phone.
-
-English · Published 2026-08-30 · Updated 2026-10-27
-
-## [BIP39 Passphrases and Electrum Seed Extensions in Oath](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)
-
-A passphrase derives another wallet; it is not an app lock or backup-file password.
-
-English · Published 2026-08-30 · Updated 2026-10-27
 
 ## [Coldcard-এর দুর্বল-সিড সংকট: জটিলতা নিরাপত্তার সমার্থক নয়](https://oathwallet.org/bn/articles/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security)
 
@@ -182,3 +128,62 @@ Trong sự cố Coldcard năm 2026, các thiết bị không hề bị xâm nh�
 
 Tiếng Việt · Published 2026-09-03 · Updated 2026-09-03
 
+## [Add a Custom Token Without Trusting Its Name or Symbol](https://oathwallet.org/articles/add-custom-token-without-trusting-name-symbol)
+
+Add a token by the identity that matters—mainnet plus contract or mint address—then understand what names, symbols, decimals, logos, and prices can and cannot prove.
+
+English · Published 2026-08-31 · Updated 2026-08-31
+
+## [Lock Oath Down: Passcode, Biometrics and Auto-Lock](https://oathwallet.org/articles/lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy)
+
+Choose access controls deliberately and keep a separate recovery method.
+
+English · Published 2026-08-31 · Updated 2026-11-02
+
+## [Oath’s Current Security Model: Local Keys and Explicit Network Boundaries](https://oathwallet.org/articles/what-never-leaves-iphone-oath-self-custody-security-model)
+
+Understand the protected local vault, password-encrypted backups, and what public network requests reveal.
+
+English · Published 2026-08-31 · Updated 2026-11-02
+
+## [Receive Crypto Safely: Match the Network and Address](https://oathwallet.org/articles/receive-crypto-safely-network-address-qr-requested-amounts)
+
+Use the address displayed for your selected wallet and exact asset network.
+
+English · Published 2026-08-31 · Updated 2026-11-02
+
+## [Why Bitcoin Receiving Addresses Change](https://oathwallet.org/articles/why-bitcoin-wallets-generate-fresh-receiving-addresses)
+
+A fresh address can belong to the same supported HD wallet; verify the wallet and network.
+
+English · Published 2026-08-30 · Updated 2026-11-02
+
+## [One Wallet, Many Mainnets: How Oath Keeps Accounts and Networks Separate](https://oathwallet.org/articles/one-wallet-many-mainnets-accounts-networks-separate)
+
+One Oath wallet can manage many mainnet identities, but every address, asset, balance, fee, nonce, and transaction remains attached to its exact network.
+
+English · Published 2026-08-30 · Updated 2026-08-30
+
+## [Recovery Phrase, Private Key or Encrypted Backup: Choose the Right Import](https://oathwallet.org/articles/recovery-phrase-private-key-icloud-iphone-transfer-import)
+
+Match the recovery format, network and required passphrase to the original wallet.
+
+English · Published 2026-08-30 · Updated 2026-11-02
+
+## [Where Crypto Network Fees Actually Go](https://oathwallet.org/articles/where-crypto-network-fees-actually-go)
+
+A network fee is not one universal charge. Follow it through miner rewards, validator tips, burns, L1 settlement, storage funds, and protocol pools—and see exactly what Oath does with none of it.
+
+English · Published 2026-08-30 · Updated 2026-08-30
+
+## [Backup and Restore in Oath: Files, Passwords and Recovery Words](https://oathwallet.org/articles/backup-restore-oath-wallet)
+
+Choose a recovery method supported by 5.0.0 and verify it before replacing or erasing your phone.
+
+English · Published 2026-08-30 · Updated 2026-11-02
+
+## [BIP39 Passphrases and Electrum Seed Extensions in Oath](https://oathwallet.org/articles/add-bip39-passphrase-oath-wallet)
+
+A passphrase derives another wallet; it is not an app lock or backup-file password.
+
+English · Published 2026-08-30 · Updated 2026-11-02

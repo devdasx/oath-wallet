@@ -1,6 +1,6 @@
 # Oath’s Current Security Model: Local Keys and Explicit Network Boundaries
 
-Oath Editorial · Originally published 2026-08-31 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-08-31 · Updated November 2, 2026
 
 https://articles.oathwallet.org/what-never-leaves-iphone-oath-self-custody-security-model
 
@@ -8,11 +8,11 @@ Understand the protected local vault, password-encrypted backups, and what publi
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Local credentials
 
-The 4.1.14 source keeps recovery input and signing material in an authenticated AES-GCM vault. Storage uses device-only Keychain items plus an installation key in a protected, backup-excluded app-container file. When enabled, the app passcode protects the vault key with PBKDF2-HMAC-SHA256 using 600,000 rounds.
+The 5.0.0 source keeps recovery input and signing material in an authenticated AES-GCM vault. Storage uses device-only Keychain items plus an installation key in a protected, backup-excluded app-container file. When enabled, the app passcode protects the vault key with PBKDF2-HMAC-SHA256 using 600,000 rounds.
 
 ## What network services receive
 
@@ -30,4 +30,4 @@ User-approved dApp connections can share public accounts and signatures through 
 
 The public release has no operator upload path for wallet credentials, recovery typing, wallet records or diagnostics. Its source, archive and upload checks are documented. They are not an independent audit or a proof that compromised devices cannot expose secrets.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).

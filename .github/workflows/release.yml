@@ -34,6 +34,7 @@ jobs:
     outputs:
       source_commit: ${{ steps.source.outputs.commit }}
     env:
+      DEVELOPER_DIR: /Applications/Xcode_27.1.app/Contents/Developer
       VERSION: ${{ inputs.version }}
       BUILD: ${{ inputs.build }}
       SOURCE_TAG: ${{ inputs.source_tag || format('v{0}', inputs.version) }}
@@ -61,7 +62,9 @@ jobs:
           command -v gitleaks >/dev/null || brew install gitleaks
           python3 Tools/ValidatePublicRelease.py --scan
           python3 Tools/CheckDiagnosticsCoverage.py
-          swift test --package-path Packages/OathDiagnostics
+          python3 Tools/CheckLocalizationCatalog.py
+          swift test --package-path Packages/OathDiagnostics --build-system native --jobs 4
+          python3 Tools/CheckScanner.py --connections
       - name: Compile without simulator or phone
         working-directory: release-app
         run: |
@@ -87,6 +90,7 @@ jobs:
       attestations: write
     timeout-minutes: 120
     env:
+      DEVELOPER_DIR: /Applications/Xcode_27.1.app/Contents/Developer
       VERSION: ${{ inputs.version }}
       BUILD: ${{ inputs.build }}
       SOURCE_TAG: ${{ inputs.source_tag || format('v{0}', inputs.version) }}

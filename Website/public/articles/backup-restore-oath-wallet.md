@@ -1,14 +1,14 @@
 # Backup and Restore in Oath: Files, Passwords and Recovery Words
 
-Oath Editorial · Originally published 2026-08-30 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-08-30 · Updated November 2, 2026
 
 https://articles.oathwallet.org/backup-restore-oath-wallet
 
-Choose a recovery method supported by 4.1.14 and verify it before replacing or erasing your phone.
+Choose a recovery method supported by 5.0.0 and verify it before replacing or erasing your phone.
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Choose the recovery material
 
@@ -20,7 +20,7 @@ Open Settings → Backup, or the selected wallet’s backup section. Choose a se
 
 ## Know what is excluded
 
-Electrum and aezeed wallets are not eligible for iCloud backup in 4.1.14. Recently Deleted wallets are excluded from Back Up All Wallets. Keep manual recovery material for excluded wallets. A backup does not reproduce every cached balance, transaction note or app setting.
+Electrum and aezeed wallets are not eligible for iCloud backup in 5.0.0. Recently Deleted wallets are excluded from Back Up All Wallets. Keep manual recovery material for excluded wallets. A backup does not reproduce every cached balance, transaction note or app setting.
 
 ## Restore and verify
 
@@ -30,4 +30,4 @@ Enable iCloud Drive for the Apple Account holding the file. Choose Restore from 
 
 Oath cannot reset a forgotten backup password. If the original wallet still opens, create a new supported backup and retain its password. Removing the app does not delete separate iCloud files. Do not erase the old phone until the replacement wallet and recovery material are verified.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).

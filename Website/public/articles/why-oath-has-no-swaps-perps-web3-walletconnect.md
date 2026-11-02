@@ -1,6 +1,6 @@
 # WalletConnect in Oath: Review the Request, Control the Permission
 
-Oath Research · Originally published 2026-09-04 · Updated October 30, 2026
+Oath Research · Originally published 2026-09-04 · Updated November 2, 2026
 
 https://articles.oathwallet.org/why-oath-has-no-swaps-perps-web3-walletconnect
 
@@ -8,11 +8,11 @@ Oath now supports WalletConnect. Understand the difference between a session, a 
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## What changed
 
-Earlier Oath versions did not include WalletConnect. That older product boundary no longer describes 4.1.14: supported dApps can connect through encrypted WalletConnect relay sessions. Use the current connection screens and supported-chain guidance.
+Earlier Oath versions did not include WalletConnect. That older product boundary no longer describes 5.0.0: supported dApps can connect through encrypted WalletConnect relay sessions. Use the current connection screens and supported-chain guidance.
 
 ## Connection is not unlimited approval
 
@@ -30,4 +30,4 @@ Disconnecting closes a session. Existing on-chain token or account permissions c
 
 A legitimate connection uses public accounts and requested signatures, not your recovery phrase or private key. Never type recovery material into a dApp, support message or web-based troubleshooting form.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).

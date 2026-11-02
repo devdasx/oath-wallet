@@ -1,6 +1,6 @@
 # Recovery Phrase, Private Key or Encrypted Backup: Choose the Right Import
 
-Oath Editorial · Originally published 2026-08-30 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-08-30 · Updated November 2, 2026
 
 https://articles.oathwallet.org/recovery-phrase-private-key-icloud-iphone-transfer-import
 
@@ -8,7 +8,7 @@ Match the recovery format, network and required passphrase to the original walle
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Recovery phrase
 
@@ -24,10 +24,10 @@ Choose Import private key and the matching network. Ethereum & EVM groups compat
 
 ## iCloud backup
 
-Restore an eligible .oathbackup file with the password that encrypted it. Keep iCloud Drive available for download. Electrum and aezeed wallets are excluded from iCloud export in 4.1.14. The old passkey and nearby-device transfer instructions are not the current flow.
+Restore an eligible .oathbackup file with the password that encrypted it. Keep iCloud Drive available for download. Electrum and aezeed wallets are excluded from iCloud export in 5.0.0. The old passkey and nearby-device transfer instructions are not the current flow.
 
 ## Confirm the result
 
 Compare a known receiving address on the original network. Allow balances and history to refresh. If it differs, stop and check the original format, account path and passphrase before deleting the source wallet or assuming funds are missing.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).

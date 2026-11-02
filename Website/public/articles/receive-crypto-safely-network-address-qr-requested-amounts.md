@@ -1,6 +1,6 @@
 # Receive Crypto Safely: Match the Network and Address
 
-Oath Editorial · Originally published 2026-08-31 · Updated October 30, 2026
+Oath Editorial · Originally published 2026-08-31 · Updated November 2, 2026
 
 https://articles.oathwallet.org/receive-crypto-safely-network-address-qr-requested-amounts
 
@@ -8,7 +8,7 @@ Use the address displayed for your selected wallet and exact asset network.
 
 ## Current release guidance
 
-Checked against [Oath 4.1.14 (98) source](https://github.com/devdasx/oath-wallet/tree/c21cc32c275b51f2a6c32af4475b279bde59c946). Build 98 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/7f40ec1158237c9358a30cf127efb26eef16a7a0). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
 
 ## Select the wallet and network
 
@@ -20,10 +20,10 @@ Use the app’s copy action or QR code. Compare the complete destination on trus
 
 ## Understand address types
 
-Bitcoin formats depend on the imported material. A fresh receiving address can belong to the same wallet. Silent Payments receiving and discovery are not supported in 4.1.14; old sp1 examples are not current setup instructions.
+Bitcoin formats depend on the imported material. A fresh receiving address can belong to the same wallet. Silent Payments receiving and discovery are not supported in 5.0.0; old sp1 examples are not current setup instructions.
 
 ## Confirm the deposit
 
 Check the transaction on the correct network and allow the app to refresh. A QR code or successful address copy does not prove that a transfer occurred. Never send funds to an address shown only in a help screenshot.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0).
