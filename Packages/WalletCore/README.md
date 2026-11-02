@@ -1,6 +1,6 @@
 # Repaired Wallet Core distribution
 
-Oath 4.1.15 (100) selects Wallet Core 4.8.4 with eight reviewed source repairs.
+This source selects Wallet Core 4.8.4 with ten reviewed source repairs.
 The upstream source pin is `d40d24a63d92619167903369308bf0e2f7eb3a59`.
 [The public security-review repository](https://github.com/devdasx/oath-wallet-security-review)
 contains the patches, exact input pins, build scripts and before/after evidence.
@@ -8,7 +8,7 @@ contains the patches, exact input pins, build scripts and before/after evidence.
 
 The repairs cover dependency constructor validation, extended-key validation,
 entropy cleanup, aliased buffer append, stale result-wrapper state, and rejected
-serialized signing/planning input. Findings distinguish dependency defects from
+serialized signing/planning input. The Swift path overlay also preserves exact paths across JSON round trips and safely rejects unrepresentable indices. Findings distinguish dependency defects from
 established application reachability. They do not imply an independent audit,
 whole-wallet completion or verification of an installed App Store binary.
 

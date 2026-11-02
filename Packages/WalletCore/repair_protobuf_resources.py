@@ -5,7 +5,10 @@ from pathlib import Path
 import plistlib
 from zipfile import ZIP_STORED, ZipFile
 
-ORIGINAL_SHA256 = "c63dbf567c42d83c4939ca06c85249ce17fb3d7762fba778971c35f160098f9f"
+SOURCE_CHECKSUMS = {
+    "c63dbf567c42d83c4939ca06c85249ce17fb3d7762fba778971c35f160098f9f",
+    "200f992328eed16a72b425cb3539a6468d67996200bc67bf5a68c9641c52ac5f",
+}
 RESOURCE_PLISTS = {
     f"WalletCoreSwiftProtobuf.xcframework/{platform}/WalletCoreSwiftProtobuf.framework/WalletCoreSwiftProtobuf.bundle/Info.plist"
     for platform in ("ios-arm64", "ios-arm64_x86_64-simulator")
@@ -16,7 +19,7 @@ RUNTIME_VERSION = "1.29.0"
 
 
 def repair(source, output):
-    if hashlib.sha256(source.read_bytes()).hexdigest() != ORIGINAL_SHA256:
+    if hashlib.sha256(source.read_bytes()).hexdigest() not in SOURCE_CHECKSUMS:
         raise ValueError("Unexpected source XCFramework checksum")
     with ZipFile(source) as original, ZipFile(output, "x", compression=ZIP_STORED) as result:
         if not (RESOURCE_PLISTS | FRAMEWORK_PLISTS).issubset(original.namelist()):

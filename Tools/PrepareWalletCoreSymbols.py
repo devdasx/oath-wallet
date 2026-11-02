@@ -16,16 +16,16 @@ import urllib.request
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
-VERSION = "4.8.4-oath-review1"
-RELEASE_BASE = "https://github.com/devdasx/oath-wallet-security-review/releases/download/review-4.1.15-build100-progress19"
+VERSION = "4.8.4-oath-review2"
+RELEASE_BASE = "https://github.com/devdasx/oath-wallet-security-review/releases/download/walletcore-4.8.4-swift-paths-1"
 ASSETS = {
     "WalletCore": (
-        "225c99906b3ba08474e4453ba05e9d6f7ed9a332603836bcac159009cf963dc1",
-        "08FFD60A-E21D-354B-AD70-C02731D58624",
+        "67cdbfd8d605c82ae987baa29670e7488fc6508448ec136aadaecfa0add8f5e3",
+        "1BD26DBD-B126-3633-BD96-2154AECD901F",
     ),
     "WalletCoreSwiftProtobuf": (
-        "004153aa53ab67321016e2372a806972405ea3e3c08e902a0dfa70046b2074f7",
-        "2C12FA7A-E54F-3CFB-9BA1-3F11EA73A18D",
+        "3cdbbddce7131dec983c7f030cda9786975ae4bf159dc48245b8b314e1f0aa48",
+        "C59AEFE9-8371-3A07-ADBE-9D9850B39C7F",
     ),
 }
 
