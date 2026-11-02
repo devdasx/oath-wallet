@@ -54,7 +54,7 @@ enum OathWalletEngine {
             return OathWalletSecret(id: id, mnemonic: Aezeed.canonical(phrase.phrase), language: "english",
                                     createdAt: .now, backedUp: true, aezeed: decoded, imported: true)
         }
-        guard !Aezeed.recognizes(phrase.phrase),
+        guard phrase.explicitBIP39 || !Aezeed.recognizes(phrase.phrase),
               let verified = OathMnemonicValidator.bundled?.verifiedPhrase(phrase.phrase),
               verified.language == phrase.language else { throw OathWalletError.invalidPhrase }
         return OathWalletSecret(id: id, mnemonic: verified.phrase, language: verified.language,

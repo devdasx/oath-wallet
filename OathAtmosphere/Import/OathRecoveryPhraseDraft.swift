@@ -3,14 +3,47 @@ import OathBitcoin
 import Foundation
 import Observation
 
+enum OathRecoveryFormat: String, Hashable {
+    case aezeed = "aezeed"
+    case bip39 = "BIP-39"
+    case electrum = "Electrum"
+}
+
 /// Recovery input stays in this local editor until the user confirms an import.
 @MainActor @Observable final class OathRecoveryPhraseDraft {
-    var text = ""
-    var preferElectrum = false
+    var text = "" {
+        didSet { if oldValue != text { preferredFormat = nil } }
+    }
+    private(set) var preferredFormat: OathRecoveryFormat?
     var electrumKind: ElectrumSeedKind? { ElectrumMnemonic.kind(text) }
-    var hasAmbiguousFormat: Bool { electrumKind != nil && validator?.verifiedPhrase(text) != nil && !isAezeed }
-    var isElectrum: Bool { !isAezeed && electrumKind != nil && (!hasAmbiguousFormat || preferElectrum) }
-    var isAezeed: Bool { Aezeed.recognizes(text) }
+
+    var matchingFormats: [OathRecoveryFormat] {
+        guard !inputRejected, !isComposing, let validator else { return [] }
+        var formats: [OathRecoveryFormat] = []
+        // Keep the existing defaults. Recognition identifies candidates; it cannot tell which wallet the user intended.
+        if Aezeed.recognizes(text) { formats.append(.aezeed) }
+        if validator.verifiedPhrase(text) != nil { formats.append(.bip39) }
+        if electrumKind != nil { formats.append(.electrum) }
+        return formats
+    }
+
+    func requiresExplicitChoice(in formats: [OathRecoveryFormat]) -> Bool {
+        formats == [.electrum] && !ElectrumMnemonic.recognizesScannedPhrase(text)
+    }
+
+    func selectedFormat(in formats: [OathRecoveryFormat]) -> OathRecoveryFormat? {
+        if let preferredFormat, formats.contains(preferredFormat) { return preferredFormat }
+        return requiresExplicitChoice(in: formats) ? nil : formats.first
+    }
+
+    func selectFormat(_ format: OathRecoveryFormat?) {
+        if let format, !matchingFormats.contains(format) { return }
+        preferredFormat = format
+    }
+
+    var hasAmbiguousFormat: Bool { matchingFormats.count > 1 }
+    var isElectrum: Bool { selectedFormat(in: matchingFormats) == .electrum }
+    var isAezeed: Bool { selectedFormat(in: matchingFormats) == .aezeed }
     var selection = NSRange(location: 0, length: 0)
     var attemptedImport = false
     var inputRejected = false
@@ -53,21 +86,21 @@ import Observation
 
     func submit() -> OathValidatedMnemonic? {
         attemptedImport = true
-        guard !inputRejected, !isComposing, !isAezeed, !isElectrum else { return nil }
-        return validator?.verifiedPhrase(text)
+        guard selectedFormat(in: matchingFormats) == .bip39 else { return nil }
+        return validator?.verifiedPhrase(text, explicitBIP39: preferredFormat == .bip39)
     }
 
     /// QR input accepts the same standard as typed/pasted input, never a URL,
     /// an address, an arbitrary JSON object, or an unchecked phrase.
     func receiveScan(_ payload: String) -> Bool {
-        guard Aezeed.recognizes(payload) || ElectrumMnemonic.kind(payload) != nil || validator?.verifiedPhrase(payload) != nil else { return false }
+        guard Aezeed.recognizes(payload) || ElectrumMnemonic.recognizesScannedPhrase(payload) || validator?.verifiedPhrase(payload) != nil else { return false }
         replace(with: payload)
         return true
     }
 
     func clear() {
         text = ""
-        preferElectrum = false
+        preferredFormat = nil
         selection = NSRange(location: 0, length: 0)
         attemptedImport = false
         inputRejected = false

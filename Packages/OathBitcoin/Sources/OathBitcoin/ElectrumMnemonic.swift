@@ -87,6 +87,18 @@ public enum ElectrumMnemonic {
         if hash.hasPrefix("102") { return .twoFactorSegwit }
         return nil
     }
+    /// A version prefix also matches some URLs, JSON and public addresses. The scanner
+    /// accepts mnemonic-shaped input; explicit Electrum decoding retains its native semantics.
+    public static func recognizesScannedPhrase(_ text: String) -> Bool {
+        guard let kind = kind(text) else { return false }
+        if kind == .old { return true } // Legacy word sequences or 16/32 bytes of hex entropy.
+        let plain = text.decomposedStringWithCompatibilityMapping.trimmingCharacters(in: .whitespacesAndNewlines)
+        let wordCharacters = CharacterSet.alphanumerics.union(.nonBaseCharacters)
+        let allowed = wordCharacters.union(.whitespacesAndNewlines)
+        guard !plain.isEmpty, plain.unicodeScalars.allSatisfy(allowed.contains) else { return false }
+        return plain.contains(where: \.isWhitespace) || plain.unicodeScalars.allSatisfy { isCJK($0.value) }
+    }
+
     public static func allowsPassphrase(_ text: String) -> Bool {
         guard let kind = kind(text) else { return false }
         return kind != .old && !(kind == .twoFactor && text.split(whereSeparator: \.isWhitespace).count >= 20)

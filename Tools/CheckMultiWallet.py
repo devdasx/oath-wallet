@@ -387,6 +387,18 @@ extension OathWalletEngine {
     }
 }
 """)
+    if "--aezeed" in sys.argv or "--electrum" in sys.argv:
+        # Use the shipped descriptor builder for these real Bitcoin receive tests.
+        # Its mnemonic-to-seed dependency is the CommonCrypto BIP39 host adapter above.
+        generated = sources / "FixtureDerivation.swift"
+        text = generated.read_text()
+        shipped = (root / "OathAtmosphere/Wallet/OathBitcoinWallet.swift").read_text()
+        signature = "    static func bitcoinDescriptor(for secret:"
+        def descriptor_method(code):
+            start = code.index(signature)
+            end = code.index("\n    }\n", start) + len("\n    }")
+            return code[start:end]
+        generated.write_text(text.replace(descriptor_method(text), descriptor_method(shipped), 1))
     (sources / "FixturePublicNetworking.swift").write_text("""
 import OathAnkr
 import Foundation
@@ -718,7 +730,7 @@ let package = Package(
     ])], swiftLanguageModes: [.v6]
 )
 ''' % (json.dumps(str(root / "Packages/OathDatabase")), json.dumps(str(root / "Packages/OathCloudBackup")), json.dumps(str(root / "Packages/OathMarketData")), json.dumps(str(root / "Packages/OathBitcoin")), json.dumps(str(root / "Packages/OathWalletHandoff")), json.dumps(str(root / "Packages/OathAezeed"))))
-    environment = dict(os.environ, OATH_ELECTRUM_FIXTURES=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/electrum-reference.json"), OATH_AEZEED_FIXTURES=str(root / "Packages/OathAezeed/Tests/OathAezeedTests/Fixtures/lnd-production.json"), OATH_TEST_WORDLISTS=str(root / "OathApp/Resources/BIP39"),
+    environment = dict(os.environ, OATH_ELECTRUM_FIXTURES=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/electrum-reference.json"), OATH_AEZEED_FIXTURES=str(root / "Packages/OathAezeed/Tests/OathAezeedTests/Fixtures/lnd-production.json"), OATH_TEST_WORDLISTS=str(root / "OathApp/Resources/BIP39"), OATH_OVERLAP_FIXTURE=str(root / "Tools/Fixtures/RecoveryFormatOverlap.json"),
                        OATH_TEST_LITECOIN_VECTORS=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/litecoin-vectors.json"),
                        OATH_TEST_DOGECOIN_VECTORS=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/dogecoin-vectors.json"))
     subprocess.run(["swift", "run", "--build-system", "native", "--package-path", str(work),

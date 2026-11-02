@@ -8,6 +8,7 @@ import CryptoKit
 struct OathValidatedMnemonic: Sendable {
     let phrase: String
     let language: String
+    var explicitBIP39 = false
     var aezeed: AezeedMaterial? = nil
     var electrum: ElectrumSeedMaterial? = nil
 }
@@ -88,9 +89,9 @@ struct OathMnemonicValidator: Sendable {
         return .checksum
     }
 
-    func verifiedPhrase(_ text: String) -> OathValidatedMnemonic? {
+    func verifiedPhrase(_ text: String, explicitBIP39: Bool = false) -> OathValidatedMnemonic? {
         guard case .valid(let language) = validate(text) else { return nil }
-        return OathValidatedMnemonic(phrase: Self.words(in: text).joined(separator: " "), language: language)
+        return OathValidatedMnemonic(phrase: Self.words(in: text).joined(separator: " "), language: language, explicitBIP39: explicitBIP39)
     }
 
     private static func checksumMatches(_ indices: [Int]) -> Bool {
