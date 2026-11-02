@@ -64,6 +64,32 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
         _ = try await db.transitionSend("send", from: "signed", to: "broadcast")
         return (db, plan, signed)
     }
+    func testRecoveryRejectsSignedBytesForAnotherPaymentUsingTheSameInputs() async throws {
+        let (db, plan, approved) = try await fixture(.bitcoin)
+        let alternateWallet = try plan.chain.wallet(seed: Data(repeating: 9, count: 32))
+        let otherAddress = try BitcoinKeys.addresses(branch: alternateWallet.branches[0], range: 0..<1)[0]
+        let alternate = try BitcoinSendPlan.make(coins: plan.coins, recipient: otherAddress.address,
+            amount: plan.requestedAmount, change: plan.change, ratePerKVByte: plan.ratePerKVByte,
+            chain: plan.chain, options: plan.options)
+        let substituted = try sign(alternate)
+        XCTAssertNotEqual(substituted.txid, approved.txid)
+        XCTAssertNotEqual(alternate.recipient, plan.recipient)
+        try await db.pool.write { db in
+            try db.execute(sql: "UPDATE sends SET signedPayload=? WHERE id='send'", arguments: [substituted.raw])
+        }
+        let send = try await db.send("send")
+        let savedRaw = try XCTUnwrap(send?.signedPayload)
+        let stored = try await db.bitcoinSendPlan(sendID: "send")
+        let savedPlan = try XCTUnwrap(stored)
+        do {
+            _ = try await BitcoinSendStatus.read(raw: savedRaw, plan: savedPlan,
+                client: StatusHistoryQuery(rows: [], bodies: [:]))
+            XCTFail("Substituted payment was eligible for rebroadcast after an empty history")
+        } catch {
+            XCTAssertEqual(error as? BitcoinSendError, .changed)
+        }
+    }
+
     func testSelfSendShowsOnlyFeeBeforeAndAfterConfirmationOnEveryUTXOChain() async throws {
         for chain in UTXONetwork.allCases {
             let (db, plan, signed) = try await fixture(chain, selfTransfer: true)
