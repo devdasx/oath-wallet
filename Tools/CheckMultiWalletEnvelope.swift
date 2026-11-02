@@ -1,6 +1,7 @@
 import Foundation
 import CryptoKit
 import OathCloudBackup
+import OathDatabase
 
 /// Public fixtures only. Exercises the actual production envelope on the host;
 /// never reads the app's Keychain, installation, database, or recovery material.
@@ -22,6 +23,31 @@ import OathCloudBackup
         let pin: [UInt8] = [2, 9, 4, 8, 1, 6]
         let (legacy, existingKey) = try OathVaultEnvelope.seal(first, digits: pin)
         let legacyBytes = try JSONEncoder().encode(legacy)
+        var derived = second
+        derived.passphrase = "public synthetic test"
+        var boundary = OathVaultContents(wallets: [first, derived])
+        boundary.lastPassphraseIndex = Int.max
+        let maximum = try OathVaultEnvelope.seal(boundary, rootID: first.id, key: existingKey, salt: legacy.salt, iterations: legacy.iterations)
+        var boundaryReopened = try maximum.openContents(using: existingKey)
+        _ = boundaryReopened.reconcilePassphraseFamilies()
+        check(boundaryReopened.wallets.count == 2, "Exhausted display numbering keeps authenticated wallets intact")
+        check(boundaryReopened.wallets[1].passphraseIndex == 1 && boundaryReopened.lastPassphraseIndex == Int.max,
+              "Existing derived secret recovers a free display index without resetting the historical counter")
+        check(!boundaryReopened.reconcilePassphraseFamilies(), "Repeating reconciliation preserves the assigned index")
+        let reserved = WalletRecord(id: UUID().uuidString, name: "", kind: "passphrase", vaultReference: "fixture",
+                                   createdAt: 0, nameGroup: "passphrase", nameIndex: 1)
+        var withRecords = boundary
+        _ = withRecords.reconcilePassphraseFamilies(records: [reserved])
+        check(withRecords.wallets[1].passphraseIndex == 2, "Recovery preserves a display number already used in the database")
+
+        rejects("New passphrase wallets must not reuse an exhausted historical number") {
+            _ = try boundaryReopened.nextPassphraseIndex()
+        }
+        var nearLimit = OathVaultContents(wallets: [first, derived], lastPassphraseIndex: Int.max - 1)
+        check(try nearLimit.nextPassphraseIndex() == Int.max, "Last representable family number is usable")
+        _ = nearLimit.reconcilePassphraseFamilies()
+        check(nearLimit.wallets.last?.passphraseIndex == Int.max, "An existing family can claim the final number")
+
         let decodedLegacy = try JSONDecoder().decode(OathVaultEnvelope.self, from: legacyBytes)
         check(decodedLegacy.version == 1 && decodedLegacy.walletIDs == nil, "Legacy format stays readable")
         var contents = try decodedLegacy.openContents(using: existingKey)
