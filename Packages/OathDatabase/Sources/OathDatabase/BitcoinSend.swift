@@ -23,10 +23,7 @@ extension OathDatabase {
                 WHERE s.accountID=? AND s.state IN ('signed','broadcast')
                 """, arguments: [accountID]).map { try JSONDecoder().decode(BitcoinSendPlan.self, from: $0) }
             let occupied = Set(committed.filter { $0.changeAmount > 0 && $0.change.branchID == branch.id }.map { $0.change.index })
-            var next = branch.isHD ? highest + 1 : 0
-            if branch.isHD { while next < 100_000, occupied.contains(UInt32(next)) { next += 1 } }
-            guard next < 100_000 else { throw StoreError.invalidValue("change index") }
-            let index = UInt32(next)
+            let index = try Self.nextBitcoinIndex(branch: branch, highestUsed: highest, occupied: occupied, invalidIndex: "change index")
             let address = try BitcoinKeys.addresses(branch: branch, range: index..<(index + 1))[0]
             try db.execute(sql: """
                 INSERT INTO bitcoinAddresses(accountID,branchID,addressIndex,address,script,scriptHash,detail,used,issued)

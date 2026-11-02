@@ -23,7 +23,7 @@ public struct BitcoinScan: Codable, Equatable, Sendable {
               Set(addresses.map { $0.address.scriptHash }).count == addresses.count else { throw BitcoinError.invalidResponse }
         for branch in wallet.branches {
             let records = addresses.filter { $0.address.branchID == branch.id }.sorted { $0.address.index < $1.address.index }
-            guard !records.isEmpty, records.count <= 100_000 else { throw BitcoinError.discoveryLimit }
+            guard !records.isEmpty, records.count <= Int(BitcoinDiscovery.defaultAddressCountLimit) else { throw BitcoinError.discoveryLimit }
             if branch.isHD {
                 guard records.count % Int(BitcoinDiscovery.gapLimit) == 0,
                       records.suffix(Int(BitcoinDiscovery.gapLimit)).allSatisfy({ $0.state.history.isEmpty }),
@@ -67,9 +67,10 @@ public struct BitcoinScan: Codable, Equatable, Sendable {
 
 public struct BitcoinDiscovery: Sendable {
     public static let gapLimit: UInt32 = 20
+    public static let defaultAddressCountLimit: UInt32 = 100_000
     private let query: any BitcoinAddressQuerying
     private let maximumIndex: UInt32
-    public init(query: any BitcoinAddressQuerying, maximumIndex: UInt32 = 100_000) {
+    public init(query: any BitcoinAddressQuerying, maximumIndex: UInt32 = BitcoinDiscovery.defaultAddressCountLimit) {
         self.query = query; self.maximumIndex = maximumIndex
     }
 
