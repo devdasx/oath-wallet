@@ -150,6 +150,20 @@ import OathDatabase
         dual.replace(with: fixture.phrase)
         dual.replace(with: words)
         check(dual.preferredFormat == nil && dual.isAezeed, "A format selection cannot carry over to another phrase")
+        // Non-mnemonic secrets store empty mnemonic and language fields.
+        let keyRequest = UUID()
+        let key = OathImportedPrivateKey(bytes: Data(repeating: 1, count: 32), networks: [.tron])
+        let keyWallet = try await vault.addWallet(requestID: keyRequest, importing: nil, privateKey: key)
+        let keyBytes = try storage.read("vault-v1")
+        do {
+            _ = try await vault.addWallet(requestID: keyRequest, importing: .init(phrase: "", language: ""))
+            print("FAIL: empty mnemonic request matched a committed private key")
+            exit(1)
+        } catch OathWalletError.invalidPhrase {
+            let active = try await vault.unlockedProfile()
+            let currentBytes = try storage.read("vault-v1")
+            check(active == keyWallet && currentBytes == keyBytes, "An empty mnemonic cannot activate or alter a private-key wallet")
+        }
         print("Passed \(checks) aezeed host integration checks: actual import, local vault, Bitcoin-only SQL/receive, lock/unlock, recovery display, BIP39 separation and cloud exclusion.")
     }
 }
