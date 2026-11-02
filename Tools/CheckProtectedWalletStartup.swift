@@ -4,7 +4,27 @@ import OathDiagnostics
 
 private actor StartupReports: DiagnosticTransport {
     private(set) var events: [DiagnosticEvent] = []
-    func upload(_ events: [DiagnosticEvent]) async throws { self.events += events }
+    private var holdDelivery = false
+    private var waiter: CheckedContinuation<Void, Never>?
+
+    func pauseDelivery() { holdDelivery = true }
+
+    func releaseDelivery() {
+        holdDelivery = false
+        waiter?.resume()
+        waiter = nil
+    }
+
+    func waitUntilDeliveryStarts() async throws -> Bool {
+        let deadline = ContinuousClock.now.advanced(by: .seconds(5))
+        while waiter == nil && ContinuousClock.now < deadline { try await Task.sleep(for: .milliseconds(10)) }
+        return waiter != nil
+    }
+
+    func upload(_ batch: [DiagnosticEvent]) async throws {
+        if holdDelivery { await withCheckedContinuation { waiter = $0 } }
+        events += batch
+    }
 }
 
 private final class ProtectedStorage: OathVaultStorage, @unchecked Sendable {
@@ -99,6 +119,7 @@ private final class ProtectedStorage: OathVaultStorage, @unchecked Sendable {
 
         // An unlocked permission failure and missing entitlements are genuine
         // failures, even if protection changes concurrently. Never swallow them.
+        await reports.pauseDelivery()
         for (error, locks): (any Error, Bool) in [(CocoaError(.fileWriteNoPermission), false),
                 (OathInstallationSecurityError.keychain(-34018), false),
                 (OathInstallationSecurityError.keychain(-34018), true)] {
@@ -111,9 +132,13 @@ private final class ProtectedStorage: OathVaultStorage, @unchecked Sendable {
             await failed.resumeProtectedStartup()
             check(unavailable(failed), "An availability event cannot silently retry a genuine failure")
         }
+        let held = try await reports.waitUntilDeliveryStarts()
+        check(held, "Genuine failures start delivery without blocking wallet startup")
+        if !held { await reports.releaseDelivery() }
         try await Task.sleep(for: .milliseconds(200))
         await OathDiagnostics.flush()
         let events = await reports.events
+        await reports.releaseDelivery()
         check(events.count == 3, "Exactly the three genuine failures reach the shared outbox")
         check(events.allSatisfy { $0.operationID != nil && $0.context["stage"] == "vault_read" && $0.privacyFiltered },
               "Genuine startup failures carry a safe stage and correlation ID")
