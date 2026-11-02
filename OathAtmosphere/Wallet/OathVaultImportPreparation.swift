@@ -26,7 +26,7 @@ extension OathRestoredWallet {
                     "electrumSegwit": .segwit, "electrumTwoFactor": .twoFactor, "electrumTwoFactorSegwit": .twoFactorSegwit]
                 let material = try ElectrumMnemonic.decode(handoff.value, passphrase: handoff.passphrase ?? "")
                 guard kinds[scheme] == material.kind else { throw HandoffError.invalid }
-                phrase = .init(phrase: ElectrumMnemonic.normalize(handoff.value), language: "electrum", electrum: material)
+                phrase = .init(phrase: ElectrumMnemonic.recoveryPhrase(handoff.value, kind: material.kind), language: "electrum", electrum: material)
             }
             var secret = try OathWalletEngine.imported(phrase, id: requestID)
             secret.createdWithCustomization = true

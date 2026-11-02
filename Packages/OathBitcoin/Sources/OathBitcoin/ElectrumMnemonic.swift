@@ -27,6 +27,22 @@ public enum ElectrumMnemonicError: Error, Equatable { case invalidPhrase, unsupp
 /// Electrum seed-version, normalization and KDF rules, independent of BIP39.
 /// Reference: spesmilo/electrum mnemonic.py, old_mnemonic.py and keystore.py (MIT).
 public enum ElectrumMnemonic {
+    private static func seedWords(_ input: String) -> [String] {
+        input.unicodeScalars.split {
+            $0.properties.isWhitespace || (0x1c...0x1f).contains($0.value)
+        }.map { String($0) }
+    }
+
+    // TrustedCoin chooses its derivation scheme and cosigners before Electrum's
+    // KDF removes spaces between CJK characters. Keep those boundaries for reimport.
+    public static func recoveryPhrase(_ input: String, kind: ElectrumSeedKind) -> String {
+        let normalized = normalize(input)
+        guard kind == .twoFactor else { return normalized }
+        let originalWords = seedWords(input)
+        if originalWords.map(normalize) == seedWords(normalized) { return normalized }
+        return originalWords.joined(separator: " ")
+    }
+
     public static func normalize(_ value: String) -> String {
         let scalars = value.decomposedStringWithCompatibilityMapping.lowercased()
             .unicodeScalars.filter { $0.properties.canonicalCombiningClass == .notReordered }
@@ -82,7 +98,7 @@ public enum ElectrumMnemonic {
         let hash = Data(HMAC<SHA512>.authenticationCode(for: Data(normalized.utf8), using: SymmetricKey(data: Data("Seed version".utf8)))).hex
         if hash.hasPrefix("01") { return .standard }
         if hash.hasPrefix("100") { return .segwit }
-        let count = text.split(whereSeparator: \.isWhitespace).count
+        let count = seedWords(text).count
         if hash.hasPrefix("101"), count == 12 || count >= 20 { return .twoFactor }
         if hash.hasPrefix("102") { return .twoFactorSegwit }
         return nil
@@ -101,7 +117,7 @@ public enum ElectrumMnemonic {
 
     public static func allowsPassphrase(_ text: String) -> Bool {
         guard let kind = kind(text) else { return false }
-        return kind != .old && !(kind == .twoFactor && text.split(whereSeparator: \.isWhitespace).count >= 20)
+        return kind != .old && !(kind == .twoFactor && seedWords(text).count >= 20)
     }
     public static func decode(_ phrase: String, passphrase: String = "") throws -> ElectrumSeedMaterial {
         guard let kind = kind(phrase), passphrase.utf8.count <= 4096 else { throw ElectrumMnemonicError.invalidPhrase }
@@ -118,10 +134,12 @@ public enum ElectrumMnemonic {
             _ = try OathSecp256k1.publicKey(value, compressed: false)
             return .init(kind: kind, seed: value, secondSeed: nil, passphrase: "")
         }
-        let words = text.split(separator: " ")
-        if kind == .twoFactor, words.count >= 20 {
-            return try .init(kind: kind, seed: stretch(words.prefix(12).joined(separator: " "), passphrase: ""),
-                             secondSeed: stretch(words.dropFirst(12).joined(separator: " "), passphrase: ""), passphrase: "")
+        if kind == .twoFactor {
+            let words = seedWords(phrase)
+            if words.count >= 20 {
+                return try .init(kind: kind, seed: stretch(words.prefix(12).joined(separator: " "), passphrase: ""),
+                                 secondSeed: stretch(words.dropFirst(12).joined(separator: " "), passphrase: ""), passphrase: "")
+            }
         }
         return try .init(kind: kind, seed: stretch(text, passphrase: passphrase), secondSeed: nil, passphrase: passphrase)
     }
