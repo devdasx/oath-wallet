@@ -1520,6 +1520,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     /// existing PIN/Face ID key. A stable request ID makes save retries safe.
     func addWallet(requestID: UUID, importing phrase: OathValidatedMnemonic?, privateKey: OathImportedPrivateKey? = nil, multisig: OathMultisigMaterial? = nil) async throws -> OathWalletProfile {
         guard phrase == nil || privateKey == nil else { throw OathWalletError.invalidPrivateKey }
+        guard phrase?.phrase.isEmpty != true else { throw OathWalletError.invalidPhrase }
         guard multisig == nil || (phrase == nil && privateKey == nil) else { throw OathWalletError.invalidPrivateKey }
         guard var contents, let key = encryptionKey, let envelope, profile != nil else { throw OathWalletError.locked }
         guard walletMutation == nil else { throw OathWalletError.unavailable }
