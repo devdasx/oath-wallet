@@ -24,4 +24,4 @@ The two pinned XCFrameworks include their matching device symbols. Xcode copies 
 
 To perform the same check on an archive, run `python3 Tools/CheckArchiveSymbols.py "/path/to/Oath.xcarchive"`.
 
-The SwiftProtobuf XCFramework uses the reviewed binaries with corrected resource metadata. Its privacy-manifest resource bundle has no executable. To reproduce the pinned distribution ZIP, download the packaging source URL from `provenance.json` and run `python3 repair_protobuf_resources.py original.zip distribution.zip`. The two resource Info.plists are the only changed members.
+The SwiftProtobuf XCFramework uses the reviewed binaries with corrected resource metadata. Its privacy-manifest resource bundle has no executable. To reproduce the pinned distribution ZIP, download the packaging source URL from `provenance.json` and run `python3 repair_protobuf_resources.py original.zip distribution.zip`. Only four Info.plists change. Each platform declares the pinned 1.29.0 runtime version in its framework and resource bundle. All executable, privacy-manifest and debug-symbol bytes match the reviewed artifact.

@@ -20,6 +20,16 @@ def verify(archive):
         if executable and not (bundle / executable).is_file():
             raise ValueError(f"{bundle.name} declares a missing executable")
     frameworks = app / "Frameworks"
+    for framework in frameworks.glob("*.framework"):
+        with (framework / "Info.plist").open("rb") as stream:
+            info = plistlib.load(stream)
+        if info.get("CFBundlePackageType") != "FMWK" or not info.get("CFBundleIdentifier"):
+            raise ValueError(f"{framework.name} is missing required framework metadata")
+        for key in ("CFBundleShortVersionString", "CFBundleVersion"):
+            if not re.fullmatch(r"[0-9]+(?:\.[0-9]+){0,2}", str(info.get(key, ""))):
+                raise ValueError(f"{framework.name} is missing a valid {key}")
+        if not (framework / info.get("CFBundleExecutable", "")).is_file():
+            raise ValueError(f"{framework.name} has no declared executable")
     provenance = Path(__file__).resolve().parents[1] / "Packages/WalletCore/provenance.json"
     artifacts = json.loads(provenance.read_text())["artifacts"]
     for name in ("WalletCore", "WalletCoreSwiftProtobuf"):

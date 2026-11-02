@@ -6,24 +6,32 @@ import plistlib
 from zipfile import ZIP_STORED, ZipFile
 
 ORIGINAL_SHA256 = "c63dbf567c42d83c4939ca06c85249ce17fb3d7762fba778971c35f160098f9f"
-PLISTS = {
+RESOURCE_PLISTS = {
     f"WalletCoreSwiftProtobuf.xcframework/{platform}/WalletCoreSwiftProtobuf.framework/WalletCoreSwiftProtobuf.bundle/Info.plist"
     for platform in ("ios-arm64", "ios-arm64_x86_64-simulator")
 }
+FRAMEWORK_PLISTS = {str(Path(name).parent.parent / "Info.plist") for name in RESOURCE_PLISTS}
+# Release 1.29.0 is runtime commit d72aed98f8253ec1aa9ea1141e28150f408cf17f.
+RUNTIME_VERSION = "1.29.0"
 
 
 def repair(source, output):
     if hashlib.sha256(source.read_bytes()).hexdigest() != ORIGINAL_SHA256:
         raise ValueError("Unexpected source XCFramework checksum")
     with ZipFile(source) as original, ZipFile(output, "x", compression=ZIP_STORED) as result:
-        if not PLISTS.issubset(original.namelist()):
+        if not (RESOURCE_PLISTS | FRAMEWORK_PLISTS).issubset(original.namelist()):
             raise ValueError("Expected both framework resource bundles")
         for entry in original.infolist():
             data = original.read(entry)
-            if entry.filename in PLISTS:
+            if entry.filename in RESOURCE_PLISTS | FRAMEWORK_PLISTS:
                 value = plistlib.loads(data)
-                if value.get("CFBundlePackageType") != "BNDL" or value.pop("CFBundleExecutable", None) != "WalletCoreSwiftProtobuf":
-                    raise ValueError("Unexpected resource bundle layout")
+                if entry.filename in RESOURCE_PLISTS:
+                    if value.get("CFBundlePackageType") != "BNDL" or value.pop("CFBundleExecutable", None) != "WalletCoreSwiftProtobuf":
+                        raise ValueError("Unexpected resource bundle layout")
+                    value["CFBundleVersion"] = "1"
+                elif value.get("CFBundlePackageType") != "FMWK" or value.get("CFBundleExecutable") != "WalletCoreSwiftProtobuf":
+                    raise ValueError("Unexpected framework layout")
+                value["CFBundleShortVersionString"] = RUNTIME_VERSION
                 data = plistlib.dumps(value, fmt=plistlib.FMT_BINARY, sort_keys=True)
             # Store member bytes directly so compression library versions cannot affect the hash.
             result.writestr(entry, data, compress_type=ZIP_STORED)

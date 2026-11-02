@@ -17,8 +17,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "WalletCoreSwiftProtobuf",
-            url: "https://github.com/devdasx/oath-wallet/releases/download/v5.0.0-build102/WalletCoreSwiftProtobuf-resources1.xcframework.zip",
-            checksum: "149e3ceccd7bf6da09c6fd69cc57f6ee41e9dbc2045793a412fe8d06b833ec3d"
+            url: "https://github.com/devdasx/oath-wallet/releases/download/v5.0.0-build102/WalletCoreSwiftProtobuf-1.29.0-packaging.xcframework.zip",
+            checksum: "6e87b62626222f414177718353a4a05b3b8f9f185425ace85f70808362c6da87"
         )
     ]
 )
