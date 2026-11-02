@@ -37,7 +37,7 @@
     },
     "app_store_version": "4.1.2",
     "source_version": "5.0.0 (102)",
-    "source_release_status": "Tagged source for build 102. See the GitHub release for Apple delivery evidence."
+    "source_release_status": "Build 102 was uploaded by GitHub Actions and was Waiting for Review on 2 November 2026. The GitHub release includes the verified Apple delivery receipt."
   },
   "features": [
     {
@@ -701,12 +701,15 @@
     "scope": "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md",
     "reporting_policy": "https://github.com/devdasx/oath-wallet/security/policy",
     "source_correspondence": {
-      "status": "maintainer-release-checks",
+      "status": "apple-processed",
       "confirmed_on": "2026-11-02",
-      "statement": "The release workflow archives version 5.0.0 (102) from its Git tag. Its receipt records the commit, uploaded IPA checksum and Apple build identifier after processing.",
+      "statement": "GitHub Actions uploaded 5.0.0 (102) from the tagged source. Apple validated the build. App Store Connect showed Waiting for Review on 2 November 2026.",
       "readme": "https://github.com/devdasx/oath-wallet#release-verification",
       "guide": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
-      "independent_verification": "This statement is distinct from an independently reproduced, byte-for-byte comparison of an App Store download. This update supplies no new binary comparison, independent reproducibility report, or security audit."
+      "independent_verification": "This statement is distinct from an independently reproduced, byte-for-byte comparison of an App Store download. This update supplies no new binary comparison, independent reproducibility report, or security audit.",
+      "delivery_receipt": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.0-build102-r3/receipt.json",
+      "github_run": "https://github.com/devdasx/oath-wallet/actions/runs/41398320455",
+      "ipa_sha256": "f0de69573f05cf4d0b590b07cd2fcc935fdfd354c754ef94edbe45622ea5a12a"
     },
     "technical_examples_scope": "Six source excerpts verified against 5.0.0 (102) on 2026-11-02.",
     "page_updated_on": "2026-11-02",

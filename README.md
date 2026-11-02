@@ -31,6 +31,8 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
+Apple processed 5.0.0 (102) from the tagged source. App Store Connect confirmed **Waiting for Review** on 2 November 2026. [Signed delivery receipt](https://github.com/devdasx/oath-wallet/releases/download/v5.0.0-build102-r3/receipt.json) · [GitHub Actions run](https://github.com/devdasx/oath-wallet/actions/runs/41398320455)
+
 The [5.0.0 (102) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r3) identifies the application source used by GitHub Actions. Its delivery receipt records the uploaded IPA checksum and the build identifier returned by Apple. See the [release record](releases/5.0.0.md) for the verification steps.
 
 Source review, secret scanning, compilation and focused tests are performed during
