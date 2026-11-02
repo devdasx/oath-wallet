@@ -230,6 +230,12 @@ private actor FixtureTransport: ExchangeRateTransport {
                 XCTFail("Failed status was accepted")
             } catch { XCTAssertEqual((error as NSError).code, status) }
         }
+        do {
+            _ = try await network.data(from: URL(string: "https://cdn.jsdelivr.net/untrusted-certificate")!)
+            XCTFail("A certificate failure must reach the caller")
+        } catch {
+            XCTAssertEqual((error as? URLError)?.code, .serverCertificateUntrusted)
+        }
         // Access denial reaches the local recorder. Its existing policy filters certificate transport errors.
         for error in [NSError(domain: "Oath.HTTP", code: 403), NSError(domain: NSURLErrorDomain, code: -1202)] {
             OathDiagnostics.record(error, component: "prices", operation: "exchange_rates",
@@ -382,6 +388,10 @@ private final class RateHTTPFixture: URLProtocol, @unchecked Sendable {
     override class func canInit(with request: URLRequest) -> Bool { ["fixture.invalid", "cdn.jsdelivr.net"].contains(request.url?.host) }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
     override func startLoading() {
+        if request.url?.lastPathComponent == "untrusted-certificate" {
+            client?.urlProtocol(self, didFailWithError: URLError(.serverCertificateUntrusted))
+            return
+        }
         let status = Int(request.url!.lastPathComponent)!
         let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: "HTTP/1.1", headerFields: [:])!
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
