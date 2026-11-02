@@ -67,6 +67,7 @@ platform :ios do
           manageAppVersionAndBuildNumber: false,
           provisioningProfiles: {"com.aperture.wallet" => profile.fetch("name")}},
         xcconfig: signing_config)
+      sh("python3", File.join(root, "Tools", "CheckArchiveSymbols.py"), File.join(temporary, "Oath.xcarchive"))
       ipa = File.join(temporary, "Oath.ipa")
       receipt["ipa_sha256"] = Digest::SHA256.file(ipa).hexdigest
       receipt["stage"] = "archived"

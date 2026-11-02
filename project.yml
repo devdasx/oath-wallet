@@ -156,15 +156,6 @@ targets:
     - Shaders
     preBuildScripts: []
     postBuildScripts:
-    - name: Include WalletCore release symbols
-      script: /bin/sh "${SRCROOT}/Tools/CopyWalletCoreSymbols.sh"
-      inputFileLists:
-      - "$(SRCROOT)/Tools/WalletCoreSymbols.inputs.xcfilelist"
-      outputFileLists:
-      - "$(SRCROOT)/Tools/WalletCoreSymbols.outputs.xcfilelist"
-      runOnlyWhenInstalling: true
-      basedOnDependencyAnalysis: false
-      showEnvVars: false
     - name: Copy local token RPC configuration
       script: /bin/sh "${SRCROOT}/Tools/CopyTokenRPC.sh"
       inputFiles:

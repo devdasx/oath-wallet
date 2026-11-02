@@ -126,8 +126,6 @@ jobs:
           APPLE_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_PROVISIONING_PROFILE_BASE64 }}
           OATH_PROVIDER_CONFIGURATION_BASE64: ${{ secrets.OATH_PROVIDER_CONFIGURATION_BASE64 }}
         run: python3 Distribution/prepare_signing.py --root "$APP_SOURCE" --temporary "$SIGNING_DIRECTORY"
-      - name: Verify Wallet Core symbols
-        run: python3 release-app/Tools/PrepareWalletCoreSymbols.py
       - name: Archive and upload the exact build without review submission
         id: publish
         working-directory: Distribution/ios

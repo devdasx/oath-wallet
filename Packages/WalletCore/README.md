@@ -20,28 +20,6 @@ now iOS 15; the application's iOS 26 minimum is unchanged.
 
 ## Device archive symbols
 
-Before the first archive on a new machine, run:
+The two pinned XCFrameworks include their matching device symbols. Xcode copies them into the archive. The release workflow checks the UUIDs of both archived frameworks and their dSYMs against the package provenance before uploading the IPA.
 
-```sh
-python3 Tools/PrepareWalletCoreSymbols.py
-```
-
-This verifies the published ZIP SHA-256 values and device build UUIDs, then
-keeps the iOS arm64 symbols in this package's ignored `.build/symbols`
-directory. Do not commit the large generated symbol cache. The Xcode phase
-`Include WalletCore release symbols` checks the embedded framework UUIDs and
-copies matching dSYMs into the archive's symbol directory. It does not download
-files during a build or add debug symbols to the installed app.
-
-When changing the binary package, update both binary-target checksums, the
-symbol-asset checksums and UUIDs together. Missing or mismatched symbols fail
-the archive. Ordinary and simulator builds skip archive symbol copying.
-
-Validate an archive before distribution:
-
-```sh
-python3 Tools/CheckDistributionArchive.py "/path/to/Oath.xcarchive"
-```
-
-That checks orientation declarations and matching debug-symbol UUIDs for the
-executable and embedded frameworks. It does not upload or submit the app.
+To perform the same check on an archive, run `python3 Tools/CheckArchiveSymbols.py "/path/to/Oath.xcarchive"`.

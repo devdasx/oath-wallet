@@ -1504,7 +1504,7 @@
 				EEB4BB51098DC573011725F5 /* Resources */,
 				2AE19E80A0943E287A1AE0E5 /* Frameworks */,
 				871A977C7EB8EBD5359363AB /* Embed Frameworks */,
-				43847342CF1809F0865E0474 /* Include WalletCore release symbols */,
+
 				3A5091B2C73B41B4DDD9B213 /* Copy local token RPC configuration */,
 			);
 			buildRules = (
@@ -1769,28 +1769,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"${SRCROOT}/Tools/CopyTokenRPC.sh\"";
-			showEnvVarsInLog = 0;
-		};
-		43847342CF1809F0865E0474 /* Include WalletCore release symbols */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"$(SRCROOT)/Tools/WalletCoreSymbols.inputs.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "Include WalletCore release symbols";
-			outputFileListPaths = (
-				"$(SRCROOT)/Tools/WalletCoreSymbols.outputs.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"${SRCROOT}/Tools/CopyWalletCoreSymbols.sh\"";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
