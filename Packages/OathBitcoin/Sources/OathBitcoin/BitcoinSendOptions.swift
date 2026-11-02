@@ -33,11 +33,11 @@ public struct BitcoinSendOptions: Codable, Equatable, Sendable {
     }
 
     var dataScript: Data? {
-        guard !message.isEmpty else { return nil }
+        guard let first = message.first else { return nil }
         var script = Data([0x6a])
         // Minimal pushes, including single-byte script-number encodings.
-        if message.count == 1, message[0] == 0x81 { script.append(0x4f); return script }
-        if message.count == 1, (1...16).contains(message[0]) { script.append(0x50 + message[0]); return script }
+        if message.count == 1, first == 0x81 { script.append(0x4f); return script }
+        if message.count == 1, (1...16).contains(first) { script.append(0x50 + first); return script }
         if message.count <= 75 { script.append(UInt8(message.count)) }
         else if message.count <= 255 { script += Data([0x4c, UInt8(message.count)]) }
         else if message.count <= 65_535 { script += Data([0x4d]) + BitcoinWire.little(UInt16(message.count)) }

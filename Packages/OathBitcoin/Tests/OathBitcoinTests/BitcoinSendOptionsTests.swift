@@ -8,6 +8,38 @@ final class BitcoinSendOptionsTests: XCTestCase {
     private let bch = BitcoinCashSendTests()
     private let ltc = LitecoinSendTests()
 
+    func testSlicedSingleByteMessageReachesReviewedPlan() throws {
+        for byte: UInt8 in [0x01, 0x10, 0x81, 0x61] {
+            let message = Data([0xff, byte]).dropFirst()
+            XCTAssertNotEqual(message.startIndex, 0)
+            let plan = try BitcoinSendPlan.make(coins: [btc.coin(2_000_000)], recipient: btc.address(index: 4).address,
+                                                amount: 1_000_000, change: btc.address(change: 1), ratePerKVByte: 2_000,
+                                                options: .init(message: message))
+            let expected = BitcoinSendOptions(message: Data([byte]))
+            XCTAssertEqual(plan.outputs.last?.script, expected.dataScript)
+            try plan.validate()
+        }
+    }
+
+    func testRecipientAddressRequiresOriginalASCIIBytes() throws {
+        for chain in [UTXONetwork.bitcoincash, .litecoin] {
+            var address: String?
+            for value in UInt8(0)...UInt8(255) {
+                let hash = Data(repeating: value, count: 20)
+                let text = chain == .bitcoincash
+                    ? try CashAddress.encode(script: Data([0x76, 0xa9, 20]) + hash + Data([0x88, 0xac]), prefix: "bitcoincash")
+                    : try LitecoinAddress.encode(script: Data([0, 20]) + hash, network: .mainnet)
+                if text.contains("k") { address = text; break }
+            }
+            let plain = try XCTUnwrap(address)
+            let expected = try BitcoinSendPlan.recipientScript(plain, chain: chain)
+            XCTAssertEqual(try BitcoinSendPlan.recipientScript(plain.uppercased(), chain: chain), expected)
+            let disguised = plain.uppercased().replacingOccurrences(of: "K", with: "\u{212A}")
+            XCTAssertNotEqual(Array(disguised.utf8), Array(plain.uppercased().utf8))
+            XCTAssertThrowsError(try BitcoinSendPlan.recipientScript(disguised, chain: chain), chain.rawValue)
+        }
+    }
+
     func testByteLimitsAndPushdataBoundaries() throws {
         for chain in UTXONetwork.allCases {
             let maximum = BitcoinSendOptions.maximumMessageBytes(chain)
