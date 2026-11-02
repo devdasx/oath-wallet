@@ -49,6 +49,10 @@ for root in roots:
             if 'OathDiagnostics.record(' in body or 'OathSendDiagnostics.shared.record(' in body:
                 observed += 1
                 continue
+            if (file.relative_to(ROOT).as_posix() == 'Packages/OathAnkr/Sources/OathAnkr/ArcClient.swift'
+                    and label.strip() == 'AnkrError.rpc' and code[match.end():end-1].strip() == 'token = nil'
+                    and re.search(r'token = try Self\.token\(reference: ref, rows: rows\[offset\.\.<offset\+3\]\)\s*\}\s*$', before)):
+                continue  # The HTTP boundary already reports this rejected decimals RPC. Malformed successful values report below.
             if file.relative_to(ROOT).as_posix() == 'Packages/OathDatabase/Sources/OathDatabase/ArcSynchronizer.swift' and re.search(r'await self\.historyFailed\(error, ticket: ticket(?:, lane: lane)?\)', body):
                 # Delegated reporting, not a blanket staleSync exclusion:
                 # historyFailed checks ticket ownership, reports current-run
