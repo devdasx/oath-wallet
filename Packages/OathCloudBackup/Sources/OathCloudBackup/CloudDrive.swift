@@ -40,7 +40,7 @@ public actor CloudDrive {
             throw CloudBackupError.unavailable
         }
         guard try self.identity() == identity else { throw CloudBackupError.accountChanged }
-        return CloudLocation(accountID: identity, directory: root.appendingPathComponent("Documents/Wallet Backups", isDirectory: true),
+        return CloudLocation(accountID: identity, directory: Self.backupDirectory(in: root),
                              generation: generation)
     }
 
@@ -79,6 +79,10 @@ public actor CloudDrive {
         try verifyAccount(location.accountID)
     }
 
+    static func backupDirectory(in root: URL) -> URL {
+        root.appendingPathComponent("Documents/Wallet Backups", isDirectory: true)
+    }
+
     public static func fileName(_ id: UUID) -> String { "Wallet-\(id.uuidString).\(BackupDocument.fileExtension)" }
 }
 
@@ -91,9 +95,11 @@ enum CloudFileWriter {
                 // A retry is idempotent. A file with different bytes is never
                 // overwritten, even if a different device used the same name.
                 if FileManager.default.fileExists(atPath: url.path) {
-                    let values = try url.resourceValues(forKeys: [.fileSizeKey, .isSymbolicLinkKey])
-                    guard values.isSymbolicLink != true, values.fileSize == encrypted.count,
-                          try Data(contentsOf: url) == encrypted else { throw CloudBackupError.fileConflict }
+                    do {
+                        guard try CloudBackupFiles.boundedContents(of: url) == encrypted else { throw CloudBackupError.fileConflict }
+                    } catch CloudBackupError.invalidDocument {
+                        throw CloudBackupError.fileConflict
+                    }
                 } else {
                     try encrypted.write(to: url, options: .atomic)
                 }
@@ -109,20 +115,30 @@ enum CloudFileWriter {
 /// are dispatched to the main run loop, as required by Foundation.
 public final class CloudUploadObservation: @unchecked Sendable {
     private let query = NSMetadataQuery()
+    private let directory: URL?
     private let queue: OperationQueue
     private var observers: [NSObjectProtocol] = []
     public let updates: AsyncStream<[CloudUpload]>
     private let continuation: AsyncStream<[CloudUpload]>.Continuation
 
-    @MainActor public init() throws {
+    @MainActor public convenience init() throws {
+        try self.init(directory: nil)
+    }
+
+    @MainActor public convenience init(location: CloudLocation) throws {
+        try self.init(directory: location.directory)
+    }
+
+    @MainActor private init(directory: URL?) throws {
+        self.directory = directory
         let stream = AsyncStream<[CloudUpload]>.makeStream(bufferingPolicy: .bufferingNewest(1))
         updates = stream.stream; continuation = stream.continuation
         queue = OperationQueue(); queue.name = "org.oathwallet.icloud-metadata"
         queue.maxConcurrentOperationCount = 1; queue.qualityOfService = .utility
         query.operationQueue = queue
         query.searchScopes = [NSMetadataQueryUbiquitousDocumentsScope]
-        // The entitlement exposes only the app's container. Match immutable
-        // UUID filenames, avoiding /var vs /private/var path aliases in metadata.
+        // The broad metadata query finds candidates. Only files in the actual
+        // backup directory can acknowledge a write or keep a removed backup active.
         query.predicate = NSPredicate(format: "%K ENDSWITH %@",
             NSMetadataItemFSNameKey, "." + BackupDocument.fileExtension)
         query.notificationBatchingInterval = 0.25
@@ -141,17 +157,34 @@ public final class CloudUploadObservation: @unchecked Sendable {
     private func publish() {
         query.disableUpdates()
         defer { query.enableUpdates() }
-        let values = (query.results as? [NSMetadataItem] ?? []).compactMap { item -> CloudUpload? in
-            guard let name = item.value(forAttribute: NSMetadataItemFSNameKey) as? String else { return nil }
+        // Legacy callers without an explicit location resolve the container on the
+        // query's utility queue. An unavailable container cannot confirm removal.
+        guard let directory = directory ?? FileManager.default
+                .url(forUbiquityContainerIdentifier: CloudDrive.containerID).map(CloudDrive.backupDirectory(in:)),
+              let values = Self.snapshot(query.results as? [NSMetadataItem], in: directory, gathering: query.isGathering)
+        else { return }
+        continuation.yield(values)
+    }
+
+    static func snapshot(_ items: [NSMetadataItem]?, in directory: URL, gathering: Bool) -> [CloudUpload]? {
+        // The consumer treats absence in a snapshot as a removal. Withhold the
+        // whole snapshot if the query is incomplete or an item cannot be located.
+        guard !gathering, let items else { return nil }
+        var values: [CloudUpload] = []
+        for item in items {
+            guard let url = item.value(forAttribute: NSMetadataItemURLKey) as? URL, url.isFileURL else { return nil }
+            guard CloudBackupFiles.belongs(url, to: directory) else { continue }
+            guard let name = item.value(forAttribute: NSMetadataItemFSNameKey) as? String,
+                  url.lastPathComponent == name else { return nil }
             let error = item.value(forAttribute: NSMetadataUbiquitousItemUploadingErrorKey) as? NSError
             let percent = (item.value(forAttribute: NSMetadataUbiquitousItemPercentUploadedKey) as? NSNumber)?.doubleValue
-            return CloudUpload(fileName: name,
+            values.append(CloudUpload(fileName: name,
                 uploaded: (item.value(forAttribute: NSMetadataUbiquitousItemIsUploadedKey) as? NSNumber)?.boolValue == true,
                 percent: percent.map { min(100, max(0, $0)) },
                 failure: error.map { $0.domain == NSCocoaErrorDomain && $0.code == NSUbiquitousFileUbiquityServerNotAvailable
-                    ? .unavailable : ($0.domain == NSCocoaErrorDomain && $0.code == NSUbiquitousFileNotUploadedDueToQuotaError ? .quotaExceeded : .uploadFailed) })
+                    ? .unavailable : ($0.domain == NSCocoaErrorDomain && $0.code == NSUbiquitousFileNotUploadedDueToQuotaError ? .quotaExceeded : .uploadFailed) }))
         }
-        continuation.yield(values)
+        return values
     }
 
     @MainActor public func stop() {

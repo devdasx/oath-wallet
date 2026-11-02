@@ -42,6 +42,15 @@ extension CloudDrive {
         return data
     }
 
+    /// Match a system upload observation to the exact bytes still in the durable outbox.
+    public func confirmsUpload(_ encrypted: Data, backupID: UUID, at location: CloudLocation) throws -> Bool {
+        try validate(location)
+        let url = location.directory.appendingPathComponent(Self.fileName(backupID))
+        let matches = try CloudBackupFiles.matches(encrypted, at: url)
+        try validate(location)
+        return matches
+    }
+
     private func validate(_ location: CloudLocation) throws {
         try Task.checkCancellation()
         guard location.generation == generation else { throw CancellationError() }
@@ -96,6 +105,28 @@ enum CloudBackupFiles {
             directory.resolvingSymlinksInPath().standardizedFileURL
     }
 
+    static func matches(_ encrypted: Data, at url: URL) throws -> Bool {
+        guard !encrypted.isEmpty, encrypted.count <= BackupDocument.maximumBytes else { return false }
+        return try read(url) == encrypted
+    }
+
+    static func boundedContents(of url: URL) throws -> Data {
+        let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
+        guard values.isRegularFile == true, values.isSymbolicLink != true,
+              let size = values.fileSize, size > 0, size <= BackupDocument.maximumBytes else {
+            throw CloudBackupError.invalidDocument
+        }
+        let file = try FileHandle(forReadingFrom: url)
+        defer { try? file.close() }
+        // Never allocate an unbounded file, including one that grows
+        // between its metadata check and this coordinated read.
+        let data = try file.read(upToCount: BackupDocument.maximumBytes + 1) ?? Data()
+        guard !data.isEmpty, data.count <= BackupDocument.maximumBytes else {
+            throw CloudBackupError.invalidDocument
+        }
+        return data
+    }
+
     static func read(_ source: URL) throws -> Data {
         try Task.checkCancellation()
         var coordinationError: NSError?
@@ -103,20 +134,7 @@ enum CloudBackupFiles {
         NSFileCoordinator().coordinate(readingItemAt: source, options: .withoutChanges, error: &coordinationError) { url in
             result = Result {
                 try Task.checkCancellation()
-                let values = try url.resourceValues(forKeys: [.isRegularFileKey, .isSymbolicLinkKey, .fileSizeKey])
-                guard values.isRegularFile == true, values.isSymbolicLink != true,
-                      let size = values.fileSize, size > 0, size <= BackupDocument.maximumBytes else {
-                    throw CloudBackupError.invalidDocument
-                }
-                let file = try FileHandle(forReadingFrom: url)
-                defer { try? file.close() }
-                // Never allocate an unbounded file, including one that grows
-                // between its metadata check and this coordinated read.
-                let data = try file.read(upToCount: BackupDocument.maximumBytes + 1) ?? Data()
-                guard !data.isEmpty, data.count <= BackupDocument.maximumBytes else {
-                    throw CloudBackupError.invalidDocument
-                }
-                return data
+                return try boundedContents(of: url)
             }
         }
         if let coordinationError { throw coordinationError }

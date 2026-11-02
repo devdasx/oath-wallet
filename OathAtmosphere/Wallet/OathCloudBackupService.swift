@@ -150,7 +150,7 @@ actor OathCloudBackupService {
         // one setup task, so awaiting UIKit never creates duplicate watchers.
         if pendingObservation?.accountID != location.accountID {
             pendingObservation = (UUID(), location.accountID, Task { @MainActor in
-                try CloudUploadObservation()
+                try CloudUploadObservation(location: location)
             })
         }
         guard let pending = pendingObservation else { return }
@@ -172,13 +172,14 @@ actor OathCloudBackupService {
         monitoring = Task { [weak self] in
             for await updates in observation.updates {
                 guard !Task.isCancelled else { return }
-                await self?.receive(updates, accountID: location.accountID)
+                await self?.receive(updates, at: location)
             }
         }
         if let previous { await previous.stop() }
     }
 
-    private func receive(_ updates: [CloudUpload], accountID: String) async {
+    private func receive(_ updates: [CloudUpload], at location: CloudLocation) async {
+        let accountID = location.accountID
         guard !resetPaused, observedAccount == accountID else { return }
         let token = generation
         do {
@@ -200,6 +201,15 @@ actor OathCloudBackupService {
                 try checkGeneration(token)
                 guard let record = byName[update.fileName] else { continue }
                 let state = update.failure != nil ? "failed" : (update.uploaded ? "uploaded" : "uploading")
+                if state == "uploaded" {
+                    if record.state == "uploaded" { continue }
+                    guard let bytes = record.encryptedDocument, let id = UUID(uuidString: record.backupID) else { continue }
+                    do {
+                        guard try await drive.confirmsUpload(bytes, backupID: id, at: location) else { continue }
+                    } catch is CancellationError { return }
+                    catch { OathDiagnostics.record(error); continue }
+                    try checkGeneration(token)
+                }
                 try await db.updateCloudBackup(backupID: record.backupID, state: state,
                     percent: update.percent, failureCode: update.failure.map(Self.failureCode))
             }
