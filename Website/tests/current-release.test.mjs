@@ -53,6 +53,10 @@ test('current release copy keeps upload separate from Apple review',async()=>{
   assert.match(copy,/5\.0\.1 as Waiting for Review on 2 November 2026/);
   assert.doesNotMatch(copy,/Apple processed build 102|GitHub Actions delivery workflow/i);
  }
+ for(const file of ['public/index.html','public/index.md']){
+  const home=await read(file);
+  assert.ok(home.includes('Version '+data.facts.app_store_version+' is available on the App Store. '+data.facts.source_release_status),file);
+ }
  assert.equal(data.facts.source_version,'5.0.1 (103)');
  assert.equal(data.facts.app_store_review_status,'Waiting for Review');
  assert.equal(data.facts.app_store_review_version,'5.0.1');
