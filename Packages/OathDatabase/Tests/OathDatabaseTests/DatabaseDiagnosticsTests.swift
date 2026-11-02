@@ -27,4 +27,14 @@ actor DatabaseDiagnosticProbe: DiagnosticTransport {
     func configure() { OathDiagnostics.configure(file: file, transport: self) }
     func upload(_ events: [DiagnosticEvent]) async throws { received += events }
     func events() -> [DiagnosticEvent] { received }
+
+    func waitForEvent(operation: UUID, matching predicate: @Sendable (DiagnosticEvent) -> Bool) async throws -> Bool {
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: .seconds(5))
+        while !received.contains(where: { $0.operationID == operation && predicate($0) }) {
+            guard clock.now < deadline else { return false }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        return true
+    }
 }

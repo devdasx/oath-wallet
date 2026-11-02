@@ -85,9 +85,10 @@ private actor ArcHistoryGate: AnkrTransport {
         try await waitForHistory(feed)
         try await db.pool.write { try $0.execute(sql: "UPDATE arcHistoryCursors SET nextBlock=nextBlock+1") }
         await feed.release(); await sync.waitForHistory(accountID: "a")
-        try await Task.sleep(for: .milliseconds(100)); await OathDiagnostics.flush()
-        let reports = await sink.events().filter { $0.operationID == operation }
-        XCTAssertTrue(reports.contains { $0.error.domain == "OathDatabase.StoreError" && $0.error.message == "staleSync" })
+        let reported = try await sink.waitForEvent(operation: operation) {
+            $0.error.domain == "OathDatabase.StoreError" && $0.error.message == "staleSync"
+        }
+        XCTAssertTrue(reported, "The current conflict must reach this refresh's diagnostic stream")
         let failures = try await db.pool.read { try Int.fetchOne($0, sql: "SELECT count(*) FROM arcHistoryCursors WHERE failure='storage' AND complete=0") }
         XCTAssertEqual(failures, 2)
         await sync.cancel()

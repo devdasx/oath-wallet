@@ -44,7 +44,6 @@ import OathDiagnostics
             defer { try? FileManager.default.removeItem(at: folder) }
             let ticket = try await db.beginAptosSync(accountID: "a1")
             try await db.commitAptosInventory(inventory(), ticket: ticket, catalog: catalog)
-            let before = Set(await sink.events().map(\.id))
             let feed = AptosOrderingTransport(database: db, indexFailure: status)
             let sync = AptosSynchronizer(database: db, client: AptosClient(testTransport: feed), markets: AptosMarkets(transport: feed))
             do { try await sync.refresh(accountID: "a1"); XCTFail("Incomplete discovery became success") }
@@ -59,11 +58,18 @@ import OathDiagnostics
                 try String.fetchOne(sql, sql: "SELECT amountAtomic FROM aptosHoldings WHERE accountID='a1' AND assetID=?", arguments: [expectedAssetID])
             }
             XCTAssertEqual(retained, "12345678901234567890", "An unavailable index must not zero cached token balances")
-            try await Task.sleep(for: .milliseconds(100)); await OathDiagnostics.flush()
-            let events = await sink.events().filter { !before.contains($0.id) }
+            let capturedOperation = await feed.indexFailureOperation
+            let operation = try XCTUnwrap(capturedOperation)
+            if status == 403 {
+                let delivered = try await sink.waitForEvent(operation: operation) { $0.error.message == "http(403)" }
+                XCTAssertTrue(delivered, "Access denial must remain visible")
+            } else {
+                try await Task.sleep(for: .milliseconds(100))
+                await OathDiagnostics.flush()
+            }
+            let events = await sink.events().filter { $0.operationID == operation }
             XCTAssertFalse(events.contains { $0.error.message == "incomplete" })
             if status == 429 { XCTAssertTrue(events.isEmpty, "Rate limits must not return as generic incomplete errors") }
-            else { XCTAssertTrue(events.contains { $0.error.message == "http(403)" }, "Access denial must remain visible") }
             await sync.cancel()
         }
     }
@@ -217,6 +223,7 @@ import OathDiagnostics
 
 private actor AptosOrderingTransport:AnkrTransport {
     let database:OathDatabase
+    private(set) var indexFailureOperation: UUID?
     let indexFailure: Int?
     let nodeVersion: Int
     let tokenFailure: Int?
@@ -233,7 +240,10 @@ private actor AptosOrderingTransport:AnkrTransport {
                 historyLimit=body["variables"]["limit"].integer ?? 0
                 value = .object(["data":.object(["account_transactions":.array([])])])
             } else if query.contains("processor_status") {
-                if let indexFailure { return (Data("{}".utf8), indexFailure) }
+                if let indexFailure {
+                    indexFailureOperation = OathDiagnostics.operationID
+                    return (Data("{}".utf8), indexFailure)
+                }
                 value = .object(["data":.object(["ledger_infos":.array([.object(["chain_id":.number("1")])]),"processor_status":.array([.object(["last_success_version":.number("1000")])])])])
             } else {
                 let row: AptosJSON = .object(["storage_id": .string(try AptosIdentity.address("0xffff")), "owner_address": .string(try AptosIdentity.address("0x1234")), "asset_type": .string(try AptosIdentity.reference("0xabcd")), "is_primary": .bool(true), "metadata": .object(["name": .string("Example"), "symbol": .string("EX"), "decimals": .number("6")])])

@@ -7,11 +7,16 @@ import OathDiagnostics
 
 private actor TronHistoryGate: AnkrTransport {
     let owner: String
-    private(set) var historyStarted = false
-    private var waiting: CheckedContinuation<Void, Never>?
+    private(set) var historyRequestCount = 0
+    var historyStarted: Bool { historyRequestCount > 0 }
+    private var waiters: [CheckedContinuation<Void, Never>] = []
     private var released = false
     init(owner: String) { self.owner = owner }
-    func release() { released = true; waiting?.resume(); waiting = nil }
+    func release() {
+        released = true
+        for waiter in waiters { waiter.resume() }
+        waiters.removeAll()
+    }
     func send(_ request: URLRequest) async throws -> (Data, Int) {
         let url = try XCTUnwrap(request.url)
         if url.host == "api.coinbase.com" { return (Data(#"{"data":{"base":"TRX","currency":"USD","amount":"0.2"}}"#.utf8), 200) }
@@ -21,8 +26,8 @@ private actor TronHistoryGate: AnkrTransport {
         }
         if url.host != "rpc.ankr.com" && url.host != "api.trongrid.io" { throw URLError(.notConnectedToInternet) }
         if url.path.contains("/transactions") || url.path.contains("/internal-transactions") {
-            historyStarted = true
-            if !released { await withCheckedContinuation { waiting = $0 } }
+            historyRequestCount += 1
+            if !released { await withCheckedContinuation { waiters.append($0) } }
             return (Data(#"{"success":true,"data":[]}"#.utf8), 200)
         }
         if url.path.contains("/v1/accounts/") { return (Data(#"{"success":true,"data":[]}"#.utf8), 200) }
@@ -37,6 +42,28 @@ private actor TronHistoryGate: AnkrTransport {
 }
 
 extension TronLedgerTests {
+    func testGateReleasesAllOverlappingHistoryRequests() async throws {
+        let feed = TronHistoryGate(owner: "fixture")
+        let completed = expectation(description: "both outstanding history requests returned")
+        completed.expectedFulfillmentCount = 2
+        let url = try XCTUnwrap(URL(string: "https://api.trongrid.io/v1/accounts/fixture/transactions"))
+        for _ in 0..<2 {
+            Task {
+                do { _ = try await feed.send(URLRequest(url: url)) }
+                catch { XCTFail("Unexpected synthetic transport error: \(error)") }
+                completed.fulfill()
+            }
+        }
+        let deadline = ContinuousClock.now.advanced(by: .seconds(5))
+        while await feed.historyRequestCount < 2 && ContinuousClock.now < deadline {
+            try await Task.sleep(for: .milliseconds(5))
+        }
+        let gathered = await feed.historyRequestCount
+        XCTAssertEqual(gathered, 2)
+        await feed.release()
+        await fulfillment(of: [completed], timeout: 2)
+    }
+
     func testCurrentRunCursorConflictRemainsAReportedFailure() async throws {
         let (db, folder) = try await fixture()
         defer { try? FileManager.default.removeItem(at: folder) }
@@ -57,10 +84,10 @@ extension TronLedgerTests {
         try await db.pool.write { try $0.execute(sql: "UPDATE tronHistoryCursors SET end=end+1 WHERE accountID='a1'") }
         await feed.release()
         await sync.waitForHistory(accountID: "a1")
-        try await Task.sleep(for: .milliseconds(100))
-        await OathDiagnostics.flush()
-        let reports = await sink.events().filter { $0.operationID == operation }
-        XCTAssertTrue(reports.contains { $0.error.domain == "OathDatabase.StoreError" && $0.error.message == "staleSync" })
+        let reported = try await sink.waitForEvent(operation: operation) {
+            $0.error.domain == "OathDatabase.StoreError" && $0.error.message == "staleSync"
+        }
+        XCTAssertTrue(reported, "The current conflict must reach this refresh's diagnostic stream")
         let failure = try await db.pool.read { try String.fetchOne($0, sql: "SELECT historyFailure FROM tronSync WHERE accountID='a1'") }
         XCTAssertEqual(failure, "storage")
         await sync.cancel()
