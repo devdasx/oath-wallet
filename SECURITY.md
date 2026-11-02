@@ -1,6 +1,6 @@
 # Security
 
-Oath Wallet 5.0.0 is a self-custody source release prepared for independent audit.
+Oath Wallet 5.0.1 is a self-custody source release prepared for independent audit.
 No independent audit or absolute security guarantee is claimed.
 
 The core invariant is that an operator cannot obtain a wallet's private keys or
@@ -30,7 +30,7 @@ in the fixture READMEs and are not production service credentials.
 ## Reproducible security review
 
 A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
-starts at 4.1.15 (100), commit `c7cdbde5e9f136b595500e92fbc904b107dcd8ee`.
+now tracks [5.0.1 (103)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103), commit `c7acd23bb139864a40273f405d18b479589d2b20`.
 It publishes its exact source targets, findings, tests, and outstanding coverage.
 The review is **in progress**, is not independent certification, and does not
 establish equivalence with Apple's distributed binary. Later changes do not

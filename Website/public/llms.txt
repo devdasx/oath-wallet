@@ -7,7 +7,9 @@ Document index: https://oathwallet.org/agent-documents.json
 App Store: https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283
 Public source and releases: https://github.com/devdasx/oath-wallet
 
-Help instructions carry their applicable app version and authored update dates. Source excerpts cover 5.0.0 (102), reviewed 2026-11-02; this is not an independent audit or proof of App Store availability.
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
+
+Help instructions carry their applicable app version and authored update dates. Source excerpts cover 5.0.1 (103), reviewed 2026-11-02; this is not an independent audit or proof of App Store availability.
 
 - [Bitcoin wallet: send, receive and dApp connections](https://oathwallet.org/networks/bitcoin.md): Receive native BTC with your Oath address and review your Bitcoin network fee before sending.
 - [Ethereum wallet: send, receive and dApp connections](https://oathwallet.org/networks/ethereum.md): Receive, send and manage assets on Ethereum with Oath for iPhone and iPad. Keep your network, address and fee details in view.

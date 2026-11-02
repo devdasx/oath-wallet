@@ -16,7 +16,7 @@ function component(overrides={}) {
  return context.subject;
 }
 test('current source evidence agrees with the interactive code viewer and metadata',()=>{
- assert.equal(evidence.version,'5.0.0');assert.equal(evidence.build,102);
+ assert.equal(evidence.version,'5.0.1');assert.equal(evidence.build,103);
  assert.equal(data.security.reviewed_source_commit,evidence.source_commit);
  assert.equal(data.security.reviewed_on,evidence.reviewed_on);
  const files=JSON.parse(security.match(/const FILES = (\[[\s\S]*?\]);/)[1]);
@@ -33,7 +33,7 @@ test('current guides agree across article text, HTML, feeds and modification dat
   const a=data.articles.find(a=>a.url.endsWith('/'+slug));const item=feed.items.find(a=>a.url.endsWith('/'+slug));
   assert.ok(a&&item,slug);assert.equal(item.title,a.title);assert.equal(item.date_modified,a.updated_at);
   assert.match(a.updated_at,/2026-11-02/);assert.match(html,/5\.0\.0/);assert.match(md,/5\.0\.0/);assert.match(item.content_html,/5\.0\.0/);
-  assert.match(html,/Current release guidance/);assert.ok(html.includes(evidence.source_commit));
+  assert.match(html,/Current release guidance/);assert.ok(html.includes('ecb16953a5766471e1214eae6655cf783d0d062a'));
   assert.doesNotMatch(html,/580cf943|docs\/AUDIT_SCOPE\.md|4\.0\.0/,slug+' has no retired citations, including structured metadata');
   assert.ok(html.includes(a.reading_minutes+' min read'),slug+' reading time agrees with the listing');
  }
@@ -47,11 +47,14 @@ test('current release copy keeps upload separate from Apple review',async()=>{
  const copies=await Promise.all(['public/security.html','public/security.md','public/about.html',
   'public/about.md','src/help/render.js'].map(read));
  for(const copy of copies){
-  assert.doesNotMatch(copy,/Waiting for Review|Build 102 was submitted|5\.0\.0 \(86\)/);
-  assert.match(copy,/release record identifies the tagged source/i);
+  assert.match(copy,/5\.0\.1 as Waiting for Review on 2 November 2026/);
+  assert.doesNotMatch(copy,/Apple processed build 102|GitHub Actions delivery workflow/i);
  }
- assert.equal(data.facts.source_version,'5.0.0 (102)');
- assert.match(data.facts.source_release_status,/build 102.*GitHub release/i);
+ assert.equal(data.facts.source_version,'5.0.1 (103)');
+ assert.equal(data.facts.app_store_review_status,'Waiting for Review');
+ assert.equal(data.facts.app_store_review_version,'5.0.1');
+ assert.equal(data.facts.app_store_version,'4.1.2');
+ assert.equal(data.security.source_correspondence.delivery_receipt,undefined);
 });
 test('copy reports success only after the clipboard accepts text',async()=>{
  let resolve;const pending=new Promise(r=>resolve=r);let copied;

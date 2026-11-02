@@ -80,11 +80,11 @@ For any wallet that offers only a repository link, the fair conclusion is limite
 
 Compare the platform, release, method, and result. A brand-wide label hides too much.
 
-## Oath: open source, and a clear statement about the shipped app
+## Oath Wallet 5.0.1 and its public build record
 
-Oath publishes its MIT-licensed 4.1.14 (98) source release with build instructions and a release verification record. The app source used for the uploaded archive is commit v4.1.14. Provider configuration and Apple signing are supplied locally and excluded from Git. [Explore Oath’s published source release.](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14)
+Oath publishes the MIT-licensed [source for 5.0.1 (103)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json) identifies the source commit, unsigned iOS Release build and host test results.
 
-**On October 30, 2026, build 86 was uploaded to App Store Connect and submitted for review.** The [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v4.1.14) records the source, archive and upload evidence. Apple showed Waiting for Review at submission; the public US App Store listing still showed 4.1.2 when checked. Submission is not approval or a new public-store binary comparison.
+App Store Connect listed iOS version 5.0.1 as **Waiting for Review** on 2 November 2026. At that time version 4.1.2 was marked Ready for Distribution. The submission status does not establish a byte-for-byte comparison with a downloaded app.
 
 There is a distinction worth keeping explicit: a publisher’s confirmation is not the same evidence as an independent party reproducing a release and publishing its comparison. This article does not present a new binary comparison, a byte-for-byte reproducibility result, or an independent security audit. The repository’s documented exclusions and configuration requirements still apply.
 

@@ -20,11 +20,11 @@ export const documents=[
  })
 ];
 export const publicDocument=d=>Object.fromEntries(Object.entries(d).filter(([k,v])=>!['file','id'].includes(k)&&v!==undefined));
-export const evidenceScope={version:evidence.version,build:evidence.build,reviewed_on:evidence.reviewed_on,source_url:`https://github.com/devdasx/oath-wallet/tree/${evidence.source_commit}`,scope:'Pinned source excerpts, not an independent audit or confirmation of the current App Store version.',app_store_url:facts.facts.download};
+export const evidenceScope={version:evidence.version,build:evidence.build,reviewed_on:evidence.reviewed_on,source_url:`https://github.com/devdasx/oath-wallet/tree/${evidence.source_commit}`,app_review:{version:facts.facts.app_store_review_version,status:facts.facts.app_store_review_status,as_of:facts.facts.app_store_review_status_as_of},scope:'Pinned source excerpts, not an independent audit or confirmation of the current App Store version.',app_store_url:facts.facts.download};
 const link=d=>`- [${d.title}](${d.markdown_url})${d.summary?': '+d.summary:''}`;
 export function guide(origin) {
  const docs=documents.filter(d=>origin===main || new URL(d.url).origin===origin);
- return `# Oath Wallet — public documentation\n\nOfficial product information only. Never submit recovery phrases, private keys, passcodes or wallet data to these interfaces.\n\nRead-only MCP: ${main}/mcp\nDocument index: ${main}/agent-documents.json\nApp Store: ${facts.facts.download}\nPublic source and releases: ${facts.facts.source_code}\n\nHelp instructions carry their applicable app version and authored update dates. Source excerpts cover ${evidence.version} (${evidence.build}), reviewed ${evidence.reviewed_on}; this is not an independent audit or proof of App Store availability.\n\n${docs.map(link).join('\n')}\n\nFull text: ${main}/llms-full.txt\n`;
+ return `# Oath Wallet — public documentation\n\nOfficial product information only. Never submit recovery phrases, private keys, passcodes or wallet data to these interfaces.\n\nRead-only MCP: ${main}/mcp\nDocument index: ${main}/agent-documents.json\nApp Store: ${facts.facts.download}\nPublic source and releases: ${facts.facts.source_code}\n\n${facts.facts.source_release_status}\n\nHelp instructions carry their applicable app version and authored update dates. Source excerpts cover ${evidence.version} (${evidence.build}), reviewed ${evidence.reviewed_on}; this is not an independent audit or proof of App Store availability.\n\n${docs.map(link).join('\n')}\n\nFull text: ${main}/llms-full.txt\n`;
 }
 export async function documentText(d,env,asset) {
  let body;

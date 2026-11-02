@@ -29,8 +29,11 @@
       "checked_on": "2026-10-27"
     },
     "app_store_version": "4.1.2",
-    "source_version": "5.0.0 (102)",
-    "source_release_status": "Build 102 was uploaded by GitHub Actions and was Waiting for Review on 2 November 2026. The GitHub release includes the verified Apple delivery receipt."
+    "source_version": "5.0.1 (103)",
+    "source_release_status": "App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.",
+    "app_store_review_version": "5.0.1",
+    "app_store_review_status": "Waiting for Review",
+    "app_store_review_status_as_of": "2026-11-02"
   },
   "features": [
     {
@@ -681,32 +684,28 @@
     }
   ],
   "security": {
-    "reviewed_source_version": "5.0.0 (102)",
-    "reviewed_source_commit": "ecb16953a5766471e1214eae6655cf783d0d062a",
+    "reviewed_source_version": "5.0.1 (103)",
+    "reviewed_source_commit": "c7acd23bb139864a40273f405d18b479589d2b20",
     "reviewed_on": "2026-11-02",
     "mnemonic": "BIP39, Electrum and aezeed retain distinct validation and derivation rules",
     "storage": "AES-GCM local vault; device-only Keychain and protected installation key; passcode key derivation uses PBKDF2-HMAC-SHA256 with 600,000 rounds",
     "backup": "Eligible wallets use AES-256-GCM password-encrypted .oathbackup files; Electrum and aezeed excluded",
     "independent_audit": "Not established by the published source release",
-    "app_store_binary_match": "The GitHub Actions receipt identifies the tagged source and the IPA delivered to Apple after processing. An independently reproduced App Store binary comparison is outstanding.",
-    "silent_payments": "Receiving and discovery are not supported in 5.0.0",
-    "source": "https://github.com/devdasx/oath-wallet/blob/ecb16953a5766471e1214eae6655cf783d0d062a/README.md",
+    "app_store_binary_match": "The release record covers source and unsigned build checks. An independently reproduced comparison with the distributed App Store binary remains outstanding.",
+    "silent_payments": "Receiving and discovery are not supported in 5.0.1",
+    "source": "https://github.com/devdasx/oath-wallet/blob/c7acd23bb139864a40273f405d18b479589d2b20/README.md",
     "scope": "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md",
     "reporting_policy": "https://github.com/devdasx/oath-wallet/security/policy",
     "source_correspondence": {
-      "status": "apple-processed",
+      "status": "source-tagged",
       "confirmed_on": "2026-11-02",
-      "statement": "GitHub Actions uploaded 5.0.0 (102) from the tagged source. Apple validated the build. App Store Connect showed Waiting for Review on 2 November 2026.",
-      "readme": "https://github.com/devdasx/oath-wallet#release-verification",
-      "guide": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
-      "independent_verification": "This statement is distinct from an independently reproduced, byte-for-byte comparison of an App Store download. This update supplies no new binary comparison, independent reproducibility report, or security audit.",
-      "delivery_receipt": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.0-build102-r3/receipt.json",
-      "github_run": "https://github.com/devdasx/oath-wallet/actions/runs/41398320455",
-      "ipa_sha256": "f0de69573f05cf4d0b590b07cd2fcc935fdfd354c754ef94edbe45622ea5a12a"
+      "statement": "The public source tag identifies version 5.0.1, build 103. App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.",
+      "source_verification": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json",
+      "readme": "https://github.com/devdasx/oath-wallet#release-verification"
     },
-    "technical_examples_scope": "Six source excerpts verified against 5.0.0 (102) on 2026-11-02.",
+    "technical_examples_scope": "Six source excerpts verified against 5.0.1 (103) on 2026-11-02.",
     "page_updated_on": "2026-11-02",
-    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r3",
-    "release_source_commit": "ecb16953a5766471e1214eae6655cf783d0d062a"
+    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103",
+    "release_source_commit": "c7acd23bb139864a40273f405d18b479589d2b20"
   }
 }

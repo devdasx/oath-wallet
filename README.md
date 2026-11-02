@@ -31,7 +31,7 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-The [5.0.1 (103) source release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103) identifies the code and build settings for this version. See its [verification record](releases/5.0.1.md) for the checks performed. This release was published on GitHub only.
+The [5.0.1 (103) source release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103) identifies the code and build settings for this version. See its [verification record](releases/5.0.1.md) for the checks performed. App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 The [5.0.0 (102) delivery record](releases/5.0.0.md) documents the earlier build delivered to Apple.
 
@@ -88,7 +88,7 @@ See the bundled third-party notices and dependency licenses for attribution.
 ## Reproducible security review
 
 A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
-starts at 4.1.15 (100), commit `c7cdbde5e9f136b595500e92fbc904b107dcd8ee`.
+now tracks [5.0.1 (103)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103), commit `c7acd23bb139864a40273f405d18b479589d2b20`.
 It publishes its exact source targets, findings, tests, and outstanding coverage.
 The review is **in progress**, is not independent certification, and does not
 establish equivalence with Apple's distributed binary. Later changes do not
