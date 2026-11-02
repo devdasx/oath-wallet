@@ -45,7 +45,7 @@ enum OathWalletEngine {
             guard phrase.aezeed == nil else { throw OathWalletError.invalidPhrase }
             let decoded = try ElectrumMnemonic.decode(phrase.phrase, passphrase: material.passphrase)
             guard decoded == material else { throw OathWalletError.invalidPhrase }
-            return OathWalletSecret(id: id, mnemonic: ElectrumMnemonic.normalize(phrase.phrase), language: "electrum",
+            return OathWalletSecret(id: id, mnemonic: ElectrumMnemonic.recoveryPhrase(phrase.phrase, kind: material.kind), language: "electrum",
                                     createdAt: .now, backedUp: true, electrum: decoded, imported: true)
         }
         if let material = phrase.aezeed {

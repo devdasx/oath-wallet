@@ -236,7 +236,7 @@ struct OathRecoveryPhraseScreen: View {
                             }.value
                             try Task.checkCancellation()
                             guard draft.text == text, draft.isElectrum else { return }
-                            onImport(.init(phrase: ElectrumMnemonic.normalize(text), language: "electrum", electrum: material))
+                            onImport(.init(phrase: ElectrumMnemonic.recoveryPhrase(text, kind: material.kind), language: "electrum", electrum: material))
                         } catch is CancellationError { /* Leaving the import page cancels delivery. */ }
                         catch let error as ElectrumMnemonicError where error != .derivation {
                             // diagnostics: electrum-form-validation; invalid input is not an app failure.

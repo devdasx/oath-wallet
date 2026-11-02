@@ -1,4 +1,5 @@
 import XCTest
+import CryptoKit
 import OathSecp256k1
 @testable import OathBitcoin
 
@@ -11,6 +12,26 @@ final class ElectrumMnemonicTests: XCTestCase, @unchecked Sendable {
     func vectors() throws -> [Vector] {
         try JSONDecoder().decode([Vector].self, from: Data(contentsOf: XCTUnwrap(Bundle.module.url(forResource: "electrum-reference", withExtension: "json"))))
     }
+    // Independent SHA-256 digests of Electrum 4.6.2 TrustedCoin's derived seeds.
+    func testTwoFactorCJKSeedBoundaries() throws {
+        let cases = [
+            (12, 1581, "0ea025364a2417d22e247690d5d57e577bb13010b9bf226683f00a3ebe223996", nil as String?),
+            (24, 2725, "2cba17c5b6eebb630fedf156095bbd72b5255bf7a18143258fe955bf9144970d", "8ded67946adac69690af08f56a7bd0c90b39757e1ee86ce067baefa4e21407d6"),
+        ]
+        for (count, iteration, firstHash, secondHash) in cases {
+            let last = String(UnicodeScalar(0x4e00 + iteration % 512)!) + String(UnicodeScalar(0x5000 + iteration / 512)!)
+            let words = (0..<(count - 1)).map { String(UnicodeScalar(0x4e00 + $0)!) } + [last]
+            for separator in [" ", "\u{3000}"] {
+                let phrase = words.joined(separator: separator)
+                XCTAssertEqual(ElectrumMnemonic.kind(phrase), .twoFactor)
+                let material = try ElectrumMnemonic.decode(phrase)
+                XCTAssertEqual(Data(SHA256.hash(data: material.seed)).hex, firstHash)
+                XCTAssertEqual(material.secondSeed.map { Data(SHA256.hash(data: $0)).hex }, secondHash)
+                XCTAssertEqual(ElectrumMnemonic.allowsPassphrase(phrase), count == 12)
+            }
+        }
+    }
+
     func testFinalNormalChildElectrumLeafExport() throws {
         let vector = try XCTUnwrap(vectors().first { $0.kind == "segwit" })
         let material = try ElectrumMnemonic.decode(vector.phrase, passphrase: vector.password)
