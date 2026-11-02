@@ -2,7 +2,7 @@
 
 A native multichain wallet for iPhone and iPad.
 
-This repository contains **Oath Wallet 5.0.1, build 103**.
+**App Review.** On 2 November 2026, App Store Connect showed **5.0.1** (source build **103**) as **Waiting for Review** and **4.1.2** as **Ready for Distribution**.
 
 [Release notes](releases/5.0.1.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
@@ -31,7 +31,7 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-The [5.0.1 (103) source release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103) identifies the code and build settings for this version. See its [verification record](releases/5.0.1.md) for the checks performed. App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
+The [5.0.1 (103) source release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103) identifies the code and build settings for this version. The [release record](https://github.com/devdasx/oath-wallet/blob/main/releases/5.0.1.md) tracks subsequent App Review updates alongside the original build checks.
 
 The [5.0.0 (102) delivery record](releases/5.0.0.md) documents the earlier build delivered to Apple.
 
