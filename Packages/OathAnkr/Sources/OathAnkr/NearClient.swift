@@ -157,6 +157,12 @@ public actor NearClient {
             }
         }
     }
+    // Inventory and history can retain raw units without display metadata.
+    // tokenIfAvailable owns error reporting for both optional and strict callers.
+    private func displayMetadata(_ reference: String, block: NearBlock) async -> NearToken? {
+        try? await tokenIfAvailable(reference, block: block)
+    }
+
     private func cachedMetadata(_ reference:String, block:NearBlock) async throws -> NearToken? {
         try Task.checkCancellation()
         let ref = try NearIdentity.reference(reference); if ref == "native" { return .native }
@@ -174,7 +180,7 @@ public actor NearClient {
             await releaseMetadataGate(ref, gate:entry.gate, acquired:acquired)
             return value
         } catch {
-            OathDiagnostics.record(error, operation:"token_metadata", context:["chain":"near", "stage":"metadata"])
+            OathDiagnostics.record(error, operation: "token_metadata", context: ["chain": "near", "stage": "metadata"])
             await releaseMetadataGate(ref, gate:entry.gate, acquired:acquired)
             throw error
         }
@@ -240,7 +246,7 @@ public actor NearClient {
                 guard next < list.count, !Task.isCancelled else { return }; let ref = list[next]; next += 1
                 let indexAmount = indexed[ref]
                 group.addTask {
-                    async let token = await OathDiagnostics.attemptOptional("token_metadata") { try await self.tokenIfAvailable(ref,block:block) }
+                    async let token = self.displayMetadata(ref, block: block)
                     do {
                         let balance = try await self.call(contract:ref,method:"ft_balance_of",args:.object(["account_id":.string(owner)]),block:block)
                         return .init(reference:ref,token:await token,amount:try NearIdentity.amount(balance),indexedAmount:indexAmount,failure:nil)
@@ -302,7 +308,9 @@ public actor NearClient {
         var tokens:[String:NearToken] = [:]
         for offset in stride(from:0,to:refs.count,by:6) {
             await withTaskGroup(of:NearToken?.self) { group in
-                for ref in refs[offset..<min(offset+6,refs.count)] { group.addTask { await OathDiagnostics.attemptOptional("token", body: { try await self.tokenIfAvailable(ref,block:block) }) } }
+                for ref in refs[offset..<min(offset+6,refs.count)] {
+                    group.addTask { await self.displayMetadata(ref, block: block) }
+                }
                 for await token in group { if let token { tokens[token.reference] = token } }
             }
         }

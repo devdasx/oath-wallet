@@ -1,5 +1,6 @@
 import Foundation
 import CryptoKit
+import OathCloudBackup
 import OathDatabase
 import OathDiagnostics
 
@@ -25,6 +26,47 @@ private actor CompatibilityReports: DiagnosticTransport {
         let pin: [UInt8] = [1, 6, 9, 2, 8, 4]
         let future = "future-chain-fixture"
         check(OathImportChain(rawValue: future) == nil, "Fixture represents a network absent from this binary")
+
+        // A resumed recovery reset can leave an open ledger without its network
+        // rows. Setup may only commit ciphertext after the journal clears.
+        let resetDB = try await OathDatabase.open(at: folder.appendingPathComponent("reset.sqlite"))
+        let resetID = try await resetDB.beginWalletReset(legacyRecovery: true)
+        let memory = WalletMemory()
+        let setup = OathWalletVault(storage: memory, biometricStore: MemoryBiometrics(), database: resetDB)
+        do {
+            try await setup.create(digits: pin, importing: nil)
+            check(false, "Pending reset must reject setup")
+        } catch {
+            check(try memory.read("vault-v1") == nil, "Pending reset must reject before writing ciphertext")
+        }
+        let keyFixture = BackupWallet.ImportedPrivateKey(bytes: Data(repeating: 7, count: 32), networks: ["ethereum"])
+        let backup = BackupWallet(id: UUID(), name: "Restore fixture", mnemonic: "", language: "", createdAt: .now,
+            accounts: [.init(network: "ethereum", derivationPath: "imported", index: 0)], privateKey: keyFixture)
+        let restoration = try OathRestoredWallet(backup: backup)
+        let restoredMemory = WalletMemory()
+        let restore = OathWalletVault(storage: restoredMemory, biometricStore: MemoryBiometrics(), database: resetDB)
+        let restoreStore = OathRestoredWalletSetupStore(vault: restore, restoration: restoration)
+        do {
+            try await restoreStore.save(pin)
+            check(false, "Pending reset must reject restore")
+        } catch {
+            check(try restoredMemory.read("vault-v1") == nil, "Pending reset must leave restore retryable")
+        }
+        try await resetDB.eraseWalletData(resetID: resetID)
+        try await resetDB.finishWalletReset(resetID: resetID)
+        try await restoreStore.save(pin)
+        check(try await restore.unlockedProfile().id == backup.id, "Restore after reset preserves the backup identity")
+        let setupDB = try await OathDatabase.open(at: folder.appendingPathComponent("setup.sqlite"))
+        let freshMemory = WalletMemory()
+        let fresh = OathWalletVault(storage: freshMemory, biometricStore: MemoryBiometrics(), database: setupDB)
+        do {
+            try await fresh.create(digits: pin, importing: nil)
+            let id = try await fresh.unlockedProfile().id
+            await fresh.lock()
+            check(try await fresh.unlock(digits: pin).id == id, "Wallet created after reset reopens with its original PIN")
+        } catch {
+            check(false, "Post-reset setup failed with " + String((error as NSError).code))
+        }
 
         for pinEnabled in [false, true] {
             let databaseURL = folder.appendingPathComponent(pinEnabled ? "pin/wallet.sqlite" : "automatic/wallet.sqlite")
@@ -100,7 +142,13 @@ private actor CompatibilityReports: DiagnosticTransport {
                     let bytes = try JSONEncoder().encode(historical)
                     try storage.update(bytes, account: "vault-v1")
                     let cold = OathWalletSession(vault: reopenedVault, legacySourceURL: folder.appendingPathComponent("absent-legacy.sqlite"))
-                    await cold.load()
+                    if valid { await cold.load() }
+                    else {
+                        // Scene startup and protected-data callbacks can overlap.
+                        await withTaskGroup(of: Void.self) { callers in
+                            for _ in 0..<12 { callers.addTask { await cold.load() } }
+                        }
+                    }
                     if valid {
                         check(cold.isUnlocked && cold.displayedProfile?.id == originalProfile.id,
                               "Cold launch opens an authenticated legacy v10 vault with a missing lifecycle marker")
@@ -135,6 +183,7 @@ private actor CompatibilityReports: DiagnosticTransport {
         check(startupFailures.contains { $0.context["reason"] == "invalid_stored_wallet_identity" }, "Identity rejection reports its safe guard reason")
         let loadFailures = startupFailures.filter { $0.operation == "load" }
         let guardReports = await reports.events.filter { $0.context["reason"] == "payload_lifecycle_mismatch" }
+        check(guardReports.count == 1, "Concurrent startup callers emit one payload mismatch report")
         check(loadFailures.count == 1 && loadFailures.first?.context["stage"] == "vault_open" &&
               loadFailures.first?.operationID != nil && guardReports.contains { $0.operationID == loadFailures.first?.operationID },
               "Startup reports the exact failing guard and vault stage under the same operation ID")

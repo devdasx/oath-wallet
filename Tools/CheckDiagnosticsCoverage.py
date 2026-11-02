@@ -116,6 +116,16 @@ for root in roots:
             after = source[match.end():match.end()+100]
             if name == 'Task.sleep' or name.endswith('.value'):
                 continue  # Waiting for already-observed cancelled tasks.
+            if (file.relative_to(ROOT).as_posix() == 'Packages/OathDatabase/Sources/OathDatabase/IndexedEVMSynchronizer.swift'
+                    and source[match.start():].split('\n', 1)[0].strip() == 'try? await OathDiagnostics.withStep("native_price") { try await markets.nativePrice() }'):
+                continue  # IndexedNativeQuoteReportingTests verifies provider-specific terminal and recovery reports.
+            if file.relative_to(ROOT).as_posix() == 'OathAtmosphere/Preferences/OathExchangeRateEnvironment.swift' and name == 'service.refreshIfNeeded':
+                continue  # Shared rate task records original failures once across all waiting scenes.
+            if (file.relative_to(ROOT).as_posix() == 'Packages/OathAnkr/Sources/OathAnkr/NearClient.swift'
+                    and name == 'tokenIfAvailable'
+                    and source[:match.start()].rstrip().endswith('func displayMetadata(_ reference: String, block: NearBlock) async -> NearToken? {')
+                    and after.startswith('(reference, block: block)')):
+                continue  # The throwing entry point reports once; only display metadata is optional.
             if name == 'batch' and file.name == 'TronClient.swift':
                 continue  # Optional token interface probes, observed at transport.
             if name.endswith('.transitionSend') and ('to: "confirmed"' in after or 'to: "failed"' in after):

@@ -51,10 +51,14 @@ public actor XrplClient {
             }
             // Validate inside the provider boundary so a lagging/clamped reply
             // can use the fallback, preserving the exact pinned page range.
+            let maximum = try XrplIdentity.number(value["ledger_index_max"])
             guard value["account"].string == params["account"]?.string,
-                  value["validated"] == .bool(true), value["transactions"].array != nil,
-                  try XrplIdentity.number(value["ledger_index_max"]) == XrplIdentity.number(params["ledger_index_max"] ?? .null)
-            else { throw XrplError.wrongLedger }
+                  value["validated"] == .bool(true), value["transactions"].array != nil, maximum >= minimum else {
+                throw XrplError.wrongLedger
+            }
+            if !(recentHistory && params["ledger_index_max"] == .number("-1")) {
+                guard maximum == (try XrplIdentity.number(params["ledger_index_max"] ?? .null)) else { throw XrplError.wrongLedger }
+            }
         }
         return value
     }
@@ -84,7 +88,7 @@ public actor XrplClient {
                     if case XrplError.rpc(let code) = error { context["rpc_code"] = code }
                     OathDiagnostics.record(error,component:"provider",operation:"xrpl_read",context:context)
                     last = error
-                    if Self.delayedReadRetry(error,method:method,params:params) { delayed.append(url) }
+                    if delayedReadRetry(error,method:method,params:params) { delayed.append(url) }
                 }
             }
             guard attempt < 2, !delayed.isEmpty else { throw last }
@@ -93,7 +97,7 @@ public actor XrplClient {
         }
         throw last
     }
-    private static func delayedReadRetry(_ error: any Error, method: String, params: [String:XrplJSON]) -> Bool {
+    private func delayedReadRetry(_ error: any Error, method: String, params: [String:XrplJSON]) -> Bool {
         guard case XrplError.rpc(let code) = error else { return false }
         if code == "failedToForward" { return true }
         if code == "lgrIdxMalformed" {
@@ -101,9 +105,10 @@ public actor XrplClient {
             // unavailable on the server. Retry the pinned range unchanged; an
             // invalid range or another method must not enter this recovery path.
             guard method == "account_tx",
-                  let lower = params["ledger_index_min"]?.integer,
-                  let upper = params["ledger_index_max"]?.integer else { return false }
-            return lower > 0 && upper >= lower
+                  let lower = params["ledger_index_min"]?.integer, lower > 0 else { return false }
+            if recentHistory, params["marker"] == nil, params["ledger_index_max"] == .number("-1") { return true }
+            guard let upper = params["ledger_index_max"]?.integer else { return false }
+            return upper >= lower
         }
         return ["lgrNotFound","ledgerNotFound"].contains(code)
             && (params["ledger_hash"]?.string != nil || params["ledger_index_max"]?.integer != nil)
@@ -190,30 +195,62 @@ public actor XrplClient {
         guard Set(holdings.map(\.reference)).count == holdings.count else { throw XrplError.malformed }
         return try .init(owner:owner,ledger:ledger,exists:true,holdings:holdings.sorted{$0.reference<$1.reference},observedAt:.now,raw:JSONEncoder().encode(XrplJSON.object(["account":state,"lines":.array(trust.raw),"mpts":.array(mpts.raw)])))
     }
-    public func history(owner:String, before:String? = nil, upperLedger:Int64? = nil, limit:Int = 200) async throws -> XrplHistoryPage {
+    private func recentRange(covering upper: Int64? = nil) async throws -> XrplRecentHistoryRange {
+        for attempt in 0..<3 {
+            let info = try await rpc("server_info", [:], primaryOnly: true)["info"]
+            guard info["network_id"].isNull || info["network_id"].integer == 0 else { throw XrplError.wrongNetwork }
+            let range = try XrplRecentHistoryRange(info["complete_ledgers"])
+            guard let upper, upper > range.upper else { return range }
+            // A pagination pin can be newer than this replica. Wait briefly
+            // for coverage instead of abandoning the pin or moving the cursor.
+            if attempt < 2 { try await Task.sleep(for: .milliseconds(500 * (attempt + 1))) }
+        }
+        throw XrplError.wrongLedger
+    }
+    public func history(owner:String, before:String? = nil, upperLedger:Int64? = nil, oldestFetchedLedger: Int64? = nil, limit:Int = 200) async throws -> XrplHistoryPage {
         let owner = try XrplIdentity.address(owner)
-        let lower: Int64, upper: Int64
+        let lower: Int64, ceiling: Int64
+        let latestOnServingNode = recentHistory && before == nil && upperLedger == nil
         if recentHistory {
             // ANKR documents a rolling XRP history window. Obtain its actual
             // contiguous range instead of requesting genesis or estimating
             // ledger heights from elapsed days. Keep all pages on that provider.
-            let info = try await rpc("server_info", [:], primaryOnly: true)["info"]
-            guard info["network_id"].isNull || info["network_id"].integer == 0 else { throw XrplError.wrongNetwork }
-            let range = try XrplRecentHistoryRange(info["complete_ledgers"])
+            let range = try await recentRange(covering: upperLedger)
             lower = range.lower
-            upper = upperLedger ?? range.upper
+            ceiling = upperLedger ?? range.upper
             // A saved cursor can age out while the app is closed. This is a
             // normal rolling-window transition, handled by the synchronizer.
-            guard upper >= lower else { throw XrplError.historyWindowExpired }
-            guard upper <= range.upper else { throw XrplError.wrongLedger }
+            guard ceiling >= lower else { throw XrplError.historyWindowExpired }
+            if before != nil, let upperLedger, let oldestFetchedLedger {
+                guard oldestFetchedLedger > 0, oldestFetchedLedger <= upperLedger else { throw XrplError.wrongLedger }
+                // This checkpoint came from the last validated descending page.
+                // Its opaque marker cannot yield a newer page. Keep equality:
+                // more transactions can remain in the very same ledger.
+                guard oldestFetchedLedger >= lower else { throw XrplError.historyWindowExpired }
+            }
         } else {
             lower = 32570
-            upper = if let upperLedger { upperLedger } else { try await validatedLedger().height }
+            ceiling = if let upperLedger { upperLedger } else { try await validatedLedger().height }
         }
-        var p:[String:XrplJSON] = ["account":.string(owner),"ledger_index_min":.number(String(lower)),"ledger_index_max":.number(String(upper)),"binary":.bool(false),"forward":.bool(false),"limit":.number(String(min(200,max(10,limit))))]
+        // Only a new ANKR page can negotiate its top ledger. A different replica
+        // may serve account_tx; all marker reads must use the actual first-page pin.
+        var p:[String:XrplJSON] = ["account":.string(owner),"ledger_index_min":.number(String(lower)),"ledger_index_max":.number(latestOnServingNode ? "-1" : String(ceiling)),"binary":.bool(false),"forward":.bool(false),"limit":.number(String(min(200,max(10,limit))))]
         if let before { guard before.count <= 4096 else { throw XrplError.malformed }; p["marker"] = try JSONDecoder().decode(XrplJSON.self,from:Data(before.utf8)) }
-        let value = try await rpc("account_tx",p,primaryOnly:recentHistory)
-        guard value["account"].string == owner, value["validated"] == .bool(true), try XrplIdentity.number(value["ledger_index_max"]) == upper, let rows = value["transactions"].array else { throw XrplError.wrongLedger }
+        let step: StaticString
+        if before != nil { step = "history_next_page" }
+        else if latestOnServingNode { step = "history_latest_page" }
+        else { step = "history_pinned_page" }
+        let value = try await OathDiagnostics.withStep(step) {
+            try await rpc("account_tx",p,primaryOnly:recentHistory)
+        }
+        let upper = try XrplIdentity.number(value["ledger_index_max"])
+        if latestOnServingNode, upper > ceiling {
+            // A head that advanced between reads must still be independently
+            // advertised by ANKR. Never accept an unconfirmed future height.
+            let current = try await recentRange(covering: upper)
+            guard (current.lower...current.upper).contains(upper) else { throw XrplError.wrongLedger }
+        }
+        guard let rows = value["transactions"].array else { throw XrplError.malformed }
         var tokens:[String:XrplToken] = ["native":.native]
         let initial = try rows.map{try XrplDecoding.transaction($0,owner:owner,tokens:tokens)}
         let refs = Set(initial.flatMap(\.movements).map(\.reference)).sorted()

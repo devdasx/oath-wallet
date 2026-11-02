@@ -184,8 +184,18 @@ final class OathSendModel {
         if snapshot?.wallet.id != source { snapshot = nil }
         do {
             let database = if let sourceDatabase { sourceDatabase } else { try await OathDataEnvironment.shared.database() }
-            for try await snapshot in database.observeWallet(walletID: source, currency: currency) {
+            for try await snapshot in database.observeActiveWallet(walletID: source, currency: currency) {
                 guard !Task.isCancelled, generation == token, walletID == source else { return }
+                guard let snapshot else {
+                    // A sender offered as active but absent on the first read is
+                    // still an inconsistency. A later removal invalidates the draft.
+                    if loading && self.snapshot == nil {
+                        OathDiagnostics.record(StoreError.missingRecord, component: "send", operation: "observe_sender",
+                                               context: ["stage": "initial_wallet_lookup"])
+                    }
+                    senderUnavailable()
+                    continue
+                }
                 let old = holding
                 let previousCurrency = self.snapshot?.currency
                 self.snapshot = snapshot
@@ -221,6 +231,16 @@ final class OathSendModel {
             guard !Task.isCancelled, generation == token else { return }
             failed = true; loading = false
         }
+    }
+
+    func senderUnavailable() {
+        resetDraft()
+        snapshot = nil
+        initialSelectionPending = false
+        initialHoldingID = nil
+        initialScan = nil
+        loading = false
+        failed = true
     }
 
     func observeRecipients() async {

@@ -4,6 +4,23 @@ import XCTest
 final class WalletSecurityNoticeQueueTests: XCTestCase {
     private let wallet = UUID()
 
+    func testBackupOfferWaitsForAvailableHomeAndSecurityNoticeDismissal() throws {
+        var queue = WalletSecurityNoticeQueue()
+        XCTAssertNil(queue.next(walletID: wallet, homeAvailable: false, multisigPending: false,
+                                stablecoinPending: false, backupPending: true))
+        let security = try XCTUnwrap(queue.next(walletID: wallet, homeAvailable: true, multisigPending: false,
+                                                stablecoinPending: true, backupPending: true))
+        XCTAssertEqual(security.kind, .stablecoin)
+        XCTAssertTrue(queue.begin(security))
+        XCTAssertNil(queue.next(walletID: wallet, homeAvailable: true, multisigPending: false,
+                                stablecoinPending: false, backupPending: true))
+        queue.didDismiss()
+        let backup = try XCTUnwrap(queue.next(walletID: wallet, homeAvailable: true, multisigPending: false,
+                                              stablecoinPending: false, backupPending: true))
+        XCTAssertEqual(backup.kind, .backup)
+        XCTAssertEqual(backup.walletID, wallet)
+    }
+
     func testBothFindingsShowInOrderAfterNativeDismissal() throws {
         var queue = WalletSecurityNoticeQueue()
         let first = try XCTUnwrap(queue.next(walletID: wallet, homeAvailable: true,

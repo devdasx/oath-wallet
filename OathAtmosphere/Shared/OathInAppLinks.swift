@@ -4,10 +4,13 @@ import SafariServices
 import MessageUI
 
 extension View {
-    func oathInAppLinks() -> some View { modifier(OathInAppLinksModifier()) }
+    func oathInAppLinks(walletUnlocked: Bool) -> some View {
+        modifier(OathInAppLinksModifier(walletUnlocked: walletUnlocked))
+    }
 }
 
 private struct OathInAppLinksModifier: ViewModifier {
+    let walletUnlocked: Bool
     @State private var presenter = OathLinkPresenter()
 
     func body(content: Content) -> some View {
@@ -21,6 +24,9 @@ private struct OathInAppLinksModifier: ViewModifier {
                 }
             })
             .background(OathLinkAnchor(presenter: presenter).frame(width: 0, height: 0))
+            .onChange(of: walletUnlocked) { _, unlocked in
+                if !unlocked { presenter.closeBrowser() }
+            }
     }
 }
 
@@ -66,6 +72,15 @@ private struct OathInAppLinksModifier: ViewModifier {
         }
     }
 
+    func closeBrowser() {
+        pendingTask?.cancel()
+        pendingTask = nil
+        pendingURL = nil
+        if let browser = activeDestination as? SFSafariViewController {
+            browser.presentingViewController?.dismiss(animated: false)
+        }
+    }
+
     private func attempt(_ url: URL) -> OpenResult {
         guard let window else { unavailable(stage: "window_missing"); return .rejected }
         guard window.windowScene?.activationState == .foregroundActive else {
@@ -88,6 +103,19 @@ private struct OathInAppLinksModifier: ViewModifier {
             let browser = SFSafariViewController(url: url)
             browser.delegate = self
             browser.dismissButtonStyle = .done
+            browser.modalPresentationStyle = .pageSheet
+            if let sheet = browser.sheetPresentationController {
+                // The native medium height is unavailable on a landscape iPhone.
+                let compact = UISheetPresentationController.Detent.custom { context in
+                    context.containerTraitCollection.verticalSizeClass == .compact
+                        ? context.maximumDetentValue * 0.75 : nil
+                }
+                sheet.detents = [.medium(), compact, .large()]
+                sheet.selectedDetentIdentifier = .large
+                sheet.prefersEdgeAttachedInCompactHeight = true
+                sheet.prefersGrabberVisible = true
+                sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            }
             // Present Safari itself, never embed it inside a custom browser or
             // navigation controller. It owns its native toolbar and safe areas.
             activeURL = url; activeDestination = browser

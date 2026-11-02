@@ -79,6 +79,40 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             XCTAssertEqual(entry.displayAmountAtomic, String(plan.fee), chain.rawValue)
         }
     }
+    func testScanStartedBeforeConfirmationCannotRestoreASpentInput() async throws {
+        let (db, plan, signed) = try await fixture(.bitcoin)
+        let descriptor = try UTXONetwork.bitcoin.wallet(seed: seed)
+        let funding = Dictionary(uniqueKeysWithValues: plan.coins.map { ($0.address.scriptHash, $0.txid) })
+        let scanID = try await db.beginBitcoinScan(accountID: "a")
+        let scan = try await BitcoinDiscovery(query: StatusFundingQuery(funding: funding)).scan(descriptor)
+        let coins = Dictionary(uniqueKeysWithValues: plan.coins.map { ($0.txid, $0.previousTransaction) })
+        let independent = try UTXONetwork.bitcoin.wallet(seed: Data(2...33))
+        for (id, wallet) in [("duplicate", descriptor), ("independent", independent)] {
+            let address = try BitcoinKeys.addresses(branch: wallet.branches[0], range: 0..<1)[0]
+            try await db.importWalletIfNeeded(.init(id: id, name: id, kind: "hd", vaultReference: id, createdAt: 1),
+                accounts: [.init(id: id, walletID: id, networkID: "bitcoin", address: address.address, derivationPath: address.path)])
+            try await db.prepareBitcoin(accountID: id, descriptor: wallet)
+        }
+        let initial = try await db.beginBitcoinScan(accountID: "duplicate")
+        try await db.commitBitcoinScan(accountID: "duplicate", scanID: initial, scan: scan, transactions: coins, tipHeight: 150)
+        let duplicateID = try await db.beginBitcoinScan(accountID: "duplicate")
+        let independentID = try await db.beginBitcoinScan(accountID: "independent")
+        try await db.settleBitcoinSend("send", confirmation: .init(raw: signed.raw, height: 200, timestamp: 1000))
+        do {
+            try await db.commitBitcoinScan(accountID: "a", scanID: scanID, scan: scan,
+                transactions: Dictionary(uniqueKeysWithValues: plan.coins.map { ($0.txid, $0.previousTransaction) }), tipHeight: 199)
+            XCTFail("An earlier snapshot was allowed to resurrect a confirmed spend")
+        } catch { XCTAssertEqual(error as? StoreError, .staleSync) }
+        do {
+            try await db.commitBitcoinScan(accountID: "duplicate", scanID: duplicateID, scan: scan, transactions: coins, tipHeight: 199)
+            XCTFail("A duplicate import was allowed to restore a confirmed spend")
+        } catch { XCTAssertEqual(error as? StoreError, .staleSync) }
+        let empty = try await BitcoinDiscovery(query: StatusFundingQuery(funding: [:])).scan(independent)
+        try await db.commitBitcoinScan(accountID: "independent", scanID: independentID, scan: empty, transactions: [:], tipHeight: 200)
+        let spent = try await db.pool.read { try Int.fetchOne($0, sql: "SELECT spent FROM utxos LIMIT 1") }
+        XCTAssertEqual(spent, 1)
+    }
+
     func testBroadcastAcknowledgementKeepsExactBytesAndReservations() async throws {
         for chain in UTXONetwork.allCases {
             let (db, _, signed) = try await fixture(chain)

@@ -15,9 +15,14 @@ extension OathDatabase {
             return .init(account: account, runID: run)
         }
     }
-    private static func validatePolkadot(_ ticket: PolkadotSyncTicket, db: Database) throws {
-        guard try AccountRecord.fetchOne(db, key: ticket.account.id) == ticket.account,
-              let wallet = try WalletRecord.fetchOne(db, key: ticket.account.walletID), wallet.deletedAt == nil,
+    private static func validatePolkadot(_ ticket: PolkadotSyncTicket, db: Database, background: Bool = false) throws {
+        guard let account = try AccountRecord.fetchOne(db, key: ticket.account.id),
+              account.walletID == ticket.account.walletID,
+              let wallet = try WalletRecord.fetchOne(db, key: account.walletID) else { throw StoreError.staleSync }
+        // Removal revokes the ticket even if a provider request is still in flight.
+        // Check inside the write transaction so restoration cannot race this decision.
+        if background, wallet.deletedAt != nil { throw CancellationError() }
+        guard wallet.deletedAt == nil, account == ticket.account,
               try String.fetchOne(db, sql: "SELECT runID FROM polkadotSync WHERE accountID=?", arguments: [ticket.account.id]) == ticket.runID else { throw StoreError.staleSync }
     }
     private static func polkadotAsset(_ token: PolkadotToken, db: Database) throws -> AssetRecord {
@@ -56,7 +61,7 @@ extension OathDatabase {
     }
     public func polkadotHistoryCursor(_ ticket: PolkadotSyncTicket, stream: String, latestHeight: Int64) async throws -> PolkadotHistoryCursor {
         try await pool.write { db in
-            try Self.validatePolkadot(ticket, db: db)
+            try Self.validatePolkadot(ticket, db: db, background: true)
             let row = try Row.fetchOne(db, sql: "SELECT * FROM polkadotHistory WHERE accountID=? AND stream=?", arguments: [ticket.account.id, stream])
             if let row {
                 let page: Int = row["page"], upper: Int64 = row["upperHeight"], lower: Int64 = row["lowerHeight"]
@@ -71,7 +76,7 @@ extension OathDatabase {
     public func commitPolkadotHistory(_ page: PolkadotHistoryPage, ticket: PolkadotSyncTicket, stream: String, currentPage: Int, advance: Bool) async throws {
         guard page.events.count <= 100, page.next == nil || page.next == currentPage + 1 else { throw StoreError.invalidValue("Polkadot page") }
         try await pool.write { db in
-            try Self.validatePolkadot(ticket, db: db)
+            try Self.validatePolkadot(ticket, db: db, background: true)
             if advance {
                 let expected = try Int.fetchOne(db, sql: "SELECT page FROM polkadotHistory WHERE accountID=? AND stream=?", arguments: [ticket.account.id, stream]) ?? 0
                 guard currentPage == expected else { throw StoreError.staleSync }
@@ -118,7 +123,7 @@ extension OathDatabase {
     }
     public func commitPolkadotPrices(_ prices: [PolkadotPrice], ticket: PolkadotSyncTicket) async throws {
         try await pool.write { db in
-            try Self.validatePolkadot(ticket, db: db)
+            try Self.validatePolkadot(ticket, db: db, background: true)
             for price in prices {
                 try Validation.price(price.usd)
                 guard price.observedAt.timeIntervalSince1970.isFinite else { throw StoreError.invalidValue("price time") }

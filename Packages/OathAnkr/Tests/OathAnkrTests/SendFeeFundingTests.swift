@@ -11,22 +11,24 @@ import OathDiagnostics
         let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
         defer { try? FileManager.default.removeItem(at:file) }
         OathDiagnostics.configure(file:file,transport:reports)
-        let transport = EVMSendFixtureTransport(network:.arbitrum,nativeBalance:"0")
-        let client = try EVMSendClient(network:.arbitrum,endpoints:[URL(string:"https://fixture.invalid")!],transport:transport)
-        do {
-            _ = try await client.quote(sender:"0x" + String(repeating:"1",count:40),
-                recipient:"0x" + String(repeating:"2",count:40),reference:"0x" + String(repeating:"3",count:40),
-                decimals:6,amount:"100")
-            XCTFail("A token send with no native fee funds must remain blocked")
-        } catch {
-            XCTAssertEqual(error as? SendFeeFundingError,.insufficientNativeBalance)
-            // The same thrown error crosses both service and form boundaries.
-            for operation in ["quote","prepare"] {
-                OathDiagnostics.record(error,component:"evm_send",operation:operation,context:["chain":"arbitrum"])
+        for network in [EVMSendNetwork.arbitrum, .base] {
+            let transport = EVMSendFixtureTransport(network:network,nativeBalance:"0")
+            let client = try EVMSendClient(network:network,endpoints:[URL(string:"https://fixture.invalid")!],transport:transport)
+            do {
+                _ = try await client.quote(sender:"0x" + String(repeating:"1",count:40),
+                    recipient:"0x" + String(repeating:"2",count:40),reference:"0x" + String(repeating:"3",count:40),
+                    decimals:6,amount:"100")
+                XCTFail("A token send with no native fee funds must remain blocked")
+            } catch {
+                XCTAssertEqual(error as? SendFeeFundingError,.insufficientNativeBalance)
+                // The same thrown error crosses both service and form boundaries.
+                for operation in ["quote","prepare"] {
+                    OathDiagnostics.record(error,component:"evm_send",operation:operation,context:["chain":network.rawValue])
+                }
             }
+            let broadcasts = await transport.broadcasts
+            XCTAssertEqual(broadcasts,0)
         }
-        let broadcasts = await transport.broadcasts
-        XCTAssertEqual(broadcasts,0)
         OathDiagnostics.record(EVMSendError.malformed,component:"evm_send",operation:"quote")
         OathDiagnostics.record(EVMSendError.wrongNetwork,component:"evm_send",operation:"quote")
         // An untrusted lookalike must not acquire the typed control-flow exemption.

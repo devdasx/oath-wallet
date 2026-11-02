@@ -151,6 +151,7 @@ import OathDatabase
         ]))
         try await db.commitAptosInventory(aptosInventory, ticket: aptosTicket, catalog: aptosCatalog)
         let defaults = UserDefaults(suiteName: "recipient-tests-" + UUID().uuidString)!
+        checks += try await checkRemovedSender(db, address: evm, defaults: defaults)
         for chain in OathImportChain.allCases {
             let multisigKind = chain.isEVM ? "evmMultisig" : chain == .bitcoincash ? "bitcoinCashMultisig" : chain.id + "Multisig"
             for kind in chain == .polkadot ? ["privateKey"] : ["privateKey", multisigKind] {
@@ -787,4 +788,29 @@ import OathDatabase
         check(!model.validateRecipient() && model.selfTransferRestriction == .network, "Active account is used after wallet switch")
         print("Passed \(checks) recipient checks across \(OathImportChain.allCases.count) networks. Host only; no simulator, device or network.")
     }
+    @MainActor private static func checkRemovedSender(_ database: OathDatabase, address: String, defaults: UserDefaults) async throws -> Int {
+        let wallet = WalletRecord(id: "removed-sender", name: "Fixture", kind: "hd", vaultReference: "removed-fixture", createdAt: 1)
+        let account = AccountRecord(id: "removed-account", walletID: wallet.id, networkID: "ethereum", address: address, derivationPath: "fixture")
+        try await database.importWalletIfNeeded(wallet, accounts: [account])
+        let model = OathSendModel(walletID: wallet.id, preferences: defaults)
+        let observation = Task { await model.observe(currency: "USD", database: database) }
+        defer { observation.cancel() }
+        for _ in 0..<200 where model.loading { try await Task.sleep(for: .milliseconds(10)) }
+        guard let asset = model.holdings.first else { preconditionFailure("Sender fixture missing") }
+        model.choose(asset)
+        model.address = address
+        try await database.deleteWalletMetadata(wallet.id)
+        for _ in 0..<200 where !model.failed { try await Task.sleep(for: .milliseconds(10)) }
+        precondition(model.failed && model.snapshot == nil && model.holding == nil && model.address.isEmpty && model.path.isEmpty,
+                     "Removed sender must invalidate all draft state")
+        try await database.importWalletIfNeeded(wallet, accounts: [account])
+        for _ in 0..<200 where model.snapshot == nil { try await Task.sleep(for: .milliseconds(10)) }
+        precondition(!model.failed && model.snapshot?.wallet.id == wallet.id && model.holding == nil && model.address.isEmpty,
+                     "Returning sender must start with an empty draft")
+        try await database.reconcileWalletLifecycle([.init(id: wallet.id, deletedAt: 2)])
+        for _ in 0..<200 where model.snapshot != nil { try await Task.sleep(for: .milliseconds(10)) }
+        precondition(model.failed && model.snapshot == nil, "Recently Deleted wallets cannot supply a send draft")
+        return 3
+    }
+
 }

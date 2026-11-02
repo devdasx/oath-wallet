@@ -37,6 +37,30 @@ final class PermissionReviewSelectionTests: XCTestCase {
 }
 
 @MainActor final class PermissionNetworkPreparationTests: XCTestCase {
+    func testQuoteDistinguishesRevokedAllowanceFromAChangedActiveAllowance() async throws {
+        let owner = "0x" + String(repeating: "1", count: 40)
+        let contract = "0x" + String(repeating: "2", count: 40)
+        let spender = "0x" + String(repeating: "3", count: 40)
+        for kind in [EVMPermissionRemoval.Kind.token, .collection] {
+            let transport = EVMSendFixtureTransport("falseToken", network: .base)
+            let client = try EVMSendClient(network: .base, endpoints: [URL(string: "https://fixture.example")!], transport: transport)
+            let removal = EVMPermissionRemoval(kind: kind, contract: contract, spender: spender, expected: "1")
+            do {
+                _ = try await client.quote(sender: owner, recipient: contract, reference: "native", decimals: 18, amount: "0", removal: removal)
+                XCTFail("The permission is already removed")
+            } catch { XCTAssertEqual(error as? PermissionError, .alreadyRemoved) }
+            let methods = await transport.methods
+            XCTAssertEqual(methods, ["eth_chainId", "eth_call"])
+        }
+        let active = EVMSendFixtureTransport(network: .base)
+        let client = try EVMSendClient(network: .base, endpoints: [URL(string: "https://fixture.example")!], transport: active)
+        let previous = EVMPermissionRemoval(kind: .token, contract: contract, spender: spender, expected: "2")
+        do {
+            _ = try await client.quote(sender: owner, recipient: contract, reference: "native", decimals: 18, amount: "0", removal: previous)
+            XCTFail("An active allowance changed since review")
+        } catch { XCTAssertEqual(error as? PermissionError, .changed) }
+    }
+
     func testEverySupportedEVMNetworkPreparesZeroValueRemovalAndRejectsUnfundedRemoval() async throws {
         let owner = "0x" + String(repeating: "1", count: 40)
         let contract = "0x" + String(repeating: "3", count: 40)

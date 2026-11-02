@@ -633,6 +633,7 @@ public struct IndexedEVMClient: Sendable {
         let seiTraceEvidence = try await seiTraceTask
         let zeroGTraceEvidence = try await zeroGTraceTask
         var enriched: [SolanaJSON] = []
+        var celoTransferOutcomes: [String: Bool] = [:]
         for row in rows {
             if row["timestamp"].isNull, stream == .transactions, row["block_number"].isNull { continue }
             guard var value = row.object, let hash = row[stream == .transactions ? "hash" : "transaction_hash"].string?.lowercased(),
@@ -687,7 +688,11 @@ public struct IndexedEVMClient: Sendable {
                     value["fee"] = .object(["type": .string("actual"), "value": .string(fee)])
                 }
             } else if stream == .transfers {
-                guard status == "1", let logs = receipt["logs"].array else { throw AnkrError.invalidResponse }
+                // Celo fee-currency transactions can settle token gas charges
+                // and refunds even when the user call reverts. Only accept the
+                // actual receipt log, independently of the parent call outcome.
+                let revertedFeeTransaction = chain == .celo && status == "0" && receipt["type"].string?.lowercased() == "0x7b"
+                guard status == "1" || revertedFeeTransaction, let logs = receipt["logs"].array else { throw AnkrError.invalidResponse }
                 let log: SolanaJSON
                 if chain == .zerog {
                     guard let position = row["transaction_log_index"].text.flatMap(Int.init), logs.indices.contains(position) else { throw AnkrError.invalidResponse }
@@ -702,7 +707,22 @@ public struct IndexedEVMClient: Sendable {
                     "0x7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b65"].contains(topics[0].string ?? "") {
                     throw HistoryAvailability.filecoinWrappingEvidenceRequired
                 }
+                if revertedFeeTransaction {
+                    let addressPadding = "0x" + String(repeating: "0", count: 24)
+                    guard let blockHash = receipt["blockHash"].string, AnkrQuantity.hash(blockHash),
+                          log["removed"] == .bool(false), log["transactionHash"] == receipt["transactionHash"],
+                          log["blockHash"] == receipt["blockHash"], log["blockNumber"] == receipt["blockNumber"],
+                          let topics = log["topics"].array, topics.count == 3,
+                          topics[0].string == "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                          topics.dropFirst().allSatisfy({ topic in
+                              guard let word = topic.string else { return false }
+                              return AnkrQuantity.hash(word) && word.hasPrefix(addressPadding)
+                          }), let data = log["data"].string, AnkrQuantity.hash(data) else {
+                        throw OathDiagnostics.failure(AnkrError.invalidResponse, reason: "reverted_fee_log_evidence_mismatch")
+                    }
+                }
                 try Self.verifyTransfer(row, log: log, chain: chain)
+                if chain == .celo { celoTransferOutcomes[hash] = status == "0" }
                 value["log_index"] = .number(try IndexedEVMIdentity.amount(log["logIndex"]))
                 if let ref = row["token"]["address_hash"].string?.lowercased(), let token = resolvedMetadata[ref] {
                     value["token"] = .object(["type": .string("ERC-20"), "address_hash": .string(ref),
@@ -729,13 +749,17 @@ public struct IndexedEVMClient: Sendable {
         }
         document["items"] = .array(enriched)
         let decoded = try Self.decodeHistory(JSONEncoder().encode(SolanaJSON.object(document)), chain: chain, owner: owner, stream: stream, from: from, through: through)
+        var events = decoded.events
+        if !celoTransferOutcomes.isEmpty {
+            for i in events.indices { events[i].parentTransactionFailed = celoTransferOutcomes[events[i].hash] }
+        }
         // Incoming/outgoing Alchemy pages are independently ordered. Crossing
         // the outgoing interval must still start the incoming half.
         let next: String?
         if chain == .monad, decoded.next == nil, try Self.cursor(cursor)["direction"]?.string != "in" {
             next = try JSONEncoder().encode(SolanaJSON.object(["direction": .string("in")])).base64EncodedString()
         } else { next = decoded.next }
-        return .init(chain: chain, events: decoded.events, next: next,
+        return .init(chain: chain, events: events, next: next,
                      raw: try JSONEncoder().encode(["index": [response.raw], "receipts": receiptRaw, "metadata": metadataRaw + feeMetadataRaw, "traces": chain == .sei ? [JSONEncoder().encode(seiTraceEvidence)] : chain == .zerog ? [JSONEncoder().encode(zeroGTraceEvidence)] : []]))
     }
     /// Nodes can retain block receipts after their transaction-hash index

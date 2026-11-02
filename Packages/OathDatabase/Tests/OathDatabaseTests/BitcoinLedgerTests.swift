@@ -60,6 +60,31 @@ private struct LedgerQuery: BitcoinAddressQuerying {
               recipient: "test", amountAtomic: "1000", state: "draft", createdAt: 1, updatedAt: 1)
     }
 
+    func testLitecoinScanCannotWriteAfterWalletResetBegins() async throws {
+        let (db, url, wallet) = try await fixture(network: .litecoin)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        let (scan, transactions) = try await funding(wallet)
+        try await commit(db, scan: scan, transactions: transactions)
+        let previous = try await db.bitcoinState(accountID: "a1")
+        XCTAssertNotNil(previous?.lastSuccess)
+        let scanID = try await db.beginBitcoinScan(accountID: "a1")
+        let resetID = try await db.beginWalletReset()
+        func requiresCancellation(_ operation: () async throws -> Void) async {
+            do { try await operation(); XCTFail("Reset must stop scan writes") }
+            catch { XCTAssertTrue(error is CancellationError, "Expected cancellation, got code " + String((error as NSError).code)) }
+        }
+        await requiresCancellation { try await db.prepareBitcoin(accountID: "a1", descriptor: wallet) }
+        await requiresCancellation { _ = try await db.beginBitcoinScan(accountID: "a1") }
+        await requiresCancellation { try await db.commitBitcoinScan(accountID: "a1", scanID: scanID, scan: scan, transactions: transactions, tipHeight: 800_200) }
+        await requiresCancellation { try await db.failBitcoinScan(accountID: "a1", scanID: scanID, code: "storage") }
+        let untouched = try await db.bitcoinState(accountID: "a1")
+        XCTAssertEqual(untouched, previous)
+        try await db.eraseWalletData(resetID: resetID)
+        try await db.finishWalletReset(resetID: resetID)
+        let removed = try await db.bitcoinState(accountID: "a1")
+        XCTAssertNil(removed)
+    }
+
     func testMissingActivityAncestorsDoNotInvalidateVerifiedQuoteInputs() async throws {
         let (db, _, wallet) = try await fixture()
         let (scan, transactions) = try await funding(wallet)

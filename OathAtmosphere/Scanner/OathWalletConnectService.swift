@@ -231,19 +231,7 @@ import OathBitcoin
         working = true; pairingTopic = uri.topic
         pairingProgress = .waiting
         timeout?.cancel()
-        // Re-scanning a consumed URI must not replay Pair.pair forever. The SDK
-        // can already have the proposal (its topic argument currently does not
-        // filter results) or an approved session associated with this pairing.
-        if let pending = Sign.instance.getPendingProposals().first(where: { $0.proposal.pairingTopic == uri.topic }) {
-            _ = pairingProgress.receiveProposal()
-            proposal = .init(value: pending.proposal, verify: pending.context); working = false; return
-        }
-        if let existing = Sign.instance.getSessions().first(where: { connections.isAssociated($0.topic, with: uri.topic) && $0.expiryDate > .now && walletMapping[$0.topic] != nil }) {
-            pairingProgress = .connected
-            refreshSessions(); connectedTopic = existing.topic; working = false
-            resumeRequests()
-            return
-        }
+        if resumeKnownPairing(topic: uri.topic) { return }
         guard sessions.count < 32 else { working = false; pairingProgress = .idle; failConnection(.connectionLimit); return }
         timeout = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(30)) } catch is CancellationError { return } catch { OathDiagnostics.$operationID.withValue(token) { OathDiagnostics.record(error, component: "walletconnect", operation: "pair_timeout") }; return }
@@ -259,6 +247,7 @@ import OathBitcoin
             }
             OathDiagnostics.$operationID.withValue(token) { OathDiagnostics.record(error, component: "walletconnect", operation: "pair") }
             guard token == operation else { return }
+            if failure == .usedQR, resumeKnownPairing(topic: uri.topic) { return }
             // A queued proposal may arrive while pair() returns its old-pairing
             // error. Do not replace that actionable proposal with an error page.
             guard pairingProgress.fail() else { return }
@@ -266,6 +255,29 @@ import OathBitcoin
             failConnection(failure)
         }
     }
+    /// The SDK may store a proposal before its main-queue notification arrives.
+    /// Consult the same topic-scoped state on entry and after a consumed-URI reply.
+    private func resumeKnownPairing(topic: String) -> Bool {
+        guard session?.isUnlocked == true, pairingTopic == topic,
+              pairingProgress == .waiting || pairingProgress == .failed else { return false }
+        if let pending = Sign.instance.getPendingProposals().first(where: { $0.proposal.pairingTopic == topic }) {
+            _ = pairingProgress.receiveProposal()
+            proposal = .init(value: pending.proposal, verify: pending.context)
+        } else if let existing = Sign.instance.getSessions().first(where: {
+            connections.isAssociated($0.topic, with: topic) && $0.expiryDate > .now && walletMapping[$0.topic] != nil
+        }) {
+            pairingProgress = .connected
+            refreshSessions()
+            connectedTopic = existing.topic
+        } else {
+            return false
+        }
+        timeout?.cancel()
+        working = false; failed = false; connectionFailure = nil; presentationIssue = nil
+        if pairingProgress == .connected { resumeRequests() }
+        return true
+    }
+
     private func failConnection(_ failure: OathWalletConnectPolicy.ConnectionFailure) {
         connectionFailure = failure
         failed = true

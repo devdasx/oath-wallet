@@ -45,6 +45,7 @@ struct OathAboutPage: View {
                     Text(strings.text(.appUpdateStore))
                         .frame(minHeight: 44)
                 }
+                .environment(\.openURL, OpenURLAction { .systemAction($0) })
                 .accessibilityValue(strings.invariant(version))
                 .accessibilityIdentifier("settings.about.update")
             } else {

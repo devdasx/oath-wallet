@@ -190,7 +190,8 @@ enum OathLegacyUpgrade {
                 var record = WalletRecord(id: id.uuidString, name: wallet.name,
                     kind: candidate.privateKey != nil ? "privateKey" : (wallet.kind == "created" ? "hd" : "imported"),
                     vaultReference: OathVaultContents.reference(for: id, rootID: root), createdAt: wallet.createdAt,
-                    backedUp: candidate.backedUp, nameGroup: wallet.kind == "created" ? "main" : "imported")
+                    backedUp: candidate.backedUp, nameGroup: wallet.kind == "created" ? "main" : "imported",
+                    pendingBackupOffer: candidate.backupOfferByOrigin)
                 record.sortOrder = wallets.count; record.nameIndex = wallets.count
                 wallets.append(record)
                 accounts += profile.addresses.map {

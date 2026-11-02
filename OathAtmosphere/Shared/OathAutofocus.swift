@@ -5,7 +5,12 @@ extension View {
     /// Use for automatic entry focus only. Taps, Return-to-next-field and the
     /// shared keyboard's Done action continue to respond immediately.
     func oathAutofocus(when ready: Bool = true, _ focus: @escaping @MainActor () -> Void) -> some View {
-        modifier(OathAutofocusModifier(ready: ready, focus: focus))
+        oathAfterAppearance(when: ready, focus)
+    }
+
+    /// Run once after native appearance and any enclosing transition have completed.
+    func oathAfterAppearance(when ready: Bool = true, _ action: @escaping @MainActor () -> Void) -> some View {
+        modifier(OathAutofocusModifier(ready: ready, focus: action))
     }
 }
 

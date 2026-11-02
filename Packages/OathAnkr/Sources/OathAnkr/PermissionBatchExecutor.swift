@@ -7,6 +7,7 @@ public enum PermissionBatchExecutor {
     public enum Outcome: Sendable { case submitted, alreadyRemoved, failed, paused }
     public static func run(
         ids: [String], maximumDeferrals: Int = 60,
+        networkForItem: @Sendable (String) -> String? = { _ in nil },
         authorized: @Sendable () async -> Bool,
         execute: @Sendable (String) async throws -> Void,
         finish: @Sendable (String, Outcome, (any Error)?) async throws -> Void,
@@ -24,23 +25,30 @@ public enum PermissionBatchExecutor {
                     for pending in deferred { try await finish(pending, .paused, nil) }
                     return
                 }
-                do {
-                    try await execute(id)
-                    try await finish(id, .submitted, nil)
-                } catch {
-                    let stillAuthorized = await authorized()
-                    if error is CancellationError || Task.isCancelled || !stillAuthorized {
-                        try await finish(id, .paused, nil)
-                    } else if error as? PermissionError == .alreadyRemoved {
-                        try await finish(id, .alreadyRemoved, nil)
-                    } else if error as? EVMSendError == .busy || error as? TronSendError == .busy || error as? SolanaSendError == .busy {
-                        deferrals[id,default:0] += 1
-                        if deferrals[id,default:0] < maximumDeferrals { deferred.append(id) }
-                        else { try await finish(id, .paused, nil) }
-                    } else {
-                        // The app supplies safe chain context at the operation boundary.
-                        OathDiagnostics.record(error,component:"permissions",operation:"batch_item")
-                        try await finish(id, .failed, error)
+                let network = networkForItem(id) ?? OathDiagnostics.chain
+                try await OathDiagnostics.$chain.withValue(network) {
+                    try await OathDiagnostics.$operationID.withValue(UUID()) {
+                        do {
+                            try await execute(id)
+                        } catch {
+                            let stillAuthorized = await authorized()
+                            if error is CancellationError || Task.isCancelled || !stillAuthorized {
+                                try await finish(id, .paused, nil)
+                            } else if error as? PermissionError == .alreadyRemoved {
+                                try await finish(id, .alreadyRemoved, nil)
+                            } else if error as? EVMSendError == .busy || error as? TronSendError == .busy || error as? SolanaSendError == .busy {
+                                deferrals[id,default:0] += 1
+                                if deferrals[id,default:0] < maximumDeferrals { deferred.append(id) }
+                                else { try await finish(id, .paused, nil) }
+                            } else {
+                                OathDiagnostics.record(error, component: "permissions", operation: "batch_revoke")
+                                try await finish(id, .failed, error)
+                            }
+                            return
+                        }
+                        // Submission has already completed. A journal write error
+                        // belongs to batch recovery and must not reclassify the send.
+                        try await finish(id, .submitted, nil)
                     }
                 }
             }

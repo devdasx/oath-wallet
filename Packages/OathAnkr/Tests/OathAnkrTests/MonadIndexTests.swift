@@ -137,14 +137,21 @@ final class MonadIndexTests: XCTestCase, @unchecked Sendable {
         let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
         defer { try? FileManager.default.removeItem(at: file) }
         OathDiagnostics.configure(file: file, transport: reports)
-        OathDiagnostics.record(IndexedEVMClient.HistoryAvailability.missingRPCRecord, operation: "history_rpc_recovery", context: ["chain": "celo"])
-        OathDiagnostics.record(IndexedEVMClient.HistoryAvailability.filecoinWrappingEvidenceRequired, operation: "history_rpc_recovery", context: ["chain": "filecoin"])
+        let operationID = UUID()
+        OathDiagnostics.$operationID.withValue(operationID) {
+            for chain in ["zerog", "celo"] {
+                OathDiagnostics.record(IndexedEVMClient.HistoryAvailability.missingRPCRecord, operation: "history_rpc_recovery",
+                                       context: ["chain": chain], file: "OathAnkr/IndexedEVMClient.swift")
+            }
+            OathDiagnostics.record(IndexedEVMClient.HistoryAvailability.filecoinWrappingEvidenceRequired, operation: "history_rpc_recovery",
+                                   context: ["chain": "filecoin"], file: "OathAnkr/IndexedEVMClient.swift")
+        }
         for _ in 0..<100 {
-            if await reports.events.count > 0 { break }
+            if await reports.events.contains(where: { $0.operationID == operationID && $0.context["chain"] == "filecoin" }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         await OathDiagnostics.flush()
-        let events = await reports.events
+        let events = await reports.events.filter { $0.operationID == operationID }
         XCTAssertEqual(events.count, 1)
         XCTAssertEqual(events.first?.context["chain"], "filecoin")
         XCTAssertEqual(events.first?.operation, "history_rpc_recovery")

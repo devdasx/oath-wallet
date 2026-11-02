@@ -28,6 +28,25 @@ struct OathWalletSecret: Codable, Sendable {
     // Recovery of a new wallet's missing SQL row must also recover its pending
     // setup step. Legacy payloads decode nil and retain their current flow.
     var createdWithCustomization: Bool? = nil
+    // Seeds only the initial SQL insert, including recovery after an interrupted creation.
+    // Absent in vaults created before offer tracking, and on iCloud restores.
+    var initialBackupOffer: WalletBackupOffer? = nil
+
+    /// Presentation policy only. Never read mnemonic words or key bytes to classify a wallet.
+    var backupOfferByOrigin: WalletBackupOffer? {
+        if let initialBackupOffer { return initialBackupOffer }
+        if restoration != nil {
+            // Vault handoff uses the restore machinery but explicitly requests customization.
+            return createdWithCustomization == true ? .cloudOnly : nil
+        }
+        if imported == true || privateKey != nil { return .cloudOnly }
+        if isDerivedWallet || isMultisig { return .cloudOrManual }
+        if isLocalMnemonic { return .cloudOnly }
+        // The earliest format had no origin field. Imported phrases started with backedUp
+        // set; manually verified created wallets could have the same bit. Offer cloud only
+        // when ambiguous. This bit never establishes that a cloud backup exists.
+        return imported == nil && backedUp ? .cloudOnly : .cloudOrManual
+    }
     // Missing on existing HD wallets; raw keys are never stored in SQL.
     var privateKey: OathImportedPrivateKey? = nil
     // BIP-39 material, encrypted together with the words. Never a SQL setting,

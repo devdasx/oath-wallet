@@ -522,7 +522,7 @@
     },
     {
       "path": "Packages/OathAnkr/Tests/OathAnkrTests/SolanaTests.swift",
-      "sha256": "3517874eb55459ed4a4e92d46583454e1df833fe4fc187b8f72cd8b4538ad1fb",
+      "sha256": "8ad87590a01ef410be921d3ea3dbfead3881d5a8cac9521dfbc87cca082fbb98",
       "reason": "Public Solana mint addresses assigned to token-named fixture variables.",
       "fingerprints": [
         "Packages/OathAnkr/Tests/OathAnkrTests/SolanaTests.swift:generic-api-key:8"
@@ -532,9 +532,9 @@
       "path": "Packages/OathAnkr/Tests/OathAnkrTests/TokenDiscoveryTests.swift",
       "reason": "Public Celo token contract address in a catalog decoding test; not a credential.",
       "fingerprints": [
-        "Packages/OathAnkr/Tests/OathAnkrTests/TokenDiscoveryTests.swift:generic-api-key:86"
+        "Packages/OathAnkr/Tests/OathAnkrTests/TokenDiscoveryTests.swift:generic-api-key:187"
       ],
-      "sha256": "be32b5817b5f1fd4b3252db3cc4d9da83bcdc2dad65f10e9baeb813cb7a207e6"
+      "sha256": "0424c7925e7ce15f1871be2dc30acfea5ddf1b67b62b574eec0632ee6445e054"
     },
     {
       "path": "Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift",
@@ -571,7 +571,7 @@
     },
     {
       "path": "Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift",
-      "sha256": "d4cb0203905aa76939197286b3505b1b4c013c90a5f6447dddc6f843ab7a00c3",
+      "sha256": "a001f6a0d6596e46b19bace716a4518093b958aa825d0fb27c2137aac3d14dd4",
       "reason": "Public Solana mint addresses assigned to token-named fixture variables.",
       "fingerprints": [
         "Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift:generic-api-key:12",

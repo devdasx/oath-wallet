@@ -16,7 +16,12 @@ public struct TokenArtworkIdentity: Hashable, Sendable {
         guard !networkID.isEmpty, networkID.count <= 64, !reference.isEmpty,
               reference != "native", reference.utf8.count <= 4096, decimals == nil || (0...255).contains(decimals!) else { return nil }
         self.networkID = networkID
-        self.reference = Self.evmNetworks.contains(networkID) ? reference.lowercased() : reference
+        if networkID == "iotex", reference.lowercased().hasPrefix("io1") {
+            guard let address = IoTeXNativeAddress.ethereum(reference) else { return nil }
+            self.reference = address
+        } else {
+            self.reference = Self.evmNetworks.contains(networkID) ? reference.lowercased() : reference
+        }
         self.decimals = decimals
     }
     public var assetID: String { networkID + ":" + reference }
@@ -96,12 +101,14 @@ public actor TokenArtworkResolver {
     private func resolve(_ request: Request) async -> ArtworkImage? {
         let token = request.token
         let saved = entry(for: token).map { [$0.source] } ?? []
-        // Older on-chain metadata still points at Circle's retired website
-        // image route (now HTTP403). Keep usable saved bytes, but resolve a
-        // current, exact-chain/reference image before requesting that route.
-        let retiredCircleIcon = "https://circle.com/usdc-icon"
+        // Some on-chain icon URLs outlive their publisher pages. Keep usable
+        // cached bytes, then ask the published list for this exact coin identity.
+        func prefersCatalog(_ source: String) -> Bool {
+            if source == "https://circle.com/usdc-icon" { return true }
+            return token.networkID == "sui" && (source == "https://miucoin.io/favicon.ico" || source == "https://winx.io/WIN.svg")
+        }
         if let source = saved.first {
-            let image = source == retiredCircleIcon
+            let image = prefersCatalog(source)
                 ? await loader.cached(for: [source]) : await loader.image(for: [source])
             if let image {
                 remember(source, token: token, image: image)
@@ -114,7 +121,7 @@ public actor TokenArtworkResolver {
         // One published token list covers every visible result on a network.
         // Do not exhaust per-coin metadata limits just to render search logos,
         // then fall through to missing guessed images for the remaining rows.
-        let hasRetiredSource = (saved + cachedMetadata + request.sources).contains(retiredCircleIcon)
+        let hasRetiredSource = (saved + cachedMetadata + request.sources).contains(where: prefersCatalog)
         let published: [String]
         if hasRetiredSource {
             published = await loader.catalogSources(for: token)

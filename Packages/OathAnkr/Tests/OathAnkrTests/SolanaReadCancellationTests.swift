@@ -128,6 +128,30 @@ private actor InterruptedSolanaRead: AnkrTransport {
         }
     }
 
+    func testConcurrentFirstReadsVerifyEachEndpointOnlyOnce() async throws {
+        for primary in [true, false] {
+            let feed = InterruptedSolanaRead(method: "getGenesisHash", primary: primary, mode: .held)
+            let client = try SolanaClient(apiKey: "fixture", transport: feed)
+            let action: ReadAction = primary ? .inventory : .signatures
+            let reads = Task {
+                try await withThrowingTaskGroup(of: Void.self) { group in
+                    for _ in 0..<3 { group.addTask { try await action.run(client) } }
+                    try await group.waitForAll()
+                }
+            }
+            for _ in 0..<200 {
+                if await feed.pending != nil { break }
+                try await Task.sleep(for: .milliseconds(5))
+            }
+            try await Task.sleep(for: .milliseconds(50))
+            await feed.release()
+            try await reads.value
+            let requests = await feed.requests
+            XCTAssertEqual(requests.filter { $0.method == "getGenesisHash" }.count, 1)
+            XCTAssertTrue(requests.allSatisfy { $0.primary == primary })
+        }
+    }
+
     func testCancelledGenesisResponseIsNotCachedAsVerified() async throws {
         let feed = InterruptedSolanaRead(method: "getGenesisHash", mode: .held)
         let client = try SolanaClient(apiKey: "fixture", transport: feed)

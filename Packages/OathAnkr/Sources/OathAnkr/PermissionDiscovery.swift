@@ -72,17 +72,20 @@ public struct PermissionDiscovery: Sendable {
         let owner=try EVMSendIdentity.address(owner)
         let head=try await EVMSendClient.uint(client.rpc("eth_blockNumber",[]))
         let lower=head > 19_999 ? head-19_999:0
+        // Filecoin's configured RPC nodes reject the usual 1,000-epoch logs
+        // query. Page the same 20,000 epochs with at most 360 per request.
+        let pageSpan: UInt64 = network.isFilecoin ? 359 : 999
         let ownerTopic="0x"+TronSendCrypto.hex(try EVMPermissionRemoval.word(owner))
         var candidates=[String:WalletPermission]()
         var upper=head
         var succeeded=false
-        for _ in 0..<20 {
+        while upper >= lower {
             try Task.checkCancellation()
-            let from=max(lower,upper > 999 ? upper-999:0)
+            let from=max(lower,upper > pageSpan ? upper-pageSpan:0)
             do {
                 let logs=try await client.rpc("eth_getLogs",[.object([
                     "fromBlock":.string("0x"+String(from,radix:16)),"toBlock":.string("0x"+String(upper,radix:16)),
-                    "topics":.array([.array([Self.approval,Self.all,Self.permitApproval,Self.permit].map(SolanaJSON.string)),.string(ownerTopic)])])])
+                    "topics":.array([.array([Self.approval,Self.all,Self.permitApproval,Self.permit].map(SolanaJSON.string)),.string(ownerTopic)])])], logScanHead: head)
                 guard let rows=logs.array,rows.count<=10_000 else { throw PermissionError.incomplete }
                 for row in rows {
                     if row["removed"] == .bool(true) { continue }

@@ -82,7 +82,7 @@ public actor TokenDiscoveryCatalog {
     public static let shared = TokenDiscoveryCatalog()
     public static let refreshInterval: TimeInterval = 86_400
     private struct Coin: Decodable {
-        let id: String, name: String, symbol: String
+        let id: String?, name: String?, symbol: String?
         let platforms: [String: String?]?
     }
     private struct IndexRow: Sendable {
@@ -158,17 +158,19 @@ public actor TokenDiscoveryCatalog {
         guard !coins.isEmpty, coins.count <= 100_000 else { throw TokenDiscoveryError.malformed }
         var entries: [String: TokenDiscoveryEntry] = [:], ambiguous = Set<String>()
         for coin in coins {
-            guard validCoinID(coin.id), let name = ContractIdentity.clean(coin.name),
-                  let symbol = ContractIdentity.clean(coin.symbol), symbol.utf8.count <= 64 else { continue }
+            // Incomplete listings have no searchable identity. Keep validated sibling listings.
+            guard let id = coin.id, validCoinID(id),
+                  let name = coin.name.flatMap(ContractIdentity.clean),
+                  let symbol = coin.symbol.flatMap(ContractIdentity.clean), symbol.utf8.count <= 64 else { continue }
             for (platform, optionalAddress) in coin.platforms ?? [:] {
                 // diagnostics: discovery-optional-listing. Unsupported platforms,
                 // missing contracts and invalid optional listings are not RPC failures.
                 guard let network = TokenDiscoveryNetworks.networksByPlatform[platform],
                       let address = optionalAddress, !address.isEmpty,
                       let ref = try? TokenDiscoveryNetworks.canonical(address, network: network), ref != "native" else { continue }
-                let entry = TokenDiscoveryEntry(network: network, reference: ref, coinID: coin.id,
+                let entry = TokenDiscoveryEntry(network: network, reference: ref, coinID: id,
                     name: name, symbol: symbol.uppercased(), decimals: protocolDecimals(network, address), logo: nil)
-                if let old = entries[entry.id], old.coinID != coin.id { ambiguous.insert(entry.id) }
+                if let old = entries[entry.id], old.coinID != id { ambiguous.insert(entry.id) }
                 else { entries[entry.id] = entry }
             }
         }
@@ -219,9 +221,12 @@ public actor TokenDiscoveryCatalog {
         value.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: Locale(identifier: "en_US_POSIX"))
     }
 
-    private func install(_ data: Data) throws {
-        let prepared = data.first == 123
-        var entries = try prepared ? Self.readPrepared(data) : Self.decode(data)
+    private func installLocal(_ data: Data) throws {
+        try install(entries: data.first == 123 ? Self.readPrepared(data) : Self.decode(data))
+    }
+
+    private func install(entries decoded: [TokenDiscoveryEntry]) throws {
+        var entries = decoded
         // Asset Hub's issuer-registered assets are independent of CoinGecko's
         // directory coverage. Preserve these exact bundled pallet identities
         // when a successful directory refresh omits one of them.
@@ -258,8 +263,19 @@ public actor TokenDiscoveryCatalog {
             do {
                 guard try url.resourceValues(forKeys: [.fileSizeKey]).fileSize ?? 0 <= 24_000_000 else { throw TokenDiscoveryError.malformed }
                 let disk = try JSONDecoder().decode(Disk.self, from: Data(contentsOf: url))
-                guard disk.version == 1, disk.fetchedAt <= Date().addingTimeInterval(300), disk.retryAt <= Date().addingTimeInterval(Self.refreshInterval) else { throw TokenDiscoveryError.malformed }
-                try install(disk.data); fetchedAt = disk.fetchedAt; retryAt = disk.retryAt
+                guard disk.version == 1 else { throw TokenDiscoveryError.malformed }
+                try installLocal(disk.data)
+                let now = Date()
+                if disk.fetchedAt <= now.addingTimeInterval(300), disk.retryAt <= now.addingTimeInterval(Self.refreshInterval) {
+                    fetchedAt = disk.fetchedAt
+                    retryAt = disk.retryAt
+                } else {
+                    // A wall-clock rollback invalidates the timers. Keep the validated
+                    // directory available offline and allow the next refresh immediately.
+                    fetchedAt = .distantPast
+                    retryAt = .distantPast
+                    persist()
+                }
             } catch { OathDiagnostics.record(error, component: "token_discovery", operation: "cache_read") }
         }
         // A valid cache from an older release can predate a newly supported
@@ -271,13 +287,13 @@ public actor TokenDiscoveryCatalog {
             do {
                 guard let data = bundledData else { return }
                 if rows.isEmpty {
-                    try install(data)
+                    try installLocal(data)
                 } else {
                     let bundled = try data.first == 123 ? Self.readPrepared(data) : Self.decode(data)
                     let additions = bundled.filter { missingNetworks.contains($0.network) }
                     if !additions.isEmpty {
                         let entries = (Array(identities.values) + additions).sorted { $0.id < $1.id }
-                        try install(JSONEncoder().encode(PreparedSnapshot(format: 1, entries: entries)))
+                        try installLocal(JSONEncoder().encode(PreparedSnapshot(format: 1, entries: entries)))
                         fetchedAt = .distantPast
                         persist()
                     }
@@ -371,7 +387,7 @@ public actor TokenDiscoveryCatalog {
         return await OathDiagnostics.$operationID.withValue(UUID()) {
             do {
                 let data = try await read("https://api.coingecko.com/api/v3/coins/list?include_platform=true")
-                try install(data); fetchedAt = .now; retryAt = .distantPast
+                try install(entries: Self.decode(data)); fetchedAt = .now; retryAt = .distantPast
                 persist(); return true
             } catch {
                 OathDiagnostics.record(error, component: "token_discovery", operation: "catalog_refresh")

@@ -26,6 +26,10 @@ public struct NetworkRecord: Codable, Equatable, Sendable, FetchableRecord, Pers
     }
 }
 
+public enum WalletBackupOffer: String, Codable, Sendable, DatabaseValueConvertible {
+    case cloudOnly, cloudOrManual, manualOnly
+}
+
 public struct WalletRecord: Codable, Equatable, Sendable, FetchableRecord, PersistableRecord {
     public static let databaseTableName = "wallets"
     public var id: String
@@ -35,6 +39,8 @@ public struct WalletRecord: Codable, Equatable, Sendable, FetchableRecord, Persi
     public var createdAt: Double
     public var backedUp: Bool
     public var colorHex: String?
+    public var pendingBackupOffer: WalletBackupOffer?
+    public var needsBackupOfferReview: Bool? = nil
     public var needsCustomization: Bool
     public var nameIndex: Int = 0
     /// Automatic names are localized at display time; `name` is only a custom
@@ -51,7 +57,7 @@ public struct WalletRecord: Codable, Equatable, Sendable, FetchableRecord, Persi
     public static func isValidName(_ name: String) -> Bool {
         !name.isEmpty && name.count <= 100 && name.utf8.count <= 4096
     }
-    public init(id: String, name: String, kind: String, vaultReference: String, createdAt: Double, backedUp: Bool = false, colorHex: String? = nil, needsCustomization: Bool = false, nameGroup: String? = nil, parentWalletID: String? = nil, nameIndex: Int = 0) {
+    public init(id: String, name: String, kind: String, vaultReference: String, createdAt: Double, backedUp: Bool = false, colorHex: String? = nil, needsCustomization: Bool = false, nameGroup: String? = nil, parentWalletID: String? = nil, nameIndex: Int = 0, pendingBackupOffer: WalletBackupOffer? = nil) {
         self.id = id
         self.name = name
         self.kind = kind
@@ -59,6 +65,7 @@ public struct WalletRecord: Codable, Equatable, Sendable, FetchableRecord, Persi
         self.createdAt = createdAt
         self.backedUp = backedUp
         self.colorHex = colorHex
+        self.pendingBackupOffer = pendingBackupOffer
         self.needsCustomization = needsCustomization
         self.nameGroup = nameGroup
         self.parentWalletID = parentWalletID

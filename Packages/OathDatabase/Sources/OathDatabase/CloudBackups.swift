@@ -21,7 +21,62 @@ public struct CloudBackupRecord: Codable, FetchableRecord, PersistableRecord, Se
     }
 }
 
+public enum WalletCloudBackupStatus: Equatable, Sendable {
+    case unconfirmed, uploading, uploaded
+
+    public func visibleOffer(for pending: WalletBackupOffer?) -> WalletBackupOffer? {
+        guard self == .uploaded else { return pending }
+        switch pending {
+        case .cloudOrManual, .manualOnly: return .manualOnly
+        case .cloudOnly, nil: return nil
+        }
+    }
+}
+
 extension OathDatabase {
+    /// Observe only the local upload receipt, without reading the encrypted document.
+    public func observeBackupOfferStatus(walletID: String) -> AsyncThrowingStream<WalletCloudBackupStatus, Error> {
+        stream { db in try Self.backupOfferStatus(db, walletID: walletID) }
+    }
+
+    private static func backupOfferStatus(_ db: Database, walletID: String) throws -> WalletCloudBackupStatus {
+        guard let record = try Row.fetchOne(db, sql: "SELECT state, enabled, failureCode FROM cloudBackups WHERE walletID = ?", arguments: [walletID]) else {
+            return .unconfirmed
+        }
+        let state: String = record["state"]
+        let failure: String? = record["failureCode"]
+        guard failure == nil else { return .unconfirmed }
+        // Disabling future uploads leaves a confirmed file in iCloud. A confirmed
+        // removal changes the stored state to failed in reconcileRemovedCloudBackups.
+        if state == "uploaded" { return .uploaded }
+        let enabled: Bool = record["enabled"]
+        if enabled && (state == "queued" || state == "uploading") { return .uploading }
+        return .unconfirmed
+    }
+
+    /// Only the caller that consumes an eligible offer may present it.
+    public func claimBackupOffer(walletID: String) async throws -> WalletBackupOffer? {
+        try await pool.write { db in
+            guard let offer = try WalletBackupOffer.fetchOne(db, sql: """
+                SELECT pendingBackupOffer FROM wallets WHERE id = ? AND deletedAt IS NULL
+                """, arguments: [walletID]),
+                  try Self.backupOfferStatus(db, walletID: walletID).visibleOffer(for: offer) != nil else { return nil }
+            try db.execute(sql: """
+                UPDATE wallets SET pendingBackupOffer = NULL, needsBackupOfferReview = NULL WHERE id = ?
+                """, arguments: [walletID])
+            return offer
+        }
+    }
+
+    public func finishBackupOfferReview(walletID: String, previouslyUntrackedOffer: WalletBackupOffer?) async throws {
+        try await pool.write { db in
+            try db.execute(sql: """
+                UPDATE wallets SET pendingBackupOffer = COALESCE(pendingBackupOffer, ?), needsBackupOfferReview = NULL
+                WHERE id = ? AND needsBackupOfferReview = 1
+                """, arguments: [previouslyUntrackedOffer, walletID])
+        }
+    }
+
     public func cloudBackup(walletID: String) async throws -> CloudBackupRecord? {
         try await pool.read { try CloudBackupRecord.fetchOne($0, key: walletID) }
     }
@@ -34,6 +89,17 @@ extension OathDatabase {
     public func observeCloudBackups() -> AsyncThrowingStream<[CloudBackupRecord], Error> {
         stream { try CloudBackupRecord.fetchAll($0, sql: "SELECT * FROM cloudBackups WHERE enabled=1 ORDER BY walletID") }
     }
+    /// May narrow an outstanding offer after a matching import, or suppress it after a cloud restore.
+    /// A cleared offer stays cleared even when the wallet is imported again.
+    public func updatePendingBackupOffer(walletID: String, to offer: WalletBackupOffer?) async throws {
+        try await pool.write { db in
+            try db.execute(sql: """
+                UPDATE wallets SET pendingBackupOffer = ?, needsBackupOfferReview = NULL
+                WHERE id = ? AND (pendingBackupOffer IS NOT NULL OR (? IS NULL AND needsBackupOfferReview = 1))
+                """, arguments: [offer, walletID, offer])
+        }
+    }
+
     /// The durable outbox contains ciphertext only. Committing precedes all
     /// iCloud file writes, so a crash can retry without asking for the password.
     public func queueCloudBackup(_ record: CloudBackupRecord) async throws {

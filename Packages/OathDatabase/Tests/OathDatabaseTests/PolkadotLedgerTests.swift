@@ -41,6 +41,31 @@ import GRDB
         do { try await db.commitPolkadotInventory(bad, ticket: new); XCTFail() } catch { XCTAssertEqual(error as? StoreError, .conflictingIdentity) }
         let saved = try await db.balance(accountID: "a1", assetID: "polkadot:assets:1984"); XCTAssertEqual(saved?.amountAtomic, "9007199254740993")
     }
+    func testRemovedWalletCancelsLateBackgroundWritesAndRestoredWalletRejectsOldTicket() async throws {
+        let (db, folder) = try await setup()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let ticket = try await db.beginPolkadotSync(accountID: "a1")
+        try await db.commitPolkadotInventory(inventory(), ticket: ticket)
+        let quote = PolkadotPrice(reference: "native", usd: "9", source: "fixture", observedAt: Date())
+        let page = PolkadotHistoryPage(events: [], next: nil)
+        try await db.reconcileWalletLifecycle([.init(id: "w1", deletedAt: 200)])
+        do { try await db.commitPolkadotPrices([quote], ticket: ticket); XCTFail("Late price committed") }
+        catch { XCTAssertTrue(error is CancellationError) }
+        do { _ = try await db.polkadotHistoryCursor(ticket, stream: "native", latestHeight: 100); XCTFail("Created a cursor") }
+        catch { XCTAssertTrue(error is CancellationError) }
+        do { try await db.commitPolkadotHistory(page, ticket: ticket, stream: "native", currentPage: 0, advance: true); XCTFail("Advanced removed wallet") }
+        catch { XCTAssertTrue(error is CancellationError) }
+
+        try await db.reconcileWalletLifecycle([.init(id: "w1", deletedAt: nil)])
+        do { try await db.commitPolkadotPrices([quote], ticket: ticket); XCTFail("Accepted old ticket after restore") }
+        catch { XCTAssertEqual(error as? StoreError, .staleSync) }
+        let restored = try await db.snapshot(walletID: "w1", currency: "USD")
+        XCTAssertNil(restored.holdings.first { $0.reference == "native" }?.price)
+        let fresh = try await db.beginPolkadotSync(accountID: "a1")
+        try await db.commitPolkadotPrices([quote], ticket: fresh)
+        let updated = try await db.snapshot(walletID: "w1", currency: "USD")
+        XCTAssertEqual(updated.holdings.first { $0.reference == "native" }?.price, "9")
+    }
     func testHistoryReplayExtrinsicMergeAndDurableWindows() async throws {
         let (db, folder) = try await setup(); defer { try? FileManager.default.removeItem(at: folder) }
         let ticket = try await db.beginPolkadotSync(accountID: "a1")

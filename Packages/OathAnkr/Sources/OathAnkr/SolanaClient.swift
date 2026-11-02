@@ -9,6 +9,8 @@ public actor SolanaClient {
     private let transport: any AnkrTransport
     private let permits = AnkrPermits(count: 3)
     private let archivePermits = AnkrPermits(count: 1)
+    private let primaryVerification = AnkrPermits(count: 1)
+    private let archiveVerification = AnkrPermits(count: 1)
     private var verified: Set<URL> = []
     private var archiveAfter = ContinuousClock.now
     private var archiveSpacingMilliseconds = 1200
@@ -97,14 +99,18 @@ public actor SolanaClient {
                 // Preserve that control flow before transport normalization;
                 // otherwise it becomes an outage and starts another provider.
                 if Task.isCancelled || error is CancellationError || (error as? URLError)?.code == .cancelled { throw CancellationError() }
-                OathDiagnostics.record(error)
-                let safe = error as? SolanaError ?? .transport
+                let decodingFailed = error is DecodingError
+                OathDiagnostics.record(error, component: "provider", operation: "solana_read",
+                    context: ["chain": "solana", "stage": decodingFailed ? "response_decode" : "rpc_exchange",
+                              "method": pending.count == 1 ? calls[pending[0]].method : "batch",
+                              "attempt": String(attempt + 1), "host": endpoint.host ?? ""])
+                let safe = error as? SolanaError ?? (decodingFailed ? .malformed : .transport)
                 if endpoint == archive, safe == .http(429) {
                     archiveSpacingMilliseconds = 1500
                     archiveAfter = .now.advanced(by: .seconds(15))
                 }
                 switch safe {
-                case .http(429), .http(500...599), .transport:
+                case .malformed where decodingFailed, .http(429), .http(500...599), .transport:
                     if endpoint == primary || attempt == 2 {
                         for index in pending { completed[index] = .failure(safe) }
                         pending = []
@@ -118,6 +124,13 @@ public actor SolanaClient {
         throw SolanaError.transport
     }
     private func verify(_ endpoint: URL) async throws {
+        try Task.checkCancellation()
+        if verified.contains(endpoint) { return }
+        // The three history workers can enter before the first genesis reply.
+        // Serialize this check per endpoint; ordinary RPCs keep their own permits.
+        let gate = endpoint == archive ? archiveVerification : primaryVerification
+        try await gate.acquire()
+        defer { Task { await gate.release() } }
         try Task.checkCancellation()
         if verified.contains(endpoint) { return }
         let result = try await batch([.init(method: "getGenesisHash", params: [])], endpoint: endpoint)[0].get()
@@ -186,7 +199,14 @@ public actor SolanaClient {
             try await transactionsInContext(signatures: signatures, owner: owner)
         }
     }
-    private func transactionsInContext(signatures: [String], owner: String) async throws -> [SolanaTransaction] {
+    public func transactions(matching entries: [SolanaSignature], owner: String) async throws -> [SolanaTransaction] {
+        try await OathDiagnostics.withChain("solana") {
+            try await transactionsInContext(signatures: entries.map(\.signature), owner: owner, expected: entries)
+        }
+    }
+
+    private func transactionsInContext(signatures: [String], owner: String,
+                                       expected: [SolanaSignature]? = nil) async throws -> [SolanaTransaction] {
         guard signatures.count <= 20, !signatures.isEmpty, Set(signatures).count == signatures.count,
               signatures.allSatisfy(SolanaIdentity.isSignature), SolanaIdentity.isAddress(owner) else { throw SolanaError.invalidAddress }
         let calls = signatures.map { Call(method: "getTransaction", params: [.string($0), .object([
@@ -194,8 +214,23 @@ public actor SolanaClient {
         var replies: [Result<SolanaJSON, SolanaError>]
         do { try await verify(primary); replies = try await batch(calls, endpoint: primary) }
         catch { OathDiagnostics.record(error); if error is CancellationError { throw error }; try Task.checkCancellation(); replies = calls.map { _ in .failure(.transport) } }
-        let missing = replies.indices.filter {
-            if case .success(let value) = replies[$0], !value.isNull { return false }; return true
+        // Use the finalized signature page as an independent check on each
+        // receipt. A disagreement affects only that member of the paid batch.
+        func matchesPage(_ value: SolanaJSON, at index: Int) -> Bool {
+            guard let expected else { return true }
+            let entry = expected[index]
+            guard case .object(let meta) = value["meta"], let error = meta["err"] else { return false }
+            return value["transaction"]["signatures"].array?.first?.string == entry.signature
+                && value["slot"].integer == entry.slot && !error.isNull == entry.failed
+        }
+        let missing = replies.indices.filter { index in
+            guard case .success(let value) = replies[index], !value.isNull else { return true }
+            guard matchesPage(value, at: index) else {
+                OathDiagnostics.record(SolanaError.incompleteHistory, component: "provider", operation: "transaction_validation",
+                    context: ["chain": "solana", "stage": "primary_receipt", "reason": "signature_page_mismatch"])
+                return true
+            }
+            return false
         }
         if !missing.isEmpty { try await verify(archive) }
         // The public archive counts each member against its method quota.
@@ -208,6 +243,9 @@ public actor SolanaClient {
         for i in replies.indices {
             let value = try replies[i].get()
             guard !value.isNull else { throw SolanaError.missingTransaction }
+            guard matchesPage(value, at: i) else {
+                throw OathDiagnostics.failure(SolanaError.incompleteHistory, reason: "archive_receipt_page_mismatch")
+            }
             result.append(try SolanaDecoding.transaction(value, signature: signatures[i], owner: owner))
         }
         try Task.checkCancellation()

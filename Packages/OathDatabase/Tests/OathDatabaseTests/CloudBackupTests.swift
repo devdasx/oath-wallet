@@ -32,6 +32,153 @@ import GRDB
         XCTAssertEqual(disabled?.map(\.walletID), ["second"])
     }
 
+    func testBackupOfferSurvivesReopenAndIsConsumedOnlyForItsWallet() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        let created = WalletRecord(id: "created", name: "", kind: "hd", vaultReference: "created", createdAt: 1,
+                                   pendingBackupOffer: .cloudOrManual)
+        let imported = WalletRecord(id: "imported", name: "", kind: "imported", vaultReference: "imported", createdAt: 2,
+                                    pendingBackupOffer: .cloudOnly)
+        for wallet in [created, imported] { try await db.importWalletIfNeeded(wallet, accounts: []) }
+        let reopened = try await OathDatabase.open(at: url)
+        let createdOffer = try await reopened.wallet(created.id)?.pendingBackupOffer
+        XCTAssertEqual(createdOffer, .cloudOrManual)
+        try await reopened.updatePendingBackupOffer(walletID: created.id, to: .cloudOnly)
+        let matchedImport = try await reopened.wallet(created.id)?.pendingBackupOffer
+        XCTAssertEqual(matchedImport, .cloudOnly)
+        // Independent database connections represent two presenters racing on Home.
+        async let first = db.claimBackupOffer(walletID: created.id)
+        async let second = reopened.claimBackupOffer(walletID: created.id)
+        let winners = try await [first, second].compactMap { $0 }
+        XCTAssertEqual(winners, [.cloudOnly])
+        try await reopened.updatePendingBackupOffer(walletID: created.id, to: .cloudOnly)
+        try await reopened.importWalletIfNeeded(created, accounts: [])
+        let consumed = try await reopened.wallet(created.id)?.pendingBackupOffer
+        let other = try await reopened.wallet(imported.id)?.pendingBackupOffer
+        XCTAssertNil(consumed)
+        XCTAssertEqual(other, .cloudOnly)
+        let relaunched = try await OathDatabase.open(at: url)
+        let repeatOffer = try await relaunched.claimBackupOffer(walletID: created.id)
+        XCTAssertNil(repeatOffer)
+        try await reopened.queueCloudBackup(.init(walletID: imported.id, backupID: UUID(), accountID: "fixture",
+                                                  encryptedDocument: Data([1])))
+        let queued = try await db.wallet(imported.id)?.pendingBackupOffer
+        XCTAssertEqual(queued, .cloudOnly, "Queueing an upload does not consume the one-time prompt")
+        let importedOffer = try await relaunched.claimBackupOffer(walletID: imported.id)
+        XCTAssertEqual(importedOffer, .cloudOnly)
+    }
+
+    func testFailedClaimCanRetryAndCompletedCloudOnlyBackupCannotBeClaimed() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        try await db.pool.write {
+            try $0.execute(sql: "UPDATE wallets SET pendingBackupOffer = 'cloudOnly'")
+            try $0.execute(sql: """
+                CREATE TRIGGER reject_offer BEFORE UPDATE OF pendingBackupOffer ON wallets
+                BEGIN SELECT RAISE(ABORT, 'test write failure'); END
+                """)
+        }
+        do {
+            _ = try await db.claimBackupOffer(walletID: "first")
+            XCTFail("A failed write must not authorize presentation")
+        } catch is DatabaseError {}
+        try await db.pool.write { try $0.execute(sql: "DROP TRIGGER reject_offer") }
+        let retried = try await db.claimBackupOffer(walletID: "first")
+        XCTAssertEqual(retried, .cloudOnly)
+
+        let job = CloudBackupRecord(walletID: "second", backupID: UUID(), accountID: "fixture", encryptedDocument: Data([1]))
+        try await db.queueCloudBackup(job)
+        try await db.updateCloudBackup(backupID: job.backupID, state: "uploaded")
+        let alreadyBackedUp = try await db.claimBackupOffer(walletID: "second")
+        XCTAssertNil(alreadyBackedUp)
+    }
+
+    func testExistingWalletOffersAreReviewedOnceAcrossUpgradeAndReopen() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        try await db.pool.write {
+            try $0.execute(sql: "ALTER TABLE wallets DROP COLUMN needsBackupOfferReview")
+            try $0.execute(sql: "ALTER TABLE wallets DROP COLUMN pendingBackupOffer")
+            try $0.execute(sql: "DELETE FROM grdb_migrations WHERE identifier IN ('v103_wallet_backup_offer','v104_existing_wallet_backup_offers')")
+        }
+        let migrated = try await OathDatabase.open(at: url)
+        let wallets = try await migrated.wallets()
+        XCTAssertEqual(wallets.count, 2)
+        XCTAssertTrue(wallets.allSatisfy { $0.needsBackupOfferReview == true })
+        try await migrated.finishBackupOfferReview(walletID: "first", previouslyUntrackedOffer: .cloudOrManual)
+        try await migrated.finishBackupOfferReview(walletID: "second", previouslyUntrackedOffer: .cloudOnly)
+        let first = try await migrated.wallet("first")
+        let second = try await migrated.wallet("second")
+        XCTAssertEqual(first?.pendingBackupOffer, .cloudOrManual)
+        XCTAssertEqual(second?.pendingBackupOffer, .cloudOnly)
+        try await migrated.updatePendingBackupOffer(walletID: "first", to: nil)
+        let reopened = try await OathDatabase.open(at: url)
+        try await reopened.finishBackupOfferReview(walletID: "first", previouslyUntrackedOffer: .cloudOrManual)
+        let consumed = try await reopened.wallet("first")
+        XCTAssertNil(consumed?.pendingBackupOffer)
+        XCTAssertNil(consumed?.needsBackupOfferReview)
+    }
+
+    func testPriorDismissalAndCloudRestoreStaySuppressedDuringBackfill() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        try await db.pool.write { try $0.execute(sql: "UPDATE wallets SET needsBackupOfferReview = 1") }
+        // A cleared v103 offer carries an existing tracking marker in the vault.
+        try await db.finishBackupOfferReview(walletID: "first", previouslyUntrackedOffer: nil)
+        // Restoring a matching older wallet can precede its authenticated classification.
+        try await db.updatePendingBackupOffer(walletID: "second", to: nil)
+        try await db.finishBackupOfferReview(walletID: "second", previouslyUntrackedOffer: .cloudOrManual)
+        let wallets = try await db.wallets()
+        XCTAssertTrue(wallets.allSatisfy { $0.pendingBackupOffer == nil && $0.needsBackupOfferReview == nil })
+    }
+
+    func testVisibleOptionsFollowOnlyThisWalletsConfirmedCloudBackup() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        var status = db.observeBackupOfferStatus(walletID: "first").makeAsyncIterator()
+        let initial = try await status.next()
+        XCTAssertEqual(initial, .unconfirmed)
+        XCTAssertEqual(initial?.visibleOffer(for: .cloudOnly), .cloudOnly)
+        XCTAssertEqual(initial?.visibleOffer(for: .cloudOrManual), .cloudOrManual)
+        let job = CloudBackupRecord(walletID: "first", backupID: UUID(), accountID: "fixture", encryptedDocument: Data([1]))
+        try await db.queueCloudBackup(job)
+        let queued = try await status.next()
+        XCTAssertEqual(queued, .uploading)
+        try await db.updateCloudBackup(backupID: job.backupID, state: "failed", failureCode: "quota")
+        let failed = try await status.next()
+        XCTAssertEqual(failed, .unconfirmed)
+        let retry = CloudBackupRecord(walletID: "first", backupID: UUID(), accountID: "fixture", encryptedDocument: Data([2]))
+        try await db.queueCloudBackup(retry)
+        _ = try await status.next()
+        try await db.updateCloudBackup(backupID: retry.backupID, state: "uploaded")
+        let uploaded = try await status.next()
+        XCTAssertEqual(uploaded, .uploaded)
+        XCTAssertEqual(uploaded?.visibleOffer(for: .cloudOrManual), .manualOnly)
+        XCTAssertNil(uploaded?.visibleOffer(for: .cloudOnly))
+        XCTAssertNil(uploaded?.visibleOffer(for: nil))
+        var other = db.observeBackupOfferStatus(walletID: "second").makeAsyncIterator()
+        let otherStatus = try await other.next()
+        XCTAssertEqual(otherStatus, .unconfirmed)
+        try await db.reconcileRemovedCloudBackups(confirmedMissingBackupID: retry.backupID)
+        let missing = try await status.next()
+        XCTAssertEqual(missing, .unconfirmed)
+    }
+
+    func testTurningOffUploadsPreservesAConfirmedCloudCopyForTheOffer() async throws {
+        let (db, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        let job = CloudBackupRecord(walletID: "first", backupID: UUID(), accountID: "fixture", encryptedDocument: Data([1]))
+        try await db.queueCloudBackup(job)
+        try await db.updateCloudBackup(backupID: job.backupID, state: "uploaded")
+        try await db.disableCloudBackup(walletID: "first")
+        let reopened = try await OathDatabase.open(at: url)
+        var updates = reopened.observeBackupOfferStatus(walletID: "first").makeAsyncIterator()
+        let status = try await updates.next()
+        XCTAssertEqual(status, .uploaded)
+        XCTAssertEqual(status?.visibleOffer(for: .cloudOrManual), .manualOnly)
+        XCTAssertNil(status?.visibleOffer(for: .cloudOnly))
+    }
+
     private func fixture() async throws -> (OathDatabase, URL) {
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("CloudBackupDB-" + UUID().uuidString).appendingPathComponent("wallet.sqlite")
         let db = try await OathDatabase.open(at: url)

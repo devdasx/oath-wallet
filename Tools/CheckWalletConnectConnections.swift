@@ -108,6 +108,7 @@ import Foundation
         let suite = "OathWCConnectionsTests-" + UUID().uuidString
         let defaults = UserDefaults(suiteName: suite)!
         defer { defaults.removePersistentDomain(forName: suite) }
+        checks += PairingRecoveryFixture.verify(defaults: defaults)
         let first = Date(timeIntervalSince1970: 1_700_000_000)
         let second = first.addingTimeInterval(50)
         var store = OathWalletConnectConnections(defaults: defaults)
@@ -181,5 +182,63 @@ import Foundation
         check(OathScannerContext.home.accepts(.recipient(recipient)), "Home address scanner preserved")
         check(OathScannerContext.walletConnect.accepts(.invalid(.expired)), "Expired QR retains explanatory validation state")
         print("Passed \(checks) WalletConnect management host checks: lifecycle/relaunch/revocation, bounded metadata, safe URLs/icons and shared scanner routing. No simulator, device or live session used.")
+    }
+}
+
+/// Compile the exact app recovery method against deterministic SDK queue snapshots.
+@MainActor private final class PairingRecoveryFixture {
+    struct Wallet { var isUnlocked = true }
+    struct Offered { let pairingTopic: String }
+    struct Review { let value: Offered; let verify: String }
+    struct Approved { let topic: String; let expiryDate: Date }
+    @MainActor final class Sign {
+        static let instance = Sign()
+        var proposals = [(proposal: Offered, context: String)]()
+        var sessions = [Approved]()
+        func getPendingProposals() -> [(proposal: Offered, context: String)] { proposals }
+        func getSessions() -> [Approved] { sessions }
+    }
+    private var session: Wallet? = Wallet()
+    private var pairingTopic = "fixture"
+    private var pairingProgress = OathWalletConnectPolicy.PairingProgress.waiting
+    private var proposal: Review?
+    private var connectedTopic: String?
+    private var connections: OathWalletConnectConnections
+    private var walletMapping = ["approved": "local-wallet"]
+    private var timeout: Task<Void, Never>?
+    private var working = true, failed = false
+    private var connectionFailure: OathWalletConnectPolicy.ConnectionFailure?
+    private var presentationIssue: String?
+    private var resumed = false
+    init(defaults: UserDefaults) { connections = .init(defaults: defaults) }
+    private func refreshSessions() {}
+    private func resumeRequests() { resumed = true }
+    // PRODUCTION_PAIRING_RECOVERY
+
+    static func verify(defaults: UserDefaults) -> Int {
+        let fixture = PairingRecoveryFixture(defaults: defaults)
+        let sdk = Sign.instance
+        defer { sdk.proposals = []; sdk.sessions = [] }
+        sdk.proposals = [(.init(pairingTopic: "unrelated"), "unknown")]
+        precondition(!fixture.resumeKnownPairing(topic: "fixture"))
+        sdk.proposals.append((.init(pairingTopic: "fixture"), "unverified"))
+        fixture.session?.isUnlocked = false
+        precondition(!fixture.resumeKnownPairing(topic: "fixture"))
+        fixture.session?.isUnlocked = true
+        precondition(!fixture.resumeKnownPairing(topic: "unrelated"))
+        precondition(fixture.resumeKnownPairing(topic: "fixture"))
+        precondition(fixture.pairingProgress == .reviewing && fixture.proposal?.verify == "unverified" && !fixture.resumed)
+        precondition(!fixture.resumeKnownPairing(topic: "fixture"))
+        sdk.proposals = []
+        fixture.pairingProgress = .failed
+        fixture.connections.approve("approved", pairingTopic: "fixture")
+        sdk.sessions = [.init(topic: "approved", expiryDate: .distantPast)]
+        precondition(!fixture.resumeKnownPairing(topic: "fixture"))
+        sdk.sessions = [.init(topic: "approved", expiryDate: .distantFuture)]
+        precondition(fixture.resumeKnownPairing(topic: "fixture"))
+        precondition(fixture.connectedTopic == "approved" && fixture.resumed && !fixture.working && !fixture.failed)
+        fixture.connections.revoke("approved"); fixture.pairingProgress = .waiting
+        precondition(!fixture.resumeKnownPairing(topic: "fixture"))
+        return 10
     }
 }

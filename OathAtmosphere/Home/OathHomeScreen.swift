@@ -11,6 +11,21 @@ struct OathHomeScreen: View {
     let profile: OathWalletProfile?
     let session: OathWalletSession
     let settings: OathAppSettings
+    let lockCoverHidden: Bool
+    // A committed offer waits here if another sheet takes priority before presentation.
+    @State private var claimedBackupOffers: [UUID: WalletBackupOffer] = [:]
+    @State private var backupStatus: (walletID: UUID, cloud: WalletCloudBackupStatus)?
+    private var backupStatusWalletID: UUID? {
+        guard scenePhase != .background, session.isUnlocked, !session.changingWallet, !session.resetting else { return nil }
+        if case .backup(let id, _) = sheet { return id }
+        guard let id = profile?.id else { return nil }
+        return claimedBackupOffers[id] != nil || currentWallet?.pendingBackupOffer != nil ? id : nil
+    }
+
+    private var visibleBackupOffer: WalletBackupOffer? {
+        guard let backupStatus, backupStatus.walletID == profile?.id else { return nil }
+        return backupStatus.cloud.visibleOffer(for: claimedBackupOffers[backupStatus.walletID] ?? currentWallet?.pendingBackupOffer)
+    }
     @Environment(\.oathLocalizer) private var strings
     @Environment(\.colorScheme) private var colorScheme
     @State private var sheet: Sheet?
@@ -59,6 +74,7 @@ struct OathHomeScreen: View {
 
     private enum Sheet: Identifiable {
         case wallets, send, receive, address(OathWalletAddress), assetFilters, tronMultisigSetup(String), evmMultisigSetup(String), solanaMultisigSetup(String), xrplMultisigSetup(String), stellarMultisigSetup(String)
+        case backup(UUID, WalletBackupOffer)
         case multisig(UUID, [PublicMultisigEvidence])
         case stablecoin(UUID, [StablecoinRestrictionToken])
         var id: String {
@@ -72,6 +88,7 @@ struct OathHomeScreen: View {
             case .evmMultisigSetup: "evmMultisigSetup"
             case .solanaMultisigSetup: "solanaMultisigSetup"
             case .tronMultisigSetup: "tronMultisigSetup"
+            case .backup(let id, _): "backup-" + id.uuidString
             case .multisig: "multisig"
             case .stablecoin: "stablecoin"
             case .address(let address): address.id
@@ -154,13 +171,34 @@ struct OathHomeScreen: View {
             OathWalletLinkInbox.shared.pending == nil
         return securityNotices.next(walletID: profile?.id, homeAvailable: available,
             multisigPending: hasPendingMultisigNotice,
-            stablecoinPending: state.map { !$0.acknowledged && !$0.restricted.isEmpty } == true)
+            stablecoinPending: state.map { !$0.acknowledged && !$0.restricted.isEmpty } == true,
+            backupPending: visibleBackupOffer != nil &&
+                lockCoverHidden && !session.presentsOnboarding && portfolioPresentation.hasPrepared &&
+                !walletActionFailed && scanError == nil && OathVaultImportInbox.shared.pending == nil &&
+                OathVaultImportInbox.shared.active == nil)
     }
-    private func presentNextSecurityNotice() {
+    private func presentNextSecurityNotice(afterHomeAppearance: Bool = false) {
         // Re-evaluate current wallet/navigation state instead of presenting a
         // candidate captured before a wallet switch or another modal opened.
         guard let next = nextSecurityNotice else { return }
         switch next.kind {
+        case .backup:
+            guard afterHomeAppearance else { return }
+            if let offer = claimedBackupOffers[next.walletID] {
+                guard securityNotices.begin(next) else { return }
+                sheet = .backup(next.walletID, offer)
+                claimedBackupOffers.removeValue(forKey: next.walletID)
+            } else {
+                Task {
+                    let offer = await OathDiagnostics.$operationID.withValue(UUID()) {
+                        await OathDiagnostics.attemptOptional("claim_backup_offer") {
+                            let db = try await session.vault.database()
+                            return try await db.claimBackupOffer(walletID: next.walletID.uuidString)
+                        }
+                    }
+                    if let offer { claimedBackupOffers[next.walletID] = offer }
+                }
+            }
         case .multisig:
             guard securityNotices.begin(next) else { return }
             sheet = .multisig(next.walletID, multisigFindings)
@@ -179,6 +217,24 @@ struct OathHomeScreen: View {
             OathHomePortfolioUpdates(session: session, query: query, active: shouldPreparePortfolio)
         }
         .environment(\.oathScanSession, session)
+        .task(id: backupStatusWalletID) {
+            let id = backupStatusWalletID
+            backupStatus = nil
+            guard let id else { return }
+            await OathDiagnostics.$operationID.withValue(UUID()) {
+                do {
+                    let db = try await session.vault.database()
+                    for try await status in db.observeBackupOfferStatus(walletID: id.uuidString) {
+                        guard !Task.isCancelled, backupStatusWalletID == id else { return }
+                        backupStatus = (id, status)
+                    }
+                } catch is CancellationError { }
+                catch {
+                    if !Task.isCancelled, backupStatusWalletID == id { backupStatus = nil }
+                    OathDiagnostics.record(error, component: "wallet", operation: "observe_backup_offer_status")
+                }
+            }
+        }
         .task(id: stablecoinScope) {
             guard !stablecoinScope.isEmpty, let walletID = profile?.id else { return }
             await session.checkStablecoinRestrictions(walletID: walletID, accounts: stablecoinAccounts)
@@ -270,7 +326,11 @@ struct OathHomeScreen: View {
             _ = await TokenDiscoveryCatalog.shared.refreshIfNeeded()
         }
         // Preserve the presenting hierarchy while the native lock covers it.
+        .onChange(of: session.changingWallet) { _, changing in
+            if changing, case .backup = sheet { sheet = nil }
+        }
         .onChange(of: profile?.id) { _, _ in
+            if case .backup = sheet { sheet = nil }
             multisigFindings = []
             if sheet?.id == "multisig" { sheet = nil }
             if sheet?.id == "stablecoin" { sheet = nil }
@@ -295,6 +355,9 @@ struct OathHomeScreen: View {
         }) { selection in
             Group {
                 switch selection {
+                case .backup(let id, let offer):
+                    OathWalletBackupOfferSheet(walletID: id.uuidString, offer: offer,
+                        cloudStatus: backupStatus?.walletID == id ? backupStatus?.cloud : nil, session: session)
                 case .stellarMultisigSetup(let walletID):
                     NavigationStack { OathStellarMultisigSetupScreen(session: session, walletID: walletID) }
                 case .xrplMultisigSetup(let walletID):
@@ -359,6 +422,7 @@ struct OathHomeScreen: View {
             if unlocked { resumeCustomization(); OathWalletConnectService.shared.resumeRequests() }
             else {
                 pendingWalletDestination = nil
+                if case .backup = sheet { sheet = nil }
                 multisigFindings = []
                 if sheet?.id == "multisig" { sheet = nil }
                 if sheet?.id == "stablecoin" { sheet = nil }
@@ -443,6 +507,17 @@ struct OathHomeScreen: View {
     private var walletNavigation: some View {
         NavigationStack(path: $assetPath) {
             homeContent
+                .background {
+                    if let candidate = nextSecurityNotice, candidate.kind == .backup {
+                        Color.clear.frame(width: 0, height: 0)
+                            .oathAfterAppearance {
+                                guard candidate == nextSecurityNotice else { return }
+                                presentNextSecurityNotice(afterHomeAppearance: true)
+                            }
+                            .id(claimedBackupOffers[candidate.walletID])
+                            .id(candidate.walletID)
+                    }
+                }
                 // Asset details hide the tab bar. Restore it as part of the
                 // pop transition, before Home's viewport sizes its header.
                 .toolbar(.visible, for: .tabBar)
@@ -516,7 +591,7 @@ struct OathHomeScreen: View {
                                 refreshIdentity: profile?.id.uuidString, action: {
                 // Coalesced with foreground refresh and independent of the
                 // selected currency. Failed FX updates preserve cached rates.
-                async let rates = await OathDiagnostics.attempt("exchange_rates") { try await OathExchangeRateEnvironment.shared.refresh() }
+                async let rates = await OathExchangeRateEnvironment.shared.refresh()
                 try await session.refresh()
                 _ = await rates
             }, onFailure: {}, onScroll: { _ in },

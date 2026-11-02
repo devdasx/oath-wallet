@@ -97,7 +97,7 @@ public actor XrplSynchronizer {
                     let key = cursor.lane+":"+(cursor.beforeCursor ?? "first:\(cursor.upperLedger ?? 0)")
                     guard visited.insert(key).inserted else { throw XrplError.paginationLoop }
                     do {
-                        let page = try await client.history(owner:ticket.account.address,before:cursor.beforeCursor,upperLedger:cursor.upperLedger)
+                        let page = try await client.history(owner:ticket.account.address,before:cursor.beforeCursor,upperLedger:cursor.upperLedger,oldestFetchedLedger:cursor.oldestLedger)
                         try Task.checkCancellation()
                         try await database.commitXrplPage(page,cursor:cursor,ticket:ticket)
                     } catch XrplError.rpc("invalidMarker") {

@@ -14,7 +14,10 @@ import XCTest
 
         var selectedIDs: [String] = []
         for entry in ["home.send", "home.receive"] {
-            app.buttons[entry].tap()
+            let action = app.buttons[entry]
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: action)
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed, entry)
+            action.tap()
             let field = app.searchFields.firstMatch
             XCTAssertTrue(field.waitForExistence(timeout: 10), entry)
             field.tap(); field.typeText("Usdt")
@@ -117,6 +120,11 @@ import XCTest
     private func returnToHome(_ app: XCUIApplication) {
         for _ in 0..<6 where !app.buttons["home.receive"].isHittable {
             if app.buttons["multisig.gotIt"].exists { app.buttons["multisig.gotIt"].tap(); continue }
+            if app.buttons["asset.receive"].exists && app.buttons["asset.receive"].isHittable {
+                let back = app.buttons["asset.back"]
+                if back.exists { back.tap() } else { app.navigationBars.buttons.element(boundBy: 0).tap() }
+                continue
+            }
             let close = app.buttons.matching(NSPredicate(format: "label == 'Close' OR label == 'Cancel' OR label == 'Cancel Search' OR label == 'Back'")).firstMatch
             XCTAssertTrue(close.waitForExistence(timeout: 8)); close.tap()
         }
@@ -151,6 +159,9 @@ import XCTest
         enterPIN(app)
         app.completeWalletCustomization()
         XCTAssertTrue(app.buttons["home.receive"].waitForExistence(timeout: 25))
+        if app.buttons["Back Up to iCloud"].waitForExistence(timeout: 8) {
+            app.navigationBars["Backup"].buttons["Close"].tap()
+        }
     }
 
     private func enterPIN(_ app: XCUIApplication) {

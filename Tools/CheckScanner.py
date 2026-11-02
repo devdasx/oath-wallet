@@ -23,6 +23,10 @@ with tempfile.TemporaryDirectory(prefix="oath-scanner-") as temporary:
     (source / "Networks.swift").write_text("import Foundation\n" + registry[registry.index("struct OathTokenNetwork"):registry.index("struct OathTokenDefinition")])
     check = "CheckWalletConnectHandoff.swift" if "--handoff" in sys.argv else "CheckPaymentQRLive.swift" if "--payment-live" in sys.argv else "CheckWalletConnectConnections.swift" if "--connections" in sys.argv else "CheckScannerPerformance.swift" if "--performance" in sys.argv else "CheckWalletLinks.swift" if "--links" in sys.argv else "CheckScanner.swift"
     check_source = (root / "Tools" / check).read_text()
+    if "--connections" in sys.argv:
+        service = (root / "OathAtmosphere/Scanner/OathWalletConnectService.swift").read_text()
+        methods = service[service.index("    private func resumeKnownPairing("):service.index("    private func failConnection(")]
+        check_source = check_source.replace("    // PRODUCTION_PAIRING_RECOVERY", methods)
     if "--handoff" in sys.argv:
         service = (root / "OathAtmosphere/Scanner/OathWalletConnectService.swift").read_text()
         methods = service[service.index("    private func canHandoffCompletion("):service.index("    @discardableResult func presentationDidOpen(")]

@@ -67,6 +67,31 @@ final class ArtworkFallbackTests: XCTestCase, @unchecked Sendable {
     }
     private func directory() -> URL { FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString) }
 
+    func testIoTeXMixedAddressCatalogPreservesImagesAndRejectsConflicts() async throws {
+        let native = "io1f4acssp65t6s90egjkzpvrdsrjjyysnvxgqjrh"
+        let hex = "0x4d7b88403aa2f502bf289584160db01ca442426c"
+        let mixed = try list([token(native, chain: 4689), token(contract, chain: 4689)])
+        let transport = CatalogImageTransport(["https://tokens.coingecko.com/iotex/all.json": .data(mixed)])
+        let lookup = ArtworkFallbackCatalog(transport: transport)
+        for reference in [hex, native, native.uppercased(), contract] {
+            let result = await lookup.sources(for: try XCTUnwrap(TokenArtworkIdentity(networkID: "iotex", reference: reference)))
+            XCTAssertEqual(result, [logo])
+        }
+        for invalid in ["IO1" + String(native.dropFirst(3)), String(native.dropLast()) + "q"] {
+            XCTAssertThrowsError(try ArtworkFallbackCatalog.decode(list([token(invalid, chain: 4689)]), chainID: 4689, networkID: "iotex"))
+        }
+        XCTAssertThrowsError(try ArtworkFallbackCatalog.decode(
+            list([token(native, chain: 4689), token(hex, chain: 4689, logo: "https://cdn.example.org/other.png")]),
+            chainID: 4689, networkID: "iotex"))
+    }
+
+    func testLiveIoTeXCatalogResolvesNativeContract() async throws {
+        guard ProcessInfo.processInfo.environment["OATH_LIVE_IOTEX_ARTWORK"] == "1" else { throw XCTSkip("Opt-in public catalog read") }
+        let token = try XCTUnwrap(TokenArtworkIdentity(networkID: "iotex", reference: "0x4d7b88403aa2f502bf289584160db01ca442426c"))
+        let sources = await ArtworkFallbackCatalog().sources(for: token)
+        XCTAssertTrue(sources?.first?.hasPrefix("https://") == true)
+    }
+
     func testReportedBNBMissingOptionalLogoDoesNotRepeatAfterRelaunch() async throws {
         let reported = "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x6f4A363845c9B10E69E1CEb9c69b4754209a672f/logo.png"
         XCTAssertEqual(String(ArtworkSource.key(reported).prefix(12)), "fd1b77f2e21c")
@@ -167,7 +192,9 @@ final class ArtworkFallbackTests: XCTestCase, @unchecked Sendable {
         let result = await loader.image(for: [source, logo]); XCTAssertNil(result)
         for _ in 0..<100 {
             await OathDiagnostics.flush()
-            if await capture.since(started).filter({ $0.operation == "download_decode" }).count == 2 { break }
+            let observed = await capture.since(started)
+            if Set(observed.filter { $0.operation == "download_decode" }.map { $0.error.message }) == ["http(403)", "http(404)"],
+               observed.contains(where: { $0.component == "network" && $0.error.code == 404 }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await capture.since(started)

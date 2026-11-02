@@ -72,16 +72,24 @@ public struct IndexedEVMMarkets: Sendable {
             if error is CancellationError || Task.isCancelled { throw CancellationError() }
             // Reject an unavailable or stale 0G primary quote before trying
             // the independent source. Replacement quotes are validated again.
-            OathDiagnostics.record(error, component: "prices", operation: "native_price_fallback", context: ["chain": chain.rawValue, "source": "native_quote"])
-            guard VerifiedEVMTokenCatalog.isUnavailable(error) || ([.zerog, .iotex].contains(chain) && error as? AnkrError == .invalidResponse) else { throw error }
+            let canRecover = VerifiedEVMTokenCatalog.isUnavailable(error) || ([.zerog, .iotex].contains(chain) && error as? AnkrError == .invalidResponse)
+            OathDiagnostics.record(error, component: "prices", operation: canRecover ? "native_price_fallback" : "native_price",
+                                   context: ["chain": chain.rawValue, "source": "native_quote"])
+            guard canRecover else { throw error }
             do {
                 let data = try await read(URL(string: "https://api.coingecko.com/api/v3/simple/price?ids=" + chain.nativeCoinID + "&vs_currencies=usd&include_last_updated_at=true")!)
-                guard let price = try Self.decodePrices(data, references: ["native"], catalog: .init(chain: chain, ids: ["native": chain.nativeCoinID])).first else { throw AnkrError.invalidResponse }
+                let json = try JSONDecoder().decode(SolanaJSON.self, from: data)
+                guard json != .object([:]) else { throw DiagnosticDeferral.publicMarketQuoteUnavailable }
+                guard let price = Self.decodePrice(json[chain.nativeCoinID], reference: "native", chain: chain, now: .now) else {
+                    throw AnkrError.invalidResponse
+                }
                 return price
             } catch {
                 if error is CancellationError || Task.isCancelled { throw CancellationError() }
-                guard chain == .iotex, VerifiedEVMTokenCatalog.isUnavailable(error) || error as? AnkrError == .invalidResponse else { throw error }
-                OathDiagnostics.record(error, component: "prices", operation: "iotex_native_price_recovery", context: ["chain": "iotex", "source": "CoinGecko"])
+                let canUseExplorer = chain == .iotex && (VerifiedEVMTokenCatalog.isUnavailable(error) || error as? AnkrError == .invalidResponse)
+                OathDiagnostics.record(error, component: "prices", operation: canUseExplorer ? "iotex_native_price_recovery" : "native_price",
+                                       context: ["chain": chain.rawValue, "source": "CoinGecko"])
+                guard canUseExplorer else { throw error }
                 try await IoTeXIndex.permits.acquire()
                 do {
                     try await Task.sleep(for: .milliseconds(1050))
@@ -178,11 +186,15 @@ public struct IndexedEVMMarkets: Sendable {
                                     now: Date = .now) throws -> [IndexedEVMPrice] {
         let json = try JSONDecoder().decode(SolanaJSON.self, from: data)
         return references.compactMap { reference in
-            guard let id = catalog.ids[reference], let usd = TonMarkets.positive(json[id]["usd"]),
-                  let timestamp = json[id]["last_updated_at"].text.flatMap(Double.init), timestamp.isFinite,
-                  timestamp <= now.timeIntervalSince1970 + 60, now.timeIntervalSince1970 - timestamp < 3600 else { return nil }
-            return .init(chain: catalog.chain, reference: reference, usd: usd, source: "CoinGecko", fetchedAt: Date(timeIntervalSince1970: timestamp))
+            guard let id = catalog.ids[reference] else { return nil }
+            return decodePrice(json[id], reference: reference, chain: catalog.chain, now: now)
         }
+    }
+    private static func decodePrice(_ row: SolanaJSON, reference: String, chain: IndexedEVMChain, now: Date) -> IndexedEVMPrice? {
+        guard let usd = TonMarkets.positive(row["usd"]),
+              let timestamp = row["last_updated_at"].text.flatMap(Double.init), timestamp.isFinite,
+              timestamp <= now.timeIntervalSince1970 + 60, now.timeIntervalSince1970 - timestamp < 3600 else { return nil }
+        return .init(chain: chain, reference: reference, usd: usd, source: "CoinGecko", fetchedAt: Date(timeIntervalSince1970: timestamp))
     }
     public func dexPrices(references: [String]) async throws -> [IndexedEVMPrice] {
         guard !references.isEmpty, references.count <= 30 else { throw AnkrError.invalidResponse }
@@ -260,6 +272,8 @@ enum NativePriceFallback {
         }
     }
     static func decodeLlama(_ json: SolanaJSON, key: String, now: Date = .now, maxAge: Double = 900) throws -> Quote {
+        // DefiLlama returns this exact successful envelope when it has no quote.
+        guard json != .object(["coins": .object([:])]) else { throw DiagnosticDeferral.publicMarketQuoteUnavailable }
         let row = json["coins"][key]
         guard let usd = TonMarkets.positive(row["price"]),
               let confidence = row["confidence"].text.flatMap(Double.init), confidence >= 0.9, confidence <= 1,

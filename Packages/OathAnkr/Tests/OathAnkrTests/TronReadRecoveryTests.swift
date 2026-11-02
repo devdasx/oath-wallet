@@ -9,7 +9,7 @@ private final class TronReadTLSFailure: URLProtocol, @unchecked Sendable {
     override func stopLoading() { }
 }
 private actor TronReadRecoveryTransport: AnkrTransport {
-    enum Mode: Sendable { case unavailable, afterVerification, both, wrongChain, wrongGenesis, wrongOwner, badID, malformed, cancelled, http(Int) }
+    enum Mode: Sendable { case decimalsRevert, bothDecimalsRevert, decimalsWrongGenesis, decimalsNFT, decimalsCancelled, invalidDecimals, liveDecimals, unavailable, afterVerification, both, wrongChain, wrongGenesis, wrongOwner, badID, malformed, cancelled, http(Int) }
     let mode: Mode
     var requests: [URLRequest] = []
     let tls: AnkrHTTPTransport
@@ -27,6 +27,7 @@ private actor TronReadRecoveryTransport: AnkrTransport {
         let isPrimary = url.host == "rpc.ankr.com"
         if isPrimary {
             switch mode {
+            case .decimalsRevert, .bothDecimalsRevert, .decimalsWrongGenesis, .decimalsNFT, .decimalsCancelled, .invalidDecimals, .liveDecimals: break
             case .afterVerification where body?.array?.first?["method"].string == "eth_chainId": break
             case .cancelled: throw URLError(.cancelled)
             case .http(let status): return (Data(), status)
@@ -36,6 +37,10 @@ private actor TronReadRecoveryTransport: AnkrTransport {
         } else {
             publicTimes.append(.now)
             XCTAssertEqual(url.host, "api.trongrid.io")
+            if mode == .liveDecimals {
+                guard url.host == "api.trongrid.io", ["/jsonrpc", "/wallet/getblockbynum"].contains(url.path) else { throw TronError.configuration }
+                return try await AnkrHTTPTransport().send(request)
+            }
             if case .both = mode { throw AnkrError.transport }
         }
         let value: TronJSON
@@ -46,16 +51,27 @@ private actor TronReadRecoveryTransport: AnkrTransport {
                 case "eth_chainId": result = mode == .wrongChain ? "0x1" : "0x2b6653dc"
                 case "eth_call":
                     let data = call["params"].array?.first?["data"].string ?? ""
+                    if data == "0x313ce567",
+                       [.decimalsRevert, .bothDecimalsRevert, .decimalsWrongGenesis, .decimalsNFT, .decimalsCancelled, .invalidDecimals, .liveDecimals].contains(mode) {
+                        if isPrimary || mode == .bothDecimalsRevert {
+                            return .object(["jsonrpc": .string("2.0"), "id": call["id"],
+                                            "error": .object(["code": .number("-32000"), "message": .string("REVERT opcode executed")])])
+                        }
+                        if mode == .invalidDecimals {
+                            return .object(["jsonrpc": .string("2.0"), "id": call["id"], "result": .string("0x06")])
+                        }
+                        if mode == .decimalsCancelled { throw URLError(.cancelled) }
+                    }
                     if data.hasPrefix("0x70a08231") { result = "0x" + String(repeating: "0", count: 64 - String(123456789012345, radix: 16).count) + String(123456789012345, radix: 16) }
                     else if data == "0x313ce567" { result = "0x" + String(repeating: "0", count: 63) + "6" }
-                    else if data.hasPrefix("0x01ffc9a7") { result = "0x" + String(repeating: "0", count: 64) }
+                    else if data.hasPrefix("0x01ffc9a7") { result = "0x" + String(repeating: "0", count: 63) + (mode == .decimalsNFT ? "1" : "0") }
                     else { result = "0x" + "55534454" + String(repeating: "0", count: 56) }
                 default: throw TronError.configuration
                 }
                 return .object(["jsonrpc": .string("2.0"), "id": mode == .badID ? .number("999") : call["id"], "result": .string(result)])
             })
         } else if url.path.hasSuffix("/wallet/getblockbynum") {
-            value = .object(["blockID": .string(mode == .wrongGenesis ? "wrong" : TronSendNetwork.mainnet.genesisID)])
+            value = .object(["blockID": .string(mode == .wrongGenesis || mode == .decimalsWrongGenesis ? "wrong" : TronSendNetwork.mainnet.genesisID)])
         } else if url.path.hasSuffix("/wallet/getaccount") {
             value = .object(["address": .string(mode == .wrongOwner ? TronIdentity.usdt : TronTests.owner), "balance": .number("9007199254740993")])
         } else if url.path.hasPrefix("/v1/accounts/") {
@@ -70,6 +86,32 @@ private actor TronReadRecoveryTransport: AnkrTransport {
 extension TronReadRecoveryTransport.Mode: Equatable { }
 
 final class TronReadRecoveryTests: XCTestCase, @unchecked Sendable {
+    func testMetadataAfterPrimaryDecimalsRevertRequiresVerifiedIndependentRead() async throws {
+        for mode in [TronReadRecoveryTransport.Mode.decimalsRevert, .bothDecimalsRevert, .decimalsWrongGenesis, .decimalsNFT, .decimalsCancelled, .invalidDecimals] {
+            let transport = TronReadRecoveryTransport(mode)
+            let client = try TronClient(apiKey: "FixtureKey", transport: transport)
+            do {
+                let token = try await client.token(TronIdentity.usdt)
+                XCTAssertEqual(mode, .decimalsRevert)
+                XCTAssertEqual(token.reference, TronIdentity.usdt)
+                XCTAssertEqual(token.decimals, 6)
+                XCTAssertEqual(token.symbol, "USDT")
+            } catch {
+                switch mode {
+                case .bothDecimalsRevert: XCTAssertEqual(error as? TronError, .rpc(-32000))
+                case .decimalsWrongGenesis: XCTAssertEqual(error as? TronError, .wrongNetwork)
+                case .invalidDecimals: XCTAssertEqual(error as? TronError, .malformed)
+                case .decimalsNFT: XCTAssertEqual(error as? TronError, .nonFungible)
+                case .decimalsCancelled: XCTAssertTrue(error is CancellationError)
+                default: XCTFail("Expected verified decimals: \(error)")
+                }
+            }
+            let requests = await transport.recoveryRequests
+            if mode == .decimalsNFT { XCTAssertTrue(requests.isEmpty) }
+            else { XCTAssertTrue(requests.contains { $0.url?.path == "/wallet/getblockbynum" }) }
+            XCTAssertTrue(requests.allSatisfy { $0.url?.absoluteString.contains("FixtureKey") == false })
+        }
+    }
     func testInventoryRecoversNativeAndAuthoritativeTokenAmounts() async throws {
         for mode in [TronReadRecoveryTransport.Mode.unavailable, .afterVerification] {
             let transport = TronReadRecoveryTransport(mode)
@@ -202,6 +244,16 @@ private actor TronLiveReadRecovery: AnkrTransport {
     }
 }
 final class TronReadRecoveryLiveTests: XCTestCase, @unchecked Sendable {
+    func testLiveUSDTDecimalsAfterInjectedPrimaryRevert() async throws {
+        guard ProcessInfo.processInfo.environment["OATH_TRON_READ_RECOVERY_LIVE"] == "1" else { throw XCTSkip("Read-only public TronGrid decimals check") }
+        let transport = TronReadRecoveryTransport(.liveDecimals)
+        let client = try TronClient(apiKey: "FixtureKey", transport: transport)
+        let token = try await client.token(TronIdentity.usdt)
+        XCTAssertEqual(token.decimals, 6)
+        let reads = await transport.recoveryRequests
+        XCTAssertEqual(reads.map { $0.url?.path }, ["/jsonrpc", "/wallet/getblockbynum", "/jsonrpc"])
+    }
+
     func testLiveMainnetIdentityNativeAndTokenReadsAfterPrimaryOutage() async throws {
         guard ProcessInfo.processInfo.environment["OATH_TRON_READ_RECOVERY_LIVE"] == "1" else { throw XCTSkip("Read-only public TronGrid recovery check") }
         let transport = TronLiveReadRecovery()

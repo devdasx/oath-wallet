@@ -119,6 +119,8 @@ extension OathDatabase {
                 var tx = try TransactionRecord.fetchOne(db, key: txID) ?? TransactionRecord(id: txID, networkID: ticket.account.networkID, hash: event.hash, state: "confirmed", timestamp: event.timestamp, updatedAt: now)
                 // Failure of a nested call does not mean the parent failed.
                 if cursor.stream == IndexedEVMHistoryStream.transactions.rawValue { tx.state = event.failed ? "failed" : "confirmed" }
+                else if ticket.account.networkID == "celo", cursor.stream == IndexedEVMHistoryStream.transfers.rawValue,
+                        let failed = event.parentTransactionFailed { tx.state = failed ? "failed" : "confirmed" }
                 // A new inclusion height invalidates the previous receipt reference.
                 if tx.blockHeight != event.block { tx.blockHash = nil }
                 tx.blockHeight = event.block; tx.timestamp = event.timestamp; tx.updatedAt = now

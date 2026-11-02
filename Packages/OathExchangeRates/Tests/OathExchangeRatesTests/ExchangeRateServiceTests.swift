@@ -1,4 +1,5 @@
 import XCTest
+import SQLite3
 import OathDatabase
 import OathDiagnostics
 @testable import OathExchangeRates
@@ -48,6 +49,15 @@ private actor FixtureTransport: ExchangeRateTransport {
         XCTAssertTrue(result.rates.count >= 150)
     }
 
+    func testUnknownNonFiatValueCannotDiscardValidFiatRates() throws {
+        let baseline = try ExchangeRateFeed.decode(payload(), fetchedAt: now)
+        for value: Any in [NSNull(), "not a quote", ["provider": "unsupported"]] {
+            let mixed = try ExchangeRateFeed.decode(payload(changes: ["btc": value]), fetchedAt: now)
+            XCTAssertEqual(mixed, baseline)
+        }
+        XCTAssertThrowsError(try ExchangeRateFeed.decode(payload(changes: ["jod": NSNull()]), fetchedAt: now))
+    }
+
     func testMalformedFutureStaleAndWrongBaseResponsesRejected() throws {
         for changes: [String: Any] in [["usd": 2], ["jod": 0], ["jod": -1], ["jod": "broken"], ["USD": 1]] {
             XCTAssertThrowsError(try ExchangeRateFeed.decode(payload(changes: changes), fetchedAt: now))
@@ -77,6 +87,33 @@ private actor FixtureTransport: ExchangeRateTransport {
         XCTAssertEqual(reopenedCount, 1)
     }
 
+    func testSQLiteWriteFailureIsNotRetriedAgainstAnotherFeed() async throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let url = folder.appendingPathComponent("rates.sqlite")
+        let db = try await OathDatabase.open(at: url)
+        let date = now, transport = FixtureTransport(try payload())
+        let old = try ExchangeRateFeed.decode(payload(date: "2026-10-09"), fetchedAt: date.addingTimeInterval(-86400))
+        try await db.saveExchangeRates(old)
+        var sql: OpaquePointer?
+        XCTAssertEqual(sqlite3_open(url.path, &sql), SQLITE_OK)
+        defer { sqlite3_close(sql) }
+        XCTAssertEqual(sqlite3_exec(sql, "CREATE TRIGGER fail_rate_write BEFORE INSERT ON exchangeRates BEGIN SELECT RAISE(ABORT,'fixture write failure'); END", nil, nil, nil), SQLITE_OK)
+        let service = ExchangeRateService(database: db, transport: transport, now: { date })
+        for _ in 0..<2 {
+            do { _ = try await service.refreshIfNeeded(); XCTFail("Failed local write accepted") }
+            catch { XCTAssertEqual((error as NSError).domain, "GRDB.DatabaseError") }
+        }
+        let count = await transport.requests, cached = try await db.exchangeRates()
+        XCTAssertEqual(count, 1)
+        XCTAssertEqual(cached, old)
+        XCTAssertEqual(sqlite3_exec(sql, "DROP TRIGGER fail_rate_write", nil, nil, nil), SQLITE_OK)
+        let recovered = try await service.refreshIfNeeded(retryNow: true)
+        XCTAssertEqual(recovered.observedAt, try ExchangeRateFeed.decode(payload(), fetchedAt: date).observedAt)
+        let saved = try await db.exchangeRates()
+        XCTAssertEqual(saved, recovered)
+    }
+
     func testPrimaryFailureUsesFallback() async throws {
         let db = try await database(), transport = FixtureTransport(try payload(), failFirst: true), date = now
         let service = ExchangeRateService(database: db, transport: transport, now: { date })
@@ -104,6 +141,33 @@ private actor FixtureTransport: ExchangeRateTransport {
         do { _ = try await service.refreshIfNeeded(retryNow: true); XCTFail("Unexpected success") } catch { }
         let afterRetry = await transport.requests
         XCTAssertEqual(afterRetry, 4)
+    }
+
+    func testCancelledFeedDoesNotFetchMirrorOrBackOffNextRefresh() async throws {
+        actor CancelFirst: ExchangeRateTransport {
+            let cancellation: any Error
+            let payload: Data
+            var calls = 0
+            init(_ cancellation: any Error, data: Data) { self.cancellation = cancellation; payload = data }
+            func data(from url: URL) async throws -> Data {
+                calls += 1
+                if calls == 1 { throw cancellation }
+                return payload
+            }
+        }
+        for cancellation: any Error in [CancellationError(), URLError(.cancelled)] {
+            let db = try await database(), date = now
+            let feed = try CancelFirst(cancellation, data: payload())
+            let service = ExchangeRateService(database: db, transport: feed, now: { date })
+            do { _ = try await service.refreshIfNeeded(); XCTFail("Cancellation fetched a mirror") }
+            catch { XCTAssertTrue(OathDiagnostics.isExpectedCancellation(error)) }
+            let initial = await feed.calls
+            XCTAssertEqual(initial, 1)
+            let recovered = try await service.refreshIfNeeded()
+            XCTAssertEqual(recovered.rate(for: "USD"), 1)
+            let total = await feed.calls
+            XCTAssertEqual(total, 2)
+        }
     }
 
     func testFallbackExhaustionAndBackoffPreserveMalformedFailure() async throws {
@@ -153,18 +217,78 @@ private actor FixtureTransport: ExchangeRateTransport {
         let service = ExchangeRateService(database: db, transport: transport, now: { date })
         for _ in 0..<3 {
             do { _ = try await service.refreshIfNeeded(); XCTFail("Unexpected success") }
-            catch { OathDiagnostics.record(error, component: "prices", operation: "exchange_rates") }
+            catch { XCTAssertEqual((error as? URLError)?.code, .notConnectedToInternet) }
         }
-        // A retained failure proves the uploader is working; do not hide malformed data.
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [RateHTTPFixture.self]
+        let session = URLSession(configuration: configuration)
+        defer { session.invalidateAndCancel() }
+        let network = URLSessionRateTransport(session: session)
+        for status in [403, 429, 503] {
+            do {
+                _ = try await network.data(from: URL(string: "https://cdn.jsdelivr.net/\(status)")!)
+                XCTFail("Failed status was accepted")
+            } catch { XCTAssertEqual((error as NSError).code, status) }
+        }
+        // Access denial reaches the local recorder. Its existing policy filters certificate transport errors.
+        for error in [NSError(domain: "Oath.HTTP", code: 403), NSError(domain: NSURLErrorDomain, code: -1202)] {
+            OathDiagnostics.record(error, component: "prices", operation: "exchange_rates",
+                                   context: ["stage": "feed_request", "host": "cdn.jsdelivr.net"],
+                                   file: "OathExchangeRates/ExchangeRateService.swift")
+        }
         OathDiagnostics.record(ExchangeRateError.invalidResponse, component: "prices", operation: "fixture_validation")
         for _ in 0..<200 {
-            if await reports.events.contains(where: { $0.operation == "fixture_validation" }) { break }
+            await OathDiagnostics.flush()
+            let received = await reports.events
+            if received.contains(where: { $0.operation == "fixture_validation" }),
+               received.contains(where: { $0.component == "network" && $0.error.code == 403 }),
+               received.contains(where: { $0.operation == "exchange_rates" && $0.error.code == 403 }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
         try await Task.sleep(for: .milliseconds(100))
         let events = await reports.events
-        XCTAssertEqual(events.count, 1)
-        XCTAssertEqual(events.map(\.error.message), ["invalidResponse"])
+        XCTAssertEqual(events.count, 3)
+        XCTAssertEqual(events.filter { $0.component == "network" }.map(\.error.code), [403])
+        XCTAssertEqual(Set(events.filter { $0.operation == "exchange_rates" }.map(\.error.code)), [403])
+        XCTAssertEqual(events.filter { $0.operation == "fixture_validation" }.map(\.error.message), ["invalidResponse"])
+    }
+
+    func testSharedFailureReportsEachFeedOnceAcrossWaitersAndBackoff() async throws {
+        guard ProcessInfo.processInfo.environment["OATH_FX_SHARED_FAILURE_TEST"] == "1" else {
+            throw XCTSkip("Run alone to isolate the diagnostics outbox")
+        }
+        let reports = RateDiagnosticReports()
+        let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
+        defer { try? FileManager.default.removeItem(at: file) }
+        OathDiagnostics.configure(file: file, transport: reports)
+        let db = try await database(), transport = FixtureTransport(Data("{}".utf8)), date = now
+        let service = ExchangeRateService(database: db, transport: transport, now: { date })
+        let failures = await withTaskGroup(of: Bool.self) { group in
+            for _ in 0..<8 {
+                group.addTask {
+                    do { _ = try await service.refreshIfNeeded(); return false }
+                    catch { return error is DecodingError }
+                }
+            }
+            var results = [Bool]()
+            for await result in group { results.append(result) }
+            return results
+        }
+        XCTAssertEqual(failures, Array(repeating: true, count: 8))
+        do { _ = try await service.refreshIfNeeded(); XCTFail("Expected failure during backoff") }
+        catch { XCTAssertTrue(error is DecodingError) }
+        let requests = await transport.requests
+        XCTAssertEqual(requests, 2)
+        for _ in 0..<200 {
+            if await reports.events.count >= 2 { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        try await Task.sleep(for: .milliseconds(100))
+        let events = await reports.events
+        XCTAssertEqual(events.count, 2)
+        XCTAssertEqual(Set(events.compactMap { $0.context["host"] }), Set(ExchangeRateFeed.endpoints.compactMap(\.host)))
+        XCTAssertEqual(Set(events.compactMap { $0.context["stage"] }), ["feed_decode"])
+        XCTAssertEqual(Set(events.map(\.operationID)).count, 1)
     }
 
     func testCurrencySearchMatchesCodeAndLocalizedOrEnglishName() {
@@ -255,7 +379,7 @@ private actor RateDiagnosticReports: DiagnosticTransport {
 }
 
 private final class RateHTTPFixture: URLProtocol, @unchecked Sendable {
-    override class func canInit(with request: URLRequest) -> Bool { request.url?.host == "fixture.invalid" }
+    override class func canInit(with request: URLRequest) -> Bool { ["fixture.invalid", "cdn.jsdelivr.net"].contains(request.url?.host) }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
     override func startLoading() {
         let status = Int(request.url!.lastPathComponent)!

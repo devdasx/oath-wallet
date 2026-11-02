@@ -10,6 +10,7 @@ import OathDatabase
     func testAddImportAndSwitchPreserveAllRecoveryMaterialAndAddresses() async throws {
         let (session, _) = try await fixture()
         let original = try XCTUnwrap(session.displayedProfile)
+        XCTAssertEqual(session.wallets.first { $0.id == original.id.uuidString }?.pendingBackupOffer, .cloudOnly)
         let originalWords = try await session.vault.recoveryWords()
         let generatedID = UUID()
         try await session.addWallet(requestID: generatedID)
@@ -17,6 +18,7 @@ import OathDatabase
         XCTAssertEqual(generated.id, generatedID)
         XCTAssertEqual(generated.addresses.count, 30)
         XCTAssertFalse(generated.backedUp)
+        XCTAssertEqual(session.wallets.first { $0.id == generatedID.uuidString }?.pendingBackupOffer, .cloudOrManual)
         for chain in OathImportChain.allCases {
             XCTAssertNotEqual(original.addresses.first { $0.chain == chain }?.address,
                               generated.addresses.first { $0.chain == chain }?.address)
@@ -28,6 +30,7 @@ import OathDatabase
         try await session.addWallet(requestID: importedID, importing: phrase)
         XCTAssertEqual(session.displayedProfile?.id, importedID)
         XCTAssertEqual(session.wallets.count, 3)
+        XCTAssertEqual(session.wallets.first { $0.id == importedID.uuidString }?.pendingBackupOffer, .cloudOnly)
         let importedWords = try await session.vault.recoveryWords()
         XCTAssertTrue(importedWords == OathMnemonicValidator.words(in: phrase.phrase))
         try await session.addWallet(requestID: UUID(), importing: phrase)

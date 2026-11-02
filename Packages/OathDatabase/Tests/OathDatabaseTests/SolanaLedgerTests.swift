@@ -152,6 +152,86 @@ import GRDB
         XCTAssertNil(other.holdings.first?.amountAtomic)
     }
 
+    func testRejectedAddressCursorDoesNotBlockOtherHistoryAndRetriesOnNextRefresh() async throws {
+        let (db, folder) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let ticket = try await db.beginSolanaSync(accountID: "a1")
+        // Fill the first wave with real durable cursors; the last address
+        // cannot be visited until the synchronizer schedules its next wave.
+        let additional = [token1, token2, trust.address, mint2022]
+        try await db.pool.write { db in
+            for address in additional {
+                try OathDatabase.watchSolana(address, priority: 2, accountID: "a1", owner: ticket.owner, db: db)
+            }
+        }
+        let transport = SolanaIntegrationTransport(owner: phantom.address, mint: mint, token: token1)
+        await transport.rejectHistory(for: ticket.owner)
+        let sync = SolanaSynchronizer(database: db, client: try .init(apiKey: "fixture", transport: transport),
+                                      markets: .init(transport: transport))
+        try await sync.refresh(accountID: "a1")
+        func status() async throws -> (Int, String?) {
+            try await db.pool.read { db in
+                let complete = try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM solanaHistoryCursors WHERE accountID='a1' AND complete=1")!
+                let failure = try String.fetchOne(db, sql: "SELECT historyFailure FROM solanaSync WHERE accountID='a1'")
+                return (complete, failure)
+            }
+        }
+        let deadline = ContinuousClock.now.advanced(by: .seconds(12))
+        while ContinuousClock.now < deadline {
+            let (complete, failure) = try await status()
+            if complete == 4 && failure != nil { break }
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        let (complete, failure) = try await status()
+        XCTAssertEqual(complete, 4)
+        XCTAssertEqual(failure, "rpc(-32020)")
+        let pending = try await db.pool.read { db in
+            try SolanaHistoryCursor.fetchAll(db, sql: "SELECT * FROM solanaHistoryCursors WHERE accountID='a1' AND complete=0")
+        }
+        XCTAssertEqual(pending.map(\.address), [ticket.owner])
+        XCTAssertNil(pending.first?.before)
+        XCTAssertNil(pending.first?.head)
+        let rejectedReads = await transport.rejectedReads
+        XCTAssertEqual(rejectedReads, 2, "One archive attempt and one primary attempt in this refresh")
+        await transport.rejectHistory(for: nil)
+        try await sync.refresh(accountID: "a1")
+        let retryDeadline = ContinuousClock.now.advanced(by: .seconds(12))
+        while ContinuousClock.now < retryDeadline {
+            if try await status().0 == 5 { break }
+            try await Task.sleep(for: .milliseconds(50))
+        }
+        let retried = try await status()
+        XCTAssertEqual(retried.0, 5)
+        XCTAssertNil(retried.1)
+        await sync.cancel()
+    }
+
+    func testArchiveTransactionRepairsPrimarySlotMismatchBeforePageCommit() async throws {
+        let (db, folder) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let transport = SolanaIntegrationTransport(owner: phantom.address, mint: mint, token: token1)
+        await transport.setPrimaryTransactionSlot(121)
+        let sync = SolanaSynchronizer(database: db, client: try .init(apiKey: "fixture", transport: transport),
+                                      markets: .init(transport: transport))
+        try await sync.refresh(accountID: "a1")
+        let deadline = ContinuousClock.now.advanced(by: .seconds(12))
+        repeat {
+            let finished = try await db.pool.read { db in
+                try Bool.fetchOne(db, sql: "SELECT EXISTS(SELECT 1 FROM solanaTransactions) OR EXISTS(SELECT 1 FROM solanaSync WHERE historyFailure IS NOT NULL)")!
+            }
+            if finished { break }
+            try await Task.sleep(for: .milliseconds(25))
+        } while ContinuousClock.now < deadline
+        await sync.cancel()
+        let archiveReads = await transport.archiveTransactionReads
+        XCTAssertGreaterThan(archiveReads, 0)
+        let entries = try await db.assetHistory(walletID: "w1", accountID: "a1", assetID: "solana:" + mint)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries.first?.amountAtomic, "500000")
+        let height = try await db.pool.read { try Int64.fetchOne($0, sql: "SELECT blockHeight FROM transactions LIMIT 1") }
+        XCTAssertEqual(height, 122)
+    }
+
     func testOverlappingRefreshesCoalesceAndCancellationAllowsFreshWork() async throws {
         let (db, folder) = try await fixture()
         defer { try? FileManager.default.removeItem(at: folder) }
@@ -244,7 +324,8 @@ import GRDB
         let owner = "CutAG7TzyTq6BNECcvLjm2FCxL19pPPQDqV2em91Qeom"
         try await db.importWalletIfNeeded(.init(id: "public-live", name: "Public fixture", kind: "hd", vaultReference: "no-keys", createdAt: 1),
             accounts: [.init(id: "public-live-account", walletID: "public-live", networkID: "solana", address: owner, derivationPath: phantom.path)])
-        let sync = SolanaSynchronizer(database: db, client: try SolanaClient(apiKey: key, transport: LiveSolanaAuditTransport()))
+        let traffic = LiveSolanaAuditTransport()
+        let sync = SolanaSynchronizer(database: db, client: try SolanaClient(apiKey: key, transport: traffic))
         do {
             try await sync.refresh(accountID: "public-live-account")
             let snapshot = try await db.snapshot(walletID: "public-live", currency: "USD")
@@ -253,7 +334,8 @@ import GRDB
             XCTAssertEqual(snapshot.holdings.first { $0.reference == "native" }?.amountAtomic, inventory?.lamports)
             XCTAssertGreaterThan(snapshot.holdings.filter { $0.usdPrice != nil }.count, 3)
             XCTAssertGreaterThan(snapshot.totalFiat, 0)
-            let deadline = ContinuousClock.now.advanced(by: .seconds(120))
+            let seconds = Int(ProcessInfo.processInfo.environment["OATH_LIVE_SOLANA_HISTORY_SECONDS"] ?? "120") ?? 120
+            let deadline = ContinuousClock.now.advanced(by: .seconds(min(600, max(1, seconds))))
             var pending = 1
             repeat {
                 pending = try await db.pool.read { try Int.fetchOne($0, sql: "SELECT COUNT(*) FROM solanaHistoryCursors WHERE accountID='public-live-account' AND (complete=0 OR pendingBefore IS NOT NULL)")! }
@@ -269,6 +351,7 @@ import GRDB
             XCTAssertEqual(pending, 0, "Every owner and token-account archive cursor must finish")
             let transactionCount = try await db.pool.read { try Int.fetchOne($0, sql: "SELECT COUNT(*) FROM solanaTransactions WHERE accountID='public-live-account'")! }
             let cursorCount = try await db.pool.read { try Int.fetchOne($0, sql: "SELECT COUNT(*) FROM solanaHistoryCursors WHERE accountID='public-live-account'")! }
+            print("SOLANA_ARCHIVE_READS " + (await traffic.receiptSummary))
             try await assertActivityDetails(db, walletID: "public-live")
             print("SOLANA_LIVE_DB pricedHoldings=\(snapshot.holdings.filter { $0.usdPrice != nil }.count) transactions=\(transactionCount) activity=\(entries.count) archiveCursors=\(cursorCount) pending=\(pending)")
             await sync.cancel()
@@ -284,7 +367,12 @@ import GRDB
     }
 }
 
-private struct LiveSolanaAuditTransport: AnkrTransport {
+private actor LiveSolanaAuditTransport: AnkrTransport {
+    private var successfulReceipts = Set<String>()
+    private var repeatedReceipts = 0
+    var receiptSummary: String {
+        "unique=\(successfulReceipts.count) repeatedSuccessful=\(repeatedReceipts)"
+    }
     private let transport = AnkrHTTPTransport()
     func send(_ request: URLRequest) async throws -> (Data, Int) {
         let input = try JSONDecoder().decode(SolanaJSON.self, from: request.httpBody!)
@@ -298,6 +386,10 @@ private struct LiveSolanaAuditTransport: AnkrTransport {
         }
         let output = try? JSONDecoder().decode(SolanaJSON.self, from: data)
         let replies = output?.array ?? output.map { [$0] } ?? []
+        if provider == "archive", calls.count == 1, calls[0]["method"].string == "getTransaction",
+           let signature = calls[0]["params"].array?.first?.string, status == 200,
+           replies.first?["result"]["transaction"]["signatures"].array?.first?.string == signature,
+           !successfulReceipts.insert(signature).inserted { repeatedReceipts += 1 }
         let errors = replies.compactMap { value -> String? in
             if case .number(let code) = value["error"]["code"] { return code }; return nil
         }
@@ -310,6 +402,12 @@ private actor SolanaIntegrationTransport: AnkrTransport {
     let owner: String
     let mint: String
     let token: String
+    var rejectedAddress: String?
+    var rejectedReads = 0
+    func rejectHistory(for address: String?) { rejectedAddress = address }
+    var primaryTransactionSlot = 122
+    private(set) var archiveTransactionReads = 0
+    func setPrimaryTransactionSlot(_ slot: Int) { primaryTransactionSlot = slot }
     var offline = false
     var held = false
     private(set) var requestCount = 0
@@ -352,12 +450,25 @@ private actor SolanaIntegrationTransport: AnkrTransport {
                         """)
                 }
             case "getSignaturesForAddress":
-                result = try json("""
-                    [{"signature":"\(signature)","slot":122,"blockTime":1700000000,"err":null}]
-                    """)
+                if let rejectedAddress, call["params"].array?.first?.string == rejectedAddress {
+                    rejectedReads += 1
+                    return .object(["jsonrpc": .string("2.0"), "id": call["id"],
+                                    "error": .object(["code": .number("-32020"), "message": .string("Transaction not found")])])
+                }
+                let address = call["params"].array?.first?.string
+                let boundary = call["params"].array?[1]
+                if (address != owner && address != token) || boundary?["until"].string == signature || boundary?["before"].string == signature {
+                    result = .array([])
+                } else {
+                    result = try json("""
+                        [{"signature":"\(signature)","slot":122,"blockTime":1700000000,"err":null}]
+                        """)
+                }
             case "getTransaction":
+                let primary = request.url?.host == "rpc.ankr.com"
+                if !primary { archiveTransactionReads += 1 }
                 result = try json("""
-                    {"slot":122,"blockTime":1700000000,"transaction":{"signatures":["\(signature)"],"message":{"accountKeys":[{"pubkey":"\(owner)"},{"pubkey":"\(token)"}]}},"meta":{"err":null,"fee":5000,"preBalances":[1005000,2039280],"postBalances":[1000000,2039280],"preTokenBalances":[{"accountIndex":1,"mint":"\(mint)","owner":"\(owner)","uiTokenAmount":{"amount":"1000000","decimals":6}}],"postTokenBalances":[{"accountIndex":1,"mint":"\(mint)","owner":"\(owner)","uiTokenAmount":{"amount":"1500000","decimals":6}}]}}
+                    {"slot":\(primary ? primaryTransactionSlot : 122),"blockTime":1700000000,"transaction":{"signatures":["\(signature)"],"message":{"accountKeys":[{"pubkey":"\(owner)"},{"pubkey":"\(token)"}]}},"meta":{"err":null,"fee":5000,"preBalances":[1005000,2039280],"postBalances":[1000000,2039280],"preTokenBalances":[{"accountIndex":1,"mint":"\(mint)","owner":"\(owner)","uiTokenAmount":{"amount":"1000000","decimals":6}}],"postTokenBalances":[{"accountIndex":1,"mint":"\(mint)","owner":"\(owner)","uiTokenAmount":{"amount":"1500000","decimals":6}}]}}
                     """)
             default: throw SolanaError.malformed
             }

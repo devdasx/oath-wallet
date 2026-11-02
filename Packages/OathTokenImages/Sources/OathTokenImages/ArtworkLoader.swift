@@ -154,8 +154,13 @@ public actor ArtworkLoader {
 
     public func image(for sources: [String]) async -> ArtworkImage? {
         let candidates = ArtworkSource.candidates(sources)
-        if candidates.isEmpty, sources.contains(where: { !$0.isEmpty }) {
-            OathDiagnostics.record(ArtworkError.invalidSource, component: "artwork", operation: "resolve_source", severity: "warning")
+        // Blank optional metadata has no source to resolve. For a rejected
+        // candidate, retain its category without copying the URI or image data.
+        if candidates.isEmpty, let rejected = sources.prefix(4).lazy
+            .map({ $0.trimmingCharacters(in: .whitespacesAndNewlines) }).first(where: { !$0.isEmpty }) {
+            let reason = rejected.prefix(5).lowercased() == "data:" ? "inline_artwork_rejected" : "artwork_uri_rejected"
+            OathDiagnostics.record(ArtworkError.invalidSource, component: "artwork", operation: "resolve_source",
+                                   severity: "warning", context: ["stage": "source_validation", "reason": reason])
         }
         for source in candidates {
             let key = ArtworkSource.key(source)

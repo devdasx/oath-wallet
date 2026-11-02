@@ -42,6 +42,12 @@ public actor IndexedEVMSynchronizer {
             }
         }
     }
+    static func nativePrice(from markets: IndexedEVMMarkets) async -> IndexedEVMPrice? {
+        // Each rejected quote is recorded by the market client with its source.
+        // An unavailable price leaves the last saved valuation in place.
+        try? await OathDiagnostics.withStep("native_price") { try await markets.nativePrice() }
+    }
+
     private func refreshAccount(accountID: String) async throws {
         let generation = epoch
         guard !Task.isCancelled else { throw CancellationError() }
@@ -54,7 +60,7 @@ public actor IndexedEVMSynchronizer {
             do {
                 let tracked = try await database.knownIndexedEVMTokens(accountID: accountID)
                 async let inventory = client.inventory(owner: ticket.account.address, tracked: tracked)
-                async let native = await OathDiagnostics.attempt("native_price") { try await markets.nativePrice() }
+                async let native = Self.nativePrice(from: markets)
                 let catalog = await self.catalog()
                 let value = try await inventory; try Task.checkCancellation()
                 try await database.commitIndexedEVMInventory(value, ticket: ticket, catalog: catalog)
@@ -125,7 +131,8 @@ public actor IndexedEVMSynchronizer {
                                         restarted = true; visited.removeAll()
                                     }
                                 }
-                            } catch { OathDiagnostics.record(error);
+                            } catch {
+                                OathDiagnostics.record(error, context: ["chain": client.chain.rawValue, "stage": stream.rawValue + "_" + lane])
                                 if let current { await OathDiagnostics.attempt("failIndexedEVMSync", body: { try await database.failIndexedEVMSync(ticket, cursor: current, code: Self.code(error)) }) }
                                 break
                             }

@@ -49,6 +49,8 @@ final class ArtworkTests: XCTestCase, @unchecked Sendable {
     func testLargeArtworkPreferredWithOriginalFallbackAndDistinctIdentities() {
         let small = "https://coin-images.coingecko.com/coins/images/1/small/bitcoin.png?1"
         XCTAssertEqual(ArtworkSource.candidates([small, small]), [small.replacingOccurrences(of: "/small/", with: "/large/"), small])
+        let escaped = "https://assets.coingecko.com/coins/images/54540/thumb/WIN_%282%29%2Ftoken.png?revision=1"
+        XCTAssertEqual(ArtworkSource.candidates([escaped]), [escaped.replacingOccurrences(of: "/thumb/", with: "/large/"), escaped])
         XCTAssertNotEqual(ArtworkSource.key(source), ArtworkSource.key(source + "?revision=2"))
         XCTAssertNotEqual(ArtworkSource.key("https://one.example/TOKEN.png"), ArtworkSource.key("https://two.example/TOKEN.png"))
     }
@@ -133,6 +135,60 @@ final class ArtworkTests: XCTestCase, @unchecked Sendable {
         let image = await loader.image(for: [uri]), calls = await transport.calls
         XCTAssertNotNil(image); XCTAssertTrue(calls.isEmpty)
     }
+    func testPercentEncodedBinaryAndEscapedBase64ArtworkRenderWithoutNetwork() async throws {
+        let data = try fixture("aptos-usd1.png")
+        let binary = data.map { String(format: "%%%02X", $0) }.joined()
+        let base64 = data.base64EncodedString()
+            .replacingOccurrences(of: "+", with: "%2B")
+            .replacingOccurrences(of: "/", with: "%2F")
+            .replacingOccurrences(of: "=", with: "%3D")
+        let folder = temporary()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let transport = ImageTransport([:]), loader = ArtworkLoader(directory: folder, transport: transport)
+        for uri in ["data:image/png," + binary, "data:image/png;base64," + base64] {
+            XCTAssertTrue(ArtworkSource.inlineData(uri) == data)
+            let image = await loader.image(for: [uri])
+            XCTAssertNotNil(image)
+        }
+        let calls = await transport.calls
+        XCTAssertTrue(calls.isEmpty)
+        // Keep the source within the URI size limit while exceeding the decoded image limit.
+        let oversized = String(repeating: "a", count: ArtworkSource.byteLimit) + "%00"
+        XCTAssertNil(ArtworkSource.inlineData("data:image/png," + oversized))
+        let largeBase64 = Data(repeating: 0, count: ArtworkSource.byteLimit + 1).base64EncodedString()
+        XCTAssertNil(ArtworkSource.inlineData("data:image/png;base64," + largeBase64))
+        for body in ["%", "%0", "%ZZ", "AAAA%2Z"] {
+            XCTAssertNil(ArtworkSource.inlineData("data:image/png," + body))
+            XCTAssertNil(ArtworkSource.inlineData("data:image/png;base64," + body))
+        }
+    }
+
+    func testAbsentArtworkAndRejectedSourcesHaveDistinctPrivateDiagnostics() async throws {
+        let folder = temporary()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let capture = ArtworkDiagnosticCapture.shared
+        OathDiagnostics.configure(file: ArtworkDiagnosticCapture.file, transport: capture)
+        let transport = ImageTransport([:]), loader = ArtworkLoader(directory: folder, transport: transport)
+        let id = UUID(), marker = "sensitive-artwork-fixture"
+        await OathDiagnostics.$operationID.withValue(id) {
+            _ = await loader.image(for: [" ", "\n"])
+            _ = await loader.image(for: ["data:image/png;base64," + marker])
+            _ = await loader.image(for: ["file:///private/" + marker])
+        }
+        for _ in 0..<100 {
+            await OathDiagnostics.flush()
+            let observed = await capture.events.filter { $0.operationID == id }
+            if Set(observed.compactMap { $0.context["reason"] }) == ["inline_artwork_rejected", "artwork_uri_rejected"] { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        let events = await capture.events.filter { $0.operationID == id }
+        XCTAssertEqual(events.count, 2)
+        XCTAssertEqual(Set(events.compactMap { $0.context["reason"] }), ["inline_artwork_rejected", "artwork_uri_rejected"])
+        XCTAssertFalse(String(decoding: try JSONEncoder().encode(events), as: UTF8.self).contains(marker))
+        let calls = await transport.calls
+        XCTAssertTrue(calls.isEmpty)
+    }
+
     func testUntrustedSVGAndMalformedImagesAreRejected() {
         let invalid = [Data("<html>not an image</html>".utf8), svg("<script>alert(1)</script>"),
             svg("<use href='https://example.org/a.svg'/ >"), svg("<g id='cycle'><use href='#cycle'/></g>"),

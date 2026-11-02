@@ -24,7 +24,11 @@ private actor NearMetadataTransport: AnkrTransport {
 private actor NearMetadataFlowTransport: AnkrTransport {
     let history: NearJSON
     var metadataRequests = 0
-    init(history: NearJSON) { self.history = history }
+    let malformedMetadata: Bool
+    init(history: NearJSON, malformedMetadata: Bool = false) {
+        self.history = history
+        self.malformedMetadata = malformedMetadata
+    }
     func send(_ request: URLRequest) async throws -> (Data,Int) {
         let value:NearJSON
         if request.url?.host == "api.fastnear.com" {
@@ -42,6 +46,9 @@ private actor NearMetadataFlowTransport: AnkrTransport {
             } else if p["request_type"].string == "view_account" {
                 value = NearTests.result(.object(["block_hash":.string(NearTests.blockHash), "block_height":.number("123"),
                                                  "amount":.string("100"), "locked":.string("0"), "storage_usage":.number("0")]))
+            } else if malformedMetadata, p["method_name"].string == "ft_metadata" {
+                metadataRequests += 1
+                value = try NearTests.callResult(.object([:]))
             } else if p["method_name"].string == "ft_metadata" || p["account_id"].string == "broken.near" {
                 if p["method_name"].string == "ft_metadata" { metadataRequests += 1 }
                 value = NearTests.result(.object(["block_hash":.string(NearTests.blockHash), "block_height":.number("123"),
@@ -128,6 +135,39 @@ private actor NearMetadataReports: DiagnosticTransport {
 }
 
 @MainActor final class NearMetadataReportingTests: XCTestCase {
+    private func verifyMalformedMetadataAcrossInventoryAndHistory(reports: NearMetadataReports) async throws {
+        let file = try XCTUnwrap(Bundle.module.url(forResource: "ft-history-filter", withExtension: "json", subdirectory: "Fixtures/Near"))
+        let fixture = try JSONDecoder().decode(NearJSON.self, from: Data(contentsOf: file))
+        let transport = NearMetadataFlowTransport(history: fixture, malformedMetadata: true)
+        let client = try NearClient(apiKey: "fixture", transport: transport)
+        let inventoryID = UUID(), historyID = UUID()
+        let inventory = try await OathDiagnostics.$operationID.withValue(inventoryID) {
+            try await client.inventory(owner: "root.near")
+        }
+        let holding = try XCTUnwrap(inventory.holdings.first { $0.reference == "wrap.near" })
+        XCTAssertEqual(holding.amount, "9007199254740993")
+        XCTAssertNil(holding.token)
+        let page = try await OathDiagnostics.$operationID.withValue(historyID) {
+            try await client.history(owner: "root.near", stream: "transfers")
+        }
+        XCTAssertFalse(page.events.isEmpty)
+        XCTAssertTrue(page.events.allSatisfy { $0.token == nil })
+        let reads = await transport.metadataRequests
+        XCTAssertEqual(reads, 3)
+        // The independent required balance read also failed for broken.near.
+        // Wait for all three metadata failures to reach the actual outbox.
+        for _ in 0..<100 {
+            if await reports.events.filter({ ($0.operationID == inventoryID || $0.operationID == historyID) && $0.context["stage"] == "metadata" }).count == reads { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        await OathDiagnostics.flush()
+        let events = await reports.events.filter { ($0.operationID == inventoryID || $0.operationID == historyID) && $0.error.message == "malformed" }
+        XCTAssertEqual(events.count, reads)
+        XCTAssertEqual(events.filter { $0.operationID == historyID }.count, 1)
+        XCTAssertEqual(events.filter { $0.operationID == inventoryID }.count, 2)
+        XCTAssertTrue(events.allSatisfy { $0.operation == "token_metadata" && $0.context["chain"] == "near" && $0.context["stage"] == "metadata" })
+    }
+
     func testAbsenceIsQuietButContractFailuresRetainSafeCorrelatedDiagnostics() async throws {
         let reports = NearMetadataReports()
         let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString+".json")
@@ -144,17 +184,17 @@ private actor NearMetadataReports: DiagnosticTransport {
         try await OathDiagnostics.$operationID.withValue(id) {
             let absent = try await client.tokenIfAvailable("missing.near",block:block); XCTAssertNil(absent)
             try await Task.sleep(for:.milliseconds(100))
-            let quiet = await reports.events; XCTAssertTrue(quiet.isEmpty)
+            let quiet = await reports.events.filter { $0.operationID == id }; XCTAssertTrue(quiet.isEmpty)
             await transport.set(reply("wasm execution failed with error: HostError(GuestPanic { panic_msg: private-input.near })"))
             do { _ = try await client.tokenIfAvailable("broken.near",block:block); XCTFail() }
             catch { XCTAssertEqual(error as? NearError,.contract) }
         }
         for _ in 0..<100 {
-            if await reports.events.count >= 2 { break }
+            if await reports.events.filter({ $0.operationID == id }).count >= 2 { break }
             try await Task.sleep(for:.milliseconds(10))
         }
         await OathDiagnostics.flush()
-        let events = await reports.events
+        let events = await reports.events.filter { $0.operationID == id }
         XCTAssertEqual(events.count,2)
         XCTAssertTrue(events.allSatisfy { $0.operationID == id && $0.context["chain"] == "near" })
         XCTAssertTrue(events.contains { $0.operation == "provider_response" && $0.error.message == "NEAR contract execution failed" })
@@ -162,6 +202,7 @@ private actor NearMetadataReports: DiagnosticTransport {
         for excluded in ["FixtureNearKey", "private-input.near", "broken.near", "missing.near", "panic_msg", "account_id"] {
             XCTAssertFalse(encoded.contains(excluded),excluded)
         }
+        try await verifyMalformedMetadataAcrossInventoryAndHistory(reports: reports)
     }
 }
 

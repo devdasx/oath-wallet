@@ -1,6 +1,6 @@
 # Public build configuration
 
-Version: 5.0.0 (102). Scheme: `OathAtmosphere`. Product: `Oath Wallet`.
+Version: 5.0.1 (103). Scheme: `OathAtmosphere`. Product: `Oath Wallet`.
 
 Run `sh Tools/PreparePublicBuild.sh` before the first build. It creates an empty
 `OathApp/Private/TokenRPC.plist` only when one does not exist. This directory is

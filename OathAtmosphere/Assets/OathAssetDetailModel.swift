@@ -60,7 +60,7 @@ actor OathMarketEnvironment {
                 async let quoteWork: () = updateQuote(asset, force: force)
                 async let infoWork: () = updateInformation(asset, force: force)
                 async let chartWork: () = updateChart(asset, force: force)
-                async let rates = await OathDiagnostics.attempt("exchange_rates") { try await OathExchangeRateEnvironment.shared.refresh() }
+                async let rates = await OathExchangeRateEnvironment.shared.refresh()
                 _ = await (quoteWork, infoWork, chartWork, rates)
             }
         }

@@ -1,19 +1,19 @@
-# Oath Wallet 5.0.0
+# Oath Wallet 5.0.1
 
 A native multichain wallet for iPhone and iPad.
 
-This repository contains **Oath Wallet 5.0.0, build 102**.
+This repository contains **Oath Wallet 5.0.1, build 103**.
 
-[Release notes](releases/5.0.0.md) · [Website](https://oathwallet.org) ·
+[Release notes](releases/5.0.1.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
 
 ## What's new
 
-- Faster Bitcoin history loading and more reliable Litecoin payment destinations.
-- Contract-level token approval reviews and individual results for batch revocations.
-- WalletConnect gives specific recovery steps for expired QR codes, offline connections and unsupported requests.
-- Improved compatibility with historical wallet records and stronger verification of encrypted backups.
+- New wallets can choose an encrypted iCloud backup or verify their recovery words manually. Backup reminders follow the selected wallet and its confirmed backup status.
+- Bitcoin sends distinguish an oversized set of inputs from an insufficient balance. Permission reviews recognize allowances that have already been revoked.
+- WalletConnect can resume a pending proposal when you scan its pairing code again. The in-app browser closes when the wallet locks.
+- Updates improve token artwork, exchange-rate recovery and transaction history across several networks.
 
 ## Public source boundaries
 
@@ -31,9 +31,9 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-Apple processed 5.0.0 (102) from the tagged source. App Store Connect confirmed **Waiting for Review** on 2 November 2026. [Signed delivery receipt](https://github.com/devdasx/oath-wallet/releases/download/v5.0.0-build102-r3/receipt.json) · [GitHub Actions run](https://github.com/devdasx/oath-wallet/actions/runs/41398320455)
+The [5.0.1 (103) source release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103) identifies the code and build settings for this version. See its [verification record](releases/5.0.1.md) for the checks performed. This release was published on GitHub only.
 
-The [5.0.0 (102) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r3) identifies the application source used by GitHub Actions. Its delivery receipt records the uploaded IPA checksum and the build identifier returned by Apple. See the [release record](releases/5.0.0.md) for the verification steps.
+The [5.0.0 (102) delivery record](releases/5.0.0.md) documents the earlier build delivered to Apple.
 
 Source review, secret scanning, compilation and focused tests are performed during
 release preparation. These are maintainer-directed checks, not an independent

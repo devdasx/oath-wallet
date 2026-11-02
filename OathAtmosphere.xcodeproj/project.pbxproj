@@ -117,6 +117,7 @@
 		48F31099FF987FA0B4267CC0 /* OathWalletManagementPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4350483B9071003EED4ED2D0 /* OathWalletManagementPages.swift */; };
 		49402F48C171E126F3AA44BA /* OathWalletVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2BCFF2D7D6BE8B1DBFD2AB /* OathWalletVault.swift */; };
 		498ED3E29E10F06A810D961A /* OathHomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396249152BEA4B4B614B83D0 /* OathHomeScreen.swift */; };
+		07D5A084605B4668A3A3E869 /* OathWalletBackupOfferSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A5928FE32485FB986A21E /* OathWalletBackupOfferSheet.swift */; };
 		4A507B75F6BB229B0669B82D /* OathStartup-amethyst-light-reading.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE7CB4B996E768B1BFB48301 /* OathStartup-amethyst-light-reading.jpg */; };
 		4A848AE8EBD3A022757C6898 /* OathWalletSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5858AD9B98DBDAFE58CE4DDD /* OathWalletSheets.swift */; };
 		4B847A47BE21DE6E9B385292 /* OathWalletConnectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BF031577D594AAA5041AED /* OathWalletConnectMessage.swift */; };
@@ -518,6 +519,7 @@
 		37FE6063AC33A461A25F7899 /* OathPermissionsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathPermissionsPage.swift; sourceTree = "<group>"; };
 		382EE52A8D3E7EE0086E2D1B /* OathPasscodeFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathPasscodeFeedback.swift; sourceTree = "<group>"; };
 		396249152BEA4B4B614B83D0 /* OathHomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathHomeScreen.swift; sourceTree = "<group>"; };
+		3E9A5928FE32485FB986A21E /* OathWalletBackupOfferSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathWalletBackupOfferSheet.swift; sourceTree = "<group>"; };
 		3B0ECE8C4D92752DF60C6B09 /* OathLegacyUpgradeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathLegacyUpgradeScreen.swift; sourceTree = "<group>"; };
 		3B41D43AE29C808E0EA860BA /* OathWalletConnectStellarViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathWalletConnectStellarViews.swift; sourceTree = "<group>"; };
 		3C7BD6248CCAB8A4E0DC889E /* OathCloudBackupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathCloudBackupService.swift; sourceTree = "<group>"; };
@@ -1011,6 +1013,7 @@
 				9BB7CC27848DEFFF7C7483FB /* OathHomeHeaderSurface.swift */,
 				4442F063D2CC28C0FD01D8AF /* OathHomePortfolioModel.swift */,
 				396249152BEA4B4B614B83D0 /* OathHomeScreen.swift */,
+				3E9A5928FE32485FB986A21E /* OathWalletBackupOfferSheet.swift */,
 				B53B629142FCEC83D95ABA4C /* OathHomeScrollEffects.swift */,
 				8A4C711A9646411CDE4C55EA /* OathPassphraseWalletPages.swift */,
 				57E028E2DF9A7BCC452600A7 /* OathPrivateKeyPages.swift */,
@@ -1910,6 +1913,7 @@
 				A22C6BF66F72788DA6D0E42E /* OathHomeHeaderSurface.swift in Sources */,
 				C0A5CC26DE7C42AFD0F99B11 /* OathHomePortfolioModel.swift in Sources */,
 				498ED3E29E10F06A810D961A /* OathHomeScreen.swift in Sources */,
+				07D5A084605B4668A3A3E869 /* OathWalletBackupOfferSheet.swift in Sources */,
 				A3C52F4936BA573B2A1ADD33 /* OathHomeScrollEffects.swift in Sources */,
 				414513D1933202F84477C00A /* OathImportCatalog.swift in Sources */,
 				86339D7FC7FCD748C538614A /* OathImportedPrivateKey.swift in Sources */,
@@ -2157,7 +2161,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 102;
+				CURRENT_PROJECT_VERSION = 103;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2178,7 +2182,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 5.0.0;
+				MARKETING_VERSION = 5.0.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2310,7 +2314,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 102;
+				CURRENT_PROJECT_VERSION = 103;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2325,7 +2329,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 5.0.0;
+				MARKETING_VERSION = 5.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";

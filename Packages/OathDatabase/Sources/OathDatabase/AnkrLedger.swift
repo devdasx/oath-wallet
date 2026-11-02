@@ -97,7 +97,7 @@ extension OathDatabase {
     public func beginAnkrSync(accountID: String, stream: String, now: Date = .now) async throws -> AnkrSyncTicket {
         guard ["balances","transactions","transfers"].contains(stream) else { throw StoreError.invalidValue("Ankr stream") }
         return try await pool.write { db in
-            try Self.requireAnkrSyncAllowed(db)
+            try Self.requireWalletSyncAllowed(db)
             guard let account = try AccountRecord.fetchOne(db, key: accountID),
                   AnkrChain(networkID: account.networkID) != nil else { throw StoreError.missingRecord }
             var record = try AnkrSyncRecord.fetchOne(db, key: ["accountID":accountID, "stream":stream])
@@ -137,15 +137,8 @@ extension OathDatabase {
             return AnkrSyncTicket(account: ticket.account, generation: ticket.generation, state: state)
         }
     }
-    private static func requireAnkrSyncAllowed(_ db: Database) throws {
-        // Read inside the same writer transaction as the commit: reset cannot race
-        // between this check and the guarded write. SQL triggers remain the backstop.
-        guard try String.fetchOne(db, sql: "SELECT value FROM metadata WHERE key='walletReset'") == nil else {
-            throw CancellationError()
-        }
-    }
     private static func validateAnkr(_ ticket: AnkrSyncTicket, db: Database) throws -> AnkrSyncRecord {
-        try requireAnkrSyncAllowed(db)
+        try requireWalletSyncAllowed(db)
         guard let account = try AccountRecord.fetchOne(db, key: ticket.account.id),
               account.syncGeneration == ticket.generation, account.address == ticket.account.address,
               let state = try AnkrSyncRecord.fetchOne(db, key: ["accountID":account.id, "stream":ticket.state.stream]),

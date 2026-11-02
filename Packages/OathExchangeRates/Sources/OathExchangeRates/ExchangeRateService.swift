@@ -47,6 +47,24 @@ public enum ExchangeRateFeed {
     private struct Payload: Decodable {
         let date: String
         let usd: [String: Decimal]
+        private enum Keys: String, CodingKey { case date, usd }
+        private struct CurrencyKey: CodingKey {
+            let stringValue: String
+            var intValue: Int? { nil }
+            init(stringValue: String) { self.stringValue = stringValue }
+            init?(intValue: Int) { return nil }
+        }
+
+        init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: Keys.self)
+            date = try values.decode(String.self, forKey: .date)
+            let quotes = try values.nestedContainer(keyedBy: CurrencyKey.self, forKey: .usd)
+            var fiat: [String: Decimal] = [:]
+            for key in quotes.allKeys where CurrencyCatalog.codes.contains(key.stringValue.uppercased()) {
+                fiat[key.stringValue] = try quotes.decode(Decimal.self, forKey: key)
+            }
+            usd = fiat
+        }
     }
 
     public static func decode(_ data: Data, fetchedAt: Date) throws -> USDExchangeRates {
@@ -64,7 +82,6 @@ public enum ExchangeRateFeed {
         var rates: [String: String] = [:]
         for (code, rate) in payload.usd {
             let currency = code.uppercased()
-            guard CurrencyCatalog.codes.contains(currency) else { continue }
             guard !rate.isNaN, rate > 0, rate < Decimal(string: "1000000000000000")!,
                   rates[currency] == nil else { throw ExchangeRateError.invalidResponse }
             rates[currency] = NSDecimalNumber(decimal: rate).stringValue
@@ -83,8 +100,7 @@ public actor ExchangeRateService {
     private let transport: any ExchangeRateTransport
     private let now: @Sendable () -> Date
     private var inFlight: Task<USDExchangeRates, Error>?
-    private var retryDeadline: ContinuousClock.Instant?
-    private var retryFailure: (any Error)?
+    private var backoff: (deadline: ContinuousClock.Instant, failure: any Error)?
 
     public init(database: OathDatabase, transport: any ExchangeRateTransport = URLSessionRateTransport(),
                 now: @escaping @Sendable () -> Date = { Date() }) {
@@ -93,42 +109,66 @@ public actor ExchangeRateService {
 
     @discardableResult public func refreshIfNeeded(retryNow: Bool = false) async throws -> USDExchangeRates {
         if let inFlight { return try await inFlight.value }
-        if !retryNow, let retryDeadline, ContinuousClock.now < retryDeadline {
-            throw retryFailure ?? ExchangeRateError.unavailable
+        if !retryNow, let backoff, ContinuousClock.now < backoff.deadline {
+            throw backoff.failure
         }
-        let database = database, transport = transport, now = now
-        let task = Task<USDExchangeRates, Error> {
-            let date = now()
-            if let cached = try await database.exchangeRates(), cached.isFresh(at: date) { return cached }
-            var lastFailure: (any Error)?
-            for endpoint in ExchangeRateFeed.endpoints {
-                do {
-                    let data = try await transport.data(from: endpoint)
-                    try Task.checkCancellation()
-                    let rates = try ExchangeRateFeed.decode(data, fetchedAt: now())
-                    try await database.saveExchangeRates(rates)
-                    return rates
-                } catch is CancellationError { throw CancellationError() }
-                catch { OathDiagnostics.record(error); lastFailure = error; continue }
-            }
-            // Each provider's original failure was recorded at its boundary.
-            // Preserve the final cause through callers and backoff so excluded
-            // connection failures cannot reappear as generic app failures.
-            throw lastFailure ?? ExchangeRateError.unavailable
+        let task = Task {
+            try await OathDiagnostics.$operationID.withValue(UUID()) { try await loadRates() }
         }
         // Install the task before the first suspension, including the SQL read.
         inFlight = task
-        do {
-            let result = try await task.value
-            inFlight = nil
-            retryDeadline = nil
-            retryFailure = nil
-            return result
-        } catch { OathDiagnostics.record(error);
-            inFlight = nil
-            retryDeadline = ContinuousClock.now.advanced(by: .seconds(60))
-            retryFailure = error
+        let result = await task.result
+        inFlight = nil
+        switch result {
+        case .success(let rates):
+            backoff = nil
+            return rates
+        case .failure(let error):
+            if OathDiagnostics.isExpectedCancellation(error) {
+                backoff = nil
+            } else {
+                backoff = (ContinuousClock.now.advanced(by: .seconds(60)), error)
+            }
             throw error
         }
+    }
+
+    private func loadRates() async throws -> USDExchangeRates {
+        do {
+            if let cached = try await database.exchangeRates(), cached.isFresh(at: now()) { return cached }
+        } catch {
+            OathDiagnostics.record(error, component: "prices", operation: "exchange_rates", context: ["stage": "cache_read"])
+            throw error
+        }
+        var lastFailure: (any Error)?
+        for endpoint in ExchangeRateFeed.endpoints {
+            let rates: USDExchangeRates
+            var stage = "feed_request"
+            do {
+                let data = try await transport.data(from: endpoint)
+                try Task.checkCancellation()
+                stage = "feed_decode"
+                rates = try ExchangeRateFeed.decode(data, fetchedAt: now())
+            } catch {
+                if OathDiagnostics.isExpectedCancellation(error) { throw error }
+                OathDiagnostics.record(error, component: "prices", operation: "exchange_rates",
+                                       context: ["stage": stage, "host": endpoint.host ?? ""])
+                lastFailure = error
+                continue
+            }
+            do {
+                try await database.saveExchangeRates(rates)
+                return rates
+            } catch {
+                OathDiagnostics.record(error, component: "prices", operation: "exchange_rates",
+                                       context: ["stage": "cache_write", "host": endpoint.host ?? ""])
+                // A newer mirror can recover rejected data but cannot repair a failed database write.
+                switch error as? StoreError {
+                case .invalidValue, .staleSync: lastFailure = error
+                default: throw error
+                }
+            }
+        }
+        throw lastFailure ?? ExchangeRateError.unavailable
     }
 }

@@ -38,7 +38,13 @@ public actor AptosSynchronizer {
         histories[accountID]?.cancel();histories[accountID]=nil
         let id=UUID()
         let task=Task { [database,client,markets] in
-            let ticket=try await database.beginAptosSync(accountID:accountID)
+            let ticket: AptosSyncTicket
+            do { ticket = try await database.beginAptosSync(accountID: accountID) }
+            catch {
+                OathDiagnostics.record(error, context: ["stage": "begin_sync"])
+                throw error
+            }
+            var failureContext = ["stage": "inventory_refresh"]
             do {
                 async let inventory=client.inventory(owner:account.address)
                 async let native = await OathDiagnostics.attempt("native_price") { try await markets.nativePrice() }
@@ -69,12 +75,21 @@ public actor AptosSynchronizer {
                     }
                     enqueue();enqueue();for await _ in group {enqueue()}
                 }
-                if let cause = value.incompleteError { throw cause }
-            } catch { OathDiagnostics.record(error);await OathDiagnostics.attempt("failAptosSync", body: { try await database.failAptosSync(ticket,history:false,code:Self.code(error)) });throw error}
+                if let cause = value.incompleteError {
+                    if !value.discoveryComplete, value.discoveryFailure == nil, value.failedReferences.isEmpty {
+                        failureContext["reason"] = "processor_behind_node"
+                    }
+                    throw cause
+                }
+            } catch {
+                OathDiagnostics.record(error, context: failureContext)
+                await OathDiagnostics.attempt("failAptosSync") { try await database.failAptosSync(ticket, history: false, code: Self.code(error)) }
+                throw error
+            }
         }
         flights[accountID]=(id,task)
-        do {try await task.value;if flights[accountID]?.0==id {flights[accountID]=nil}}
-        catch { OathDiagnostics.record(error);if flights[accountID]?.0==id {flights[accountID]=nil};throw error}
+        defer { if flights[accountID]?.0 == id { flights[accountID] = nil } }
+        try await task.value
     }
     private static func save(_ quotes:[AptosPrice],database:OathDatabase) async throws {
         for quote in quotes {

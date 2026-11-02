@@ -70,10 +70,42 @@ public enum ArtworkSource {
         guard value.utf8.count <= byteLimit * 2, let comma = value.firstIndex(of: ",") else { return nil }
         let header = value[..<comma].lowercased()
         guard ["data:image/png", "data:image/jpeg", "data:image/webp", "data:image/gif", "data:image/avif", "data:image/svg+xml"].contains(header.components(separatedBy: ";")[0]) else { return nil }
-        let body = String(value[value.index(after: comma)...])
-        let data = header.hasSuffix(";base64") ? Data(base64Encoded: body) : body.removingPercentEncoding?.data(using: .utf8)
+        let body = value[value.index(after: comma)...].utf8
+        let base64 = header.hasSuffix(";base64")
+        let limit = base64 ? ((byteLimit + 2) / 3) * 4 : byteLimit
+        let bytes: Data
+        if body.contains(0x25) {
+            // Data URLs escape octets, including binary pixels and base64 punctuation.
+            var decoded = Data()
+            decoded.reserveCapacity(min(body.count, limit))
+            var iterator = body.makeIterator()
+            while let byte = iterator.next() {
+                guard decoded.count < limit else { return nil }
+                if byte == 0x25 {
+                    guard let first = iterator.next(), let high = hexDigit(first),
+                          let second = iterator.next(), let low = hexDigit(second) else { return nil }
+                    decoded.append((high << 4) | low)
+                } else {
+                    decoded.append(byte)
+                }
+            }
+            bytes = decoded
+        } else {
+            guard body.count <= limit else { return nil }
+            bytes = Data(body)
+        }
+        let data = base64 ? Data(base64Encoded: bytes) : bytes
         guard let data, !data.isEmpty, data.count <= byteLimit else { return nil }
         return data
+    }
+
+    private static func hexDigit(_ byte: UInt8) -> UInt8? {
+        switch byte {
+        case 48...57: return byte - 48
+        case 65...70: return byte - 65 + 10
+        case 97...102: return byte - 97 + 10
+        default: return nil
+        }
     }
 
     public static func candidates(_ sources: [String]) -> [String] {
@@ -95,7 +127,7 @@ public enum ArtworkSource {
             if let url = URLComponents(string: source),
                ["assets.coingecko.com", "coin-images.coingecko.com"].contains(url.host ?? "") {
                 var large = url
-                large.path = url.path.replacingOccurrences(of: "/small/", with: "/large/")
+                large.percentEncodedPath = url.percentEncodedPath.replacingOccurrences(of: "/small/", with: "/large/")
                     .replacingOccurrences(of: "/thumb/", with: "/large/")
                 if let upgraded = large.url?.absoluteString, !result.contains(upgraded) { result.append(upgraded) }
             }

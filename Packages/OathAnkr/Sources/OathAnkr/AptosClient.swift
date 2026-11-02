@@ -119,10 +119,24 @@ public actor AptosClient {
         return try AptosIdentity.number(info["ledger_version"])
     }
     static let metadataFields="asset_type name symbol decimals icon_uri"
-    func discovery(owner:String) async throws -> ([AptosJSON],[AptosJSON],Int64) {
+    private static let maximumProcessorLag: Int64 = 100_000
+
+    private func processorVersion() async throws -> Int64 {
         let state=try await indexed("{ledger_infos {chain_id} processor_status(where:{processor:{_eq:\"fungible_asset_processor\"}}) {last_success_version}}")
         guard state["ledger_infos"].array?.first?["chain_id"].integer==UInt64(network.chainID),let processor=state["processor_status"].array?.first else {throw AptosError.wrongNetwork}
-        let version=try AptosIdentity.number(processor["last_success_version"])
+        return try AptosIdentity.number(processor["last_success_version"])
+    }
+
+    private func discovery(owner: String, processor: Int64, nodeVersion: Int64) async throws -> ([AptosJSON], [AptosJSON], Int64) {
+        var version = processor
+        if version < nodeVersion - Self.maximumProcessorLag {
+            // Recheck only the small status query before enumerating balances.
+            // Keep an already validated checkpoint if the recheck is unavailable.
+            do { version = max(processor, try await processorVersion()) }
+            catch let error as AptosError where error.isDiagnosticAvailabilityFailure {
+                OathDiagnostics.record(error, component: "aptos", operation: "processor_recheck", context: ["stage": "discovery"])
+            }
+        }
         var rows:[AptosJSON]=[],pages:[AptosJSON]=[],after="",afterType="",seen:Set<String>=[]
         while rows.count<100_000 {
             let page=try await indexed("""
@@ -164,11 +178,12 @@ public actor AptosClient {
     }
     public func inventory(owner address:String) async throws -> AptosInventory {
         let owner=try AptosIdentity.address(address)
-        async let ledger=ledgerVersion()
+        async let processor = processorVersion()
+        let version = try await ledgerVersion()
         let discovery:([AptosJSON],[AptosJSON],Int64)?
         let failure:String?
         let discoveryError: AptosError?
-        do {discovery=try await self.discovery(owner:owner);failure=nil;discoveryError=nil}
+        do {discovery=try await self.discovery(owner: owner, processor: processor, nodeVersion: version);failure=nil;discoveryError=nil}
         catch {
             if error is CancellationError { throw error }
             try Task.checkCancellation()
@@ -177,7 +192,6 @@ public actor AptosClient {
             discoveryError=error as? AptosError
             failure=(error as? AptosError).map{String(describing:$0)} ?? "transport"
         }
-        let version=try await ledger
         let snapshot=min(version,discovery?.2 ?? version)
         let native=try await view("0x1::coin::balance",types:[AptosIdentity.coin],args:[owner],version:snapshot)
         var holdings=[AptosHolding(token:.native,amount:try AptosIdentity.amount(native))],failed:[String]=[]
@@ -217,7 +231,7 @@ public actor AptosClient {
         try Task.checkCancellation()
         // Indexer failure does not block a valid node-native balance. Missing
         // tokens may be zeroed only after complete, sufficiently current discovery.
-        return .init(owner:owner,holdings:holdings.sorted{$0.token.reference<$1.token.reference},failedReferences:failed,discoveryComplete:discovery != nil && snapshot>=version-100_000,ledgerVersion:snapshot,observedAt:.now,raw:try JSONEncoder().encode(AptosJSON.array(discovery?.1 ?? [])),discoveryFailure:failure,pairedReferences:paired,discoveryError:discoveryError,holdingErrors:holdingErrors)
+        return .init(owner:owner,holdings:holdings.sorted{$0.token.reference<$1.token.reference},failedReferences:failed,discoveryComplete:discovery != nil && snapshot >= version - Self.maximumProcessorLag,ledgerVersion:snapshot,observedAt:.now,raw:try JSONEncoder().encode(AptosJSON.array(discovery?.1 ?? [])),discoveryFailure:failure,pairedReferences:paired,discoveryError:discoveryError,holdingErrors:holdingErrors)
     }
     public func history(owner address:String,before:Int64?=nil,limit:Int=25) async throws -> AptosHistoryPage {
         let owner=try AptosIdentity.address(address)

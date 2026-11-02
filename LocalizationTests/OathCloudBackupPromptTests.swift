@@ -8,9 +8,10 @@ import SwiftUI
         let submitted: (String) -> Void
         let strings = OathLocalizer(.english)
         var body: some View {
-            OathContentSizedSheet(contentID: started, avoidsKeyboard: !started, navigation: .init(
-                strings: strings, title: .cloudBackupPasswordTitle, backIdentifier: "test.back", onBack: { }, onClose: { }
-            )) {
+            OathBackupPageLayout(contentID: started, navigation: .init(
+                strings: strings, title: started ? .cloudBackupSection : .cloudBackupPasswordTitle,
+                backIdentifier: "test.back", onBack: {}, onClose: {}
+            ), avoidsKeyboard: !started, showsActions: false) {
                 Group {
                     if started {
                         ProgressView("Synthetic backup fixture")
@@ -20,10 +21,8 @@ import SwiftUI
                             submitted(password)
                         }
                     }
-                }
-                .padding(20)
-                .fixedSize(horizontal: false, vertical: true)
-            }
+                }.padding(20)
+            } actions: { EmptyView() }
             .environment(\.oathLanguage, .english)
         }
     }
@@ -72,6 +71,8 @@ import SwiftUI
             XCTFail("Fields: \(Self.fields(in: host.view).count), first responder: \(Self.fields(in: host.view).first?.isFirstResponder == true), keyboard shown: \(keyboardFrame != nil)")
             throw error
         }
+        let originalScroll = try XCTUnwrap(host.view.findBackupScroll())
+        let formHeight = originalScroll.contentSize.height
         let fields = Self.fields(in: host.view)
         XCTAssertEqual(fields.count, 2)
         let first = try XCTUnwrap(fields.first)
@@ -116,8 +117,130 @@ import SwiftUI
         try await waitUntil("valid Return submits after keyboard dismissal") { submitted }
         XCTAssertFalse(first.isFirstResponder || second.isFirstResponder)
         XCTAssertTrue(keyboardDidHide, "The software keyboard must finish hiding before processing")
+        try await waitUntil("progress shrinks the same sheet after password submission") {
+            host.view.findBackupScroll() === originalScroll &&
+                originalScroll.contentSize.height < formHeight &&
+                abs(originalScroll.backupViewportHeight - originalScroll.contentSize.height) < 12
+        }
         XCTAssertTrue(root.presentedViewController === host, "Starting the backup keeps the same bottom sheet")
         XCTAssertNil(host.presentedViewController)
+    }
+
+    @Observable final class OfferFixture {
+        var showingManual = false
+        var includesManual = false
+    }
+
+    private struct OfferHarness: View {
+        let state: OfferFixture
+        let session: OathWalletSession
+        let recovery: OathRecoveryPhraseModel
+        let strings = OathLocalizer(.english)
+
+        var body: some View {
+            OathBackupPageLayout(contentID: state.showingManual, navigation: .init(
+                strings: strings, title: state.showingManual ? .showRecoveryPhrase : .walletBackup,
+                backIdentifier: "test.back", onBack: state.showingManual ? { state.showingManual = false } : nil,
+                onClose: {}
+            ), showsActions: state.showingManual) {
+                if state.showingManual {
+                    OathRecoveryWarningContent(model: recovery, fitsBackupSheet: true)
+                } else {
+                    OathBackupOfferMenu(offer: state.includesManual ? .cloudOrManual : .cloudOnly,
+                                        cloudStatus: .unconfirmed, manualTitle: .showRecoveryPhrase,
+                                        onCloud: {}, onManual: { state.showingManual = true })
+                }
+            } actions: {
+                if state.showingManual {
+                    OathRecoveryWarningAction(model: recovery, session: session)
+                }
+            }
+        }
+    }
+
+    func testBackupStepsRefitInPlaceInsideTheSameSheet() async throws {
+        let scene = try XCTUnwrap(UIApplication.shared.connectedScenes.first as? UIWindowScene)
+        let oldKey = scene.windows.first(where: \.isKeyWindow)
+        let window = UIWindow(windowScene: scene)
+        let session = OathWalletSession()
+        let recovery = OathRecoveryPhraseModel(walletID: UUID().uuidString, reader: session.vault)
+        let state = OfferFixture()
+        let pages = OfferHarness(state: state, session: session, recovery: recovery)
+        let root = UIHostingController(rootView: Color.clear.sheet(isPresented: .constant(true)) {
+            pages.presentationBackground(Color(uiColor: OathSurfaceColors.groupedCanvas))
+        })
+        window.rootViewController = root
+        window.makeKeyAndVisible()
+        defer { root.dismiss(animated: false); window.isHidden = true; oldKey?.makeKey() }
+        try await waitUntil("SwiftUI presents the backup sheet") { root.presentedViewController != nil }
+        let host = try XCTUnwrap(root.presentedViewController)
+        try await waitUntil("compact chooser without a footer") {
+            guard let scroll = host.view.findBackupScroll() else { return false }
+            guard host.sheetPresentationController?.selectedDetentIdentifier?.rawValue == "oath.content" else { return false }
+            return host.transitionCoordinator == nil && scroll.contentSize.height > 0 &&
+                abs(scroll.backupViewportHeight - scroll.contentSize.height) < 12 && host.view.bounds.height < window.bounds.height * 0.7
+        }
+        let cloudOnlyHeight = host.view.bounds.height
+        state.includesManual = true
+        try await waitUntil("second backup option grows the chooser to fit") {
+            guard let scroll = host.view.findBackupScroll() else { return false }
+            return host.view.bounds.height > cloudOnlyHeight + 20 &&
+                abs(scroll.backupViewportHeight - scroll.contentSize.height) < 12
+        }
+        let rootHeight = host.view.bounds.height
+        let nav = try XCTUnwrap(host.findBackupNavigation())
+        let originalPage = try XCTUnwrap(nav.topViewController)
+        let originalScroll = try XCTUnwrap(host.view.findBackupScroll())
+        try await waitForSheetMotion(host, in: window, change: { state.showingManual = true }) {
+            guard nav.topViewController === originalPage, nav.viewControllers.count == 1,
+                  nav.topViewController?.navigationItem.leftBarButtonItem != nil,
+                  let scroll = nav.topViewController?.view.findBackupScroll(),
+                  scroll === originalScroll, host.view.bounds.height > rootHeight else { return false }
+            return abs(scroll.backupViewportHeight - scroll.contentSize.height) < 12 &&
+                host.view.bounds.height < window.bounds.height - window.safeAreaInsets.top - 32
+        }
+        let warningHeight = host.view.bounds.height
+        XCTAssertTrue(root.presentedViewController === host)
+        XCTAssertNil(host.presentedViewController)
+
+        try await waitForSheetMotion(host, in: window, change: { state.showingManual = false }) {
+            nav.topViewController === originalPage && host.view.findBackupScroll() === originalScroll &&
+                nav.topViewController?.navigationItem.leftBarButtonItem == nil &&
+                abs(host.view.bounds.height - rootHeight) < 2
+        }
+        print("In-place backup heights (points): iCloud only \(cloudOnlyHeight), both options \(rootHeight), warning \(warningHeight), back \(host.view.bounds.height)")
+    }
+
+    /// UIKit sets the model frame to its destination immediately. Sample the
+    /// presentation tree so a snap to the right final height still fails.
+    private func waitForSheetMotion(_ host: UIViewController, in window: UIWindow, change: () -> Void,
+                                    file: StaticString = #filePath, line: UInt = #line,
+                                    destinationReached: () -> Bool) async throws {
+        func displayedTop() -> CGFloat? {
+            guard let surface = host.view.layer.presentation(), let screen = window.layer.presentation() else { return nil }
+            return surface.convert(surface.bounds.origin, to: screen).y
+        }
+        func targetTop() -> CGFloat { host.view.convert(host.view.bounds, to: window).minY }
+
+        try await waitUntil("previous resize finishes", file: file, line: line) {
+            displayedTop().map { abs($0 - targetTop()) < 1 } == true
+        }
+        let start = targetTop()
+        var samples: [CGFloat] = []
+        change()
+        try await waitUntil("visible sheet reaches its new size", file: file, line: line) {
+            guard let y = displayedTop() else { return false }
+            samples.append(y)
+            return destinationReached() && abs(y - targetTop()) < 1
+        }
+        let distance = targetTop() - start
+        XCTAssertGreaterThan(abs(distance), 20, file: file, line: line)
+        guard !UIAccessibility.isReduceMotionEnabled else { return }
+        let progress = samples.map { ($0 - start) / distance }
+        XCTAssertTrue(progress.contains { (0.02..<0.5).contains($0) } &&
+                      progress.contains { (0.5..<0.98).contains($0) },
+                      "Expected intermediate sheet positions in both halves of the resize; observed \(progress)",
+                      file: file, line: line)
     }
 
     private func pressReturn(_ field: UITextField) {
@@ -143,7 +266,25 @@ import SwiftUI
             if predicate() { return }
             try await Task.sleep(for: .milliseconds(10))
         }
-        XCTFail("Password sheet did not reach: \(phase)", file: file, line: line)
+        XCTFail("Backup sheet did not reach: \(phase)", file: file, line: line)
         throw NSError(domain: "CloudBackupPromptTest", code: 1)
     }
+}
+
+private extension UIView {
+    func findBackupScroll() -> UIScrollView? {
+        if let scroll = self as? UIScrollView, scroll.accessibilityIdentifier == "options.scrollContent" { return scroll }
+        return subviews.lazy.compactMap { $0.findBackupScroll() }.first
+    }
+}
+
+private extension UIViewController {
+    func findBackupNavigation() -> UINavigationController? {
+        if let navigation = self as? UINavigationController { return navigation }
+        return children.lazy.compactMap { $0.findBackupNavigation() }.first
+    }
+}
+
+private extension UIScrollView {
+    var backupViewportHeight: CGFloat { bounds.height - adjustedContentInset.top - adjustedContentInset.bottom }
 }

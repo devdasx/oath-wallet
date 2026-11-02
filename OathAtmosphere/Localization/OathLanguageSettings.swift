@@ -72,7 +72,6 @@ struct OathLocalizedRoot<Content: View>: View {
         }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(uiColor: OathSurfaceColors.canvas).ignoresSafeArea())
-            .oathInAppLinks()
             .oathLanguage(settings.language)
             .background {
                 OathSceneAppearance(appearance: settings.appearance, language: settings.language)

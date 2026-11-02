@@ -69,7 +69,10 @@ import OathDiagnostics
             }
             let events = await sink.events().filter { $0.operationID == operation }
             XCTAssertFalse(events.contains { $0.error.message == "incomplete" })
-            if status == 429 { XCTAssertTrue(events.isEmpty, "Rate limits must not return as generic incomplete errors") }
+            if status == 429 {
+                let reports = events.map { [$0.sourceFile, $0.operation, $0.error.domain, String($0.error.code), $0.error.message, $0.context["chain"] ?? "none"].joined(separator: "|") }
+                XCTAssertTrue(events.isEmpty, "Rate-limited inventory emitted: \(reports)")
+            }
             await sync.cancel()
         }
     }
@@ -94,9 +97,29 @@ import OathDiagnostics
         }
     }
 
+    func testCaughtUpProcessorCommitsFreshInventoryWithoutRepeatingBalancePages() async throws {
+        let (db, folder) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let feed = AptosOrderingTransport(database: db, nodeVersion: 200001)
+        await feed.setProcessorVersions([1000, 200000])
+        let sync = AptosSynchronizer(database: db, client: AptosClient(testTransport: feed), markets: AptosMarkets(transport: feed))
+        try await sync.refresh(accountID: "a1")
+        await sync.waitForHistory(accountID: "a1")
+        let saved = try await db.aptosInventory(accountID: "a1")
+        XCTAssertEqual(saved?.ledgerVersion, 200000)
+        XCTAssertEqual(saved?.discoveryComplete, true)
+        let statusReads = await feed.processorReads, pages = await feed.inventoryPages
+        XCTAssertEqual(statusReads, 2)
+        XCTAssertEqual(pages, 1)
+        await sync.cancel()
+    }
+
     func testLaggingDiscoveryWithoutProviderFailureRemainsIncomplete() async throws {
         let (db, folder) = try await fixture()
         defer { try? FileManager.default.removeItem(at: folder) }
+        let sink = DatabaseDiagnosticProbe.shared
+        await sink.configure()
+        let before = Set(await sink.events().map(\.id))
         let feed = AptosOrderingTransport(database: db, nodeVersion: 200001)
         let sync = AptosSynchronizer(database: db, client: AptosClient(testTransport: feed), markets: AptosMarkets(transport: feed))
         do { try await sync.refresh(accountID: "a1"); XCTFail("Lagging discovery became success") }
@@ -104,6 +127,13 @@ import OathDiagnostics
         let saved = try await db.aptosInventory(accountID: "a1")
         XCTAssertFalse(saved?.discoveryComplete ?? true)
         XCTAssertEqual(saved?.ledgerVersion, 1000, "Do not change the pinned snapshot to hide index lag")
+        await sync.waitForHistory(accountID: "a1")
+        try await Task.sleep(for: .milliseconds(100))
+        await OathDiagnostics.flush()
+        let reports = await sink.events().filter { !before.contains($0.id) && $0.error.message == "incomplete" && $0.sourceFile == "OathDatabase/AptosSynchronizer.swift" }
+        XCTAssertEqual(reports.count, 1)
+        XCTAssertEqual(reports.first?.context["reason"], "processor_behind_node")
+
         await sync.cancel()
     }
 
@@ -226,6 +256,9 @@ private actor AptosOrderingTransport:AnkrTransport {
     private(set) var indexFailureOperation: UUID?
     let indexFailure: Int?
     let nodeVersion: Int
+    var processorVersions = [1000]
+    var processorReads = 0, inventoryPages = 0
+    func setProcessorVersions(_ versions: [Int]) { processorVersions = versions }
     let tokenFailure: Int?
     var sawHistory=false,balanceWasCommitted=false,historyLimit:UInt64=0
     init(database:OathDatabase, indexFailure: Int? = nil, nodeVersion: Int = 1000, tokenFailure: Int? = nil){self.database=database;self.indexFailure=indexFailure;self.nodeVersion=nodeVersion;self.tokenFailure=tokenFailure}
@@ -240,12 +273,15 @@ private actor AptosOrderingTransport:AnkrTransport {
                 historyLimit=body["variables"]["limit"].integer ?? 0
                 value = .object(["data":.object(["account_transactions":.array([])])])
             } else if query.contains("processor_status") {
+                processorReads += 1
                 if let indexFailure {
                     indexFailureOperation = OathDiagnostics.operationID
                     return (Data("{}".utf8), indexFailure)
                 }
-                value = .object(["data":.object(["ledger_infos":.array([.object(["chain_id":.number("1")])]),"processor_status":.array([.object(["last_success_version":.number("1000")])])])])
+                let indexed = processorVersions[min(processorReads - 1, processorVersions.count - 1)]
+                value = .object(["data":.object(["ledger_infos":.array([.object(["chain_id":.number("1")])]),"processor_status":.array([.object(["last_success_version":.number(String(indexed))])])])])
             } else {
+                inventoryPages += 1
                 let row: AptosJSON = .object(["storage_id": .string(try AptosIdentity.address("0xffff")), "owner_address": .string(try AptosIdentity.address("0x1234")), "asset_type": .string(try AptosIdentity.reference("0xabcd")), "is_primary": .bool(true), "metadata": .object(["name": .string("Example"), "symbol": .string("EX"), "decimals": .number("6")])])
                 value = .object(["data":.object(["current_fungible_asset_balances":.array(tokenFailure == nil ? [] : [row])])])
             }

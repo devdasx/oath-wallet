@@ -229,6 +229,7 @@
   "OathAtmosphere/OathVaultEnvelope.swift",
   "OathAtmosphere/OathVaultImportFlow.swift",
   "OathAtmosphere/OathVaultImportPreparation.swift",
+  "OathAtmosphere/OathWalletBackupOfferSheet.swift",
   "OathAtmosphere/OathWalletConnectBitcoinViews.swift",
   "OathAtmosphere/OathWalletConnectCallDetails.swift",
   "OathAtmosphere/OathWalletConnectConnections.swift",

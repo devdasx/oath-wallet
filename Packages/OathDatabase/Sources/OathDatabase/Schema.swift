@@ -1499,11 +1499,18 @@ enum Schema {
         migrations.registerMigration("v89_walletconnect_xrpl") { db in
             try OathDatabase.migrateWalletConnectXrpl(db)
         }
-        migrations.registerMigration("v90_litecoin_history_destinations") { db in
-            try OathDatabase.clearInvalidLitecoinHistoryAddresses(db)
+        migrations.registerMigration("v103_wallet_backup_offer") { db in
+            try db.alter(table: "wallets") { table in
+                table.add(column: "pendingBackupOffer", .text)
+            }
         }
-        migrations.registerMigration("v101_store_account_compatibility", foreignKeyChecks: .immediate) { db in
-            try LegacyAccountDirectory.install(db)
+        migrations.registerMigration("v104_existing_wallet_backup_offers") { db in
+            // The vault distinguishes an iCloud restore from a private-key or multisig
+            // import. Resolve old rows on authenticated access, never from their name.
+            try db.alter(table: "wallets") { table in
+                table.add(column: "needsBackupOfferReview", .boolean)
+            }
+            try db.execute(sql: "UPDATE wallets SET needsBackupOfferReview = 1 WHERE pendingBackupOffer IS NULL")
         }
         return migrations
     }

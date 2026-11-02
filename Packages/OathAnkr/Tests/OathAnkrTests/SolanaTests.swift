@@ -55,6 +55,42 @@ final class SolanaTests: XCTestCase, @unchecked Sendable {
         let foreign = try SolanaDecoding.transaction(tx(), signature:signature,owner:"11111111111111111111111111111111")
         XCTAssertTrue(foreign.changes.isEmpty, "Old token-account ownership must not block history or create another owner's activity")
     }
+    func testPinnedBatchRetriesOnlyDisputedReceiptAndRejectsDisagreeingArchive() async throws {
+        let first = signature, second = String(repeating: "1", count: 63) + "2"
+        let original = try tx()
+        let entries = [first, second].map { SolanaSignature(signature: $0, slot: 123, blockTime: nil, failed: false) }
+        for archiveAgrees in [true, false] {
+            let feed = SolanaFixtureTransport { request in
+                let body = try JSONDecoder().decode(SolanaJSON.self, from: XCTUnwrap(request.httpBody))
+                let primary = request.url?.host == "rpc.ankr.com"
+                if body["method"].string == "getGenesisHash" {
+                    return .object(["jsonrpc": .string("2.0"), "id": body["id"], "result": .string(SolanaIdentity.genesis)])
+                }
+                let rows = try (body.array ?? [body]).map { call -> SolanaJSON in
+                    let sig = try XCTUnwrap(call["params"].array?.first?.string)
+                    if !primary { XCTAssertEqual(sig, second, "A matching batch member must not be fetched again") }
+                    guard case .object(var value) = original, case .object(var tx) = value["transaction"],
+                          case .object(var meta) = value["meta"] else { throw SolanaError.malformed }
+                    tx["signatures"] = .array([.string(sig)])
+                    if sig == second && (primary || !archiveAgrees) { meta["err"] = .string("fixture_failure") }
+                    value["transaction"] = .object(tx)
+                    value["meta"] = .object(meta)
+                    return .object(["jsonrpc": .string("2.0"), "id": call["id"], "result": .object(value)])
+                }
+                return body.array == nil ? rows[0] : .array(rows.reversed())
+            }
+            do {
+                let result = try await SolanaClient(apiKey: "fixture", transport: feed).transactions(matching: entries, owner: owner)
+                XCTAssertTrue(archiveAgrees)
+                XCTAssertEqual(result.map(\.signature), [first, second])
+                XCTAssertTrue(result.allSatisfy { !$0.failed })
+            } catch {
+                XCTAssertFalse(archiveAgrees)
+                XCTAssertEqual(error as? SolanaError, .incompleteHistory)
+            }
+        }
+    }
+
     func testBatchRepliesAreMatchedByIDAndCheckedIndividually() async throws {
         let values = try values()
         let transport = SolanaFixtureTransport { request in

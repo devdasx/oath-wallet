@@ -1,6 +1,10 @@
 import SwiftUI
 import UIKit
 
+extension EnvironmentValues {
+    @Entry var oathFitsPasscodeSheet = false
+}
+
 /// Shared presentation only. Callers keep ownership of secrets, authentication,
 /// navigation and lifecycle; this view receives a PIN count, never the digits.
 struct OathPasscodeEntry: View {
@@ -23,6 +27,7 @@ struct OathPasscodeEntry: View {
     var pinsIdentifier = "passcode.dots"
     let onKey: (OathNumericKeypad.Key) -> Void
 
+    @Environment(\.oathFitsPasscodeSheet) private var fitsSheet
     @Environment(\.oathLocalizer) private var strings
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -33,6 +38,49 @@ struct OathPasscodeEntry: View {
     @ScaledMetric(relativeTo: .body) private var pinSize = 14
 
     var body: some View {
+        Group {
+            if fitsSheet {
+                VStack(spacing: 28) {
+                    introduction
+                    OathFittedKeypadLayout(diameter: keySize) { keypad }
+                }
+                .padding(.horizontal, OathPasscodeLayout.horizontalPadding)
+                .padding(.vertical, OathPasscodeLayout.verticalPadding)
+                .frame(maxWidth: .infinity)
+            } else {
+                adaptiveLayout
+            }
+        }
+        .foregroundStyle(.primary)
+        .tint(.primary)
+        .onChange(of: errorMessage) { _, message in
+            guard let message, isPresented, scenePhase == .active else {
+                feedback.reset()
+                return
+            }
+            // One event drives the red pins, shake and native error haptic.
+            feedback.reject()
+            OathHaptics.shared.play(.error)
+            UIAccessibility.post(notification: .announcement, argument: message)
+        }
+        .task(id: feedback.revision) {
+            guard feedback.isRejecting else { return }
+            let revision = feedback.revision
+            do { try await Task.sleep(for: OathPasscodeFeedback.holdDuration) }
+            catch { return }
+            guard !Task.isCancelled else { return }
+            feedback.finish(revision: revision)
+        }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { feedback.reset() }
+        }
+        .onChange(of: isPresented) { _, presented in
+            if !presented { feedback.reset() }
+        }
+        .onDisappear { feedback.reset() }
+    }
+
+    private var adaptiveLayout: some View {
         GeometryReader { geometry in
             let layout = OathPasscodeLayout(size: geometry.size, preferredKeyDiameter: keySize,
                 divisions: reservedFrames(in: geometry, division: true),
@@ -90,33 +138,6 @@ struct OathPasscodeEntry: View {
                 }
             }
         }
-        .foregroundStyle(.primary)
-        .tint(.primary)
-        .onChange(of: errorMessage) { _, message in
-            guard let message, isPresented, scenePhase == .active else {
-                feedback.reset()
-                return
-            }
-            // One event drives the red pins, shake and native error haptic.
-            feedback.reject()
-            OathHaptics.shared.play(.error)
-            UIAccessibility.post(notification: .announcement, argument: message)
-        }
-        .task(id: feedback.revision) {
-            guard feedback.isRejecting else { return }
-            let revision = feedback.revision
-            do { try await Task.sleep(for: OathPasscodeFeedback.holdDuration) }
-            catch { return }
-            guard !Task.isCancelled else { return }
-            feedback.finish(revision: revision)
-        }
-        .onChange(of: scenePhase) { _, phase in
-            if phase != .active { feedback.reset() }
-        }
-        .onChange(of: isPresented) { _, presented in
-            if !presented { feedback.reset() }
-        }
-        .onDisappear { feedback.reset() }
     }
 
     private var introduction: some View {
@@ -189,12 +210,15 @@ struct OathPasscodeEntry: View {
     }
 
     private func keypad(size: CGSize) -> some View {
+        keypad.frame(width: size.width, height: size.height)
+    }
+
+    private var keypad: some View {
         OathNumericKeypad(isEnabled: isEnabled && !feedback.isRejecting,
                          isDeleteEnabled: isDeleteEnabled, biometrics: biometrics) { key in
             guard isEnabled, !feedback.isRejecting else { return }
             onKey(key)
         }
-            .frame(width: size.width, height: size.height)
     }
 
     private var displayedCount: Int { feedback.isRejecting ? length : filledCount }
@@ -208,5 +232,18 @@ struct OathPasscodeEntry: View {
         }
         #endif
         return []
+    }
+}
+
+private struct OathFittedKeypadLayout: Layout {
+    let diameter: CGFloat
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        OathKeypadGeometry.size(fittingWidth: proposal.width ?? OathKeypadGeometry.circularSize(diameter: diameter).width,
+                                preferredDiameter: diameter)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        subviews.first?.place(at: bounds.origin, anchor: .topLeading, proposal: .init(bounds.size))
     }
 }

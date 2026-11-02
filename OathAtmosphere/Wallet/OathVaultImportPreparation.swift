@@ -30,6 +30,7 @@ extension OathRestoredWallet {
             }
             var secret = try OathWalletEngine.imported(phrase, id: requestID)
             secret.createdWithCustomization = true
+            secret.initialBackupOffer = .cloudOnly
             let profile = try OathWalletEngine.profile(for: secret)
             guard accounts.count == 1, accounts[0].0 == .bitcoin,
                   profile.addresses.count == 1, profile.addresses[0].address == accounts[0].1.address,
@@ -88,6 +89,7 @@ extension OathRestoredWallet {
         }
         var secret = restored.secret
         secret.createdWithCustomization = true
+        secret.initialBackupOffer = .cloudOnly
         self.secret = secret
         self.profile = restored.profile
     }

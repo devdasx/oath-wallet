@@ -4,7 +4,7 @@ import Foundation
 /// in their existing per-wallet stores. No polling or network work occurs here.
 public struct WalletSecurityNoticeQueue: Equatable, Sendable {
     public struct Notice: Equatable, Sendable {
-        public enum Kind: Equatable, Sendable { case multisig, stablecoin }
+        public enum Kind: Equatable, Sendable { case multisig, stablecoin, backup }
         public let walletID: UUID
         public let kind: Kind
     }
@@ -13,12 +13,13 @@ public struct WalletSecurityNoticeQueue: Equatable, Sendable {
     public init() {}
 
     public func next(walletID: UUID?, homeAvailable: Bool,
-                     multisigPending: Bool, stablecoinPending: Bool) -> Notice? {
+                     multisigPending: Bool, stablecoinPending: Bool, backupPending: Bool = false) -> Notice? {
         // Hold the slot until UIKit finishes dismissal, even after Got it has
         // persisted its acknowledgement and SwiftUI's sheet item becomes nil.
         guard presented == nil, homeAvailable, let walletID else { return nil }
         if multisigPending { return Notice(walletID: walletID, kind: .multisig) }
         if stablecoinPending { return Notice(walletID: walletID, kind: .stablecoin) }
+        if backupPending { return Notice(walletID: walletID, kind: .backup) }
         return nil
     }
 

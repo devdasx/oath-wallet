@@ -55,32 +55,19 @@ import OathDiagnostics
         do {
             let db=try await vault.database()
             let indexed=Dictionary(uniqueKeysWithValues:items.map { ($0.id,$0) })
-            try await PermissionBatchExecutor.run(ids:items.filter{$0.state=="queued"}.map(\.id), authorized: {
+            try await PermissionBatchExecutor.run(ids:items.filter{$0.state=="queued"}.map(\.id), networkForItem: { indexed[$0]?.permission.network }, authorized: {
                 await vault.permissionBatchIsAuthorized(authorization)
             }, execute: { id in
                 guard let item=indexed[id], let reviewed=item.scope else { throw PermissionError.changed }
-                try await OathDiagnostics.$chain.withValue(item.permission.network) {
-                    try await OathDiagnostics.$operationID.withValue(UUID()) {
-                        do {
-                            // Never create new bytes for a previously journaled item.
-                            if let send=try await db.send(id), send.signedPayload != nil { return }
-                            guard try await db.permissionBatchCanPrepare(reviewed) else { throw EVMSendError.busy }
-                            guard let account=try await db.account(item.accountID),account.walletID==item.walletID else { throw PermissionError.changed }
-                            let quote=try await OathPermissionService.shared.quote(item.permission,account:account,database:db)
-                            guard reviewed.permits(try quote.scope(sendID:id)) else { throw PermissionError.changed }
-                            try await db.setPermissionBatchItem(id,state:"processing")
-                            _ = try await OathPermissionService.shared.submit(quote,vault:vault,digits:nil,
-                                reason:"",permissionSendID:id,authorization:authorization)
-                        } catch {
-                            if !(error is CancellationError), error as? PermissionError != .alreadyRemoved,
-                               error as? EVMSendError != .busy, error as? TronSendError != .busy,
-                               error as? SolanaSendError != .busy {
-                                OathDiagnostics.record(error,component:"permissions",operation:"batch_revoke",context:["chain":item.permission.network])
-                            }
-                            throw error
-                        }
-                    }
-                }
+                // Never create new bytes for a previously journaled item.
+                if let send=try await db.send(id), send.signedPayload != nil { return }
+                guard try await db.permissionBatchCanPrepare(reviewed) else { throw EVMSendError.busy }
+                guard let account=try await db.account(item.accountID),account.walletID==item.walletID else { throw PermissionError.changed }
+                let quote=try await OathPermissionService.shared.quote(item.permission,account:account,database:db)
+                guard reviewed.permits(try quote.scope(sendID:id)) else { throw PermissionError.changed }
+                try await db.setPermissionBatchItem(id,state:"processing")
+                _ = try await OathPermissionService.shared.submit(quote,vault:vault,digits:nil,
+                    reason:"",permissionSendID:id,authorization:authorization)
             }, finish: { id,outcome,error in
                 let state: String
                 switch outcome { case .submitted:state="submitted";case .failed:state="failed";case .paused:state="paused";case .alreadyRemoved:state="alreadyRemoved" }

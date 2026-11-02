@@ -112,7 +112,8 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
         let maximumMoney = chain.maximumOutput
         guard amount > 0, amount <= maximumMoney else { throw BitcoinSendError.invalidAmount }
         guard chain.sendFeeRates.contains(ratePerKVByte) else { throw BitcoinSendError.feeUnavailable }
-        guard !coins.isEmpty, coins.count <= 10_000 else { throw BitcoinSendError.insufficientFunds }
+        guard !coins.isEmpty else { throw BitcoinSendError.insufficientFunds }
+        guard coins.count <= 10_000 else { throw BitcoinSendError.tooLarge }
         guard Set(coins.map(\.id)).count == coins.count else { throw BitcoinSendError.duplicateInput }
         for coin in coins { try coin.validate(chain: chain) }
         let balance = try sum(coins.map(\.value), maximumMoney: chain.maximumMoney)

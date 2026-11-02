@@ -17,7 +17,7 @@ import Foundation
         }
         let settings = URL(string: "app-settings:")!
         check(OathLinkDestination(settings) == .system(settings))
-        check(OathLinkDestination(OathSupportLinks.appStore) == .system(OathSupportLinks.appStore))
+        check(OathLinkDestination(OathSupportLinks.appStore) == .web(OathSupportLinks.appStore))
         let spoofedStore = URL(string: "https://apps.apple.com.example.org/app/id6780187283")!
         check(OathLinkDestination(spoofedStore) == .web(spoofedStore))
         check(OathSupportLinks.issues.absoluteString == "https://github.com/devdasx/oath-wallet/issues")

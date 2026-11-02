@@ -11,6 +11,7 @@ public actor EVMSendClient {
     private let endpoints:[URL]
     private let permits=AnkrPermits(count:4)
     private var verifiedEndpoints:[URL:Date] = [:]
+    private var primaryLogHistoryLimit: (from: UInt64, expires: ContinuousClock.Instant)?
     public init(network:EVMSendNetwork,endpoints:[URL],transport:any AnkrTransport = AnkrHTTPTransport()) throws {
         guard !endpoints.isEmpty,endpoints.count<=4,endpoints.allSatisfy({$0.scheme=="https" && $0.host != nil}) else { throw EVMSendError.configuration }
         self.network=network;self.transport=transport;self.endpoints=endpoints
@@ -18,11 +19,11 @@ public actor EVMSendClient {
     /// Each request verifies the chain on the same provider, including fallbacks.
     /// One attempt per endpoint, with bounded Celo replica-lag retries for reads.
     /// Transaction rejections and broadcasts are never automatically retried.
-    func rpc(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool = false) async throws -> SolanaJSON {
+    func rpc(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool = false, logScanHead: UInt64? = nil) async throws -> SolanaJSON {
         try await OathDiagnostics.withChain(network.rawValue) {
             var retry=0
             while true {
-                do { return try await rpcInContext(method, params, optionalContractProbe: optionalContractProbe) }
+                do { return try await rpcInContext(method, params, optionalContractProbe: optionalContractProbe, logScanHead: logScanHead) }
                 catch EVMSendError.rpc(-32019) where [.celo,.celoSepolia].contains(network)
                     && ["eth_getBalance","eth_call","eth_getTransactionCount","eth_getBlockByNumber","eth_estimateGas"].contains(method)
                     && retry<2 {
@@ -36,14 +37,32 @@ public actor EVMSendClient {
             }
         }
     }
-    private func rpcInContext(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool) async throws -> SolanaJSON {
+    private func rpcInContext(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool, logScanHead: UInt64?) async throws -> SolanaJSON {
         try await permits.acquire()
         do {
             var failure:Error=EVMSendError.transport
             var missingIndexedLookup=false
-            for endpoint in endpoints {
+            let filecoinLogStart: UInt64?
+            if network.isFilecoin, method == "eth_getLogs", let filter = params.first {
+                filecoinLogStart = try? Self.uint(filter["fromBlock"])
+            } else { filecoinLogStart = nil }
+            // ANKR's Filecoin mainnet gateway serves a 24-hour log window.
+            // A mainnet epoch is 30 seconds. Leave one minute for the head to
+            // advance during pagination. Custom endpoints retain their order.
+            var targets = endpoints
+            if network == .filecoin, let head = logScanHead, let from = filecoinLogStart,
+               head >= from, head - from >= 2_878, endpoints.count == 2,
+               endpoints[0].host == "rpc.ankr.com", endpoints[0].pathComponents.dropFirst().first == "filecoin",
+               endpoints[1].absoluteString == "https://api.node.glif.io/rpc/v1" {
+                targets.swapAt(0, 1)
+            }
+            for endpoint in targets {
                 do {
                     try Task.checkCancellation()
+                    if let from = filecoinLogStart, endpoint == endpoints.first, endpoints.count > 1,
+                       let limit = primaryLogHistoryLimit, from <= limit.from, ContinuousClock.now < limit.expires {
+                        continue
+                    }
                     if method == "eth_sendRawTransaction", verifiedEndpoints[endpoint].map({ (0..<30).contains(Date.now.timeIntervalSince($0)) }) != true {
                         let check:SolanaJSON = .object(["jsonrpc":.string("2.0"),"id":.number("0"),"method":.string("eth_chainId"),"params":.array([])])
                         var request=URLRequest(url:endpoint);request.httpMethod="POST";request.timeoutInterval=10
@@ -72,6 +91,18 @@ public actor EVMSendClient {
                           let chain=rows.first(where:{$0["id"].integer==0}),let result=rows.first(where:{$0["id"].integer==1}) else { throw EVMSendError.malformed }
                     guard try Self.uint(self.result(chain))==network.chainID else { throw EVMSendError.wrongNetwork }
                     verifiedEndpoints[endpoint] = .now
+                    // A Filecoin gateway can serve recent events but refuse
+                    // older heights. Retry the identical filter on the archive.
+                    // Keep the primary for newer ranges and all other methods.
+                    if let from = filecoinLogStart, endpoint == endpoints.first, endpoints.count > 1,
+                       result["result"].isNull, result["error"]["code"] == .number("1"),
+                       result["error"]["message"].string == "bad tipset height: lookbacks of more than 24h0m0s are disallowed" {
+                        primaryLogHistoryLimit = (from, .now.advanced(by: .seconds(60)))
+                        OathDiagnostics.record(DiagnosticFailure("Filecoin provider history window exceeded"),
+                            component: "permissions", operation: "history_fallback",
+                            context: ["chain": network.rawValue, "method": method, "rpc_code": "1", "stage": "archive"])
+                        continue
+                    }
                     if DiagnosticHTTP.expectedEVMDuplicateBroadcast(data, status:status, request:request) {
                         throw EVMDuplicateBroadcast.reconcile(result["error"]["code"].text.flatMap(Int.init) ?? -32000)
                     }
@@ -240,7 +271,12 @@ public actor EVMSendClient {
         if let removal {
             try removal.validate()
             guard reference=="native",decimals==18,amount=="0",!maximum,recipient==removal.contract else { throw PermissionError.changed }
-            guard try await permissionState(owner:sender,removal:removal)==removal.expected else { throw PermissionError.changed }
+            let state = try await permissionState(owner: sender, removal: removal)
+            if state == "0", removal.kind == .token || removal.kind == .collection {
+                // A verified zero allowance or false operator approval needs no transaction.
+                throw PermissionError.alreadyRemoved
+            }
+            guard state == removal.expected else { throw PermissionError.changed }
         }
         guard sender != recipient || removal?.kind == .delegation || request != nil else { throw EVMSendError.sameRecipient }
         guard (requested != "0" || removal != nil || request != nil),recipient != "0x"+String(repeating:"0",count:40) else { throw EVMSendError.amount }

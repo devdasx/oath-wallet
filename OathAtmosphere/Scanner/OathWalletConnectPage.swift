@@ -1,9 +1,7 @@
 import OathAnkr
 import OathBitcoin
 import SwiftUI
-import SafariServices
 @preconcurrency import WalletConnectSign
-import OathDiagnostics
 
 /// Lives in Settings' existing NavigationStack. The SDK supplies all sessions;
 /// the page never synthesizes connections or assumes the currently selected wallet.
@@ -15,7 +13,6 @@ struct OathWalletConnectPage: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var service = OathWalletConnectService.shared
     @State private var scanner = false
-    @State private var browser: OathDAppWebsite?
 
     var body: some View {
         Group {
@@ -36,9 +33,7 @@ struct OathWalletConnectPage: View {
                     LazyVStack(spacing: 0) {
                         ForEach(visibleSessions, id: \.topic) { item in
                             NavigationLink {
-                                OathWalletConnectDetail(topic: item.topic, session: session) {
-                                    browser = .init(url: $0)
-                                }
+                                OathWalletConnectDetail(topic: item.topic, session: session)
                             } label: {
                                 OathWalletConnectRow(item: item,
                                     connectedAt: service.connections.connectedAt(item.topic),
@@ -73,11 +68,8 @@ struct OathWalletConnectPage: View {
                         identifier: "walletconnect.scanner", context: .walletConnect)
                 .environment(\.oathScanSession, session)
         }
-        .fullScreenCover(item: $browser) { website in
-            OathDAppBrowser(url: website.url) { browser = nil }.ignoresSafeArea()
-        }
         .onChange(of: session.isUnlocked) { _, unlocked in
-            if !unlocked { scanner = false; browser = nil }
+            if !unlocked { scanner = false }
         }
         .oathNativeLocalization()
     }
@@ -118,7 +110,7 @@ struct OathWalletConnectRow: View {
 private struct OathWalletConnectDetail: View {
     let topic: String
     let session: OathWalletSession
-    let openWebsite: (URL) -> Void
+    @Environment(\.openURL) private var openURL
     @Environment(\.oathLocalizer) private var strings
     @Environment(\.dismiss) private var dismiss
     @State private var service = OathWalletConnectService.shared
@@ -160,7 +152,7 @@ private struct OathWalletConnectDetail: View {
                     }
                 }.multilineTextAlignment(.center).frame(maxWidth: .infinity).padding(24)
                 if let url = OathWalletConnectPolicy.website(item.peer.url) {
-                    OathButton { openWebsite(url) } label: {
+                    OathButton { openURL(url) } label: {
                         OathSettingsRow(title: strings.text(.wcOpenWebsite), icon: "safari")
                     }.buttonStyle(OathSettingsRowButtonStyle()).accessibilityIdentifier("walletconnect.openWebsite")
                 }
@@ -264,41 +256,5 @@ private struct OathWalletConnectSessionNetworks: View {
         .navigationTitle(strings.text(.wcNetworks)).navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("walletconnect.session.networks.page")
         .oathNativeLocalization()
-    }
-}
-
-private struct OathDAppWebsite: Identifiable {
-    let id = UUID()
-    let url: URL
-}
-/// Safari owns the browser UI, cookies and navigation. WalletConnect approval
-/// is presented above this controller without discarding the dApp's page state.
-private struct OathDAppBrowser: UIViewControllerRepresentable {
-    let url: URL
-    let onClose: () -> Void
-    func makeCoordinator() -> Coordinator { Coordinator(onClose: onClose) }
-    func makeUIViewController(context: Context) -> SFSafariViewController {
-        let controller = SFSafariViewController(url: url)
-        controller.delegate = context.coordinator
-        controller.dismissButtonStyle = .done
-        return controller
-    }
-    func updateUIViewController(_ controller: SFSafariViewController, context: Context) { }
-    @MainActor final class Coordinator: NSObject, SFSafariViewControllerDelegate {
-        let onClose: () -> Void
-        let operation = UUID()
-        init(onClose: @escaping () -> Void) { self.onClose = onClose }
-        nonisolated func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-            Task { @MainActor in onClose() }
-        }
-        nonisolated func safariViewController(_ controller: SFSafariViewController, didCompleteInitialLoad success: Bool) {
-            if !success {
-                Task { @MainActor in
-                    OathDiagnostics.$operationID.withValue(operation) {
-                        OathDiagnostics.record(DiagnosticFailure("DApp browser initial load failed"), component: "walletconnect", operation: "browser_load")
-                    }
-                }
-            }
-        }
     }
 }

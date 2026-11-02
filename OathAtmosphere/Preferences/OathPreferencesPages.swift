@@ -24,10 +24,12 @@ import OathExchangeRates
         guard !refreshing else { return }
         refreshing = true
         defer { refreshing = false }
-        do {
-            snapshot = try await OathExchangeRateEnvironment.shared.refresh(retryNow: retryNow)
+        if let rates = await OathExchangeRateEnvironment.shared.refresh(retryNow: retryNow) {
+            snapshot = rates
             failed = false
-        } catch { OathDiagnostics.record(error); if !Task.isCancelled { failed = true } }
+        } else if !Task.isCancelled {
+            failed = true
+        }
     }
 }
 

@@ -1,6 +1,1047 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "wallet.backup_manually" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "am" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "በእጅ ምትኬ ፍጠር"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "النسخ الاحتياطي يدويًا"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "নিজে ব্যাকআপ নিন"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zálohovat ručně"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sikkerhedskopiér manuelt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manuell sichern"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μη αυτόματη δημιουργία αντιγράφου ασφαλείας"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back up manually"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hacer una copia manual"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پشتیبان‌گیری دستی"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmuuskopioi käsin"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manu-manong mag-back up"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegarder manuellement"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "જાતે બૅકઅપ લો"
+          }
+        },
+        "ha" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adana kwafi da hannu"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "גיבוי ידני"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मैन्युअल बैकअप लें"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ručno izradi sigurnosnu kopiju"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biztonsági mentés kézzel"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cadangkan secara manual"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esegui il backup manualmente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手動でバックアップ"
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "სარეზერვო ასლის ხელით შექმნა"
+          }
+        },
+        "km" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "បម្រុងទុកដោយដៃ"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಹಸ್ತಚಾಲಿತವಾಗಿ ಬ್ಯಾಕಪ್ ಮಾಡಿ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수동으로 백업"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "സ്വയം ബാക്കപ്പ് എടുക്കുക"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्वतः बॅकअप घ्या"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sandarkan secara manual"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ကိုယ်တိုင် အရန်သိမ်းရန်"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sikkerhetskopier manuelt"
+          }
+        },
+        "ne" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आफैँ ब्याकअप लिनुहोस्"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Handmatig een reservekopie maken"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ନିଜେ ବ୍ୟାକଅପ୍ ନିଅନ୍ତୁ"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਆਪ ਬੈਕਅੱਪ ਲਓ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz kopię ręcznie"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fazer backup manualmente"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Criar cópia de segurança manualmente"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creează manual o copie de siguranță"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать копию вручную"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هٿ سان بيڪ اپ ٺاهيو"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "අතින් උපස්ථ කරන්න"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zálohovať manuálne"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ročno varnostno kopiranje"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Säkerhetskopiera manuellt"
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hifadhi nakala rudufu wewe mwenyewe"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "கைமுறையாகக் காப்புப் பிரதி எடுக்கவும்"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "మాన్యువల్‌గా బ్యాకప్ చేయండి"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สำรองข้อมูลด้วยตนเอง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elle yedekle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створити копію вручну"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دستی طور پر بیک اپ بنائیں"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaxira nusxasini qoʻlda yaratish"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu thủ công"
+          }
+        },
+        "yo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ṣe ẹ̀dà ìpamọ́ fúnra rẹ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手动备份"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "手動備份"
+          }
+        }
+      }
+    },
+    "wallet.backup_offer_detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "am" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ይህ መሣሪያ ቢጠፋ ወይም ወደ አዲስ መሣሪያ ቢቀይሩ፣ ምትኬው የኪስ ቦርሳዎን እንዲመልሱ ያስችልዎታል።"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تتيح لك النسخة الاحتياطية استعادة محفظتك إذا فقدت هذا الجهاز أو انتقلت إلى جهاز جديد."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "এই ডিভাইসটি হারিয়ে গেলে বা নতুন ডিভাইসে গেলে ব্যাকআপ থেকে আপনার ওয়ালেট ফিরিয়ে আনতে পারবেন।"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokud toto zařízení ztratíte nebo přejdete na nové, můžete peněženku obnovit ze zálohy."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med en sikkerhedskopi kan du gendanne din tegnebog, hvis du mister denne enhed eller skifter til en ny."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit einer Sicherung kannst du deine Wallet wiederherstellen, wenn du dieses Gerät verlierst oder auf ein neues wechselst."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Με ένα αντίγραφο ασφαλείας μπορείτε να επαναφέρετε το πορτοφόλι σας αν χάσετε αυτή τη συσκευή ή αλλάξετε συσκευή."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A backup lets you restore your wallet if you lose this device or switch to a new one."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con una copia de seguridad podrás restaurar tu billetera si pierdes este dispositivo o cambias a uno nuevo."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگر این دستگاه را گم کنید یا به دستگاه جدیدی بروید، می‌توانید کیف پول خود را با نسخهٔ پشتیبان بازیابی کنید."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmuuskopion avulla voit palauttaa lompakkosi, jos kadotat tämän laitteen tai vaihdat uuteen."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sa tulong ng backup, maibabalik mo ang iyong wallet kung mawala ang device na ito o lumipat ka sa bago."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une sauvegarde vous permet de restaurer votre portefeuille si vous perdez cet appareil ou si vous en changez."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "આ ઉપકરણ ખોવાઈ જાય અથવા તમે નવું ઉપકરણ વાપરવાનું શરૂ કરો તો બૅકઅપથી તમારું વૉલેટ પાછું મેળવી શકશો."
+          }
+        },
+        "ha" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za ka iya dawo da walat ɗinka ta amfani da ajiyar madadi idan ka rasa wannan na'urar ko ka koma wata sabuwa."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "גיבוי מאפשר לשחזר את הארנק במקרה של אובדן המכשיר הזה או מעבר למכשיר חדש."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अगर यह डिवाइस खो जाए या आप नया डिवाइस इस्तेमाल करने लगें, तो बैकअप से अपना वॉलेट बहाल कर सकते हैं।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sigurnosna kopija omogućuje vam da vratite novčanik ako izgubite ovaj uređaj ili prijeđete na novi."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A biztonsági mentésből visszaállíthatja a tárcáját, ha elveszíti ezt az eszközt, vagy újra vált."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dengan cadangan, Anda dapat memulihkan dompet jika perangkat ini hilang atau Anda beralih ke perangkat baru."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con un backup puoi ripristinare il wallet se perdi questo dispositivo o passi a uno nuovo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バックアップしておくと、このデバイスを紛失したり、新しいデバイスに買い替えたりしたときにウォレットを復元できます。"
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "სარეზერვო ასლით საფულეს აღადგენთ, თუ ამ მოწყობილობას დაკარგავთ ან ახალზე გადახვალთ."
+          }
+        },
+        "km" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ច្បាប់ចម្លងបម្រុងអនុញ្ញាតឱ្យអ្នកស្ដារកាបូបរបស់អ្នកឡើងវិញ ប្រសិនបើអ្នកបាត់ឧបករណ៍នេះ ឬប្ដូរទៅប្រើឧបករណ៍ថ្មី។"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಈ ಸಾಧನ ಕಳೆದುಹೋದರೆ ಅಥವಾ ನೀವು ಹೊಸ ಸಾಧನಕ್ಕೆ ಬದಲಾದರೆ, ಬ್ಯಾಕಪ್‌ನಿಂದ ನಿಮ್ಮ ವ್ಯಾಲೆಟ್ ಅನ್ನು ಮರುಸ್ಥಾಪಿಸಬಹುದು."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "백업해 두면 이 기기를 분실하거나 새 기기로 교체할 때 지갑을 복원할 수 있습니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ഈ ഉപകരണം നഷ്ടപ്പെടുകയോ പുതിയ ഉപകരണത്തിലേക്ക് മാറുകയോ ചെയ്താൽ ബാക്കപ്പിൽ നിന്ന് വാലറ്റ് വീണ്ടെടുക്കാം."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हे डिव्हाइस हरवले किंवा तुम्ही नवीन डिव्हाइस वापरू लागलात, तर बॅकअपमधून तुमचे वॉलेट परत मिळवता येईल."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sandaran membolehkan anda memulihkan dompet jika peranti ini hilang atau anda beralih kepada peranti baharu."
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ဤစက် ပျောက်ဆုံးသွားပါက သို့မဟုတ် စက်အသစ်သို့ ပြောင်းပါက အရန်မိတ္တူဖြင့် သင့်ပိုက်ဆံအိတ်ကို ပြန်လည်ရယူနိုင်ပါသည်။"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med en sikkerhetskopi kan du gjenopprette lommeboken hvis du mister denne enheten eller bytter til en ny."
+          }
+        },
+        "ne" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यो उपकरण हराएमा वा नयाँ उपकरण प्रयोग गर्न थालेमा ब्याकअपबाट आफ्नो वालेट पुनर्स्थापना गर्न सक्नुहुन्छ।"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Met een reservekopie kun je je wallet herstellen als je dit apparaat kwijtraakt of overstapt op een nieuw apparaat."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଏହି ଡିଭାଇସ୍ ହଜିଗଲେ କିମ୍ବା ଆପଣ ନୂଆ ଡିଭାଇସ୍ ବ୍ୟବହାର କଲେ ବ୍ୟାକଅପ୍‌ରୁ ନିଜ ୱାଲେଟ୍ ପୁନରୁଦ୍ଧାର କରିପାରିବେ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਜੇ ਇਹ ਡਿਵਾਈਸ ਗੁੰਮ ਹੋ ਜਾਵੇ ਜਾਂ ਤੁਸੀਂ ਨਵੀਂ ਡਿਵਾਈਸ ਵਰਤਣ ਲੱਗੋ, ਤਾਂ ਬੈਕਅੱਪ ਨਾਲ ਆਪਣਾ ਵਾਲਿਟ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰ ਸਕਦੇ ਹੋ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dzięki kopii zapasowej odzyskasz portfel, jeśli zgubisz to urządzenie lub zmienisz je na nowe."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com um backup, você pode restaurar sua carteira se perder este dispositivo ou trocar de aparelho."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma cópia de segurança permite restaurar a carteira se perder este dispositivo ou mudar para um novo."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cu o copie de siguranță poți restaura portofelul dacă pierzi acest dispozitiv sau treci la unul nou."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резервная копия позволит восстановить кошелёк, если вы потеряете это устройство или перейдёте на новое."
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جيڪڏهن هي ڊوائيس گم ٿي وڃي يا توهان نئون ڊوائيس استعمال ڪرڻ لڳو، ته بيڪ اپ مان پنهنجو والٽ بحال ڪري سگهو ٿا."
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "මෙම උපාංගය නැති වුවහොත් හෝ නව උපාංගයකට මාරු වුවහොත් උපස්ථයෙන් ඔබේ පසුම්බිය ප්‍රතිසාධනය කළ හැකිය."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ak toto zariadenie stratíte alebo prejdete na nové, môžete peňaženku obnoviť zo zálohy."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Z varnostno kopijo lahko obnovite denarnico, če izgubite to napravo ali jo zamenjate z novo."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Med en säkerhetskopia kan du återställa plånboken om du tappar bort den här enheten eller byter till en ny."
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nakala ya akiba hukuwezesha kurejesha pochi yako ukipoteza kifaa hiki au ukihamia kwenye kifaa kipya."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் சாதனம் தொலைந்தாலோ புதிய சாதனத்திற்கு மாறினாலோ காப்புப் பிரதியிலிருந்து உங்கள் வாலட்டை மீட்டெடுக்கலாம்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ఈ పరికరం పోయినా లేదా మీరు కొత్త పరికరానికి మారినా, బ్యాకప్‌తో మీ వాలెట్‌ను పునరుద్ధరించవచ్చు."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ข้อมูลสำรองช่วยให้คุณกู้คืนกระเป๋าเงินได้หากอุปกรณ์นี้สูญหายหรือคุณเปลี่ยนไปใช้อุปกรณ์ใหม่"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu cihazı kaybederseniz veya yeni bir cihaza geçerseniz cüzdanınızı yedekten geri yükleyebilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резервна копія дасть змогу відновити гаманець, якщо ви втратите цей пристрій або перейдете на новий."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگر یہ ڈیوائس گم ہو جائے یا آپ نئی ڈیوائس استعمال کرنے لگیں، تو بیک اپ سے اپنا والیٹ بحال کر سکتے ہیں۔"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu qurilma yo‘qolsa yoki yangi qurilmaga o‘tsangiz, zaxira nusxasidan hamyoningizni tiklashingiz mumkin."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu giúp bạn khôi phục ví nếu mất thiết bị này hoặc chuyển sang thiết bị mới."
+          }
+        },
+        "yo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pẹ̀lú ẹ̀dà àfẹ́yinti, o lè mú àpò owó rẹ padà bí ẹ̀rọ yìí bá sọnù tàbí tí o bá bẹ̀rẹ̀ sí í lo ẹ̀rọ tuntun."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果这台设备丢失或你更换了新设备，可以使用备份恢复钱包。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果這部裝置遺失或你更換了新裝置，可以使用備份還原錢包。"
+          }
+        }
+      }
+    },
+    "wallet.backup_offer_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "am" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "የኪስ ቦርሳዎን ምትኬ ይፍጠሩ"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسخ محفظتك احتياطيًا"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "আপনার ওয়ালেটের ব্যাকআপ নিন"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zálohujte si peněženku"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sikkerhedskopiér din tegnebog"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sichere deine Wallet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δημιουργήστε αντίγραφο ασφαλείας του πορτοφολιού σας"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back up your wallet"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haz una copia de seguridad de tu billetera"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "از کیف پول خود نسخهٔ پشتیبان بگیرید"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varmuuskopioi lompakkosi"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I-back up ang iyong wallet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegardez votre portefeuille"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "તમારા વૉલેટનો બૅકઅપ લો"
+          }
+        },
+        "ha" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yi ajiyar madadin walat ɗinka"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "גיבוי הארנק שלך"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अपने वॉलेट का बैकअप लें"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Izradite sigurnosnu kopiju novčanika"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Készítsen biztonsági mentést a tárcájáról"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cadangkan dompet Anda"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esegui il backup del tuo wallet"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウォレットをバックアップ"
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "შექმენით საფულის სარეზერვო ასლი"
+          }
+        },
+        "km" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "បម្រុងទុកកាបូបរបស់អ្នក"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನಿಮ್ಮ ವ್ಯಾಲೆಟ್‌ನ ಬ್ಯಾಕಪ್ ಮಾಡಿ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지갑 백업하기"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "നിങ്ങളുടെ വാലറ്റ് ബാക്കപ്പ് ചെയ്യുക"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तुमच्या वॉलेटचा बॅकअप घ्या"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sandarkan dompet anda"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "သင့်ပိုက်ဆံအိတ်ကို အရန်သိမ်းပါ"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sikkerhetskopier lommeboken din"
+          }
+        },
+        "ne" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आफ्नो वालेटको ब्याकअप लिनुहोस्"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maak een reservekopie van je wallet"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଆପଣଙ୍କ ୱାଲେଟ୍‌ର ବ୍ୟାକଅପ୍ ନିଅନ୍ତୁ"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਆਪਣੇ ਵਾਲਿਟ ਦਾ ਬੈਕਅੱਪ ਲਓ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utwórz kopię zapasową portfela"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faça backup da sua carteira"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crie uma cópia de segurança da sua carteira"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Creează o copie de siguranță a portofelului"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создайте резервную копию кошелька"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پنهنجي والٽ جو بيڪ اپ ٺاهيو"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ඔබේ පසුම්බිය උපස්ථ කරන්න"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zálohujte si peňaženku"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varnostno kopirajte denarnico"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Säkerhetskopiera din plånbok"
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hifadhi nakala ya pochi yako"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "உங்கள் வாலட்டைக் காப்புப் பிரதி எடுக்கவும்"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "మీ వాలెట్‌ను బ్యాకప్ చేయండి"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สำรองข้อมูลกระเป๋าเงินของคุณ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cüzdanınızı yedekleyin"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Створіть резервну копію гаманця"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپنے والیٹ کا بیک اپ لیں"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hamyoningizni zaxiralang"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu ví của bạn"
+          }
+        },
+        "yo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ṣe ẹ̀dà àfẹ́yinti àpò owó rẹ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "备份你的钱包"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備份你的錢包"
+          }
+        }
+      }
+    },
     "wcSwapSlippage" : {
       "extractionState" : "manual",
       "localizations" : {

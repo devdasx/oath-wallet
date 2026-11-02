@@ -46,6 +46,19 @@ import XCTest
         }
     }
 
+    func testActiveWalletObservationStillThrowsForInvalidSnapshotData() async throws {
+        let (store, directory) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: directory) }
+        try await insert("active", into: store)
+        var iterator = store.observeActiveWallet(walletID: "active", currency: "invalid").makeAsyncIterator()
+        do {
+            _ = try await iterator.next()
+            XCTFail("An invalid snapshot must surface its storage error")
+        } catch {
+            XCTAssertEqual(error as? StoreError, .invalidValue("currency"))
+        }
+    }
+
     func testCancellationBeforeRemovalDoesNotDeliverMissingRecordAcross32WalletSwitches() async throws {
         let (store, directory) = try await fixture()
         defer { try? FileManager.default.removeItem(at: directory) }

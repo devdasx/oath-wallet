@@ -3,6 +3,31 @@ import XCTest
 
 /// Opt-in, public read-only mainnet checks. No wallet credentials or signing.
 final class CeloLiveTests: XCTestCase, @unchecked Sendable {
+    func testPublicRevertedFeeRefundIsVerifiedAgainstANKRReceipt() async throws {
+        guard ProcessInfo.processInfo.environment["OATH_CELO_LIVE"] == "1" else { throw XCTSkip("Opt-in Celo receipt lookup") }
+        let path = try XCTUnwrap(ProcessInfo.processInfo.environment["OATH_ANKR_CONFIG"])
+        let keys = try PropertyListDecoder().decode([String: String].self, from: Data(contentsOf: URL(fileURLWithPath: path)))
+        let hash = "0x252b966098cd8c3cb8d75acd0a6e802fd933a7b92300bba22907038c88197da1"
+        let data = try await read("https://celo.blockscout.com/api/v2/transactions/" + hash + "/token-transfers")
+        let indexed = try JSONDecoder().decode(SolanaJSON.self, from: data)
+        let transfer = try XCTUnwrap(indexed["items"].array?.first { $0["log_index"].text == "8" })
+        guard case .object(var fields) = transfer else { return XCTFail("Expected an indexed transfer") }
+        // The transaction-scoped index omits the timestamp supplied by the
+        // address-scoped production endpoint. Pin it to the same public transaction.
+        let parent = try JSONDecoder().decode(SolanaJSON.self, from: await read("https://celo.blockscout.com/api/v2/transactions/" + hash))
+        XCTAssertEqual(parent["hash"].string?.lowercased(), hash)
+        fields["timestamp"] = parent["timestamp"]
+        let row = SolanaJSON.object(fields)
+        let recipient = try XCTUnwrap(row["to"]["hash"].string)
+        let client = try IndexedEVMClient(chain: .celo, apiKey: XCTUnwrap(keys["AnkrAPIKey"]), transport: CeloSinglePublicTransaction(row: row))
+        let page = try await client.history(owner: recipient, stream: .transfers)
+        let refund = try XCTUnwrap(page.events.first)
+        XCTAssertEqual(refund.hash, hash)
+        XCTAssertEqual(refund.amount, "1343")
+        XCTAssertEqual(refund.token?.symbol, "USDT")
+        XCTAssertEqual(refund.parentTransactionFailed, true)
+        XCTAssertFalse(refund.failed)
+    }
     func testPublicFallbackAndRealTokenPaidFee() async throws {
         guard ProcessInfo.processInfo.environment["OATH_CELO_LIVE"] == "1" else { throw XCTSkip("Opt-in Celo mainnet reads") }
         let path = try XCTUnwrap(ProcessInfo.processInfo.environment["OATH_ANKR_CONFIG"])

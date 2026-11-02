@@ -1,9 +1,19 @@
 import Foundation
+import OathDiagnostics
 
 actor WalletPairService {
-    enum Errors: Error {
+    enum Errors: DiagnosticControlFlowError {
         case noPendingRequestsForPairing(topic: String)
         case networkNotConnected
+
+        var isExpectedDiagnosticControlFlow: Bool {
+            // The stored pairing already received its request and has nothing
+            // pending to replay. The app still needs the typed fresh-QR result.
+            switch self {
+            case .noPendingRequestsForPairing: return true
+            case .networkNotConnected: return false
+            }
+        }
     }
 
     let networkingInteractor: NetworkInteracting

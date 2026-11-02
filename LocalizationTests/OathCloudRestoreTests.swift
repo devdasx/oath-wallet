@@ -7,6 +7,17 @@ final class OathCloudRestoreTests: XCTestCase {
     // Public BIP-39 test vector only.
     private let words = String(repeating: "abandon ", count: 11) + "about"
 
+    func testOlderWalletBackupOffersUseRecordedOrigin() {
+        var secret = OathWalletSecret(id: UUID(), mnemonic: "", language: "english", createdAt: .now, backedUp: false)
+        XCTAssertEqual(secret.backupOfferByOrigin, .cloudOrManual)
+        secret.backedUp = true
+        XCTAssertEqual(secret.backupOfferByOrigin, .cloudOnly, "Early formats cannot distinguish a saved phrase from an imported one")
+        secret.imported = false
+        XCTAssertEqual(secret.backupOfferByOrigin, .cloudOrManual, "A local phrase backup is independent of iCloud")
+        secret.imported = true
+        XCTAssertEqual(secret.backupOfferByOrigin, .cloudOnly)
+    }
+
     func testRestoreDerivesOriginalNondefaultAccountsAndPassphrase() throws {
         let accounts: [BackupWallet.Account] = [
             .init(network: "ethereum", derivationPath: "m/44'/60'/0'/0/0", index: 0),
@@ -39,6 +50,11 @@ final class OathCloudRestoreTests: XCTestCase {
             accounts: ["ethereum", "base"].map { .init(network: $0, derivationPath: "imported", index: 0) },
             privateKey: .init(bytes: bytes, networks: ["ethereum", "base"]))
         let restored = try OathRestoredWallet(backup: backup)
+        XCTAssertNil(restored.secret.initialBackupOffer)
+        XCTAssertNil(restored.secret.backupOfferByOrigin)
+        var olderHandoff = restored.secret
+        olderHandoff.createdWithCustomization = true
+        XCTAssertEqual(olderHandoff.backupOfferByOrigin, .cloudOnly)
         XCTAssertEqual(Set(restored.profile.addresses.map(\.chain)), [.ethereum, .base])
         let key = try XCTUnwrap(PrivateKey(data: bytes))
         XCTAssertTrue(restored.profile.addresses.allSatisfy { $0.address == CoinType.ethereum.deriveAddress(privateKey: key) })

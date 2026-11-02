@@ -3,50 +3,49 @@ import SwiftUI
 struct OathRecoveryWarningPage: View {
     let model: OathRecoveryPhraseModel
     let session: OathWalletSession
-    @Environment(\.oathLocalizer) private var strings
-    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 32) {
-                VStack(alignment: .leading, spacing: 18) {
-                    Image(systemName: "exclamationmark.triangle")
-                        .font(.system(size: 38, weight: .medium))
-                        .foregroundStyle(.orange)
-                        .frame(width: 76, height: 76)
-                        .background(Color.orange.opacity(0.1), in: .rect(cornerRadius: 24))
-                        .accessibilityHidden(true)
-                    Text(strings.text(.recoveryWarningTitle))
-                        .oathFont(.title, weight: .semibold)
-                        .accessibilityAddTraits(.isHeader)
-                    Text(strings.text(.recoveryWarningDetail))
-                        .oathFont(.body).foregroundStyle(.secondary)
-                }
-                VStack(spacing: 28) {
-                    warning("person.crop.circle.badge.xmark", title: .recoveryNeverShare, detail: .recoveryNeverShareDetail)
-                    warning("camera", title: .recoveryAvoidScreenshots, detail: .recoveryAvoidScreenshotsDetail)
-                    warning("lock.shield", title: .recoveryStoreSecurely, detail: .recoveryStoreSecurelyDetail)
-                }
-                if let notice = model.notice {
-                    Text(strings.text(notice)).oathFont(.footnote).foregroundStyle(.red)
-                }
+        ScrollView { OathRecoveryWarningContent(model: model) }
+            .oathBottomActions { OathRecoveryWarningAction(model: model, session: session) }
+            .toolbar(.hidden, for: .bottomBar)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("recoveryDisclosure.warning")
+    }
+}
+
+struct OathRecoveryWarningContent: View {
+    let model: OathRecoveryPhraseModel
+    var fitsBackupSheet = false
+    @Environment(\.oathLocalizer) private var strings
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: fitsBackupSheet ? 20 : 32) {
+            VStack(alignment: .leading, spacing: fitsBackupSheet ? 12 : 18) {
+                Image(systemName: "exclamationmark.triangle")
+                    .font(.system(size: 38, weight: .medium))
+                    .foregroundStyle(.orange)
+                    .frame(width: 76, height: 76)
+                    .background(Color.orange.opacity(0.1), in: .rect(cornerRadius: 24))
+                    .accessibilityHidden(true)
+                Text(strings.text(.recoveryWarningTitle))
+                    .oathFont(.title, weight: .semibold)
+                    .accessibilityAddTraits(.isHeader)
+                Text(strings.text(.recoveryWarningDetail))
+                    .oathFont(.body).foregroundStyle(.secondary)
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(24)
-            .frame(maxWidth: 600, alignment: .leading)
-            .frame(maxWidth: .infinity)
-        }
-        .oathBottomActions {
-            OathBottomAction(title: strings.text(.recoveryUnderstand),
-                         identifier: "recoveryDisclosure.understand",
-                         isEnabled: session.isUnlocked, isWorking: model.busy) {
-                guard session.isUnlocked, !model.busy, scenePhase != .background else { return }
-                model.acknowledge(reason: strings.text(.recoveryAuthenticationReason))
+            VStack(spacing: fitsBackupSheet ? 16 : 28) {
+                warning("person.crop.circle.badge.xmark", title: .recoveryNeverShare, detail: .recoveryNeverShareDetail)
+                warning("camera", title: .recoveryAvoidScreenshots, detail: .recoveryAvoidScreenshotsDetail)
+                warning("lock.shield", title: .recoveryStoreSecurely, detail: .recoveryStoreSecurelyDetail)
+            }
+            if let notice = model.notice {
+                Text(strings.text(notice)).oathFont(.footnote).foregroundStyle(.red)
             }
         }
-        .toolbar(.hidden, for: .bottomBar)
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("recoveryDisclosure.warning")
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(fitsBackupSheet ? 16 : 24)
+        .frame(maxWidth: 600, alignment: .leading)
+        .frame(maxWidth: .infinity)
     }
 
     private func warning(_ icon: String, title: OathStringKey, detail: OathStringKey) -> some View {
@@ -57,6 +56,22 @@ struct OathRecoveryWarningPage: View {
                 Text(strings.text(detail)).oathFont(.subheadline).foregroundStyle(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+}
+
+struct OathRecoveryWarningAction: View {
+    let model: OathRecoveryPhraseModel
+    let session: OathWalletSession
+    @Environment(\.oathLocalizer) private var strings
+    @Environment(\.scenePhase) private var scenePhase
+
+    var body: some View {
+        OathBottomAction(title: strings.text(.recoveryUnderstand),
+                     identifier: "recoveryDisclosure.understand",
+                     isEnabled: session.isUnlocked, isWorking: model.busy) {
+            guard session.isUnlocked, !model.busy, scenePhase != .background else { return }
+            model.acknowledge(reason: strings.text(.recoveryAuthenticationReason))
         }
     }
 }
@@ -138,106 +153,122 @@ struct OathSecretPasscodePage: View {
 struct OathRecoveryWordsPage: View {
     let model: OathRecoveryPhraseModel
     let session: OathWalletSession
+
+    var body: some View {
+        ScrollView { OathRecoveryWordsContent(model: model, session: session) }
+            .oathBottomActions { OathRecoveryWordsAction(model: model, session: session) }
+            .toolbar(.hidden, for: .bottomBar)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("recoveryDisclosure.words")
+    }
+}
+
+struct OathRecoveryWordsContent: View {
+    let model: OathRecoveryPhraseModel
+    let session: OathWalletSession
     @Environment(\.oathLocalizer) private var strings
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    @State private var copied = false
     @State private var passphraseCopied = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                Label(strings.text(.recoveryKeepSafe), systemImage: "exclamationmark.shield")
-                    .oathFont(.subheadline, weight: .semibold)
-                    .foregroundStyle(.orange)
+        VStack(alignment: .leading, spacing: 24) {
+            Label(strings.text(.recoveryKeepSafe), systemImage: "exclamationmark.shield")
+                .oathFont(.subheadline, weight: .semibold)
+                .foregroundStyle(.orange)
+                .fixedSize(horizontal: false, vertical: true)
+            if let text = model.multisigRecoveryText {
+                Text(strings.text(.multisigRecoveryDetail)).oathFont(.body).foregroundStyle(.secondary)
+                Text(verbatim: text)
+                    .font(.body.monospaced()).textSelection(.disabled)
                     .fixedSize(horizontal: false, vertical: true)
-                if let text = model.multisigRecoveryText {
-                    Text(strings.text(.multisigRecoveryDetail)).oathFont(.body).foregroundStyle(.secondary)
-                    Text(verbatim: text)
-                        .font(.body.monospaced()).textSelection(.disabled)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(16)
-                        .background(Color(uiColor: OathSurfaceColors.field), in: .rect(cornerRadius: 16))
-                        .environment(\.layoutDirection, .leftToRight)
-                }
-                if model.multisigRecoveryText == nil {
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(16)
+                    .background(Color(uiColor: OathSurfaceColors.field), in: .rect(cornerRadius: 16))
+                    .environment(\.layoutDirection, .leftToRight)
+            }
+            if model.multisigRecoveryText == nil {
                 Text(strings.text(.recoveryViewDetail))
                     .oathFont(.body).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
-                }
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), alignment: .leading)], spacing: 12) {
-                    ForEach(Array(model.words.enumerated()), id: \.offset) { index, word in
-                        HStack(alignment: .firstTextBaseline, spacing: 10) {
-                            Text(String(index + 1))
-                                .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
-                                .frame(minWidth: 18, alignment: .trailing)
-                            Text(verbatim: word)
-                                .font(.body.weight(.medium))
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(16)
-                        .background(Color(uiColor: OathSurfaceColors.field), in: .rect(cornerRadius: 16))
-                        .accessibilityElement(children: .combine)
-                        .accessibilityIdentifier("recoveryDisclosure.word.\(index + 1)")
+            }
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 140), alignment: .leading)], spacing: 12) {
+                ForEach(Array(model.words.enumerated()), id: \.offset) { index, word in
+                    HStack(alignment: .firstTextBaseline, spacing: 10) {
+                        Text(String(index + 1))
+                            .font(.caption.monospacedDigit()).foregroundStyle(.secondary)
+                            .frame(minWidth: 18, alignment: .trailing)
+                        Text(verbatim: word)
+                            .font(.body.weight(.medium))
+                            .fixedSize(horizontal: false, vertical: true)
                     }
-                }
-                // Phrase order is invariant even when the surrounding app is RTL.
-                .environment(\.layoutDirection, .leftToRight)
-                if let passphrase = model.passphrase {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(strings.text(.walletPassphrase)).oathFont(.headline)
-                        Text(strings.text(.passphraseRecoveryDetail)).oathFont(.subheadline).foregroundStyle(.secondary)
-                        HStack(spacing: 12) {
-                            Text(verbatim: passphrase)
-                                .font(.body.monospaced()).textSelection(.disabled)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .environment(\.layoutDirection, .leftToRight)
-                                .accessibilityIdentifier("recoveryDisclosure.passphrase")
-                            OathButton(feedback: nil) {
-                                guard session.isUnlocked, scenePhase != .background else { return }
-                                OathSensitiveClipboard.copy(passphrase)
-                                passphraseCopied = true
-                            } label: {
-                                Image(systemName: passphraseCopied ? "checkmark" : "doc.on.doc")
-                                    .font(.body)
-                                    .contentTransition(reduceMotion ? .identity : .symbolEffect(.replace))
-                                    .animation(reduceMotion ? nil : .default, value: passphraseCopied)
-                                    .frame(width: 44, height: 44)
-                                    .contentShape(Rectangle())
-                            }
-                            .buttonStyle(.plain)
-                            .foregroundStyle(.primary)
-                            .disabled(!session.isUnlocked)
-                            .oathInteractionBlocked()
-                            .accessibilityLabel(strings.text(.passphraseCopy))
-                            .accessibilityValue(passphraseCopied ? strings.text(.recoveryCopied) : "")
-                            .accessibilityIdentifier("recoveryDisclosure.copyPassphrase")
-                        }
-                        .padding(.leading, 16)
-                        .padding(.trailing, 8)
-                        .padding(.vertical, 6)
-                        .background(Color(uiColor: OathSurfaceColors.field), in: .rect(cornerRadius: 16))
-                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(16)
+                    .background(Color(uiColor: OathSurfaceColors.field), in: .rect(cornerRadius: 16))
+                    .accessibilityElement(children: .combine)
+                    .accessibilityIdentifier("recoveryDisclosure.word.\(index + 1)")
                 }
             }
-            .padding(24)
-            .frame(maxWidth: 600, alignment: .leading)
-            .frame(maxWidth: .infinity)
-        }
-        .oathBottomActions {
-            OathBottomAction(title: strings.text(copied ? .recoveryCopied : .recoveryCopy),
-                         identifier: "recoveryDisclosure.copy", appearance: .secondary,
-                         isEnabled: (!model.words.isEmpty || model.multisigRecoveryText != nil) && session.isUnlocked) {
-                guard (!model.words.isEmpty || model.multisigRecoveryText != nil), session.isUnlocked, scenePhase != .background else { return }
-                OathSensitiveClipboard.copy(model.multisigRecoveryText ?? model.words.joined(separator: " "))
-                copied = true
+            // Phrase order is invariant even when the surrounding app is RTL.
+            .environment(\.layoutDirection, .leftToRight)
+            if let passphrase = model.passphrase {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(strings.text(.walletPassphrase)).oathFont(.headline)
+                    Text(strings.text(.passphraseRecoveryDetail)).oathFont(.subheadline).foregroundStyle(.secondary)
+                    HStack(spacing: 12) {
+                        Text(verbatim: passphrase)
+                            .font(.body.monospaced()).textSelection(.disabled)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .environment(\.layoutDirection, .leftToRight)
+                            .accessibilityIdentifier("recoveryDisclosure.passphrase")
+                        OathButton(feedback: nil) {
+                            guard session.isUnlocked, scenePhase != .background else { return }
+                            OathSensitiveClipboard.copy(passphrase)
+                            passphraseCopied = true
+                        } label: {
+                            Image(systemName: passphraseCopied ? "checkmark" : "doc.on.doc")
+                                .font(.body)
+                                .contentTransition(reduceMotion ? .identity : .symbolEffect(.replace))
+                                .animation(reduceMotion ? nil : .default, value: passphraseCopied)
+                                .frame(width: 44, height: 44)
+                                .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .foregroundStyle(.primary)
+                        .disabled(!session.isUnlocked)
+                        .oathInteractionBlocked()
+                        .accessibilityLabel(strings.text(.passphraseCopy))
+                        .accessibilityValue(passphraseCopied ? strings.text(.recoveryCopied) : "")
+                        .accessibilityIdentifier("recoveryDisclosure.copyPassphrase")
+                    }
+                    .padding(.leading, 16)
+                    .padding(.trailing, 8)
+                    .padding(.vertical, 6)
+                    .background(Color(uiColor: OathSurfaceColors.field), in: .rect(cornerRadius: 16))
+                }
             }
         }
-        .toolbar(.hidden, for: .bottomBar)
-        .accessibilityElement(children: .contain)
-        .accessibilityIdentifier("recoveryDisclosure.words")
+        .padding(24)
+        .frame(maxWidth: 600, alignment: .leading)
+        .frame(maxWidth: .infinity)
+    }
+}
+
+struct OathRecoveryWordsAction: View {
+    let model: OathRecoveryPhraseModel
+    let session: OathWalletSession
+    @Environment(\.oathLocalizer) private var strings
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var copied = false
+
+    var body: some View {
+        OathBottomAction(title: strings.text(copied ? .recoveryCopied : .recoveryCopy),
+                     identifier: "recoveryDisclosure.copy", appearance: .secondary,
+                     isEnabled: (!model.words.isEmpty || model.multisigRecoveryText != nil) && session.isUnlocked) {
+            guard (!model.words.isEmpty || model.multisigRecoveryText != nil), session.isUnlocked, scenePhase != .background else { return }
+            OathSensitiveClipboard.copy(model.multisigRecoveryText ?? model.words.joined(separator: " "))
+            copied = true
+        }
     }
 }

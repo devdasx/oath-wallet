@@ -285,6 +285,19 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         return profile
     }
 
+    /// Validate the public ledger before the irreversible first credential write.
+    /// A cached database handle may outlive the catalog erased by a recovery reset.
+    private func prepareFirstWallet(token: UUID) async throws {
+        let db = try await database()
+        try checkAuthentication(token)
+        guard try !exists() else { throw OathPasscodeSaveError.alreadyConfigured }
+        guard try await db.pendingWalletReset() == nil else { throw OathWalletError.unavailable }
+        try checkAuthentication(token)
+        try await OathDataEnvironment.seed(db)
+        try checkAuthentication(token)
+        guard try !exists() else { throw OathPasscodeSaveError.alreadyConfigured }
+    }
+
     func create(digits: [UInt8], importing phrase: OathValidatedMnemonic?, privateKey: OathImportedPrivateKey? = nil, multisig: BackupWallet.BitcoinMultisig? = nil, solanaMultisig: BackupWallet.SolanaMultisig? = nil, tronMultisig: BackupWallet.TronMultisig? = nil, xrplMultisig: BackupWallet.XrplMultisig? = nil, stellarMultisig: BackupWallet.StellarMultisig? = nil, aptosMultisig: BackupWallet.AptosMultisig? = nil, suiMultisig: BackupWallet.SuiMultisig? = nil, nearMultisig: BackupWallet.NearMultisig? = nil, evmMultisig: BackupWallet.EVMMultisig? = nil, tonMultisig: BackupWallet.TonMultisig? = nil, thorchainMultisig: BackupWallet.ThorchainMultisig? = nil) async throws {
         guard evmMultisig == nil || (tonMultisig == nil && thorchainMultisig == nil && nearMultisig == nil && suiMultisig == nil && aptosMultisig == nil && stellarMultisig == nil && xrplMultisig == nil && solanaMultisig == nil && tronMultisig == nil && multisig == nil && phrase == nil && privateKey == nil) else { throw OathWalletError.invalidPrivateKey }
         guard tonMultisig == nil || (thorchainMultisig == nil && nearMultisig == nil && suiMultisig == nil && aptosMultisig == nil && stellarMultisig == nil && xrplMultisig == nil && solanaMultisig == nil && tronMultisig == nil && multisig == nil && phrase == nil && privateKey == nil) else { throw OathWalletError.invalidPrivateKey }
@@ -299,12 +312,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard multisig == nil || (phrase == nil && privateKey == nil) else { throw OathWalletError.invalidPrivateKey }
         guard phrase == nil || privateKey == nil else { throw OathWalletError.invalidPrivateKey }
         let token = authenticationGeneration
-        // Finish opening/migrating before committing any new protected wallet.
-        // A schema or protected-data error must fail before this point of no return.
-        _ = try await database()
-        guard token == authenticationGeneration else { throw CancellationError() }
-        guard try !exists() else { throw OathPasscodeSaveError.alreadyConfigured }
-        try Task.checkCancellation()
+        try await prepareFirstWallet(token: token)
         var candidate: OathWalletSecret
         if let evmMultisig { candidate = try OathWalletEngine.multisig(evmMultisig) }
         else if let tonMultisig { candidate = try OathWalletEngine.multisig(tonMultisig) }
@@ -322,6 +330,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         else { candidate = try OathWalletEngine.create() }
         candidate.imported = phrase != nil || privateKey != nil
         candidate.createdWithCustomization = true
+        candidate.initialBackupOffer = phrase == nil && privateKey == nil ? .cloudOrManual : .cloudOnly
         let derived = try OathWalletEngine.profile(for: candidate)
         let (sealed, key) = try OathVaultEnvelope.seal(candidate, digits: digits)
         try Task.checkCancellation()
@@ -494,9 +503,9 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         }
         try checkAuthentication(token)
         do {
-            let signed = try OathWalletEngine.signBitcoin(quote.plan, secret: wallet, accounts: accounts)
+            let signature = try OathWalletEngine.signBitcoin(quote.plan, secret: wallet, accounts: accounts)
             try checkAuthentication(token)
-            return signed
+            return signature
         } catch { OathDiagnostics.record(error);
             Task { await OathSendDiagnostics.shared.record(network: quote.plan.chain.rawValue, stage: "sign", error: error, inputCount: quote.plan.coins.count) }
             throw error
@@ -1375,7 +1384,8 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
                              backedUp: secret.backedUp, colorHex: secret.restoration?.colorHex,
                              needsCustomization: secret.createdWithCustomization == true,
                              nameGroup: secret.isDerivedWallet ? "passphrase" : secret.isLocalMnemonic ? "imported" : secret.isMultisig ? "multisig" : secret.passphrase != nil ? "passphrase" : (secret.restoration != nil ? "restored" : secret.privateKey?.networks.first.map { "network:" + $0.id }),
-                             parentWalletID: secret.parentWalletID?.uuidString, nameIndex: secret.passphraseIndex ?? 0),
+                             parentWalletID: secret.parentWalletID?.uuidString, nameIndex: secret.passphraseIndex ?? 0,
+                             pendingBackupOffer: secret.backupOfferByOrigin),
                 accounts: initial.addresses.map {
                     AccountRecord(id: id + ":" + $0.chain.id + ":" + String($0.accountIndex), walletID: id, networkID: $0.chain.id,
                                   address: $0.address, derivationPath: $0.path, accountIndex: $0.accountIndex)
@@ -1405,6 +1415,14 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         // generate their public QR cache through the shared database triggers.
         guard let storedWallet = try await db.wallet(id), storedWallet.vaultReference == reference else {
             throw OathWalletError.corruptVault
+        }
+        if storedWallet.needsBackupOfferReview == true {
+            // A v103 wallet with an initial offer and a cleared SQL value was already handled.
+            let legacyOffer = secret.initialBackupOffer == nil ? secret.backupOfferByOrigin : nil
+            await OathDiagnostics.attempt("review_wallet_backup_offer") {
+                try await db.finishBackupOfferReview(walletID: id, previouslyUntrackedOffer: legacyOffer)
+            }
+            try checkAuthentication(token)
         }
         for account in try await db.accounts(walletID: id) {
             try checkAuthentication(token)
@@ -1518,13 +1536,14 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
             if let multisig {
                 guard Self.sameRecoveryMaterial(existing, try multisig.secret(id: requestID)) else { throw OathWalletError.invalidPrivateKey }
             }
-            return try await activateImportedWallet(existing, token: token)
+            return try await activateImportedWallet(existing, token: token, offer: phrase != nil || privateKey != nil ? .cloudOnly : .cloudOrManual)
         }
         var candidate = try multisig?.secret(id: requestID)
             ?? privateKey.map { try OathWalletEngine.imported($0, id: requestID) }
             ?? phrase.map { try OathWalletEngine.imported($0, id: requestID) }
             ?? OathWalletEngine.create(id: requestID)
         candidate.createdWithCustomization = true
+        candidate.initialBackupOffer = phrase == nil && privateKey == nil ? .cloudOrManual : .cloudOnly
         let derived = try OathWalletEngine.profile(for: candidate)
         contents.wallets.append(candidate)
         contents.reconcilePassphraseFamilies()
@@ -1543,9 +1562,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     /// password is never reused as the app PIN, written to disk or retained.
     func createRestoredWallet(digits: [UInt8], restoration: OathRestoredWallet) async throws {
         let token = authenticationGeneration
-        _ = try await database()
-        try checkAuthentication(token)
-        guard try !exists() else { throw OathPasscodeSaveError.alreadyConfigured }
+        try await prepareFirstWallet(token: token)
         var candidate = restoration.secret
         if candidate.passphrase != nil { candidate.passphraseIndex = 1 }
         let (sealed, key) = try OathVaultEnvelope.seal(candidate, digits: digits)
@@ -1572,12 +1589,12 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         if let existing = contents.wallets.first(where: { $0.id == candidate.id }) {
             guard Self.sameRecoveryMaterial(existing, candidate),
                   Self.accountKeys(candidate).isSubset(of: Self.accountKeys(existing)) else { throw CloudBackupError.fileConflict }
-            return try await activateImportedWallet(existing, token: token)
+            return try await activateImportedWallet(existing, token: token, offer: candidate.initialBackupOffer)
         }
         if let existing = contents.wallets.first(where: {
             Self.sameRecoveryMaterial($0, candidate) && Self.sameAccounts($0, candidate)
         }) {
-            return try await activateImportedWallet(existing, token: token)
+            return try await activateImportedWallet(existing, token: token, offer: candidate.initialBackupOffer)
         }
         // Check SQL identity before the irreversible ciphertext replacement.
         // Normally every SQL wallet already appears in the encrypted index.
@@ -1693,7 +1710,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         }
 
         let candidate = OathWalletSecret(id: requestID, mnemonic: source.mnemonic, language: source.language,
-            createdAt: .now, backedUp: false, createdWithCustomization: true, passphrase: passphrase,
+            createdAt: .now, backedUp: false, createdWithCustomization: true, initialBackupOffer: .cloudOrManual, passphrase: passphrase,
             parentWalletID: source.id,
             passphraseIndex: max(contents.lastPassphraseIndex ?? 0, contents.wallets.compactMap(\.passphraseIndex).max() ?? 0) + 1)
         let derivation = Task.detached(priority: .userInitiated) { try OathWalletEngine.profile(for: candidate) }
@@ -1748,7 +1765,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         }) { throw OathWalletError.duplicatePassphraseWallet(duplicate.id) }
         let candidate = OathWalletSecret(id: requestID, mnemonic: source.mnemonic, language: "electrum",
             createdAt: .now, backedUp: false, electrum: material,
-            createdWithCustomization: true, parentWalletID: source.id,
+            createdWithCustomization: true, initialBackupOffer: .cloudOrManual, parentWalletID: source.id,
             passphraseIndex: max(contents.lastPassphraseIndex ?? 0, contents.wallets.compactMap(\.passphraseIndex).max() ?? 0) + 1)
         let derivation = Task.detached(priority: .userInitiated) { try OathWalletEngine.profile(for: candidate) }
         let derived = try await withTaskCancellationHandler { try await derivation.value } onCancel: { derivation.cancel() }
@@ -1769,7 +1786,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     /// Importing recovery material explicitly restores a matching retained
     /// wallet. Ordinary selection still rejects deleted wallets. Persist the
     /// encrypted lifecycle first so unlock can repair an interrupted SQL write.
-    private func activateImportedWallet(_ selected: OathWalletSecret, token: UUID) async throws -> OathWalletProfile {
+    private func activateImportedWallet(_ selected: OathWalletSecret, token: UUID, offer: WalletBackupOffer? = .cloudOrManual) async throws -> OathWalletProfile {
         guard var contents, let key = encryptionKey, let sealed = envelope,
               let index = contents.wallets.firstIndex(where: { $0.id == selected.id })
         else { throw OathWalletError.locked }
@@ -1781,6 +1798,16 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         // reconciliation was interrupted, including missing public metadata.
         _ = try await restoredProfile(for: contents, rootID: sealed.id, token: token)
         try checkAuthentication(token)
+        if offer != .cloudOrManual {
+            let db = try await database()
+            try checkAuthentication(token)
+            if offer == .cloudOnly && selected.initialBackupOffer == nil {
+                try await db.finishBackupOfferReview(walletID: selected.id.uuidString, previouslyUntrackedOffer: selected.backupOfferByOrigin)
+                try checkAuthentication(token)
+            }
+            try await db.updatePendingBackupOffer(walletID: selected.id.uuidString, to: offer)
+            try checkAuthentication(token)
+        }
         return try await activateWallet(contents.wallets[index], rootID: sealed.id, token: token)
     }
 

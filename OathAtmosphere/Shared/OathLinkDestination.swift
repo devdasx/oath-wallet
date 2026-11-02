@@ -12,8 +12,7 @@ enum OathLinkDestination: Equatable {
             guard let host = url.host, !host.isEmpty, url.user == nil, url.password == nil else {
                 self = .unsupported; return
             }
-            self = url.scheme?.lowercased() == "https" && host.lowercased() == "apps.apple.com"
-                ? .system(url) : .web(url)
+            self = .web(url)
         case "mailto":
             // Contact support uses a plain recipient; do not silently send or
             // insert untrusted URL query content into an email draft.

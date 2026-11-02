@@ -61,6 +61,7 @@ extension OathDatabase {
         let first = try descriptor.branches.flatMap { try BitcoinKeys.addresses(branch: $0, range: 0..<($0.isHD ? 20 : 1)) }
         let data = try JSONEncoder().encode(descriptor)
         try await pool.write { db in
+            try Self.requireWalletSyncAllowed(db)
             guard let account = try AccountRecord.fetchOne(db, key: accountID), account.networkID == descriptor.network.rawValue else { throw StoreError.missingRecord }
             if let old = try Data.fetchOne(db, sql: "SELECT descriptor FROM bitcoinWallets WHERE accountID=?", arguments: [accountID]) {
                 guard try JSONDecoder().decode(BitcoinWalletDescriptor.self, from: old) == descriptor else { throw StoreError.conflictingIdentity }
@@ -151,6 +152,7 @@ extension OathDatabase {
     public func beginBitcoinScan(accountID: String) async throws -> String {
         let id = UUID().uuidString
         try await pool.write { db in
+            try Self.requireWalletSyncAllowed(db)
             try db.execute(sql: "UPDATE bitcoinWallets SET scanID=?,failure=NULL WHERE accountID=?", arguments: [id, accountID])
             guard db.changesCount == 1 else { throw StoreError.missingRecord }
         }
@@ -159,6 +161,7 @@ extension OathDatabase {
 
     public func failBitcoinScan(accountID: String, scanID: String, code: String) async throws {
         try await pool.write { db in
+            try Self.requireWalletSyncAllowed(db)
             try db.execute(sql: "UPDATE bitcoinWallets SET scanID=NULL,failure=? WHERE accountID=? AND scanID=?", arguments: [String(code.prefix(64)), accountID, scanID])
         }
     }
@@ -171,6 +174,7 @@ extension OathDatabase {
             throw BitcoinError.inconsistentSnapshot
         }
         try await pool.write { db in
+            try Self.requireWalletSyncAllowed(db)
             guard let row = try Row.fetchOne(db, sql: "SELECT * FROM bitcoinWallets WHERE accountID=? AND scanID=?", arguments: [accountID, scanID]),
                   let account = try AccountRecord.fetchOne(db, key: accountID) else { throw StoreError.staleSync }
             let descriptor = try JSONDecoder().decode(BitcoinWalletDescriptor.self, from: row["descriptor"])

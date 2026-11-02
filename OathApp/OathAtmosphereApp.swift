@@ -69,7 +69,8 @@ struct OathWalletRoot: View {
                 // locked. Presented sheets, navigation and scroll stay intact.
                 // A cold lock with no wallet snapshot uses the blank surface
                 // beneath the lock cover, never a fabricated empty Home.
-                OathHomeScreen(profile: session.displayedProfile, session: session, settings: settings)
+                OathHomeScreen(profile: session.displayedProfile, session: session, settings: settings,
+                               lockCoverHidden: !showsInitialLock && !lockIsVisible)
                     .disabled(session.isLocked)
                     .accessibilityHidden(session.isLocked || showsInitialLock)
                     // Cold launch mounts the cover in the same view hierarchy
@@ -129,7 +130,7 @@ struct OathWalletRoot: View {
             // deliberately outside the first-screen readiness boundary.
             guard session.allowsBackgroundWalletWork else { return }
             async let cloudResume: Void? = await OathDiagnostics.attempt("backup_resume") { try await OathCloudBackupService.shared.resume() }
-            async let rates = await OathDiagnostics.attempt("exchange_rates") { try await OathExchangeRateEnvironment.shared.refresh() }
+            async let rates = await OathExchangeRateEnvironment.shared.refresh()
             _ = await cloudResume
             _ = await rates
         }
@@ -146,7 +147,7 @@ struct OathWalletRoot: View {
                 Task {
                     guard session.allowsBackgroundWalletWork else { return }
                     async let cloudResume: Void? = await OathDiagnostics.attempt("backup_resume") { try await OathCloudBackupService.shared.resume() }
-                    async let rates = await OathDiagnostics.attempt("exchange_rates") { try await OathExchangeRateEnvironment.shared.refresh() }
+                    async let rates = await OathExchangeRateEnvironment.shared.refresh()
                     _ = await cloudResume
                     _ = await rates
                 }

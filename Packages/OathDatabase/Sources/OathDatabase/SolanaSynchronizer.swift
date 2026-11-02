@@ -104,28 +104,49 @@ public actor SolanaSynchronizer {
         let database = database, client = client
         history[ticket.account.id] = Task {
             let started = Date().timeIntervalSince1970
+            var rejectedAddresses = Set<String>()
             do {
                 while !Task.isCancelled {
-                    let work = try await database.solanaHistoryWork(ticket, since: started, limit: 3)
+                    // Fetch past this run's rejected addresses, still scheduling at
+                    // most three workers. The database caps the query at 20 rows.
+                    let candidates = try await database.solanaHistoryWork(ticket, since: started, limit: 3 + rejectedAddresses.count)
+                    let work = candidates.filter { !rejectedAddresses.contains($0.address) }.prefix(3)
                     if work.isEmpty { return }
-                    // Bounded parallelism avoids thousands of tasks on wallets
-                    // with spam accounts, while all durable cursors get a turn.
-                    let failure = await withTaskGroup(of: String?.self) { group in
+                    let preservingFailure = !rejectedAddresses.isEmpty
+                    let failures = await withTaskGroup(of: (address: String, error: any Error)?.self) { group in
                         for cursor in work { group.addTask {
-                            do { try await Self.historyPage(cursor, ticket: ticket, started: started, catalog: catalog,
-                                                            database: database, client: client); return nil }
-                            catch { OathDiagnostics.record(error); return Self.failureCode(error) }
+                            do {
+                                try await Self.historyPage(cursor, ticket: ticket, started: started, catalog: catalog,
+                                                           database: database, client: client, preservingFailure: preservingFailure)
+                                return nil
+                            } catch {
+                                OathDiagnostics.record(error)
+                                return (cursor.address, error)
+                            }
                         } }
-                        var failure: String?
-                        for await result in group { if failure == nil { failure = result } }
-                        return failure
+                        var failures: [(address: String, error: any Error)] = []
+                        for await result in group { if let result { failures.append(result) } }
+                        return failures
                     }
-                    if let failure {
-                        try await database.failSolanaSync(ticket, history: true, code: failure)
+                    try Task.checkCancellation()
+                    if let failure = failures.first(where: { $0.error as? SolanaError != .rpc(-32020) }) {
+                        try await database.failSolanaSync(ticket, history: true, code: Self.failureCode(failure.error))
                         return
                     }
+                    if let first = failures.first {
+                        try await database.failSolanaSync(ticket, history: true, code: Self.failureCode(first.error))
+                        rejectedAddresses.formUnion(failures.map(\.address))
+                        // A broadly failing index must not trigger a scan across
+                        // thousands of token accounts. Retry on the next refresh.
+                        if rejectedAddresses.count >= 16 { return }
+                    }
                 }
-            } catch { OathDiagnostics.record(error); await OathDiagnostics.attempt("failSolanaSync", body: { try await database.failSolanaSync(ticket, history: true, code: Self.failureCode(error)) }) }
+            } catch is CancellationError {
+                // Replaced or stopped history leaves its durable cursor for the next refresh.
+            } catch {
+                OathDiagnostics.record(error)
+                await OathDiagnostics.attempt("failSolanaSync") { try await database.failSolanaSync(ticket, history: true, code: Self.failureCode(error)) }
+            }
         }
     }
     private static func failureCode(_ error: Error) -> String {
@@ -134,7 +155,7 @@ public actor SolanaSynchronizer {
         return "storage"
     }
     private static func historyPage(_ cursor: SolanaHistoryCursor, ticket: SolanaSyncTicket, started: Double,
-        catalog: [String: SolanaTokenInfo], database: OathDatabase, client: SolanaClient) async throws {
+        catalog: [String: SolanaTokenInfo], database: OathDatabase, client: SolanaClient, preservingFailure: Bool) async throws {
         let backfill = cursor.head != nil && cursor.lastChecked >= started && cursor.pendingBefore == nil
         // Commit small visible pages promptly, instead of waiting for hundreds
         // of archival transactions before showing the first history entry.
@@ -144,11 +165,11 @@ public actor SolanaSynchronizer {
         try Task.checkCancellation()
         var values = try await database.cachedSolanaTransactions(ticket, signatures: page.signatures.map(\.signature))
         let known = Set(values.map(\.signature))
-        let missing = page.signatures.map(\.signature).filter { !known.contains($0) }
+        let missing = page.signatures.filter { !known.contains($0.signature) }
         let fetched = try await withThrowingTaskGroup(of: [SolanaTransaction].self) { group in
             for start in stride(from: 0, to: missing.count, by: 20) {
                 let chunk = Array(missing[start..<min(start+20,missing.count)])
-                group.addTask { try await client.transactions(signatures: chunk, owner: ticket.owner) }
+                group.addTask { try await client.transactions(matching: chunk, owner: ticket.owner) }
             }
             var result: [SolanaTransaction] = []
             for try await batch in group { result += batch }
@@ -157,7 +178,7 @@ public actor SolanaSynchronizer {
         values += fetched
         try Task.checkCancellation()
         try await database.commitSolanaHistory(values, page: page, cursor: cursor, ticket: ticket, backfill: backfill,
-                                              pageSize: pageSize, catalog: catalog)
+                                              pageSize: pageSize, catalog: catalog, preservingFailure: preservingFailure)
     }
     public func cancel() async {
         epoch = UUID()

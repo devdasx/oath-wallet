@@ -343,14 +343,16 @@ extension View {
     /// Keep form/inline actions in oathActionArea instead.
     func oathBottomActions<Actions: View>(isPresented: Bool = true,
                                           maximumWidth: CGFloat = OathActionMetrics.maximumWidth,
+                                          onHeightChange: ((CGFloat) -> Void)? = nil,
                                           @ViewBuilder content: () -> Actions) -> some View {
-        modifier(OathBottomActions(isPresented: isPresented, maximumWidth: maximumWidth, actions: content()))
+        modifier(OathBottomActions(isPresented: isPresented, maximumWidth: maximumWidth, onHeightChange: onHeightChange, actions: content()))
     }
 }
 
 private struct OathBottomActions<Actions: View>: ViewModifier {
     let isPresented: Bool
     let maximumWidth: CGFloat
+    let onHeightChange: ((CGFloat) -> Void)?
     let actions: Actions
 
     func body(content: Content) -> some View {
@@ -369,10 +371,13 @@ private struct OathBottomActions<Actions: View>: ViewModifier {
         // Apply system padding only to a real bar. Empty states and working
         // screens must not reserve an invisible footer's height.
         if isPresented {
-            actions
+            let paddedActions = actions
                 .frame(maxWidth: maximumWidth)
                 .padding()
                 .frame(maxWidth: .infinity)
+            if let onHeightChange {
+                paddedActions.onGeometryChange(for: CGFloat.self, of: { $0.size.height }, action: onHeightChange)
+            } else { paddedActions }
         }
     }
 }

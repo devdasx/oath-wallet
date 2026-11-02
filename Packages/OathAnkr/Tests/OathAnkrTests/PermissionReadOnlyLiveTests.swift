@@ -17,6 +17,23 @@ private struct PermissionReadOnlyTransport: AnkrTransport {
 }
 
 @MainActor final class PermissionReadOnlyLiveTests: XCTestCase {
+    func testRemovedBaseAllowanceStopsBeforePreparingATransaction() async throws {
+        guard let raw = ProcessInfo.processInfo.environment["OATH_BASE_READ_RPC"],
+              let endpoint = URL(string: raw), endpoint.scheme == "https", endpoint.host != nil else {
+            throw XCTSkip("Opt-in public allowance read on Base")
+        }
+        let client = try EVMSendClient(network: .base, endpoints: [endpoint], transport: PermissionReadOnlyTransport())
+        let owner = "0x0000000000000000000000000000000000000001"
+        let removal = EVMPermissionRemoval(kind: .token, contract: "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                                          spender: "0x0000000000000000000000000000000000000002", expected: "1")
+        let current = try await client.permissionState(owner: owner, removal: removal)
+        XCTAssertEqual(current, "0")
+        do {
+            _ = try await client.quote(sender: owner, recipient: removal.contract, reference: "native", decimals: 18, amount: "0", removal: removal)
+            XCTFail("An already-removed allowance produced a plan")
+        } catch { XCTAssertEqual(error as? PermissionError, .alreadyRemoved) }
+    }
+
     func testBNBUSDTAllowanceQuoteAndPreflightWithoutSigning() async throws {
         guard let address = ProcessInfo.processInfo.environment["OATH_PERMISSION_BNB_OWNER"] else {
             throw XCTSkip("Opt-in public read-only BNB allowance check")

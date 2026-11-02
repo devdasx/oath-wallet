@@ -685,6 +685,9 @@ final class OathWalletSession {
             await quote
             guard token == generation else { return }
             bitcoinRefreshFailed = false; bitcoinRevision += 1
+        } catch is CancellationError {
+            // A wallet reset can cancel the ledger write before scene teardown.
+            throw CancellationError()
         } catch { OathDiagnostics.record(error);
             guard token == generation, !Task.isCancelled else { return }
             bitcoinRefreshFailed = true; bitcoinRevision += 1
@@ -771,7 +774,14 @@ final class OathWalletSession {
         guard token == generation, isUnlocked, !Task.isCancelled else { throw CancellationError() }
     }
     private func refreshAptosResult() async -> Result<Void, Error> {
-        do { try await refreshAptos(); return .success(()) } catch { OathDiagnostics.record(error); return .failure(error) }
+        do {
+            try await refreshAptos()
+            return .success(())
+        } catch {
+            // AptosSynchronizer records incomplete inventory at the account refresh.
+            if (error as? AptosError) != .incomplete { OathDiagnostics.record(error) }
+            return .failure(error)
+        }
     }
     func refreshAptos() async throws {
         guard case .home(let current) = state, isUnlocked else { return }

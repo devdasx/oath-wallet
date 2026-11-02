@@ -76,10 +76,15 @@ public actor TronClient {
         do { return try await batch(calls, at: rpc) }
         catch {
             if error is CancellationError || Task.isCancelled { throw CancellationError() }
-            guard network == .mainnet, Self.canRecover(error),
+            // A standalone decimals() read follows the failed metadata batch
+            // and NFT probe. Confirm a primary rejection on the verified node
+            // before declaring the historical token unreadable.
+            let confirmDecimals = error as? TronError == .rpc(-32000) && calls.count == 1
+                && calls[0].0 == "eth_call" && calls[0].1.first?["data"].string == "0x313ce567"
+            guard network == .mainnet, Self.canRecover(error) || confirmDecimals,
                   calls.allSatisfy({ ["eth_chainId", "eth_call"].contains($0.0) }) else { throw error }
             OathDiagnostics.record(error, component: "provider", operation: "tron_read_recovery",
-                context: ["chain": "tron", "stage": "rpc_read", "host": network.endpoint.host!])
+                context: ["chain": "tron", "stage": confirmDecimals ? "token_decimals" : "rpc_read", "host": network.endpoint.host!])
             try await verifyRecoveryNetwork()
             return try await batch(calls, at: network.endpoint.appendingPathComponent("jsonrpc"))
         }
@@ -155,6 +160,10 @@ public actor TronClient {
         return result
     }
     public func token(_ reference: String) async throws -> TronToken {
+        try await OathDiagnostics.withChain("tron") { try await readToken(reference) }
+    }
+
+    private func readToken(_ reference: String) async throws -> TronToken {
         if reference == "native" { return .init(reference: reference, name: "TRON", symbol: "TRX", decimals: 6) }
         if let info = metadata[reference] { return info }
         try await verifyNetwork()
@@ -196,6 +205,7 @@ public actor TronClient {
             let symbol = data[1].string.flatMap { try? TronIdentity.abiString($0) }
             token = .init(reference: reference, name: name ?? String(reference.prefix(6))+"…"+String(reference.suffix(4)), symbol: symbol ?? "TRC-20", decimals: Int(decimals))
         }
+        try Task.checkCancellation()
         metadata[reference] = token
         return token
     }

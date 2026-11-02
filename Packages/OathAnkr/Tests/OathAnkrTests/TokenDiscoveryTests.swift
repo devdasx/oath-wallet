@@ -28,6 +28,107 @@ final class TokenDiscoveryTests: XCTestCase, @unchecked Sendable {
     private let seed = Data(#"[{"id":"tether","name":"Tether","symbol":"usdt","platforms":{"ethereum":"0xdac17f958d2ee523a2206206994597c13d831ec7","tron":"TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t","solana":"Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB","near-protocol":"usdt.tether-token.near","the-open-network":"EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs","aptos":"0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b","avalanche":"0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7"}},{"id":"usd-coin","name":"USD Coin","symbol":"usdc","platforms":{"ethereum":"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"}}]"#.utf8)
     private let all = Set(TokenDiscoveryNetworks.platforms.keys)
 
+    func testNullListingStringsDoNotBlockValidDirectoryUpdates() async throws {
+        let address = "0x0000000000000000000000000000000000000001"
+        let valid: [String: Any] = ["id": "fixture", "name": "Fixture", "symbol": "fxt",
+                                    "platforms": ["ethereum": address]]
+        var incomplete = ["id", "name", "symbol"].map { field in
+            var row = valid
+            row[field] = NSNull()
+            row["platforms"] = ["ethereum": "0x0000000000000000000000000000000000000002"]
+            return row
+        }
+        var unlisted = valid
+        unlisted["platforms"] = ["ethereum": NSNull()]
+        incomplete.append(unlisted)
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let transport = DiscoveryTransport(try JSONSerialization.data(withJSONObject: incomplete + [valid]))
+        let catalog = TokenDiscoveryCatalog(transport: transport, directory: folder, seed: seed)
+        let refreshed = await catalog.refreshIfNeeded()
+        XCTAssertTrue(refreshed)
+        for instance in [catalog, TokenDiscoveryCatalog(transport: transport, directory: folder, seed: seed)] {
+            let matches = await instance.search("FXT", networks: ["ethereum"])
+            XCTAssertEqual(matches.map(\.reference), [address])
+        }
+        XCTAssertThrowsError(try TokenDiscoveryCatalog.decode(JSONSerialization.data(withJSONObject: incomplete)))
+        var malformed = valid
+        malformed["symbol"] = 42
+        XCTAssertThrowsError(try TokenDiscoveryCatalog.decode(JSONSerialization.data(withJSONObject: [malformed, valid])))
+    }
+
+    private struct SavedDirectory: Encodable {
+        let version: Int
+        let fetchedAt: Date
+        let retryAt: Date
+        let data: Data
+    }
+
+    func testClockRollbackKeepsValidatedCatalogAndPermitsImmediateRefresh() async throws {
+        let reference = "0x0000000000000000000000000000000000000001"
+        let raw = Data("""
+            [{"id":"fixture","name":"Cached Coin","symbol":"CACHED","platforms":{"ethereum":"\(reference)"}}]
+            """.utf8)
+        let prepared = try TokenDiscoveryCatalog.prepareSnapshot(raw)
+        let future = Date().addingTimeInterval(2 * TokenDiscoveryCatalog.refreshInterval)
+        for (fetchedAt, retryAt) in [(future, Date.distantPast), (Date.now, future)] {
+            let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+            defer { try? FileManager.default.removeItem(at: folder) }
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            let file = folder.appendingPathComponent("catalog-v1.json")
+            try JSONEncoder().encode(SavedDirectory(version: 1, fetchedAt: fetchedAt, retryAt: retryAt, data: prepared)).write(to: file)
+            let transport = DiscoveryTransport(seed)
+            for _ in 0..<2 {
+                let offline = TokenDiscoveryCatalog(transport: transport, directory: folder, seed: seed)
+                let cached = await offline.search("CACHED", networks: ["ethereum"])
+                XCTAssertEqual(cached.map(\.reference), [reference])
+            }
+            let idleCalls = await transport.calls
+            XCTAssertEqual(idleCalls, 0)
+            let online = TokenDiscoveryCatalog(transport: transport, directory: folder, seed: seed)
+            let refreshed = await online.refreshIfNeeded()
+            XCTAssertTrue(refreshed)
+            let delisted = await online.search("CACHED", networks: ["ethereum"])
+            XCTAssertTrue(delisted.isEmpty)
+        }
+    }
+
+    func testClockRollbackStillRejectsInvalidContentAndUnknownCacheVersions() async throws {
+        let invalid = Data(#"{"format":1,"entries":[]}"#.utf8)
+        let listing = Data(#"[{"id":"future-token","name":"Future Token","symbol":"FUT","platforms":{"ethereum":"0x0000000000000000000000000000000000000001"}}]"#.utf8)
+        for (version, data) in [(1, invalid), (2, listing)] {
+            let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+            defer { try? FileManager.default.removeItem(at: folder) }
+            try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+            let saved = SavedDirectory(version: version, fetchedAt: .distantFuture, retryAt: .distantFuture, data: data)
+            let bytes = try JSONEncoder().encode(saved)
+            let file = folder.appendingPathComponent("catalog-v1.json")
+            try bytes.write(to: file)
+            let catalog = TokenDiscoveryCatalog(transport: DiscoveryTransport(Data(), status: 503), directory: folder, seed: seed)
+            let bundled = await catalog.search("USDC", networks: ["ethereum"])
+            let unexpected = await catalog.search("FUT", networks: ["ethereum"])
+            XCTAssertEqual(bundled.map(\.coinID), ["usd-coin"])
+            XCTAssertTrue(unexpected.isEmpty)
+            XCTAssertEqual(try Data(contentsOf: file), bytes)
+        }
+    }
+
+    func testNetworkCannotReplaceCatalogWithInternalCacheEnvelope() async throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let unexpectedObject = Data(#"{"format":1,"entries":[{"network":"ethereum","reference":"not-a-contract","coinID":"fixture","name":"Wrong Token","symbol":"WRONG"}]}"#.utf8)
+        let transport = DiscoveryTransport(unexpectedObject)
+        let catalog = TokenDiscoveryCatalog(transport: transport, directory: folder, seed: seed)
+        let refreshed = await catalog.refreshIfNeeded()
+        XCTAssertFalse(refreshed)
+        for instance in [catalog, TokenDiscoveryCatalog(transport: transport, directory: folder, seed: seed)] {
+            let known = await instance.search("USDC", networks: ["ethereum"])
+            let injected = await instance.search("WRONG", networks: ["ethereum"])
+            XCTAssertEqual(known.map(\.reference), ["0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"])
+            XCTAssertTrue(injected.isEmpty)
+        }
+    }
+
     func testAssetHubIssuerEntriesSurviveRefreshAndExistingNetworkCache() async throws {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
@@ -349,9 +450,11 @@ final class TokenDiscoveryTests: XCTestCase, @unchecked Sendable {
         guard ProcessInfo.processInfo.environment["OATH_DISCOVERY_LIVE"] == "1" else { throw XCTSkip("Explicit live read opt-in") }
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
-        let catalog = TokenDiscoveryCatalog(directory: folder)
+        let transport = LiveDirectoryTransport()
+        let catalog = TokenDiscoveryCatalog(transport: transport, directory: folder)
         let refreshed = await catalog.refreshIfNeeded()
-        XCTAssertTrue(refreshed, "Must verify a real successful response, not count the seed as live")
+        let outcome = await transport.directoryOutcome
+        XCTAssertTrue(refreshed, "Live directory refresh failed (\(outcome))")
         let tokens = await catalog.search("usdt", networks: all)
         for token in tokens where token.symbol == "USDT" {
             XCTAssertEqual(try TokenDiscoveryNetworks.canonical(token.reference, network: token.network), token.reference)
@@ -380,6 +483,25 @@ final class TokenDiscoveryTests: XCTestCase, @unchecked Sendable {
                 XCTAssertEqual(resolved.id, token.id)
                 print("DISCOVERY_LIVE_METADATA \(chain) \(token.symbol) exact identity OK")
             } catch { XCTFail("Live metadata \(chain) \(token.coinID): \(error)") }
+        }
+    }
+}
+
+private actor LiveDirectoryTransport: AnkrTransport {
+    private let transport = AnkrHTTPTransport()
+    private(set) var directoryOutcome = "no request"
+    func send(_ request: URLRequest) async throws -> (Data, Int) {
+        do {
+            let (data, status) = try await transport.send(request)
+            if request.url?.path == "/api/v3/coins/list" {
+                directoryOutcome = "HTTP \(status), \(data.count) bytes"
+            }
+            return (data, status)
+        } catch {
+            if request.url?.path == "/api/v3/coins/list" {
+                directoryOutcome = "\(type(of: error)) code \((error as NSError).code)"
+            }
+            throw error
         }
     }
 }

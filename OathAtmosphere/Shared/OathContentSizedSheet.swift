@@ -24,6 +24,7 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
     var navigation: OathSheetNavigationConfiguration? = nil
     /// Receipts use the same solid canvas as history at every sheet height.
     var opaqueBackground = false
+    var bottomActionHeight: CGFloat = 0
     @ViewBuilder let content: () -> Content
 
     func makeUIViewController(context: Context) -> Controller {
@@ -65,6 +66,7 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
                 DispatchQueue.main.async { [weak controller] in controller?.view.setNeedsLayout() }
             })
         }
+        controller.bottomActionHeight = bottomActionHeight
         controller.reduceMotion = context.environment.accessibilityReduceMotion
         controller.configureKeyboardAvoidance(avoidsKeyboard)
         controller.configureSurface(opaque: opaqueBackground)
@@ -124,12 +126,13 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
         private weak var fittedSheet: UISheetPresentationController?
         private weak var sheetSurface: UIView?
         private var maximumDetentHeight: CGFloat = 0
-        private var contentHeight: CGFloat = 0
-        private var measuredDetentHeight: CGFloat = 0
+        private var pendingDetentHeight: CGFloat = 0
+        private var activeDetentHeight: CGFloat = 0
         private var updateScheduled = false
         private var appeared = false
         private var language = OathLanguage.english
         private var opaqueBackground = false
+        var bottomActionHeight: CGFloat = 0
         var reduceMotion = false
         var contentID: AnyHashable
         var resetScrollOnNextLayout = false
@@ -173,13 +176,10 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
             scrollView.addSubview(host.view)
             host.view.backgroundColor = .clear
             host.didMove(toParent: hostedScreen)
-            // A real navigation controller supplies exactly the same native
-            // bar-item geometry as the language state, even in narrow sheets.
             addChild(hostedNavigation)
             hostedNavigation.view.frame = view.bounds
             hostedNavigation.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             hostedNavigation.view.backgroundColor = .clear
-            hostedNavigation.isToolbarHidden = true
             view.addSubview(hostedNavigation.view)
             hostedNavigation.didMove(toParent: self)
         }
@@ -299,6 +299,7 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
         override func viewDidAppear(_ animated: Bool) {
             super.viewDidAppear(animated)
             appeared = true
+            view.setNeedsLayout()
         }
 
         override func viewDidLayoutSubviews() {
@@ -335,27 +336,24 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
             let height = ceil(size.height * scale) / scale
             host.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
             scrollView.contentSize = CGSize(width: width, height: height)
-            contentHeight = height
-            updateContentHeight(height + inset.top)
+            updateContentHeight(height + inset.top + bottomActionHeight)
         }
 
         private func updateContentHeight(_ detentHeight: CGFloat) {
             guard detentHeight.isFinite, detentHeight > 0 else { return }
-            contentHeight = detentHeight
-            let scale = max(traitCollection.displayScale, 1)
-            guard abs(measuredDetentHeight - detentHeight) >= 1 / scale else { return }
-            measuredDetentHeight = detentHeight
-            // Never invalidate during the detent resolver or recursively in
-            // layout. Coalesce the content/locale/type-size changes instead.
+            pendingDetentHeight = detentHeight
+            guard fittedSheet != nil,
+                  abs(activeDetentHeight - detentHeight) >= 1 / max(traitCollection.displayScale, 1) else { return }
             scheduleDetentUpdate()
         }
 
         private func configureSheet() {
-            guard fittedSheet == nil, contentHeight > 0 else { return }
+            guard fittedSheet == nil, pendingDetentHeight > 0 else { return }
             var ancestor: UIViewController? = parent
             while let controller = ancestor {
-                if controller.presentingViewController != nil,
+                if controller.presentingViewController?.presentedViewController === controller,
                    let sheet = controller.presentationController as? UISheetPresentationController {
+                    activeDetentHeight = pendingDetentHeight
                     fittedSheet = sheet
                     let identifier = UISheetPresentationController.Detent.Identifier("oath.content")
                     sheet.detents = [.custom(identifier: identifier) { [weak self] context in
@@ -365,7 +363,7 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
                         self.maximumDetentHeight = context.maximumDetentValue
                         // The system adds its bottom safe area to detents.
                         // Include only the top inset (grabber clearance) here.
-                        return min(self.measuredDetentHeight, context.maximumDetentValue)
+                        return min(self.activeDetentHeight, context.maximumDetentValue)
                     }]
                     sheet.selectedDetentIdentifier = identifier
                     sheet.prefersGrabberVisible = true
@@ -419,9 +417,17 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
                 self.updateScheduled = false
-                guard let sheet = self.fittedSheet else {
+                let height = self.pendingDetentHeight
+                guard let sheet = self.fittedSheet,
+                      abs(self.activeDetentHeight - height) >= 1 / max(self.traitCollection.displayScale, 1) else {
                     self.autofocusPresentation.end(token)
                     return
+                }
+                // Layout may resolve the current detent again before this turn.
+                // Keep its old height until UIKit begins its own transition.
+                let applyHeight = {
+                    self.activeDetentHeight = height
+                    sheet.invalidateDetents()
                 }
                 if self.appeared && !self.reduceMotion {
                     // Keep autofocus blocked until the native resize animation
@@ -430,10 +436,10 @@ struct OathContentSizedSheet<Content: View>: UIViewControllerRepresentable {
                     CATransaction.setCompletionBlock { [weak presentation = self.autofocusPresentation] in
                         Task { @MainActor in presentation?.end(token) }
                     }
-                    sheet.animateChanges { sheet.invalidateDetents() }
+                    sheet.animateChanges(applyHeight)
                     CATransaction.commit()
                 } else {
-                    sheet.invalidateDetents()
+                    applyHeight()
                     self.autofocusPresentation.end(token)
                 }
             }

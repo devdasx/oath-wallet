@@ -20,7 +20,8 @@ import XCTest
                     guard let next = page.next else { break }
                     cursor = next
                 } catch {
-                    XCTFail("History failed chain=\(chain.rawValue) stream=\(stream.rawValue) page=\(pageNumber) error=\(type(of: error))")
+                    let reason = (error as? AnkrError).map { String(describing: $0) } ?? String(describing: type(of: error))
+                    XCTFail("History failed chain=\(chain.rawValue) stream=\(stream.rawValue) page=\(pageNumber) error=\(reason)")
                     break
                 }
                 }

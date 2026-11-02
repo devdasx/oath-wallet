@@ -1,5 +1,6 @@
 import Foundation
 import XCTest
+import BitcoinDevKit
 @testable import OathBitcoin
 
 final class BitcoinSendTests: XCTestCase {
@@ -34,6 +35,43 @@ final class BitcoinSendTests: XCTestCase {
         let signed = try BitcoinSendSigner.sign(plan) { _ in .seed(self.seed, account: 0) }
         XCTAssertEqual(try BitcoinTransactions.txid(signed.raw), signed.txid)
         XCTAssertEqual(signed.fee, plan.fee)
+    }
+
+    func testSignedBitcoinPaysQuotedRateAtRelayFloorAndFractionalRates() throws {
+        for type in BitcoinAddressType.allCases {
+            let input = try coin(200_000, type: type)
+            for rate: Int64 in [1_000, 1_001, 2_114] {
+                for amount: Int64 in [40_000, 200_000] {
+                    let reviewed = try plan([input], amount: amount, rate: rate)
+                    let signed = try BitcoinSendSigner.sign(reviewed) { _ in .seed(self.seed, account: 0) }
+                    let transaction = try Transaction(transactionBytes: signed.raw)
+                    let paid = input.value - transaction.output().reduce(Int64(0)) { $0 + Int64($1.value.toSat()) }
+                    XCTAssertGreaterThanOrEqual(paid * 1_000, rate * Int64(transaction.vsize()))
+                    XCTAssertEqual(paid, reviewed.fee)
+                }
+            }
+        }
+    }
+
+    func testOversizedCoinPoolIsDistinctFromInsufficientFunds() throws {
+        let template = try coin(100_000)
+        let inputs = try (0...10_000).map { index in
+            var funding = template.previousTransaction
+            funding.replaceSubrange(5..<9, with: BitcoinWire.little(UInt32(index)))
+            return BitcoinSendCoin(accountID: template.accountID, txid: try BitcoinTransactions.txid(funding),
+                vout: 0, value: template.value, address: template.address,
+                previousTransaction: funding)
+        }
+        // The pool-size guard runs before loading or inspecting funding transactions.
+        XCTAssertThrowsError(try plan(inputs, amount: 20_000)) {
+            XCTAssertEqual($0 as? BitcoinSendError, .tooLarge)
+        }
+        for inputs in [[], [template]] {
+            XCTAssertThrowsError(try plan(inputs, amount: 200_000)) {
+                XCTAssertEqual($0 as? BitcoinSendError, .insufficientFunds)
+            }
+        }
+        XCTAssertNoThrow(try plan([template], amount: 20_000))
     }
 
     func testMixedTypesBothPathsAndAllRecipientsSign() throws {

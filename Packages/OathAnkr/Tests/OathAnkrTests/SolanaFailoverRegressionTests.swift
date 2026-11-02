@@ -30,6 +30,23 @@ final class SolanaFailoverRegressionTests: XCTestCase, @unchecked Sendable {
             XCTFail("A missing token-program response must not become an empty wallet")
         } catch { XCTAssertEqual(error as? SolanaError, .malformed) }
     }
+    func testMalformedArchiveFallsBackAfterBoundedRetries() async throws {
+        let transport = SolanaFailoverTransport(mode: .malformedArchive)
+        let page = try await SolanaClient(apiKey: "fixture", transport: transport).signatures(address: owner)
+        XCTAssertFalse(page.archival)
+        XCTAssertTrue(page.signatures.isEmpty)
+        let calls = await transport.calls
+        XCTAssertEqual(calls.filter { !$0.primary && $0.method == "getSignaturesForAddress" }.count, 3)
+        XCTAssertEqual(calls.filter { $0.primary }.map(\.method), ["getGenesisHash", "getSignaturesForAddress"])
+    }
+
+    func testInvalidJSONFromBothProvidersPreservesMalformedFailure() async throws {
+        let transport = SolanaFailoverTransport(mode: .malformedBoth)
+        do {
+            _ = try await SolanaClient(apiKey: "fixture", transport: transport).signatures(address: owner)
+            XCTFail("Accepted invalid history")
+        } catch { XCTAssertEqual(error as? SolanaError, .malformed) }
+    }
     func testCancellationDoesNotStartAnotherProvider() async throws {
         let transport = SolanaFailoverTransport(mode: .cancelled)
         do {
@@ -42,7 +59,7 @@ final class SolanaFailoverRegressionTests: XCTestCase, @unchecked Sendable {
 }
 
 private actor SolanaFailoverTransport: AnkrTransport {
-    enum Mode { case timeout, unavailable, malformedFallback, cancelled }
+    enum Mode { case timeout, unavailable, malformedFallback, cancelled, malformedArchive, malformedBoth }
     struct Call: Sendable { let primary: Bool; let method: String; let timeout: TimeInterval }
     let mode: Mode
     private(set) var calls: [Call] = []
@@ -53,6 +70,11 @@ private actor SolanaFailoverTransport: AnkrTransport {
         let method = row["method"].string!
         let primary = request.url!.host == "rpc.ankr.com"
         calls.append(.init(primary: primary, method: method, timeout: request.timeoutInterval))
+        if method == "getSignaturesForAddress", mode == .malformedArchive || mode == .malformedBoth {
+            if !primary || mode == .malformedBoth { return (Data("{truncated".utf8), 200) }
+            let empty = SolanaJSON.object(["jsonrpc": .string("2.0"), "id": row["id"], "result": .array([])])
+            return (try JSONEncoder().encode(empty), 200)
+        }
         if mode == .cancelled { throw CancellationError() }
         if primary, method != "getGenesisHash" {
             if mode == .unavailable { return (Data(), 503) }

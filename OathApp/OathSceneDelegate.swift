@@ -95,6 +95,7 @@ struct OathSwiftUISceneRoot: View {
                     .oathLanguage(.english)
             } else if OathWalletConnectRelayFixture.enabled {
                 OathWalletConnectRelayFixture(session: scene.context.session)
+                    .oathInAppLinks(walletUnlocked: scene.context.session.isUnlocked)
                     .oathLanguage(OathLanguagePreference.current.resolve())
             } else if OathWalletConnectVisualFixture.enabled {
                 OathWalletConnectVisualFixture()
@@ -339,6 +340,7 @@ private struct OathSceneRoot: View {
 
     var body: some View {
         OathLocalizedRoot(settings: context.settings) { OathWalletRoot(session: context.session) }
+            .oathInAppLinks(walletUnlocked: context.session.isUnlocked)
             .environment(\.scenePhase, context.phase)
             // Native sheets and scene descendants share the same settings instance.
             .environment(context.settings)

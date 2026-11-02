@@ -5,17 +5,26 @@ import OathExchangeRates
 
 actor OathExchangeRateEnvironment {
     static let shared = OathExchangeRateEnvironment()
-    private var setup: Task<ExchangeRateService, Error>?
+    private var setup: Task<ExchangeRateService?, Never>?
 
-    @discardableResult func refresh(retryNow: Bool = false) async throws -> USDExchangeRates {
-        if setup == nil {
-            setup = Task {
-                ExchangeRateService(database: try await OathDataEnvironment.shared.database())
+    @discardableResult func refresh(retryNow: Bool = false) async -> USDExchangeRates? {
+        let current: Task<ExchangeRateService?, Never>
+        if let setup {
+            current = setup
+        } else {
+            current = Task {
+                await OathDiagnostics.attempt("exchange_rate_setup") {
+                    ExchangeRateService(database: try await OathDataEnvironment.shared.database())
+                }
             }
+            setup = current
         }
-        let service: ExchangeRateService
-        do { service = try await setup!.value }
-        catch { OathDiagnostics.record(error); setup = nil; throw error }
-        return try await service.refreshIfNeeded(retryNow: retryNow)
+        guard let service = await current.value else {
+            if setup == current { setup = nil }
+            return nil
+        }
+        // The shared service reports each original read, feed or write failure.
+        // Waiters and backoff reads only consume that already-reported result.
+        return try? await service.refreshIfNeeded(retryNow: retryNow)
     }
 }

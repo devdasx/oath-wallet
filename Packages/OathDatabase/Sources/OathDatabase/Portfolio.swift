@@ -152,8 +152,20 @@ extension OathDatabase {
     public func observeWallet(walletID: String, currency: String) -> AsyncThrowingStream<WalletSnapshot, Error> {
         stream { try Self.snapshot($0, walletID: walletID, currency: currency) }
     }
+    /// A send sheet can outlive the wallet that opened it. Keep observing its
+    /// identity through removal and restoration, in the same read as its holdings.
+    public func observeActiveWallet(walletID: String, currency: String) -> AsyncThrowingStream<WalletSnapshot?, Error> {
+        stream { db in
+            guard let wallet = try WalletRecord.fetchOne(db, key: walletID), wallet.deletedAt == nil else { return nil }
+            return try Self.snapshot(db, wallet: wallet, currency: currency, includeAllAssets: false)
+        }
+    }
     static func snapshot(_ db: Database, walletID: String, currency: String, includeAllAssets: Bool = false) throws -> WalletSnapshot {
         guard let wallet = try WalletRecord.fetchOne(db, key: walletID) else { throw StoreError.missingRecord }
+        return try snapshot(db, wallet: wallet, currency: currency, includeAllAssets: includeAllAssets)
+    }
+    private static func snapshot(_ db: Database, wallet: WalletRecord, currency: String, includeAllAssets: Bool) throws -> WalletSnapshot {
+        let walletID = wallet.id
         let settings = try settings(db)
         let assetFilter = try portfolioFilter(db, walletID: walletID)
         let quoteCurrency = settings["currency"] ?? currency

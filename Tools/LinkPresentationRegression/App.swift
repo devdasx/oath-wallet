@@ -38,6 +38,7 @@ struct Root: View {
   _ = await waitUntil { window.rootViewController?.presentedViewController is SFSafariViewController && window.rootViewController?.presentedViewController?.isBeingPresented == false }
   let safari=window.rootViewController?.presentedViewController is SFSafariViewController
   guard safari else { save(["error":"initial Safari presentation did not complete"]);return }
+  let rootSheet = isBottomSheet(window.rootViewController?.presentedViewController, in: window)
   window.rootViewController?.presentedViewController?.dismiss(animated:false)
   _ = await waitUntil { window.rootViewController?.presentedViewController == nil }
   // Dismantling an older anchor must not clear a replacement's binding.
@@ -53,10 +54,15 @@ struct Root: View {
   let transitionAccepted=presenter.open(URL(string:"https://example.com/transition")!)
   _ = await waitUntil { sheet.presentedViewController is SFSafariViewController && sheet.presentedViewController?.isBeingPresented == false }
   let transitionSafari=sheet.presentedViewController is SFSafariViewController
+  let nestedSheet = isBottomSheet(sheet.presentedViewController, in: window)
   let duplicateAccepted=presenter.open(URL(string:"https://example.com/transition")!)
   let duplicateNotStacked=sheet.presentedViewController?.presentedViewController == nil
   let differentLinkRejected = !presenter.open(URL(string:"https://example.org")!)
-  window.rootViewController?.dismiss(animated:false)
+  presenter.closeBrowser()
+  let underlyingSheetPreserved = await waitUntil {
+   window.rootViewController?.presentedViewController === sheet && sheet.presentedViewController == nil
+  }
+  sheet.dismiss(animated:false)
   _ = await waitUntil { window.rootViewController?.presentedViewController == nil }
   let leaving=UIViewController();leaving.view.backgroundColor = .systemBackground
   window.rootViewController?.present(leaving,animated:false)
@@ -78,6 +84,7 @@ struct Root: View {
   try? await Task.sleep(for:.milliseconds(150))
   let lostWindowNotPresented=orphan.presentedViewController == nil
   save(["attached":attached,"detached":detached,"dismantled":dismantled,"opened":opened,"safariPresented":safari,"replacementSurvives":replaced,
+        "rootBottomSheet":rootSheet,"nestedBottomSheet":nestedSheet,"underlyingSheetPreserved":underlyingSheetPreserved,
         "transitionObserved":transitionObserved,"transitionAccepted":transitionAccepted,"transitionSafari":transitionSafari,
         "duplicateAccepted":duplicateAccepted,"duplicateNotStacked":duplicateNotStacked,"differentLinkRejected":differentLinkRejected,
         "dismissalObserved":dismissalObserved,"dismissalAccepted":dismissalAccepted,"dismissalSafari":dismissalSafari,
@@ -85,6 +92,14 @@ struct Root: View {
   window.rootViewController?.dismiss(animated:false)
   status="Complete"
  } } }
+ @MainActor func isBottomSheet(_ controller: UIViewController?, in window: UIWindow) -> Bool {
+  guard let browser = controller as? SFSafariViewController, let sheet = browser.sheetPresentationController,
+        browser.modalPresentationStyle == .pageSheet, sheet.selectedDetentIdentifier == .large,
+        sheet.prefersGrabberVisible, let view = browser.viewIfLoaded else { return false }
+  let frame = view.convert(view.bounds, to: window)
+  let fraction = frame.height / window.bounds.height
+  return (0.8...1.0).contains(fraction) && abs(frame.maxY - window.bounds.maxY) < 32
+ }
  @MainActor func waitUntil(_ ready: () -> Bool) async -> Bool {
   for _ in 0..<100 {
    if ready() { return true }

@@ -160,7 +160,7 @@ extension OathDatabase {
         }
     }
     public func commitSolanaHistory(_ transactions: [SolanaTransaction], page: SolanaSignaturePage, cursor: SolanaHistoryCursor,
-        ticket: SolanaSyncTicket, backfill: Bool, pageSize: Int, catalog: [String: SolanaTokenInfo]) async throws {
+        ticket: SolanaSyncTicket, backfill: Bool, pageSize: Int, catalog: [String: SolanaTokenInfo], preservingFailure: Bool = false) async throws {
         guard transactions.count == page.signatures.count,
               Set(transactions.map(\.signature)).count == transactions.count,
               Set(transactions.map(\.signature)) == Set(page.signatures.map(\.signature)),
@@ -221,7 +221,9 @@ extension OathDatabase {
             }
             next.lastChecked = now
             try next.update(db)
-            try db.execute(sql: "UPDATE solanaSync SET historyFailure=NULL WHERE accountID=? AND owner=?", arguments: [ticket.account.id,ticket.owner])
+            if !preservingFailure {
+                try db.execute(sql: "UPDATE solanaSync SET historyFailure=NULL WHERE accountID=? AND owner=?", arguments: [ticket.account.id,ticket.owner])
+            }
         }
         if !page.archival { throw SolanaError.incompleteHistory }
     }

@@ -143,6 +143,10 @@ struct OathSendFlow: View {
             if path.last != .review { bitcoin.cancel(); sui.cancel(); xrpl.cancel(); stellar.cancel(); tron.cancel(); near.cancel(); polkadot.cancel(); solana.cancel(); aptos.cancel(); thorchain.cancel(); arc.cancel(); evm.cancel(); ton.cancel() }
         }
         .onChange(of: allowed) { _, allowed in
+            // The session may see removal before the database observation delivers it.
+            if !allowed && session.isUnlocked && !session.wallets.contains(where: { $0.id == model.walletID }) {
+                model.senderUnavailable()
+            }
             if !allowed { scannedAssetSearch.reset(); bitcoin.cancel(); sui.cancel(); xrpl.cancel(); stellar.cancel(); tron.cancel(); near.cancel(); polkadot.cancel(); solana.cancel(); aptos.cancel(); thorchain.cancel(); arc.cancel(); evm.cancel(); ton.cancel() }
         }
         .onDisappear { scannedAssetSearch.reset(); bitcoin.cancel(); sui.cancel(); xrpl.cancel(); stellar.cancel(); tron.cancel(); near.cancel(); polkadot.cancel(); solana.cancel(); aptos.cancel(); thorchain.cancel(); arc.cancel(); evm.cancel(); ton.cancel() }

@@ -46,6 +46,14 @@ extension OathDatabase {
             }
             send.updatedAt = now; try send.update(db) // Deletes the status job atomically.
             for input in mined.inputs {
+                // A scan already reading this input can return its pre-spend
+                // snapshot after settlement. Revoke that scan for every account
+                // that owns the outpoint, including duplicate wallet imports.
+                try db.execute(sql: """
+                    UPDATE bitcoinWallets SET scanID=NULL WHERE scanID IS NOT NULL AND accountID IN (
+                        SELECT accountID FROM accountUTXOs WHERE networkID=? AND transactionHash=? AND outputIndex=?
+                    )
+                    """, arguments: [send.networkID, input.txid, input.index])
                 try db.execute(sql: "UPDATE utxos SET spent=1 WHERE networkID=? AND transactionHash=? AND outputIndex=?",
                     arguments: [send.networkID,input.txid,input.index])
             }

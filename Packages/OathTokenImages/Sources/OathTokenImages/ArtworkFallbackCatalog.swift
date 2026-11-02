@@ -257,6 +257,9 @@ public actor ArtworkFallbackCatalog {
     /// ownership or signing input is taken from a list. Preserve case wherever
     /// the chain's token identity is case-sensitive.
     private static func canonicalReference(_ value: String, chainID: Int?, networkID: String) -> String? {
+        if chainID == 4689, networkID == "iotex", !value.hasPrefix("0x") {
+            return IoTeXNativeAddress.ethereum(value)
+        }
         if chainID != nil { return validContract(value) ? value.lowercased() : nil }
         guard value.utf8.count <= 512 else { return nil }
         switch networkID {

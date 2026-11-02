@@ -116,6 +116,14 @@ extension OathDatabase {
         "polkadotSendPlans", "thorchainSendPlans", "thorchainSync", "thorchainHistory", "thorchainPendingEvents", "permissionScans", "permissionRemovals", "permissionBatchItems", "balanceSnapshots", "cloudBackups", "contacts", "contactAddresses", "trackedAssets", "bitcoinWallets", "bitcoinAddresses",
         "bitcoinHistory", "bitcoinTransactions", "ankrSync", "ankrResponses", "ankrAssets", "ankrActivity", "solanaReceiveAddresses", "solanaSync", "solanaHoldings", "solanaHistoryCursors", "solanaTransactions", "solanaActivity", "tronSync", "tronHoldings", "tronHistoryCursors", "tronTransactions", "tronPages", "tonSync", "tonHoldings", "tonHistoryCursors", "tonTransactions", "tonPages", "aptosSync", "aptosHoldings", "aptosHistoryCursors", "aptosTransactions", "aptosPages", "suiSync", "suiHoldings", "suiHistoryCursors", "suiTransactions", "suiPages", "nearSync", "nearHoldings", "nearHistoryCursors", "nearTransactions", "nearEvents", "nearPages", "xrplSync", "xrplHoldings", "xrplHistoryCursors", "xrplTransactions", "xrplPages", "polkadotSync", "polkadotHoldings", "polkadotHistory", "polkadotEvents", "stellarSync", "stellarHoldings", "stellarHistoryCursors", "stellarTransactions", "stellarEvents", "stellarPages", "indexedEVMSync", "indexedEVMHoldings", "indexedEVMHistoryCursors", "indexedEVMEvents", "indexedEVMPages", "hyperevmSync", "hyperevmHoldings", "hyperevmHistoryCursors", "hyperevmEvents", "hyperevmPages", "robinhoodSync", "robinhoodHoldings", "robinhoodHistoryCursors", "robinhoodEvents", "robinhoodPages", "arcSync", "arcHoldings", "arcHistoryCursors", "arcEvents", "arcPages"]
 
+    static func requireWalletSyncAllowed(_ db: Database) throws {
+        // Read inside the same writer transaction as the commit: reset cannot race
+        // between this check and the guarded write. SQL triggers remain the backstop.
+        guard try String.fetchOne(db, sql: "SELECT value FROM metadata WHERE key='walletReset'") == nil else {
+            throw CancellationError()
+        }
+    }
+
     private static func requireReset(_ id: String, db: Database) throws {
         guard try String.fetchOne(db, sql: "SELECT value FROM metadata WHERE key='walletReset'") == id else {
             throw StoreError.invalidTransition

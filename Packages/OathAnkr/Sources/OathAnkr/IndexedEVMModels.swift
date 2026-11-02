@@ -113,6 +113,8 @@ public struct IndexedEVMEvent: Codable, Sendable {
     public let failed: Bool
     public let fee: String?
     public let raw: Data
+    /// A committed Celo token movement can belong to a reverted fee-currency transaction.
+    public internal(set) var parentTransactionFailed: Bool? = nil
     /// Optional Celo fee-currency units, independent of native CELO.
     public var feeCurrency: IndexedEVMToken? = nil
     public var feeCurrencyAmount: String? = nil
