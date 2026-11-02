@@ -332,7 +332,6 @@ struct OathAdditionalWalletImportPage: View {
     let onImported: (String) -> Void
     @Environment(\.oathLocalizer) private var strings
     @State private var draft = OathRecoveryPhraseDraft()
-    @State private var requestID = UUID()
     @State private var work: Task<Void, Never>?
     @State private var failed = false
 
@@ -358,9 +357,6 @@ struct OathAdditionalWalletImportPage: View {
         .navigationBarBackButtonHidden(work != nil)
         .oathNativeLocalization()
         .interactiveDismissDisabled(work != nil)
-        .onChange(of: draft.text) { _, _ in
-            if work == nil { requestID = UUID() }
-        }
         .onDisappear { work?.cancel(); work = nil }
         // A scanner temporarily covers this view. Keep its draft intact while
         // scanning; clear on explicit close/success, or release with the cover.
@@ -368,6 +364,7 @@ struct OathAdditionalWalletImportPage: View {
 
     private func importPhrase(_ phrase: OathValidatedMnemonic) {
         guard work == nil else { return }
+        let requestID = draft.importRequestID
         work = Task {
             defer { work = nil }
             do {

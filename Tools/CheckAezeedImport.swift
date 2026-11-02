@@ -97,7 +97,12 @@ import OathDatabase
             _ = try OathWalletEngine.imported(unselected)
             preconditionFailure("An untyped overlap silently imported as BIP39")
         } catch OathWalletError.invalidPhrase { check(true, "Automatic aezeed-to-BIP39 downgrade stays rejected") }
+        let originalRequest = dual.importRequestID
         dual.selectFormat(.bip39)
+        let changedRequest = dual.importRequestID
+        check(changedRequest != originalRequest, "Changing recovery format starts a new import request")
+        dual.selectFormat(.bip39)
+        check(dual.importRequestID == changedRequest, "Retrying an unchanged format preserves the request identity")
         guard let chosen = dual.submit() else { preconditionFailure("Selected BIP39 overlap is unavailable") }
         let priorProfile = try await vault.unlockedProfile()
         let committedBytes = try storage.read("vault-v1")
