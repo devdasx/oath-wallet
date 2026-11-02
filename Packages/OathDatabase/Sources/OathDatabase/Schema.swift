@@ -1516,7 +1516,13 @@ enum Schema {
             try db.alter(table: "wallets") { table in
                 table.add(column: "needsBackupOfferReview", .boolean)
             }
-            try db.execute(sql: "UPDATE wallets SET needsBackupOfferReview = 1 WHERE pendingBackupOffer IS NULL")
+            // A pending reset owns these rows. Keep its write fence in force
+            // and let startup finish erasing them after the database opens.
+            try db.execute(sql: """
+                UPDATE wallets SET needsBackupOfferReview = 1
+                WHERE pendingBackupOffer IS NULL
+                  AND NOT EXISTS (SELECT 1 FROM metadata WHERE key='walletReset')
+                """)
         }
         migrations.registerMigration("v105_bitcoin_signed_payload_digest") { db in
             try db.alter(table: "bitcoinSendPlans") { table in
