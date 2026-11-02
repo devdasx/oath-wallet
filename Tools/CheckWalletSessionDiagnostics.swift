@@ -1,3 +1,4 @@
+import CryptoKit
 import Foundation
 import OathDatabase
 import OathDiagnostics
@@ -43,6 +44,32 @@ private final class SessionStorage: OathVaultStorage, @unchecked Sendable {
         let vault = OathWalletVault(storage: storage, biometricStore: MemoryBiometrics(), database: db)
         let pin: [UInt8] = [1, 6, 9, 2, 8, 4]
         try await vault.create(digits: pin, importing: .init(phrase: "synthetic session fixture", language: "english"))
+        // Isolate legacy format failures from the normal session checks below.
+        // Use the original PIN-derived key, with independently authenticated
+        // but undecodable bytes. No real credential store is involved.
+        let legacyBytes = try storage.read("vault-v1")!
+        let legacy = try JSONDecoder().decode(OathVaultEnvelope.self, from: legacyBytes)
+        precondition(legacy.version == 1 && legacy.protection == nil)
+        let legacyKey = try legacy.key(for: pin)
+        let aad = Data(("org.oathwallet.vault.v1:" + legacy.id.uuidString).utf8)
+        let damagedPayload = try AES.GCM.seal(Data("invalid synthetic payload".utf8), using: legacyKey, authenticating: aad)
+        let malformed = OathVaultEnvelope(version: 1, id: legacy.id, salt: legacy.salt, iterations: legacy.iterations,
+                                          sealed: damagedPayload.combined!)
+        let isolated = WalletMemory()
+        let isolatedVault = OathWalletVault(storage: isolated, biometricStore: MemoryBiometrics(), database: db)
+        try isolated.insert(JSONEncoder().encode(malformed), account: "vault-v1")
+        for _ in 0..<6 {
+            do { _ = try await isolatedVault.unlock(digits: pin); check(false, "Invalid payload cannot open") }
+            catch is DecodingError { check(true, "Authenticated payload decoding is independent of PIN checking") }
+        }
+        let validPINAttempts = try JSONDecoder().decode(OathUnlockAttempts.self, from: isolated.read("unlock-attempts-v1")!)
+        check(validPINAttempts.failures == 0 && validPINAttempts.blockedUntil == nil, "A proven legacy PIN is never throttled by decoding")
+        let future = OathVaultEnvelope(version: 99, id: legacy.id, salt: legacy.salt, iterations: legacy.iterations, sealed: legacy.sealed)
+        try isolated.update(JSONEncoder().encode(future), account: "vault-v1")
+        let beforeFormatFailure = try isolated.read("unlock-attempts-v1")
+        do { _ = try await isolatedVault.unlock(digits: pin); check(false, "Future header must fail closed") }
+        catch OathWalletError.corruptVault { check(true, "Unknown header rejected separately from the PIN") }
+        check(try isolated.read("unlock-attempts-v1") == beforeFormatFailure, "Unreadable format cannot consume a PIN attempt")
         let session = OathWalletSession(vault: vault)
         await session.finishedSetup()
         session.finishInitialCustomization()

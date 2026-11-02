@@ -4,7 +4,7 @@ import OathBitcoin
 
 extension OathDatabase {
     public func bitcoinAccount(id: String) async throws -> AccountRecord? {
-        try await pool.read { try AccountRecord.fetchOne($0, sql: "SELECT * FROM accounts WHERE id=? AND networkID IN ('bitcoin','litecoin','dogecoin','bitcoincash')", arguments: [id]) }
+        try await pool.read { try AccountRecord.fetchOne($0, sql: "SELECT * FROM walletAccounts WHERE id=? AND networkID IN ('bitcoin','litecoin','dogecoin','bitcoincash')", arguments: [id]) }
     }
     /// Reuse unused draft change, while skipping addresses committed to signed
     /// transfers. Repeated reviews must not exhaust a restored wallet's gap.
@@ -82,7 +82,7 @@ extension OathDatabase {
             try ActivityRecord(id: send.accountID + ":" + id, walletID: send.walletID, accountID: send.accountID,
                                networkID: plan.chain.rawValue, transactionID: id, assetID: plan.chain.rawValue + ":native", direction: returnsToSender ? "self" : "outgoing",
                                amountAtomic: String(plan.recipientAmount), counterparty: plan.recipient, timestamp: now).insert(db)
-            // Persist conflict evidence even if a provider never observes our
+            // Persist conflict evidence even if a provider never observes the
             // original transfer, so a mined competitor can settle its outcome.
             for accountID in Set(plan.coins.map(\.accountID)).union([send.accountID]) {
                 try Self.saveTransactionEvidence(accountID: accountID, tx: transaction,

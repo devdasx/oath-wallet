@@ -1,3 +1,4 @@
+import OathDiagnostics
 import Foundation
 import CryptoKit
 
@@ -28,7 +29,7 @@ public struct WalletConnectTonRequest: Codable, Sendable, Equatable {
     public var broadcasts: Bool { method == "ton_sendMessage" }
     public var fingerprint: String {
         let encoder = JSONEncoder(); encoder.outputFormatting = .sortedKeys
-        return TronSendCrypto.hex(Data(SHA256.hash(data: (try? encoder.encode(self)) ?? Data())))
+        return TronSendCrypto.hex(Data(SHA256.hash(data: (OathDiagnostics.attempt("encode_connect_request", body: { try encoder.encode(self) })) ?? Data())))
     }
     public var amount: UInt64 { messages.reduce(0) { $0 + $1.amount } }
     public init(method: String, chain: String, account: String, domain: String, params: Data, now: Date = .now) throws {

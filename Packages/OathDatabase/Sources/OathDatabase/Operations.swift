@@ -55,7 +55,7 @@ extension OathDatabase {
                 send.nonce = String(nonce)
             }
             let trackedBitcoin = try UTXONetwork(rawValue: send.networkID) != nil && (Bool.fetchOne(db,
-                sql: "SELECT EXISTS(SELECT 1 FROM bitcoinWallets w JOIN accounts a ON a.id=w.accountID WHERE a.walletID=? AND a.networkID=?)",
+                sql: "SELECT EXISTS(SELECT 1 FROM bitcoinWallets w JOIN walletAccounts a ON a.id=w.accountID WHERE a.walletID=? AND a.networkID=?)",
                 arguments: [send.walletID, send.networkID]) == true)
             if trackedBitcoin {
                 let available = Set(try Self.bitcoinSpendableOutputs(walletID: send.walletID, now: .now, network: UTXONetwork(rawValue: send.networkID)!, db: db)
@@ -66,7 +66,7 @@ extension OathDatabase {
                 try db.execute(sql: """
                     UPDATE utxos SET reservedBy=? WHERE networkID=? AND transactionHash=? AND outputIndex=?
                     AND spent=0 AND reservedBy IS NULL AND EXISTS (
-                        SELECT 1 FROM accountUTXOs o JOIN accounts a ON a.id=o.accountID
+                        SELECT 1 FROM accountUTXOs o JOIN walletAccounts a ON a.id=o.accountID
                         WHERE (o.accountID=? OR (?=1 AND a.walletID=?)) AND o.networkID=utxos.networkID
                         AND o.transactionHash=utxos.transactionHash AND o.outputIndex=utxos.outputIndex
                     )
@@ -108,7 +108,7 @@ extension OathDatabase {
                       let tx = try TransactionRecord.fetchOne(db, key: txID) else { throw StoreError.invalidTransition }
                 let minedBitcoinConflict = try ["bitcoin", "bitcoincash", "litecoin", "dogecoin"].contains(send.networkID) && Bool.fetchOne(db, sql: """
                     SELECT EXISTS(SELECT 1 FROM transactionEvidence e
-                    JOIN accounts a ON a.id=e.accountID
+                    JOIN walletAccounts a ON a.id=e.accountID
                     JOIN transactions winner ON winner.networkID=? AND winner.hash=e.replacementHash
                     WHERE a.walletID=? AND e.transactionID=? AND e.outcome IN ('replaced','canceled')
                     AND winner.state='confirmed' AND winner.blockHeight>0)
@@ -159,7 +159,7 @@ extension OathDatabase {
             try UTXORecord.fetchAll(db, sql: """
                 SELECT u.*,MIN(o.accountID) AS accountID FROM utxos u JOIN sends s ON s.id=u.reservedBy
                 JOIN accountUTXOs o ON o.networkID=u.networkID AND o.transactionHash=u.transactionHash AND o.outputIndex=u.outputIndex
-                JOIN accounts a ON a.id=o.accountID AND a.walletID=s.walletID WHERE s.id=?
+                JOIN walletAccounts a ON a.id=o.accountID AND a.walletID=s.walletID WHERE s.id=?
                 GROUP BY u.networkID,u.transactionHash,u.outputIndex
                 """, arguments: [sendID])
         }
@@ -259,11 +259,11 @@ extension OathDatabase {
         let sql: String
         switch type {
         case "wallet": sql = "SELECT 1 FROM wallets WHERE id=? AND id=?"
-        case "account": sql = "SELECT 1 FROM accounts WHERE id=? AND walletID=?"
+        case "account": sql = "SELECT 1 FROM walletAccounts WHERE id=? AND walletID=?"
         case "transaction": sql = "SELECT 1 FROM activity WHERE transactionID=? AND walletID=? LIMIT 1"
         case "activity": sql = "SELECT 1 FROM activity WHERE id=? AND walletID=?"
         case "send": sql = "SELECT 1 FROM sends WHERE id=? AND walletID=?"
-        case "receive": sql = "SELECT 1 FROM receives r JOIN accounts a ON a.id=r.accountID WHERE r.id=? AND a.walletID=?"
+        case "receive": sql = "SELECT 1 FROM receives r JOIN walletAccounts a ON a.id=r.accountID WHERE r.id=? AND a.walletID=?"
         default: throw StoreError.invalidValue("note subject")
         }
         guard try Int.fetchOne(db, sql: sql, arguments: [id, walletID]) != nil else { throw StoreError.conflictingIdentity }

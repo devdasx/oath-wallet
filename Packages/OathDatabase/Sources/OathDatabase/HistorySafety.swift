@@ -1,3 +1,4 @@
+import OathDiagnostics
 import Foundation
 import GRDB
 import OathAnkr
@@ -115,24 +116,24 @@ enum HistorySafety {
         var tokens: [(String, Int?)]
         switch entry.key {
         case "tron.coingecko.catalog.v1":
-            guard let list = try? TronMarkets.decodeCatalog(entry.payload) else { return }
+            guard let list = OathDiagnostics.attempt("index_cached_tron_catalog", body: { try TronMarkets.decodeCatalog(entry.payload) }) else { return }
             network = "tron"; tokens = list.values.map { ($0.address,$0.decimals) }
         case "solana.coingecko.catalog.v1":
-            guard let list = try? SolanaMarkets.decodeCatalog(entry.payload) else { return }
+            guard let list = OathDiagnostics.attempt("index_cached_solana_catalog", body: { try SolanaMarkets.decodeCatalog(entry.payload) }) else { return }
             network = "solana"; tokens = list.values.map { ($0.address,$0.decimals) }
         case "aptos.catalog":
-            guard let list = try? decoder.decode(AptosCatalog.self, from: entry.payload) else { return }
+            guard let list = OathDiagnostics.attempt("index_cached_metadata", body: { try decoder.decode(AptosCatalog.self, from: entry.payload) }) else { return }
             network = "aptos"; tokens = list.tokens.values.filter(\.verified).map { ($0.reference,$0.decimals) }
             tokens += list.aliases.compactMap { alias, canonical in
                 list.tokens[canonical].flatMap { $0.verified ? (alias,$0.decimals) : nil }
             }
         case "sui.catalog", "near.catalog", "xrpl.catalog", "stellar.catalog", "arc.catalog", "robinhood.catalog", "hyperevm.catalog", "monad.catalog", "unichain.catalog", "celo.catalog", "chiliz.catalog", "filecoin.catalog", "sei.catalog", "zerog.catalog", "iotex.catalog":
             struct IDs: Decodable { let ids: [String: String] }
-            guard let list = try? decoder.decode(IDs.self, from: entry.payload) else { return }
+            guard let list = OathDiagnostics.attempt("index_cached_metadata", body: { try decoder.decode(IDs.self, from: entry.payload) }) else { return }
             network = String(entry.key.prefix(while: { $0 != "." })); tokens = list.ids.keys.map { ($0,nil) }
         default:
             if entry.key.hasPrefix("evm.verified.") {
-                guard let list = try? decoder.decode(VerifiedEVMTokenCatalog.self, from: entry.payload),
+                guard let list = OathDiagnostics.attempt("index_cached_metadata", body: { try decoder.decode(VerifiedEVMTokenCatalog.self, from: entry.payload) }),
                       entry.key == "evm.verified." + list.networkID,
                       AnkrChain(networkID: list.networkID) != nil else { return }
                 network = list.networkID; tokens = list.decimalsByReference.map { ($0.key,$0.value) }
@@ -149,7 +150,7 @@ enum HistorySafety {
                 }
                 tokens += identityOnly.map { ($0,knownDecimals[$0]) }
             } else if entry.key.hasPrefix("ton.token.") {
-                guard let token = try? decoder.decode(TonToken.self, from: entry.payload),
+                guard let token = OathDiagnostics.attempt("index_cached_metadata", body: { try decoder.decode(TonToken.self, from: entry.payload) }),
                       entry.key == "ton.token." + token.reference else { return }
                 network = "ton"; tokens = token.verified && token.isBlacklisted != true ? [(token.reference,token.decimals)] : []
                 // Explicit provider blacklist wins over an older listing or user tracking.

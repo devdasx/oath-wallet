@@ -134,7 +134,9 @@ import OathDiagnostics
         XCTAssertEqual(settings["activeWalletID"], replacement.activeWalletID)
         XCTAssertEqual(settings["migration.legacyReplacementV2"], replacement.replacementID?.uuidString)
         let reset = try await db.pendingWalletReset(); XCTAssertNil(reset)
-        for table in OathDatabase.walletDataTables where !["wallets", "accounts", "receiveQRCodes"].contains(table) {
+        let retained = try await db.pool.read { try AccountRecord.fetchAll($0, sql: "SELECT * FROM walletAccounts ORDER BY id") }
+        XCTAssertEqual(retained, replacement.accounts.sorted { $0.id < $1.id })
+        for table in OathDatabase.walletDataTables where !["wallets", "accounts", "walletAccounts", "receiveQRCodes"].contains(table) {
             let count = try await db.pool.read { try Int.fetchOne($0, sql: "SELECT COUNT(*) FROM \(table)") }
             XCTAssertEqual(count, 0, table)
         }

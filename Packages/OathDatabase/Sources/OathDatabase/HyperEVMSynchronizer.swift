@@ -26,7 +26,7 @@ public actor HyperEVMSynchronizer {
     }
     private func fetchCatalog() async -> HyperEVMCatalog {
         let saved = await OathDiagnostics.attemptOptional("marketCache", body: { try await database.marketCache(key: "hyperevm.catalog") })
-        let cached = saved.flatMap { try? JSONDecoder().decode(HyperEVMCatalog.self, from: $0.payload) }
+        let cached = saved.flatMap { saved in OathDiagnostics.attempt("decode_cached_catalog", body: { try JSONDecoder().decode(HyperEVMCatalog.self, from: saved.payload) }) }
         if let saved, let cached, Date().timeIntervalSince1970 - saved.fetchedAt < 86_400 { return cached }
         do {
             let value = try await markets.catalog(); try Task.checkCancellation()

@@ -438,6 +438,39 @@
     },
     "history.filter.filters": {
       "nl": "Filters is the Dutch plural noun for filtering controls."
+    },
+    "app_icon.champagne": {
+      "da": "Established color name with the same spelling in this language.",
+      "fr": "Established color name with the same spelling in this language.",
+      "it": "Established color name with the same spelling in this language.",
+      "nb": "Established color name with the same spelling in this language.",
+      "nl": "Established color name with the same spelling in this language.",
+      "sv": "Established color name with the same spelling in this language."
+    },
+    "app_icon.obsidian": {
+      "da": "Established color name with the same spelling in this language.",
+      "de": "Established color name with the same spelling in this language.",
+      "id": "Established color name with the same spelling in this language.",
+      "ms": "Established color name with the same spelling in this language.",
+      "nb": "Established color name with the same spelling in this language.",
+      "ro": "Established color name with the same spelling in this language.",
+      "sl": "Established color name with the same spelling in this language.",
+      "sv": "Established color name with the same spelling in this language.",
+      "uz": "Established color name with the same spelling in this language."
+    },
+    "app_icon.titanium": {
+      "id": "Established color name with the same spelling in this language.",
+      "ms": "Established color name with the same spelling in this language.",
+      "nl": "Established color name with the same spelling in this language."
+    },
+    "app_icon.ultraviolet": {
+      "da": "Established color name with the same spelling in this language.",
+      "nl": "Established color name with the same spelling in this language.",
+      "ro": "Established color name with the same spelling in this language."
+    },
+    "seedPasswordLabel": {
+      "fil": "Commonly used password loanword in this language.",
+      "it": "Commonly used password loanword in this language."
     }
   },
   "InfoPlist": {},

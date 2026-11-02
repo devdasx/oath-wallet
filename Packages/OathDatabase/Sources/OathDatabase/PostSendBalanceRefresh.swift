@@ -80,7 +80,7 @@ extension OathDatabase {
             guard plan.chain == network, tx.networkID == send.networkID else { throw StoreError.conflictingIdentity }
             for accountID in Set(plan.coins.map(\.accountID)).union([send.accountID]) {
                 guard try Bool.fetchOne(db, sql: """
-                    SELECT EXISTS(SELECT 1 FROM bitcoinHistory h JOIN accounts a ON a.id=h.accountID
+                    SELECT EXISTS(SELECT 1 FROM bitcoinHistory h JOIN walletAccounts a ON a.id=h.accountID
                     JOIN bitcoinWallets b ON b.accountID=a.id WHERE h.accountID=? AND h.txid=?
                     AND a.walletID=? AND a.networkID=? AND b.failure IS NULL AND b.scanID IS NULL)
                     """, arguments: [accountID, tx.hash, send.walletID, send.networkID]) == true else { return false }

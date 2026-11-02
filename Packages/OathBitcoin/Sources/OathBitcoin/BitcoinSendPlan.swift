@@ -97,6 +97,7 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
     public let maximumVBytes: Int64
     public let walletBalance: Int64
     public let createdAt: Date
+    public var expiresAt: Date { createdAt.addingTimeInterval(120) }
     public var deductedFromAmount: Int64 { requestedAmount - recipientAmount }
     public var total: Int64 { recipientAmount + fee }
     public var remainingBalance: Int64 { walletBalance - total }
@@ -197,7 +198,7 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
 
     public func validate(now: Date = .now, checkExpiry: Bool = true) throws {
         try options.validate(chain: chain)
-        guard !checkExpiry || (0...120).contains(now.timeIntervalSince(createdAt)) else { throw BitcoinSendError.expired }
+        guard !checkExpiry || (now >= createdAt && now <= expiresAt) else { throw BitcoinSendError.expired }
         guard !coins.isEmpty, coins.count <= 1000 else { throw BitcoinSendError.tooLarge }
         for coin in coins { try coin.validate(chain: chain) }
         guard walletBalance > 0, walletBalance <= chain.maximumMoney,
@@ -219,8 +220,8 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
               walletBalance >= recipientAmount + changeAmount + fee, walletBalance <= chain.maximumMoney else { throw BitcoinSendError.changed }
     }
 
-    public func validateSigned(_ signed: BitcoinSignedSend) throws {
-        try validate(checkExpiry: false)
+    public func validateSigned(_ signed: BitcoinSignedSend, checkExpiry: Bool = false) throws {
+        try validate(checkExpiry: checkExpiry)
         try checkSigned(signed)
     }
 

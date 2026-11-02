@@ -169,12 +169,12 @@ extension OathDatabase {
             else if holding.amountAtomic != "0" { complete = false }
         }
         let networkRows = try NetworkRecord.fetchAll(db, sql: """
-            SELECT * FROM networks WHERE id IN (SELECT networkID FROM accounts WHERE walletID=?)
+            SELECT * FROM networks WHERE id IN (SELECT networkID FROM walletAccounts WHERE walletID=?)
             """, arguments: [walletID])
         let order = PortfolioAssetOrder(holdings)
         let networks = AssetOrdering.sorted(networkRows) { order.key(networkID: $0.id, name: $0.name) }
         let accountSync = try AnkrSyncRecord.fetchAll(db, sql: """
-            SELECT s.* FROM ankrSync s JOIN accounts a ON a.id=s.accountID WHERE a.walletID=? ORDER BY s.accountID,s.stream
+            SELECT s.* FROM ankrSync s JOIN walletAccounts a ON a.id=s.accountID WHERE a.walletID=? ORDER BY s.accountID,s.stream
             """, arguments: [walletID])
         return WalletSnapshot(wallet: wallet, accounts: try accounts(db, walletID: walletID), networks: networks,
                               holdings: holdings, settings: settings, assetFilter: assetFilter, currency: quoteCurrency,
@@ -186,8 +186,8 @@ extension OathDatabase {
                                  hidesUnverifiedTokens: Bool, includeAllAssets: Bool) throws -> [Holding] {
         return try Holding.fetchAll(db, sql: """
             WITH visibility(hidesUnverified) AS (VALUES (?)),
-            walletAccounts AS (SELECT * FROM accounts WHERE walletID=?), effectiveBalances AS (
-                SELECT b.* FROM balances b JOIN walletAccounts ac ON ac.id=b.accountID WHERE ac.networkID NOT IN ('solana','tron')
+            selectedWalletAccounts AS (SELECT * FROM walletAccounts WHERE walletID=?), effectiveBalances AS (
+                SELECT b.* FROM balances b JOIN selectedWalletAccounts ac ON ac.id=b.accountID WHERE ac.networkID NOT IN ('solana','tron')
                 AND NOT (ac.networkID='ton' AND EXISTS(SELECT 1 FROM tonHoldings th WHERE th.accountID=b.accountID AND th.assetID=b.assetID))
                 AND NOT (ac.networkID='aptos' AND EXISTS(SELECT 1 FROM aptosHoldings th WHERE th.accountID=b.accountID AND th.assetID=b.assetID))
                 AND NOT (ac.networkID='sui' AND EXISTS(SELECT 1 FROM suiHoldings th WHERE th.accountID=b.accountID AND th.assetID=b.assetID))
@@ -201,68 +201,68 @@ extension OathDatabase {
                 AND NOT (ac.networkID='stellar' AND EXISTS(SELECT 1 FROM stellarHoldings th WHERE th.accountID=b.accountID AND th.assetID=b.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'solana' AS networkID,h.amountAtomic,h.observedAt,h.slot AS blockHeight,'solana' AS source
-                FROM solanaHoldings h JOIN walletAccounts ac ON ac.id=h.accountID
+                FROM solanaHoldings h JOIN selectedWalletAccounts ac ON ac.id=h.accountID
                 WHERE h.owner=COALESCE((SELECT address FROM solanaReceiveAddresses WHERE accountID=ac.id AND isSelected=1),ac.address)
                 AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'tron',h.amountAtomic,h.observedAt,NULL,'tron'
                 FROM tronHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'ton',h.amountAtomic,h.observedAt,NULL,'ton'
                 FROM tonHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'aptos',h.amountAtomic,h.observedAt,NULL,'aptos'
                 FROM aptosHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'sui',h.amountAtomic,h.observedAt,NULL,'sui'
                 FROM suiHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'near',h.amountAtomic,h.observedAt,h.blockHeight,'near'
                 FROM nearHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND (h.amountAtomic IS NOT NULL AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID)))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND (h.amountAtomic IS NOT NULL AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID)))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'xrpl',h.amountAtomic,h.observedAt,h.checkpoint,'xrpl'
                 FROM xrplHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'polkadot',h.amountAtomic,h.observedAt,h.checkpoint,'polkadot'
                 FROM polkadotHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'stellar',h.amountAtomic,h.observedAt,h.checkpoint,'stellar'
                 FROM stellarHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'arc',h.amountAtomic,h.observedAt,h.checkpoint,'arc'
                 FROM arcHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'robinhood',h.amountAtomic,h.observedAt,h.checkpoint,'robinhood'
                 FROM robinhoodHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,'hyperevm',h.amountAtomic,h.observedAt,h.checkpoint,'hyperevm'
                 FROM hyperevmHoldings h
-                WHERE h.accountID IN (SELECT id FROM walletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
+                WHERE h.accountID IN (SELECT id FROM selectedWalletAccounts) AND ((SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID))
                 UNION ALL
                 SELECT h.accountID,h.assetID,ac.networkID,h.amountAtomic,h.observedAt,h.checkpoint,'indexedEVM'
-                FROM indexedEVMHoldings h JOIN walletAccounts ac ON ac.id=h.accountID
+                FROM indexedEVMHoldings h JOIN selectedWalletAccounts ac ON ac.id=h.accountID
                 WHERE (SELECT hidesUnverified FROM visibility)=0 OR h.verified=1 OR EXISTS(SELECT 1 FROM trackedAssets tr WHERE tr.accountID=h.accountID AND tr.assetID=h.assetID)
             ), walletAssets AS (
-                SELECT c.id AS accountID,a.id AS assetID FROM accounts c
+                SELECT c.id AS accountID,a.id AS assetID FROM walletAccounts c
                 JOIN assets a ON a.networkID=c.networkID AND a.reference='native' WHERE c.walletID=?
                 UNION
-                SELECT b.accountID,b.assetID FROM accounts c JOIN effectiveBalances b ON b.accountID=c.id
+                SELECT b.accountID,b.assetID FROM walletAccounts c JOIN effectiveBalances b ON b.accountID=c.id
                 JOIN assets a ON a.id=b.assetID AND a.reference<>'native' WHERE c.walletID=?
                 AND ((SELECT hidesUnverified FROM visibility)=0 OR b.source<>'ankr' OR EXISTS (
                     SELECT 1 FROM ankrAssets verified WHERE verified.accountID=b.accountID
                     AND verified.assetID=b.assetID AND verified.onlyWhitelisted=1))
                 UNION
-                SELECT t.accountID,t.assetID FROM accounts c JOIN trackedAssets t ON t.accountID=c.id
+                SELECT t.accountID,t.assetID FROM walletAccounts c JOIN trackedAssets t ON t.accountID=c.id
                 WHERE c.walletID=?
             ), walletTransactions AS (
                 SELECT h.accountID,h.assetID,t.hash AS transactionHash,
@@ -271,14 +271,14 @@ extension OathDatabase {
                 LEFT JOIN transactionEvidence e ON e.accountID=h.accountID AND e.transactionID=t.id
                 WHERE h.walletID=?
                 AND (h.networkID<>'solana' OR EXISTS (SELECT 1 FROM solanaActivity sa
-                    JOIN accounts ownerAccount ON ownerAccount.id=h.accountID
+                    JOIN walletAccounts ownerAccount ON ownerAccount.id=h.accountID
                     WHERE sa.activityID=h.id AND sa.owner=COALESCE((SELECT address FROM solanaReceiveAddresses
                         WHERE accountID=h.accountID AND isSelected=1),ownerAccount.address)))
                 UNION
                 SELECT h.accountID,a.id,h.txid,
                        CASE WHEN h.height>0 THEN 0
                             WHEN COALESCE(e.outcome,t.state,'pending')='pending' THEN 1 ELSE 0 END
-                FROM bitcoinHistory h JOIN accounts c ON c.id=h.accountID
+                FROM bitcoinHistory h JOIN walletAccounts c ON c.id=h.accountID
                 JOIN assets a ON a.networkID=c.networkID AND a.reference='native'
                 LEFT JOIN transactions t ON t.networkID=c.networkID AND t.hash=h.txid
                 LEFT JOIN transactionEvidence e ON e.accountID=h.accountID AND e.transactionID=t.id
@@ -298,7 +298,7 @@ extension OathDatabase {
                    b.amountAtomic,b.observedAt AS balanceObservedAt,p.value AS usdPrice,p.observedAt AS priceObservedAt,p.source AS priceSource,
                    COALESCE(tc.count,0) AS transactionCount,COALESCE(tc.pendingCount,0) AS pendingTransactionCount,
                    CASE WHEN ?='USD' THEN '1' ELSE fx.unitsPerUSD END AS exchangeRate
-            FROM walletAssets v JOIN accounts c ON c.id=v.accountID JOIN networks n ON n.id=c.networkID
+            FROM walletAssets v JOIN walletAccounts c ON c.id=v.accountID JOIN networks n ON n.id=c.networkID
             JOIN assets a ON a.id=v.assetID
             LEFT JOIN effectiveBalances b ON b.accountID=c.id AND b.assetID=a.id
                 AND ((SELECT hidesUnverified FROM visibility)=0 OR b.source<>'ankr' OR a.reference='native' OR EXISTS (

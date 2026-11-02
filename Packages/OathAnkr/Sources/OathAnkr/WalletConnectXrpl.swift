@@ -1,3 +1,4 @@
+import OathDiagnostics
 import Foundation
 import CryptoKit
 import JavaScriptCore
@@ -21,7 +22,7 @@ public struct WalletConnectXrplRequest: Codable, Sendable, Equatable {
     public var multisign: Bool { method == "xrpl_signTransactionFor" }
     public var fingerprint: String {
         let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
-        return XrplSendCrypto.hex(Data(SHA256.hash(data: (try? encoder.encode(self)) ?? Data())))
+        return XrplSendCrypto.hex(Data(SHA256.hash(data: (OathDiagnostics.attempt("encode_connect_request", body: { try encoder.encode(self) })) ?? Data())))
     }
     public init(method: String, chain: String, account: String, params: Data) throws {
         guard Self.methods.contains(method), let network = XrplSendNetwork(walletConnectChain: chain) else { throw XrplSendError.wrongNetwork }

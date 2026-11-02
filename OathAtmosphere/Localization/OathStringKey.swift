@@ -1044,6 +1044,38 @@ enum OathStringKey: String, CaseIterable, Sendable {
     case scannerWCLoading
     case scannerWCUnavailable
     case scannerWCError
+    case wcConnectionInvalidQRTitle
+    case wcConnectionInvalidQRDetail
+    case wcConnectionExpiredQRTitle
+    case wcConnectionExpiredQRDetail
+    case wcConnectionUsedQRTitle
+    case wcConnectionUsedQRDetail
+    case wcConnectionPeerTimeoutTitle
+    case wcConnectionPeerTimeoutDetail
+    case wcConnectionRelayTimeoutTitle
+    case wcConnectionRelayTimeoutDetail
+    case wcConnectionOfflineTitle
+    case wcConnectionOfflineDetail
+    case wcConnectionRelayUnavailableTitle
+    case wcConnectionRelayUnavailableDetail
+    case wcConnectionConfigurationTitle
+    case wcConnectionConfigurationDetail
+    case wcConnectionLockedTitle
+    case wcConnectionLockedDetail
+    case wcConnectionConnectionLimitTitle
+    case wcConnectionConnectionLimitDetail
+    case wcConnectionAccountsTitle
+    case wcConnectionAccountsDetail
+    case wcConnectionUnsupportedNetworksTitle
+    case wcConnectionUnsupportedNetworksDetail
+    case wcConnectionUnsupportedMethodsTitle
+    case wcConnectionUnsupportedMethodsDetail
+    case wcConnectionUnsupportedEventsTitle
+    case wcConnectionUnsupportedEventsDetail
+    case wcConnectionProposalUnavailableTitle
+    case wcConnectionProposalUnavailableDetail
+    case wcConnectionUnknownTitle
+    case wcConnectionUnknownDetail
     case scannerWCUnverified
     case scannerWCUnverifiedDetail
     case scannerWCAcknowledge

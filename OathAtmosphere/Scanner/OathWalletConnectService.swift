@@ -98,7 +98,8 @@ import OathBitcoin
     private(set) var preparingRequest = false
     private(set) var revisingTransaction = false
     var failed = false
-    private(set) var requiresFreshPairing = false
+    private(set) var connectionFailure: OathWalletConnectPolicy.ConnectionFailure?
+    var requiresFreshPairing: Bool { connectionFailure.map { !$0.allowsPairingRetry } ?? false }
     private(set) var connectedTopic: String?
     private(set) var connections = OathWalletConnectConnections()
     private(set) var disconnecting = Set<String>()
@@ -151,7 +152,7 @@ import OathBitcoin
                 redirect: try AppMetadata.Redirect(native: OathWalletLink.native, universal: OathWalletLink.universal, linkMode: false))
             Pair.configure(metadata: metadata)
             Sign.configure(crypto: OathWCCrypto())
-            Events.instance.setTelemetryEnabled(false)
+                Events.instance.setTelemetryEnabled(false)
             configured = true
             Networking.instance.socketConnectionStatusPublisher
                 // SDK socket callbacks originate on URLSession's queue. Move
@@ -168,7 +169,7 @@ import OathBitcoin
                     guard let self, session.isUnlocked, item.proposal.pairingTopic == self.pairingTopic,
                           self.pairingProgress.receiveProposal() else { return }
                     self.timeout?.cancel(); self.working = false
-                    self.failed = false; self.requiresFreshPairing = false; self.presentationIssue = nil
+                    self.failed = false; self.connectionFailure = nil; self.presentationIssue = nil
                     self.proposal = .init(value: item.proposal, verify: item.context)
                 }
             }.store(in: &observers)
@@ -197,18 +198,37 @@ import OathBitcoin
             if let first = Sign.instance.getPendingRequests().first { receive(first.request, context: first.context) }
         } catch {
             OathDiagnostics.$operationID.withValue(operation) { OathDiagnostics.record(error, component: "walletconnect", operation: "configure") }
-            failed = true
+            connectionFailure = .configuration; failed = true
         }
     }
     enum ConfigurationFailure: Error { case missing, invalid }
     func pair(_ raw: String) async {
         // A repeated presentation task must not turn in-flight work into failure.
         guard !working else { return }
-        guard configured, session?.isUnlocked == true, sessions.count < 32,
-              case .walletConnect = OathScanParser.walletConnect(raw, now: .now),
-              let uri = try? WalletConnectURI(uriString: raw) else { failed = true; return }
-        operation = UUID(); let token = operation
-        failed = false; completion = nil; presentationIssue = nil; requiresFreshPairing = false; proposal = nil; connectedTopic = nil; working = true; pairingTopic = uri.topic
+        timeout?.cancel()
+        operation = UUID()
+        pairingProgress = .idle; pairingTopic = nil
+        proposal = nil; connectedTopic = nil; completion = nil; presentationIssue = nil
+        connectionFailure = nil; failed = false
+        // Invalid scans and locked/limited sessions are expected validation, not diagnostics failures.
+        guard configured else { failConnection(.configuration); return }
+        guard session?.isUnlocked == true else { failConnection(.locked); return }
+        guard case .walletConnect = OathScanParser.walletConnect(raw, now: .now) else {
+            if case .invalid(.expiredWalletConnect) = OathScanParser.walletConnect(raw, now: .now) { failConnection(.expiredQR) }
+            else { failConnection(.invalidQR) }
+            return
+        }
+        let uri: WalletConnectURI
+        do { uri = try WalletConnectURI(uriString: raw) }
+        catch {
+            // URI format/expiry errors are expected scan validation, including expiry during parsing.
+            if !(error is WalletConnectURI.Errors) {
+                OathDiagnostics.$operationID.withValue(operation) { OathDiagnostics.record(error, component: "walletconnect", operation: "parse_pairing") }
+            }
+            failConnection(OathWalletConnectPolicy.ConnectionFailure.classify(error) ?? .invalidQR); return
+        }
+        let token = operation
+        working = true; pairingTopic = uri.topic
         pairingProgress = .waiting
         timeout?.cancel()
         // Re-scanning a consumed URI must not replay Pair.pair forever. The SDK
@@ -224,22 +244,31 @@ import OathBitcoin
             resumeRequests()
             return
         }
+        guard sessions.count < 32 else { working = false; pairingProgress = .idle; failConnection(.connectionLimit); return }
         timeout = Task { [weak self] in
             do { try await Task.sleep(for: .seconds(30)) } catch is CancellationError { return } catch { OathDiagnostics.$operationID.withValue(token) { OathDiagnostics.record(error, component: "walletconnect", operation: "pair_timeout") }; return }
             guard let self, operation == token, working, pairingProgress.fail() else { return }
-            working = false; failed = true
+            working = false; failConnection(.peerTimeout)
+            OathDiagnostics.$operationID.withValue(token) { OathDiagnostics.record(OathWalletConnectPolicy.ConnectionFailure.peerTimeout, component: "walletconnect", operation: "await_proposal") }
         }
         do { try await Pair.instance.pair(uri: uri) }
         catch {
+            guard let failure = OathWalletConnectPolicy.ConnectionFailure.classify(error) else {
+                if token == operation, pairingProgress == .waiting { timeout?.cancel(); working = false; pairingProgress = .idle }
+                return
+            }
             OathDiagnostics.$operationID.withValue(token) { OathDiagnostics.record(error, component: "walletconnect", operation: "pair") }
             guard token == operation else { return }
             // A queued proposal may arrive while pair() returns its old-pairing
             // error. Do not replace that actionable proposal with an error page.
             guard pairingProgress.fail() else { return }
             timeout?.cancel(); working = false
-            requiresFreshPairing = OathWalletConnectPolicy.requiresFreshPairing(error)
-            failed = true
+            failConnection(failure)
         }
+    }
+    private func failConnection(_ failure: OathWalletConnectPolicy.ConnectionFailure) {
+        connectionFailure = failure
+        failed = true
     }
     func accounts(walletID: String) async -> [AccountRecord] {
         guard let session, session.isUnlocked, session.wallets.contains(where: { $0.id == walletID }) else { return [] }
@@ -266,7 +295,7 @@ import OathBitcoin
                           OathWalletConnectPolicy.supportsConnection(blockchain.absoluteString) else { return false }
                     return seen.insert($0.networkID).inserted
                 } }
-        catch { OathDiagnostics.$operationID.withValue(operation) { OathDiagnostics.record(error, component: "walletconnect", operation: "load_accounts") }; failed = true; return [] }
+        catch { OathDiagnostics.$operationID.withValue(operation) { OathDiagnostics.record(error, component: "walletconnect", operation: "load_accounts") }; failConnection(.accounts); return [] }
     }
     static func blockchain(_ chain: OathImportChain) -> Blockchain? {
         if chain == .bitcoin { return Blockchain(BitcoinConnectNetwork.mainnet.chain) }
@@ -339,7 +368,7 @@ import OathBitcoin
     func approve(accounts: [AccountRecord], selected: Set<String>, walletID: String, acknowledged: Bool, digits: [UInt8]? = nil, reason: String = "") async throws {
         guard let proposal, !proposal.blocked, !proposal.unverified || acknowledged,
               session?.isUnlocked == true, !working else { return }
-        working = true; failed = false
+        working = true; failed = false; connectionFailure = nil
         let token = operation
         defer { if token == operation { working = false } }
         do {
@@ -387,7 +416,7 @@ import OathBitcoin
             connections.approve(result.topic, pairingTopic: proposal.value.pairingTopic)
             refreshSessions(); self.proposal = nil; connectedTopic = result.topic
             pairingProgress = .connected
-            timeout?.cancel(); failed = false; requiresFreshPairing = false; presentationIssue = nil
+            timeout?.cancel(); failed = false; connectionFailure = nil; presentationIssue = nil
             OathHaptics.shared.play(.success)
         } catch is CancellationError { throw CancellationError() }
         catch where error is OathBiometricCredentialError || error is OathWalletError {
@@ -398,7 +427,8 @@ import OathBitcoin
         catch {
             OathDiagnostics.$operationID.withValue(token) { OathDiagnostics.record(error, component: "walletconnect", operation: "approve") }
             guard token == operation else { return }
-            failed = true
+            if error is ConfigurationFailure { failConnection(.accounts) }
+            else if let failure = OathWalletConnectPolicy.ConnectionFailure.classify(error) { failConnection(failure) }
         }
         if token == operation {
             working = false
@@ -1467,7 +1497,7 @@ import OathBitcoin
         // The relay response may finish later without touching the next sheet.
         let rejected = cancelPairing()
         completionHandoffRequested = nil
-        completion = nil; presentationIssue = nil; connectedTopic = nil; failed = false
+        completion = nil; presentationIssue = nil; connectionFailure = nil; connectedTopic = nil; failed = false
         _ = presentationOwner.release(id)
         Task { await rejectProposal(rejected) }
         resumeRequests()

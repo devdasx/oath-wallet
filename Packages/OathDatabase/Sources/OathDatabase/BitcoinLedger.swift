@@ -224,9 +224,18 @@ extension OathDatabase {
     }
 
     public func bitcoinMissingTransactions(accountID: String, txids: Set<String>) async throws -> [String] {
-        try await pool.read { db in
-            let saved = Set(try String.fetchAll(db, sql: "SELECT txid FROM bitcoinTransactions WHERE accountID=?", arguments: [accountID]))
-            return txids.subtracting(saved).sorted()
+        guard !txids.isEmpty else { return [] }
+        return try await pool.read { db in
+            let ids = txids.sorted()
+            var missing = txids
+            for start in stride(from: 0, to: ids.count, by: 300) {
+                let batch = ids[start..<min(start + 300, ids.count)]
+                let placeholders = Array(repeating: "?", count: batch.count).joined(separator: ",")
+                let saved = try String.fetchAll(db, sql: "SELECT txid FROM bitcoinTransactions WHERE accountID=? AND txid IN (\(placeholders))",
+                                                arguments: StatementArguments([accountID] + batch))
+                missing.subtract(saved)
+            }
+            return missing.sorted()
         }
     }
 
@@ -241,15 +250,34 @@ extension OathDatabase {
     }
 
     static func bitcoinSpendableOutputs(walletID: String, now: Date, network: UTXONetwork = .bitcoin, accountID: String? = nil, db: Database) throws -> [BitcoinSpendableOutput] {
-        let accounts = try String.fetchAll(db, sql: "SELECT id FROM accounts WHERE walletID=? AND networkID=? AND (? IS NULL OR id=?)", arguments: [walletID, network.rawValue, accountID, accountID])
-        guard !accounts.isEmpty else { throw StoreError.missingRecord }
-        for accountID in accounts {
-            guard let state = try Row.fetchOne(db, sql: "SELECT * FROM bitcoinWallets WHERE accountID=?", arguments: [accountID]),
-                  let success: Double = state["lastSuccess"], (0...120).contains(now.timeIntervalSince1970 - success),
-                  (state["failure"] as String?) == nil, (state["scanID"] as String?) == nil else { throw StoreError.staleSync }
-        }
+        guard try bitcoinFundingDeadline(walletID: walletID, network: network, accountID: accountID, now: now, db: db) != nil
+        else { throw StoreError.staleSync }
+        return try storedBitcoinOutputs(walletID: walletID, network: network, accountID: accountID, db: db)
+    }
+
+    private static func bitcoinFundingDeadline(walletID: String, network: UTXONetwork, accountID: String?,
+                                               now: Date, db: Database) throws -> Date? {
         let rows = try Row.fetchAll(db, sql: """
-            SELECT u.*,o.accountID,d.detail,t.raw,w.tipHeight FROM accounts a
+            SELECT w.lastSuccess,w.failure,w.scanID,w.tipHeight FROM walletAccounts a
+            LEFT JOIN bitcoinWallets w ON w.accountID=a.id
+            WHERE a.walletID=? AND a.networkID=? AND (? IS NULL OR a.id=?)
+            """, arguments: [walletID, network.rawValue, accountID, accountID])
+        guard !rows.isEmpty else { throw StoreError.missingRecord }
+        var deadline = Date.distantFuture
+        for row in rows {
+            guard let success: Double = row["lastSuccess"], let tip: Int64 = row["tipHeight"], tip > 0 else { throw StoreError.staleSync }
+            if (row["failure"] as String?) != nil || (row["scanID"] as String?) != nil || success > now.timeIntervalSince1970 {
+                deadline = .distantPast
+            } else {
+                deadline = min(deadline, Date(timeIntervalSince1970: success + 120))
+            }
+        }
+        return deadline >= now ? deadline : nil
+    }
+
+    private static func storedBitcoinOutputs(walletID: String, network: UTXONetwork, accountID: String?, db: Database) throws -> [BitcoinSpendableOutput] {
+        let rows = try Row.fetchAll(db, sql: """
+            SELECT u.*,o.accountID,d.detail,t.raw,w.tipHeight FROM walletAccounts a
             JOIN accountUTXOs o ON o.accountID=a.id
             JOIN utxos u ON u.networkID=o.networkID AND u.transactionHash=o.transactionHash AND u.outputIndex=o.outputIndex
             JOIN bitcoinAddresses d ON d.accountID=a.id AND d.script=u.script

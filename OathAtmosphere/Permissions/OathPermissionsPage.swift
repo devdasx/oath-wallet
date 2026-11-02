@@ -20,7 +20,7 @@ struct OathPermissionsPage: View {
                 .buttonStyle(OathSettingsRowButtonStyle())
             OathSettingsFooter { Text(strings.text(.permissionIntro)) }
             OathSettingsSectionRule()
-            category(.permissionTokens,icon:"hand.raised",kinds:[.token,.permit2,.delegate])
+            category(.permissionTokens,icon:"hand.raised",kinds:[.token,.permit2,.permit2Nonce,.delegate])
             category(.permissionCollectibles,icon:"square.stack",kinds:[.collectible,.collection])
             NavigationLink { OathWalletConnectPage(session:session,walletID:model.walletID) } label: {
                 OathSettingsRow(title:strings.text(.permissionConnections),icon:"link",value:strings.number(connections.sessions.filter{connections.walletID(for:$0.topic)==model.walletID}.count))
@@ -53,7 +53,6 @@ struct OathPermissionsPage: View {
             }
             OathSettingsSectionRule()
             OathSettingsFooter { Text(strings.text(.permissionCoverageDetail)) }
-            NavigationLink { OathPermissionContractPage(session:session,model:model) } label: { OathSettingsRow(title:strings.text(.permissionCheck),icon:"doc.text.magnifyingglass") }.buttonStyle(OathSettingsRowButtonStyle())
         }.navigationTitle(strings.text(.permissionCoverage))
     }
     static func coverageTitle(_ c:PermissionScan.Coverage)->OathStringKey {
@@ -121,7 +120,7 @@ private struct OathPermissionList: View {
     @State private var networks=Set<String>()
     @State private var selecting=false
     @State private var filters=false
-    @State private var reviewSelection: PermissionReviewSelection?
+    @State private var revokeAction = OathPermissionRevokeAction()
     @State private var batchItems=[PermissionBatchItem]()
     @State private var batchFailure=false
     @State private var batchIndex=[String:PermissionBatchItem]()
@@ -129,61 +128,49 @@ private struct OathPermissionList: View {
     private var coordinator:OathPermissionBatchCoordinator { .shared }
     private var isRunning:Bool { coordinator.runningWalletID==model.walletID }
     private var readOnly:Bool { session.wallets.first{$0.id==model.walletID}?.kind=="watchOnly" }
-    private var items:[WalletPermission] { model.permissions.filter { p in
+    private var displayedPermissions: [WalletPermission] {
+        var values = Dictionary(model.permissions.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        for item in batchItems where activePermissions.contains(item.permission.id) {
+            if values[item.permission.id] == nil { values[item.permission.id] = item.permission }
+        }
+        return values.values.sorted { $0.id < $1.id }
+    }
+    private var items:[WalletPermission] { displayedPermissions.filter { p in
         kinds.contains(p.kind) && !verifiedRemoved(p) && (networks.isEmpty || networks.contains(p.network)) && (query.isEmpty || [p.contract,p.spender,p.identityAddress,model.name(p) ?? "",model.identity(p)?.symbol ?? "",model.spenderName(p) ?? "",p.network].contains{$0.localizedCaseInsensitiveContains(query)})
     } }
     private var grouped:[String:[WalletPermission]] { Dictionary(grouping:items,by:\.network) }
     private var selectable:Set<String> { Set(items.filter { canRemove($0) }.map(\.id)) }
     private var allSelected:Bool { !selectable.isEmpty && selected==selectable }
-    private var latest:[PermissionBatchItem] {
-        guard let id=batchItems.first?.batchID else { return [] }
-        return batchItems.filter{$0.batchID==id}
-    }
-    private var progressTitle:String {
-        let key:OathStringKey=coordinator.runningWalletID==model.walletID ? .sendPreparing:.permissionHistory
-        return strings.text(key)
-    }
-    private var progressCount:String {
-        let completed=latest.filter { item in item.state != "queued" && item.state != "processing" }.count
-        return strings.number(completed)+" / "+strings.number(latest.count)
-    }
     private var permissionList:some View {
         let groups=grouped
-        return List(selection:$selected) {
-            if !latest.isEmpty {
-                Section {
-                    NavigationLink { batchResults } label: {
-                        OathSettingsRow(title:progressTitle,value:progressCount,accessory:.none)
-                    }.selectionDisabled().listRowBackground(Color.clear)
-                }
-            }
-            ForEach(groups.keys.sorted { networkName($0).localizedStandardCompare(networkName($1)) == .orderedAscending },id:\.self) { network in
-                networkSection(network,permissions:groups[network] ?? [])
-            }
+        return Group {
             if items.isEmpty {
-                Section {
+                OathEmptyStateScrollView {
                     OathEmptyState(strings.text(query.isEmpty ? .permissionEmpty:.permissionNoResults),systemImage:"hand.raised",description:strings.text(.permissionEmptyDetail))
-                        .selectionDisabled().listRowSeparator(.hidden).listRowBackground(Color.clear)
+                    failureMessages.padding(.horizontal,20)
                 }
-            }
-            if !selecting {
-                Section {
-                    NavigationLink { OathPermissionContractPage(session:session,model:model) } label: {
-                        OathSettingsRow(title:strings.text(.permissionCheck),icon:"doc.text.magnifyingglass",accessory:.none)
-                    }.selectionDisabled().listRowInsets(EdgeInsets()).listRowBackground(Color.clear)
+            } else {
+                List(selection:$selected) {
+                    ForEach(groups.keys.sorted { networkName($0).localizedStandardCompare(networkName($1)) == .orderedAscending },id:\.self) { network in
+                        networkSection(network,permissions:groups[network] ?? [])
+                    }
+                    failureMessages.selectionDisabled()
                 }
+                .id(strings.language.isRightToLeft)
+                .listStyle(.plain).scrollContentBackground(.hidden)
+                .environment(\.editMode,.constant(selecting ? .active:.inactive))
             }
-            if batchFailure { Text(strings.text(.permissionError)).foregroundStyle(.red).selectionDisabled() }
         }
-        .id(strings.language.isRightToLeft)
-        .listStyle(.plain).scrollContentBackground(.hidden)
-        .environment(\.editMode,.constant(selecting ? .active:.inactive))
         .tint(OathOnboardingColors.blue)
         .background(Color(uiColor:OathSurfaceColors.canvas).ignoresSafeArea())
         .searchable(text:$query,placement:.navigationBarDrawer(displayMode:.always),
                     prompt:strings.text(.permissionSearch))
         .navigationTitle(strings.text(title)).navigationBarTitleDisplayMode(.inline)
         .animation(reduceMotion ? nil:.default,value:items.map(\.id))
+    }
+    @ViewBuilder private var failureMessages:some View {
+        if let failure=revokeAction.failure { Text(strings.text(failure)).foregroundStyle(.red) }
+        if batchFailure { Text(strings.text(.permissionError)).foregroundStyle(.red) }
     }
     var body:some View {
         permissionList
@@ -203,11 +190,11 @@ private struct OathPermissionList: View {
             }
         }
         .oathBottomActions(isPresented: selecting) {
-            OathBottomAction(title: strings.text(.permissionRevokeAll), identifier: "permissions.revokeSelected",
+            OathBottomAction(title: strings.text(.permissionRemove), identifier: "permissions.revokeSelected",
                              role: .destructive,
-                             isEnabled: !selected.isEmpty && coordinator.runningWalletID == nil && session.isUnlocked && !readOnly) {
+                             isEnabled: !selected.isEmpty && coordinator.canStart && session.isUnlocked && !readOnly) {
                 guard selecting, session.isUnlocked, !readOnly, scenePhase != .background,
-                      coordinator.runningWalletID == nil else { return }
+                      coordinator.canStart else { return }
                 let permissions = items.filter { selected.contains($0.id) && canRemove($0) }
                 guard !permissions.isEmpty else { return }
                 review(permissions)
@@ -216,9 +203,7 @@ private struct OathPermissionList: View {
         .toolbar(.hidden, for: .bottomBar)
         .animation(reduceMotion ? nil:.default,value:selecting)
         .sheet(isPresented:$filters) { OathPermissionNetworkFilter(networks:model.accounts.map(\.networkID),selection:$networks) }
-        .sheet(item:$reviewSelection) { selection in
-            OathPermissionBatchReview(session:session,model:model,selection:selection)
-        }
+        .modifier(OathPermissionAuthentication(action:revokeAction,session:session,model:model))
         .onChange(of:selectable) { _,allowed in selected.formIntersection(allowed) }
         .onChange(of:isRunning) { _,running in
             if running { selecting=false;selected.removeAll() }
@@ -242,60 +227,49 @@ private struct OathPermissionList: View {
             .tag(permission.id)
             .selectionDisabled(!canRemove(permission))
             .listRowInsets(EdgeInsets()).listRowSeparator(.hidden).listRowBackground(Color.clear)
-            .swipeActions(edge:.trailing,allowsFullSwipe:false) {
-                if !selecting,canRemove(permission) {
-                    Button(role:.destructive) { review([permission]) } label: {
-                        Label(strings.text(.permissionRemove),systemImage:"hand.raised.slash")
-                    }.disabled(coordinator.runningWalletID != nil)
-                }
-            }
     }
     @ViewBuilder private func permissionCell(_ permission:WalletPermission)->some View {
         if selecting { permissionRow(permission) }
         else {
-            NavigationLink { OathPermissionDetail(session:session,model:model,permission:permission) } label: {
+            HStack(spacing:0) {
                 permissionRow(permission)
-            }.buttonStyle(OathSettingsRowButtonStyle())
+                if permission.removable && !readOnly {
+                    OathBottomAction(title: strings.text(.permissionRemove),
+                        identifier: "permissions.revoke",
+                        isEnabled: coordinator.canStart && session.isUnlocked,
+                        isWorking: isPending(permission)) {
+                        review([permission])
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                    .accessibilityLabel(strings.text(isPending(permission) ? .permissionPending:.permissionRemove))
+                    .padding(.trailing,20)
+                }
+            }
         }
     }
+    private func isPending(_ permission:WalletPermission)->Bool {
+        activePermissions.contains(permission.id) || revokeAction.pending.contains(permission.id)
+    }
+
     private func permissionRow(_ permission:WalletPermission)->some View {
         let item=batchIndex[permission.id]
-        let status=item.flatMap { $0.state=="removed" && !verifiedRemoved(permission) ? nil:strings.text(Self.statusKey($0)) }
+        let status=item.flatMap { ["removed","alreadyRemoved"].contains($0.state) && !verifiedRemoved(permission) ? nil:strings.text(Self.statusKey($0)) }
         return OathSettingsRow(title:model.name(permission) ?? WalletPermission.abbreviated(permission.identityAddress),accessory:.none,
-            subtitle:(model.spenderName(permission) ?? WalletPermission.abbreviated(permission.spender))+"\n"+(status ?? strings.text(permission.kindTitle)),
+            subtitle:title == .permissionControl ? nil:(model.spenderName(permission) ?? WalletPermission.abbreviated(permission.spender))+"\n"+(status ?? strings.text(permission.kindTitle)),
             networkLogo:"network-"+permission.network)
     }
     private func verifiedRemoved(_ permission:WalletPermission)->Bool {
-        guard let item=batchIndex[permission.id],item.state=="removed",
+        guard !isPending(permission), let item=batchIndex[permission.id],["removed","alreadyRemoved"].contains(item.state),
               let verified=item.verifiedAt,let scan=model.scans[permission.network] else { return false }
         return scan.checkedAt.timeIntervalSince1970<=verified
     }
     private func canRemove(_ permission:WalletPermission)->Bool {
-        !readOnly && permission.removable && !activePermissions.contains(permission.id)
+        !readOnly && permission.removable && !isPending(permission)
     }
     private func networkName(_ network:String)->String { OathImportChain(rawValue:network)?.name ?? network }
     private func review(_ permissions:[WalletPermission]) {
         guard !readOnly, session.isUnlocked else { return }
-        reviewSelection = PermissionReviewSelection(walletID:model.walletID,items:permissions)
-    }
-    private var batchResults:some View {
-        OathPermissionContent {
-            OathSettingsFooter { Text(strings.text(.permissionBatchDetail)) }
-            ForEach(latest) { item in
-                OathSettingsRow(title:model.name(item.permission) ?? WalletPermission.abbreviated(item.permission.identityAddress),
-                    accessory:.none,subtitle:strings.text(Self.statusKey(item)),networkLogo:"network-"+item.permission.network,
-                    isWorking:coordinator.runningWalletID==model.walletID && ["queued","processing"].contains(item.state))
-            }
-            if latest.contains(where:{$0.retryable}),coordinator.runningWalletID==nil {
-                Button { review(latest.filter(\.retryable).map(\.permission)) } label: {
-                    OathSettingsRow(title:strings.text(.tryAgain),icon:"arrow.clockwise")
-                }.buttonStyle(OathSettingsRowButtonStyle())
-                OathSettingsFooter { Text(strings.text(.permissionBatchPaused)) }
-            }
-            NavigationLink { OathPermissionHistoryPage(session:session,model:model) } label: {
-                OathSettingsRow(title:strings.text(.permissionHistory),icon:"clock.arrow.circlepath")
-            }.buttonStyle(OathSettingsRowButtonStyle())
-        }.navigationTitle(strings.text(.permissionSelection)).navigationBarTitleDisplayMode(.inline)
+        revokeAction.revoke(permissions,session:session,model:model,reason:strings.text(.permissionRemove))
     }
     static func statusKey(_ item:PermissionBatchItem)->OathStringKey {
         switch item.state {
@@ -324,8 +298,8 @@ private struct OathPermissionList: View {
                 initial=false;removed=confirmed;batchItems=values
                 batchIndex=Dictionary(values.map{($0.permission.id,$0)},uniquingKeysWith:{first,_ in first})
                 activePermissions=Set(values.filter{["queued","processing","submitted"].contains($0.state)}.map{$0.permission.id})
-                for item in values where item.state=="removed" {
-                    guard let scan=model.scans[item.permission.network],let verified=item.verifiedAt,
+                for item in batchIndex.values where ["removed","alreadyRemoved"].contains(item.state) {
+                    guard !activePermissions.contains(item.permission.id),let scan=model.scans[item.permission.network],let verified=item.verifiedAt,
                           scan.checkedAt.timeIntervalSince1970<=verified else { continue }
                     model.scans[scan.network] = .init(network:scan.network,owner:scan.owner,
                         permissions:scan.permissions.filter{$0.id != item.permission.id},coverage:scan.coverage,checkedAt:scan.checkedAt)
@@ -371,68 +345,3 @@ private struct OathPermissionNetworkFilter:View {
         }.onAppear{draft=selection}.presentationDetents([.large]).presentationDragIndicator(.visible).presentationBackground(Color(uiColor:OathSurfaceColors.canvas)).oathNativeLocalization()
     }
 }
-
-private struct OathPermissionDetail:View {
-    let session:OathWalletSession,model:OathPermissionsModel,permission:WalletPermission
-    @Environment(\.oathLocalizer) private var strings
-    @State private var permitBlock:WalletPermission?
-    @State private var error:OathStringKey?
-    @State private var checking=false
-    private var readOnly:Bool { session.wallets.first{$0.id==model.walletID}?.kind=="watchOnly" }
-    var body:some View {
-        OathPermissionContent {
-            VStack(spacing:14) {
-                OathNetworkLogo(asset:"network-"+permission.network,size:56)
-                Text(model.name(permission) ?? WalletPermission.abbreviated(permission.identityAddress)).oathFont(.title2,weight:.semibold)
-                Text(OathImportChain(rawValue:permission.network)?.name ?? permission.network).foregroundStyle(.secondary)
-            }.frame(maxWidth:.infinity).padding(28)
-            value(.permissionContract,permission.contract)
-            value(.permissionSpender,permission.spender,name:model.spenderName(permission))
-            if let id=permission.tokenID { value(.permissionTokenID,id) }
-            if let account=permission.tokenAccount { value(.contactAddress,account) }
-            OathSettingsSectionRule()
-            OathSettingsRow(title:strings.text(.permissionAccess),value:strings.text(permission.kindTitle),accessory:.none)
-            if permission.kind == .token || permission.kind == .delegate {
-                OathSettingsRow(title:strings.text(.sendAmount),value:allowance,accessory:.none)
-            }
-            if permission.kind == .permanentDelegate { footer(.permissionPermanentDetail) }
-            else if !permission.removable { footer(.permissionUnsupported) }
-            else if readOnly { footer(.permissionReadOnly) }
-            else {
-                if permission.kind == .permit2 { footer(.permissionPermitDetail) }
-                NavigationLink { OathPermissionReview(session:session,model:model,permission:permission) } label: { OathSettingsRow(title:strings.text(.permissionRemove),icon:"hand.raised.slash",color:.red) }.buttonStyle(OathSettingsRowButtonStyle())
-            }
-            if permission.kind == .permit2,!readOnly {
-                NavigationLink {
-                    OathPermissionReview(session:session,model:model,permission:.init(network:permission.network,owner:permission.owner,contract:permission.contract,spender:permission.spender,kind:.permit2Nonce,amount:permission.amount,tokenID:permission.tokenID))
-                } label:{OathSettingsRow(title:strings.text(.permissionNonce),icon:"signature")}.buttonStyle(OathSettingsRowButtonStyle())
-                footer(.permissionNonceDetail)
-                Button { blockPermit() } label:{OathSettingsRow(title:strings.text(.permissionPermitBlock),icon:"hand.raised.slash",isWorking:checking)}.buttonStyle(OathSettingsRowButtonStyle()).disabled(checking)
-            }
-            if let error { footer(error) }
-        }.navigationTitle(strings.text(.permissionAccess)).navigationBarTitleDisplayMode(.inline)
-        .task(id:permission.id) { await model.resolveIdentities(session:session,items:[permission]) }
-        .navigationDestination(isPresented:Binding(get:{permitBlock != nil},set:{if !$0 {permitBlock=nil}})) {
-            if let permitBlock { OathPermissionReview(session:session,model:model,permission:permitBlock) }
-        }
-    }
-    private var allowance:String {
-        if permission.kindTitle == .permissionUnlimited { return strings.text(.permissionUnlimited) }
-        if let decimals=model.identity(permission)?.decimals ?? model.holding(permission)?.decimals,
-           let symbol=model.identity(permission)?.symbol ?? model.holding(permission)?.symbol,
-           let units=OathSendAmount.units(permission.amount,decimals:decimals) { return OathAssetAmountFormat.boundedUnits(units)+" "+symbol }
-        return permission.amount+" "+strings.text(.permissionAtomic)
-    }
-    private func value(_ key:OathStringKey,_ value:String,name:String?=nil)->some View {
-        OathButton(feedback: nil) { OathClipboard.copy(value) } label:{
-            VStack(alignment:.leading,spacing:8) { Text(strings.text(key)).oathFont(.subheadline).foregroundStyle(.secondary);if let name {Text(name)};OathAddressText(address:value,centered:false) }.padding(20)
-        }.buttonStyle(.plain).accessibilityHint(strings.text(.copyAddress))
-    }
-    private func footer(_ key:OathStringKey)->some View { OathSettingsFooter { Text(strings.text(key)) } }
-    private func blockPermit() {
-        guard let account=model.account(permission),let token=permission.tokenID else { return };checking=true;error=nil
-        Task { do { permitBlock=try await OathPermissionService.shared.checkContract(account:account,contract:token,spender:EVMPermissionRemoval.permit2,kind:.token,tokenID:nil) }
-            catch { self.error = .permissionError;OathDiagnostics.record(error,component:"permissions",operation:"permit2_scope",context:["chain":permission.network]) };checking=false }
-    }
-}
-

@@ -21,8 +21,8 @@ struct OathWalletConnectPage: View {
         Group {
             if !service.configured {
                 OathEmptyStateScrollView {
-                    OathEmptyState(strings.text(.scannerWCUnavailable), systemImage: "wifi.exclamationmark",
-                                   description: strings.text(.scannerWCError))
+                    OathEmptyState(strings.text(.wcConnectionConfigurationTitle), systemImage: "wifi.exclamationmark",
+                                   description: strings.text(.wcConnectionConfigurationDetail))
                 }
             } else if visibleSessions.isEmpty {
                 OathEmptyStateScrollView {
@@ -140,7 +140,7 @@ private struct OathWalletConnectDetail: View {
         .navigationTitle(strings.text(.wcConnectionDetails)).navigationBarTitleDisplayMode(.inline)
         .alert(strings.text(.scannerWCDisconnect), isPresented: $confirmDisconnect) {
             OathButton(strings.text(.scannerWCDisconnect), role: .destructive) {
-                Task { _ = await service.disconnect(topic) }
+                Task { if await service.disconnect(topic) { dismiss() } }
             }.accessibilityIdentifier("walletconnect.disconnect.confirm")
             OathButton(strings.text(.cancel), role: .cancel) { }
         } message: { Text(strings.text(.wcDisconnectDetail)) }

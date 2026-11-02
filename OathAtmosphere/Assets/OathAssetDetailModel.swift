@@ -126,7 +126,7 @@ actor OathMarketEnvironment {
         defer { if historyRequestID == request { loadingHistory = false } }
         do {
             let db = try await OathDataEnvironment.shared.database()
-            async let enrichment: Void = OathSwapHistoryEnrichment.shared.observe(walletID: walletID)
+            async let _: Void = OathSwapHistoryEnrichment.shared.observe(walletID: walletID)
             let limit = historyLimit
             // One lookahead row determines whether this asset needs View All.
             for try await page in db.observeChainHistory(walletID: walletID, accountID: accountID, assetID: assetID, currency: currency, limit: limit + 1) {
@@ -198,7 +198,7 @@ struct OathAssetRoute: Hashable {
             let db = try await OathDataEnvironment.shared.database()
             if !query.isEmpty { try await Task.sleep(for: .milliseconds(180)) }
             try Task.checkCancellation()
-            async let enrichment: Void = OathSwapHistoryEnrichment.shared.observe(walletID: walletID)
+            async let _: Void = OathSwapHistoryEnrichment.shared.observe(walletID: walletID)
             let visibleLimit = limit
             for try await page in db.observeChainHistory(walletID: walletID, networkID: networkID,
                                                          accountID: accountID, assetID: assetID,

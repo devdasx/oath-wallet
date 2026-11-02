@@ -33,7 +33,7 @@ extension AptosLedgerTests {
             // WalletRecord (which includes fields introduced after v61).
             try sql.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES('w','Public fixture','watchOnly','none',1,0)")
             for id in ["cached", "empty"] {
-                try AccountRecord(id: id, walletID: "w", networkID: "aptos", address: AptosIdentity.address(id == "cached" ? "0x1" : "0x2"), derivationPath: "").insert(sql)
+                try AccountRecord(id: id, walletID: "w", networkID: "aptos", address: AptosIdentity.address(id == "cached" ? "0x1" : "0x2"), derivationPath: "").insertIntoHistoricalAccounts(sql)
                 for lane in ["recent", "backfill"] {
                     try sql.execute(sql: "INSERT INTO aptosHistoryCursors(accountID,stream,lane,beforeVersion,stopVersion,headVersion,complete) VALUES(?,'account',?,50,90,100,1)", arguments: [id, lane])
                 }

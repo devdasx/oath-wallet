@@ -68,7 +68,7 @@ final class RetiredDeliveryMigrationTests: XCTestCase {
             // This fixture predates parentWalletID/confirmedName; do not encode
             // today's WalletRecord into the deliberately older schema.
             try db.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES('wallet','Fixture','watchOnly','none',1,0)")
-            try AccountRecord(id: "account", walletID: "wallet", networkID: "solana", address: "public-owner", derivationPath: "fixture").insert(db)
+            try AccountRecord(id: "account", walletID: "wallet", networkID: "solana", address: "public-owner", derivationPath: "fixture").insertIntoHistoricalAccounts(db)
             try db.execute(sql: """
                 INSERT INTO transactions(id,networkID,hash,state,timestamp,updatedAt) VALUES('tx','solana','public-hash','pending',1,1);
                 INSERT INTO sends(id,walletID,accountID,networkID,assetID,senderAddress,idempotencyKey,recipient,amountAtomic,state,signedPayload,transactionID,createdAt,updatedAt)

@@ -424,6 +424,8 @@ struct OathScanner: View {
         case .recovery: return .scannerRecovery
         case .privateKey: return .scannerPrivateKey
         case .walletConnect: return .scannerConnect
+        case .invalid(.invalidWalletConnect): return .wcConnectionInvalidQRTitle
+        case .invalid(.expiredWalletConnect): return .wcConnectionExpiredQRTitle
         case .invalid(let error): return error == .invalidRecovery ? .scannerInvalidRecovery : error == .expired ? .scannerExpired : .scannerInvalid
         case nil: return .scan
         }
@@ -441,6 +443,12 @@ struct OathScanner: View {
         case .walletConnect:
             // Connection payloads normally use the direct presentation route.
             resultCard(icon: "link", title: .wcWalletUnavailable, detail: .scannerWCDetail,
+                       primary: nil, action: {}) { EmptyView() }
+        case .invalid(.invalidWalletConnect):
+            resultCard(icon: "qrcode", title: .wcConnectionInvalidQRTitle, detail: .wcConnectionInvalidQRDetail,
+                       primary: nil, action: {}) { EmptyView() }
+        case .invalid(.expiredWalletConnect):
+            resultCard(icon: "clock.badge.exclamationmark", title: .wcConnectionExpiredQRTitle, detail: .wcConnectionExpiredQRDetail,
                        primary: nil, action: {}) { EmptyView() }
         case .invalid(let problem):
             resultCard(icon: "qrcode", title: reviewTitle(review),

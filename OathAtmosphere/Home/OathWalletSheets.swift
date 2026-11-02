@@ -214,11 +214,11 @@ struct OathWalletInfoSheet: View {
 
 struct OathWalletSettingsScreen: View {
     enum Destination: Identifiable {
-        case app, wallet(String), customize(String)
+        case app, security, wallet(String), customize(String)
 
         var walletID: String? {
             switch self {
-            case .app: nil
+            case .app, .security: nil
             case .wallet(let id), .customize(let id): id
             }
         }
@@ -226,6 +226,7 @@ struct OathWalletSettingsScreen: View {
         var id: String {
             switch self {
             case .app: "app"
+            case .security: "security"
             case .wallet(let id): "wallet:\(id)"
             case .customize(let id): "customize:\(id)"
             }
@@ -233,6 +234,7 @@ struct OathWalletSettingsScreen: View {
     }
 
     let session: OathWalletSession
+    private let startsAtSecurity: Bool
     private let rootRoute: Route
     private let dismissDisabled: Bool
     private let switcherPath: Binding<NavigationPath>?
@@ -275,8 +277,9 @@ struct OathWalletSettingsScreen: View {
         self.dismissDisabled = dismissDisabled
         self.switcherPath = switcherPath
         self.switcherRoot = switcherRoot
+        if case .security = destination { startsAtSecurity = true } else { startsAtSecurity = false }
         switch destination {
-        case .app: rootRoute = .settings
+        case .app, .security: rootRoute = .settings
         case .wallet(let id): rootRoute = .wallet(id)
         case .customize(let id): rootRoute = .customize(id)
         }
@@ -412,6 +415,9 @@ struct OathWalletSettingsScreen: View {
         // Each destination has its own retained screen. The system owns push,
         // pop, interactive back, keyboard avoidance and Reduce Motion behavior.
         navigationStack
+        .task {
+            if startsAtSecurity && route == .settings { securityAccess.begin(reason: strings.text(.securityAuthenticationReason)) }
+        }
         .fullScreenCover(isPresented: $showsMultisigCreation) {
             OathAdditionalMultisigFlow(session: session).oathLanguage(strings.language)
         }

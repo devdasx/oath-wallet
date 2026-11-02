@@ -37,10 +37,10 @@ extension OathDatabase {
                 guard let wallet = try WalletRecord.fetchOne(db, key: state.id) else { throw StoreError.missingRecord }
                 guard wallet.deletedAt != state.deletedAt else { continue }
                 // Invalidate every outstanding network ticket on remove/restore.
-                try db.execute(sql: "UPDATE accounts SET syncGeneration=syncGeneration+1 WHERE walletID=?", arguments: [state.id])
+                try db.execute(sql: "UPDATE walletAccounts SET syncGeneration=syncGeneration+1 WHERE walletID=?", arguments: [state.id])
                 // Electrum scans have their own run identity, independent of
                 // the shared account generation used by indexed chains.
-                try db.execute(sql: "UPDATE bitcoinWallets SET scanID=NULL WHERE accountID IN (SELECT id FROM accounts WHERE walletID=?)", arguments: [state.id])
+                try db.execute(sql: "UPDATE bitcoinWallets SET scanID=NULL WHERE accountID IN (SELECT id FROM walletAccounts WHERE walletID=?)", arguments: [state.id])
                 try db.execute(sql: "UPDATE wallets SET deletedAt=? WHERE id=?", arguments: [state.deletedAt, state.id])
                 if state.deletedAt != nil {
                     try db.execute(sql: "UPDATE cloudBackups SET enabled=0,encryptedDocument=NULL WHERE walletID=?", arguments: [state.id])

@@ -116,11 +116,7 @@ private struct OathWCDetentAnchor: UIViewControllerRepresentable {
                     resolvedHeight = height
                     let changes = {
                         if isNewSheet {
-                            sheet.detents = [.custom(identifier: self.identifier) { [weak self] context in
-                                min(self?.resolvedHeight ?? context.maximumDetentValue, context.maximumDetentValue)
-                            }]
-                            sheet.selectedDetentIdentifier = self.identifier
-                            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+                            self.installDetent(on: sheet)
                         } else {
                             sheet.invalidateDetents()
                         }
@@ -131,6 +127,15 @@ private struct OathWCDetentAnchor: UIViewControllerRepresentable {
                 }
                 ancestor = controller.parent
             }
+        }
+
+        private func installDetent(on sheet: UISheetPresentationController) {
+            sheet.detents = [.custom(identifier: identifier) { [weak self] context in
+                let maximum = context.maximumDetentValue
+                return min(self?.resolvedHeight ?? maximum, maximum)
+            }]
+            sheet.selectedDetentIdentifier = identifier
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
         }
     }
 }

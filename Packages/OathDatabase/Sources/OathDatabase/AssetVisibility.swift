@@ -38,7 +38,7 @@ extension OathDatabase {
         try await pool.write { db in
             guard try Bool.fetchOne(db, sql: "SELECT EXISTS(SELECT 1 FROM metadata WHERE key='walletReset')") == false,
                   try Bool.fetchOne(db, sql: """
-                    SELECT EXISTS(SELECT 1 FROM wallets w JOIN accounts c ON c.walletID=w.id
+                    SELECT EXISTS(SELECT 1 FROM wallets w JOIN walletAccounts c ON c.walletID=w.id
                         JOIN assets a ON a.networkID=c.networkID
                         WHERE w.id=? AND w.deletedAt IS NULL AND a.id=?)
                     """, arguments: [walletID, assetID]) == true else { throw StoreError.missingRecord }
@@ -50,7 +50,7 @@ extension OathDatabase {
                 // later inventory drops a zero balance. This is not a global add.
                 try db.execute(sql: """
                     INSERT OR IGNORE INTO trackedAssets(accountID,assetID,networkID,addedAt)
-                        SELECT c.id,a.id,a.networkID,? FROM accounts c JOIN assets a ON a.networkID=c.networkID
+                        SELECT c.id,a.id,a.networkID,? FROM walletAccounts c JOIN assets a ON a.networkID=c.networkID
                         WHERE c.walletID=? AND a.id=? AND a.reference<>'native'
                         AND EXISTS(SELECT 1 FROM hiddenAssets WHERE walletID=? AND assetID=?)
                     """, arguments: [Date().timeIntervalSince1970, walletID, assetID, walletID, assetID])

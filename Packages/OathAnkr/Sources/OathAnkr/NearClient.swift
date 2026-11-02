@@ -227,7 +227,7 @@ public actor NearClient {
         for item in discovery["tokens"].array! {
             guard let s = item["contract_id"].string else { throw NearError.malformed }
             let ref = try NearIdentity.address(s); guard refs.insert(ref).inserted else { throw NearError.malformed }
-            indexed[ref] = try? NearIdentity.amount(item["balance"])
+            indexed[ref] = OathDiagnostics.attempt("decode_indexed_balance", body: { try NearIdentity.amount(item["balance"]) })
         }
         for ref in knownReferences where ref != "native" { refs.insert(try NearIdentity.reference(ref)) }
         let liquid = try NearIdentity.amount(state["amount"]), locked = try NearIdentity.amount(state["locked"])

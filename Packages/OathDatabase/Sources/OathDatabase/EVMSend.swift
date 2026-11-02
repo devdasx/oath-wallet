@@ -51,7 +51,7 @@ extension OathDatabase {
             case .chiliz,.filecoin,.sei,.zerog,.iotex,.celo,.monad,.unichain:"indexedEVMHoldings"
             default:nil
             }
-            let accounts=try AccountRecord.fetchAll(db,sql:"SELECT a.* FROM accounts a JOIN wallets w ON w.id=a.walletID WHERE a.networkID=? AND lower(a.address)=? AND w.deletedAt IS NULL",arguments:[send.networkID,plan.sender])
+            let accounts=try AccountRecord.fetchAll(db,sql:"SELECT a.* FROM walletAccounts a JOIN wallets w ON w.id=a.walletID WHERE a.networkID=? AND lower(a.address)=? AND w.deletedAt IS NULL",arguments:[send.networkID,plan.sender])
             let assets=try AssetRecord.fetchAll(db,sql:"SELECT * FROM assets WHERE networkID=? AND reference IN ('native',?)",arguments:[send.networkID,plan.reference])
             for account in accounts {
                 for asset in assets {

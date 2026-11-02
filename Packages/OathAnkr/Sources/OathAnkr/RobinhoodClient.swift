@@ -174,9 +174,9 @@ public struct RobinhoodClient: Sendable {
                     let (rows, raw) = try await rpc(calls)
                     var i = 0, holdings: [RobinhoodHolding] = []
                     for token in chunk {
-                        var amount = try? RobinhoodIdentity.amount(Self.result(rows[i])); i += 1
+                        var amount = OathDiagnostics.attempt("decode_inventory_quantity", body: { try RobinhoodIdentity.amount(Self.result(rows[i])) }); i += 1
                         if token.reference != "native" {
-                            let decimals = try? RobinhoodIdentity.amount(Self.result(rows[i])); i += 1
+                            let decimals = OathDiagnostics.attempt("decode_inventory_quantity", body: { try RobinhoodIdentity.amount(Self.result(rows[i])) }); i += 1
                             if decimals != String(token.decimals) { amount = nil }
                         }
                         holdings.append(.init(token: token, amount: amount))

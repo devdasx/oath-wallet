@@ -52,10 +52,10 @@ extension OathDatabase {
                    a.amountAtomic,a.counterparty,a.sortTimestamp AS timestamp,a.outputAssetID,a.received,a.outputAccountID,a.outputTransactionID,a.bridgeProtocol,(SELECT hash FROM transactions WHERE id=a.outputTransactionID) AS outputHash,
                    COALESCE(e.outcome,t.state) AS state,t.hash,
                    s.reference,s.name,s.symbol,s.decimals,
-                   CASE WHEN s.reference='native' THEN COALESCE(s.logo,n.logo) ELSE s.logo END AS logo,owner.address,
+                   CASE WHEN s.reference='native' THEN COALESCE(s.logo,n.logo) ELSE s.logo END AS logo,COALESCE((SELECT owner FROM solanaActivity WHERE activityID=a.id),owner.address) AS address,
                    p.value AS usdPrice,p.observedAt AS priceObservedAt,p.source AS priceSource
             FROM projectedHistoryActivity a JOIN transactions t ON t.id=a.transactionID
-            JOIN accounts owner ON owner.id=a.accountID
+            JOIN walletAccounts owner ON owner.id=a.accountID
             JOIN assets s ON s.id=a.assetID
             JOIN networks n ON n.id=a.networkID
             LEFT JOIN assets output ON output.id=a.outputAssetID
@@ -63,7 +63,9 @@ extension OathDatabase {
             LEFT JOIN prices p ON p.assetID=a.assetID AND p.currency='USD'
                 AND p.observedAt=(SELECT MAX(observedAt) FROM prices WHERE assetID=a.assetID AND currency='USD')
             WHERE a.walletID=? AND owner.walletID=?
-            AND (a.networkID<>'solana' OR EXISTS (SELECT 1 FROM solanaActivity sa WHERE sa.activityID=a.id
+            """
+        sql += """
+             AND (a.networkID<>'solana' OR EXISTS (SELECT 1 FROM solanaActivity sa WHERE sa.activityID=a.id
                 AND sa.owner=COALESCE((SELECT address FROM solanaReceiveAddresses WHERE accountID=a.accountID AND isSelected=1),owner.address)))
             """
         var args: StatementArguments = [walletID, walletID]
@@ -112,8 +114,14 @@ extension OathDatabase {
             args += [end.timeIntervalSince1970]
         }
         if filter.minimumAmount != nil || filter.maximumAmount != nil {
-            sql += " AND (oath_history_amount_in_range(a.amountAtomic,s.decimals,?,?) OR (a.outputAssetID IS NOT NULL AND oath_history_amount_in_range(a.received,output.decimals,?,?)))"
-            args += [filter.minimumAmount, filter.maximumAmount, filter.minimumAmount, filter.maximumAmount]
+            func amountPredicate(_ atomic: String, _ decimals: String) -> String {
+                let predicate = "oath_history_amount_in_range(\(atomic),\(decimals),?,?)"
+                args += [filter.minimumAmount, filter.maximumAmount]
+                return "(" + predicate + ")"
+            }
+            let sent = amountPredicate("a.amountAtomic", "s.decimals")
+            let received = amountPredicate("a.received", "output.decimals")
+            sql += " AND (\(sent) OR (a.outputAssetID IS NOT NULL AND \(received)))"
         }
         if !search.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             // Search the entire wallet/chain BEFORE LIMIT. Transfers include all
@@ -123,6 +131,7 @@ extension OathDatabase {
                     s.name || ' ' || s.symbol || ' ' || s.reference || ' ' || COALESCE(output.name || ' ' || output.symbol || ' ' || output.reference,'') || ' ' || n.name || ' ' || a.networkID || ' ' || COALESCE(a.outputNetworkID,'') || ' ' || COALESCE((SELECT name FROM networks WHERE id=a.outputNetworkID),'') || ' ' ||
                     t.hash || ' ' || COALESCE((SELECT hash FROM transactions WHERE id=a.outputTransactionID),'') || ' ' || a.direction || ' ' || COALESCE(e.outcome,t.state) || ' ' ||
                     COALESCE(a.counterparty,'') || ' ' || owner.address || ' ' ||
+                    COALESCE((SELECT owner FROM solanaActivity WHERE activityID=a.id),'') || ' ' ||
                     COALESCE((SELECT group_concat(fromAddress || ' ' || toAddress,' ') FROM transfers tr
                               WHERE tr.transactionID=a.transactionID AND tr.assetID=a.assetID),'') || ' ' ||
                     COALESCE((SELECT group_concat(address,' ') FROM transactionParticipants tp
@@ -137,7 +146,7 @@ extension OathDatabase {
         }
         sql += " ORDER BY a.sortTimestamp DESC,a.id DESC LIMIT ?"
         args += [limit]
-        return try Row.fetchAll(db, sql: sql, arguments: args).map { row in
+        let items = try Row.fetchAll(db, sql: sql, arguments: args).map { row in
             let entry = try Self.projectSelfTransferFee(HistoryEntry(row: row), db: db)
             let holding = Holding(accountID: entry.accountID, networkID: entry.networkID, address: row["address"],
                 assetID: entry.assetID, reference: row["reference"], name: row["name"], symbol: row["symbol"],
@@ -154,6 +163,7 @@ extension OathDatabase {
             }
             return item
         }
+        return items
     }
 
     static func historyHolding(_ db: Database, accountID: String, assetID: String, currency: String) throws -> Holding? {

@@ -68,16 +68,35 @@ extension OathImportChain {
 
 extension OathWalletProfile {
     static func stored(_ snapshot: WalletSnapshot) throws -> Self {
-        guard let id = UUID(uuidString: snapshot.wallet.id) else { throw OathWalletError.corruptVault }
-        let addresses = try snapshot.accounts.map { account in
-            guard let chain = OathImportChain(rawValue: account.networkID),
-                  let network = snapshot.networks.first(where: { $0.id == account.networkID }) else { throw OathWalletError.corruptVault }
-            return OathWalletAddress(chain: chain, address: account.address, path: account.derivationPath,
-                                     accountIndex: account.accountIndex,
-                                     accountID: account.id, assetID: account.networkID + ":native",
-                                     storedNetworkName: network.name, storedTicker: network.symbol, storedLogo: network.logo)
+        guard let id = UUID(uuidString: snapshot.wallet.id) else {
+            throw OathDiagnostics.failure(OathWalletError.corruptVault, reason: "invalid_stored_wallet_identity")
+        }
+        let addresses = snapshot.accounts.compactMap { account -> OathWalletAddress? in
+            // A newer build can enroll chains this binary does not implement.
+            // This is a display/capability projection, not vault validation:
+            // retain every account in SQL and the full snapshot, and expose
+            // only addresses whose chain this binary can operate safely.
+            // Expected forward-compatible metadata is not a diagnostic error.
+            OathWalletAddress.stored(account, network: snapshot.networks.first { $0.id == account.networkID })
         }
         return Self(id: id, addresses: addresses, createdAt: Date(timeIntervalSince1970: snapshot.wallet.createdAt),
                     backedUp: snapshot.wallet.backedUp)
+    }
+}
+
+extension OathWalletAddress {
+    static func stored(_ account: AccountRecord, network: NetworkRecord?) -> Self? {
+        guard let chain = OathImportChain(rawValue: account.networkID) else { return nil }
+        // Display labels are recoverable from the bundled catalogue. They do
+        // not validate keys or addresses and must never make a vault unusable.
+        if network == nil {
+            OathDiagnostics.record(DiagnosticFailure("Missing stored network display metadata"),
+                component: "wallet", operation: "stored_address", severity: "warning",
+                context: ["chain": chain.rawValue, "stage": "display_metadata", "reason": "network_metadata_fallback"])
+        }
+        return Self(chain: chain, address: account.address, path: account.derivationPath,
+                    accountIndex: account.accountIndex, accountID: account.id,
+                    assetID: account.networkID + ":native", storedNetworkName: network?.name ?? chain.name,
+                    storedTicker: network?.symbol ?? chain.ticker, storedLogo: network?.logo ?? chain.logoAsset)
     }
 }

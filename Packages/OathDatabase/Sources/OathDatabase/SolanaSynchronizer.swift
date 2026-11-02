@@ -72,7 +72,7 @@ public actor SolanaSynchronizer {
         let key = "solana.coingecko.catalog.v1"
         let saved = try await database.marketCache(key: key)
         if let saved, Date().timeIntervalSince1970 - saved.fetchedAt < 86_400,
-           let value = try? SolanaMarkets.decodeCatalog(saved.payload) { return value }
+           let value = OathDiagnostics.attempt("decode_cached_catalog", body: { try SolanaMarkets.decodeCatalog(saved.payload) }) { return value }
         do {
             let data = try await markets.catalog()
             try Task.checkCancellation()
@@ -81,7 +81,7 @@ public actor SolanaSynchronizer {
         } catch { OathDiagnostics.record(error);
             try Task.checkCancellation()
             // Existing verification survives temporary directory outages.
-            if let saved { return (try? SolanaMarkets.decodeCatalog(saved.payload)) ?? [:] }
+            if let saved { return (OathDiagnostics.attempt("decode_cached_catalog", body: { try SolanaMarkets.decodeCatalog(saved.payload) })) ?? [:] }
             return [:]
         }
     }

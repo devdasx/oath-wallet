@@ -14,7 +14,7 @@ enum OathScanPayload: Sendable {
 }
 
 enum OathScanProblem: String, Error, Sendable {
-    case unsupported, invalidAddress, invalidRecovery, unavailableDictionary, tooLarge, expired, unsupportedRequest
+    case unsupported, invalidAddress, invalidRecovery, unavailableDictionary, tooLarge, expired, unsupportedRequest, invalidWalletConnect, expiredWalletConnect
 }
 
 enum OathScannerContext: Sendable {
@@ -245,15 +245,15 @@ struct OathScanParser: Sendable {
               parts.path[..<at].count == 64, parts.path[..<at].allSatisfy(\.isHexDigit),
               let query = uniqueQuery(parts), let key = query["symKey"], key.count == 64, key.allSatisfy(\.isHexDigit),
               query["relay-protocol"] == "irn",
-              Set(query.keys).isSubset(of: ["symKey", "relay-protocol", "relay-data", "expiryTimestamp", "methods"]) else { return .invalid(.unsupportedRequest) }
+              Set(query.keys).isSubset(of: ["symKey", "relay-protocol", "relay-data", "expiryTimestamp", "methods"]) else { return .invalid(.invalidWalletConnect) }
         if let methods = query["methods"] {
             guard !methods.isEmpty, methods.utf8.count <= 1_024,
                   methods.utf8.allSatisfy({ (65...90).contains($0) || (97...122).contains($0) || (48...57).contains($0)
-                      || [44, 91, 93, 95].contains($0) }) else { return .invalid(.unsupportedRequest) }
+                      || [44, 91, 93, 95].contains($0) }) else { return .invalid(.invalidWalletConnect) }
         }
         if let value = query["expiryTimestamp"] {
-            guard let expiry = UInt64(value) else { return .invalid(.unsupportedRequest) }
-            if Double(expiry) <= now.timeIntervalSince1970 { return .invalid(.expired) }
+            guard let expiry = UInt64(value) else { return .invalid(.invalidWalletConnect) }
+            if Double(expiry) <= now.timeIntervalSince1970 { return .invalid(.expiredWalletConnect) }
         }
         return .walletConnect(text)
     }

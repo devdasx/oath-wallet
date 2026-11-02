@@ -46,8 +46,7 @@ public struct BitcoinScan: Codable, Equatable, Sendable {
                 guard points.insert(output.id).inserted, ElectrumPool.hash(output.txid), output.vout >= 0,
                       output.vout <= UInt32.max, output.height >= 0,
                       (0...wallet.network.maximumOutput).contains(output.value),
-                      value <= wallet.network.maximumMoney - output.value,
-                      state.history.contains(where: { $0.txid == output.txid }) else { throw BitcoinError.invalidResponse }
+                      value <= wallet.network.maximumMoney - output.value else { throw BitcoinError.invalidResponse }
                 value += output.value
                 guard historyHeights[output.txid] == output.height else { throw BitcoinError.inconsistentSnapshot }
             }
@@ -154,9 +153,9 @@ public struct BitcoinDiscovery: Sendable {
                 defer { offset += addresses.count }
                 let branch = branches[index]
                 for (address, state) in zip(addresses, states[offset..<(offset + addresses.count)]) {
-                    // History (including spent addresses), never balance,
-                    // defines the gap. Stop at exactly the same 20-address
-                    // boundary as the old scanner, ignoring speculative tail.
+                    // History, including spent addresses, determines the address gap.
+                    // Stop at the first complete 20-address boundary that satisfies it
+                    // and discard any speculative results beyond that boundary.
                     progress[index].unused = state.history.isEmpty ? progress[index].unused + 1 : 0
                     progress[index].records.append(.init(address: address, state: state))
                     progress[index].cursor = address.index + 1
@@ -167,8 +166,8 @@ public struct BitcoinDiscovery: Sendable {
                         break
                     }
                 }
-                // Grow only branches which actually need more discovery. New
-                // empty wallets still query exactly the original gap window.
+                // Increase the window only for branches that need more discovery.
+                // Empty wallets query only the initial gap window.
                 progress[index].window = min(5_000, max(100, progress[index].window * 2))
             }
         }

@@ -273,7 +273,7 @@ public actor ArtworkLoader {
         let entry = Entry(image: image, fetched: saved.fetched)
         memory.setObject(Box(entry), forKey: key as NSString, cost: image.memoryCost)
         // Touch the file for disk LRU; freshness lives inside the envelope.
-        try? FileManager.default.setAttributes([.modificationDate: Date()], ofItemAtPath: file.path)
+        _ = maintainCache("touch_artwork_cache") { try FileManager.default.setAttributes([.modificationDate: Date()], ofItemAtPath: file.path) }
         return entry
     }
     private func path(_ source: String) -> URL { directory.appendingPathComponent(ArtworkSource.key(source) + ".artwork") }
@@ -285,22 +285,31 @@ public actor ArtworkLoader {
             prune()
         } catch { OathDiagnostics.record(error); /* The in-memory original still works if disk is unavailable. */ }
     }
+    private func maintainCache<T>(_ operation: String, body: () throws -> T) -> T? {
+        do { return try body() }
+        catch CocoaError.fileReadNoSuchFile { return nil } // iOS may purge cache files between inspection and maintenance.
+        catch CocoaError.fileNoSuchFile { return nil } // Already absent is a cache miss, not an app failure.
+        catch { OathDiagnostics.record(error, component: "artwork", operation: operation); return nil }
+    }
     private func prune() {
-        let files = (try? FileManager.default.contentsOfDirectory(at: directory,
-            includingPropertiesForKeys: [.fileSizeKey, .contentModificationDateKey], options: [.skipsHiddenFiles])) ?? []
+        let files = (maintainCache("list_artwork_cache", body: { try FileManager.default.contentsOfDirectory(at: directory,
+            includingPropertiesForKeys: [.fileSizeKey, .contentModificationDateKey], options: [.skipsHiddenFiles]) })) ?? []
         let entries = files.filter { ["artwork", "missing"].contains($0.pathExtension) }.compactMap { url -> (URL, Int, Date)? in
-            guard let values = try? url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey]) else { return nil }
+            guard let values = maintainCache("inspect_artwork_cache", body: { try url.resourceValues(forKeys: [.fileSizeKey, .contentModificationDateKey]) }) else { return nil }
             return (url, values.fileSize ?? 0, values.contentModificationDate ?? .distantPast)
         }.sorted { $0.2 < $1.2 }
         // Optional absence markers contain only hashes/dates, with a count cap
         // in addition to the existing byte budget. Never store a placeholder.
         let missing = entries.filter { $0.0.pathExtension == "missing" }
+        var removed = Set<URL>()
         for (url, _, _) in missing.prefix(max(0, missing.count - 256)) {
-            _ = OathDiagnostics.attempt("prune_artwork_availability") { try FileManager.default.removeItem(at: url) }
+            if maintainCache("prune_artwork_availability", body: { try FileManager.default.removeItem(at: url) }) != nil {
+                removed.insert(url)
+            }
         }
-        var total = entries.reduce(0) { $0 + $1.1 }
-        for (url, bytes, _) in entries where total > diskLimit {
-            if (try? FileManager.default.removeItem(at: url)) != nil { total -= bytes }
+        var total = entries.filter { !removed.contains($0.0) }.reduce(0) { $0 + $1.1 }
+        for (url, bytes, _) in entries where total > diskLimit && !removed.contains(url) {
+            if maintainCache("prune_artwork_cache", body: { try FileManager.default.removeItem(at: url) }) != nil { total -= bytes }
         }
     }
     private func acquireSlot() async {

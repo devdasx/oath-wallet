@@ -140,8 +140,8 @@ public struct ArcClient: Sendable {
                     var result:[ArcHolding] = [], complete = true
                     for (i,ref) in chunk.enumerated() {
                         let offset = i*4
-                        let token = try? Self.token(reference:ref,rows:rows[offset..<offset+3])
-                        var amount = try? Self.word(rows[offset+3])
+                        let token = OathDiagnostics.attempt("decode_inventory_token", body: { try Self.token(reference:ref,rows:rows[offset..<offset+3]) })
+                        var amount = OathDiagnostics.attempt("decode_inventory_balance", body: { try Self.word(rows[offset+3]) })
                         if token == nil || saved[ref].map({ $0.decimals != token?.decimals }) == true { amount = nil }
                         if let token = token ?? saved[ref] { result.append(.init(token:token,amount:amount)) }
                         if amount == nil { complete = false }

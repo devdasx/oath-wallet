@@ -3,124 +3,93 @@ import OathAnkr
 import OathDatabase
 import OathDiagnostics
 
-struct OathPermissionBatchReview: View {
-    let session: OathWalletSession, model: OathPermissionsModel
-    let selection: PermissionReviewSelection
-    private var items: [WalletPermission] { selection.items }
-    private var walletID: String { selection.walletID }
-    private var isCurrentWallet: Bool {
-        model.walletID == walletID && session.wallets.contains { $0.id == walletID && $0.kind != "watchOnly" }
-    }
-    @Environment(\.oathLocalizer) private var strings
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.scenePhase) private var scenePhase
-    @State private var prepared: [PermissionBatchItem] = []
-    @State private var busy = false
-    @State private var confirming = false
-    @State private var passcode = false
-    @State private var notice: OathStringKey?
-    @State private var failure: OathStringKey?
-    private var scopes: [PermissionBatchScope] { prepared.compactMap(\.scope) }
+/// Owns only preparation and authentication. The durable coordinator owns signed work.
+@MainActor @Observable final class OathPermissionRevokeAction {
+    private(set) var pending = Set<String>()
+    private(set) var busy = false
+    private(set) var verifiedAbsent = Set<String>()
+    var passcode = false
+    var notice: OathStringKey?
+    var failure: OathStringKey?
+    private var prepared = [PermissionBatchItem]()
+    private var claim: UUID?
+    private var task: Task<Void,Never>?
+    private var selection: PermissionReviewSelection?
     private var coordinator: OathPermissionBatchCoordinator { .shared }
-    private var canConfirm: Bool {
-        !busy && isCurrentWallet && !scopes.isEmpty && prepared.count == items.count && prepared.allSatisfy { !$0.accountID.isEmpty } && session.isUnlocked && coordinator.runningWalletID == nil
+
+    func revoke(_ permissions: [WalletPermission], session: OathWalletSession, model: OathPermissionsModel, reason: String) {
+        guard session.isUnlocked,
+              session.wallets.contains(where:{$0.id == model.walletID && $0.kind != "watchOnly"}),
+              let selection=PermissionReviewSelection(walletID:model.walletID,items:permissions),
+              coordinator.claimPreparation(selection.id) else { return }
+        self.selection=selection;claim=selection.id
+        pending=Set(permissions.map(\.id));verifiedAbsent=[];failure=nil;notice=nil;busy=true
+        task=Task { await prepare(session:session,model:model,selection:selection,reason:reason) }
     }
 
-    var body: some View {
-        NavigationStack {
-            Group {
-                if passcode {
-                    OathSecretPasscodePage(session:session,busy:busy,notice:$notice,
-                        title:.permissionRevokeAll,identifier:"permissions.batch.passcode") { approve($0) }
-                } else {
-                    OathPermissionContent {
-                        OathSettingsRow(title:strings.text(.walletName),
-                            value:session.walletName(session.wallets.first{$0.id==walletID},strings:strings),accessory:.none)
-                        ForEach(items) { permission in
-                            let item = prepared.first { $0.permission.id == permission.id }
-                            OathSettingsSectionRule()
-                            OathPermissionRemovalSummary(model:model,permission:permission)
-                            OathSettingsRow(title:strings.text(.wcMaximumFee),
-                                value:item?.scope.map(Self.fee) ?? "—",accessory:.none,
-                                isWorking:busy && item == nil)
-                            if let item, item.state != "queued" {
-                                OathSettingsFooter {
-                                    Text(strings.text(Self.failureKey(item)))
-                                        .foregroundStyle(item.state == "failed" ? Color.red : Color.secondary)
-                                }
-                            }
-                        }
-                        OathSettingsSectionRule()
-                        OathSettingsFooter { Text(strings.text(.permissionNoTransfer)) }
-                        if items.contains(where:{$0.kind == .accountControl}) {
-                            OathSettingsFooter { Text(strings.text(.permissionControlDetail)) }
-                        }
-                        if items.contains(where:{$0.kind == .delegation}) {
-                            OathSettingsFooter { Text(strings.text(.permissionDelegationDetail)) }
-                        }
-                        if let failure { OathSettingsFooter { Text(strings.text(failure)).foregroundStyle(.red) } }
-                        if failure != nil || prepared.contains(where: { $0.state == "failed" }) {
-                            Button { Task { await prepare() } } label: {
-                                OathSettingsRow(title:strings.text(.tryAgain),icon:"arrow.clockwise")
-                            }.buttonStyle(OathSettingsRowButtonStyle()).disabled(busy || !isCurrentWallet)
-                        }
-                    }
+    func enterPasscode(_ input: [UInt8], session: OathWalletSession, model: OathPermissionsModel, reason: String) {
+        guard !busy, let selection, claim == selection.id else { return }
+        busy=true
+        task=Task { await authorize(input,session:session,model:model,selection:selection,reason:reason) }
+    }
+
+    func cancel() {
+        task?.cancel()
+        finish()
+    }
+    func dismissPasscode() {
+        // A completed authentication may already have started a newer action.
+        guard awaitingPasscodeDismissal else { return }
+        awaitingPasscodeDismissal = false
+        cancel()
+    }
+    private var awaitingPasscodeDismissal = false
+    func passcodePresentationChanged(_ presented: Bool) {
+        if !presented, passcode { awaitingPasscodeDismissal = true }
+        passcode = presented
+    }
+    private func finish(_ expected: UUID? = nil) {
+        if let expected, claim != expected { return }
+        if let claim { coordinator.releasePreparation(claim) }
+        claim=nil;selection=nil;pending=[];prepared=[];busy=false;passcode=false;notice=nil;awaitingPasscodeDismissal=false
+    }
+
+    private func authorize(_ input: [UInt8]?, session: OathWalletSession, model: OathPermissionsModel,
+                           selection: PermissionReviewSelection, reason: String) async {
+        var digits=input
+        defer { if digits != nil { _ = digits!.withUnsafeMutableBytes{$0.initializeMemory(as:UInt8.self,repeating:0)} } }
+        guard !Task.isCancelled, claim == selection.id, model.walletID == selection.walletID,
+              session.isUnlocked, !prepared.isEmpty else { finish(selection.id);return }
+        busy=true;failure=nil
+        do {
+            let grant=try await session.vault.authorizePermissionBatch(prepared.compactMap(\.scope),digits:digits,reason:reason)
+            guard !Task.isCancelled, claim == selection.id, model.walletID == selection.walletID, session.isUnlocked else {
+                await session.vault.endPermissionBatch(grant)
+                finish(selection.id);return
+            }
+            try await coordinator.start(prepared,authorization:grant,vault:session.vault,preparation:selection.id)
+            finish(selection.id)
+        } catch {
+            guard claim == selection.id else { return }
+            if error is OathBiometricCredentialError { passcode=true;busy=false }
+            else if error as? OathWalletError == .wrongPasscode { passcode=true;notice = .unlockIncorrect;busy=false }
+            else if case OathWalletError.throttled = error { passcode=true;notice = .unlockWait;busy=false }
+            else {
+                // User cancellation is not a revocation failure.
+                if !(error is CancellationError) {
+                    OathDiagnostics.record(error,component:"permissions",operation:"direct_authorize")
+                    failure=OathPermissionReview.message(error)
                 }
-            }
-            .navigationTitle(strings.text(.permissionReview)).navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement:.cancellationAction) { OathCloseButton { dismiss() }.disabled(busy) }
-            }
-            .oathBottomActions(isPresented: !passcode) {
-                OathBottomAction(title: strings.text(items.count == 1 ? .permissionRemove : .permissionRevokeAll),
-                                 identifier: "permissions.batch.revoke", role: .destructive,
-                                 isEnabled: canConfirm, isWorking: busy) {
-                    guard canConfirm, !passcode, scenePhase != .background else { return }
-                    confirming = true
-                }
-            }
-            .toolbar(.hidden, for: .bottomBar)
-            .alert(strings.text(items.count == 1 ? .permissionRemove:.permissionRevokeAll),isPresented:$confirming) {
-                Button(strings.text(.cancel),role:.cancel) {}
-                Button(strings.text(items.count == 1 ? .permissionRemove:.permissionRevokeAll),role:.destructive) { approve(nil) }
-            } message: {
-                Text(confirmation)
+                finish(selection.id)
             }
         }
-        .task { await prepare() }
-        .task(id:selection.id) { await model.resolveIdentities(session:session,items:items) }
-        .onChange(of:model.walletID) { _,current in if current != walletID { dismiss() } }
-        .onChange(of:session.isUnlocked) { _,unlocked in if !unlocked { dismiss() } }
-        .interactiveDismissDisabled(busy)
-        .presentationDetents([.large]).presentationDragIndicator(.visible)
-        .presentationBackground(Color(uiColor:OathSurfaceColors.canvas)).oathNativeLocalization()
     }
-    private var confirmation: String {
-        let groups=Dictionary(grouping:scopes,by:\.network)
-        let fees=groups.keys.sorted().map { network in
-            let total=groups[network]!.reduce(Decimal.zero) { $0 + Decimal($1.maximumFee) }
-            let decimals=network=="tron" ? 6:network=="solana" ? 9:18
-            let value=OathAssetAmountFormat(locale: strings.language.locale).native(total / pow(Decimal(10),decimals), ticker: Self.symbol(network))
-            return (OathImportChain(rawValue:network)?.name ?? network)+": "+value
-        }.joined(separator:"\n")
-        return strings.format(.historySelectedCount,strings.number(scopes.count))+"\n\n" +
-            strings.text(.wcMaximumFee)+"\n"+fees+"\n\n"+strings.text(.permissionBatchDetail)
-    }
-    static func symbol(_ network: String) -> String { EVMSendNetwork(rawValue:network)?.symbol ?? (network=="tron" ? "TRX":"SOL") }
-    static func fee(_ scope: PermissionBatchScope) -> String {
-        let decimals=scope.network=="tron" ? 6:scope.network=="solana" ? 9:18
-        return OathAssetAmountFormat.boundedUnits(OathSendAmount.units(String(scope.maximumFee),decimals:decimals) ?? "—")+" "+symbol(scope.network)
-    }
-    static func failureKey(_ item: PermissionBatchItem) -> OathStringKey {
-        if item.state=="queued" { return .wcMaximumFee }
-        if item.state=="alreadyRemoved" { return .permissionAlready }
-        switch item.errorCode { case "changed":return .permissionChanged;case "insufficient":return .permissionInsufficient
-        case "unsupported":return .permissionUnsupported;default:return .permissionError }
-    }
-    private func prepare() async {
-        guard !busy, isCurrentWallet, session.isUnlocked else { return }
-        busy=true;failure=nil;prepared=[];defer{busy=false}
-        let walletID=walletID, batchID=UUID().uuidString, createdAt=Date.now.timeIntervalSince1970
+    private func prepare(session: OathWalletSession, model: OathPermissionsModel, selection: PermissionReviewSelection, reason: String) async {
+        let walletID=selection.walletID, items=selection.items
+        let isCurrentWallet = model.walletID == walletID
+        guard isCurrentWallet, session.isUnlocked else { cancel(); return }
+        busy=true;failure=nil;prepared=[]
+        let batchID=UUID().uuidString, createdAt=Date.now.timeIntervalSince1970
         do {
             let db=try await session.vault.database()
             let accounts=try await db.accounts(walletID:walletID)
@@ -162,35 +131,72 @@ struct OathPermissionBatchReview: View {
                 }
                 for _ in 0..<min(4,candidates.count) { enqueue() }
                 for try await item in group {
-                    guard !Task.isCancelled,session.isUnlocked,isCurrentWallet else { group.cancelAll();throw CancellationError() }
+                    guard !Task.isCancelled,session.isUnlocked,model.walletID == walletID,claim == selection.id else { group.cancelAll();throw CancellationError() }
                     prepared.append(item)
                     enqueue()
                 }
                 prepared.sort{$0.ordinal<$1.ordinal}
+                // A fresh zero allowance is already revoked; persist the refreshed scan.
+                for item in prepared where item.state == "alreadyRemoved" {
+                    guard let scan=model.scans[item.permission.network] else { continue }
+                    let updated=PermissionScan(network:scan.network,owner:scan.owner,
+                        permissions:scan.permissions.filter{$0.id != item.permission.id},coverage:scan.coverage,checkedAt:scan.checkedAt)
+                    try await db.savePermissionScan(walletID:walletID,accountID:item.accountID,scan:updated)
+                    guard !Task.isCancelled, claim == selection.id, model.walletID == walletID, session.isUnlocked else { throw CancellationError() }
+                    model.scans[scan.network]=updated
+                    verifiedAbsent.insert(item.permission.id)
+                }
+                if let failed=prepared.first(where:{$0.state == "failed"}) {
+                    failure=OathPermissionBatchReview.failureKey(failed)
+                    finish(selection.id);return
+                }
+                prepared.removeAll{$0.state == "alreadyRemoved"}
+                guard !prepared.isEmpty else { finish(selection.id);return }
+                busy=false
+                await authorize(nil,session:session,model:model,selection:selection,reason:reason)
             }
         } catch {
-            if !(error is CancellationError) { OathDiagnostics.record(error,component:"permissions",operation:"batch_review");failure = .permissionError }
+            if !(error is CancellationError) { OathDiagnostics.record(error,component:"permissions",operation:"direct_prepare");if claim == selection.id { failure = .permissionError } }
+            finish(selection.id)
         }
     }
-    private func approve(_ input: [UInt8]?) {
-        guard canConfirm else { return }
-        busy=true;failure=nil
-        Task {
-            var digits=input
-            defer { if digits != nil { _ = digits!.withUnsafeMutableBytes{$0.initializeMemory(as:UInt8.self,repeating:0)} };busy=false }
-            do {
-                let grant=try await session.vault.authorizePermissionBatch(scopes,digits:digits,reason:strings.text(.permissionRevokeAll))
-                try await coordinator.start(prepared,authorization:grant,vault:session.vault)
-                dismiss()
-            } catch {
-                if error is OathBiometricCredentialError { passcode=true }
-                else if error as? OathWalletError == .wrongPasscode { passcode=true;notice = .unlockIncorrect }
-                else if case OathWalletError.throttled = error { passcode=true;notice = .unlockWait }
-                else if !(error is CancellationError) {
-                    OathDiagnostics.record(error,component:"permissions",operation:"batch_authorize")
-                    failure = OathPermissionReview.message(error);passcode=false
+}
+
+struct OathPermissionAuthentication: ViewModifier {
+    @Bindable var action: OathPermissionRevokeAction
+    let session: OathWalletSession
+    let model: OathPermissionsModel
+    @Environment(\.oathLocalizer) private var strings
+    func body(content: Content) -> some View {
+        content
+            .sheet(isPresented:Binding(get:{action.passcode},set:{action.passcodePresentationChanged($0)}),onDismiss:{ action.dismissPasscode() }) {
+                NavigationStack {
+                    OathSecretPasscodePage(session:session,busy:action.busy,notice:$action.notice,
+                        title:.permissionRemove,identifier:"permissions.passcode") {
+                        action.enterPasscode($0,session:session,model:model,reason:strings.text(.permissionRemove))
+                    }
+                    .toolbar { ToolbarItem(placement:.cancellationAction) { OathCloseButton { action.cancel() }.disabled(action.busy) } }
                 }
+                .interactiveDismissDisabled(action.busy)
+                .presentationDetents([.large]).presentationDragIndicator(.visible)
+                .oathNativeLocalization()
             }
-        }
+            .onChange(of:model.walletID) { _,_ in action.cancel() }
+            .onChange(of:session.isUnlocked) { _,unlocked in if !unlocked { action.cancel() } }
+            .onDisappear { action.cancel() }
+    }
+}
+
+enum OathPermissionBatchReview {
+    static func symbol(_ network: String) -> String { EVMSendNetwork(rawValue:network)?.symbol ?? (network=="tron" ? "TRX":"SOL") }
+    static func fee(_ scope: PermissionBatchScope) -> String {
+        let decimals=scope.network=="tron" ? 6:scope.network=="solana" ? 9:18
+        return OathAssetAmountFormat.boundedUnits(OathSendAmount.units(String(scope.maximumFee),decimals:decimals) ?? "—")+" "+symbol(scope.network)
+    }
+    static func failureKey(_ item: PermissionBatchItem) -> OathStringKey {
+        if item.state=="queued" { return .wcMaximumFee }
+        if item.state=="alreadyRemoved" { return .permissionAlready }
+        switch item.errorCode { case "changed":return .permissionChanged;case "insufficient":return .permissionInsufficient
+        case "unsupported":return .permissionUnsupported;default:return .permissionError }
     }
 }

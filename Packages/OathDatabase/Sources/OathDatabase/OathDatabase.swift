@@ -16,8 +16,17 @@ public final class OathDatabase: Sendable {
         let directory = url.deletingLastPathComponent()
         let manager = FileManager.default
         for item in [directory, url] {
-            if (try? item.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink) == true {
-                throw StoreError.invalidDatabaseLocation
+            do {
+                if try item.resourceValues(forKeys: [.isSymbolicLinkKey]).isSymbolicLink == true {
+                    throw StoreError.invalidDatabaseLocation
+                }
+            } catch CocoaError.fileReadNoSuchFile {
+                // First launch: paths are created below. Other I/O errors must propagate.
+            } catch CocoaError.fileNoSuchFile {
+                // First launch: paths are created below.
+            } catch {
+                OathDiagnostics.record(error, component: "storage", operation: "inspect_database_path")
+                throw error
             }
         }
         var attributes: [FileAttributeKey: Any] = [.posixPermissions: 0o700]
@@ -162,7 +171,7 @@ public final class OathDatabase: Sendable {
         try await pool.read { try Self.accounts($0, walletID: walletID) }
     }
     static func accounts(_ db: Database, walletID: String) throws -> [AccountRecord] {
-        try AccountRecord.fetchAll(db, sql: "SELECT * FROM accounts WHERE walletID = ? ORDER BY networkID, id", arguments: [walletID])
+        try AccountRecord.fetchAll(db, sql: "SELECT * FROM walletAccounts WHERE walletID = ? ORDER BY networkID, id", arguments: [walletID])
     }
     public func renameWallet(_ id: String, name: String) async throws {
         let name = name.trimmingCharacters(in: .whitespacesAndNewlines)

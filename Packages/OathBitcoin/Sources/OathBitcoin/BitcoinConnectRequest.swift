@@ -1,3 +1,4 @@
+import OathDiagnostics
 import Foundation
 import CryptoKit
 internal import BitcoinDevKit
@@ -77,7 +78,7 @@ public struct BitcoinConnectRequest: Codable, Equatable, Sendable {
     public var broadcasts: Bool { method == "sendTransfer" || (method == "signPsbt" && broadcast == true) }
     public var fingerprint: String {
         let encoder = JSONEncoder(); encoder.outputFormatting = [.sortedKeys]
-        return (try? encoder.encode(self)).map { Data(SHA256.hash(data: $0)).hex } ?? ""
+        return (OathDiagnostics.attempt("encode_connect_request", body: { try encoder.encode(self) })).map { Data(SHA256.hash(data: $0)).hex } ?? ""
     }
     public func validate() throws {
         // Persisted requests pass through the same bounds as new peer requests.

@@ -213,7 +213,7 @@ import OathBitcoin
             try NetworkRecord(id: "bitcoin", name: "Bitcoin", family: "utxo", symbol: "BTC", decimals: 8, derivationPath: "test", logo: "btc", sortOrder: 0).insert(sql)
             try AssetRecord(id: "btc", networkID: "bitcoin", reference: "native", name: "Bitcoin", symbol: "BTC", decimals: 8).insert(sql)
             try sql.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES(?,?,?,?,?,?)", arguments: ["w1", "Existing", "hd", "fixture", 1, false])
-            try AccountRecord(id: "w1-btc", walletID: "w1", networkID: "bitcoin", address: "public-fixture", derivationPath: "test").insert(sql)
+            try AccountRecord(id: "w1-btc", walletID: "w1", networkID: "bitcoin", address: "public-fixture", derivationPath: "test").insertIntoHistoricalAccounts(sql)
             try BalanceRecord(accountID: "w1-btc", assetID: "btc", networkID: "bitcoin", amountAtomic: "123", observedAt: 1, source: "fixture").insert(sql)
             try TransactionRecord(id: "tx", networkID: "bitcoin", hash: "public-hash", state: "pending", timestamp: 1, updatedAt: 1).insert(sql)
             try ActivityRecord(id: "event", walletID: "w1", accountID: "w1-btc", networkID: "bitcoin", transactionID: "tx", assetID: "btc", direction: "incoming", amountAtomic: "123", counterparty: "public-fixture", timestamp: 1).insert(sql)

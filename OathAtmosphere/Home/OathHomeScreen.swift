@@ -255,7 +255,7 @@ struct OathHomeScreen: View {
             silentAssetTabSelection = false
             if tab != .search {
                 searchPresented = false
-                searchContext = tab
+                if tab == .wallet || tab == .history { searchContext = tab }
             }
         }
         .task(id: tokenSearchRequest) {

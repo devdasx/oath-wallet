@@ -1,3 +1,4 @@
+import OathDiagnostics
 import OathArtworkSource
 import Foundation
 import CryptoKit
@@ -21,7 +22,7 @@ public struct AnkrSyncRecord: Codable, Sendable, Equatable, FetchableRecord, Per
     public var totalCount: Int?
 
     public var isDelayed: Bool {
-        guard let syncStatus, let value = try? JSONDecoder().decode(AnkrSyncStatus.self, from: syncStatus) else { return false }
+        guard let syncStatus, let value = OathDiagnostics.attempt("decode_sync_status", body: { try JSONDecoder().decode(AnkrSyncStatus.self, from: syncStatus) }) else { return false }
         return value.status != nil && value.status != "synced"
     }
 }
@@ -106,7 +107,7 @@ extension OathDatabase {
             if stream == "balances" || record.complete || record.windowEnd == 0 {
                 record.cursor = nil
                 record.scanID = UUID().uuidString
-                let indexedAt = record.syncStatus.flatMap { try? JSONDecoder().decode(AnkrSyncStatus.self, from: $0).timestamp }
+                let indexedAt = record.syncStatus.flatMap { payload in OathDiagnostics.attempt("decode_sync_status", body: { try JSONDecoder().decode(AnkrSyncStatus.self, from: payload) })?.timestamp }
                 let highWater = min(record.windowEnd, indexedAt.map { Int($0) } ?? record.windowEnd)
                 record.windowStart = stream == "balances" ? 0 : max(0, highWater - 86_400)
                 record.windowEnd = Int(now.timeIntervalSince1970)
@@ -190,7 +191,7 @@ extension OathDatabase {
         let now = last.fetchedAt.timeIntervalSince1970
         try await pool.write { db in
             var state = try Self.validateAnkr(ticket, db: db)
-            if let old = state.syncStatus.flatMap({ try? JSONDecoder().decode(AnkrSyncStatus.self, from: $0) }),
+            if let old = state.syncStatus.flatMap({ payload in OathDiagnostics.attempt("decode_sync_status", body: { try JSONDecoder().decode(AnkrSyncStatus.self, from: payload) }) }),
                let previous = old.timestamp, let incoming = last.value.syncStatus?.timestamp, incoming < previous {
                 throw StoreError.staleSync
             }

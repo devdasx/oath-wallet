@@ -11,11 +11,19 @@ import OathDiagnostics
 @MainActor @Observable final class OathPermissionBatchCoordinator {
     static let shared = OathPermissionBatchCoordinator()
     private(set) var runningWalletID: String?
+    private(set) var preparing: UUID?
+    var canStart: Bool { preparing == nil && runningWalletID == nil }
+    func claimPreparation(_ id: UUID) -> Bool {
+        guard canStart else { return false }
+        preparing=id
+        return true
+    }
+    func releasePreparation(_ id: UUID) { if preparing == id { preparing=nil } }
     private var job: Task<Void,Never>?
     private var assertion: UIBackgroundTaskIdentifier = .invalid
 
-    func start(_ items: [PermissionBatchItem], authorization: UUID, vault: OathWalletVault) async throws {
-        guard job == nil, runningWalletID == nil, let walletID=items.first?.walletID else {
+    func start(_ items: [PermissionBatchItem], authorization: UUID, vault: OathWalletVault, preparation: UUID) async throws {
+        guard job == nil, runningWalletID == nil, preparing == preparation, let walletID=items.first?.walletID else {
             await vault.endPermissionBatch(authorization)
             throw PermissionError.changed
         }

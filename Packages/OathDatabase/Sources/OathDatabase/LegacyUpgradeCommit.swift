@@ -126,7 +126,7 @@ extension OathDatabase {
             }
             // Read back every field inside the same transaction before commit.
             guard try WalletRecord.fetchAll(db, sql: "SELECT * FROM wallets ORDER BY id") == batch.wallets.sorted(by: { $0.id < $1.id }),
-                  try AccountRecord.fetchAll(db, sql: "SELECT * FROM accounts ORDER BY id") == batch.accounts.sorted(by: { $0.id < $1.id }) else {
+                  try AccountRecord.fetchAll(db, sql: "SELECT * FROM walletAccounts ORDER BY id") == batch.accounts.sorted(by: { $0.id < $1.id }) else {
                 throw LegacyUpgradeError.invalidSource
             }
         }

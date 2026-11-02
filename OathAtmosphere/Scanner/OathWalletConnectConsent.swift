@@ -48,6 +48,8 @@ struct OathWalletConnectConsent: View {
     let approve: () -> Void
     let reject: () -> Void
     let close: @MainActor () -> Void
+    var connectionFailure: OathWalletConnectPolicy.ConnectionFailure? = nil
+    var compatibilityFailure: OathWalletConnectPolicy.ConnectionFailure? = nil
     var unavailableMethods: Set<String> = []
     var includesSignIn: Bool = false
     @Environment(\.oathLocalizer) private var strings
@@ -90,9 +92,9 @@ struct OathWalletConnectConsent: View {
             }.buttonStyle(OathSettingsRowButtonStyle()).accessibilityIdentifier("walletconnect.identity")
             if identity.verification == .blocked || (!supported && !loadingAccounts) {
                 OathSettingsFooter {
-                    Label(strings.text(identity.verification == .blocked ? .scannerWCBlocked : .wcUnsupportedTitle), systemImage: "exclamationmark.shield")
+                    Label(strings.text(identity.verification == .blocked ? .scannerWCBlocked : (compatibilityFailure ?? .unsupportedNetworks).titleKey), systemImage: "exclamationmark.shield")
                         .foregroundStyle(.red)
-                    Text(strings.text(identity.verification == .blocked ? .scannerWCBlockedDetail : .wcUnsupportedDetail))
+                    Text(strings.text(identity.verification == .blocked ? .scannerWCBlockedDetail : (compatibilityFailure ?? .unsupportedNetworks).detailKey))
                 }.accessibilityIdentifier("walletconnect.blocked")
                 if identity.verification != .blocked {
                     ForEach(["wallet_addEthereumChain", "wallet_sendCalls"].filter { unavailableMethods.contains($0) }, id: \.self) { method in
@@ -110,7 +112,7 @@ struct OathWalletConnectConsent: View {
                     .oathFont(.body).padding(.horizontal, 20).padding(.bottom, 20)
                     .disabled(working).accessibilityIdentifier("walletconnect.acknowledge")
             }
-            if failed { OathSettingsFooter { Text(strings.text(.scannerWCError)).foregroundStyle(.red) } }
+            if failed { OathSettingsFooter { Text(strings.text((connectionFailure ?? .unknown).detailKey)).foregroundStyle(.red) } }
         }
         .oathBottomActions {
             VStack(spacing: OathActionMetrics.spacing) {
@@ -277,5 +279,49 @@ struct OathWCValue: View {
     }
     private var valueText: some View {
         Text(value).textSelection(.enabled).environment(\.layoutDirection, leftToRight ? .leftToRight : layoutDirection)
+    }
+}
+
+
+extension OathWalletConnectPolicy.ConnectionFailure {
+    var titleKey: OathStringKey {
+        switch self {
+        case .invalidQR: .wcConnectionInvalidQRTitle
+        case .expiredQR: .wcConnectionExpiredQRTitle
+        case .usedQR: .wcConnectionUsedQRTitle
+        case .peerTimeout: .wcConnectionPeerTimeoutTitle
+        case .relayTimeout: .wcConnectionRelayTimeoutTitle
+        case .offline: .wcConnectionOfflineTitle
+        case .relayUnavailable: .wcConnectionRelayUnavailableTitle
+        case .configuration: .wcConnectionConfigurationTitle
+        case .locked: .wcConnectionLockedTitle
+        case .connectionLimit: .wcConnectionConnectionLimitTitle
+        case .accounts: .wcConnectionAccountsTitle
+        case .unsupportedNetworks: .wcConnectionUnsupportedNetworksTitle
+        case .unsupportedMethods: .wcConnectionUnsupportedMethodsTitle
+        case .unsupportedEvents: .wcConnectionUnsupportedEventsTitle
+        case .proposalUnavailable: .wcConnectionProposalUnavailableTitle
+        case .unknown: .wcConnectionUnknownTitle
+        }
+    }
+    var detailKey: OathStringKey {
+        switch self {
+        case .invalidQR: .wcConnectionInvalidQRDetail
+        case .expiredQR: .wcConnectionExpiredQRDetail
+        case .usedQR: .wcConnectionUsedQRDetail
+        case .peerTimeout: .wcConnectionPeerTimeoutDetail
+        case .relayTimeout: .wcConnectionRelayTimeoutDetail
+        case .offline: .wcConnectionOfflineDetail
+        case .relayUnavailable: .wcConnectionRelayUnavailableDetail
+        case .configuration: .wcConnectionConfigurationDetail
+        case .locked: .wcConnectionLockedDetail
+        case .connectionLimit: .wcConnectionConnectionLimitDetail
+        case .accounts: .wcConnectionAccountsDetail
+        case .unsupportedNetworks: .wcConnectionUnsupportedNetworksDetail
+        case .unsupportedMethods: .wcConnectionUnsupportedMethodsDetail
+        case .unsupportedEvents: .wcConnectionUnsupportedEventsDetail
+        case .proposalUnavailable: .wcConnectionProposalUnavailableDetail
+        case .unknown: .wcConnectionUnknownDetail
+        }
     }
 }

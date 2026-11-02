@@ -14,7 +14,6 @@ struct OathBalanceChangePill: View {
     @State private var showingPeriods = false
     @State private var selectionRevision = 0
     @State private var periodSummary: BalanceDaySummary?
-    @State private var failedPeriod: PeriodContext?
 
     private struct Context: Hashable {
         let walletID: String
@@ -58,30 +57,28 @@ struct OathBalanceChangePill: View {
     private var displayCurrency: String {
         context?.currency ?? Locale.autoupdatingCurrent.currency?.identifier ?? "USD"
     }
-    private var showsPeriod: Bool {
-        guard let change else { return true }
-        return change.amount != .zero
+    private var hasNonzeroChange: Bool {
+        (change?.amount ?? .zero) != .zero
     }
     private var color: Color {
-        guard !session.balancesHidden, showsPeriod, let change else { return .white.opacity(0.85) }
+        guard !session.balancesHidden, hasNonzeroChange, let change else { return .white.opacity(0.85) }
         return change.amount > 0 ? Color(red: 0.61, green: 0.96, blue: 0.75)
             : change.amount < 0 ? Color(red: 1, green: 0.67, blue: 0.69) : .white.opacity(0.85)
     }
-    private var amount: String? {
-        guard let change else { return nil }
+    private var amount: String {
         // Sub-cent changes use the shared nonzero bound; only exact zero is zero.
-        let value = showsPeriod ? change.amount : .zero
+        // Missing comparisons display zero without creating a history baseline.
+        let value = change?.amount ?? .zero
         return OathAssetAmountFormat(locale: strings.language.locale, selectedCurrencyCode: displayCurrency)
             .money(value, signed: true)
     }
     private var percentage: String? {
-        guard let value = change?.percentage else { return nil }
-        return ((showsPeriod ? value : 0) / 100).formatted(.percent.precision(.fractionLength(2)).locale(strings.language.locale))
+        guard let value = change == nil ? 0 : change?.percentage else { return nil }
+        return ((hasNonzeroChange ? value : 0) / 100).formatted(.percent.precision(.fractionLength(2)).locale(strings.language.locale))
     }
     private var accessibilityValue: String {
         if session.balancesHidden { return strings.text(.balanceHidden) }
-        guard change != nil else { return strings.text(.balanceChangeUnavailable) }
-        return [amount, percentage, showsPeriod ? strings.text(period.titleKey) : nil]
+        return [amount, percentage, strings.text(period.titleKey)]
             .compactMap { $0 }.joined(separator: ", ")
     }
 
@@ -116,7 +113,6 @@ struct OathBalanceChangePill: View {
             }
             .task(id: periodContext) {
                 guard let scope = periodContext else { return }
-                failedPeriod = nil
                 await OathDiagnostics.$operationID.withValue(UUID()) {
                     do {
                         let observations = try await session.observeBalancePeriod(scope.period, at: scope.context.day.start)
@@ -127,8 +123,6 @@ struct OathBalanceChangePill: View {
                     } catch is CancellationError { } // Expected selection, lock, wallet change or teardown.
                     catch {
                         OathDiagnostics.record(error, component: "balance_history", operation: "observe_period")
-                        guard !Task.isCancelled, periodContext == scope else { return }
-                        failedPeriod = scope
                     }
                 }
             }
@@ -157,20 +151,13 @@ struct OathBalanceChangePill: View {
     }
     private var label: some View {
         HStack(spacing: 6) {
-            if let change, showsPeriod, change.amount != 0 {
+            if let change, hasNonzeroChange {
                 Image(systemName: change.amount > 0 ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
                     .font(.caption2).foregroundStyle(color)
             }
-            if let amount { Text(amount).fontWeight(.semibold).foregroundStyle(color) }
+            Text(amount).fontWeight(.semibold).foregroundStyle(color)
             if let percentage { Text(verbatim: "(\(percentage))").foregroundStyle(.white.opacity(0.85)) }
-            if change == nil {
-                if let periodContext, matchingSummary == nil, failedPeriod != periodContext {
-                    ProgressView().tint(.white)
-                } else {
-                    Text(strings.text(.balanceChangeUnavailable))
-                }
-            }
-            if showsPeriod { Text(strings.text(period.titleKey)).foregroundStyle(.white.opacity(0.85)) }
+            Text(strings.text(period.titleKey)).foregroundStyle(.white.opacity(0.85))
         }
         .oathFont(.subheadline, weight: .medium)
         .monospacedDigit()

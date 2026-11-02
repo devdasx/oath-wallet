@@ -52,8 +52,9 @@ extension OathDatabase {
         }
     }
 
-    private static func transactionDetails(_ db: Database, accountID: String, transactionID: String, currency: String) throws -> TransactionDetails? {
-        guard try Bool.fetchOne(db, sql: "SELECT EXISTS(SELECT 1 FROM visibleActivity WHERE accountID=? AND transactionID=?)", arguments: [accountID, transactionID]) == true,
+    static func transactionDetails(_ db: Database, accountID: String, transactionID: String, currency: String, publicOwner: String? = nil, includeHiddenActivity: Bool = false) throws -> TransactionDetails? {
+        let activitySource = includeHiddenActivity ? "activity" : "visibleActivity"
+        guard try Bool.fetchOne(db, sql: "SELECT EXISTS(SELECT 1 FROM \(activitySource) WHERE accountID=? AND transactionID=?)", arguments: [accountID, transactionID]) == true,
               var tx = try TransactionRecord.fetchOne(db, key: transactionID) else { return nil }
         var asset = try AssetRecord.fetchOne(db, sql: "SELECT * FROM assets WHERE networkID=? AND reference='native'", arguments: [tx.networkID])
         if tx.networkID == "celo",
@@ -82,17 +83,17 @@ extension OathDatabase {
                                          arguments: [accountID, transactionID])
         let transfers = try TransferRecord.fetchAll(db, sql: """
             SELECT tr.* FROM transfers tr WHERE tr.transactionID=? AND EXISTS(
-                SELECT 1 FROM visibleActivity a WHERE a.transactionID=tr.transactionID
+                SELECT 1 FROM \(activitySource) a WHERE a.transactionID=tr.transactionID
                     AND a.assetID=tr.assetID AND a.accountID=?) ORDER BY tr.eventIndex
             """, arguments: [transactionID, accountID])
-        let parties = try transactionParties(db, accountID: accountID, transaction: tx, transfers: transfers)
+        let parties = try transactionParties(db, accountID: accountID, transaction: tx, transfers: transfers, publicOwner: publicOwner, includeHiddenActivity: includeHiddenActivity)
         let entries = try HistoryEntry.fetchAll(db, sql: """
             SELECT a.id,a.accountID,a.networkID,a.transactionID,a.assetID,a.direction,
                    a.amountAtomic,a.counterparty,a.sortTimestamp AS timestamp,? AS state,? AS hash
-            FROM visibleActivity a WHERE a.accountID=? AND a.transactionID=?
+            FROM \(activitySource) a WHERE a.accountID=? AND a.transactionID=?
             """, arguments: [outcome ?? tx.state, tx.hash, accountID, transactionID])
             .map { try Self.projectSelfTransferFee($0, db: db) }
-        let wallet = try String.fetchOne(db, sql: "SELECT walletID FROM accounts WHERE id=?", arguments: [accountID]) ?? ""
+        let wallet = try String.fetchOne(db, sql: "SELECT walletID FROM walletAccounts WHERE id=?", arguments: [accountID]) ?? ""
         let swap = try readChainHistory(db, walletID: wallet, networkID: tx.networkID, accountID: accountID,
             assetID: nil, currency: currency, before: nil, limit: 1, search: "", filter: .init(),
             localeIdentifier: "en_US_POSIX", transactionID: transactionID).first(where: { ["swap", "bridge", "bridgeIncoming", "bridgeOutgoing"].contains($0.entry.direction) })
@@ -143,7 +144,7 @@ extension OathDatabase {
     /// sender/recipient record. Preserve every known address without choosing a
     /// random Bitcoin input or using an HD account's representative address.
     private static func transactionParties(_ db: Database, accountID: String, transaction tx: TransactionRecord,
-                                          transfers: [TransferRecord]) throws -> (from: [String], to: [String], inputs: [TransactionEndpoint]?, outputs: [TransactionEndpoint]?) {
+                                          transfers: [TransferRecord], publicOwner: String? = nil, includeHiddenActivity: Bool = false) throws -> (from: [String], to: [String], inputs: [TransactionEndpoint]?, outputs: [TransactionEndpoint]?) {
         var from = Set(transfers.map(\.fromAddress).filter { !$0.isEmpty })
         var to = Set(transfers.map(\.toAddress).filter { !$0.isEmpty })
         if let network = UTXONetwork(rawValue: tx.networkID) {
@@ -155,7 +156,7 @@ extension OathDatabase {
             let journal = try Row.fetchOne(db, sql: """
                 SELECT s.signedPayload,p.plan FROM sends s
                 JOIN bitcoinSendPlans p ON p.sendID=s.id
-                JOIN accounts a ON a.walletID=s.walletID AND a.networkID=s.networkID
+                JOIN walletAccounts a ON a.walletID=s.walletID AND a.networkID=s.networkID
                 WHERE a.id=? AND s.networkID=? AND s.transactionID=?
                     AND s.signedPayload IS NOT NULL AND s.state IN ('signed','broadcast','confirmed','failed')
                 ORDER BY s.createdAt,s.id LIMIT 1
@@ -206,7 +207,7 @@ extension OathDatabase {
             return (from.sorted(), to.sorted(), inputs, outputs)
         }
         guard let account = try AccountRecord.fetchOne(db, key: accountID) else { return (from.sorted(), to.sorted(), nil, nil) }
-        let selectedSolana = tx.networkID == "solana" ? try String.fetchOne(db,
+        let selectedSolana = tx.networkID == "solana" ? try publicOwner ?? String.fetchOne(db,
             sql: "SELECT address FROM solanaReceiveAddresses WHERE accountID=? AND isSelected=1", arguments: [accountID]) ?? account.address : nil
         func movement(_ direction: String, owner: String, peer: String?) {
             if direction == "incoming" { to.insert(owner); if let peer, !peer.isEmpty { from.insert(peer) } }
@@ -214,7 +215,8 @@ extension OathDatabase {
             // A zero net balance change is not evidence of a self-transfer.
             else if direction == "self", peer == owner { from.insert(owner); to.insert(owner) }
         }
-        for row in try ActivityRecord.fetchAll(db, sql: "SELECT * FROM visibleActivity WHERE accountID=? AND transactionID=?", arguments: [accountID, tx.id]) {
+        let activitySource = includeHiddenActivity ? "activity" : "visibleActivity"
+        for row in try ActivityRecord.fetchAll(db, sql: "SELECT * FROM \(activitySource) WHERE accountID=? AND transactionID=?", arguments: [accountID, tx.id]) {
             if tx.networkID == "solana" {
                 // Solana derivations share an account record. Match the owner
                 // attached to this activity, never its representative address.

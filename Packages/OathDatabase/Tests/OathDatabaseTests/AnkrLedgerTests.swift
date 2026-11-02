@@ -352,7 +352,7 @@ private struct PageTransport: AnkrTransport {
             try AssetRecord(id:"ethereum:native",networkID:"ethereum",reference:"native",name:"Ethereum",symbol:"ETH",decimals:18).insert(db)
             try AssetRecord(id:"ethereum:"+token,networkID:"ethereum",reference:token,name:"Previously discovered",symbol:"TOKEN",decimals:6).insert(db)
             try db.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES(?,?,?,?,?,?)", arguments: ["wallet", "Existing", "hd", "test", 1, false])
-            try AccountRecord(id:"wallet:ethereum",walletID:"wallet",networkID:"ethereum",address:address,derivationPath:"m/44'/60'/0'/0/0").insert(db)
+            try AccountRecord(id:"wallet:ethereum",walletID:"wallet",networkID:"ethereum",address:address,derivationPath:"m/44'/60'/0'/0/0").insertIntoHistoricalAccounts(db)
             try BalanceRecord(accountID:"wallet:ethereum",assetID:"ethereum:native",networkID:"ethereum",amountAtomic:"1000000000000000000",observedAt:1,source:"ankr").insert(db)
             try BalanceRecord(accountID:"wallet:ethereum",assetID:"ethereum:"+token,networkID:"ethereum",amountAtomic:"1000000",observedAt:1,source:"ankr").insert(db)
             // A token having a quote is not evidence of whitelist membership.
@@ -476,7 +476,7 @@ private struct PageTransport: AnkrTransport {
             try NetworkRecord(id:"ethereum",name:"Ethereum",family:"evm",symbol:"ETH",decimals:18,derivationPath:"m/44'/60'/0'/0/0",logo:"local",sortOrder:0).insert(db)
             try AssetRecord(id:"ethereum:native",networkID:"ethereum",reference:"native",name:"Ethereum",symbol:"ETH",decimals:18).insert(db)
             try db.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES(?,?,?,?,?,?)", arguments: ["existing", "Existing", "hd", "test", 1, false])
-            try AccountRecord(id:"existing:ethereum",walletID:"existing",networkID:"ethereum",address:address,derivationPath:"m/44'/60'/0'/0/0").insert(db)
+            try AccountRecord(id:"existing:ethereum",walletID:"existing",networkID:"ethereum",address:address,derivationPath:"m/44'/60'/0'/0/0").insertIntoHistoricalAccounts(db)
             try BalanceRecord(accountID:"existing:ethereum",assetID:"ethereum:native",networkID:"ethereum",amountAtomic:"123456789012345678",observedAt:1,source:"cache").insert(db)
             try SettingRecord(key:"currency",value:"JOD",updatedAt:1).insert(db)
         }

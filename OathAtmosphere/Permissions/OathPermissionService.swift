@@ -17,7 +17,7 @@ actor OathPermissionService {
         return try await OathDiagnostics.$chain.withValue(network) {
             try await OathDiagnostics.$operationID.withValue(UUID()) {
                 var value: ContractIdentity?
-                if let chain = EVMSendNetwork(rawValue: network), chain != .arc {
+                if let chain = EVMSendNetwork(rawValue: network) {
                     if asset {
                         value = try await Self.read(operation: "identity_onchain", chain: network) {
                             try await OathEVMSendService.shared.connection(chain).permissionIdentity(address: address)
@@ -71,7 +71,7 @@ actor OathPermissionService {
                     let config=configuration()
                     var scan:PermissionScan
                     var controlUnavailable=false
-                    if let network=EVMSendNetwork(rawValue:account.networkID), network != .arc {
+                    if let network=EVMSendNetwork(rawValue:account.networkID) {
                         let client=try await OathEVMSendService.shared.connection(network)
                         async let indexed=Self.read(operation:"discover_evm",chain:network.rawValue) {try await config.makePermissionDiscovery().evm(network:network,owner:account.address,client:client)}
                         async let delegated=Self.read(operation:"read_delegation",chain:network.rawValue) {try await client.accountDelegation(owner:account.address)}
@@ -105,7 +105,7 @@ actor OathPermissionService {
                     } else { scan = .init(network:account.networkID,owner:account.address,permissions:[],coverage:.unsupported) }
                     // Cached/manual candidates are re-read even if the event index is partial
                     // or no longer lists a zero-balance token. A failed read stays unknown.
-                    if let network=EVMSendNetwork(rawValue:account.networkID), network != .arc {
+                    if let network=EVMSendNetwork(rawValue:account.networkID) {
                         let client=try await OathEVMSendService.shared.connection(network)
                         let prior=try await database.permissionScans(walletID:account.walletID).filter{$0.network==scan.network && $0.owner==scan.owner}.flatMap(\.permissions)
                         var merged=Dictionary(scan.permissions.map{($0.id,$0)},uniquingKeysWith:{a,_ in a}),coverage=scan.coverage
@@ -168,7 +168,7 @@ actor OathPermissionService {
         }
     }
     func checkContract(account:AccountRecord,contract:String,spender:String,kind:EVMPermissionRemoval.Kind,tokenID:String?) async throws -> WalletPermission {
-        if let network=EVMSendNetwork(rawValue:account.networkID), network != .arc {
+        if let network=EVMSendNetwork(rawValue:account.networkID) {
             let r = try PermissionCheckInput.evm(kind: kind, contract: contract, spender: spender, tokenID: tokenID)
             let owner = try EVMSendIdentity.address(account.address)
             let client = try await OathEVMSendService.shared.connection(network)
@@ -186,7 +186,7 @@ actor OathPermissionService {
     }
     func quote(_ permission:WalletPermission,account:AccountRecord,database:OathDatabase) async throws -> Quote {
         guard account.networkID==permission.network,let asset=try await database.asset(networkID:account.networkID,reference:"native") else { throw PermissionError.changed }
-        if let network=EVMSendNetwork(rawValue:account.networkID), network != .arc,var removal=permission.evmRemoval {
+        if let network=EVMSendNetwork(rawValue:account.networkID),var removal=permission.evmRemoval {
             guard try EVMSendIdentity.address(account.address)==permission.owner else { throw PermissionError.changed }
             let client=try await OathEVMSendService.shared.connection(network)
             if removal.kind == .permit2Nonce {

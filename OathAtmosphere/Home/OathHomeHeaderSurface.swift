@@ -3,11 +3,11 @@ import SwiftUI
 extension View {
     /// Shared native bar configuration; artwork screens add their edge-aware
     /// appearance separately so plain lists follow the current system theme.
-    func oathNativeAppBar(title: String = "", file: StaticString = #fileID, line: UInt = #line) -> some View {
+    func oathNativeAppBar(title: String = "", background: Visibility = .automatic, file: StaticString = #fileID, line: UInt = #line) -> some View {
         navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(.visible, for: .navigationBar)
-            .oathNativeLocalization(navigationMaterial: nil, systemNavigationAppearance: true,
+            .oathNativeLocalization(navigationBackground: background, navigationMaterial: nil, systemNavigationAppearance: true,
                                     file: file, line: line)
     }
 

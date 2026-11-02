@@ -197,7 +197,9 @@ final class OathWalletSession {
             self.security = security
             if exists, !security.passcodeEnabled {
                 stage = "unlock"
-                try await openHome(try await vault.unlockWithoutPasscode(), token: token)
+                let profile = try await vault.unlockWithoutPasscode(stage: &stage)
+                stage = "home_prepare"
+                try await openHome(profile, token: token)
                 return
             }
             // SQL metadata can populate the real Home behind the blur without

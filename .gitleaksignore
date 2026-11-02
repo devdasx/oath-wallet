@@ -269,8 +269,7 @@ Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift:generic-api-key
 Packages/OathAnkr/Tests/OathAnkrTests/TonReadRecoveryTests.swift:generic-api-key:182
 Packages/OathBitcoin/Tests/OathBitcoinTests/AlchemyUTXOTests.swift:generic-api-key:84
 Packages/OathBitcoin/Tests/OathBitcoinTests/BitcoinCashTests.swift:generic-api-key:81
-Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:308
-Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:68
+Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:310
 Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift:generic-api-key:12
 Packages/OathDatabase/Tests/OathDatabaseTests/SolanaLedgerTests.swift:generic-api-key:13
 Tools/CheckVaultHandoff.swift:generic-api-key:38
@@ -302,3 +301,4 @@ Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swi
 Vendor/Reown/Tests/WalletConnectSignTests/SIWEFromCacaoPayloadFormatterTests.swift:generic-api-key:283
 Packages/OathAnkr/Tests/OathAnkrTests/Fixtures/WalletConnectTron/vectors.json:generic-api-key:6
 Tools/GenerateWalletConnectTronVectors.cjs:generic-api-key:4
+Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:310

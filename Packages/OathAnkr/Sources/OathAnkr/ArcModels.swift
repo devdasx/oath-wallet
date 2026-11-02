@@ -1,3 +1,4 @@
+import OathDiagnostics
 import OathArtworkSource
 import Foundation
 
@@ -100,11 +101,12 @@ public struct ArcCatalog: Codable, Sendable {
     /// Public CoinGecko contract identities captured 2026-10-12, never balances
     /// or prices. Fresh/cached catalogs take precedence; this only bootstraps an
     /// initial request during an outage. New contracts remain index-discovered.
-    public static var bootstrap: Self {
-        guard let url = Bundle.module.url(forResource:"ArcCatalog",withExtension:"json"),
-              let data = try? Data(contentsOf:url), let catalog = try? JSONDecoder().decode(Self.self,from:data) else { return .empty }
-        return catalog
-    }
+    public static let bootstrap: Self = OathDiagnostics.attempt("load_arc_bootstrap_catalog") {
+        guard let url = Bundle.module.url(forResource: "ArcCatalog", withExtension: "json") else {
+            throw DiagnosticFailure("bundled_catalog_missing")
+        }
+        return try JSONDecoder().decode(Self.self, from: Data(contentsOf: url))
+    } ?? .empty
     public func contains(_ reference: String) -> Bool { reference == "native" || ids[reference] != nil }
 }
 public struct ArcPrice: Codable, Sendable {

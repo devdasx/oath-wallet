@@ -187,7 +187,7 @@ public actor AnkrSynchronizer {
                 // Reset/lock teardown owns cleanup; do not try to record a failure in the wallet DB.
                 return AnkrSyncOutcome(accountID: account.id, stream: stream, success: false)
             } catch StoreError.staleSync {
-                // A replaced/deleted account or newer sync owns this state now.
+                // The account was replaced or deleted, or a newer sync owns this state.
                 return AnkrSyncOutcome(accountID: account.id, stream: stream, success: false)
             } catch { OathDiagnostics.record(error, component: "sync", operation: stream, context: ["chain": account.networkID, "stage": stream]);
                 let code: String
@@ -265,7 +265,7 @@ public actor AnkrSynchronizer {
                 var catalog = try await VerifiedEVMTokenCatalog.fetch(chain: chain, transport: transport)
                 // A narrower issuer/offline fallback must not remove previously
                 // verified identities. Optional corrupt cache is a cache miss.
-                let previous = cached.flatMap { try? JSONDecoder().decode(VerifiedEVMTokenCatalog.self, from: $0.payload) }
+                let previous = cached.flatMap { saved in OathDiagnostics.attempt("decode_cached_catalog", body: { try JSONDecoder().decode(VerifiedEVMTokenCatalog.self, from: saved.payload) }) }
                 catalog = try catalog.retainingVerifiedEntries(from: previous)
                 try Task.checkCancellation()
                 try await database.saveMarketCache(.init(key: key, source: catalog.source ?? "CoinGecko", payload: try JSONEncoder().encode(catalog), fetchedAt: Date().timeIntervalSince1970))

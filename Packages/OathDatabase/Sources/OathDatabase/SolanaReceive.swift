@@ -86,7 +86,7 @@ extension OathDatabase {
                   state.addresses.contains(where: { $0.path == path }) else { throw StoreError.missingRecord }
             if state.selected.path != path {
                 // Fence in-flight work even after A -> B -> A selection changes.
-                try db.execute(sql: "UPDATE accounts SET syncGeneration=syncGeneration+1 WHERE id=?", arguments: [accountID])
+                try db.execute(sql: "UPDATE walletAccounts SET syncGeneration=syncGeneration+1 WHERE id=?", arguments: [accountID])
             }
             try db.execute(sql: "UPDATE solanaReceiveAddresses SET isSelected=0 WHERE accountID=? AND isSelected=1", arguments: [accountID])
             try db.execute(sql: "UPDATE solanaReceiveAddresses SET isSelected=1 WHERE accountID=? AND path=?", arguments: [accountID, path])

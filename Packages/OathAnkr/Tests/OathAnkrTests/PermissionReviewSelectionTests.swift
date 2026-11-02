@@ -20,7 +20,7 @@ final class PermissionReviewSelectionTests: XCTestCase {
         XCTAssertNotEqual(review.id, PermissionReviewSelection(walletID: "original", items: review.items)?.id)
     }
     func testEverySupportedReviewNetworkRetainsSelection() throws {
-        let networks = EVMSendNetwork.allCases.filter { !$0.isTestnet && $0 != .arc }.map(\.rawValue) + ["tron", "solana"]
+        let networks = EVMSendNetwork.allCases.filter { !$0.isTestnet }.map(\.rawValue) + ["tron", "solana"]
         let review = try XCTUnwrap(PermissionReviewSelection(walletID: "wallet", items: networks.map { permission($0) }))
         XCTAssertEqual(review.items.map(\.network), networks)
     }
@@ -42,7 +42,7 @@ final class PermissionReviewSelectionTests: XCTestCase {
         let contract = "0x" + String(repeating: "3", count: 40)
         let spender = "0x" + String(repeating: "2", count: 40)
         let removal = EVMPermissionRemoval(kind: .token, contract: contract, spender: spender, expected: "1")
-        for network in EVMSendNetwork.allCases where !network.isTestnet && network != .arc {
+        for network in EVMSendNetwork.allCases where !network.isTestnet {
             for funded in [true, false] {
                 let transport = EVMSendFixtureTransport(network: network, nativeBalance: funded ? "1000000000000000000" : "0", gasEstimate: 21_000)
                 let client = try EVMSendClient(network: network, endpoints: [URL(string: "https://fixture.example")!], transport: transport)

@@ -134,6 +134,9 @@ final class ElectrumWire: ElectrumTransport, @unchecked Sendable {
     private var pending: CheckedContinuation<Data, Error>?
     private var outgoing: Data?
     private var deadline: DispatchWorkItem?
+    private var diagnosticChain = OathDiagnostics.chain
+    private var diagnosticOperation = OathDiagnostics.operationID ?? UUID()
+    private var diagnosticTrace = OathDiagnostics.trace
 
     init(server: ElectrumServer) {
         let options = NWProtocolTLS.Options()
@@ -141,10 +144,10 @@ final class ElectrumWire: ElectrumTransport, @unchecked Sendable {
         // Never downgrade a failed TLS peer to plaintext or disable validation.
         connection = NWConnection(host: NWEndpoint.Host(server.host), port: NWEndpoint.Port(rawValue: server.port)!, using: NWParameters(tls: options))
         connection.stateUpdateHandler = { [weak self] state in
-            guard let self else { return }
+            guard let self, !self.ended else { return }
             switch state {
             case .ready: self.ready = true; self.sendPending(); self.receive()
-            case .failed(let error): OathDiagnostics.record(error, component: "electrum", operation: "connection"); self.fail(Self.classify(error))
+            case .failed(let error): self.record(error, operation: "connection"); self.fail(Self.classify(error))
             case .cancelled: self.fail(BitcoinError.disconnected)
             default: break
             }
@@ -153,11 +156,13 @@ final class ElectrumWire: ElectrumTransport, @unchecked Sendable {
     }
 
     func exchange(_ data: Data, timeout: TimeInterval = 12) async throws -> Data {
-        try await withTaskCancellationHandler {
+        let chain = OathDiagnostics.chain, operation = OathDiagnostics.operationID ?? UUID(), trace = OathDiagnostics.trace
+        return try await withTaskCancellationHandler {
             try Task.checkCancellation()
             return try await withCheckedThrowingContinuation { continuation in
                 queue.async {
                     guard !self.ended, self.pending == nil else { continuation.resume(throwing: BitcoinError.disconnected); return }
+                    self.diagnosticChain = chain; self.diagnosticOperation = operation; self.diagnosticTrace = trace
                     self.pending = continuation
                     self.outgoing = data + Data([10])
                     let deadline = DispatchWorkItem { self.fail(BitcoinError.timeout) }
@@ -173,7 +178,12 @@ final class ElectrumWire: ElectrumTransport, @unchecked Sendable {
     private func sendPending() {
         guard ready, let data = outgoing else { return }; outgoing = nil
         connection.send(content: data, completion: .contentProcessed { [weak self] error in
-            if let error { self?.fail(Self.classify(error)) }
+            // Closing/canceling an already-observed exchange is normal teardown.
+            guard let self, !self.ended else { return }
+            if let error {
+                self.record(error, operation: "send")
+                self.fail(Self.classify(error))
+            }
         })
     }
     private func receive() {
@@ -191,7 +201,10 @@ final class ElectrumWire: ElectrumTransport, @unchecked Sendable {
                 self.pending = nil; self.deadline?.cancel(); self.deadline = nil
                 pending.resume(returning: line)
             }
-            if let error { self.fail(Self.classify(error)) }
+            if let error {
+                self.record(error, operation: "receive")
+                self.fail(Self.classify(error))
+            }
             else if complete { self.fail(BitcoinError.disconnected) }
             else { self.receive() }
         }
@@ -217,6 +230,17 @@ final class ElectrumWire: ElectrumTransport, @unchecked Sendable {
         deadline?.cancel(); deadline = nil
         let continuation = pending; pending = nil
         connection.cancel(); continuation?.resume(throwing: error)
+    }
+    // Native callbacks do not inherit Swift TaskLocals. Restore the active
+    // exchange's safe scope before preserving the original OS error.
+    private func record(_ error: NWError, operation: String) {
+        OathDiagnostics.$chain.withValue(diagnosticChain) {
+            OathDiagnostics.$operationID.withValue(diagnosticOperation) {
+                OathDiagnostics.$trace.withValue(diagnosticTrace) {
+                    OathDiagnostics.record(error, component: "electrum", operation: operation)
+                }
+            }
+        }
     }
     private static func classify(_ error: NWError) -> BitcoinError {
         switch error { case .tls: .tls; default: .disconnected }
@@ -338,9 +362,9 @@ public actor ElectrumPool: BitcoinAddressQuerying {
         let result = try await ElectrumSnapshot.read(candidates, network: network,
             deferredHosts: Set(snapshotBackoff.keys), operation: operation)
         try Task.checkCancellation()
-        // Isolated pools protect snapshot consistency, but used to discard all
-        // peer health on completion. Repeated refreshes therefore reconnected
-        // to the same failed endpoint even while healthy alternatives worked.
+        // Keep peer health across isolated snapshots so refreshes can avoid
+        // recently failed endpoints while healthy alternatives remain available.
+        // Each snapshot still reads through its own isolated pool.
         // Retain only host-level backoff, never account/snapshot data. A peer
         // rejecting batches or serving another network also keeps its existing
         // five-minute request cooldown across the next snapshot's fresh pools.
@@ -519,37 +543,32 @@ public actor ElectrumPool: BitcoinAddressQuerying {
     public func transactions(txids: [String]) async throws -> [String: Data] {
         guard txids.allSatisfy(Self.hash), Set(txids).count == txids.count else { throw BitcoinError.invalidResponse }
         let network = network, fallback = transactionFallback
-        let size = min(40, peers.map { $0.server.batchLimit }.min() ?? 40)
-        return try await withThrowingTaskGroup(of: [String: Data].self) { group in
-            // Bounded concurrency comes from the same pool as discovery. Raw
-            // transactions are immutable and fetched only if absent from SQL.
-            for start in stride(from: 0, to: txids.count, by: size) {
-                let chunk = Array(txids[start..<min(start + size, txids.count)])
-                group.addTask {
-                    do { return try await self.request(chunk.enumerated().map { .init(id: $0.offset, method: "blockchain.transaction.get", params: [.string($0.element), .bool(false)]) }) { values in
-                        var result: [String: Data] = [:]
-                        for (i, txid) in chunk.enumerated() {
-                            guard let hex = values[i]?.string, let raw = Data(hex: hex), try BitcoinTransactions.txid(raw, network: network) == txid else { throw BitcoinError.invalidResponse }
-                            result[txid] = raw
-                        }
-                        return result
-                    } } catch {
-                        if Task.isCancelled || error is CancellationError { throw CancellationError() }
-                        OathDiagnostics.record(error, component: "electrum", operation: "transaction_peers_exhausted", context: ["chain": network.rawValue])
-                        guard network == .bitcoin, let fallback else { throw error }
-                        let recovered = try await fallback(chunk)
-                        guard Set(recovered.keys) == Set(chunk), try recovered.allSatisfy({ try BitcoinTransactions.txid($0.value) == $0.key }) else {
-                            throw BitcoinError.invalidResponse
-                        }
-                        await self.markArchiveRecovered()
-                        return recovered
-                    }
+        let size = 40
+        // Each leased peer applies its own wire limit. A smaller backup must
+        // not shrink batches on every other peer or create unbounded waiters.
+        let starts = Array(stride(from: 0, to: txids.count, by: size))
+        let batches = try await BitcoinConcurrent.map(starts, limit: maximumConnections) { start in
+            let chunk = Array(txids[start..<min(start + size, txids.count)])
+            do { return try await self.request(chunk.enumerated().map { .init(id: $0.offset, method: "blockchain.transaction.get", params: [.string($0.element), .bool(false)]) }) { values in
+                var result: [String: Data] = [:]
+                for (i, txid) in chunk.enumerated() {
+                    guard let hex = values[i]?.string, let raw = Data(hex: hex), try BitcoinTransactions.txid(raw, network: network) == txid else { throw BitcoinError.invalidResponse }
+                    result[txid] = raw
                 }
+                return result
+            } } catch {
+                if Task.isCancelled || error is CancellationError { throw CancellationError() }
+                OathDiagnostics.record(error, component: "electrum", operation: "transaction_peers_exhausted", context: ["chain": network.rawValue])
+                guard network == .bitcoin, let fallback else { throw error }
+                let recovered = try await fallback(chunk)
+                guard Set(recovered.keys) == Set(chunk), try recovered.allSatisfy({ try BitcoinTransactions.txid($0.value) == $0.key }) else {
+                    throw BitcoinError.invalidResponse
+                }
+                await self.markArchiveRecovered()
+                return recovered
             }
-            var result: [String: Data] = [:]
-            for try await values in group { result.merge(values) { old, _ in old } }
-            return result
         }
+        return batches.reduce(into: [:]) { $0.merge($1) { old, _ in old } }
     }
 
     private func markArchiveRecovered() { archiveRecovered = true }
@@ -678,11 +697,11 @@ public actor ElectrumPool: BitcoinAddressQuerying {
     /// Time is the mined block timestamp, not the time the wallet refreshed.
     public func blockTimes(heights: [Int64]) async throws -> [Int64: Double] {
         guard heights.allSatisfy({ $0 > 0 }), Set(heights).count == heights.count else { throw BitcoinError.invalidResponse }
-        let size = min(40, peers.map { $0.server.batchLimit }.min() ?? 40)
-        var times: [Int64: Double] = [:]
-        for start in stride(from: 0, to: heights.count, by: size) {
+        let size = 40
+        let starts = Array(stride(from: 0, to: heights.count, by: size))
+        let batches = try await BitcoinConcurrent.map(starts, limit: maximumConnections) { start in
             let chunk = Array(heights[start..<min(start + size, heights.count)])
-            let values = try await request(chunk.enumerated().map {
+            return try await self.request(chunk.enumerated().map {
                 .init(id: $0.offset, method: "blockchain.block.header", params: [.integer($0.element)])
             }) { response in
                 var result: [Int64: Double] = [:]
@@ -695,9 +714,8 @@ public actor ElectrumPool: BitcoinAddressQuerying {
                 }
                 return result
             }
-            times.merge(values) { _, new in new }
         }
-        return times
+        return batches.reduce(into: [:]) { $0.merge($1) { old, _ in old } }
     }
 
     static let maximumMoney: Int64 = 2_100_000_000_000_000

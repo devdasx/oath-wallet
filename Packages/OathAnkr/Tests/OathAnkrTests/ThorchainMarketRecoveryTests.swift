@@ -91,8 +91,9 @@ final class ThorchainMarketRecoveryTests: XCTestCase, @unchecked Sendable {
 
     func testPersistentRateLimitIsBoundedAndReviewedUploadExclusionsRemainRespected() async throws {
         let reports = ThorchainMarketReports()
-        let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".json")
-        defer { try? FileManager.default.removeItem(at: file) }
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        let file = directory.appendingPathComponent("reports.json")
+        defer { try? FileManager.default.removeItem(at: directory) }
         OathDiagnostics.configure(file: file, transport: reports)
         let transport = ThorchainMarketFixture(oracleReplies: Array(repeating: ThorchainMarketFixture.bucket, count: 3))
         let client = ThorchainClient(transport: transport, catalogRequests: ThorchainCatalogRequests())
@@ -125,6 +126,7 @@ final class ThorchainMarketRecoveryTests: XCTestCase, @unchecked Sendable {
                                    component: "test", operation: "market_capture_control")
         }
         for _ in 0..<100 {
+            await OathDiagnostics.flush()
             if await reports.events.contains(where: { $0.operationID == operation && $0.operation == "market_capture_control" }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }

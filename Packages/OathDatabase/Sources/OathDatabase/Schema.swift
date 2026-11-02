@@ -1502,6 +1502,9 @@ enum Schema {
         migrations.registerMigration("v90_litecoin_history_destinations") { db in
             try OathDatabase.clearInvalidLitecoinHistoryAddresses(db)
         }
+        migrations.registerMigration("v101_store_account_compatibility", foreignKeyChecks: .immediate) { db in
+            try LegacyAccountDirectory.install(db)
+        }
         return migrations
     }
 }

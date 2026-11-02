@@ -1,3 +1,4 @@
+import OathDiagnostics
 import OathAezeed
 import OathBitcoin
 import Foundation
@@ -25,14 +26,17 @@ enum OathMnemonicValidation: Equatable {
 }
 
 /// Offline BIP-39 dictionary and SHA-256 checksum verification. No seed
-/// derivation, network lookup, telemetry, or persistence occurs here.
+/// derivation, network lookup or persistence occurs during input validation.
+/// Only bundled-resource failures are reported; input/validation never is.
 struct OathMnemonicValidator: Sendable {
     static let maximumInputLength = 4_096
     static let wordCounts: Set<Int> = [12, 15, 18, 21, 24]
     static let languages = ["english", "japanese", "korean", "spanish",
                             "chinese_simplified", "chinese_traditional", "french",
                             "italian", "czech", "portuguese"]
-    static let bundled: Self? = try? load { Bundle.main.url(forResource: $0, withExtension: $1) }
+    static let bundled: Self? = OathDiagnostics.attempt("load_bundled_word_lists") {
+        try load { Bundle.main.url(forResource: $0, withExtension: $1) }
+    }
 
     enum ResourceError: Error { case missing, invalid }
     private struct Manifest: Decodable {

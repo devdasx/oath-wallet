@@ -28,7 +28,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
 @MainActor final class BitcoinSendSettlementTests: XCTestCase {
     private let seed = Data(0..<32) // Published deterministic host-test material only.
     private func fixture(_ chain: UTXONetwork, selfTransfer: Bool = false, inputCount: UInt32 = 1,
-                         addressType: BitcoinAddressType? = nil, options: BitcoinSendOptions = .init()) async throws -> (OathDatabase, BitcoinSendPlan, BitcoinSignedSend) {
+                         addressType: BitcoinAddressType? = nil, options: BitcoinSendOptions = .init(), journal: Bool = true, requestedAmount: Int64? = nil) async throws -> (OathDatabase, BitcoinSendPlan, BitcoinSignedSend) {
         let db = try await OathDatabase.open(at: FileManager.default.temporaryDirectory.appendingPathComponent("StatusUTXO-" + UUID().uuidString).appendingPathComponent("db.sqlite"))
         try await db.seed(networks: [.init(id: chain.rawValue, name: "Test", family: "utxo", symbol: "TEST", decimals: 8, derivationPath: "fixture", logo: "", sortOrder: 0)],
             assets: [.init(id: chain.rawValue + ":native", networkID: chain.rawValue, reference: "native", name: "Test", symbol: "TEST", decimals: 8)])
@@ -52,13 +52,14 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
         let scan = try await BitcoinDiscovery(query: StatusFundingQuery(funding: Dictionary(uniqueKeysWithValues: coins.map { ($0.address.scriptHash, $0.txid) }))).scan(descriptor)
         let scanID = try await db.beginBitcoinScan(accountID: "a")
         try await db.commitBitcoinScan(accountID: "a", scanID: scanID, scan: scan, transactions: Dictionary(uniqueKeysWithValues: coins.map { ($0.txid, $0.previousTransaction) }), tipHeight: 150)
-        let plan = try BitcoinSendPlan.make(coins: coins, recipient: selfTransfer ? source.address : recipient.address, amount: 10_000_000 + Int64(inputCount - 1) * 100_000_000, change: change,
+        let plan = try BitcoinSendPlan.make(coins: coins, recipient: selfTransfer ? source.address : recipient.address, amount: requestedAmount ?? (10_000_000 + Int64(inputCount - 1) * 100_000_000), change: change,
             ratePerKVByte: chain == .dogecoin ? 1_000_000 : 2000, chain: chain, options: options)
         try await db.saveDraft(.init(id: "send", walletID: "w", accountID: "a", networkID: chain.rawValue, assetID: chain.rawValue + ":native",
             idempotencyKey: "send", recipient: plan.recipient, amountAtomic: String(plan.recipientAmount), state: "draft", createdAt: 1, updatedAt: 1))
         try await db.saveBitcoinSendPlan(sendID: "send", plan: plan)
-        _ = try await db.queueSend("send", outputs: plan.coins.map { .init(hash: $0.txid, index: $0.vout) })
         let signed = try sign(plan)
+        if !journal { return (db, plan, signed) }
+        _ = try await db.queueSend("send", outputs: plan.coins.map { .init(hash: $0.txid, index: $0.vout) })
         try await db.journalBitcoinSignature(sendID: "send", signed: signed)
         _ = try await db.transitionSend("send", from: "signed", to: "broadcast")
         return (db, plan, signed)

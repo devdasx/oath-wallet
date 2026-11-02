@@ -110,8 +110,9 @@ struct OathWalletConnectSheet: View {
                     OathWCStatePage(title: .scannerWCLoading, detail: .wcPreparingDetail, symbol: "link", isWorking: true, primary: close)
                 }
                 else if service.failed {
+                    let failure = service.connectionFailure ?? .unknown
                     OathWCResultContent(identity: nil) {
-                        OathEmptyState(title: strings.text(.scannerWCUnavailable), systemImage: "wifi.exclamationmark", description: strings.text(.scannerWCError)) {
+                        OathEmptyState(title: strings.text(failure.titleKey), systemImage: failure.symbol, description: strings.text(failure.detailKey)) {
                             if let uri, !service.requiresFreshPairing { OathButton(strings.text(.tryAgain)) { Task { await service.pair(uri) } }.oathNeutralControl() }
                         }
                     }
@@ -200,7 +201,12 @@ struct OathWalletConnectSheet: View {
             .union(OathWalletConnectService.requested(proposal.value, required: false))).intersection(available)
     }
     private func proposalPage(_ proposal: OathWalletConnectService.Proposal) -> some View {
-        let negotiated = try? service.namespaces(for: proposal.value, accounts: accounts, selected: selected)
+        // Namespace compatibility is form validation; retain its reason without logging each render.
+        let negotiation = Result { try service.namespaces(for: proposal.value, accounts: accounts, selected: selected) }
+        let negotiated = try? negotiation.get()
+        let negotiationFailure: OathWalletConnectPolicy.ConnectionFailure?
+        if case .failure(let error) = negotiation { negotiationFailure = .classify(error) }
+        else { negotiationFailure = nil }
         let required = OathWalletConnectService.requested(proposal.value, required: true)
         let requested = required.union(OathWalletConnectService.requested(proposal.value, required: false))
         // Keep the original proposal intact for required-namespace validation;
@@ -225,6 +231,7 @@ struct OathWalletConnectSheet: View {
             acknowledged: $acknowledged, approve: {
                 sign(nil)
             }, reject: close, close: close,
+            connectionFailure: service.connectionFailure, compatibilityFailure: negotiationFailure,
             unavailableMethods: Set(proposal.value.requiredNamespaces.values.flatMap(\.methods)),
             includesSignIn: proposal.value.requests?.authentication?.isEmpty == false)
     }
@@ -324,7 +331,7 @@ struct OathWalletConnectSheet: View {
     }
     private func message(_ item: OathWalletConnectService.PendingRequest) -> some View {
         OathWCContent {
-            if requestTitle(item) != .wcReviewApproval && requestTitle(item) != .wcConfirmSwap {
+            if requestTitle(item) != .wcReviewApproval && requestTitle(item) != .wcConfirmSwap && requestTitle(item) != .wcApproveSignature {
                 OathWCDAppHeader(identity: identity(item.peer.peer))
             }
             let network = OathWalletConnectService.chain(for: item.request.chainId.absoluteString)?.name ?? item.request.chainId.absoluteString

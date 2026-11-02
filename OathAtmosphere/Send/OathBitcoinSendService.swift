@@ -58,16 +58,22 @@ actor OathBitcoinSendService {
                 try await group.waitForAll()
             }
             try Task.checkCancellation()
-            async let change = db.bitcoinChangeAddress(accountID: first.id)
             let outputs = try await db.bitcoinSpendableOutputs(walletID: walletID, network: network)
-            let coins = try await outputs.asyncBitcoinCoins(database: db)
-            let plan = try await BitcoinSendPlan.make(coins: coins, recipient: recipient, amount: amount,
-                                                      change: change, ratePerKVByte: rate, chain: network, options: options)
-            return .init(walletID: walletID, accountID: first.id, plan: plan)
+            return try await makeQuote(walletID: walletID, accountID: first.id, recipient: recipient, amount: amount,
+                                       options: options, outputs: outputs, rate: rate, db: db)
         } catch {
             Task { await OathSendDiagnostics.shared.record(network: network.rawValue, stage: "quote", error: error) }
             throw error
         }
+    }
+
+    private func makeQuote(walletID: String, accountID: String, recipient: String, amount: Int64, options: BitcoinSendOptions,
+                           outputs: [BitcoinSpendableOutput], rate: Int64, db: OathDatabase) async throws -> OathBitcoinQuote {
+        async let change = db.bitcoinChangeAddress(accountID: accountID)
+        let coins = try await outputs.asyncBitcoinCoins(database: db)
+        let plan = try await BitcoinSendPlan.make(coins: coins, recipient: recipient, amount: amount,
+                                                  change: change, ratePerKVByte: rate, chain: network, options: options)
+        return .init(walletID: walletID, accountID: accountID, plan: plan)
     }
 
     func submit(_ quote: OathBitcoinQuote, vault: OathWalletVault, digits: [UInt8]?, reason: String) async throws -> OathBitcoinSubmission {
@@ -87,16 +93,8 @@ actor OathBitcoinSendService {
         do {
             guard quote.plan.chain == network else { throw BitcoinError.wrongNetwork }
             try quote.plan.validate()
-            let network = network
             let prepare: @Sendable () async throws -> Void = {
-                try await OathSendPreparation.run(chain: quote.plan.chain.rawValue, reserve: {
-                    let now = Date.now.timeIntervalSince1970
-                    try await db.saveDraft(.init(id: id, walletID: quote.walletID, accountID: quote.accountID, networkID: network.rawValue, assetID: network.rawValue + ":native",
-                                                idempotencyKey: id, recipient: quote.plan.recipient, amountAtomic: String(quote.plan.recipientAmount),
-                                                state: "draft", createdAt: now, updatedAt: now))
-                    try await db.saveBitcoinSendPlan(sendID: id, plan: quote.plan)
-                    _ = try await db.queueSend(id, outputs: quote.plan.coins.map { .init(hash: $0.txid, index: $0.vout) })
-                }, validate: {})
+                try await Self.reserve(id, quote: quote, database: db)
             }
             stage = "authenticate"
             let signed = try await vault.signBitcoinSend(sendID: id, quote: quote, digits: digits, reason: reason, prepare: prepare)
@@ -105,26 +103,42 @@ actor OathBitcoinSendService {
             // No network side effect occurs until the exact signed bytes have
             // been durably saved. After this point inputs are never released on
             // a timeout, cancellation, app dismissal, or transport error.
-            _ = try await db.transitionSend(id, from: "signed", to: "broadcast")
             stage = "broadcast"
-            let accepted = await submitPersisted(raw: signed.raw, txid: signed.txid)
-            if accepted {
-                _ = await OathDiagnostics.attempt("bitcoin_acknowledgement", body: { try await db.acknowledgeBitcoinSend(id, hash: signed.txid) })
-                await OathPostSendBalanceRefresh.shared.submitted(walletID: quote.walletID, networkID: network.rawValue)
-            }
-            if !accepted { Task { await OathSendDiagnostics.shared.record(network: network.rawValue, stage: "broadcast", error: BitcoinSendError.submissionUnknown, inputCount: quote.plan.coins.count) } }
-            return .init(txid: signed.txid, accepted: accepted)
+            return try await broadcastJournaled(id, quote: quote, signed: signed, database: db)
         } catch {
             Task { await OathSendDiagnostics.shared.record(network: network.rawValue, stage: stage, error: error, inputCount: quote.plan.coins.count) }
             if let stored = await OathDiagnostics.attemptOptional("send", body: { try await db.send(id) }) {
                 if stored.state == "queued" { _ = await OathDiagnostics.attempt("transitionSend", body: { try await db.transitionSend(id, from: "queued", to: "cancelled") }) }
                 else if stored.state == "draft" { _ = await OathDiagnostics.attempt("transitionSend", body: { try await db.transitionSend(id, from: "draft", to: "cancelled") }) }
-                else if let raw = stored.signedPayload, let txid = try? BitcoinTransactions.txid(raw, network: network) {
+                else if let raw = stored.signedPayload, let txid = OathDiagnostics.attempt("decode_pending_send", body: { try BitcoinTransactions.txid(raw, network: network) }) {
                             return .init(txid: txid, accepted: false)
                 }
             }
             throw error
         }
+    }
+
+    private static func reserve(_ id: String, quote: OathBitcoinQuote, database db: OathDatabase) async throws {
+        let network = quote.plan.chain
+        try await OathSendPreparation.run(chain: quote.plan.chain.rawValue, reserve: {
+            let now = Date.now.timeIntervalSince1970
+            try await db.saveDraft(.init(id: id, walletID: quote.walletID, accountID: quote.accountID, networkID: network.rawValue, assetID: network.rawValue + ":native",
+                                        idempotencyKey: id, recipient: quote.plan.recipient, amountAtomic: String(quote.plan.recipientAmount),
+                                        state: "draft", createdAt: now, updatedAt: now))
+            try await db.saveBitcoinSendPlan(sendID: id, plan: quote.plan)
+            _ = try await db.queueSend(id, outputs: quote.plan.coins.map { .init(hash: $0.txid, index: $0.vout) })
+        }, validate: {})
+    }
+
+    private func broadcastJournaled(_ id: String, quote: OathBitcoinQuote, signed: BitcoinSignedSend, database db: OathDatabase) async throws -> OathBitcoinSubmission {
+        _ = try await db.transitionSend(id, from: "signed", to: "broadcast")
+        let accepted = await submitPersisted(raw: signed.raw, txid: signed.txid)
+        if accepted {
+            _ = await OathDiagnostics.attempt("bitcoin_acknowledgement", body: { try await db.acknowledgeBitcoinSend(id, hash: signed.txid) })
+            await OathPostSendBalanceRefresh.shared.submitted(walletID: quote.walletID, networkID: network.rawValue)
+        }
+        if !accepted { Task { await OathSendDiagnostics.shared.record(network: network.rawValue, stage: "broadcast", error: BitcoinSendError.submissionUnknown, inputCount: quote.plan.coins.count) } }
+        return .init(txid: signed.txid, accepted: accepted)
     }
 
     private func submitPersisted(raw: Data, txid: String, reconcileFirst: Bool = false) async -> Bool {

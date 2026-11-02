@@ -9,7 +9,9 @@ struct OathNetworkLogo: View {
     let asset: String
     let size: CGFloat
 
-    private var resolvedAsset: String {
+    private var resolvedAsset: String { Self.resolvedAsset(asset) }
+
+    static func resolvedAsset(_ asset: String) -> String {
         guard asset.hasPrefix("network-") else { return asset }
         let network = String(asset.dropFirst("network-".count))
         return OathReceiveExampleCatalog.bundled.redesignedArtwork(networkID: network, reference: "native") ?? asset

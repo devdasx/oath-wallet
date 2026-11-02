@@ -64,12 +64,12 @@ public actor TronSynchronizer {
         let key = "tron.coingecko.catalog.v1"
         let cached = await OathDiagnostics.attemptOptional("marketCache", body: { try await database.marketCache(key: key) })
         if let cached, Date().timeIntervalSince1970-cached.fetchedAt < 86_400,
-           let value = try? TronMarkets.decodeCatalog(cached.payload) { return value }
+           let value = OathDiagnostics.attempt("decode_cached_catalog", body: { try TronMarkets.decodeCatalog(cached.payload) }) { return value }
         do {
             let raw = try await markets.catalog(); try Task.checkCancellation()
             try await database.saveMarketCache(.init(key: key, source: "CoinGecko", payload: raw, fetchedAt: Date().timeIntervalSince1970))
             return try TronMarkets.decodeCatalog(raw)
-        } catch { OathDiagnostics.record(error); return cached.flatMap { try? TronMarkets.decodeCatalog($0.payload) } ?? [:] }
+        } catch { OathDiagnostics.record(error); return cached.flatMap { saved in OathDiagnostics.attempt("decode_cached_catalog", body: { try TronMarkets.decodeCatalog(saved.payload) }) } ?? [:] }
     }
     private static func save(_ quotes: [TronPrice], database: OathDatabase) async throws {
         for quote in quotes {

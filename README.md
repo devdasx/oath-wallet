@@ -1,47 +1,19 @@
-# Oath Wallet 4.1.15
+# Oath Wallet 5.0.0
 
 A native multichain wallet for iPhone and iPad.
 
-This repository contains the **4.1.15 source release, build 100**. The new app
-replaces the previous source layout with `OathApp`, `OathAtmosphere`, and local
-Swift packages. The application bundle identifier remains `com.aperture.wallet`.
+This repository contains **Oath Wallet 5.0.0, build 102**. The application bundle identifier is `com.aperture.wallet`.
 
-[Release notes](releases/4.1.15-build100.md) · [Website](https://oathwallet.org) ·
+[Release notes](releases/5.0.0.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
 
 ## What's new
 
-- WalletConnect support for Bitcoin, TON, TRON, Polkadot, Sui, NEAR, Stellar and XRP Ledger, with network-specific review and signing rules.
-- Durable transaction recovery and account reservations for supported WalletConnect submissions.
-- Network-aware scanner review and refreshed network artwork.
-
-- Recovery phrases, private keys and passphrases copy only to this device and expire from the system clipboard after 60 seconds.
-
-- Clearer WalletConnect access and THORChain swap reviews, with stable request-to-result presentation.
-- Direct asset QR scanning, expanded payment formats, and editable memo/tag details.
-- Native-fee funding guidance and safe retry preparation; verified block inclusion shown before finality.
-- Refreshed Receive artwork and layout, Bitcoin OP_RETURN display, and chain-history recovery fixes.
-
-- Share chain-specific Oath payment links from Receive and open external payment links in the Send review flow.
-- Updated WalletConnect pairing metadata and expiration checks after unlock.
-
-- Token search by network and symbol, identity-matched bundled artwork, and retained Asset Hub USDC/USDt discovery.
-- XRP rolling-history recovery, safe Polkadot submission retries, and clearer self-transfer errors.
-- THORChain WalletConnect compatibility with both mainnet identifiers while preserving exact session permissions.
-
-- Chiliz, Filecoin FEVM, Sei, 0G, IoTeX and Polkadot Asset Hub support, including native-unit balances, history and sending.
-- Expanded payment QR parsing, Solana Pay references, and resilient transaction tracking.
-
-- BIP39, Electrum and aezeed recovery support, with encrypted local storage.
-- Multichain asset discovery, token artwork, pricing, and transaction history.
-- WalletConnect transaction review and network-aware signing integrations.
-- Network-grouped permissions and batch access revocation.
-- Multisignature wallet support, multiple wallets, app locking, and Recently Deleted.
-- Legacy-wallet upgrade handling and improved refresh and scrolling behavior.
-
-Capabilities vary by network, asset, provider, and configuration. Listing a
-capability does not claim that every network or transaction has been tested.
+- Faster Bitcoin history loading and more reliable Litecoin payment destinations.
+- Contract-level token approval reviews and individual results for batch revocations.
+- WalletConnect gives specific recovery steps for expired QR codes, offline connections and unsupported requests.
+- Improved compatibility with historical wallet records and stronger verification of encrypted backups.
 
 ## Public source boundaries
 
@@ -59,13 +31,7 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-Version 4.1.15 (100) is a source release for manual App Store Connect upload.
-No Apple upload or review submission was started for this release.
-See the [release record](releases/4.1.15-build100.md) for completed validation.
-
-This release expands WalletConnect signing and transaction review to Bitcoin, TON,
-TRON, Polkadot, Sui, NEAR, Stellar and XRP Ledger, with local recovery journals. Requests still require review and signing authorization.
-Diagnostics remain local.
+The [5.0.0 (102) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0) identifies the application source used by GitHub Actions. Its delivery receipt records the uploaded IPA checksum and the build identifier returned by Apple. See the [release record](releases/5.0.0.md) for the verification steps.
 
 Source review, secret scanning, compilation and focused tests are performed during
 release preparation. These are maintainer-directed checks, not an independent

@@ -76,7 +76,7 @@ public struct WalletRecord: Codable, Equatable, Sendable, FetchableRecord, Persi
 }
 
 public struct AccountRecord: Codable, Equatable, Sendable, FetchableRecord, PersistableRecord {
-    public static let databaseTableName = "accounts"
+    public static let databaseTableName = "walletAccounts"
     public var id: String
     public var walletID: String
     public var networkID: String

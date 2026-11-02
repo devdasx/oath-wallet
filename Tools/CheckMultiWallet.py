@@ -683,6 +683,10 @@ extension OathPostSendBalanceRefresh { func submitted(walletID: String, networkI
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
         shutil.copyfile(root / "Tools/CheckProtectedWalletStartup.swift", sources / "CheckProtectedWalletStartup.swift")
+    if "--stored-network-compatibility" in sys.argv:
+        check = sources / "CheckMultiWallet.swift"
+        check.write_text(check.read_text().replace("@main", ""))
+        shutil.copyfile(root / "Tools/CheckStoredNetworkCompatibility.swift", sources / "CheckStoredNetworkCompatibility.swift")
     if "--session-diagnostics" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))

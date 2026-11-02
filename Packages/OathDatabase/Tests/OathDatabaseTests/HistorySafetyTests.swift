@@ -251,7 +251,7 @@ import OathAnkr
             try NetworkRecord(id:"ethereum",name:"Ethereum",family:"evm",symbol:"ETH",decimals:18,derivationPath:"",logo:"",sortOrder:0).insert(db)
             // Use the historical schema, not today's record encoder.
             try db.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES('w','Wallet','hd','fixture',1,0)")
-            try AccountRecord(id:"ethereum",walletID:"w",networkID:"ethereum",address:"public-owner",derivationPath:"").insert(db)
+            try AccountRecord(id:"ethereum",walletID:"w",networkID:"ethereum",address:"public-owner",derivationPath:"").insertIntoHistoricalAccounts(db)
             _ = try Self.activity(db,network:"ethereum",key:"listed",reference:reference)
             _ = try Self.activity(db,network:"ethereum",key:"spam",reference:"unlisted",name:"SUNGAME",symbol:"SUNGAME")
             _ = try Self.activity(db,network:"ethereum",key:"holding",reference:"held")

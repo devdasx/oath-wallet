@@ -354,26 +354,31 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         let attemptsData = try storage.read("unlock-attempts-v1")
         var attempts = try attemptsData.map { try JSONDecoder().decode(OathUnlockAttempts.self, from: $0) } ?? .init()
         if let until = attempts.blockedUntil, now < until { throw OathWalletError.throttled(until) }
-        // Persist BEFORE attempting, so killing the app cannot reset the limit.
-        attempts.recordAttempt(now: now)
-        try saveAttempts(attempts, existing: attemptsData != nil)
-        let key = try sealed.key(for: digits)
+        // Charge only a credential attempt, after this reader accepts the
+        // envelope header. Persist before checking the PIN to resist restarts.
+        let key = try sealed.key(for: digits) {
+            attempts.recordAttempt(now: now)
+            try saveAttempts(attempts, existing: attemptsData != nil)
+        }
         // Modern envelopes authenticate the PIN while unwrapping the data key.
         // Once that succeeds, payload corruption is not another incorrect PIN.
         // Legacy envelopes authenticate the PIN only when opening the payload.
         let authenticatedPIN = sealed.protection?.wrappedKey != nil
         if authenticatedPIN { try saveAttempts(.init(), existing: true) }
         let opened: OathVaultContents
-        do { opened = try sealed.openContents(using: key) }
+        do {
+            opened = try sealed.openContents(using: key) {
+                // A legacy PIN is proven when AES authenticates the bytes.
+                // Decoding the wallet afterwards can fail independently.
+                if !authenticatedPIN { try saveAttempts(.init(), existing: true) }
+            }
+        }
         catch OathWalletError.wrongPasscode where authenticatedPIN {
             // diagnostics: authenticated-payload-failure
             // openContents already records the original cryptographic failure.
             // Keep the vault closed and preserve its ciphertext for recovery.
             throw OathWalletError.corruptVault
         }
-        // Authentication succeeded. A metadata I/O failure must not count as
-        // a wrong PIN or leave a correctly authenticated user throttled.
-        if !authenticatedPIN { try saveAttempts(.init(), existing: true) }
         try Task.checkCancellation()
         return (sealed, key, opened)
     }
@@ -2007,11 +2012,23 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     }
 
     func unlockWithoutPasscode() async throws -> OathWalletProfile {
+        var stage = "unlock"
+        return try await unlockWithoutPasscode(stage: &stage)
+    }
+
+    /// Return the precise failing step to the startup boundary, which owns
+    /// protected-data deferral and reports the original error once.
+    func unlockWithoutPasscode(stage: inout String) async throws -> OathWalletProfile {
         let token = authenticationGeneration
+        stage = "keychain_read"
         guard let data = try storage.read("vault-v1") else { throw OathWalletError.unavailable }
+        stage = "envelope_decode"
         let sealed = try JSONDecoder().decode(OathVaultEnvelope.self, from: data)
+        stage = "device_key"
         let key = try sealed.deviceKey()
+        stage = "vault_open"
         let opened = try sealed.openContents(using: key)
+        stage = "wallet_reconcile"
         let (current, recovered, restored) = try await reconcileUnlocked(sealed: sealed, key: key, opened: opened, token: token)
         try checkAuthentication(token)
         contents = recovered; encryptionKey = key; envelope = current; profile = restored

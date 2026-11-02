@@ -19,7 +19,9 @@ struct OathSendAmountPage: View {
     @State private var showsClosure = false
     @State private var format = OathSendAmountFormat(locale: Locale(identifier: "en_US"), currency: "USD")
     private var reviewing: Bool { model.path.last == .review }
-    private var failure: OathSendAmount.Failure? { model.amountFailure(locale: strings.language.locale) }
+    private var failure: OathSendAmount.Failure? {
+        model.amountFailure(locale: strings.language.locale)
+    }
     private var canContinue: Bool {
         model.holding != nil && failure == nil && !model.failed && !model.loading && model.bitcoinOptionsValid && !reviewing && !checkingClosure
     }

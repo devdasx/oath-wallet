@@ -8,6 +8,43 @@ import Foundation
         func check(_ condition: @autoclosure () -> Bool, _ message: String) {
             precondition(condition(), message); checks += 1
         }
+        typealias Failure = OathWalletConnectPolicy.ConnectionFailure
+        let secret = "wc:private-topic?symKey=private-key"
+        let cases: [(String, Int, Failure)] = [
+            ("WalletConnectPairing.WalletPairService.Errors", 0, .usedQR),
+            ("WalletConnectPairing.WalletPairService.Errors", 1, .relayUnavailable),
+            ("WalletConnectRelay.RelayError", 0, .relayTimeout),
+            ("WalletConnectSign.ApproveEngine.Errors", 0, .proposalUnavailable),
+            ("WalletConnectSign.ApproveEngine.Errors", 2, .proposalUnavailable),
+            ("WalletConnectSign.ApproveEngine.Errors", 3, .proposalUnavailable),
+            ("WalletConnectSign.ApproveEngine.Errors", 4, .invalidQR),
+            ("WalletConnectSign.ApproveEngine.Errors", 5, .relayUnavailable),
+            ("WalletConnectSign.ApproveEngine.Errors", 6, .expiredQR),
+            ("WalletConnectSign.ApproveEngine.Errors", 7, .unsupportedNetworks),
+            (NSURLErrorDomain, NSURLErrorNotConnectedToInternet, .offline),
+            (NSURLErrorDomain, NSURLErrorTimedOut, .relayTimeout),
+            (NSURLErrorDomain, NSURLErrorNetworkConnectionLost, .relayUnavailable),
+            ("Unexpected.Provider", 0, .unknown),
+            ("WalletConnectPairing.WalletPairService.Errors", 99, .unknown)
+        ]
+        for (domain, code, expected) in cases {
+            let error = NSError(domain: domain, code: code, userInfo: [NSLocalizedDescriptionKey: secret])
+            check(Failure.classify(error) == expected, "Connection reason must use structured error identity")
+            check(!String(describing: Failure.classify(error)).contains(secret), "Connection secrets cannot enter display errors")
+        }
+        check(Failure.classify(CancellationError()) == nil, "Task cancellation does not create a failure screen")
+        check(Failure.classify(URLError(.cancelled)) == nil, "Transport cancellation does not create a failure screen")
+        check(Failure.peerTimeout != .expiredQR, "An unresponsive website is not evidence of expiry")
+        check(Failure.peerTimeout.allowsPairingRetry && Failure.offline.allowsPairingRetry, "Temporary failures allow retry")
+        check(!Failure.usedQR.allowsPairingRetry && !Failure.expiredQR.allowsPairingRetry && !Failure.invalidQR.allowsPairingRetry, "Invalid and consumed codes need a fresh QR")
+        let qr = "wc:" + String(repeating: "a", count: 64) + "@2?relay-protocol=irn&symKey=" + String(repeating: "b", count: 64)
+        let now = Date(timeIntervalSince1970: 1_000)
+        if case .invalid(.expiredWalletConnect) = OathScanParser.walletConnect(qr + "&expiryTimestamp=999", now: now) { checks += 1 }
+        else { preconditionFailure("Expired QR must keep the WalletConnect-specific explanation") }
+        if case .invalid(.invalidWalletConnect) = OathScanParser.walletConnect(qr + "&symKey=duplicate", now: now) { checks += 1 }
+        else { preconditionFailure("Malformed QR must keep the WalletConnect-specific explanation") }
+        if case .walletConnect = OathScanParser.walletConnect(qr, now: now) { checks += 1 }
+        else { preconditionFailure("Codes without expiry cannot be assumed expired") }
         var ownership = OathWalletConnectPolicy.PresentationOwnership()
         let firstPresentation = UUID(), secondPresentation = UUID()
         check(ownership.claim(firstPresentation), "First request reserves its sheet before presentation")

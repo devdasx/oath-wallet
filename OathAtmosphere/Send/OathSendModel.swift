@@ -178,12 +178,12 @@ final class OathSendModel {
         }
     }
 
-    func observe(currency: String) async {
+    func observe(currency: String, database sourceDatabase: OathDatabase? = nil) async {
         let token = UUID(), source = walletID
         generation = token; loading = true; failed = false
         if snapshot?.wallet.id != source { snapshot = nil }
         do {
-            let database = try await OathDataEnvironment.shared.database()
+            let database = if let sourceDatabase { sourceDatabase } else { try await OathDataEnvironment.shared.database() }
             for try await snapshot in database.observeWallet(walletID: source, currency: currency) {
                 guard !Task.isCancelled, generation == token, walletID == source else { return }
                 let old = holding

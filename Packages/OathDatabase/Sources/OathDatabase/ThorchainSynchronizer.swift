@@ -24,7 +24,7 @@ public actor ThorchainSynchronizer {
                         self.startHistory(ticket, height: height)
                         let cached=await OathDiagnostics.attemptOptional("thorchain_cached_catalog") { try await database.marketCache(key:"thorchain.catalog") }
                         // An undecodable optional cache is a cache miss; live reads continue.
-                        let catalog=cached.flatMap{try? JSONDecoder().decode(ThorchainCatalog.self,from:$0.payload)} ?? ThorchainCatalog()
+                        let catalog=cached.flatMap { saved in OathDiagnostics.attempt("decode_cached_catalog", body: { try JSONDecoder().decode(ThorchainCatalog.self, from: saved.payload) }) } ?? ThorchainCatalog()
                         let holdings=try await inventory
                         try Task.checkCancellation()
                         try await database.commitThorchainInventory(holdings,ticket:ticket,catalog:catalog)
@@ -49,7 +49,7 @@ public actor ThorchainSynchronizer {
                 // history despite already having a valid inventory pin. Existing
                 // incomplete cursors retain their own pinned height in the store.
                 let cached=await OathDiagnostics.attemptOptional("thorchain_history_catalog") { try await database.marketCache(key:"thorchain.catalog") }
-                let catalog=cached.flatMap{try? JSONDecoder().decode(ThorchainCatalog.self,from:$0.payload)} ?? ThorchainCatalog()
+                let catalog=cached.flatMap { saved in OathDiagnostics.attempt("decode_cached_catalog", body: { try JSONDecoder().decode(ThorchainCatalog.self, from: saved.payload) }) } ?? ThorchainCatalog()
                 // Sender/recipient/failed-message indexes are independent. Each
                 // page commits atomically and resumes after relaunch. Historical
                 // work is capped per refresh, never an unbounded hot-phone loop.

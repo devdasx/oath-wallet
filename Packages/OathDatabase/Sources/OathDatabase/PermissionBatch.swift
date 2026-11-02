@@ -87,6 +87,13 @@ extension OathDatabase {
         guard ["processing","submitted","failed","paused","alreadyRemoved"].contains(state),
               errorCode == nil || ["changed","insufficient","unsupported","unavailable"].contains(errorCode!) else { throw StoreError.invalidTransition }
         try await pool.write { db in
+            if state == "alreadyRemoved" {
+                guard let payload = try Data.fetchOne(db, sql: "SELECT payload FROM permissionBatchItems WHERE id=? AND state IN ('queued','processing')", arguments: [id]) else { return }
+                guard try Bool.fetchOne(db, sql: "SELECT EXISTS(SELECT 1 FROM sends WHERE id=? AND signedPayload IS NOT NULL)", arguments: [id]) != true else { throw StoreError.invalidTransition }
+                var item = try JSONDecoder().decode(PermissionBatchItem.self, from: payload)
+                item.verifiedAt = Date.now.timeIntervalSince1970
+                try db.execute(sql: "UPDATE permissionBatchItems SET payload=? WHERE id=?", arguments: [try JSONEncoder().encode(item), id])
+            }
             try db.execute(sql:"UPDATE permissionBatchItems SET state=?,errorCode=? WHERE id=? AND state IN ('queued','processing')",
                            arguments:[state,errorCode,id])
         }
@@ -119,7 +126,7 @@ extension OathDatabase {
     private static func permissionBatchItems(_ db: Database, walletID: String) throws -> [PermissionBatchItem] {
         try Row.fetchAll(db,sql:"SELECT payload,state,errorCode,(SELECT checkedAt FROM permissionRemovals WHERE sendID=permissionBatchItems.id) AS verifiedAt FROM permissionBatchItems WHERE walletID=? ORDER BY createdAt DESC,ordinal LIMIT 100000",arguments:[walletID]).map { row in
             var item=try JSONDecoder().decode(PermissionBatchItem.self,from:row["payload"])
-            item.state=row["state"]; item.errorCode=row["errorCode"]; item.verifiedAt=row["verifiedAt"]
+            item.state=row["state"]; item.errorCode=row["errorCode"]; item.verifiedAt = (row["verifiedAt"] as Double?) ?? (item.state == "alreadyRemoved" ? item.verifiedAt : nil)
             return item
         }
     }

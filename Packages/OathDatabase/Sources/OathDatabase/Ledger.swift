@@ -280,7 +280,7 @@ extension OathDatabase {
         var sql = """
             SELECT a.id,a.accountID,a.networkID,a.transactionID,a.assetID,a.direction,
                    a.amountAtomic,a.counterparty,a.sortTimestamp AS timestamp,COALESCE(e.outcome,t.state) AS state,t.hash
-            FROM visibleActivity a JOIN transactions t ON t.id=a.transactionID JOIN accounts ownerAccount ON ownerAccount.id=a.accountID
+            FROM visibleActivity a JOIN transactions t ON t.id=a.transactionID JOIN walletAccounts ownerAccount ON ownerAccount.id=a.accountID
                 LEFT JOIN transactionEvidence e ON e.accountID=a.accountID AND e.transactionID=a.transactionID WHERE a.walletID=?
             AND (a.networkID<>'solana' OR EXISTS (SELECT 1 FROM solanaActivity sa WHERE sa.activityID=a.id
                 AND sa.owner=COALESCE((SELECT address FROM solanaReceiveAddresses WHERE accountID=a.accountID AND isSelected=1),ownerAccount.address)))
@@ -332,11 +332,11 @@ extension OathDatabase {
     public func invalidate(networkID: String, fromBlock: Int64) async throws {
         guard fromBlock >= 0 else { throw StoreError.invalidValue("reorg height") }
         try await pool.write { db in
-            try db.execute(sql: "UPDATE accounts SET syncGeneration=syncGeneration+1 WHERE networkID=?", arguments: [networkID])
+            try db.execute(sql: "UPDATE walletAccounts SET syncGeneration=syncGeneration+1 WHERE networkID=?", arguments: [networkID])
             try db.execute(sql: "UPDATE transactions SET state='reorged',blockHeight=NULL,blockHash=NULL WHERE networkID=? AND blockHeight>=?", arguments: [networkID, fromBlock])
             try db.execute(sql: "DELETE FROM balances WHERE networkID=? AND (blockHeight IS NULL OR blockHeight>=?)", arguments: [networkID, fromBlock])
             try db.execute(sql: "UPDATE utxos SET blockHeight=NULL,spent=1 WHERE networkID=? AND blockHeight>=?", arguments: [networkID, fromBlock])
-            try db.execute(sql: "DELETE FROM syncCursors WHERE accountID IN (SELECT id FROM accounts WHERE networkID=?)", arguments: [networkID])
+            try db.execute(sql: "DELETE FROM syncCursors WHERE accountID IN (SELECT id FROM walletAccounts WHERE networkID=?)", arguments: [networkID])
         }
     }
     static func pageSize(_ requested: Int) -> Int { min(200, max(1, requested)) }

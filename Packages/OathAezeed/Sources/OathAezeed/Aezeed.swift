@@ -1,4 +1,5 @@
 import Foundation
+import OathDiagnostics
 import OathAezeedCore
 
 /// Expected input failures; never include recovery words or passphrases in errors.
@@ -16,13 +17,17 @@ public struct AezeedMaterial: Codable, Equatable, Sendable {
 }
 
 public enum Aezeed {
-    private static let dictionary: [String: Int] = {
-        guard let url = Bundle.module.url(forResource: "english", withExtension: "txt"),
-              let text = try? String(contentsOf: url, encoding: .utf8) else { return [:] }
+    private static let dictionary: [String: Int] = OathDiagnostics.attempt("load_aezeed_word_list") {
+        guard let url = Bundle.module.url(forResource: "english", withExtension: "txt") else {
+            throw DiagnosticFailure("bundled_word_list_missing")
+        }
+        let text = try String(contentsOf: url, encoding: .utf8)
         let words = text.split(whereSeparator: \.isWhitespace).map(String.init)
-        guard words.count == 2048, Set(words).count == 2048 else { return [:] }
+        guard words.count == 2048, Set(words).count == 2048 else {
+            throw DiagnosticFailure("bundled_word_list_invalid")
+        }
         return Dictionary(uniqueKeysWithValues: words.enumerated().map { ($1, $0) })
-    }()
+    } ?? [:]
 
     public static func canonical(_ text: String) -> String {
         text.lowercased(with: Locale(identifier: "en_US_POSIX"))

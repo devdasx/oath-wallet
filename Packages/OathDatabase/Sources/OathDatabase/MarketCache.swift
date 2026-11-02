@@ -74,7 +74,7 @@ extension OathDatabase {
             var sql = """
                 SELECT a.id,a.accountID,a.networkID,a.transactionID,a.assetID,a.direction,
                        a.amountAtomic,a.counterparty,a.sortTimestamp AS timestamp,COALESCE(e.outcome,t.state) AS state,t.hash
-                FROM visibleActivity a JOIN transactions t ON t.id=a.transactionID JOIN accounts ownerAccount ON ownerAccount.id=a.accountID
+                FROM visibleActivity a JOIN transactions t ON t.id=a.transactionID JOIN walletAccounts ownerAccount ON ownerAccount.id=a.accountID
                 LEFT JOIN transactionEvidence e ON e.accountID=a.accountID AND e.transactionID=a.transactionID
                 WHERE a.walletID=? AND a.accountID=? AND a.assetID=?
                 AND (a.networkID<>'solana' OR EXISTS (SELECT 1 FROM solanaActivity sa WHERE sa.activityID=a.id

@@ -14,7 +14,7 @@ extension OathDatabase {
         return try await pool.write { db in
             guard let network = try NetworkRecord.fetchOne(db, key: input.networkID), network.enabled,
                   let wallet = try WalletRecord.fetchOne(db, key: walletID), wallet.deletedAt == nil else { throw StoreError.missingRecord }
-            let accounts = try AccountRecord.fetchAll(db, sql: "SELECT * FROM accounts WHERE walletID=? AND networkID=?",
+            let accounts = try AccountRecord.fetchAll(db, sql: "SELECT * FROM walletAccounts WHERE walletID=? AND networkID=?",
                                                      arguments: [walletID, input.networkID])
             guard !accounts.isEmpty else { throw StoreError.conflictingIdentity }
             var asset = input
@@ -42,7 +42,7 @@ extension OathDatabase {
         try await pool.read { db in
             try AssetRecord.fetchAll(db, sql: """
                 SELECT DISTINCT a.* FROM assets a JOIN trackedAssets t ON t.assetID=a.id
-                JOIN accounts c ON c.id=t.accountID WHERE c.walletID=? ORDER BY a.networkID,a.id
+                JOIN walletAccounts c ON c.id=t.accountID WHERE c.walletID=? ORDER BY a.networkID,a.id
                 """, arguments: [walletID])
         }
     }

@@ -1,5 +1,6 @@
 import SwiftUI
 import OathAnkr
+import OathDatabase
 import OathDiagnostics
 
 struct OathPermissionContractPage:View {
@@ -13,12 +14,13 @@ struct OathPermissionContractPage:View {
     @State private var busy=false
     @State private var error:OathStringKey?
     @State private var found:WalletPermission?
+    @State private var revokeAction = OathPermissionRevokeAction()
     @State private var focused: Field?
     private enum Field: String { case contract, spender, tokenID }
     private var needsID:Bool { [.collectible,.permit2,.permit2Nonce].contains(kind) }
     private var networks: [String] {
         Array(Set(model.accounts.map(\.networkID)))
-            .filter { (EVMSendNetwork(rawValue: $0) != nil && $0 != "arc") || $0 == "tron" }
+            .filter { (EVMSendNetwork(rawValue: $0) != nil) || $0 == "tron" }
             .sorted { networkName($0) < networkName($1) }
     }
     private var canCheck: Bool {
@@ -70,6 +72,24 @@ struct OathPermissionContractPage:View {
             }
             .padding(20)
             OathSettingsFooter { Text(strings.text(.permissionCoverageDetail)) }
+            if let found {
+                OathSettingsSectionRule()
+                OathPermissionRemovalSummary(model:model,permission:found)
+                Button(role:.destructive) {
+                    revokeAction.revoke([found],session:session,model:model,reason:strings.text(.permissionRemove))
+                } label: {
+                    HStack {
+                        Text(strings.text(.permissionRemove))
+                        if revokeAction.pending.contains(found.id) || pending(found) { ProgressView() }
+                    }.frame(minHeight:44)
+                }.buttonStyle(.bordered).buttonBorderShape(.capsule)
+                .disabled(!OathPermissionBatchCoordinator.shared.canStart || pending(found) || !session.isUnlocked ||
+                          session.wallets.first(where:{$0.id == model.walletID})?.kind == "watchOnly")
+            }
+            if let found, let item=latestItems[found.id], item.retryable {
+                OathSettingsFooter { Text(strings.text(OathPermissionBatchReview.failureKey(item))).foregroundStyle(.red) }
+            }
+            if let failure=revokeAction.failure { OathSettingsFooter { Text(strings.text(failure)).foregroundStyle(.red) } }
             if let error { OathSettingsFooter { Text(strings.text(error)) } }
         }.disabled(busy).navigationTitle(strings.text(.permissionCheck)).navigationBarTitleDisplayMode(.inline)
         .scrollDismissesKeyboard(.interactively)
@@ -77,15 +97,63 @@ struct OathPermissionContractPage:View {
             if busy { ProgressView() }
             else { OathDoneButton(label: .permissionCheck) { check() }.disabled(!canCheck) }
         } }
-        .onAppear { if network.isEmpty { network=model.accounts.first(where:{(EVMSendNetwork(rawValue:$0.networkID) != nil && $0.networkID != "arc") || $0.networkID=="tron"})?.networkID ?? "" } }
+        .onAppear { if network.isEmpty { network=model.accounts.first(where:{(EVMSendNetwork(rawValue:$0.networkID) != nil) || $0.networkID=="tron"})?.networkID ?? "" } }
         .onChange(of:network) { _,_ in if network=="tron" {kind = .token};found=nil;error=nil }
         .onChange(of: kind) { _, _ in
             found = nil; error = nil
             if !needsID, focused == .tokenID { focused = nil }
         }
+        .onChange(of:contract) { _,_ in found=nil;error=nil }
+        .onChange(of:spender) { _,_ in found=nil;error=nil }
+        .onChange(of:tokenID) { _,_ in found=nil;error=nil }
+        .onChange(of:model.walletID) { _,_ in found=nil;pendingIDs=[];latestItems=[:] }
+        .onChange(of:revokeAction.verifiedAbsent) { _,ids in
+            if let found, ids.contains(found.id) { withAnimation { self.found=nil } }
+        }
         .onDisappear { focused = nil }
-        .navigationDestination(isPresented:Binding(get:{found != nil},set:{if !$0 {found=nil}})) {
-            if let found { OathPermissionReview(session:session,model:model,permission:found) }
+        .modifier(OathPermissionAuthentication(action:revokeAction,session:session,model:model))
+        .task(id:model.walletID) { await observeRevocations() }
+        .task(id:model.walletID) { await reconcileRevocations() }
+    }
+    private func pending(_ permission:WalletPermission)->Bool {
+        pendingIDs.contains(permission.id)
+    }
+    @State private var pendingIDs=Set<String>()
+    @State private var latestItems=[String:PermissionBatchItem]()
+    private func observeRevocations() async {
+        let walletID=model.walletID
+        do {
+            let db=try await session.vault.database()
+            for try await batch in db.observePermissionBatchItems(walletID:walletID) {
+                guard !Task.isCancelled,model.walletID == walletID else { return }
+                pendingIDs=Set(batch.filter{["queued","processing","submitted"].contains($0.state)}.map{$0.permission.id})
+                latestItems=Dictionary(batch.map{($0.permission.id,$0)},uniquingKeysWith:{first,_ in first})
+                if let found, !pending(found), let item=latestItems[found.id], ["removed","alreadyRemoved"].contains(item.state),
+                   let verified=item.verifiedAt, let scan=model.scans[found.network],
+                   scan.checkedAt.timeIntervalSince1970 <= verified {
+                    withAnimation {
+                        model.scans[found.network] = .init(network:scan.network,owner:scan.owner,
+                            permissions:scan.permissions.filter{$0.id != found.id},coverage:scan.coverage,checkedAt:scan.checkedAt)
+                        self.found=nil
+                    }
+                }
+            }
+        } catch {
+            if !Task.isCancelled { OathDiagnostics.record(error,component:"permissions",operation:"contract_observe");self.error = .permissionError }
+        }
+    }
+
+    private func reconcileRevocations() async {
+        let walletID=model.walletID
+        do {
+            let db=try await session.vault.database()
+            for try await history in db.observePermissionHistory(walletID:walletID) {
+                guard !Task.isCancelled,model.walletID == walletID else { return }
+                model.history=history
+                try await db.reconcilePermissionBatches(walletID:walletID,interruptUnsigned:OathPermissionBatchCoordinator.shared.runningWalletID != walletID)
+            }
+        } catch {
+            if !Task.isCancelled { OathDiagnostics.record(error,component:"permissions",operation:"contract_reconcile");self.error = .permissionError }
         }
     }
     private func networkName(_ id: String) -> String {

@@ -1,3 +1,4 @@
+import OathDiagnostics
 import Foundation
 import GRDB
 import OathBitcoin
@@ -14,9 +15,12 @@ public struct BitcoinActivitySynchronizer: Sendable {
               let account = try await database.account(accountID) else { throw StoreError.missingRecord }
         let network = state.descriptor.network
         let pending = try await database.bitcoinActivityWork(account: account)
-        for start in stride(from: 0, to: pending.count, by: 40) {
+        // Fill all three archive connections while keeping parsing, SQL writes
+        // and memory bounded. Committed pages become visible independently.
+        for start in stride(from: 0, to: pending.count, by: 120) {
             try Task.checkCancellation()
-            let page = Array(pending[start..<min(start + 40, pending.count)])
+            let page = Array(pending[start..<min(start + 120, pending.count)])
+            async let blockTimes = client.blockTimes(heights: Array(Set(page.map(\.height).filter { $0 > 0 })))
             let ids = Set(page.map(\.txid))
             var raw = try await cached(accountID: accountID, ids: ids)
             raw.merge(try await client.transactions(txids: Array(ids.subtracting(raw.keys)))) { _, new in new }
@@ -26,7 +30,6 @@ public struct BitcoinActivitySynchronizer: Sendable {
             let savedParents = try await cached(accountID: accountID, ids: parents)
             raw.merge(savedParents) { old, _ in old }
             async let fetchedParents = client.transactions(txids: Array(parents.subtracting(savedParents.keys)))
-            async let blockTimes = client.blockTimes(heights: Array(Set(page.map(\.height).filter { $0 > 0 })))
             let (fetched, times) = try await (fetchedParents, blockTimes)
             raw.merge(fetched) { _, new in new }
             try Task.checkCancellation()
@@ -48,8 +51,14 @@ public struct BitcoinActivitySynchronizer: Sendable {
         return try await database.pool.read { db in
             var result: [String: Data] = [:]
             // Keep SQLite's parameter budget bounded, even for consolidation transactions.
-            for id in ids {
-                if let data = try Data.fetchOne(db, sql: "SELECT raw FROM bitcoinTransactions WHERE accountID=? AND txid=?", arguments: [accountID, id]) { result[id] = data }
+            let ordered = Array(ids)
+            for start in stride(from: 0, to: ordered.count, by: 400) {
+                let page = Array(ordered[start..<min(start + 400, ordered.count)])
+                let placeholders = Array(repeating: "?", count: page.count).joined(separator: ",")
+                let rows = try Row.fetchAll(db,
+                    sql: "SELECT txid,raw FROM bitcoinTransactions WHERE accountID=? AND txid IN (\(placeholders))",
+                    arguments: StatementArguments([accountID] + page))
+                for row in rows { result[row["txid"]] = row["raw"] }
             }
             return result
         }
@@ -181,12 +190,12 @@ extension OathDatabase {
         while let row = try cursor.next() {
             let accountID: String = row["accountID"], transactionID: String = row["transactionID"]
             guard let network = UTXONetwork(rawValue: row["networkID"]),
-                  let tx = try? BitcoinTransactions.details(row["raw"], network: network) else { continue }
+                  let tx = OathDiagnostics.attempt("decode_stored_transaction", body: { try BitcoinTransactions.details(row["raw"], network: network) }) else { continue }
             var addresses = Set(tx.outputs.compactMap(\.address))
             for input in tx.inputs {
                 guard let raw = try Data.fetchOne(db, sql: "SELECT raw FROM bitcoinTransactions WHERE accountID=? AND txid=?",
                                                  arguments: [accountID, input.txid]),
-                      let parent = try? BitcoinTransactions.details(raw, network: network),
+                      let parent = OathDiagnostics.attempt("decode_stored_parent", body: { try BitcoinTransactions.details(raw, network: network) }),
                       parent.outputs.indices.contains(input.index),
                       let address = parent.outputs[input.index].address else { continue }
                 addresses.insert(address)

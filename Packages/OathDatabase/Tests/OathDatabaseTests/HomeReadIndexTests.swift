@@ -105,7 +105,7 @@ import GRDB
             try AssetRecord(id: "n", networkID: "ethereum", reference: "native", name: "Ethereum", symbol: "ETH", decimals: 18).insert(db)
             // Seed the historical schema without fields introduced by later migrations.
             try db.execute(sql: "INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES('w','Synthetic','hd','fixture',1,0)")
-            try AccountRecord(id: "a", walletID: "w", networkID: "ethereum", address: "fixture", derivationPath: "").insert(db)
+            try AccountRecord(id: "a", walletID: "w", networkID: "ethereum", address: "fixture", derivationPath: "").insertIntoHistoricalAccounts(db)
             try TransactionRecord(id: "t", networkID: "ethereum", hash: "t", state: "confirmed", timestamp: 1, updatedAt: 1).insert(db)
             try ActivityRecord(id: "event", walletID: "w", accountID: "a", networkID: "ethereum", transactionID: "t", assetID: "n",
                 direction: "outgoing", amountAtomic: "1", counterparty: "fixture", timestamp: 1).insert(db)

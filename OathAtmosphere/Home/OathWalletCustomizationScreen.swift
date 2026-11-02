@@ -3,7 +3,7 @@ import SwiftUI
 import OathDatabase
 
 /// An in-memory preview until saving atomically commits this wallet's metadata.
-/// Navigation, keyboard avoidance and the color picker are native controls.
+/// Navigation and keyboard avoidance use native controls.
 struct OathWalletCustomizationScreen: View {
     enum Mode { case setup, edit }
 
@@ -114,11 +114,6 @@ struct OathWalletCustomizationScreen: View {
                     .accessibilityAddTraits(colorHex == hex ? .isSelected : [])
                     .accessibilityIdentifier("walletCustomize.color.\(hex ?? "default")")
                 }
-                ColorPicker(strings.text(.customWalletColor), selection: customColor, supportsOpacity: false)
-                    .labelsHidden()
-                    .frame(width: 48, height: 48)
-                    .accessibilityIdentifier("walletCustomize.customColor")
-                    .simultaneousGesture(TapGesture().onEnded { focused = false })
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 4)
@@ -126,15 +121,6 @@ struct OathWalletCustomizationScreen: View {
         .scrollIndicators(.hidden)
         .accessibilityLabel(strings.text(.walletColor))
         .disabled(submitting)
-    }
-
-    private var customColor: Binding<Color> {
-        Binding(get: { color(for: colorHex) }, set: { value in
-            var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
-            guard UIColor(value).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return }
-            func byte(_ component: CGFloat) -> Int { Int((min(1, max(0, component)) * 255).rounded()) }
-            colorHex = String(format: "%02X%02X%02X", byte(red), byte(green), byte(blue))
-        })
     }
 
     private func color(for hex: String?) -> Color {

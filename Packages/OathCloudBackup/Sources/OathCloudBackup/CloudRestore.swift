@@ -117,7 +117,7 @@ enum CloudBackupFiles {
             throw CloudBackupError.invalidDocument
         }
         let file = try FileHandle(forReadingFrom: url)
-        defer { try? file.close() }
+        defer { _ = OathDiagnostics.attempt("close_restore_file") { try file.close() } }
         // Never allocate an unbounded file, including one that grows
         // between its metadata check and this coordinated read.
         let data = try file.read(upToCount: BackupDocument.maximumBytes + 1) ?? Data()

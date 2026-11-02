@@ -34,7 +34,6 @@ struct OathWalletConnectTypedReview: View {
         let token = identities[permission.tokenAddress].flatMap { $0.network == network.rawValue ? $0 : nil }
         return VStack(spacing: 0) {
             VStack(spacing: 12) {
-                Text(strings.text(.wcPermitReviewTitle)).oathFont(.title2, weight: .semibold)
                 OathWCTokenAccessSummary(networkID: network.rawValue, reference: permission.tokenAddress,
                     amount: permission.atomicAmount, decimals: token?.decimals,
                     isUnlimited: permission.isUnlimitedAllowance, identity: token)
@@ -64,8 +63,9 @@ struct OathWalletConnectTypedReview: View {
     private var genericReview: some View {
         VStack(alignment: .leading, spacing: 20) {
             VStack(spacing: 8) {
-                Text(strings.text(data.permission == nil ? .wcTypedReviewTitle : .wcPermitReviewTitle))
-                    .oathFont(.title2, weight: .semibold)
+                if data.permission == nil {
+                    Text(strings.text(.wcTypedReviewTitle)).oathFont(.title2, weight: .semibold)
+                }
                 Text(strings.text(data.permission == nil ? .wcTypedReviewDetail : .wcPermitReviewDetail))
                     .oathFont(.subheadline).foregroundStyle(.secondary)
             }.multilineTextAlignment(.center).frame(maxWidth: .infinity).padding(.vertical, 8)

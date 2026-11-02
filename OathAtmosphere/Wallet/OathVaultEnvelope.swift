@@ -143,12 +143,15 @@ struct OathVaultContents: Codable, Sendable {
     // Crash-recovery journal: erase these public SQL records after their keys
     // have already been removed from the atomic encrypted payload.
     var purgedWalletIDs: [UUID]? = nil
-    // Remote removal may leave only unrelated Recently Deleted wallets. Keep
-    // those protected; welcome uses the existing unlocked add-wallet flows.
     var legacyUpgrade: LegacyUpgradeBatch? = nil
     var legacyBiometricTransition: Bool? = nil
     // Retained after permanent deletion so default numbers are not reused.
     var lastPassphraseIndex: Int? = nil
+
+    var requiresLegacyFormat: Bool {
+        legacyBiometricTransition != nil || legacyUpgrade != nil ||
+            wallets.contains { $0.legacy != nil || $0.restoration?.legacyPassphrase == true }
+    }
 
     static let retention: TimeInterval = 7 * 24 * 60 * 60
     var activeWallets: [OathWalletSecret] { wallets.filter { $0.deletedAt == nil } }
@@ -276,12 +279,17 @@ struct OathVaultEnvelope: Codable, Sendable {
                      salt: Data, iterations: UInt32, protection: OathVaultProtection? = nil,
                      biometricAccess: Bool? = nil) throws -> Self {
         var contents = contents
-        if contents.wallets.contains(where: { $0.isLocalMnemonic || $0.isMultisig }) { contents.lifecycleVersion = 1 }
+        // Validate the original lifecycle, including its root and membership,
+        // before supplying a missing marker that the new format requires.
         try contents.validate(rootID: rootID)
+        if contents.lifecycleVersion == nil,
+           contents.requiresLegacyFormat || contents.wallets.contains(where: { $0.isLocalMnemonic || $0.isMultisig }) {
+            contents.lifecycleVersion = 1
+        }
         let ids = contents.wallets.map(\.id)
         // Old binaries must reject passphrase vaults rather than silently
         // ignoring an unknown field and deriving the wrong wallet on recovery.
-        let version = contents.wallets.contains(where: { $0.electrum != nil && $0.isDerivedWallet }) ? 27 : contents.wallets.contains(where: { $0.electrum != nil }) ? 26 : contents.wallets.contains(where: { $0.aezeed != nil }) ? 25 : contents.wallets.contains(where: { $0.evmMultisig != nil }) ? 24 : contents.wallets.contains(where: { $0.bitcoinMultisig?.chainID == "dogecoin" }) ? 23 : contents.wallets.contains(where: { $0.bitcoinMultisig?.chainID == "bitcoincash" }) ? 22 : contents.wallets.contains(where: { $0.bitcoinMultisig?.chainID == "litecoin" }) ? 21 : contents.wallets.contains(where: { $0.tonMultisig != nil }) ? 20 : contents.wallets.contains(where: { $0.thorchainMultisig != nil }) ? 19 : contents.wallets.contains(where: { $0.nearMultisig != nil }) ? 18 : contents.wallets.contains(where: { $0.suiMultisig != nil }) ? 17 : contents.wallets.contains(where: { $0.aptosMultisig != nil }) ? 16 : contents.wallets.contains(where: { $0.stellarMultisig != nil }) ? 15 : contents.wallets.contains(where: { $0.xrplMultisig != nil }) ? 14 : contents.wallets.contains(where: { $0.solanaMultisig != nil }) ? 13 : contents.wallets.contains(where: { $0.tronMultisig != nil }) ? 12 : contents.wallets.contains(where: { $0.bitcoinMultisig != nil }) ? 11 : contents.legacyBiometricTransition != nil || contents.legacyUpgrade != nil || contents.wallets.contains(where: { $0.legacy != nil || $0.restoration?.legacyPassphrase == true }) ? 10 : contents.lifecycleVersion == 1 ? 9 : contents.wallets.contains { $0.privateKey?.requiresBitcoinCashV2 == true } ? 8 :
+        let version = contents.wallets.contains(where: { $0.electrum != nil && $0.isDerivedWallet }) ? 27 : contents.wallets.contains(where: { $0.electrum != nil }) ? 26 : contents.wallets.contains(where: { $0.aezeed != nil }) ? 25 : contents.wallets.contains(where: { $0.evmMultisig != nil }) ? 24 : contents.wallets.contains(where: { $0.bitcoinMultisig?.chainID == "dogecoin" }) ? 23 : contents.wallets.contains(where: { $0.bitcoinMultisig?.chainID == "bitcoincash" }) ? 22 : contents.wallets.contains(where: { $0.bitcoinMultisig?.chainID == "litecoin" }) ? 21 : contents.wallets.contains(where: { $0.tonMultisig != nil }) ? 20 : contents.wallets.contains(where: { $0.thorchainMultisig != nil }) ? 19 : contents.wallets.contains(where: { $0.nearMultisig != nil }) ? 18 : contents.wallets.contains(where: { $0.suiMultisig != nil }) ? 17 : contents.wallets.contains(where: { $0.aptosMultisig != nil }) ? 16 : contents.wallets.contains(where: { $0.stellarMultisig != nil }) ? 15 : contents.wallets.contains(where: { $0.xrplMultisig != nil }) ? 14 : contents.wallets.contains(where: { $0.solanaMultisig != nil }) ? 13 : contents.wallets.contains(where: { $0.tronMultisig != nil }) ? 12 : contents.wallets.contains(where: { $0.bitcoinMultisig != nil }) ? 11 : contents.requiresLegacyFormat ? 10 : contents.lifecycleVersion == 1 ? 9 : contents.wallets.contains { $0.privateKey?.requiresBitcoinCashV2 == true } ? 8 :
             contents.wallets.contains { $0.privateKey?.requiresLitecoinV2 == true } ? 7 :
             contents.wallets.contains { $0.privateKey?.requiresDogecoinV2 == true } ? 6 :
             contents.wallets.contains { $0.privateKey?.requiresBitcoinV2 == true } ? 5 :
@@ -298,9 +306,10 @@ struct OathVaultEnvelope: Codable, Sendable {
 
     var memberIDs: [UUID] { version == 1 ? [id] : walletIDs ?? [] }
 
-    func key(for digits: [UInt8]) throws -> SymmetricKey {
+    func key(for digits: [UInt8], beforeAttempt: () throws -> Void = {}) throws -> SymmetricKey {
         try validate()
         guard passcodeEnabled else { throw OathWalletError.wrongPasscode }
+        try beforeAttempt()
         let derived = try Self.derive(digits, salt: salt, iterations: iterations)
         guard let protection else { return derived }
         guard let wrapped = protection.wrappedKey else { throw OathWalletError.corruptVault }
@@ -355,7 +364,7 @@ struct OathVaultEnvelope: Codable, Sendable {
         return first
     }
 
-    func openContents(using key: SymmetricKey) throws -> OathVaultContents {
+    func openContents(using key: SymmetricKey, didAuthenticate: () throws -> Void = {}) throws -> OathVaultContents {
         try validate()
         var plaintext: Data
         do {
@@ -363,11 +372,16 @@ struct OathVaultEnvelope: Codable, Sendable {
                 authenticating: Self.authenticationData(id, walletIDs: version >= 2 ? walletIDs : nil, version: version))
         } catch { OathDiagnostics.record(error); throw OathWalletError.wrongPasscode }
         defer { plaintext.resetBytes(in: plaintext.startIndex..<plaintext.endIndex) }
-        let contents = try version == 1
+        try didAuthenticate()
+        var contents = try version == 1
             ? OathVaultContents(wallets: [JSONDecoder().decode(OathWalletSecret.self, from: plaintext)])
             : JSONDecoder().decode(OathVaultContents.self, from: plaintext)
         try contents.validate(rootID: id)
-        guard version >= 9 ? contents.lifecycleVersion == 1 : contents.lifecycleVersion == nil else { throw OathWalletError.corruptVault }
+        // Version 10 could omit the lifecycle marker on an authenticated legacy payload.
+        if version == 10, contents.lifecycleVersion == nil, contents.requiresLegacyFormat {
+            contents.lifecycleVersion = 1
+        }
+        guard version >= 9 ? contents.lifecycleVersion == 1 : contents.lifecycleVersion == nil else { throw OathDiagnostics.failure(OathWalletError.corruptVault, reason: "payload_lifecycle_mismatch") }
         guard version >= 27 || contents.wallets.allSatisfy({ $0.electrum == nil || !$0.isDerivedWallet }) else { throw OathWalletError.corruptVault }
         guard version >= 26 || contents.wallets.allSatisfy({ $0.electrum == nil }) else { throw OathWalletError.corruptVault }
         guard version >= 25 || contents.wallets.allSatisfy({ $0.aezeed == nil }) else { throw OathWalletError.corruptVault }

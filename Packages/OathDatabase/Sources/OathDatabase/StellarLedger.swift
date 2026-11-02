@@ -1,3 +1,4 @@
+import OathDiagnostics
 import Foundation
 import GRDB
 import OathAnkr
@@ -71,7 +72,7 @@ extension OathDatabase {
         guard try StellarIdentity.reference(token.reference) == token.reference else { throw StoreError.conflictingIdentity }
         var metadata = token
         if token.name == token.symbol, let saved = try MarketCacheEntry.fetchOne(db,key:"stellar.token."+token.reference),
-           let richer = try? JSONDecoder().decode(StellarToken.self,from:saved.payload), richer.reference == token.reference, richer.decimals == token.decimals, richer.name != richer.symbol { metadata = richer }
+           let richer = OathDiagnostics.attempt("decode_cached_token", body: { try JSONDecoder().decode(StellarToken.self, from: saved.payload) }), richer.reference == token.reference, richer.decimals == token.decimals, richer.name != richer.symbol { metadata = richer }
         try MarketCacheEntry(key:"stellar.token."+token.reference,source:"Stellar metadata",payload:try JSONEncoder().encode(metadata),fetchedAt:Date().timeIntervalSince1970).upsert(db)
         if var asset = try AssetRecord.fetchOne(db,sql:"SELECT * FROM assets WHERE networkID='stellar' AND reference=?",arguments:[token.reference]) {
             guard asset.decimals == token.decimals else { throw StoreError.conflictingIdentity }

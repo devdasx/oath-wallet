@@ -91,7 +91,7 @@ extension OathDatabase {
         try await pool.read { db in
             var sql = """
                 SELECT DISTINCT s.id,s.name,s.symbol,s.reference,s.decimals,s.networkID,n.name AS networkName,s.logo
-                FROM visibleActivity a JOIN accounts owner ON owner.id=a.accountID
+                FROM visibleActivity a JOIN walletAccounts owner ON owner.id=a.accountID
                 JOIN assets s ON s.id=a.assetID JOIN networks n ON n.id=s.networkID
                 WHERE a.walletID=? AND owner.walletID=?
                 AND (a.networkID<>'solana' OR EXISTS (SELECT 1 FROM solanaActivity sa WHERE sa.activityID=a.id

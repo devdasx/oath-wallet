@@ -1,4 +1,5 @@
 import Foundation
+import OathDiagnostics
 
 public struct CloudLocation: Sendable {
     public let accountID: String
@@ -98,6 +99,7 @@ enum CloudFileWriter {
                     do {
                         guard try CloudBackupFiles.boundedContents(of: url) == encrypted else { throw CloudBackupError.fileConflict }
                     } catch CloudBackupError.invalidDocument {
+                        OathDiagnostics.record(CloudBackupError.invalidDocument, component: "backup", operation: "compare_backup_file")
                         throw CloudBackupError.fileConflict
                     }
                 } else {

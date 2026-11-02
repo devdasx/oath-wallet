@@ -26,7 +26,7 @@ public struct PermissionDiscovery: Sendable {
         let owner=try EVMSendIdentity.address(owner)
         guard client.network==network else { throw PermissionError.changed }
         guard let alias=AnkrChain(networkID:network.rawValue)?.rawValue else {
-            return .init(network:network.rawValue,owner:owner,permissions:[],coverage:.unsupported)
+            return try await recentEVM(network:network,owner:owner,client:client)
         }
         var candidates=[String:WalletPermission](),cursor:String?,seen=Set<String>(),complete=false
         for _ in 0..<20 {
@@ -58,11 +58,53 @@ public struct PermissionDiscovery: Sendable {
             } catch {
                 if error is CancellationError || Task.isCancelled { throw CancellationError() }
                 OathDiagnostics.record(error,component:"permissions",operation:"discover_evm",context:["chain":network.rawValue]);complete=false
-                if candidates.isEmpty { throw error };break
+                if error as? AnkrError == .wrongChain { throw error }
+                if candidates.isEmpty { return try await recentEVM(network:network,owner:owner,client:client) };break
             }
         }
+        return try await verifyEVM(Array(candidates.values),network:network,owner:owner,client:client,complete:complete)
+    }
+    // RPC-only chains have no complete address approval index. Scan a bounded
+    // recent window and retain partial coverage; cached/manual candidates are
+    // separately rechecked by the app regardless of this window.
+    func recentEVM(network:EVMSendNetwork,owner:String,client:EVMSendClient) async throws -> PermissionScan {
+        guard client.network == network else { throw PermissionError.changed }
+        let owner=try EVMSendIdentity.address(owner)
+        let head=try await EVMSendClient.uint(client.rpc("eth_blockNumber",[]))
+        let lower=head > 19_999 ? head-19_999:0
+        let ownerTopic="0x"+TronSendCrypto.hex(try EVMPermissionRemoval.word(owner))
+        var candidates=[String:WalletPermission]()
+        var upper=head
+        var succeeded=false
+        for _ in 0..<20 {
+            try Task.checkCancellation()
+            let from=max(lower,upper > 999 ? upper-999:0)
+            do {
+                let logs=try await client.rpc("eth_getLogs",[.object([
+                    "fromBlock":.string("0x"+String(from,radix:16)),"toBlock":.string("0x"+String(upper,radix:16)),
+                    "topics":.array([.array([Self.approval,Self.all,Self.permitApproval,Self.permit].map(SolanaJSON.string)),.string(ownerTopic)])])])
+                guard let rows=logs.array,rows.count<=10_000 else { throw PermissionError.incomplete }
+                for row in rows {
+                    if row["removed"] == .bool(true) { continue }
+                    guard let height=try? EVMSendClient.uint(row["blockNumber"]), (from...upper).contains(height) else { throw PermissionError.malformed }
+                    if let p=try Self.candidate(row,network:network.rawValue,owner:owner) { candidates[p.id]=p }
+                    if candidates.count>=500 { break }
+                }
+                succeeded=true
+            } catch {
+                if error is CancellationError || Task.isCancelled { throw CancellationError() }
+                OathDiagnostics.record(error,component:"permissions",operation:"discover_evm_recent",context:["chain":network.rawValue])
+                if !succeeded { throw error }
+                break
+            }
+            if candidates.count>=500 || from==lower { break }
+            upper=from-1
+        }
+        return try await verifyEVM(Array(candidates.values),network:network,owner:owner,client:client,complete:false)
+    }
+    private func verifyEVM(_ values:[WalletPermission],network:EVMSendNetwork,owner:String,client:EVMSendClient,complete:Bool) async throws -> PermissionScan {
         var active=[WalletPermission]()
-        let values=Array(candidates.values)
+        var complete=complete
         for start in stride(from:0,to:values.count,by:4) {
             let results=await withTaskGroup(of:(WalletPermission?,Bool).self) { group in
                 for p in values[start..<min(start+4,values.count)] {
@@ -78,7 +120,7 @@ public struct PermissionDiscovery: Sendable {
                             }
                             return (enabled ? .init(network:p.network,owner:owner,contract:p.contract,spender:p.spender,kind:p.kind,amount:current,tokenID:p.tokenID):nil,true)
                         } catch {
-                            OathDiagnostics.record(error,component:"permissions",operation:"read_allowance",context:["chain":network.rawValue]);return(nil,false)
+                            if !Task.isCancelled, !(error is CancellationError) { OathDiagnostics.record(error,component:"permissions",operation:"read_allowance",context:["chain":network.rawValue]) };return(nil,false)
                         }
                     }
                 }

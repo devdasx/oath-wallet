@@ -50,7 +50,7 @@ extension OathDatabase {
             try Row.fetchAll(db, sql: """
                 SELECT DISTINCT owner.id AS accountID,owner.networkID,owner.address,owner.syncGeneration,
                     t.id AS transactionID,t.hash,c.evidence,c.version
-                FROM accounts owner JOIN activity a ON a.accountID=owner.id
+                FROM walletAccounts owner JOIN activity a ON a.accountID=owner.id
                 JOIN transactions t ON t.id=a.transactionID
                 JOIN networks n ON n.id=owner.networkID AND n.family='evm'
                 LEFT JOIN evmHistorySwaps c ON c.accountID=owner.id AND c.transactionID=t.id

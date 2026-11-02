@@ -84,11 +84,79 @@ enum OathWalletConnectPolicy {
     static let approvalMethods: Set<String> = Set(["personal_sign", "eth_signTypedData_v4", "eth_sendTransaction",
         "wallet_switchEthereumChain", "cosmos_signAmino", "cosmos_signDirect"]).union(WalletConnectSolanaRequest.signingMethods).union(WalletConnectTonRequest.methods).union(BitcoinConnectRequest.signingMethods).union(WalletConnectTronRequest.methods).union(WalletConnectPolkadotRequest.methods).union(WalletConnectSuiRequest.signingMethods).union(WalletConnectNearRequest.signingMethods).union(WalletConnectStellarRequest.signingMethods).union(WalletConnectXrplRequest.signingMethods)
 
+    enum ConnectionFailure: String, CaseIterable, Sendable, Error {
+        case invalidQR, expiredQR, usedQR, peerTimeout, relayTimeout, offline, relayUnavailable
+        case configuration, locked, connectionLimit, accounts, unsupportedNetworks, unsupportedMethods
+        case unsupportedEvents, proposalUnavailable, unknown
+
+        var allowsPairingRetry: Bool {
+            switch self {
+            case .peerTimeout, .relayTimeout, .offline, .relayUnavailable, .unknown: true
+            default: false
+            }
+        }
+        var symbol: String {
+            switch self {
+            case .invalidQR, .usedQR: "qrcode"
+            case .expiredQR, .peerTimeout, .relayTimeout, .proposalUnavailable: "clock.badge.exclamationmark"
+            case .offline, .relayUnavailable: "wifi.exclamationmark"
+            case .locked: "lock"
+            case .accounts: "wallet.bifold"
+            case .unsupportedNetworks, .unsupportedMethods, .unsupportedEvents: "globe"
+            default: "exclamationmark.circle"
+            }
+        }
+        static func classify(_ error: Error) -> Self? {
+            // Cancellation belongs to the caller's lifecycle, not an error sheet.
+            if error is CancellationError { return nil }
+            #if canImport(WalletConnectSign)
+            if let error = error as? WalletConnectURI.Errors {
+                switch error { case .expired: return .expiredQR; case .invalidFormat: return .invalidQR }
+            }
+            if let error = error as? AutoNamespacesError {
+                switch error {
+                case .requiredChainsNotSatisfied: return .unsupportedNetworks
+                case .requiredAccountsNotSatisfied: return .accounts
+                case .requiredMethodsNotSatisfied: return .unsupportedMethods
+                case .requiredEventsNotSatisfied: return .unsupportedEvents
+                case .emptySessionNamespacesForbidden: return .unsupportedNetworks
+                }
+            }
+            #endif
+            let value = error as NSError
+            // These private SDK errors are identified by their pinned domain/code.
+            // Never classify or display arbitrary messages, which can contain topics or keys.
+            switch value.domain {
+            case NSURLErrorDomain:
+                switch value.code {
+                case NSURLErrorCancelled: return nil
+                case NSURLErrorNotConnectedToInternet: return .offline
+                case NSURLErrorTimedOut: return .relayTimeout
+                case NSURLErrorCannotFindHost, NSURLErrorCannotConnectToHost,
+                     NSURLErrorNetworkConnectionLost, NSURLErrorDNSLookupFailed,
+                     NSURLErrorSecureConnectionFailed: return .relayUnavailable
+                default: return .unknown
+                }
+            case "WalletConnectPairing.WalletPairService.Errors":
+                switch value.code { case 0: return .usedQR; case 1: return .relayUnavailable; default: return .unknown }
+            case "WalletConnectRelay.RelayError":
+                return value.code == 0 ? .relayTimeout : .unknown
+            case "WalletConnectSign.ApproveEngine.Errors":
+                switch value.code {
+                case 0, 2, 3: return .proposalUnavailable
+                case 1, 5: return .relayUnavailable
+                case 4: return .invalidQR
+                case 6: return .expiredQR
+                case 7: return .unsupportedNetworks
+                default: return .unknown
+                }
+            default: return .unknown
+            }
+        }
+    }
+
     static func requiresFreshPairing(_ error: Error) -> Bool {
-        // The pinned SDK's private error cannot be named outside its module.
-        // Match its domain/code, never a message containing the pairing secret.
-        let value = error as NSError
-        return value.domain == "WalletConnectPairing.WalletPairService.Errors" && value.code == 0
+        ConnectionFailure.classify(error) == .usedQR
     }
     static let methods: Set<String> = ["personal_sign", "eth_signTypedData_v4", "eth_sendTransaction", "wallet_switchEthereumChain", "eth_accounts", "eth_requestAccounts", "eth_chainId"]
     static let events: Set<String> = ["accountsChanged", "chainChanged"]

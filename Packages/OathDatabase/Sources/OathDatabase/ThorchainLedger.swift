@@ -79,9 +79,9 @@ extension OathDatabase {
         guard let entry = try MarketCacheEntry.fetchOne(db, key: "thorchain.catalog"),
               entry.fetchedAt >= catalog.observedAt.timeIntervalSince1970,
               entry.payload.count <= 2_000_000,
-              let saved = try? JSONDecoder().decode(ThorchainCatalog.self, from: entry.payload),
+              let saved = OathDiagnostics.attempt("decode_cached_catalog", body: { try JSONDecoder().decode(ThorchainCatalog.self, from: entry.payload) }),
               saved.observedAt.timeIntervalSince1970 == entry.fetchedAt,
-              (try? validateThorchainCatalog(saved)) != nil else { return nil }
+              OathDiagnostics.attempt("validate_cached_catalog", body: { try validateThorchainCatalog(saved) }) != nil else { return nil }
         // An undecodable/invalid optional cache is a miss, not a new failure.
         // Database read errors still propagate to the shared diagnostics boundary.
         return saved

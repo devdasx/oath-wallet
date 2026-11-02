@@ -85,7 +85,7 @@ extension OathDatabase {
             guard try Self.isSavedReceiveAddress(accountID: accountID, address: address, db: db) else {
                 throw StoreError.conflictingIdentity
             }
-            let network = try String.fetchOne(db, sql: "SELECT networkID FROM accounts WHERE id=?", arguments: [accountID])
+            let network = try String.fetchOne(db, sql: "SELECT networkID FROM walletAccounts WHERE id=?", arguments: [accountID])
             // Non-bounceable wallet funding must work before contract deployment.
             return network == "ton" ? try TonIdentity.friendly(address, bounceable: false) : address
         }
@@ -122,7 +122,7 @@ extension OathDatabase {
 
     private static func isSavedReceiveAddress(accountID: String, address: String, db: Database) throws -> Bool {
         try Bool.fetchOne(db, sql: """
-            SELECT EXISTS(SELECT 1 FROM accounts a JOIN wallets w ON w.id=a.walletID
+            SELECT EXISTS(SELECT 1 FROM walletAccounts a JOIN wallets w ON w.id=a.walletID
             WHERE a.id=? AND w.deletedAt IS NULL AND
             (a.address=? OR EXISTS(SELECT 1 FROM bitcoinAddresses b WHERE b.accountID=a.id AND b.address=?)
                         OR EXISTS(SELECT 1 FROM solanaReceiveAddresses s WHERE s.accountID=a.id AND s.address=?)))

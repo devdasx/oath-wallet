@@ -17,7 +17,7 @@ public actor SuiSynchronizer {
     }
     private func catalog() async -> SuiCatalog {
         let saved = await OathDiagnostics.attemptOptional("marketCache", body: { try await database.marketCache(key:"sui.catalog") })
-        let cached = saved.flatMap{try? JSONDecoder().decode(SuiCatalog.self,from:$0.payload)}
+        let cached = saved.flatMap { saved in OathDiagnostics.attempt("decode_cached_catalog", body: { try JSONDecoder().decode(SuiCatalog.self, from: saved.payload) }) }
         if let saved, let cached, Date().timeIntervalSince1970-saved.fetchedAt < 86_400 { return cached }
         do {
             let value = try await markets.catalog(); try Task.checkCancellation()

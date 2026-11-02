@@ -34,7 +34,7 @@ extension OathDatabase {
                         timestamp=excluded.timestamp,updatedAt=excluded.updatedAt
                     """, arguments: [winner.id,winner.networkID,winner.hash,winner.state,winner.blockHeight,winner.timestamp,now])
                 let scripts = Set(try String.fetchAll(db, sql: """
-                    SELECT b.script FROM bitcoinAddresses b JOIN accounts a ON a.id=b.accountID
+                    SELECT b.script FROM bitcoinAddresses b JOIN walletAccounts a ON a.id=b.accountID
                     WHERE a.walletID=? AND a.networkID=?
                     """, arguments: [send.walletID, send.networkID]))
                 let returned = minedKeys.isSubset(of: keys) && !mined.outputs.isEmpty && mined.outputs.allSatisfy { scripts.contains($0.script) }

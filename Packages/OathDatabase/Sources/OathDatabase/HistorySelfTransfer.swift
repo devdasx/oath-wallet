@@ -15,7 +15,7 @@ extension OathDatabase {
             // Only native placeholders get a call label; token movements stay intact.
             entry.contractKind = try String.fetchOne(db, sql: """
                 SELECT c.contractKind FROM evmHistorySwaps c
-                JOIN accounts owner ON owner.id=c.accountID AND owner.syncGeneration=c.generation
+                JOIN walletAccounts owner ON owner.id=c.accountID AND owner.syncGeneration=c.generation
                 JOIN transactions t ON t.id=c.transactionID AND lower(t.blockHash)=c.blockHash
                 JOIN assets asset ON asset.id=? AND asset.reference='native'
                 JOIN networks n ON n.id=asset.networkID AND n.family='evm'
