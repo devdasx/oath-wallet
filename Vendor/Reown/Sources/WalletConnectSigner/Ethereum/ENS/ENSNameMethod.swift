@@ -5,7 +5,7 @@ struct ENSNameMethod {
 
     let namehash: Data
 
-    func encode() -> String {
-        return [ENSNameMethod.methodHash, ContractEncoder.bytes(namehash)].joined()
+    func encode() throws -> String {
+        return [ENSNameMethod.methodHash, try ContractEncoder.bytes(namehash)].joined()
     }
 }

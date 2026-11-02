@@ -14,7 +14,7 @@ actor EIP1271Verifier {
     func verify(signature: Data, message: Data, address: String, chainId: String) async throws {
         let messageHash = crypto.keccak256(message)
         let encoder = ValidSignatureMethod(signature: signature, messageHash: messageHash)
-        let call = EthCall(to: address, data: encoder.encode())
+        let call = EthCall(to: address, data: try encoder.encode())
         let params = AnyCodable([AnyCodable(call), AnyCodable("latest")])
         let request = RPCRequest(method: "eth_call", params: params)
         let data = try JSONEncoder().encode(request)
@@ -24,10 +24,14 @@ actor EIP1271Verifier {
     }
 
     private func validateResponse(_ response: RPCResponse) throws {
-        guard
-            let result = try response.result?.get(String.self),
-            result.starts(with: ValidSignatureMethod.methodHash)
-        else { throw Errors.invalidSignature }
+        guard let result = try response.result?.get(String.self) else {
+            throw Errors.invalidSignature
+        }
+        let value = result.lowercased()
+        let magic = ValidSignatureMethod.methodHash
+        let abiWord = magic + String(repeating: "0", count: 56)
+        // Retain exact four-byte returns from legacy contracts alongside the ABI word.
+        guard value == magic || value == abiWord else { throw Errors.invalidSignature }
     }
 }
 
