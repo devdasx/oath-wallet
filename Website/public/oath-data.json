@@ -689,7 +689,7 @@
   ],
   "security": {
     "reviewed_source_version": "5.0.0 (102)",
-    "reviewed_source_commit": "7f40ec1158237c9358a30cf127efb26eef16a7a0",
+    "reviewed_source_commit": "4e1aabded5a3b04db348cbbff061ed77cff551cc",
     "reviewed_on": "2026-11-02",
     "mnemonic": "BIP39, Electrum and aezeed retain distinct validation and derivation rules",
     "storage": "AES-GCM local vault; device-only Keychain and protected installation key; passcode key derivation uses PBKDF2-HMAC-SHA256 with 600,000 rounds",
@@ -697,7 +697,7 @@
     "independent_audit": "Not established by the published source release",
     "app_store_binary_match": "The GitHub Actions receipt identifies the tagged source and the IPA delivered to Apple after processing. An independently reproduced App Store binary comparison is outstanding.",
     "silent_payments": "Receiving and discovery are not supported in 5.0.0",
-    "source": "https://github.com/devdasx/oath-wallet/blob/7f40ec1158237c9358a30cf127efb26eef16a7a0/README.md",
+    "source": "https://github.com/devdasx/oath-wallet/blob/4e1aabded5a3b04db348cbbff061ed77cff551cc/README.md",
     "scope": "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md",
     "reporting_policy": "https://github.com/devdasx/oath-wallet/security/policy",
     "source_correspondence": {
@@ -710,7 +710,7 @@
     },
     "technical_examples_scope": "Six source excerpts verified against 5.0.0 (102) on 2026-11-02.",
     "page_updated_on": "2026-11-02",
-    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0",
-    "release_source_commit": "7f40ec1158237c9358a30cf127efb26eef16a7a0"
+    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102",
+    "release_source_commit": "4e1aabded5a3b04db348cbbff061ed77cff551cc"
   }
 }
