@@ -1,4 +1,5 @@
 import Foundation
+import Darwin
 import OathDiagnostics
 
 public struct CloudLocation: Sendable {
@@ -95,20 +96,37 @@ enum CloudFileWriter {
             writeResult = Result {
                 // A retry is idempotent. A file with different bytes is never
                 // overwritten, even if a different device used the same name.
-                if FileManager.default.fileExists(atPath: url.path) {
-                    do {
-                        guard try CloudBackupFiles.boundedContents(of: url) == encrypted else { throw CloudBackupError.fileConflict }
-                    } catch CloudBackupError.invalidDocument {
-                        OathDiagnostics.record(CloudBackupError.invalidDocument, component: "backup", operation: "compare_backup_file")
-                        throw CloudBackupError.fileConflict
-                    }
-                } else {
-                    try encrypted.write(to: url, options: .atomic)
+                let manager = FileManager.default
+                if manager.fileExists(atPath: url.path) {
+                    try verifyExisting(encrypted, at: url)
+                    return
+                }
+                let staging = try manager.url(for: .itemReplacementDirectory, in: .userDomainMask,
+                                              appropriateFor: url, create: true)
+                defer { _ = OathDiagnostics.attempt("remove_backup_staging") { try manager.removeItem(at: staging) } }
+                let ready = staging.appendingPathComponent("encrypted-backup")
+                try encrypted.write(to: ready, options: .withoutOverwriting)
+                // Publication must be both atomic and exclusive. A different
+                // process may have created the destination during preparation.
+                let status = renamex_np(ready.path, url.path, UInt32(RENAME_EXCL))
+                if status != 0 {
+                    let code = errno
+                    if code == EEXIST { try verifyExisting(encrypted, at: url) }
+                    else { throw POSIXError(POSIXErrorCode(rawValue: code) ?? .EIO) }
                 }
             }
         }
         if let coordinationError { throw coordinationError }
         try writeResult.get()
+    }
+
+    private static func verifyExisting(_ encrypted: Data, at url: URL) throws {
+        do {
+            guard try CloudBackupFiles.boundedContents(of: url) == encrypted else { throw CloudBackupError.fileConflict }
+        } catch CloudBackupError.invalidDocument {
+            OathDiagnostics.record(CloudBackupError.invalidDocument, component: "backup", operation: "compare_backup_file")
+            throw CloudBackupError.fileConflict
+        }
     }
 }
 
