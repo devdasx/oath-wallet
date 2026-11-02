@@ -27,10 +27,10 @@ import OathDatabase
             do { _ = try secret.bip39Passphrase; preconditionFailure("Electrum treated as BIP39") } catch { check(true, "BIP39 derivation refuses Electrum") }
             let draft = OathRecoveryPhraseDraft()
             check(draft.receiveScan(fixture.phrase), "QR accepts Electrum")
-            draft.preferElectrum = true
+            draft.selectFormat(.electrum)
             check(draft.isElectrum && draft.submit() == nil, "Electrum cannot silently use BIP39")
             draft.clear()
-            check(draft.text.isEmpty && !draft.preferElectrum, "Leaving import clears phrase and format choice")
+            check(draft.text.isEmpty && draft.preferredFormat == nil, "Leaving import clears phrase and format choice")
             let profile: OathWalletProfile
             if !created { try await vault.create(digits: pin, importing: phrase); profile = try await vault.unlockedProfile(); created = true }
             else { profile = try await vault.addWallet(requestID: UUID(), importing: phrase) }
@@ -69,7 +69,7 @@ import OathDatabase
         let overlapDraft = OathRecoveryPhraseDraft()
         overlapDraft.replace(with: overlap.phrase)
         check(overlapDraft.hasAmbiguousFormat && !overlapDraft.isElectrum && overlapDraft.submit() != nil, "BIP39 overlap keeps default import")
-        overlapDraft.preferElectrum = true
+        overlapDraft.selectFormat(.electrum)
         check(overlapDraft.isElectrum && overlapDraft.submit() == nil, "Electrum overlap requires explicit separate decoder")
         let bip39 = OathMnemonicValidator.bundled!.verifiedPhrase(String(repeating: "abandon ", count: 11) + "about")!
         let other = try await vault.addWallet(requestID: UUID(), importing: bip39)

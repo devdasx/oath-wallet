@@ -30,7 +30,7 @@ struct OathRecoveryPhraseScreen: View {
         // Paste permission can temporarily deactivate the scene without changing form readiness.
         !isImporting && !decoding && !showsScanner
             && !draft.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-            && draft.validator != nil && !draft.isComposing
+            && draft.validator != nil && !draft.isComposing && !draft.inputRejected
     }
 
     var body: some View {
@@ -54,22 +54,27 @@ struct OathRecoveryPhraseScreen: View {
 
                 VStack(alignment: .leading, spacing: 12) {
                     phraseField
-                    if draft.hasAmbiguousFormat {
-                        Picker(strings.text(.recoveryFormat), selection: $draft.preferElectrum) {
-                            Text(strings.invariant("BIP-39")).tag(false)
-                            Text(strings.invariant("Electrum")).tag(true)
+                    let formats = draft.matchingFormats
+                    let selected = draft.selectedFormat(in: formats)
+                    if formats.count > 1, let selected {
+                        Picker(strings.text(.recoveryFormat), selection: Binding(get: { selected }, set: draft.selectFormat)) {
+                            ForEach(formats, id: \.self) { format in
+                                Text(strings.invariant(format.rawValue)).tag(format)
+                            }
                         }
                         .pickerStyle(.segmented)
                         .accessibilityIdentifier("recovery.format")
-                        Text(strings.text(.electrumAmbiguous)).oathFont(.footnote).foregroundStyle(.secondary)
+                        if formats.count == 2 {
+                            Text(strings.text(.electrumAmbiguous)).oathFont(.footnote).foregroundStyle(.secondary)
+                        }
                     }
-                    if draft.isElectrum {
+                    if selected == .electrum {
                         Text(strings.text(.electrumType)).oathFont(.footnote).foregroundStyle(.secondary)
                         if draft.electrumKind?.isTwoFactor == true {
                             Text(strings.text(.electrumTwoFactorDetail))
                                 .oathFont(.footnote).foregroundStyle(.secondary)
                         }
-                    } else if draft.isAezeed {
+                    } else if selected == .aezeed {
                         Text(strings.text(.aezeedType))
                             .oathFont(.footnote).foregroundStyle(.secondary)
                     } else { validationMessage }
@@ -102,7 +107,7 @@ struct OathRecoveryPhraseScreen: View {
         }
         .onDisappear { isFocused = false; decodeTask?.cancel(); decodeTask = nil; decoding = false }
         .onChange(of: draft.text) { _, _ in decodeError = nil }
-        .onChange(of: draft.preferElectrum) { _, _ in decodeError = nil }
+        .onChange(of: draft.preferredFormat) { _, _ in decodeError = nil }
         .onChange(of: scenePhase) { _, phase in
             if phase != .active { isFocused = false }
         }

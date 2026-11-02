@@ -718,7 +718,7 @@ let package = Package(
     ])], swiftLanguageModes: [.v6]
 )
 ''' % (json.dumps(str(root / "Packages/OathDatabase")), json.dumps(str(root / "Packages/OathCloudBackup")), json.dumps(str(root / "Packages/OathMarketData")), json.dumps(str(root / "Packages/OathBitcoin")), json.dumps(str(root / "Packages/OathWalletHandoff")), json.dumps(str(root / "Packages/OathAezeed"))))
-    environment = dict(os.environ, OATH_ELECTRUM_FIXTURES=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/electrum-reference.json"), OATH_AEZEED_FIXTURES=str(root / "Packages/OathAezeed/Tests/OathAezeedTests/Fixtures/lnd-production.json"), OATH_TEST_WORDLISTS=str(root / "OathApp/Resources/BIP39"),
+    environment = dict(os.environ, OATH_ELECTRUM_FIXTURES=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/electrum-reference.json"), OATH_AEZEED_FIXTURES=str(root / "Packages/OathAezeed/Tests/OathAezeedTests/Fixtures/lnd-production.json"), OATH_TEST_WORDLISTS=str(root / "OathApp/Resources/BIP39"), OATH_OVERLAP_FIXTURE=str(root / "Tools/Fixtures/RecoveryFormatOverlap.json"),
                        OATH_TEST_LITECOIN_VECTORS=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/litecoin-vectors.json"),
                        OATH_TEST_DOGECOIN_VECTORS=str(root / "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/dogecoin-vectors.json"))
     subprocess.run(["swift", "run", "--build-system", "native", "--package-path", str(work),

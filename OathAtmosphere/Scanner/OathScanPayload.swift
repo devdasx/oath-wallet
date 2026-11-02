@@ -207,7 +207,7 @@ struct OathScanParser: Sendable {
             // Electrum format selection and seed extensions; scanning never derives secrets.
             if Aezeed.recognizes(text) { return .recovery(.init(phrase: Aezeed.canonical(text), language: "english")) }
             if let phrase = validator?.verifiedPhrase(text) { return .recovery(phrase) }
-            if ElectrumMnemonic.kind(text) != nil { return .recovery(.init(phrase: text, language: "electrum")) }
+            if ElectrumMnemonic.recognizesScannedPhrase(text) { return .recovery(.init(phrase: text, language: "electrum")) }
             guard validator != nil else { return .invalid(.unavailableDictionary) }
             return .invalid(.invalidRecovery)
         }
