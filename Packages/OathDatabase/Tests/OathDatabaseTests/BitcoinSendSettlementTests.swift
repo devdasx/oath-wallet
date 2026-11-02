@@ -64,6 +64,94 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
         _ = try await db.transitionSend("send", from: "signed", to: "broadcast")
         return (db, plan, signed)
     }
+    func testRecoveryRejectsSignedBytesForAnotherPaymentUsingTheSameInputs() async throws {
+        let (db, plan, approved) = try await fixture(.bitcoin)
+        let alternateWallet = try plan.chain.wallet(seed: Data(repeating: 9, count: 32))
+        let otherAddress = try BitcoinKeys.addresses(branch: alternateWallet.branches[0], range: 0..<1)[0]
+        let alternate = try BitcoinSendPlan.make(coins: plan.coins, recipient: otherAddress.address,
+            amount: plan.requestedAmount, change: plan.change, ratePerKVByte: plan.ratePerKVByte,
+            chain: plan.chain, options: plan.options)
+        let substituted = try sign(alternate)
+        XCTAssertNotEqual(substituted.txid, approved.txid)
+        XCTAssertNotEqual(alternate.recipient, plan.recipient)
+        try await db.pool.write { db in
+            try db.execute(sql: "UPDATE sends SET signedPayload=? WHERE id='send'", arguments: [substituted.raw])
+        }
+        let send = try await db.send("send")
+        let savedRaw = try XCTUnwrap(send?.signedPayload)
+        let stored = try await db.bitcoinSendPlan(sendID: "send")
+        let savedPlan = try XCTUnwrap(stored)
+        do {
+            _ = try await BitcoinSendStatus.read(raw: savedRaw, plan: savedPlan,
+                client: StatusHistoryQuery(rows: [], bodies: [:]))
+            XCTFail("Substituted payment was eligible for rebroadcast after an empty history")
+        } catch {
+            XCTAssertEqual(error as? BitcoinSendError, .changed)
+        }
+    }
+
+    func testRecoveryJournalChecksNetworkReceiptAndLegacyRowsOnEveryChain() async throws {
+        for chain in UTXONetwork.allCases {
+            let (db, _, approved) = try await fixture(chain)
+            let value = try await db.bitcoinPaymentForRecovery(sendID: "send", network: chain)
+            let journal = try XCTUnwrap(value)
+            XCTAssertEqual(journal.payment.raw, approved.raw)
+            XCTAssertEqual(journal.payment.txid, approved.txid)
+            XCTAssertEqual(journal.state, "broadcast")
+            try await db.pool.write { sql in
+                try sql.execute(sql: "UPDATE bitcoinSendPlans SET signedPayloadDigest=NULL WHERE sendID='send'")
+            }
+            let legacy = try await db.bitcoinPaymentForRecovery(sendID: "send", network: chain)
+            XCTAssertEqual(legacy?.payment.raw, approved.raw)
+            let other: UTXONetwork = chain == .bitcoin ? .litecoin : .bitcoin
+            do {
+                _ = try await db.bitcoinPaymentForRecovery(sendID: "send", network: other)
+                XCTFail("Recovered journal on another chain")
+            } catch { XCTAssertEqual(error as? BitcoinSendError, .changed) }
+            try await db.pool.write { sql in
+                try sql.execute(sql: "UPDATE sends SET transactionID=NULL WHERE id='send'")
+            }
+            do {
+                _ = try await db.bitcoinPaymentForRecovery(sendID: "send", network: chain)
+                XCTFail("Recovered legacy journal without its original transaction identity")
+            } catch { XCTAssertEqual(error as? BitcoinSendError, .changed) }
+        }
+    }
+
+    func testDigestMigrationReopensAnExistingSignedPaymentWithoutRewritingIt() async throws {
+        let (db, _, approved) = try await fixture(.bitcoin)
+        let url = URL(fileURLWithPath: db.pool.path)
+        try await db.pool.write { sql in
+            try sql.execute(sql: "ALTER TABLE bitcoinSendPlans DROP COLUMN signedPayloadDigest")
+            try sql.execute(sql: "DELETE FROM grdb_migrations WHERE identifier='v105_bitcoin_signed_payload_digest'")
+        }
+        let migrated = try await OathDatabase.open(at: url)
+        let saved = try await migrated.bitcoinPaymentForRecovery(sendID: "send", network: .bitcoin)
+        XCTAssertEqual(saved?.payment.raw, approved.raw)
+        XCTAssertEqual(saved?.payment.txid, approved.txid)
+        let digest = try await migrated.pool.read { sql in
+            try Data.fetchOne(sql, sql: "SELECT signedPayloadDigest FROM bitcoinSendPlans WHERE sendID='send'")
+        }
+        XCTAssertNil(digest, "Migration must not bless previously stored witness bytes")
+    }
+
+    func testRecoveryJournalDetectsWitnessChangeThatPreservesBitcoinTxid() async throws {
+        let (db, _, approved) = try await fixture(.bitcoin, addressType: .nativeSegwit)
+        // The last byte before locktime is witness data. This changes neither
+        // the stripped transaction nor the transaction identifier.
+        var altered = approved.raw
+        altered[altered.endIndex - 5] ^= 1
+        XCTAssertEqual(try BitcoinTransactions.txid(altered), approved.txid)
+        let replacement = altered
+        try await db.pool.write { sql in
+            try sql.execute(sql: "UPDATE sends SET signedPayload=? WHERE id='send'", arguments: [replacement])
+        }
+        do {
+            _ = try await db.bitcoinPaymentForRecovery(sendID: "send", network: .bitcoin)
+            XCTFail("Recovered a different witness for the same transaction ID")
+        } catch { XCTAssertEqual(error as? BitcoinSendError, .changed) }
+    }
+
     func testSelfSendShowsOnlyFeeBeforeAndAfterConfirmationOnEveryUTXOChain() async throws {
         for chain in UTXONetwork.allCases {
             let (db, plan, signed) = try await fixture(chain, selfTransfer: true)

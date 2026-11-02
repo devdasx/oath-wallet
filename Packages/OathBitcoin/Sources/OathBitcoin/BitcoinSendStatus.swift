@@ -18,10 +18,27 @@ protocol BitcoinSendStatusReading: BitcoinAddressQuerying {
 extension ElectrumPool: BitcoinSendStatusReading {}
 
 public enum BitcoinSendStatus {
+    public struct Payment: Sendable {
+        public let raw: Data
+        public let plan: BitcoinSendPlan
+        public let txid: String
+
+        public init(raw: Data, plan: BitcoinSendPlan) throws {
+            guard !raw.isEmpty, raw.count <= 1_000_000 else { throw BitcoinSendError.changed }
+            self.txid = try plan.recoveredTransactionID(raw)
+            self.raw = raw
+            self.plan = plan
+        }
+    }
+
     public static func confirmation(raw: Data, plan: BitcoinSendPlan, client: ElectrumPool) async throws -> BitcoinSendConfirmation? {
-        guard plan.network == .mainnet else { throw BitcoinError.wrongNetwork }
+        try await confirmation(Payment(raw: raw, plan: plan), client: client)
+    }
+
+    public static func confirmation(_ payment: Payment, client: ElectrumPool) async throws -> BitcoinSendConfirmation? {
+        guard payment.plan.network == .mainnet else { throw BitcoinError.wrongNetwork }
         let snapshot = try await client.withStableSnapshot { peer in
-            try await read(raw: raw, plan: plan, client: peer)
+            try await read(payment, client: peer)
         }
         guard let result = snapshot.value else { return nil }
         guard result.height <= snapshot.tip.height else { throw BitcoinError.invalidResponse }
@@ -29,9 +46,12 @@ public enum BitcoinSendStatus {
     }
 
     static func read(raw: Data, plan: BitcoinSendPlan, client: any BitcoinSendStatusReading) async throws -> BitcoinSendConfirmation? {
-        let original = try BitcoinTransactions.details(raw, network: plan.chain)
-        let inputs = Set(original.inputs.map(\.outpoint))
-        guard inputs == Set(plan.coins.map(\.id)), !inputs.isEmpty else { throw BitcoinSendError.changed }
+        try await read(Payment(raw: raw, plan: plan), client: client)
+    }
+
+    private static func read(_ payment: Payment, client: any BitcoinSendStatusReading) async throws -> BitcoinSendConfirmation? {
+        let plan = payment.plan, raw = payment.raw
+        let inputs = Set(plan.coins.map(\.id))
         let scripts = Array(Set(plan.coins.map { $0.address.scriptHash })).sorted()
         let histories = try await client.query(scriptHashes: scripts)
         var heights: [String: Int64] = [:]
@@ -39,12 +59,12 @@ public enum BitcoinSendStatus {
             if let previous = heights[item.txid], previous != item.height { throw BitcoinError.invalidResponse }
             heights[item.txid] = item.height
         }
-        if let height = heights[original.txid], height > 0 {
-            let fetched = try await client.transactions(txids: [original.txid])
-            guard fetched[original.txid] == raw else { throw BitcoinError.invalidResponse }
+        if let height = heights[payment.txid], height > 0 {
+            let fetched = try await client.transactions(txids: [payment.txid])
+            guard fetched[payment.txid] == raw else { throw BitcoinError.invalidResponse }
             return try await receipt(raw, height: height, client: client)
         }
-        if heights[original.txid] != nil { return nil } // Still in this snapshot's mempool.
+        if heights[payment.txid] != nil { return nil } // Still in this snapshot's mempool.
         // Only a mined, decoded double-spend can replace/cancel our transfer.
         // Page the complete relevant history so an old replacement is not lost
         // behind a fixed newest-N cutoff. Each request and page stays bounded.
