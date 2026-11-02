@@ -65,11 +65,12 @@ jobs:
           python3 Tools/CheckLocalizationCatalog.py
           swift test --package-path Packages/OathDiagnostics --build-system native --jobs 4
           python3 Tools/CheckScanner.py --connections
-      - name: Compile without simulator or phone
+      - name: Archive for generic iOS and verify device symbols
         working-directory: release-app
         run: |
           sh Tools/PreparePublicBuild.sh
-          xcodebuild -project OathAtmosphere.xcodeproj -scheme OathAtmosphere -configuration Release -destination 'generic/platform=iOS' -derivedDataPath "$RUNNER_TEMP/verified-build" CODE_SIGNING_ALLOWED=NO build > "$RUNNER_TEMP/build.log" 2>&1 || { tail -100 "$RUNNER_TEMP/build.log"; exit 1; }
+          xcodebuild -project OathAtmosphere.xcodeproj -scheme OathAtmosphere -configuration Release -destination 'generic/platform=iOS' -derivedDataPath "$RUNNER_TEMP/verified-build" -archivePath "$RUNNER_TEMP/verified.xcarchive" CODE_SIGNING_ALLOWED=NO archive > "$RUNNER_TEMP/build.log" 2>&1 || { tail -100 "$RUNNER_TEMP/build.log"; exit 1; }
+          python3 Tools/CheckArchiveSymbols.py "$RUNNER_TEMP/verified.xcarchive"
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: verified-source
