@@ -79,7 +79,9 @@ extension OathDatabase {
             guard let type = BitcoinAddressType(rawValue: row["preferredType"]) else { throw StoreError.conflictingIdentity }
             var required: [String: UInt32] = [:]
             for item in try Row.fetchAll(db, sql: "SELECT branchID,MAX(addressIndex) AS addressIndex FROM bitcoinAddresses WHERE accountID=? AND (used=1 OR issued=1) GROUP BY branchID", arguments: [accountID]) {
-                required[item["branchID"]] = item["addressIndex"]
+                let stored: Int64 = item["addressIndex"]
+                guard let index = UInt32(exactly: stored) else { throw StoreError.invalidValue("address index") }
+                required[item["branchID"]] = index
             }
             return .init(descriptor: descriptor, preferredType: type, requiredThrough: required,
                          lastSuccess: (row["lastSuccess"] as Double?).map(Date.init(timeIntervalSince1970:)), failure: row["failure"],
@@ -100,6 +102,20 @@ extension OathDatabase {
         }
     }
 
+    /// A paid HD address must leave a complete unused discovery window after it.
+    static func nextBitcoinIndex(branch: BitcoinBranch, highestUsed: Int, occupied: Set<UInt32> = [],
+                                 invalidIndex: String) throws -> UInt32 {
+        guard branch.isHD else { return 0 }
+        let limit = BitcoinDiscovery.defaultAddressCountLimit - BitcoinDiscovery.gapLimit
+        guard highestUsed >= -1, highestUsed < Int(limit) - 1 else { throw StoreError.invalidValue(invalidIndex) }
+        var index = UInt32(highestUsed + 1)
+        while occupied.contains(index) {
+            index += 1
+            guard index < limit else { throw StoreError.invalidValue(invalidIndex) }
+        }
+        return index
+    }
+
     /// Returns the first unused address after the last used one. Reopening the
     /// sheet reuses that address until paid, avoiding accidental gap exhaustion.
     public func bitcoinReceiveAddress(accountID: String, type: BitcoinAddressType? = nil) async throws -> BitcoinDerivedAddress {
@@ -109,7 +125,7 @@ extension OathDatabase {
             let selected = type ?? BitcoinAddressType(rawValue: row["preferredType"]) ?? descriptor.defaultType
             guard let branch = descriptor.branches.first(where: { $0.type == selected && $0.change == 0 }) ?? descriptor.branches.first(where: { $0.type == selected }) else { throw StoreError.invalidTransition }
             let highest = try Int.fetchOne(db, sql: "SELECT MAX(addressIndex) FROM bitcoinAddresses WHERE accountID=? AND branchID=? AND used=1", arguments: [accountID, branch.id]) ?? -1
-            let index = branch.isHD ? UInt32(highest + 1) : 0
+            let index = try Self.nextBitcoinIndex(branch: branch, highestUsed: highest, invalidIndex: "receive index")
             let address = try BitcoinKeys.addresses(branch: branch, range: index..<(index + 1))[0]
             try Self.saveBitcoinAddress(address, accountID: accountID, used: false, db: db)
             try db.execute(sql: "UPDATE bitcoinAddresses SET issued=1 WHERE accountID=? AND branchID=? AND addressIndex=?", arguments: [accountID, branch.id, index])

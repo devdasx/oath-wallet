@@ -154,6 +154,27 @@ final class DiscoveryTests: XCTestCase, @unchecked Sendable {
         do { _ = try await BitcoinDiscovery(query: QueryFixture(), maximumIndex: 20).scan(wallet, requiredThrough: [wallet.branches[0].id: 21]); XCTFail("Truncated scan accepted") }
         catch { XCTAssertEqual(error as? BitcoinError, .discoveryLimit) }
     }
+    func testAPaidAddressAtTheWindowBoundaryCanStillCompleteDiscovery() async throws {
+        let wallet = try BitcoinKeysTests.wallet()
+        let branch = wallet.branches[0]
+        let boundary = try BitcoinKeys.addresses(branch: branch, range: 19..<21)
+        let paid = BitcoinAddressState(confirmed: 0, unconfirmed: 0,
+            history: [.init(txid: String(repeating: "1", count: 64), height: 1)], unspent: [])
+        for address in boundary {
+            let query = QueryFixture()
+            await query.configure([address.scriptHash: paid])
+            let discovery = BitcoinDiscovery(query: query, maximumIndex: 40)
+            let required = [branch.id: address.index]
+            if address.index == 19 {
+                let scan = try await discovery.scan(wallet, requiredThrough: required)
+                try scan.validate(wallet: wallet, requiredThrough: required)
+            } else {
+                do { _ = try await discovery.scan(wallet, requiredThrough: required); XCTFail("Paid address lacks the full trailing gap") }
+                catch { XCTAssertEqual(error as? BitcoinError, .discoveryLimit) }
+            }
+        }
+    }
+
     func testCancellationDoesNotCompleteDiscovery() async throws {
         let wallet = try BitcoinKeysTests.wallet()
         let task = Task { try await BitcoinDiscovery(query: QueryFixture()).scan(wallet) }

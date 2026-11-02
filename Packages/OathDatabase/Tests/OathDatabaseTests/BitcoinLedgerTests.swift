@@ -28,6 +28,69 @@ private struct LedgerQuery: BitcoinAddressQuerying {
         return (db, url, descriptor)
     }
 
+    private func setBoundaryIndex(_ index: Int, change: UInt32) async throws -> (OathDatabase, URL, BitcoinBranch) {
+        let (db, url, descriptor) = try await fixture()
+        let branch = try XCTUnwrap(descriptor.branches.first { $0.type == descriptor.defaultType && $0.change == change })
+        try await db.pool.write { connection in
+            try connection.execute(sql: "UPDATE bitcoinAddresses SET addressIndex=?,used=1 WHERE accountID='a1' AND branchID=? AND addressIndex=0",
+                                   arguments: [index, branch.id])
+        }
+        return (db, url, branch)
+    }
+
+    func testReceiveRejectsOverflowingStoredChildIndex() async throws {
+        let (db, url, _) = try await setBoundaryIndex(Int.max, change: 0)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        do { _ = try await db.bitcoinReceiveAddress(accountID: "a1"); XCTFail("Invalid receive index accepted") }
+        catch StoreError.invalidValue { }
+    }
+
+    func testChangeRejectsOverflowingStoredChildIndex() async throws {
+        let (db, url, _) = try await setBoundaryIndex(Int.max, change: 1)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        do { _ = try await db.bitcoinChangeAddress(accountID: "a1"); XCTFail("Invalid change index accepted") }
+        catch StoreError.invalidValue { }
+    }
+
+    func testStateRejectsUnrepresentableDiscoveryIndex() async throws {
+        let (db, url, _) = try await setBoundaryIndex(Int(UInt32.max) + 1, change: 0)
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        do { _ = try await db.bitcoinState(accountID: "a1"); XCTFail("Unrepresentable discovery index accepted") }
+        catch StoreError.invalidValue { }
+    }
+
+    func testNewHDAddressesLeaveRoomForTheFullDiscoveryGap() async throws {
+        let (db, url, descriptor) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        let branches = descriptor.branches.filter { $0.type == descriptor.defaultType }
+        XCTAssertEqual(branches.count, 2)
+        for branch in branches {
+            let previous = try XCTUnwrap(BitcoinKeys.addresses(branch: branch, range: 99_978..<99_979).first)
+            try await db.pool.write { try OathDatabase.saveBitcoinAddress(previous, accountID: "a1", used: true, db: $0) }
+            func next() async throws -> BitcoinDerivedAddress {
+                if branch.change == 0 { return try await db.bitcoinReceiveAddress(accountID: "a1") }
+                return try await db.bitcoinChangeAddress(accountID: "a1")
+            }
+            let lastSafe = try await next()
+            XCTAssertEqual(lastSafe.index, 99_979)
+            try await db.pool.write { try OathDatabase.saveBitcoinAddress(lastSafe, accountID: "a1", used: true, db: $0) }
+            do { _ = try await next(); XCTFail("Issued an address whose payment would exceed the discovery limit") }
+            catch StoreError.invalidValue { }
+            let extra = try await db.bitcoinAddress(accountID: "a1", branchID: branch.id, index: 99_980)
+            XCTAssertNil(extra, "A refused address must never be marked issued")
+        }
+    }
+
+    func testReservedChangeDoesNotConsumeTheDiscoveryGap() async throws {
+        let (db, url, descriptor) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        let branch = try XCTUnwrap(descriptor.branches.first { $0.type == descriptor.defaultType && $0.change == 1 })
+        XCTAssertThrowsError(try OathDatabase.nextBitcoinIndex(branch: branch, highestUsed: 99_978,
+                                                               occupied: [99_979], invalidIndex: "change index"))
+        let other = try await db.bitcoinChangeAddress(accountID: "a2")
+        XCTAssertEqual(other.index, 0)
+    }
+
     private func funding(_ descriptor: BitcoinWalletDescriptor, coinbase: Bool = false) async throws -> (BitcoinScan, [String: Data]) {
         let addresses = try descriptor.branches.map { try BitcoinKeys.addresses(branch: $0, range: 0..<1)[0] }
         var raw = Data([2,0,0,0,1])
