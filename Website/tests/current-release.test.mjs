@@ -5,6 +5,7 @@ import {runInNewContext} from 'node:vm';
 import {webcrypto} from 'node:crypto';
 import evidence from '../content/release-evidence.json' with {type:'json'};
 import guideSlugs from '../content/current-guide-slugs.json' with {type:'json'};
+import {article} from '../src/help/render.js';
 import help from '../src/help/content.json' with {type:'json'};
 const read = p => readFile(new URL('../'+p,import.meta.url),'utf8');
 const security = await read('public/security.html');
@@ -46,7 +47,8 @@ test('current release copy keeps upload separate from Apple review',async()=>{
  // Network guides describe installed-app availability instead of release uploads;
  // their scope and canonical routes are checked in network-guides.test.mjs.
  const copies=await Promise.all(['public/security.html','public/security.md','public/about.html',
-  'public/about.md','src/help/render.js'].map(read));
+  'public/about.md'].map(read));
+ copies.push(article(help,help.articles[0]));
  for(const copy of copies){
   assert.match(copy,/5\.0\.1 as Waiting for Review on 2 November 2026/);
   assert.doesNotMatch(copy,/Apple processed build 102|GitHub Actions delivery workflow/i);
