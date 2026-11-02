@@ -103,6 +103,9 @@ jobs:
       FASTLANE_SKIP_UPDATE_CHECK: '1'
       FASTLANE_HIDE_CHANGELOG: '1'
       FASTLANE_OPT_OUT_USAGE: '1'
+      # Xcode can take more than 24 seconds to inspect the resolved package graph on a fresh runner.
+      FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: '180'
+      FASTLANE_XCODEBUILD_SETTINGS_RETRIES: '3'
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
