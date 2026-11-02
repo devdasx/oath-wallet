@@ -33,8 +33,9 @@ for file in sorted(files):
     language = re.search(r'<html[^>]*lang="([^"]+)"', text)
     locale = language[1] if language else 'en'
     for cover in covers:
-        for old, new in [(cover['old_url'], 'https://oathwallet.org'+cover['path']), (cover['url'], 'https://oathwallet.org'+cover['path']), (cover['old_path'], cover['path'])]:
-            text = text.replace(old, new)
+        for old, new in [(cover.get('old_url'), 'https://oathwallet.org'+cover['path']), (cover['url'], 'https://oathwallet.org'+cover['path']), (cover['old_path'], cover['path'])]:
+            if old:
+                text = text.replace(old, new)
         alt = cover['localized_alts'].get(locale, cover['alt'])
         for old_alt in cover['old_alts']:
             # Handle HTML attributes and JSON strings independently.

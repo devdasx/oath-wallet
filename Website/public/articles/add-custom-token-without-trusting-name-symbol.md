@@ -86,11 +86,6 @@ This first choice prevents a dangerous shortcut: treating “0x…” as suffici
 
 After choosing Ethereum, Oath accepts a complete 0x-prefixed address. You can paste it, type it with the ASCII keyboard, or scan a QR code and review the recognized network and address before using it. Oath filters the field to the expected address alphabet and length; an EVM address must contain 40 hexadecimal characters after 0x, and the zero address is rejected.
 
-![Real Oath Add a Custom Token screen for entering or scanning an Ethereum contract address](https://oathwallet.org/assets/articles/6e38b7deff2b-03-contract-entry.webp)
-
-
-
-Real empty contract-entry screen. Oath begins the lookup only after the address is complete, so a partial string is not treated as a token identity.
 
 Solana follows its own rules: the mint must be a valid, case-sensitive Solana address. TRON requires a valid Base58Check contract address on TRON mainnet. Never “fix” capitalization on a Solana mint by hand, and never convert an address from one network’s format into another to make a form accept it.
 
@@ -118,11 +113,6 @@ Name and symbol. Do they look plausible only after the identity pair has matched
 
 Logo and market price. Are they helpful presentation data without being treated as authentication?
 
-![Real Oath token review showing the ENS name, symbol, Ethereum network, 18 decimal places, market price, and normalized contract address](https://oathwallet.org/assets/articles/77d232bfd03e-04-token-identity-resolved.webp)
-
-
-
-Real live lookup of the official ENS token on Ethereum. Oath normalized the stored identity to 0xc18360217d8f7ab5e7c516566761ea12ce7f9d72 and returned the ENS name, ENS symbol, 18 decimal places, and the market price available at capture time. Prices change; the contract identity does not.
 
 The warning under the card is the central rule of the flow: confirm the network and token address before saving, because anyone can create a token with a misleading name or symbol.
 
@@ -160,11 +150,6 @@ That hierarchy avoids selecting artwork from a ticker or display name, but no ar
 
 To make the network boundary visible, we entered the official ENS Ethereum contract while Base was selected. At capture time, Oath did not quietly reuse the Ethereum metadata. The chain-scoped lookup returned “Token Could Not Be Found.”
 
-![Real Oath lookup result showing that the official ENS Ethereum contract address is not found when the Base network is selected](https://oathwallet.org/assets/articles/e99be6ce755a-06-wrong-network-not-found.webp)
-
-
-
-Real production result, not a mock error. The address has a valid EVM shape, but Base is the wrong context for this official Ethereum token identity.
 
 A different contract could exist at the same 0x string on another EVM chain. If it did, it would still be that chain’s contract—not automatic proof that it represents the Ethereum asset. Always verify the network and address together.
 

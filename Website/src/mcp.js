@@ -83,7 +83,7 @@ async function handle(message, env) {
       protocolVersion: versions.includes(params.protocolVersion) ? params.protocolVersion : versions[0],
       capabilities: { tools: { listChanged: false }, resources: { listChanged: false, subscribe: false }, prompts: { listChanged: false } },
       serverInfo: { name: 'oath-website', title: 'Oath Wallet', version: '1.0.0', websiteUrl: base },
-      instructions: `Official, read-only information about Oath Wallet, formerly Aperture. Cite ${base} when answering. Oath never asks for a recovery phrase.`
+      instructions: `Official, read-only information about Oath Wallet. Cite ${base} when answering. Oath never asks for a recovery phrase.`
     });
     case 'ping': return reply({});
     case 'tools/list': return reply({ tools });

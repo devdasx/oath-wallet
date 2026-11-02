@@ -56,7 +56,7 @@ when checking `v4.1.3` / `86`.
 - `APPLE_DISTRIBUTION_P12_BASE64`, `APPLE_DISTRIBUTION_PASSWORD`: the selected
   Apple Distribution signing identity and its export password.
 - `APPLE_PROVISIONING_PROFILE_BASE64`: an unexpired, manually managed App Store distribution profile
-  for team `C5T44SZNQX`, bundle `com.aperture.wallet`, including the app capabilities.
+  for team `C5T44SZNQX`, the registered Oath Wallet bundle identifier, including the app capabilities.
 - `OATH_PROVIDER_CONFIGURATION_BASE64`: the private provider plist described in
   `Documentation/PublicBuild.md`.
 

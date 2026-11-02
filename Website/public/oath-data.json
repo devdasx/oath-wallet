@@ -2,13 +2,6 @@
   "name": "Oath Wallet",
   "updated": "2026-11-02",
   "facts": {
-    "formerly": "Aperture",
-    "previous_names": [
-      "Aperture",
-      "Aperture Wallet",
-      "Aperture BTC Crypto Wallet"
-    ],
-    "rename_note": "Oath was previously called Aperture (Aperture Wallet / “Aperture BTC Crypto Wallet” on the App Store). It is the same app, now renamed Oath Wallet; the source code repository is now named “oath-wallet”.",
     "name": "Oath Wallet",
     "slogan": "A wallet, not a marketplace.",
     "category": "Self-custody (non-custodial) crypto wallet",
@@ -673,7 +666,7 @@
       "url": "https://oathwallet.org/about",
       "markdown": "https://oathwallet.org/about.md",
       "title": "About Oath Wallet — Team, Open Source & Official Links",
-      "description": "Learn who publishes Oath Wallet, why Aperture became Oath, and where to find the official app, source code, support and security policy."
+      "description": "Learn who publishes Oath Wallet and where to find the official app, source code, support and security policy."
     },
     {
       "url": "https://oathwallet.org/networks",

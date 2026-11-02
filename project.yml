@@ -57,13 +57,13 @@ targets:
         CFBundleName: Oath Wallet
         CFBundleURLTypes:
           - CFBundleTypeRole: Editor
-            CFBundleURLName: com.aperture.wallet.walletconnect
+            CFBundleURLName: $(PRODUCT_BUNDLE_IDENTIFIER).walletconnect
             CFBundleURLSchemes: [oathwallet]
           - CFBundleTypeRole: Viewer
-            CFBundleURLName: com.aperture.wallet.walletconnect.raw
+            CFBundleURLName: $(PRODUCT_BUNDLE_IDENTIFIER).walletconnect.raw
             CFBundleURLSchemes: [wc]
           - CFBundleTypeRole: Viewer
-            CFBundleURLName: com.aperture.wallet.payments
+            CFBundleURLName: $(PRODUCT_BUNDLE_IDENTIFIER).payments
             CFBundleURLSchemes: [apt, aptos, arbitrum, arc, avalanche, base, bch, bitcoin, bitcoincash, bnb, bsc, btc, celo, chiliz, dai, doge, dogecoin, eth, ethereum, fantom, filecoin, flare, gnosis, gram, hyperevm, iotex, linea, litecoin, ltc, monad, near, optimism, polkadot, polygon, robinhood, rune, scroll, sei, sol, solana, somnia, stellar, story, sui, taiko, telos, thor, thorchain, ton, tron, trx, unichain, usdc, usdt, web+stellar, xlayer, xlm, xrp, xrpl, zerog]
         OathWalletConnectKeychainGroup: "$(AppIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"

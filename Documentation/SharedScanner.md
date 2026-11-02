@@ -193,8 +193,8 @@ configuration, pairing and transport failures use OathDiagnostics.
 The `oathwallet` scheme is registered in Info.plist/project.yml. The signed app
 requires `applinks:oathwallet.org` in its Associated Domains entitlement.
 Cloudflare Worker `oath-website` serves the public Apple association at
-`/.well-known/apple-app-site-association` (and its root alias), using application
-identifier `C5T44SZNQX.com.aperture.wallet`, restricted to `/wc` and `/wc/`.
+`/.well-known/apple-app-site-association` (and its root alias), using the signed app’s
+application identifier, restricted to `/wc` and `/wc/`.
 The browser fallback at `/wc` provides an explicit Open Oath Wallet button and an
 App Store link. It never interpolates incoming data into HTML, loads no analytics
 or third-party scripts, sends no referrers, uses `no-store`, and removes the query

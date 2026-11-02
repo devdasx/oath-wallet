@@ -2,7 +2,7 @@
 
 A native multichain wallet for iPhone and iPad.
 
-This repository contains **Oath Wallet 5.0.0, build 102**. The application bundle identifier is `com.aperture.wallet`.
+This repository contains **Oath Wallet 5.0.0, build 102**.
 
 [Release notes](releases/5.0.0.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·

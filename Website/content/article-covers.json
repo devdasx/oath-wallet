@@ -25,7 +25,6 @@
     "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/bitcoin-address-types.jpg",
     "alt": "Oath — Bitcoin. Address by address. A white Bitcoin coin beside three address cards on blue.",
     "old_alts": [
-      "Aperture Bitcoin guide: a graphite rail branches into two rows of silver address tiles, within the approved gray Aperture editorial layout.",
       "Oath Bitcoin guide: a graphite rail branches into two rows of silver address tiles, within the approved gray Oath editorial layout."
     ],
     "localized_alts": {},
@@ -117,7 +116,6 @@
     "slug": "lock-oath-down-passcode-face-id-auto-lock-app-switcher-privacy",
     "old_path": "/assets/articles/dee0e1407128-lock-oath-down-editorial-cover.webp",
     "path": "/assets/articles/oath-blue-2026-10-18/app-lock.jpg",
-    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/app-lock-privacy/lock-aperture-down-editorial-cover.webp",
     "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/app-lock.jpg",
     "alt": "Oath — Your wallet. Under lock. A white padlock and six passcode dots on blue.",
     "old_alts": [
@@ -217,8 +215,7 @@
     "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/network-fees.jpg",
     "alt": "Oath — Where your network fee goes. Three white coins follow a path into a stack of network blocks.",
     "old_alts": [
-      "Editorial still life of a physical routing machine dividing one blue value token among a validator tower, burn Oath, storage vault, and settlement rail",
-      "Editorial still life of a physical routing machine dividing one blue value token among a validator tower, burn aperture, storage vault, and settlement rail"
+      "Editorial still life of a physical routing machine dividing one blue value token among a validator tower, burn Oath, storage vault, and settlement rail"
     ],
     "localized_alts": {},
     "width": 1200,
@@ -230,7 +227,6 @@
     "slug": "backup-restore-oath-wallet",
     "old_path": "/assets/articles/7dece4021f83-oath-backup-restore-editorial-cover.webp",
     "path": "/assets/articles/oath-blue-2026-10-18/backup-restore.jpg",
-    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/icloud-backup-restore/aperture-backup-restore-editorial-cover.webp",
     "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/backup-restore.jpg",
     "alt": "Oath — Back it up. Bring it back. A white cloud and shield with a blue restore arrow.",
     "old_alts": [
@@ -246,7 +242,6 @@
     "slug": "add-bip39-passphrase-oath-wallet",
     "old_path": "/assets/articles/c18566b78f34-oath-bip39-passphrase-editorial-cover.webp",
     "path": "/assets/articles/oath-blue-2026-10-18/bip39-passphrase.jpg",
-    "old_url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/af89b673-a767-4029-b24e-76c41eb2b445/bip39-passphrase/aperture-bip39-passphrase-editorial-cover.webp",
     "url": "https://rfjdenxkgjgepgbmxxkd.supabase.co/storage/v1/object/public/article-images/oath-blue-2026-10-18/bip39-passphrase.jpg",
     "alt": "Oath — One phrase. A separate wallet. A white key between two separate vaults on blue.",
     "old_alts": [

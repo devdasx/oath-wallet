@@ -18,13 +18,12 @@ import UIKit
             checks += 1
         }
         let board = UIPasteboard.general
-        let marker = "com.aperture.wallet.sensitive-copy"
         let publicValue = "synthetic-address-or-transaction-id"
         OathClipboard.copy(publicValue)
         check(board.options[.localOnly] as? Bool == false, "Public copies block Handoff")
         check(board.options[.expirationDate] == nil, "Public copy acquired secret expiry")
         check(board.items.first?[UIPasteboard.typeAutomatic] as? String == publicValue, "Public text changed")
-        check(!board.contains(pasteboardTypes: [marker]), "Public copy marked sensitive")
+        check(board.items.count == 1 && board.items[0].count == 1, "Public copy marked sensitive")
         check(board.reads == 0, "Copy inspected existing clipboard text")
         check(OathHaptics.shared.events == [.copy], "Copy outcome feedback duplicated or missing")
 
@@ -47,7 +46,7 @@ import UIKit
             }
             check(expiry >= beforeCopy.addingTimeInterval(60) && expiry <= afterCopy.addingTimeInterval(60),
                   "Sensitive copy must expire 60 seconds after copying")
-            check(!board.contains(pasteboardTypes: [marker]), "Sensitive copy must not carry a reset-clearing marker")
+            check(board.items.count == 1 && board.items[0].count == 1, "Sensitive copy must not carry a reset-clearing marker")
             check(board.reads == reads, "Copy read existing clipboard text")
             check(OathHaptics.shared.events.count == feedbackCount + 1 && OathHaptics.shared.events.last == .copy, "Sensitive copy feedback duplicated or missing")
         }

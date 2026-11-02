@@ -2366,7 +2366,7 @@ Capabilities depend on the network and release. Silent Payments receiving and di
 
 ## App Store reviews
 
-Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30, 2026 on the App Store (reviews written when the app was named Aperture).
+Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30, 2026 on the App Store.
 
 - “Impressed with the Security” — deebs.h: The interface is clean, easy to use, and it gives me confidence that privacy and security are taken seriously.
 - “Love It” — Idwador iomp: Fast, secure, easy to use, and very reliable. Highly recommended!
@@ -2375,7 +2375,6 @@ Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30
 
 ## Key facts
 
-- **Formerly:** Aperture (Aperture Wallet). Oath was previously called Aperture (Aperture Wallet / “Aperture BTC Crypto Wallet” on the App Store). It is the same app, now renamed Oath Wallet; the source code repository is now named “oath-wallet”.
 - **What it is:** Self-custody (non-custodial) crypto wallet
 - **Platform:** iPhone and iPad (iOS / iPadOS), distributed on the Apple App Store
 - **Price:** Free to download; users pay only blockchain network fees
@@ -2540,7 +2539,7 @@ Canonical: https://oathwallet.org/about
 
 # About Oath Wallet — Team, Open Source & Official Links
 
-Oath Wallet is a free, open-source Bitcoin and crypto wallet for iPhone and iPad. The app was previously named Aperture Wallet.
+Oath Wallet is a free, open-source Bitcoin and crypto wallet for iPhone and iPad.
 
 
 
@@ -2558,15 +2557,6 @@ Oath is a self-custody wallet: you control the recovery credentials and authoriz
 The publisher identified in Oath’s legal and press information is STAGE AND STYLE COLLECTIVE LLC. Its published founder and CEO is Marco Valenti.
 
 Follow the [official Oath Wallet account](https://x.com/OathWallet) and [Marco Valenti’s public profile](https://x.com/MarcoValentiX). The [press kit](https://oathwallet.org/press#leadership) provides the company information and approved brand assets.
-
-
-
-
-## Aperture became Oath Wallet
-
-Oath Wallet is the new name of Aperture Wallet. The official App Store app retains the same app identifier, 6780187283. Existing references to Aperture in older reviews or screenshots describe that earlier name.
-
-Use oathwallet.org for the website and the official App Store link below for the app. The app preserves its existing bundle, Keychain and iCloud container identifiers for compatibility.
 
 
 
@@ -2657,7 +2647,7 @@ Canonical: https://oathwallet.org/press
 
 # Oath Wallet press kit
 
-Edition 2026.10.31. [Download the complete press kit](https://oathwallet.org/assets/press/2026-10/oath-press-kit.zip?v=b64556dfef98)
+Edition 2026.10.31. [Download the complete press kit](https://oathwallet.org/assets/press/2026-10/oath-press-kit.zip?v=150416eea049)
 
 ## At a glance
 
@@ -2734,7 +2724,7 @@ Use SVG for scalable app icons and symbols. Use transparent PNG for raster layou
 
 ### Name & writing
 
-Use “Oath Wallet” on first mention and “Oath” thereafter. Keep this spelling and capitalisation. For historical context only, the app was previously called Aperture; use Oath Wallet in new headlines and listings.
+Use “Oath Wallet” on first mention and “Oath” thereafter. Keep this spelling and capitalisation.
 
 ### Product imagery
 
@@ -2746,21 +2736,21 @@ The supplied assets may be used for the editorial and accurate identification pu
 
 ## Downloads
 
-- [brand-guide.txt](https://oathwallet.org/assets/press/2026-10/brand-guide.txt?v=b64556dfef98)
-- [brand-guidelines.html](https://oathwallet.org/assets/press/2026-10/brand-guidelines.html?v=b64556dfef98)
-- [press-facts.txt](https://oathwallet.org/assets/press/2026-10/press-facts.txt?v=b64556dfef98)
-- [colours.json](https://oathwallet.org/assets/press/2026-10/colours.json?v=b64556dfef98)
-- [oath-app-icon.svg](https://oathwallet.org/assets/press/2026-10/oath-app-icon.svg?v=b64556dfef98)
-- [oath-app-icon.png](https://oathwallet.org/assets/press/2026-10/oath-app-icon.png?v=b64556dfef98)
-- [oath-mark-ink.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.svg?v=b64556dfef98)
-- [oath-mark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.png?v=b64556dfef98)
-- [oath-mark-white.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-white.svg?v=b64556dfef98)
-- [oath-mark-white.png](https://oathwallet.org/assets/press/2026-10/oath-mark-white.png?v=b64556dfef98)
-- [oath-wordmark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-wordmark-ink.png?v=b64556dfef98)
-- [oath-wordmark-white.png](https://oathwallet.org/assets/press/2026-10/oath-wordmark-white.png?v=b64556dfef98)
-- [oath-portfolio-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-portfolio-iphone.png?v=b64556dfef98)
-- [oath-market-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-market-iphone.png?v=b64556dfef98)
-- [oath-receive-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-receive-iphone.png?v=b64556dfef98)
+- [brand-guide.txt](https://oathwallet.org/assets/press/2026-10/brand-guide.txt?v=150416eea049)
+- [brand-guidelines.html](https://oathwallet.org/assets/press/2026-10/brand-guidelines.html?v=150416eea049)
+- [press-facts.txt](https://oathwallet.org/assets/press/2026-10/press-facts.txt?v=150416eea049)
+- [colours.json](https://oathwallet.org/assets/press/2026-10/colours.json?v=150416eea049)
+- [oath-app-icon.svg](https://oathwallet.org/assets/press/2026-10/oath-app-icon.svg?v=150416eea049)
+- [oath-app-icon.png](https://oathwallet.org/assets/press/2026-10/oath-app-icon.png?v=150416eea049)
+- [oath-mark-ink.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.svg?v=150416eea049)
+- [oath-mark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.png?v=150416eea049)
+- [oath-mark-white.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-white.svg?v=150416eea049)
+- [oath-mark-white.png](https://oathwallet.org/assets/press/2026-10/oath-mark-white.png?v=150416eea049)
+- [oath-wordmark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-wordmark-ink.png?v=150416eea049)
+- [oath-wordmark-white.png](https://oathwallet.org/assets/press/2026-10/oath-wordmark-white.png?v=150416eea049)
+- [oath-portfolio-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-portfolio-iphone.png?v=150416eea049)
+- [oath-market-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-market-iphone.png?v=150416eea049)
+- [oath-receive-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-receive-iphone.png?v=150416eea049)
 
 ## Press contact
 
@@ -8501,11 +8491,6 @@ This first choice prevents a dangerous shortcut: treating “0x…” as suffici
 
 After choosing Ethereum, Oath accepts a complete 0x-prefixed address. You can paste it, type it with the ASCII keyboard, or scan a QR code and review the recognized network and address before using it. Oath filters the field to the expected address alphabet and length; an EVM address must contain 40 hexadecimal characters after 0x, and the zero address is rejected.
 
-![Real Oath Add a Custom Token screen for entering or scanning an Ethereum contract address](https://oathwallet.org/assets/articles/6e38b7deff2b-03-contract-entry.webp)
-
-
-
-Real empty contract-entry screen. Oath begins the lookup only after the address is complete, so a partial string is not treated as a token identity.
 
 Solana follows its own rules: the mint must be a valid, case-sensitive Solana address. TRON requires a valid Base58Check contract address on TRON mainnet. Never “fix” capitalization on a Solana mint by hand, and never convert an address from one network’s format into another to make a form accept it.
 
@@ -8523,11 +8508,6 @@ When the address is complete, Oath performs a chain-scoped lookup. The review ca
 
 - Logo and market price. Are they helpful presentation data without being treated as authentication?
 
-![Real Oath token review showing the ENS name, symbol, Ethereum network, 18 decimal places, market price, and normalized contract address](https://oathwallet.org/assets/articles/77d232bfd03e-04-token-identity-resolved.webp)
-
-
-
-Real live lookup of the official ENS token on Ethereum. Oath normalized the stored identity to 0xc18360217d8f7ab5e7c516566761ea12ce7f9d72 and returned the ENS name, ENS symbol, 18 decimal places, and the market price available at capture time. Prices change; the contract identity does not.
 
 The warning under the card is the central rule of the flow: confirm the network and token address before saving, because anyone can create a token with a misleading name or symbol.
 
@@ -8559,11 +8539,6 @@ That hierarchy avoids selecting artwork from a ticker or display name, but no ar
 
 To make the network boundary visible, we entered the official ENS Ethereum contract while Base was selected. At capture time, Oath did not quietly reuse the Ethereum metadata. The chain-scoped lookup returned “Token Could Not Be Found.”
 
-![Real Oath lookup result showing that the official ENS Ethereum contract address is not found when the Base network is selected](https://oathwallet.org/assets/articles/e99be6ce755a-06-wrong-network-not-found.webp)
-
-
-
-Real production result, not a mock error. The address has a valid EVM shape, but Base is the wrong context for this official Ethereum token identity.
 
 A different contract could exist at the same 0x string on another EVM chain. If it did, it would still be that chain’s contract—not automatic proof that it represents the Ethereum asset. Always verify the network and address together.
 
@@ -8844,27 +8819,12 @@ The shared address is a cryptographic convenience. It does not merge the chains.
 
 - Chain identity and finality. A transaction is encoded, signed, submitted, and confirmed under the selected network’s rules. The address alone does not choose the destination ledger.
 
-![Real Oath Ethereum receive screen in the iOS Simulator with an explicit Ethereum Network label and public article-only test address](https://oathwallet.org/assets/articles/a9a91a8687f1-oath-receive-ethereum-address.webp)
 
-
-
-Real Oath output. The destination is explicitly labeled Ethereum Network. The public address belongs to an empty article-only Simulator wallet; no recovery phrase or private key is present in the image.
-
-![Real Oath BNB receive screen in the iOS Simulator with an explicit BNB Smart Chain Network label and the same validated EVM test address](https://oathwallet.org/assets/articles/ddd45afa8242-oath-receive-bnb-address.webp)
-
-
-
-The hexadecimal address matches the Ethereum screen, but the selected ledger, native asset, network label, safety instruction, and receive request are BNB Smart Chain-specific. Same address does not mean same balance or same network.
 
 ## Non-EVM accounts do not borrow the Ethereum identity
 
 On a non-EVM chain, the account is derived with that chain’s supported key type, path, public-key encoding, checksum, and address format. A Stellar address beginning with G, a Solana base58 address, an XRP classic address, and a Bitcoin address are not alternate spellings of the EVM address. They are different public identities governed by different protocols.
 
-![Real Oath Stellar receive screen in the iOS Simulator with a Stellar-specific public address and network safety instruction](https://oathwallet.org/assets/articles/e33a66e30789-oath-receive-stellar-address.webp)
-
-
-
-Real Oath output from the same empty test wallet. Stellar has its own public account address and an explicit instruction to send only XLM on the Stellar network.
 
 This separation matters during both recovery and signing. A full wallet can derive all of its supported chain accounts from the same recovery credential, but it still signs each chain with the correct account material. A private-key import is narrower: an EVM key may cover supported EVM mainnets that reuse the proven address, while a non-EVM private key remains restricted to the network for which Oath validated it.
 
@@ -9070,11 +9030,6 @@ The important distinction is this: a rate is not always the complete fee. Bitcoi
 
 Fastest, Standard, and Economy are understandable intentions—not promises that every blockchain has the same auction. Oath exposes multiple tiers where rates can meaningfully influence inclusion. Where a protocol has no user-defined urgency market, the app does not invent one. Custom values are kept separately by network so a preference on one chain cannot silently become a dangerous value on another.
 
-![Real Oath Network Fee screen in the iOS Simulator showing Fastest, Standard, Economy, and Custom choices for Ethereum](https://oathwallet.org/assets/articles/c1d1f70fe6c9-02-ethereum-network-fee-presets.webp)
-
-
-
-A real Simulator capture before a funded amount existed. The dashes are deliberate: Oath has no complete transaction to price, so it does not display a fictional fee.
 
 On the final Review screen, Oath shows the prepared native fee and its local-currency value when pricing is available. That reviewed fee policy becomes part of the exact draft authorized for signing. If the draft changes, the earlier authorization no longer matches.
 

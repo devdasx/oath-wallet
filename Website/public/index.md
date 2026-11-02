@@ -23,7 +23,7 @@ Capabilities depend on the network and release. Silent Payments receiving and di
 
 ## App Store reviews
 
-Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30, 2026 on the App Store (reviews written when the app was named Aperture).
+Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30, 2026 on the App Store.
 
 - “Impressed with the Security” — deebs.h: The interface is clean, easy to use, and it gives me confidence that privacy and security are taken seriously.
 - “Love It” — Idwador iomp: Fast, secure, easy to use, and very reliable. Highly recommended!
@@ -32,7 +32,6 @@ Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30
 
 ## Key facts
 
-- **Formerly:** Aperture (Aperture Wallet). Oath was previously called Aperture (Aperture Wallet / “Aperture BTC Crypto Wallet” on the App Store). It is the same app, now renamed Oath Wallet; the source code repository is now named “oath-wallet”.
 - **What it is:** Self-custody (non-custodial) crypto wallet
 - **Platform:** iPhone and iPad (iOS / iPadOS), distributed on the Apple App Store
 - **Price:** Free to download; users pay only blockchain network fees

@@ -1,6 +1,6 @@
 # About Oath Wallet — Team, Open Source & Official Links
 
-Oath Wallet is a free, open-source Bitcoin and crypto wallet for iPhone and iPad. The app was previously named Aperture Wallet.
+Oath Wallet is a free, open-source Bitcoin and crypto wallet for iPhone and iPad.
 
 
 
@@ -18,15 +18,6 @@ Oath is a self-custody wallet: you control the recovery credentials and authoriz
 The publisher identified in Oath’s legal and press information is STAGE AND STYLE COLLECTIVE LLC. Its published founder and CEO is Marco Valenti.
 
 Follow the [official Oath Wallet account](https://x.com/OathWallet) and [Marco Valenti’s public profile](https://x.com/MarcoValentiX). The [press kit](/press#leadership) provides the company information and approved brand assets.
-
-
-
-
-## Aperture became Oath Wallet
-
-Oath Wallet is the new name of Aperture Wallet. The official App Store app retains the same app identifier, 6780187283. Existing references to Aperture in older reviews or screenshots describe that earlier name.
-
-Use oathwallet.org for the website and the official App Store link below for the app. The app preserves its existing bundle, Keychain and iCloud container identifiers for compatibility.
 
 
 

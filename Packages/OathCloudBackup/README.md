@@ -3,9 +3,8 @@
 Current release: [4.1.15 (99) verification record](../../releases/4.1.15.md). Historical checks below describe their original scope; they are not an independent audit of this release.
 
 
-This native Foundation/CryptoKit package uses the existing
-`iCloud.com.aperture.wallet` CloudDocuments container. The application is signed
-as `com.aperture.wallet`, team `C5T44SZNQX`. Its public document scope is named
+This native Foundation/CryptoKit package uses the app’s existing
+CloudDocuments container declared in its signing entitlements. Its public document scope is named
 **Oath Wallet** in Files; documents live in **Wallet Backups**. The directory is
 created by the first explicit backup, not by importing or creating a wallet.
 

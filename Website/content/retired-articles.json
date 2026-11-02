@@ -4,23 +4,17 @@
     {
       "slug": "oath-3-5-5-slide-to-send-transaction-activity",
       "reason": "Retired release instructions for Slide to Send, transaction notes and the previous navigation.",
-      "aliases": [
-        "aperture-3-5-5-slide-to-send-transaction-activity"
-      ]
+      "aliases": []
     },
     {
       "slug": "oath-3-5-4-bitcoin-recovery-clearer-sending",
       "reason": "Retired BRD settings, Silent Payment output exports and Coin Control instructions.",
-      "aliases": [
-        "aperture-3-5-4-bitcoin-recovery-clearer-sending"
-      ]
+      "aliases": []
     },
     {
       "slug": "oath-2-40-12-monero-bitcoin-safer-sending-wallet-tools",
       "reason": "Retired Monero, Silent Payments, physical entropy and tools release.",
-      "aliases": [
-        "aperture-2-40-12-monero-bitcoin-safer-sending-wallet-tools"
-      ]
+      "aliases": []
     },
     {
       "slug": "send-to-name-ens-sol-space-id-payment-ids",
@@ -35,30 +29,22 @@
     {
       "slug": "find-anything-wallet-oath-universal-search",
       "reason": "Current search finds assets; the former app-wide settings/actions search is absent.",
-      "aliases": [
-        "find-anything-wallet-aperture-universal-search"
-      ]
+      "aliases": []
     },
     {
       "slug": "silent-payments-oath-reusable-bitcoin-address-without-reuse",
       "reason": "Silent Payments receiving and discovery are unsupported.",
-      "aliases": [
-        "silent-payments-aperture-reusable-bitcoin-address-without-reuse"
-      ]
+      "aliases": []
     },
     {
       "slug": "move-oath-to-new-iphone-direct-encrypted-serverless",
       "reason": "The original nearby-device transfer feature is absent; current recovery instructions remain in Help.",
-      "aliases": [
-        "move-aperture-to-new-iphone-direct-encrypted-serverless"
-      ]
+      "aliases": []
     },
     {
       "slug": "oath-currency-converter-crypto-fiat-metals",
       "reason": "The multi-row currency converter and its Home shortcut are absent.",
-      "aliases": [
-        "aperture-currency-converter-crypto-fiat-metals"
-      ]
+      "aliases": []
     },
     {
       "slug": "build-wallet-with-dice-coin-flips-random-digits",

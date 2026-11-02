@@ -22,3 +22,16 @@ test('raster logo formats derive from the master with transparent rounded corner
   assert.deepEqual(actual,expected,name);assert.equal(actual[3],0,name+' corner');
  }
 });
+
+test('public facts and discovery metadata use the current wallet identity', async () => {
+ const data=JSON.parse(await readFile(new URL('oath-data.json', root), 'utf8'));
+ assert.equal(data.facts.name, 'Oath Wallet');
+ for (const key of ['formerly','previous_names','rename_note']) assert.ok(!Object.hasOwn(data.facts,key),key);
+ for (const file of ['index.html','features.html','privacy.html','security.html','support.html','terms.html']) {
+   const html=await readFile(new URL(file,root),'utf8');
+   const schemas=[...html.matchAll(/<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match=>JSON.parse(match[1]));
+   const identities=schemas.flatMap(schema=>schema['@graph']??[schema]).filter(node=>['Organization','SoftwareApplication','MobileApplication'].includes(node['@type']));
+   assert.ok(identities.length>0,file);
+   for(const node of identities) for(const alias of [node.alternateName??[]].flat()) assert.ok(['Oath','Oath Wallet'].includes(alias),file);
+ }
+});

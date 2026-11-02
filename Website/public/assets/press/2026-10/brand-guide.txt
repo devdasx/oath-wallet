@@ -45,7 +45,7 @@ File choice
 Use SVG for scalable app icons and symbols. Use transparent PNG for raster layouts and the supplied horizontal wordmarks. Use the complete icon file without changing its rounded silhouette.
 
 Name & writing
-Use “Oath Wallet” on first mention and “Oath” thereafter. Keep this spelling and capitalisation. For historical context only, the app was previously called Aperture; use Oath Wallet in new headlines and listings.
+Use “Oath Wallet” on first mention and “Oath” thereafter. Keep this spelling and capitalisation.
 
 Product imagery
 Use the supplied product previews without changing interface labels, balances or controls. You may scale them proportionally and crop surrounding whitespace. Do not crop away context in a way that changes the meaning. Previews are illustrative and may differ from the current release.

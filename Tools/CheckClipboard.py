@@ -59,9 +59,6 @@ with tempfile.TemporaryDirectory(prefix="oath-clipboard-check-") as temporary:
         self.options = options
         writes += 1
     }
-    public func contains(pasteboardTypes: [String]) -> Bool {
-        items.contains { item in pasteboardTypes.contains { item[$0] != nil } }
-    }
 }
 ''')
     subprocess.run([

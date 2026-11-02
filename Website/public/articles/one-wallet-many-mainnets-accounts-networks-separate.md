@@ -70,27 +70,12 @@ Native fee asset. The network decides which native coin pays validators or seque
 
 Chain identity and finality. A transaction is encoded, signed, submitted, and confirmed under the selected network’s rules. The address alone does not choose the destination ledger.
 
-![Real Oath Ethereum receive screen in the iOS Simulator with an explicit Ethereum Network label and public article-only test address](https://oathwallet.org/assets/articles/a9a91a8687f1-oath-receive-ethereum-address.webp)
 
-
-
-Real Oath output. The destination is explicitly labeled Ethereum Network. The public address belongs to an empty article-only Simulator wallet; no recovery phrase or private key is present in the image.
-
-![Real Oath BNB receive screen in the iOS Simulator with an explicit BNB Smart Chain Network label and the same validated EVM test address](https://oathwallet.org/assets/articles/ddd45afa8242-oath-receive-bnb-address.webp)
-
-
-
-The hexadecimal address matches the Ethereum screen, but the selected ledger, native asset, network label, safety instruction, and receive request are BNB Smart Chain-specific. Same address does not mean same balance or same network.
 
 ## Non-EVM accounts do not borrow the Ethereum identity
 
 On a non-EVM chain, the account is derived with that chain’s supported key type, path, public-key encoding, checksum, and address format. A Stellar address beginning with G, a Solana base58 address, an XRP classic address, and a Bitcoin address are not alternate spellings of the EVM address. They are different public identities governed by different protocols.
 
-![Real Oath Stellar receive screen in the iOS Simulator with a Stellar-specific public address and network safety instruction](https://oathwallet.org/assets/articles/e33a66e30789-oath-receive-stellar-address.webp)
-
-
-
-Real Oath output from the same empty test wallet. Stellar has its own public account address and an explicit instruction to send only XLM on the Stellar network.
 
 This separation matters during both recovery and signing. A full wallet can derive all of its supported chain accounts from the same recovery credential, but it still signs each chain with the correct account material. A private-key import is narrower: an EVM key may cover supported EVM mainnets that reuse the proven address, while a non-EVM private key remains restricted to the network for which Oath validated it.
 

@@ -19,9 +19,8 @@ silently omitted or converted into a different kind of wallet.
 
 Historical source: `EVMWallet/`, target `Oath`.
 Current source: `OathAtmosphere/`, target `OathAtmosphere`.
-Both use bundle `com.aperture.wallet`, team `C5T44SZNQX`. New version/build is
-4.0.3/77, above the inspected old 4.0.2/76. The new entitlement explicitly
-includes `$(AppIdentifierPrefix)com.aperture.wallet`.
+Both use the same registered app identifier and Keychain access group. Version
+4.0.3 (77) upgrades the inspected 4.0.2 (76) installation.
 
 Old public metadata lives in Application Support/WalletDatabase/wallet.sqlite
 (GRDB SQLite, including WAL; complete-until-first-user-authentication file

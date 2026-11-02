@@ -36,11 +36,6 @@ The important distinction is this: a rate is not always the complete fee. Bitcoi
 
 Fastest, Standard, and Economy are understandable intentions—not promises that every blockchain has the same auction. Oath exposes multiple tiers where rates can meaningfully influence inclusion. Where a protocol has no user-defined urgency market, the app does not invent one. Custom values are kept separately by network so a preference on one chain cannot silently become a dangerous value on another.
 
-![Real Oath Network Fee screen in the iOS Simulator showing Fastest, Standard, Economy, and Custom choices for Ethereum](https://oathwallet.org/assets/articles/c1d1f70fe6c9-02-ethereum-network-fee-presets.webp)
-
-
-
-A real Simulator capture before a funded amount existed. The dashes are deliberate: Oath has no complete transaction to price, so it does not display a fictional fee.
 
 On the final Review screen, Oath shows the prepared native fee and its local-currency value when pricing is available. That reviewed fee policy becomes part of the exact draft authorized for signing. If the draft changes, the earlier authorization no longer matches.
 

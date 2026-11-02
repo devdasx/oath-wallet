@@ -18,7 +18,7 @@ WalletGuide bases are `https://oathwallet.org` and `oathwallet://`.
 The SDK appends `/wc?uri=…`; the Apple association is served as JSON without
 redirection at `/.well-known/apple-app-site-association` and
 `/apple-app-site-association`. It is restricted to `/wc` and `/wc/` for
-`C5T44SZNQX.com.aperture.wallet`. Keep this identifier aligned with the signed app.
+the Oath Wallet application identifier. Keep it aligned with the signed app.
 `src/wallet-links.js` handles this before site analytics/newsletter injection.
 Never add analytics, arbitrary redirects or request logging to this entry point:
 the URI can contain a pairing secret. The fallback's script clears the browser

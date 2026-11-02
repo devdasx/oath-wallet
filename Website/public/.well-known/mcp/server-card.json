@@ -3,7 +3,7 @@
   "name": "org.oathwallet/website",
   "title": "Oath Wallet",
   "version": "1.0.0",
-  "description": "Read-only facts about Oath Wallet (formerly Aperture), a self-custody iPhone wallet: features, support answers, download link, contact and policies.",
+  "description": "Read-only facts about Oath Wallet, a self-custody iPhone wallet: features, support answers, download link, contact and policies.",
   "websiteUrl": "https://oathwallet.org",
   "documentationUrl": "https://oathwallet.org/llms.txt",
   "remotes": [

@@ -86,7 +86,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.aperture.wallet.walletconnect</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).walletconnect</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>oathwallet</string>
@@ -96,7 +96,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>com.aperture.wallet.walletconnect.raw</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).walletconnect.raw</string>
 			<key>CFBundleURLSchemes</key>
 			<array><string>wc</string></array>
 		</dict>
@@ -104,7 +104,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>com.aperture.wallet.payments</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).payments</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>apt</string>
