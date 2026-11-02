@@ -255,6 +255,10 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
     /// Exact, checksum-verified network decoding shared by review and signing.
     public static func recipientScript(_ value: String, chain: UTXONetwork,
                                        network: BitcoinSendNetwork = .mainnet) throws -> Data {
+        // Validate wire characters before any network-specific case conversion.
+        guard (1...196).contains(value.utf8.count), value.utf8.allSatisfy({ (33...126).contains($0) }) else {
+            throw BitcoinSendError.invalidRecipient
+        }
         if chain == .bitcoincash {
             return try CashAddress.decode(value, prefix: network == .mainnet ? "bitcoincash" : network == .regtest ? "bchreg" : "bchtest")
         }
