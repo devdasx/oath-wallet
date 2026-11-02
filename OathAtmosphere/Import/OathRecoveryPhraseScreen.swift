@@ -31,6 +31,7 @@ struct OathRecoveryPhraseScreen: View {
         !isImporting && !decoding && !showsScanner
             && !draft.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
             && draft.validator != nil && !draft.isComposing && !draft.inputRejected
+            && (draft.preferredFormat != nil || !draft.requiresExplicitChoice(in: draft.matchingFormats))
     }
 
     var body: some View {
@@ -56,10 +57,16 @@ struct OathRecoveryPhraseScreen: View {
                     phraseField
                     let formats = draft.matchingFormats
                     let selected = draft.selectedFormat(in: formats)
-                    if formats.count > 1, let selected {
-                        Picker(strings.text(.recoveryFormat), selection: Binding(get: { selected }, set: draft.selectFormat)) {
+                    let needsChoice = draft.requiresExplicitChoice(in: formats)
+                    if formats.count > 1 || needsChoice {
+                        Picker(strings.text(.recoveryFormat), selection: Binding(
+                            get: { draft.selectedFormat(in: formats) }, set: draft.selectFormat
+                        )) {
+                            if needsChoice {
+                                Text(strings.text(.recoveryFormat)).tag(nil as OathRecoveryFormat?)
+                            }
                             ForEach(formats, id: \.self) { format in
-                                Text(strings.invariant(format.rawValue)).tag(format)
+                                Text(strings.invariant(format.rawValue)).tag(Optional(format))
                             }
                         }
                         .pickerStyle(.segmented)

@@ -27,13 +27,17 @@ enum OathRecoveryFormat: String, Hashable {
         return formats
     }
 
-    func selectedFormat(in formats: [OathRecoveryFormat]) -> OathRecoveryFormat? {
-        if let preferredFormat, formats.contains(preferredFormat) { return preferredFormat }
-        return formats.first
+    func requiresExplicitChoice(in formats: [OathRecoveryFormat]) -> Bool {
+        formats == [.electrum] && !ElectrumMnemonic.recognizesScannedPhrase(text)
     }
 
-    func selectFormat(_ format: OathRecoveryFormat) {
-        guard matchingFormats.contains(format) else { return }
+    func selectedFormat(in formats: [OathRecoveryFormat]) -> OathRecoveryFormat? {
+        if let preferredFormat, formats.contains(preferredFormat) { return preferredFormat }
+        return requiresExplicitChoice(in: formats) ? nil : formats.first
+    }
+
+    func selectFormat(_ format: OathRecoveryFormat?) {
+        if let format, !matchingFormats.contains(format) { return }
         preferredFormat = format
     }
 
