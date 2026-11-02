@@ -3,6 +3,7 @@
 No wallet storage, simulator, signing, or real network endpoints are used here.
 """
 import json
+import os
 import sys
 from pathlib import Path
 import shutil
@@ -14,6 +15,7 @@ graph={'Commons':[], 'JSONRPC':['Commons'], 'WalletConnectUtils':['JSONRPC'],
        'WalletConnectKMS':['WalletConnectUtils'], 'WalletConnectJWT':['WalletConnectKMS'],
        'HTTPClient':['OathDiagnostics'], 'WalletConnectRelay':['WalletConnectJWT','OathDiagnostics'],
        'WalletConnectNetworking':['HTTPClient','WalletConnectRelay'],
+       'WalletConnectSigner':['WalletConnectNetworking'],
        'Events':['WalletConnectUtils','WalletConnectNetworking'],
        'WalletConnectPairing':['WalletConnectNetworking','Events','OathDiagnostics']}
 with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
@@ -61,7 +63,7 @@ with tempfile.TemporaryDirectory(prefix='oath-sdk-validation-') as temporary:
  for fixture in ['KeyManagementServiceMock.swift','NetworkingInteractorMock.swift']:
   candidates=list((root/'Vendor/Reown/Tests').rglob(fixture)); assert len(candidates)==1
   shutil.copy(candidates[0],tests/fixture)
- targets.append('.testTarget(name: "SDKTests", dependencies: ["Schemas", "HTTPClient", "WalletConnectNetworking", "WalletConnectKMS", "WalletConnectRelay", "WalletConnectPairing", "Events", "OathDiagnostics"])')
+ targets.append('.testTarget(name: "SDKTests", dependencies: ["WalletConnectSigner", "Schemas", "HTTPClient", "WalletConnectNetworking", "WalletConnectKMS", "WalletConnectRelay", "WalletConnectPairing", "Events", "OathDiagnostics"])')
  (work/'Package.swift').write_text('// swift-tools-version: 6.1\nimport PackageDescription\nlet package=Package(name:"SDKValidation",platforms:[.macOS(.v14)],dependencies:[.package(path:'+json.dumps(str(root/'Packages/OathDiagnostics'))+')],targets:['+','.join(targets)+'],swiftLanguageModes:[.v5])\n')
- result=subprocess.run(['swift','test','--package-path',str(work),'--scratch-path','/tmp/oath-sdk-warning-host']+sys.argv[1:],timeout=240)
+ result=subprocess.run(['swift','test','--package-path',str(work),'--scratch-path',os.environ.get('OATH_SDK_VALIDATION_SCRATCH', '/tmp/oath-sdk-warning-host')]+sys.argv[1:],timeout=240)
  raise SystemExit(result.returncode)
