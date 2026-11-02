@@ -14,7 +14,7 @@ actor ENSRegistryContract {
 
     func resolver(namehash: Data, chainId: String) async throws -> String {
         let encoder = ENSResolverMethod(namehash: namehash)
-        let call = EthCall(to: address, data: encoder.encode())
+        let call = EthCall(to: address, data: try encoder.encode())
         let params = AnyCodable([AnyCodable(call), AnyCodable("latest")])
         let request = RPCRequest(method: "eth_call", params: params)
         let data = try JSONEncoder().encode(request)

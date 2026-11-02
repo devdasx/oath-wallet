@@ -9,7 +9,7 @@ actor EIP191Verifier {
     }
 
     func verify(signature: Data, message: Data, address: String) async throws {
-        let sig = EthereumSignature(serialized: signature)
+        let sig = try EthereumSignature(serialized: signature)
         let publicKey = try crypto.recoverPubKey(signature: sig, message: message)
         try verifyPublicKey(publicKey, address: address)
     }
