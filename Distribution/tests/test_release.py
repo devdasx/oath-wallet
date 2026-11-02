@@ -106,7 +106,7 @@ class UploadOnlyLaneTests(unittest.TestCase):
     def test_release_lane_without_network_or_signing(self):
         fixture = Path(__file__).with_name("upload_lane_fixture.rb")
         lane = MODULE.parent / "ios/fastlane/Fastfile"
-        for mode in ["success", "duplicate", "upload_failure", "build_failure", "verification_missing", "processing_invalid"]:
+        for mode in ["success", "duplicate", "upload_failure", "build_failure", "symbol_failure", "verification_missing", "processing_invalid"]:
             with self.subTest(mode=mode):
                 result = subprocess.run(["ruby", str(fixture), str(lane), mode], capture_output=True, text=True)
                 self.assertEqual(result.returncode, 0, result.stderr)

@@ -57,7 +57,15 @@ def build_app(**args)
   raise 'Synthetic build failure' if $mode == 'build_failure'
   File.write(File.join(args.fetch(:output_directory), args.fetch(:output_name)), 'synthetic IPA')
 end
+def sh(*args)
+  expected = ['python3', File.join(ENV.fetch('APP_SOURCE'), 'Tools', 'CheckArchiveSymbols.py'),
+              File.join(ENV.fetch('SIGNING_DIRECTORY'), 'Oath.xcarchive')]
+  raise 'Unexpected archive check' unless args == expected && $events.last == 'build'
+  raise 'Synthetic symbol mismatch' if $mode == 'symbol_failure'
+  $events << 'symbols_verified'
+end
 def upload_to_testflight(**args)
+  raise 'Unverified archive reached upload' unless $events.last == 'symbols_verified'
   $events << 'upload'
   raise 'External distribution must stay disabled' unless args[:distribute_external] == false
   raise 'Processing must be checked' unless args[:skip_waiting_for_build_processing] == false
@@ -99,6 +107,8 @@ Dir.mktmpdir('oath-lane-fixture-') do |temporary|
     raise 'Duplicate build reached signing' unless failure&.include?('already exists') && $events.empty?
   when 'upload_failure'
     raise 'Upload failure reported success' unless failure == 'Synthetic upload failure' && receipt['stage'] == 'archived'
+  when 'symbol_failure'
+    raise 'Archive with mismatched symbols was uploaded' unless failure == 'Synthetic symbol mismatch' && !$events.include?('upload') && receipt.nil?
   when 'build_failure'
     raise 'Failed archive was uploaded' unless failure == 'Synthetic build failure' && !$events.include?('upload') && receipt.nil?
   when 'verification_missing', 'processing_invalid'
