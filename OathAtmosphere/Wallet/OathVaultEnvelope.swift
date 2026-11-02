@@ -214,21 +214,39 @@ struct OathVaultContents: Codable, Sendable {
         }
     }
 
+    private var highestPassphraseIndex: Int {
+        max(0, lastPassphraseIndex ?? 0, wallets.compactMap(\.passphraseIndex).max() ?? 0)
+    }
+
+    func nextPassphraseIndex() throws -> Int {
+        let highest = highestPassphraseIndex
+        guard highest < Int.max else { throw OathWalletError.unavailable }
+        return highest + 1
+    }
+
     /// Upgrade old metadata only after authentication. Shared recovery words
     /// stay inside the vault; only a unique original wallet establishes a
     /// missing relationship. An absent parent is normal for standalone restores.
     @discardableResult mutating func reconcilePassphraseFamilies(records: [WalletRecord] = []) -> Bool {
         var changed = false
-        var next = max(lastPassphraseIndex ?? 0, wallets.compactMap(\.passphraseIndex).max() ?? 0)
+        var next = highestPassphraseIndex
         let old = Dictionary(records.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         var used = Set(wallets.compactMap(\.passphraseIndex))
+        var recoveredIndex = 1
+        lazy var reserved = Set(records.lazy.filter { $0.nameGroup == "passphrase" }.map(\.nameIndex))
         for index in wallets.indices where wallets[index].isDerivedWallet {
             if (wallets[index].passphraseIndex ?? 0) <= 0 {
                 let row = old[wallets[index].id.uuidString]
                 let previous = row?.nameGroup == "passphrase" ? row?.nameIndex : nil
                 let number: Int
                 if let previous, previous > 0, !used.contains(previous) { number = previous }
-                else { number = next + 1 }
+                else if next < Int.max { number = next + 1 }
+                else {
+                    // Existing secrets still need a display index when authenticated
+                    // historical metadata has exhausted the monotonic counter.
+                    while used.contains(recoveredIndex) || reserved.contains(recoveredIndex) { recoveredIndex += 1 }
+                    number = recoveredIndex
+                }
                 wallets[index].passphraseIndex = number; used.insert(number)
                 next = max(next, number); changed = true
             }

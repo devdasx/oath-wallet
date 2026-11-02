@@ -1726,7 +1726,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         let candidate = OathWalletSecret(id: requestID, mnemonic: source.mnemonic, language: source.language,
             createdAt: .now, backedUp: false, createdWithCustomization: true, initialBackupOffer: .cloudOrManual, passphrase: passphrase,
             parentWalletID: source.id,
-            passphraseIndex: max(contents.lastPassphraseIndex ?? 0, contents.wallets.compactMap(\.passphraseIndex).max() ?? 0) + 1)
+            passphraseIndex: try contents.nextPassphraseIndex())
         let derivation = Task.detached(priority: .userInitiated) { try OathWalletEngine.profile(for: candidate) }
         let derived = try await withTaskCancellationHandler { try await derivation.value } onCancel: { derivation.cancel() }
         try checkAuthentication(token)
@@ -1780,7 +1780,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         let candidate = OathWalletSecret(id: requestID, mnemonic: source.mnemonic, language: "electrum",
             createdAt: .now, backedUp: false, electrum: material,
             createdWithCustomization: true, initialBackupOffer: .cloudOrManual, parentWalletID: source.id,
-            passphraseIndex: max(contents.lastPassphraseIndex ?? 0, contents.wallets.compactMap(\.passphraseIndex).max() ?? 0) + 1)
+            passphraseIndex: try contents.nextPassphraseIndex())
         let derivation = Task.detached(priority: .userInitiated) { try OathWalletEngine.profile(for: candidate) }
         let derived = try await withTaskCancellationHandler { try await derivation.value } onCancel: { derivation.cancel() }
         try checkAuthentication(token)
