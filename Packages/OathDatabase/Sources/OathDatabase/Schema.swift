@@ -1499,6 +1499,9 @@ enum Schema {
         migrations.registerMigration("v89_walletconnect_xrpl") { db in
             try OathDatabase.migrateWalletConnectXrpl(db)
         }
+        migrations.registerMigration("v90_litecoin_history_destinations") { db in
+            try OathDatabase.clearInvalidLitecoinHistoryAddresses(db)
+        }
         return migrations
     }
 }

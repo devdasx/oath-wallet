@@ -44,9 +44,14 @@ public enum BitcoinTransactions {
         if bytes.count == 23, bytes.prefix(2) == [0xa9, 0x14], bytes.last == 0x87 {
             return Base58Check.encode(Data([network == .dogecoin ? 22 : 50]) + script.dropFirst(2).prefix(20))
         }
-        if network == .litecoin, bytes.count >= 4, bytes[1] == bytes.count - 2,
+        if network == .litecoin, (4...42).contains(bytes.count), bytes[1] == bytes.count - 2,
            bytes[0] == 0 || (0x51...0x60).contains(bytes[0]) {
-            return SegwitAddress.encode(hrp: "ltc", version: bytes[0] == 0 ? 0 : bytes[0] - 0x50, program: script.dropFirst(2))
+            let version = bytes[0] == 0 ? 0 : bytes[0] - 0x50
+            let program = script.dropFirst(2)
+            if version == 0 && program.count != 20 && program.count != 32 { return nil }
+            // A 32-byte HogAddr or peg-in kernel identifies MWEB protocol data.
+            if (version == 8 || version == 9) && program.count == 32 { return nil }
+            return SegwitAddress.encode(hrp: "ltc", version: version, program: program)
         }
         return nil
     }

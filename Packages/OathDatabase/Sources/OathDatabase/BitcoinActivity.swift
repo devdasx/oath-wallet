@@ -134,6 +134,33 @@ extension OathDatabase {
         }
     }
 
+    /// Older projections encoded nonstandard scripts and two MWEB markers as transparent
+    /// addresses. Their lowercase Bech32 version and length uniquely identify the affected
+    /// shapes. Qualify all repairs by chain, including the account-scoped search index.
+    static func clearInvalidLitecoinHistoryAddresses(_ db: Database) throws {
+        try db.execute(sql: """
+            CREATE TEMP TABLE invalidLitecoinHistoryAddress (value TEXT PRIMARY KEY) WITHOUT ROWID;
+            INSERT INTO invalidLitecoinHistoryAddress
+            SELECT value FROM (
+                SELECT counterparty AS value FROM activity WHERE networkID='litecoin'
+                UNION SELECT fromAddress FROM transfers WHERE networkID='litecoin'
+                UNION SELECT toAddress FROM transfers WHERE networkID='litecoin'
+                UNION SELECT p.address FROM transactionParticipants p
+                    JOIN accounts a ON a.id=p.accountID WHERE a.networkID='litecoin'
+            ) WHERE value GLOB 'ltc1*' AND (
+                length(value)>75 OR
+                (value GLOB 'ltc1q*' AND length(value) NOT IN (43,63)) OR
+                (value GLOB 'ltc1[gf]*' AND length(value)=63)
+            );
+            UPDATE activity SET counterparty='' WHERE networkID='litecoin' AND counterparty IN invalidLitecoinHistoryAddress;
+            UPDATE transfers SET fromAddress='' WHERE networkID='litecoin' AND fromAddress IN invalidLitecoinHistoryAddress;
+            UPDATE transfers SET toAddress='' WHERE networkID='litecoin' AND toAddress IN invalidLitecoinHistoryAddress;
+            DELETE FROM transactionParticipants WHERE accountID IN (SELECT id FROM accounts WHERE networkID='litecoin')
+                AND address IN invalidLitecoinHistoryAddress;
+            DROP TABLE invalidLitecoinHistoryAddress;
+            """)
+    }
+
     static func saveBitcoinParticipants(_ db: Database, accountID: String, transactionID: String,
                                        addresses: Set<String>) throws {
         for address in addresses where !address.isEmpty {
