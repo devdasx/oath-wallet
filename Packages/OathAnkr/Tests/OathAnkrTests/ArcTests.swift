@@ -12,10 +12,11 @@ private func arcLabel(_ value:String)->String {
     return "0x" + text + String(repeating:"0",count:64-text.count)
 }
 private actor ArcTransport: AnkrTransport {
-    let badLabels: Bool, badDecimals: Bool
+    let badLabels: Bool, badDecimals: Bool, malformedDecimals: Bool
     let wrongChain:Bool, badIDs:Bool, badToken:Bool, badMirror:Bool, failPrimary:Bool, reorg:Bool
     var requests:[URLRequest] = []; var reads = 0
-    init(wrongChain:Bool = false,badIDs:Bool = false,badToken:Bool = false,badMirror:Bool = false,failPrimary:Bool = false,reorg:Bool = false, badLabels: Bool = false, badDecimals: Bool = false) {
+    init(wrongChain:Bool = false,badIDs:Bool = false,badToken:Bool = false,badMirror:Bool = false,failPrimary:Bool = false,reorg:Bool = false, badLabels: Bool = false, badDecimals: Bool = false, malformedDecimals: Bool = false) {
+        self.malformedDecimals = malformedDecimals
         self.badLabels = badLabels; self.badDecimals = badDecimals
         self.wrongChain = wrongChain; self.badIDs = badIDs; self.badToken = badToken
         self.badMirror = badMirror; self.failPrimary = failPrimary; self.reorg = reorg
@@ -39,7 +40,7 @@ private actor ArcTransport: AnkrTransport {
                 if badToken && ref == arcToken && data.hasPrefix("0x70a08231") { return ["jsonrpc":"2.0","id":call["id"]!,"error":["code":-32000,"message":"execution reverted"]] }
                 if data == "0x06fdde03" { value = arcLabel("Fixture") }
                 else if data == "0x95d89b41" { value = arcLabel("FIX") }
-                else if data == "0x313ce567" { value = arcWord(6) }
+                else if data == "0x313ce567" { value = malformedDecimals ? "0xzz" : arcWord(6) }
                 else { value = arcWord(ref == ArcIdentity.usdc ? (badMirror ? 1:9007):123456789) }
             default: value = NSNull()
             }
@@ -132,6 +133,18 @@ final class ArcTests: XCTestCase, @unchecked Sendable {
         XCTAssertEqual(validation.error.message, "invalidAddress")
         let output = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         for privateValue in [arcOwner, arcToken, rejectedAddress, "0x313ce567", "0x64"] { XCTAssertFalse(output.contains(privateValue)) }
+
+        let malformed = try await ArcClient(transport: ArcTransport(malformedDecimals: true))
+            .inventory(owner: arcOwner, references: [arcToken], tracked: [token])
+        XCTAssertFalse(malformed.complete)
+        XCTAssertNil(malformed.holdings.first { $0.token.reference == arcToken }?.amount)
+        let deadline = ContinuousClock.now + .seconds(5)
+        while await !sink.events.contains(where: { $0.operation == "decode_inventory_token" }), ContinuousClock.now < deadline {
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        let decoding = await sink.events.filter { $0.operation == "decode_inventory_token" }
+        XCTAssertEqual(decoding.count, 1, "An invalid successful response still reports the local decoder failure")
+
     }
     private func history(next:Int = 101, failed:Bool = false, duplicate:Bool = false, owner:String = arcOwner) throws -> Data {
         let topic = { (address:String) in "0x" + String(repeating:"0",count:24) + address.dropFirst(2) }
