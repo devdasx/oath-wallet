@@ -3465,6 +3465,7 @@ Connect apps, understand requests and revoke supported access.
 Canonical: https://help.oathwallet.org/articles/create-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Create your first wallet
 
@@ -3500,6 +3501,7 @@ A new wallet is different from importing an existing one. Your app passcode unlo
 Canonical: https://help.oathwallet.org/articles/import-recovery-phrase
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Import a recovery phrase
 
@@ -3537,6 +3539,7 @@ Never enter recovery words into this website, a support message, or an online ch
 Canonical: https://help.oathwallet.org/articles/scan-recovery-qr
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Scan a recovery-phrase QR code
 
@@ -3568,6 +3571,7 @@ A receiving-address QR is not a recovery phrase. Do not share or photograph reco
 Canonical: https://help.oathwallet.org/articles/import-private-key
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Import a private key
 
@@ -3601,6 +3605,7 @@ A private-key wallet does not have a recovery phrase in Oath. Keep the original 
 Canonical: https://help.oathwallet.org/articles/private-key-formats
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Which private-key formats can I import?
 
@@ -3632,6 +3637,7 @@ Do not convert keys on an unfamiliar website. A public address, xpub, or transac
 Canonical: https://help.oathwallet.org/articles/first-passcode
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Set your first app passcode
 
@@ -3663,6 +3669,7 @@ If the confirmation does not match, follow the inline error and retry. A passcod
 Canonical: https://help.oathwallet.org/articles/home-screen
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Find your way around Home
 
@@ -3698,6 +3705,7 @@ The total is a valuation based on available balances, prices and exchange rates.
 Canonical: https://help.oathwallet.org/articles/add-another-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Add another wallet
 
@@ -3729,6 +3737,7 @@ Additional wallets share the app lock. They remain separate wallet records; addi
 Canonical: https://help.oathwallet.org/articles/switch-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Switch wallets from Home
 
@@ -3765,6 +3774,7 @@ Switching wallets does not transfer funds. A wallet-row valuation can use cached
 Canonical: https://help.oathwallet.org/articles/customize-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Change a wallet’s name and color
 
@@ -3796,6 +3806,7 @@ The color changes the wallet artwork. Appearance mode and the app icon are contr
 Canonical: https://help.oathwallet.org/articles/reorder-wallets
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Reorder your wallets
 
@@ -3829,6 +3840,7 @@ This changes wallet order. Asset lists are sorted by portfolio value and activit
 Canonical: https://help.oathwallet.org/articles/remove-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Move a wallet to Recently Deleted
 
@@ -3860,6 +3872,7 @@ Removed wallets are retained for seven days before automatic cleanup. Removing a
 Canonical: https://help.oathwallet.org/articles/recover-deleted-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Recover a recently deleted wallet
 
@@ -3891,6 +3904,7 @@ Each row shows when removal becomes permanent. Do not rely on Recently Deleted a
 Canonical: https://help.oathwallet.org/articles/permanently-delete-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Permanently delete removed wallets
 
@@ -3923,6 +3937,7 @@ Permanent deletion cannot be undone using Recently Deleted. Existing external ba
 Canonical: https://help.oathwallet.org/articles/add-passphrase
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Create a wallet with a BIP-39 passphrase
 
@@ -3956,6 +3971,7 @@ This does not add a password to the existing wallet. Every different passphrase 
 Canonical: https://help.oathwallet.org/articles/backup-all-wallets
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Back up all wallets to iCloud
 
@@ -3989,6 +4005,7 @@ Each wallet has its own encrypted backup file, using the password you just chose
 Canonical: https://help.oathwallet.org/articles/backup-one-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Back up one wallet to iCloud
 
@@ -4022,6 +4039,7 @@ Files are stored in iCloud Drive → Oath Wallet → Wallet Backups. Turning off
 Canonical: https://help.oathwallet.org/articles/backup-password
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand your backup password
 
@@ -4053,6 +4071,7 @@ Oath cannot reset the password of an encrypted backup. If you still have an acce
 Canonical: https://help.oathwallet.org/articles/restore-icloud
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Restore from an iCloud backup
 
@@ -4086,6 +4105,7 @@ An all-wallet backup creates separate files; restore them individually with the 
 Canonical: https://help.oathwallet.org/articles/backup-status
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Check whether a backup has finished
 
@@ -4119,6 +4139,7 @@ Closing or locking the app can interrupt preparation of remaining wallets. Encry
 Canonical: https://help.oathwallet.org/articles/icloud-troubleshooting
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Fix an iCloud backup or restore problem
 
@@ -4150,6 +4171,7 @@ Do not delete the app or the only backup file to troubleshoot. Contact support w
 Canonical: https://help.oathwallet.org/articles/view-recovery-phrase
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # View your recovery phrase
 
@@ -4183,6 +4205,7 @@ Never share the words with support, websites or other people. Avoid screenshots.
 Canonical: https://help.oathwallet.org/articles/view-private-key
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # View or copy a private key
 
@@ -4214,6 +4237,7 @@ Anyone with a private key can control its account. Do not paste it into this Hel
 Canonical: https://help.oathwallet.org/articles/move-to-new-phone
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Restore your wallets on another iPhone
 
@@ -4245,6 +4269,7 @@ The current build does not offer a direct phone-to-phone transfer flow. Deleting
 Canonical: https://help.oathwallet.org/articles/unlock-wallet
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Unlock Oath
 
@@ -4276,6 +4301,7 @@ The keypad passcode is the one created in Oath. It is not necessarily your iPhon
 Canonical: https://help.oathwallet.org/articles/enable-passcode
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Enable passcode protection
 
@@ -4307,6 +4333,7 @@ Store recovery material separately. An app passcode is an access lock, not a rec
 Canonical: https://help.oathwallet.org/articles/change-passcode
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Change your app passcode
 
@@ -4338,6 +4365,7 @@ Changing the app passcode does not change an existing iCloud backup password or 
 Canonical: https://help.oathwallet.org/articles/enable-face-id
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Enable Face ID or Touch ID
 
@@ -4369,6 +4397,7 @@ The label depends on the device. Enabling biometrics uses a biometric prompt; it
 Canonical: https://help.oathwallet.org/articles/disable-security
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Turn off Face ID or passcode protection
 
@@ -4400,6 +4429,7 @@ Turning off passcode protection also removes the app-lock requirement. Keep prot
 Canonical: https://help.oathwallet.org/articles/auto-lock
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Choose when Oath locks
 
@@ -4431,6 +4461,7 @@ Restarting the app requires authentication when passcode protection is on, regar
 Canonical: https://help.oathwallet.org/articles/lock-now
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Lock Oath immediately
 
@@ -4462,6 +4493,7 @@ The lock icon appears when passcode protection is enabled. Manual locking does n
 Canonical: https://help.oathwallet.org/articles/app-switcher-privacy
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Hide the app preview in the app switcher
 
@@ -4495,6 +4527,7 @@ This protects the app-switcher preview. It does not hide public blockchain activ
 Canonical: https://help.oathwallet.org/articles/hide-balances
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Hide balances on screen
 
@@ -4530,6 +4563,7 @@ Hiding amounts is a screen-privacy choice. It does not change balances, transfer
 Canonical: https://help.oathwallet.org/articles/forgot-passcode
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # What if I forget my app passcode?
 
@@ -4561,6 +4595,7 @@ There is no email reset that recovers your wallet from the six-digit app passcod
 Canonical: https://help.oathwallet.org/articles/reset-app
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Reset Oath on this device
 
@@ -4594,6 +4629,7 @@ Reset is different from moving one wallet to Recently Deleted. It does not erase
 Canonical: https://help.oathwallet.org/articles/asset-screen
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Open an asset’s screen
 
@@ -4626,6 +4662,7 @@ A token’s ticker is not its identity. Check the network and contract or asset 
 Canonical: https://help.oathwallet.org/articles/portfolio-values
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand balances and portfolio value
 
@@ -4657,6 +4694,7 @@ A local-currency value uses available prices and exchange rates; it is not a sal
 Canonical: https://help.oathwallet.org/articles/refresh-balances
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Refresh balances and activity
 
@@ -4688,6 +4726,7 @@ Providers can return delayed or incomplete data. Oath retains cached information
 Canonical: https://help.oathwallet.org/articles/search-assets
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Search for a coin or token
 
@@ -4719,6 +4758,7 @@ The same symbol can belong to unrelated tokens on different networks. Inspect th
 Canonical: https://help.oathwallet.org/articles/add-custom-token
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Find and add a token by address
 
@@ -4751,6 +4791,7 @@ Manual address lookup supports the app’s EVM networks, TRON and Solana. Result
 Canonical: https://help.oathwallet.org/articles/token-not-found
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Why isn’t a token appearing?
 
@@ -4783,6 +4824,7 @@ Some automatically discovered tokens are filtered using provider verification li
 Canonical: https://help.oathwallet.org/articles/asset-order
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # How assets are sorted
 
@@ -4814,6 +4856,7 @@ This order is automatic. Reordering wallets does not reorder the assets inside t
 Canonical: https://help.oathwallet.org/articles/prices-chart
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Read an asset’s price and chart
 
@@ -4846,6 +4889,7 @@ Quotes and charts depend on provider coverage. They may use cached values and do
 Canonical: https://help.oathwallet.org/articles/asset-information
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # View an asset’s information
 
@@ -4877,6 +4921,7 @@ Descriptions and logos are informational. A familiar name or image is not proof 
 Canonical: https://help.oathwallet.org/articles/account-activation-and-reserves
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Why does my address need funds to activate?
 
@@ -4980,6 +5025,7 @@ Network values can change. Use the current amount shown in Oath and review the s
 Canonical: https://help.oathwallet.org/articles/receive-crypto
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Receive crypto with a QR code
 
@@ -5013,6 +5059,7 @@ The same-looking address can exist on multiple networks. The network must match,
 Canonical: https://help.oathwallet.org/articles/copy-share-address
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Copy or share your receiving address
 
@@ -5045,6 +5092,7 @@ Only share a public receiving address or receiving QR. A private key, recovery p
 Canonical: https://help.oathwallet.org/articles/receive-network-tokens
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # What does “and more” mean on Receive?
 
@@ -5077,6 +5125,7 @@ Token discovery depends on the network, provider coverage and filtering. A recei
 Canonical: https://help.oathwallet.org/articles/bitcoin-address-types
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Choose a Bitcoin address type
 
@@ -5110,6 +5159,7 @@ The choice affects receiving. The Bitcoin balance scan covers supported imported
 Canonical: https://help.oathwallet.org/articles/bitcoin-gap-limit
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Why can a Bitcoin receiving address change?
 
@@ -5143,6 +5193,7 @@ The scanner uses a gap of 20 unused addresses per supported branch. Addresses fa
 Canonical: https://help.oathwallet.org/articles/solana-address-path
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Choose Phantom or Trust Wallet’s Solana path
 
@@ -5176,6 +5227,7 @@ The paths derive different accounts from the same phrase. Changing paths does no
 Canonical: https://help.oathwallet.org/articles/wrong-network
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Check the network before a transfer
 
@@ -5207,6 +5259,7 @@ A matching symbol or 0x address does not mean funds will appear on the network y
 Canonical: https://help.oathwallet.org/articles/transaction-list
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Read your transaction activity
 
@@ -5239,6 +5292,7 @@ Some providers supply incomplete history or do not identify every transfer. Loca
 Canonical: https://help.oathwallet.org/articles/transaction-details
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Open transaction details
 
@@ -5271,6 +5325,7 @@ Missing provider fields are not fabricated. A displayed local-currency fee is a 
 Canonical: https://help.oathwallet.org/articles/transaction-status
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand pending, confirmed and failed activity
 
@@ -5305,6 +5360,7 @@ A failed transaction may still incur a network fee on some chains. A pending inc
 Canonical: https://help.oathwallet.org/articles/canceled-replaced
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # What do Canceled and Replaced mean?
 
@@ -5336,6 +5392,7 @@ Oath does not infer cancellation merely because a request failed or a transactio
 Canonical: https://help.oathwallet.org/articles/network-fee
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Read the network fee
 
@@ -5367,6 +5424,7 @@ The fee is separate from a token’s transfer amount. The local value uses an av
 Canonical: https://help.oathwallet.org/articles/copy-transaction-id
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Copy a transaction ID or address
 
@@ -5402,6 +5460,7 @@ The copied value is complete even when the on-screen label is shortened. A trans
 Canonical: https://help.oathwallet.org/articles/view-explorer
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # View a transaction on its explorer
 
@@ -5434,6 +5493,7 @@ The explorer is an independent website. It never needs your recovery phrase or p
 Canonical: https://help.oathwallet.org/articles/share-transaction
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Share a transaction image or link
 
@@ -5466,6 +5526,7 @@ A screenshot is not independent proof of payment. The recipient can verify the t
 Canonical: https://help.oathwallet.org/articles/send-availability
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Send coins and tokens
 
@@ -5500,6 +5561,7 @@ A direct send stays on the selected network. It does not swap assets or bridge f
 Canonical: https://help.oathwallet.org/articles/address-book
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Create a contact in the address book
 
@@ -5531,6 +5593,7 @@ Creating a contact does not add a network or send funds. The name is a label you
 Canonical: https://help.oathwallet.org/articles/contact-address
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Add an address to a contact
 
@@ -5562,6 +5625,7 @@ A contact can have multiple addresses, up to the app’s limit of 50. Format val
 Canonical: https://help.oathwallet.org/articles/edit-contact
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Edit a contact or saved address
 
@@ -5593,6 +5657,7 @@ Editing a label does not change the blockchain account. If a contact gives you a
 Canonical: https://help.oathwallet.org/articles/delete-contact
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Delete a contact or remove an address
 
@@ -5624,6 +5689,7 @@ Address-book deletion does not delete a wallet or affect on-chain funds. Contact
 Canonical: https://help.oathwallet.org/articles/search-contacts
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Find a contact
 
@@ -5655,6 +5721,7 @@ Check the network beside a saved address before using it.
 Canonical: https://help.oathwallet.org/articles/currency
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Change your display currency
 
@@ -5686,6 +5753,7 @@ This is a display conversion. It does not exchange crypto or change native units
 Canonical: https://help.oathwallet.org/articles/language
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Change the app language
 
@@ -5717,6 +5785,7 @@ Asset symbols, addresses and third-party descriptions may retain their original 
 Canonical: https://help.oathwallet.org/articles/appearance
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Light, Dark or System appearance
 
@@ -5748,6 +5817,7 @@ System mode follows the device appearance. It does not automatically change the 
 Canonical: https://help.oathwallet.org/articles/app-icon
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Change the app icon
 
@@ -5779,6 +5849,7 @@ Changing the icon is cosmetic and does not affect your wallets.
 Canonical: https://help.oathwallet.org/articles/permissions
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Review wallet permissions and connected apps
 
@@ -5812,6 +5883,7 @@ Revocations are network transactions and require fees. Removing a token from vie
 Canonical: https://help.oathwallet.org/articles/in-app-browser
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Open links without leaving Oath
 
@@ -5843,6 +5915,7 @@ A website is separate from the wallet. Do not type recovery words or private key
 Canonical: https://help.oathwallet.org/articles/request-feature
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Request a feature
 
@@ -5874,6 +5947,7 @@ GitHub issues are public. Never include recovery material, backup passwords or c
 Canonical: https://help.oathwallet.org/articles/report-bug
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Report a bug
 
@@ -5907,6 +5981,7 @@ Do not share recovery phrases, private keys or backup passwords. For a sensitive
 Canonical: https://help.oathwallet.org/articles/contact-support
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Contact Oath support
 
@@ -5940,6 +6015,7 @@ Opening Contact Us does not send an email automatically. Never send recovery phr
 Canonical: https://help.oathwallet.org/articles/about-legal
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Find articles, privacy and terms
 
@@ -5971,6 +6047,7 @@ Release articles may describe an older app version. Use this Help Center’s ver
 Canonical: https://help.oathwallet.org/articles/use-bitcoin-cash
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Bitcoin Cash in Oath
 
@@ -6004,6 +6081,7 @@ Uses Bitcoin Cash addresses and its own history. Do not send Bitcoin (BTC) to th
 Canonical: https://help.oathwallet.org/articles/use-dogecoin
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Dogecoin in Oath
 
@@ -6037,6 +6115,7 @@ Uses Dogecoin addresses. A Dogecoin key is not interchangeable with a similarly 
 Canonical: https://help.oathwallet.org/articles/use-litecoin
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Litecoin in Oath
 
@@ -6070,6 +6149,7 @@ Use the address-type control when available for the imported wallet material.
 Canonical: https://help.oathwallet.org/articles/use-solana
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Solana in Oath
 
@@ -6103,6 +6183,7 @@ Balances, discovered tokens and activity follow the active Solana address.
 Canonical: https://help.oathwallet.org/articles/use-tron
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use TRON in Oath
 
@@ -6136,6 +6217,7 @@ Choose TRON at the sender for TRX and compatible TRON tokens.
 Canonical: https://help.oathwallet.org/articles/use-gram
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Gram in Oath
 
@@ -6169,6 +6251,7 @@ The app labels this network Gram and recognizes TON-related search aliases.
 Canonical: https://help.oathwallet.org/articles/use-aptos
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Aptos in Oath
 
@@ -6202,6 +6285,7 @@ Uses an Aptos account and network-specific token identities.
 Canonical: https://help.oathwallet.org/articles/use-sui
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Sui Network in Oath
 
@@ -6235,6 +6319,7 @@ Uses a Sui account and Sui coin types.
 Canonical: https://help.oathwallet.org/articles/use-near
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use NEAR Protocol in Oath
 
@@ -6268,6 +6353,7 @@ Shows data for the wallet’s active NEAR account.
 Canonical: https://help.oathwallet.org/articles/use-xrp-ledger
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use XRP Ledger in Oath
 
@@ -6301,6 +6387,7 @@ Shows XRP and supported issued assets for the active ledger account.
 Canonical: https://help.oathwallet.org/articles/use-stellar
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Stellar in Oath
 
@@ -6334,6 +6421,7 @@ Shows XLM and supported assets for the active Stellar account.
 Canonical: https://help.oathwallet.org/articles/evm-networks
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Ethereum and EVM networks
 
@@ -6365,6 +6453,7 @@ Keep the network’s fee asset available for token transfers. Arc is a special c
 Canonical: https://help.oathwallet.org/articles/arc-usdc
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand USDC on Arc
 
@@ -6398,6 +6487,7 @@ An Ethereum or another network’s USDC balance is separate. Mainnet and testnet
 Canonical: https://help.oathwallet.org/articles/robinhood-chain
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Robinhood Chain
 
@@ -6431,6 +6521,7 @@ A Robinhood Chain address in Oath is not a login to a Robinhood brokerage accoun
 Canonical: https://help.oathwallet.org/articles/home-scanner
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Scan a token address from Home
 
@@ -6463,6 +6554,7 @@ Scanning is an input shortcut, not a trust check. Confirm the network and comple
 Canonical: https://help.oathwallet.org/articles/wallet-settings-shortcut
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Open the current wallet’s settings from Home
 
@@ -6495,6 +6587,7 @@ The controls can be mirrored for right-to-left languages. Identify them by their
 Canonical: https://help.oathwallet.org/articles/wallet-balances
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Read wallet balances and the active-wallet badge
 
@@ -6529,6 +6622,7 @@ The active-wallet badge identifies the wallet used by Home and History. Use the 
 Canonical: https://help.oathwallet.org/articles/full-transaction-history
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # View the active wallet’s full transaction history
 
@@ -6561,6 +6655,7 @@ If an expected entry is absent, clear search and filters, refresh Home or the as
 Canonical: https://help.oathwallet.org/articles/search-transactions
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Search transactions by ID, address or amount
 
@@ -6593,6 +6688,7 @@ A short address fragment or common amount can match several entries. Compare the
 Canonical: https://help.oathwallet.org/articles/filter-transactions
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Filter transaction history
 
@@ -6628,6 +6724,7 @@ A disabled checkmark means a range needs correction, such as a minimum above its
 Canonical: https://help.oathwallet.org/articles/asset-transaction-history
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # View all transactions for one coin or token
 
@@ -6660,6 +6757,7 @@ An absent View All button is not proof that no other on-chain activity ever occu
 Canonical: https://help.oathwallet.org/articles/spam-history
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # How Oath hides spam and phishing activity
 
@@ -6694,6 +6792,7 @@ No filter can recognize every scam, and an unlisted token is not automatically f
 Canonical: https://help.oathwallet.org/articles/zero-value-transactions
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Why can a transaction show zero?
 
@@ -6726,6 +6825,7 @@ Filtering a zero-value entry is not the same as canceling it. On-chain records a
 Canonical: https://help.oathwallet.org/articles/unverified-tokens
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand verified and manually added tokens
 
@@ -6758,6 +6858,7 @@ Never decide by symbol alone. Tokens with the same name on the same or different
 Canonical: https://help.oathwallet.org/articles/confirmation-checkmark
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use the checkmark to finish an action
 
@@ -6790,6 +6891,7 @@ The small check badge on a wallet icon means that wallet is active. It is differ
 Canonical: https://help.oathwallet.org/articles/security-settings-access
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Authenticate before opening Passcode & Face ID
 
@@ -6822,6 +6924,7 @@ Your app passcode is not your recovery phrase, BIP-39 passphrase or iCloud backu
 Canonical: https://help.oathwallet.org/articles/help-center
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Open and search the Help Center
 
@@ -6854,6 +6957,7 @@ Never put a recovery phrase, private key, app passcode or backup password into a
 Canonical: https://help.oathwallet.org/articles/send-max-and-fees
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Max and understand spendable balance
 
@@ -6890,6 +6994,7 @@ A displayed portfolio total is a valuation, not a promise that all of it is spen
 Canonical: https://help.oathwallet.org/articles/send-tags-and-memos
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Enter destination tags and memos
 
@@ -6922,6 +7027,7 @@ Memos and on-chain messages can become public. Never put a recovery phrase, priv
 Canonical: https://help.oathwallet.org/articles/bitcoin-transfer-options
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Set Bitcoin transfer options
 
@@ -6955,6 +7061,7 @@ Never put secrets in an on-chain message. Confirmed blockchain content cannot be
 Canonical: https://help.oathwallet.org/articles/send-troubleshooting
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Resolve a transfer that cannot be sent
 
@@ -6988,6 +7095,7 @@ Do not send recovery words, private keys, passcodes or raw signing payloads to s
 Canonical: https://help.oathwallet.org/articles/connect-dapp
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Connect a dApp with WalletConnect
 
@@ -7021,6 +7129,7 @@ Never share a WalletConnect pairing QR or URI publicly. Connecting does not requ
 Canonical: https://help.oathwallet.org/articles/dapp-disconnect
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Disconnect a dApp safely
 
@@ -7054,6 +7163,7 @@ If a site still displays an old connected state, refresh it. Check Oath’s sess
 Canonical: https://help.oathwallet.org/articles/dapp-swap
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Review a token swap from a dApp
 
@@ -7089,6 +7199,7 @@ An approval grants spending access; it is not the swap itself. Verify the spende
 Canonical: https://help.oathwallet.org/articles/dapp-transaction-data
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Read human-readable transaction data
 
@@ -7121,6 +7232,7 @@ Simulation is an estimate and can be incomplete. Always compare the exact networ
 Canonical: https://help.oathwallet.org/articles/dapp-signatures
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Review messages, sign-ins and token permits
 
@@ -7154,6 +7266,7 @@ No legitimate WalletConnect approval asks you to type a recovery phrase or priva
 Canonical: https://help.oathwallet.org/articles/walletconnect-solana
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Solana dApps and test networks
 
@@ -7187,6 +7300,7 @@ Third-party dApp compatibility varies. A test-cluster connection is not proof th
 Canonical: https://help.oathwallet.org/articles/walletconnect-thorchain
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Review THORChain dApp requests
 
@@ -7220,6 +7334,7 @@ A direct RUNE send is different from a deposit or cross-chain swap. Review the a
 Canonical: https://help.oathwallet.org/articles/revoke-token-access
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Revoke a token allowance or delegate
 
@@ -7253,6 +7368,7 @@ Revoking access does not recover funds already spent by a contract. It also does
 Canonical: https://help.oathwallet.org/articles/bulk-revoke-access
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Revoke several permissions
 
@@ -7286,6 +7402,7 @@ Keep enough fee assets on every selected network. Never describe a partly succes
 Canonical: https://help.oathwallet.org/articles/permission-coverage
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand permission scan coverage
 
@@ -7318,6 +7435,7 @@ An empty permission list must not be interpreted as a comprehensive security aud
 Canonical: https://help.oathwallet.org/articles/check-contract-access
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Check a contract and approved address
 
@@ -7352,6 +7470,7 @@ Do not paste a private key or recovery phrase into either address field.
 Canonical: https://help.oathwallet.org/articles/permit2-access
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand Permit2 and signed approvals
 
@@ -7384,6 +7503,7 @@ An unlimited allowance is a spending authorization, not your token balance.
 Canonical: https://help.oathwallet.org/articles/permission-removal-history
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Check revocation progress and failures
 
@@ -7416,6 +7536,7 @@ Do not retry an uncertain transaction blindly. Use its existing public transacti
 Canonical: https://help.oathwallet.org/articles/account-control-permissions
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Review account-control and permanent delegates
 
@@ -7449,6 +7570,7 @@ When the app cannot safely remove a permission, it should remain a limitation ra
 Canonical: https://help.oathwallet.org/articles/last-wallet-reset
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Remove the last active wallet
 
@@ -7482,6 +7604,7 @@ Do not delete the last local copy of recovery material unless you have an indepe
 Canonical: https://help.oathwallet.org/articles/upgrade-existing-wallets
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Open existing wallets after an Oath update
 
@@ -7515,6 +7638,7 @@ Never send your passcode or recovery material to support. Keep the original reco
 Canonical: https://help.oathwallet.org/articles/balance-change
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand the balance-change capsule
 
@@ -7546,6 +7670,7 @@ A missing or incomplete baseline can limit the comparison. Do not infer a full p
 Canonical: https://help.oathwallet.org/articles/asset-filters
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Filter the Home assets list
 
@@ -7578,6 +7703,7 @@ A displayed logo or name is not verification that an asset is legitimate.
 Canonical: https://help.oathwallet.org/articles/token-prices-and-logos
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Understand token logos and missing prices
 
@@ -7611,6 +7737,7 @@ No provider can supply a trustworthy price for every token. Unknown prices shoul
 Canonical: https://help.oathwallet.org/articles/haptic-feedback
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Turn haptic feedback on or off
 
@@ -7642,6 +7769,7 @@ Read the on-screen status even when you feel success feedback.
 Canonical: https://help.oathwallet.org/articles/use-thorchain
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use THORChain and RUNE
 
@@ -7674,6 +7802,7 @@ A source-chain confirmation alone does not prove a cross-chain destination payme
 Canonical: https://help.oathwallet.org/articles/use-hyperevm
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use HyperEVM in Oath
 
@@ -7707,6 +7836,7 @@ A shared 0x address does not bridge funds. Choose the exact network on both side
 Canonical: https://help.oathwallet.org/articles/use-monad
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Monad in Oath
 
@@ -7740,6 +7870,7 @@ A shared 0x address does not bridge funds. Choose the exact network on both side
 Canonical: https://help.oathwallet.org/articles/use-unichain
 Updated: 2026-10-28T00:00:00Z
 Applies to app version: Oath 5.0.0
+App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.
 
 # Use Unichain in Oath
 
@@ -8100,9 +8231,9 @@ https://articles.oathwallet.org/bitcoin-settings-oath-address-types-indexes-comp
 
 Match the address type and imported key scope; changing the visible format does not change the blockchain.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## Available address families
 
@@ -8163,9 +8294,9 @@ https://articles.oathwallet.org/why-oath-has-no-swaps-perps-web3-walletconnect
 
 Oath now supports WalletConnect. Understand the difference between a session, a signature and an on-chain approval.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## What changed
 
@@ -8625,9 +8756,9 @@ https://articles.oathwallet.org/lock-oath-down-passcode-face-id-auto-lock-app-sw
 
 Choose access controls deliberately and keep a separate recovery method.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## App passcode
 
@@ -8660,9 +8791,9 @@ https://articles.oathwallet.org/what-never-leaves-iphone-oath-self-custody-secur
 
 Understand the protected local vault, password-encrypted backups, and what public network requests reveal.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## Local credentials
 
@@ -8699,9 +8830,9 @@ https://articles.oathwallet.org/receive-crypto-safely-network-address-qr-request
 
 Use the address displayed for your selected wallet and exact asset network.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## Select the wallet and network
 
@@ -8734,9 +8865,9 @@ https://articles.oathwallet.org/why-bitcoin-wallets-generate-fresh-receiving-add
 
 A fresh address can belong to the same supported HD wallet; verify the wallet and network.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## One recovery method, several addresses
 
@@ -8961,9 +9092,9 @@ https://articles.oathwallet.org/recovery-phrase-private-key-icloud-iphone-transf
 
 Match the recovery format, network and required passphrase to the original wallet.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## Recovery phrase
 
@@ -9190,9 +9321,9 @@ https://articles.oathwallet.org/backup-restore-oath-wallet
 
 Choose a recovery method supported by 5.0.0 and verify it before replacing or erasing your phone.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## Choose the recovery material
 
@@ -9229,9 +9360,9 @@ https://articles.oathwallet.org/add-bip39-passphrase-oath-wallet
 
 A passphrase derives another wallet; it is not an app lock or backup-file password.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## BIP39 passphrase wallets
 

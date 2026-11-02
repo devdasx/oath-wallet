@@ -6,9 +6,9 @@ https://articles.oathwallet.org/why-bitcoin-wallets-generate-fresh-receiving-add
 
 A fresh address can belong to the same supported HD wallet; verify the wallet and network.
 
-## Current release guidance
+## Guide version and App Review status
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Build 102 uses the GitHub upload-only workflow; check your installed version. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
 
 ## One recovery method, several addresses
 

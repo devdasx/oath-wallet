@@ -33,7 +33,8 @@ test('current guides agree across article text, HTML, feeds and modification dat
   const a=data.articles.find(a=>a.url.endsWith('/'+slug));const item=feed.items.find(a=>a.url.endsWith('/'+slug));
   assert.ok(a&&item,slug);assert.equal(item.title,a.title);assert.equal(item.date_modified,a.updated_at);
   assert.match(a.updated_at,/2026-11-02/);assert.match(html,/5\.0\.0/);assert.match(md,/5\.0\.0/);assert.match(item.content_html,/5\.0\.0/);
-  assert.match(html,/Current release guidance/);assert.ok(html.includes('ecb16953a5766471e1214eae6655cf783d0d062a'));
+  assert.match(html,/Guide version and App Review status/);
+  for(const text of [html,md]) assert.ok(text.includes(data.facts.source_release_status));assert.ok(html.includes('ecb16953a5766471e1214eae6655cf783d0d062a'));
   assert.doesNotMatch(html,/580cf943|docs\/AUDIT_SCOPE\.md|4\.0\.0/,slug+' has no retired citations, including structured metadata');
   assert.ok(html.includes(a.reading_minutes+' min read'),slug+' reading time agrees with the listing');
  }
