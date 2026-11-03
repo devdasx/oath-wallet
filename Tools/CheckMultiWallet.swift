@@ -383,13 +383,13 @@ private struct CredentialIdentity: Decodable, Equatable {
         let expectedSolana = "synthetic-export-" + importedID.uuidString + solana.chain.id + solana.path
         check(keyFlow.phase == .revealed && keyFlow.key?.value == expectedSolana,
               "Acknowledgement reveals only the authenticated inactive wallet's account")
-        keyFlow.cancelAuthentication()
-        check(keyFlow.key?.value == expectedSolana, "The revealed key follows the existing app-lock snapshot policy")
         keyFlow.returnToWarning()
         check(keyFlow.phase == .warning && keyFlow.key == nil, "Back to warning removes the displayed value")
         keyFlow.acknowledge()
         check(keyFlow.key?.value == expectedSolana, "The same authorized warning can reveal again")
-        keyFlow.returnToChains()
+        keyFlow.cancelAuthentication()
+        check(keyFlow.key == nil && keyFlow.selected == nil && keyFlow.phase == .chains,
+              "Lock/background discards the revealed key independently of app-switcher privacy")
         keyFlow.acknowledge()
         check(keyFlow.phase == .chains && keyFlow.selected == nil && keyFlow.key == nil,
               "Leaving an account clears its key and authorization")

@@ -659,6 +659,10 @@ extension OathPostSendBalanceRefresh { func submitted(walletID: String, networkI
     }
 }
 """)
+    if "--private-key-disclosure" in sys.argv:
+        check = sources / "CheckMultiWallet.swift"
+        check.write_text(check.read_text().replace("@main", ""))
+        shutil.copyfile(root / "Tools/CheckPrivateKeyDisclosure.swift", sources / "CheckPrivateKeyDisclosure.swift")
     if "--private-keys" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
