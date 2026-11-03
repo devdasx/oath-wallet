@@ -238,9 +238,9 @@ extension OathPrivateKeyReading {
     }
 
     func cancelAuthentication() {
-        // Preserve an already revealed page beneath the app lock, as requested
-        // by the app's snapshot policy. Unacknowledged results are not retained.
-        if phase != .revealed { returnToChains() }
+        // Secret disclosure must end on lock/background even when the optional
+        // app-switcher preview blur is disabled. Reopening authenticates again.
+        returnToChains()
     }
 
     private func cancelWork() {
