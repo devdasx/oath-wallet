@@ -72,6 +72,18 @@ import GRDB
             }
         }
     }
+    func testPreviouslyRemovedJournalsKeepRetentionCleanupReachable() async throws {
+        for table in tables {
+            let (db,folder,_,_)=try await WalletConnectXrplJournalTests().fixture()
+            defer { try? FileManager.default.removeItem(at:folder) }
+            try await insertSyntheticRow(table,state:"unknown",db:db)
+            // Older versions permitted this removal. Unlock eventually purges
+            // expired deleted-wallet metadata without another user preflight.
+            try await db.reconcileWalletLifecycle([.init(id:"w1",deletedAt:1)])
+            do { try await db.deleteWalletMetadata("w1") }
+            catch { XCTFail("Legacy retention cleanup blocked for \(table): \(error)") }
+        }
+    }
     func testResetStillErasesPendingJournalAndRejectsLateWrites() async throws {
         let (db,folder,plan,signed)=try await WalletConnectXrplJournalTests().fixture()
         defer { try? FileManager.default.removeItem(at:folder) }
