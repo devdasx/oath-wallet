@@ -59,12 +59,17 @@ public struct StellarSendPlan: Codable, Sendable, Equatable {
     }
     public func validate(now: Date = .now, checkAge: Bool = true) throws {
         if checkAge { guard (-5...90).contains(now.timeIntervalSince(createdAt)), now.timeIntervalSince1970 < Double(maxTime) else { throw StellarSendError.expired } }
+        // Reconciliation skips age checks, but decoded timestamps still need a
+        // checked conversion. Preserve whole-second truncation for valid dates.
+        let createdSeconds = createdAt.timeIntervalSince1970
+        guard createdSeconds.isFinite,
+              let createdWholeSeconds = UInt64(exactly: max(0, createdSeconds).rounded(.towardZero)) else { throw StellarSendError.malformed }
         guard try StellarIdentity.address(sender) == sender, try StellarIdentity.address(recipient) == recipient, (sender != recipient || configuresAccount),
               try StellarIdentity.reference(reference) == reference, (0...255).contains(decimals), sequence > 0,
               firstLedger > 0, lastLedger > firstLedger, lastLedger-firstLedger <= 30,
               fee > 0, fee <= Self.maximumFee, nativeBalance <= UInt64(Int64.max), reserve <= nativeBalance,
               nativeLiabilities <= nativeBalance-reserve, UInt64(fee) <= nativeBalance-reserve-nativeLiabilities,
-              maxTime > UInt64(max(0,createdAt.timeIntervalSince1970)), Double(maxTime)-createdAt.timeIntervalSince1970 <= 180 else { throw StellarSendError.malformed }
+              maxTime > createdWholeSeconds, Double(maxTime)-createdSeconds <= 180 else { throw StellarSendError.malformed }
         try memo.validate()
         if let multisig { try multisig.validate(); guard multisig.account == sender else { throw StellarSendError.wrongOwner } }
         if configuresAccount {
