@@ -28,13 +28,17 @@ extension OathDatabase {
         }
     }
 
-    /// Removal must preserve every recoverable submission, including dApp
-    /// journals that do not create an ordinary sends row. Full reset has its
-    /// own explicit authorization and erasure boundary.
+    /// New wallet removals must preserve recoverable dApp submissions too.
+    /// Full reset has its own explicit authorization and erasure boundary.
     static func requireNoPendingWalletTransactions(_ id: String, db: Database) throws {
         guard try Int.fetchOne(db, sql: "SELECT 1 FROM sends WHERE walletID=? AND state IN ('queued','signed','broadcast') LIMIT 1", arguments: [id]) == nil else {
             throw StoreError.invalidTransition
         }
+        // Earlier versions allowed removing wallets with pending dApp work.
+        // Preserve cleanup of those already-removed records: retention purge
+        // runs during unlock, after their encrypted contents have expired.
+        // Blocking it would strand the installation in unlock reconciliation.
+        if try WalletRecord.fetchOne(db, key: id)?.deletedAt != nil { return }
         let journals = [
             "walletConnectBitcoinSubmissions", "walletConnectSolanaSubmissions",
             "walletConnectSuiSubmissions", "walletConnectTonSubmissions",
