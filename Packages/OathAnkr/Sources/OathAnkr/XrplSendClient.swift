@@ -578,8 +578,12 @@ public extension XrplSendClient {
         simulation.removeValue(forKey: "Signers")
         simulation.removeValue(forKey: "SigningPubKey")
         let result = try await rpc("simulate", ["tx_json": .object(simulation), "binary": .bool(false)], endpoint: s.endpoint)
-        guard result["engine_result"].string == "tesSUCCESS" else {
-            let code = Self.safeCode(result["engine_result"].string)
+        // Approval and pre-signing checks require consistent success metadata,
+        // just like ordinary sends. Missing metadata is not a successful dry run.
+        guard result["engine_result"].string == "tesSUCCESS",
+              result["meta"]["TransactionResult"].string == "tesSUCCESS" else {
+            let code = Self.safeCode(result["engine_result"].string == "tesSUCCESS"
+                ? result["meta"]["TransactionResult"].string : result["engine_result"].string)
             throw XrplSendError.simulation(code)
         }
         var returned = result["tx_json"].fields ?? [:]
