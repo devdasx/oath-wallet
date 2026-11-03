@@ -13,6 +13,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--live', action='store_true')
 parser.add_argument('--all-networks', action='store_true', help='Live selected-token resolution on every supported token network')
 parser.add_argument('--six-chains', action='store_true', help='Live discovery and public RPC fallback checks for the six new chains')
+parser.add_argument('--filter', help='Run one named host test or suite')
+parser.add_argument('--scratch', help='Isolated reusable host build directory')
 args = parser.parse_args()
 root = Path(__file__).resolve().parents[1]
 env = os.environ.copy()
@@ -61,4 +63,5 @@ let package = Package(name: "TokenLookup", platforms: [.macOS("15.5")], dependen
  swiftLanguageModes: [.v6])
 ''' % (deps, names))
     raise SystemExit(subprocess.run(['swift', 'test', '--package-path', str(work), '--scratch-path',
-        '/tmp/oath-token-lookup-host'], env=env, timeout=600).returncode)
+        args.scratch or env.get('OATH_VALIDATION_SCRATCH', '/tmp/oath-token-lookup-host')]
+        + (['--filter', args.filter] if args.filter else []), env=env, timeout=600).returncode)
