@@ -353,7 +353,7 @@ private struct UnavailableDirectory: AnkrTransport {
         XCTAssertTrue(mapped.contains { $0.network.chain == .ton })
     }
 
-    func testNameSearchDoesNotCallRPCAndResetCannotPublishStaleResults() async throws {
+    func testNameSearchDoesNotCallRPCAndExcludesSavedTokens() async throws {
         let bytes = Data(#"[{"id":"tether","name":"Tether","symbol":"usdt","platforms":{"ethereum":"0xdac17f958d2ee523a2206206994597c13d831ec7","tron":"TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"}}]"#.utf8)
         let catalog = FixedDiscovery(entries: try TokenDiscoveryCatalog.decode(bytes))
         let model = OathTokenSearchModel(service: UnexpectedLookup(), catalog: catalog)
@@ -362,23 +362,48 @@ private struct UnavailableDirectory: AnkrTransport {
         XCTAssertFalse(model.isSearching)
         await model.search("tether", available: [.ethereum, .tron], savedIDs: ["ethereum:0xdac17f958d2ee523a2206206994597c13d831ec7"])
         XCTAssertEqual(model.results.map(\.network.chain), [.tron])
-        let waiting = Task { await model.search("usdt", available: [.ethereum]) }
-        try await Task.sleep(for: .milliseconds(10))
-        model.reset()
-        await waiting.value
-        XCTAssertTrue(model.results.isEmpty)
     }
 
     func testOldRefreshCannotReplaceNewWalletNetworkResults() async throws {
-        let data = Data(#"[{"id":"tether","name":"Tether","symbol":"usdt","platforms":{"ethereum":"0xdac17f958d2ee523a2206206994597c13d831ec7","tron":"TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"}}]"#.utf8)
-        let model = OathTokenSearchModel(service: UnexpectedLookup(), catalog: DelayedRefreshDiscovery(entries: try TokenDiscoveryCatalog.decode(data)))
+        for delay in [Duration.zero, .milliseconds(350)] {
+            let started = expectation(description: "Old wallet refresh is suspended")
+            let catalog = ControlledRefreshDiscovery(entries: try tokenDiscoveryFixture(), delay: delay, started: started)
+            let model = OathTokenSearchModel(service: UnexpectedLookup(), catalog: catalog)
+            let old = Task { await model.search("usdt", available: [.ethereum]) }
+            // Refresh starts only after the cached results have been published.
+            // A deadline bounds a broken test; it does not select the interleaving.
+            await fulfillment(of: [started], timeout: 10)
+            XCTAssertEqual(model.results.map(\.network.chain), [.ethereum])
+            await model.search("usdt", available: [.tron])
+            XCTAssertEqual(model.results.map(\.network.chain), [.tron])
+            await catalog.releaseRefresh()
+            await old.value
+            XCTAssertEqual(model.results.map(\.network.chain), [.tron])
+            XCTAssertFalse(model.isSearching)
+            let oldSearches = await catalog.searchCount(network: "ethereum")
+            XCTAssertEqual(oldSearches, 1, "An obsolete refresh must not start another catalog read")
+        }
+    }
+
+    func testResetDuringCatalogRefreshCannotPublishResults() async throws {
+        let started = expectation(description: "Catalog refresh is suspended")
+        let catalog = ControlledRefreshDiscovery(entries: try tokenDiscoveryFixture(), started: started)
+        let model = OathTokenSearchModel(service: UnexpectedLookup(), catalog: catalog)
         let old = Task { await model.search("usdt", available: [.ethereum]) }
-        try await Task.sleep(for: .milliseconds(200))
-        XCTAssertEqual(model.results.map(\.network.chain), [.ethereum])
-        await model.search("usdt", available: [.tron])
+        await fulfillment(of: [started], timeout: 10)
+        XCTAssertFalse(model.results.isEmpty)
+        model.reset()
+        await catalog.releaseRefresh()
         await old.value
-        XCTAssertEqual(model.results.map(\.network.chain), [.tron])
+        XCTAssertTrue(model.results.isEmpty)
         XCTAssertFalse(model.isSearching)
+        let searches = await catalog.searchCount(network: "ethereum")
+        XCTAssertEqual(searches, 1)
+    }
+
+    private func tokenDiscoveryFixture() throws -> [TokenDiscoveryEntry] {
+        let data = Data(#"[{"id":"tether","name":"Tether","symbol":"usdt","platforms":{"ethereum":"0xdac17f958d2ee523a2206206994597c13d831ec7","tron":"TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"}}]"#.utf8)
+        return try TokenDiscoveryCatalog.decode(data)
     }
 
     func testPickerRequestFindsMixedCaseUSDTBeforeWalletHasAnyTokensAndAfterTracking() async throws {
@@ -668,14 +693,41 @@ private struct FixedDiscovery: OathTokenDiscovering {
     func refreshIfNeeded() async -> Bool { false }
 }
 
-private struct DelayedRefreshDiscovery: OathTokenDiscovering {
+private actor ControlledRefreshDiscovery: OathTokenDiscovering {
     let entries: [TokenDiscoveryEntry]
-    func search(_ query: String, networks: Set<String>, excluding: Set<String>, limit: Int) async -> [TokenDiscoveryEntry] {
-        entries.filter { networks.contains($0.network) && !excluding.contains($0.id) }
+    let delay: Duration
+    let started: XCTestExpectation
+    private var refreshCount = 0
+    private var continuation: CheckedContinuation<Bool, Never>?
+    private var released = false
+    private var searches: [String: Int] = [:]
+
+    init(entries: [TokenDiscoveryEntry], delay: Duration = .zero, started: XCTestExpectation) {
+        self.entries = entries; self.delay = delay; self.started = started
     }
+
+    func search(_ query: String, networks: Set<String>, excluding: Set<String>, limit: Int) async -> [TokenDiscoveryEntry] {
+        for network in networks { searches[network, default: 0] += 1 }
+        try? await Task.sleep(for: delay)
+        return entries.filter { networks.contains($0.network) && !excluding.contains($0.id) }
+    }
+
+    func searchCount(network: String) -> Int { searches[network, default: 0] }
+
     func refreshIfNeeded() async -> Bool {
-        try? await Task.sleep(for: .milliseconds(200))
-        return true
+        refreshCount += 1
+        guard refreshCount == 1 else { return false }
+        return await withCheckedContinuation { continuation in
+            self.continuation = continuation
+            started.fulfill()
+            if released { self.continuation = nil; continuation.resume(returning: true) }
+        }
+    }
+
+    func releaseRefresh() {
+        released = true
+        let pending = continuation; continuation = nil
+        pending?.resume(returning: true)
     }
 }
 
