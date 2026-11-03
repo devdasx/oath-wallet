@@ -1529,6 +1529,9 @@ enum Schema {
                 table.add(column: "signedPayloadDigest", .blob)
             }
         }
+        migrations.registerMigration("v106_wallet_removal_reservations") { db in
+            try OathDatabase.migrateWalletRemovalReservations(db)
+        }
         return migrations
     }
 }

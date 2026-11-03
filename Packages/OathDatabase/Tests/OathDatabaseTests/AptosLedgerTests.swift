@@ -128,8 +128,15 @@ import OathDiagnostics
         XCTAssertFalse(saved?.discoveryComplete ?? true)
         XCTAssertEqual(saved?.ledgerVersion, 1000, "Do not change the pinned snapshot to hide index lag")
         await sync.waitForHistory(accountID: "a1")
-        try await Task.sleep(for: .milliseconds(100))
-        await OathDiagnostics.flush()
+        // Reporting intentionally runs on a utility task. Wait for its event,
+        // not an assumed scheduling delay; a missing event still fails below.
+        let clock = ContinuousClock()
+        let deadline = clock.now.advanced(by: .seconds(5))
+        while clock.now < deadline {
+            let delivered = await sink.events().contains { !before.contains($0.id) && $0.error.message == "incomplete" && $0.sourceFile == "OathDatabase/AptosSynchronizer.swift" }
+            if delivered { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
         let reports = await sink.events().filter { !before.contains($0.id) && $0.error.message == "incomplete" && $0.sourceFile == "OathDatabase/AptosSynchronizer.swift" }
         XCTAssertEqual(reports.count, 1)
         XCTAssertEqual(reports.first?.context["reason"], "processor_behind_node")
