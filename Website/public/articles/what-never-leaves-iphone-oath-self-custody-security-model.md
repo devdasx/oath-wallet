@@ -6,9 +6,9 @@ https://articles.oathwallet.org/what-never-leaves-iphone-oath-self-custody-secur
 
 Understand the protected local vault, password-encrypted backups, and what public network requests reveal.
 
-## Guide version and App Review status
+## Guide source version
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Older screenshots are illustrative.
 
 ## Local credentials
 

@@ -5,11 +5,6 @@
     "build": 103,
     "reviewed_on": "2026-11-02",
     "source_url": "https://github.com/devdasx/oath-wallet/tree/c7acd23bb139864a40273f405d18b479589d2b20",
-    "app_review": {
-      "version": "5.0.1",
-      "status": "Waiting for Review",
-      "as_of": "2026-11-02"
-    },
     "scope": "Pinned source excerpts, not an independent audit or confirmation of the current App Store version.",
     "app_store_url": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"
   },

@@ -84,7 +84,7 @@ Compare the platform, release, method, and result. A brand-wide label hides too 
 
 Oath publishes the MIT-licensed [source for 5.0.1 (103)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json) identifies the source commit, unsigned iOS Release build and host test results.
 
-App Store Connect listed iOS version 5.0.1 as **Waiting for Review** on 2 November 2026. At that time version 4.1.2 was marked Ready for Distribution. The submission status does not establish a byte-for-byte comparison with a downloaded app.
+
 
 There is a distinction worth keeping explicit: a publisher’s confirmation is not the same evidence as an independent party reproducing a release and publishing its comparison. This article does not present a new binary comparison, a byte-for-byte reproducibility result, or an independent security audit. The repository’s documented exclusions and configuration requirements still apply.
 

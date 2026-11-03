@@ -34,8 +34,8 @@ test('current guides agree across article text, HTML, feeds and modification dat
   const a=data.articles.find(a=>a.url.endsWith('/'+slug));const item=feed.items.find(a=>a.url.endsWith('/'+slug));
   assert.ok(a&&item,slug);assert.equal(item.title,a.title);assert.equal(item.date_modified,a.updated_at);
   assert.match(a.updated_at,/2026-11-02/);assert.match(html,/5\.0\.0/);assert.match(md,/5\.0\.0/);assert.match(item.content_html,/5\.0\.0/);
-  assert.match(html,/Guide version and App Review status/);
-  for(const text of [html,md]) assert.ok(text.includes(data.facts.source_release_status));assert.ok(html.includes('ecb16953a5766471e1214eae6655cf783d0d062a'));
+  assert.match(html,/Guide source version/);
+  assert.ok(html.includes('ecb16953a5766471e1214eae6655cf783d0d062a'));
   assert.doesNotMatch(html,/580cf943|docs\/AUDIT_SCOPE\.md|4\.0\.0/,slug+' has no retired citations, including structured metadata');
   assert.ok(html.includes(a.reading_minutes+' min read'),slug+' reading time agrees with the listing');
  }
@@ -43,24 +43,17 @@ test('current guides agree across article text, HTML, feeds and modification dat
 test('help release and historical screenshots keep separate versions',()=>{
  for(const article of help.articles){assert.equal(article.app_version,'Oath 5.0.0');assert.equal(article.screenshot_version,'Oath 4.0.3');assert.ok(!article.tags.some(t=>t.includes('4.0.3')));}
 });
-test('current release copy keeps upload separate from Apple review',async()=>{
- // Network guides describe installed-app availability instead of release uploads;
- // their scope and canonical routes are checked in network-guides.test.mjs.
- const copies=await Promise.all(['public/security.html','public/security.md','public/about.html',
-  'public/about.md'].map(read));
+test('website version references omit review-status UI and distribution claims',async()=>{
+ const copies=await Promise.all(['public/security.html','public/security.md','public/about.html','public/about.md','public/index.html','public/index.md','public/llms.txt','public/llms-full.txt','public/oath-data.json','public/agent-documents.json','public/articles/feed.json'].map(read));
  copies.push(article(help,help.articles[0]));
  for(const copy of copies){
-  assert.match(copy,/5\.0\.1 as Waiting for Review on 2 November 2026/);
-  assert.doesNotMatch(copy,/Apple processed build 102|GitHub Actions delivery workflow/i);
- }
- for(const file of ['public/index.html','public/index.md']){
-  const home=await read(file);
-  assert.ok(home.includes('Version '+data.facts.app_store_version+' is available on the App Store. '+data.facts.source_release_status),file);
+  assert.doesNotMatch(copy,/Waiting for Review|App Store Connect listed|Version 4\.1\.2 is available|app-review-status/);
  }
  assert.equal(data.facts.source_version,'5.0.1 (103)');
- assert.equal(data.facts.app_store_review_status,'Waiting for Review');
- assert.equal(data.facts.app_store_review_version,'5.0.1');
- assert.equal(data.facts.app_store_version,'4.1.2');
+ assert.equal(data.facts.app_version,'5.0.1');
+ assert.equal(data.facts.app_build,103);
+ assert.equal(data.facts.app_store_review_status,undefined);
+ assert.equal(data.facts.app_store_version,undefined);
  assert.equal(data.security.source_correspondence.delivery_receipt,undefined);
 });
 test('copy reports success only after the clipboard accepts text',async()=>{

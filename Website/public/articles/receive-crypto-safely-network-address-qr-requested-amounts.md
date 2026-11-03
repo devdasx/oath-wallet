@@ -6,9 +6,9 @@ https://articles.oathwallet.org/receive-crypto-safely-network-address-qr-request
 
 Use the address displayed for your selected wallet and exact asset network.
 
-## Guide version and App Review status
+## Guide source version
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Older screenshots are illustrative.
 
 ## Select the wallet and network
 

@@ -28,12 +28,9 @@
       "source": "Apple App Store (US)",
       "checked_on": "2026-10-27"
     },
-    "app_store_version": "4.1.2",
     "source_version": "5.0.1 (103)",
-    "source_release_status": "App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.",
-    "app_store_review_version": "5.0.1",
-    "app_store_review_status": "Waiting for Review",
-    "app_store_review_status_as_of": "2026-11-02"
+    "app_version": "5.0.1",
+    "app_build": 103
   },
   "features": [
     {
@@ -699,7 +696,7 @@
     "source_correspondence": {
       "status": "source-tagged",
       "confirmed_on": "2026-11-02",
-      "statement": "The public source tag identifies version 5.0.1, build 103. App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026.",
+      "statement": "The public source tag identifies version 5.0.1, build 103.",
       "source_verification": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json",
       "readme": "https://github.com/devdasx/oath-wallet#release-verification"
     },
