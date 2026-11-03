@@ -622,7 +622,7 @@
     },
     {
       "path": "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/AgreementCryptoKit.swift",
-      "sha256": "36762bde9265473f1cfd538125f16564e5f6757765402e417539cd97d3a3edbe",
+      "sha256": "fb7626b8b59bff7879a75cde8c0c0d6b62ac46471092791874a42a8678a93e0a",
       "reason": "Swift property declarations or initializer expressions for key/interactor types; no embedded credential.",
       "fingerprints": [
         "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/AgreementCryptoKit.swift:generic-api-key:71"
@@ -630,7 +630,7 @@
     },
     {
       "path": "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/SigningKeyCryptoKit.swift",
-      "sha256": "8dd070bb9dbd365872921ecdf60776b70a298e40aff442193b5bf941a50c290d",
+      "sha256": "a3565f5bc13529fb19cf809499e91d5f1ba58b1552798b949a48558b6aba4495",
       "reason": "Swift property declarations or initializer expressions for key/interactor types; no embedded credential.",
       "fingerprints": [
         "Vendor/Reown/Sources/WalletConnectKMS/Crypto/CryptoKitWrapper/SigningKeyCryptoKit.swift:generic-api-key:64"
