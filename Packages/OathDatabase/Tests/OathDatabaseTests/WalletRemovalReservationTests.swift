@@ -8,7 +8,10 @@ import GRDB
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent("RemovalMigration-"+UUID().uuidString)
         try FileManager.default.createDirectory(at:folder,withIntermediateDirectories:true)
         defer { try? FileManager.default.removeItem(at:folder) }
-        let url = folder.appendingPathComponent("wallet.sqlite"), old = try DatabaseQueue(path:url.path)
+        let url = folder.appendingPathComponent("wallet.sqlite")
+        var configuration = Configuration()
+        configuration.prepareDatabase { sql in sql.add(function:HistorySafety.metadataFunction) }
+        let old = try DatabaseQueue(path:url.path,configuration:configuration)
         try Schema.migrator.migrate(old,upTo:"v105_bitcoin_signed_payload_digest")
         try await old.write { sql in
             try sql.execute(sql:"INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES('w1','Kept name','hd','fixture',1,0)")
