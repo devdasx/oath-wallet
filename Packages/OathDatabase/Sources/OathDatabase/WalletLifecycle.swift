@@ -23,9 +23,29 @@ extension OathDatabase {
     public func validateWalletRemoval(_ ids: Set<String>) async throws {
         try await pool.read { db in
             for id in ids {
-                guard try Int.fetchOne(db, sql: "SELECT 1 FROM sends WHERE walletID=? AND state IN ('queued','signed','broadcast') LIMIT 1", arguments: [id]) == nil else {
-                    throw StoreError.invalidTransition
-                }
+                try Self.requireNoPendingWalletTransactions(id, db: db)
+            }
+        }
+    }
+
+    /// Removal must preserve every recoverable submission, including dApp
+    /// journals that do not create an ordinary sends row. Full reset has its
+    /// own explicit authorization and erasure boundary.
+    static func requireNoPendingWalletTransactions(_ id: String, db: Database) throws {
+        guard try Int.fetchOne(db, sql: "SELECT 1 FROM sends WHERE walletID=? AND state IN ('queued','signed','broadcast') LIMIT 1", arguments: [id]) == nil else {
+            throw StoreError.invalidTransition
+        }
+        let journals = [
+            "walletConnectBitcoinSubmissions", "walletConnectSolanaSubmissions",
+            "walletConnectSuiSubmissions", "walletConnectTonSubmissions",
+            "walletConnectNearSubmissions", "walletConnectStellarSubmissions",
+            "walletConnectXrplSubmissions"
+        ]
+        for table in journals {
+            let states = table == "walletConnectSuiSubmissions"
+                ? "'signed','unknown'" : "'signed','unknown','accepted'"
+            guard try Int.fetchOne(db, sql: "SELECT 1 FROM \(table) WHERE walletID=? AND state IN (\(states)) LIMIT 1", arguments: [id]) == nil else {
+                throw StoreError.invalidTransition
             }
         }
     }

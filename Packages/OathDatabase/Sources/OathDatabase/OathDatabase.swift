@@ -239,9 +239,7 @@ public final class OathDatabase: Sendable {
     /// matching protected vault. Foreign keys remove wallet-owned child rows.
     public func deleteWalletMetadata(_ id: String) async throws {
         try await pool.write { db in
-            guard try Int.fetchOne(db, sql: "SELECT 1 FROM sends WHERE walletID=? AND state IN ('queued','signed','broadcast') LIMIT 1", arguments: [id]) == nil else {
-                throw StoreError.invalidTransition
-            }
+            try Self.requireNoPendingWalletTransactions(id, db: db)
             let transactionIDs = try String.fetchAll(db, sql: """
                 SELECT transactionID FROM activity WHERE walletID=?
                 UNION SELECT transactionID FROM sends WHERE walletID=? AND transactionID IS NOT NULL
