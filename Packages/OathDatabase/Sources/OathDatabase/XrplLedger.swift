@@ -117,7 +117,8 @@ extension OathDatabase {
     public func restartXrplHistory(_ cursor:XrplHistoryCursor, ticket:XrplSyncTicket) async throws {
         try await pool.write { db in
             try Self.validateXrpl(ticket,db:db)
-            guard try XrplHistoryCursor.fetchOne(db,key:["accountID":cursor.accountID,"lane":cursor.lane]) == cursor, cursor.beforeCursor != nil else { throw StoreError.staleSync }
+            guard cursor.accountID == ticket.account.id,
+                  try XrplHistoryCursor.fetchOne(db,key:["accountID":cursor.accountID,"lane":cursor.lane]) == cursor, cursor.beforeCursor != nil else { throw StoreError.staleSync }
             var next = cursor; next.beforeCursor = nil; next.upperLedger = cursor.oldestLedger
             try next.update(db)
         }

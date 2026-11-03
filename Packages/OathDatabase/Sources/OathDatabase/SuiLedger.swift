@@ -118,8 +118,15 @@ extension OathDatabase {
     public func restartSuiHistory(_ cursor:SuiHistoryCursor, ticket:SuiSyncTicket) async throws {
         try await pool.write { db in
             try Self.validateSui(ticket,db:db)
-            guard try SuiHistoryCursor.fetchOne(db,key:["accountID":cursor.accountID,"lane":cursor.lane]) == cursor, cursor.beforeCursor != nil else { throw StoreError.staleSync }
-            var next = cursor; next.beforeCursor = nil; next.upperCheckpoint = cursor.oldestCheckpoint.map{$0+1}
+            guard cursor.accountID == ticket.account.id,
+                  try SuiHistoryCursor.fetchOne(db,key:["accountID":cursor.accountID,"lane":cursor.lane]) == cursor, cursor.beforeCursor != nil else { throw StoreError.staleSync }
+            var next = cursor
+            next.beforeCursor = nil
+            next.upperCheckpoint = try cursor.oldestCheckpoint.map { checkpoint in
+                let (upper, overflow) = checkpoint.addingReportingOverflow(1)
+                guard checkpoint >= 0, !overflow else { throw SuiError.malformed }
+                return upper
+            }
             try next.update(db)
         }
     }
