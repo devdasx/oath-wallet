@@ -23,9 +23,33 @@ extension OathDatabase {
     public func validateWalletRemoval(_ ids: Set<String>) async throws {
         try await pool.read { db in
             for id in ids {
-                guard try Int.fetchOne(db, sql: "SELECT 1 FROM sends WHERE walletID=? AND state IN ('queued','signed','broadcast') LIMIT 1", arguments: [id]) == nil else {
-                    throw StoreError.invalidTransition
-                }
+                try Self.requireNoPendingWalletTransactions(id, db: db)
+            }
+        }
+    }
+
+    /// New wallet removals must preserve recoverable dApp submissions too.
+    /// Full reset has its own explicit authorization and erasure boundary.
+    static func requireNoPendingWalletTransactions(_ id: String, db: Database) throws {
+        guard try Int.fetchOne(db, sql: "SELECT 1 FROM sends WHERE walletID=? AND state IN ('queued','signed','broadcast') LIMIT 1", arguments: [id]) == nil else {
+            throw StoreError.invalidTransition
+        }
+        // Earlier versions allowed removing wallets with pending dApp work.
+        // Preserve cleanup of those already-removed records: retention purge
+        // runs during unlock, after their encrypted contents have expired.
+        // Blocking it would strand the installation in unlock reconciliation.
+        if try WalletRecord.fetchOne(db, key: id)?.deletedAt != nil { return }
+        let journals = [
+            "walletConnectBitcoinSubmissions", "walletConnectSolanaSubmissions",
+            "walletConnectSuiSubmissions", "walletConnectTonSubmissions",
+            "walletConnectNearSubmissions", "walletConnectStellarSubmissions",
+            "walletConnectXrplSubmissions"
+        ]
+        for table in journals {
+            let states = table == "walletConnectSuiSubmissions"
+                ? "'signed','unknown'" : "'signed','unknown','accepted'"
+            guard try Int.fetchOne(db, sql: "SELECT 1 FROM \(table) WHERE walletID=? AND state IN (\(states)) LIMIT 1", arguments: [id]) == nil else {
+                throw StoreError.invalidTransition
             }
         }
     }
