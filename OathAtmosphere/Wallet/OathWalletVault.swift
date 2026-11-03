@@ -345,6 +345,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     }
 
     func unlock(digits: [UInt8], now: Date = .now) async throws -> OathWalletProfile {
+        guard walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let mutation = UUID()
+        walletMutation = mutation
+        defer { if walletMutation == mutation { walletMutation = nil } }
         let token = authenticationGeneration
         let (sealed, key, opened) = try openWithPasscode(digits, now: now)
         let (current, recovered, derived) = try await reconcileUnlocked(sealed: sealed, key: key, opened: opened, token: token)
@@ -2060,6 +2064,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     /// Return the precise failing step to the startup boundary, which owns
     /// protected-data deferral and reports the original error once.
     func unlockWithoutPasscode(stage: inout String) async throws -> OathWalletProfile {
+        guard walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let mutation = UUID()
+        walletMutation = mutation
+        defer { if walletMutation == mutation { walletMutation = nil } }
         let token = authenticationGeneration
         stage = "keychain_read"
         guard let data = try storage.read("vault-v1") else { throw OathWalletError.unavailable }
@@ -2177,6 +2185,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     }
 
     func unlockWithBiometrics(reason: String) async throws -> OathWalletProfile {
+        guard walletMutation == nil, !resetting else { throw OathWalletError.locked }
+        let mutation = UUID()
+        walletMutation = mutation
+        defer { if walletMutation == mutation { walletMutation = nil } }
         try Task.checkCancellation()
         let token = UUID()
         authenticationGeneration = token
@@ -2243,6 +2255,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     private func reconcileUnlocked(sealed: OathVaultEnvelope, key: SymmetricKey,
                                    opened: OathVaultContents, token: UUID, now: Date = .now)
         async throws -> (OathVaultEnvelope, OathVaultContents, OathWalletProfile) {
+        let db = try await database()
+        try checkAuthentication(token)
+        let removalReservations = try await db.pendingWalletRemovalReservations()
+        try checkAuthentication(token)
         var current = sealed, recovered = opened
         let expired = Set(recovered.wallets.filter {
             $0.deletedAt.map { now.timeIntervalSince($0) >= OathVaultContents.retention } == true
@@ -2253,7 +2269,6 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
             recovered.purgedWalletIDs = Array(Set(recovered.purgedWalletIDs ?? []).union(expired)).sorted { $0.uuidString < $1.uuidString }
             current = try persistLifecycle(recovered, sealed: current, key: key, token: token)
         }
-        let db = try await database()
         if let batch = recovered.legacyUpgrade {
             try checkAuthentication(token)
             try await db.commitLegacyUpgrade(batch)
@@ -2278,6 +2293,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
             current = try persistLifecycle(recovered, sealed: current, key: key, token: token)
         }
         let selected = try await restoredProfile(for: recovered, rootID: current.id, token: token)
+        try checkAuthentication(token)
+        // The encrypted vault is authoritative after interruption, whether its
+        // write committed or not. Reconcile it before releasing captured fences.
+        try await db.finishWalletRemovalReservations(removalReservations)
         try checkAuthentication(token)
         return (current, recovered, selected)
     }
@@ -2343,29 +2362,48 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         walletMutation = mutation
         defer { if walletMutation == mutation { walletMutation = nil } }
         let db = try await database()
-        try await db.validateWalletRemoval(action.ids)
-        try checkAuthentication(token)
-        removalAuthorization = nil // Consume once, before the atomic mutation.
-        var updated = contents
-        updated.lifecycleVersion = 1
-        if action.permanently {
-            let ids = Set(action.ids.compactMap(UUID.init(uuidString:)))
-            updated.wallets.removeAll { ids.contains($0.id) }
-            updated.purgedWalletIDs = Array(Set(updated.purgedWalletIDs ?? []).union(ids)).sorted { $0.uuidString < $1.uuidString }
-        } else {
-            // Round up to an exactly representable second. Date's reference
-            // epoch and SQLite's Unix epoch must agree on the deadline, and
-            // conversion must never shorten seven full days of retention.
-            let removedAt = Date(timeIntervalSince1970: ceil(now.timeIntervalSince1970))
-            for index in updated.wallets.indices where action.ids.contains(updated.wallets[index].id.uuidString) {
-                updated.wallets[index].deletedAt = removedAt
+        let reservation = try await db.reserveWalletRemoval(action.ids)
+        var vaultCommitted = false
+        do {
+            try checkAuthentication(token)
+            removalAuthorization = nil // Consume once, before the atomic mutation.
+            var updated = contents
+            updated.lifecycleVersion = 1
+            if action.permanently {
+                let ids = Set(action.ids.compactMap(UUID.init(uuidString:)))
+                updated.wallets.removeAll { ids.contains($0.id) }
+                updated.purgedWalletIDs = Array(Set(updated.purgedWalletIDs ?? []).union(ids)).sorted { $0.uuidString < $1.uuidString }
+            } else {
+                // Round up to an exactly representable second. Date's reference
+                // epoch and SQLite's Unix epoch must agree on the deadline, and
+                // conversion must never shorten seven full days of retention.
+                let removedAt = Date(timeIntervalSince1970: ceil(now.timeIntervalSince1970))
+                for index in updated.wallets.indices where action.ids.contains(updated.wallets[index].id.uuidString) {
+                    updated.wallets[index].deletedAt = removedAt
+                }
             }
+            let committed = try persistLifecycle(updated, sealed: sealed, key: key, token: token)
+            vaultCommitted = true
+            self.contents = updated; self.envelope = committed
+            let (current, recovered, selected) = try await reconcileUnlocked(sealed: committed, key: key, opened: updated, token: token, now: now)
+            self.contents = recovered; self.envelope = current; self.profile = selected
+            return selected
+        } catch {
+            OathDiagnostics.record(error, component: "storage", operation: "commit_wallet_removal")
+            if !vaultCommitted {
+                // Task cancellation cannot leave a successful local rollback
+                // dependent on the cancelled caller. Release this token only.
+                do {
+                    try await Task.detached {
+                        try await db.finishWalletRemovalReservations([reservation])
+                    }.value
+                } catch {
+                    OathDiagnostics.record(error, component: "storage", operation: "release_wallet_removal")
+                    // A failed cleanup stays fenced until authenticated replay.
+                }
+            }
+            throw error
         }
-        let committed = try persistLifecycle(updated, sealed: sealed, key: key, token: token)
-        self.contents = updated; self.envelope = committed
-        let (current, recovered, selected) = try await reconcileUnlocked(sealed: committed, key: key, opened: updated, token: token, now: now)
-        self.contents = recovered; self.envelope = current; self.profile = selected
-        return selected
     }
 
     func recoverDeletedWallets(_ ids: Set<String>, now: Date = .now) async throws -> OathWalletProfile {
