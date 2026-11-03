@@ -3,7 +3,8 @@ import Foundation
 struct PolkadotScale {
     let data: Data
     var offset = 0
-    init(_ data: Data) { self.data = data }
+    // SCALE offsets are relative to the buffer, including when passed a Data slice.
+    init(_ data: Data) { self.data = Data(data) }
     mutating func take(_ count: Int) throws -> Data {
         guard count >= 0, count <= data.count - offset else { throw PolkadotSendError.malformed }
         defer { offset += count }; return data.subdata(in: offset..<offset+count)
