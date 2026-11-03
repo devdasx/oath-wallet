@@ -89,6 +89,8 @@ public struct WalletConnectSuiTransaction: Sendable {
     public let minimumEpoch:UInt64?, maximumEpoch:UInt64?
     public init(_ bytes:Data, network:SuiSendNetwork, account:String, executing:Bool, now:Date = .now) throws {
         guard !bytes.isEmpty, bytes.count <= 128_000 else { throw SuiSendError.malformed }
+        // Data slices retain their original indexes; BCS offsets start at zero.
+        let bytes = Data(bytes)
         var r = SuiConnectBCS(bytes:bytes)
         guard try r.length(3) == 0, try r.length(10) == 0 else { throw SuiSendError.malformed }
         var inputs = [String](), commands = [String]()
