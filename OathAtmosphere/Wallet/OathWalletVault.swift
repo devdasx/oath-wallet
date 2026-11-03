@@ -422,7 +422,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               !scopes.isEmpty, scopes.count <= PermissionBatchScope.maximumItems, Set(scopes.map(\.sendID)).count == scopes.count,
               Set(scopes.map(\.walletID)).count == 1 else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: scopes[0].walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -1862,8 +1862,6 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         try checkAuthentication(token.authentication)
         guard signingRevocations[token.walletID] == token.removalGeneration
         else { throw CancellationError() }
-        guard contents?.activeWallets.contains(where: { $0.id.uuidString == token.walletID }) == true
-        else { throw OathWalletError.locked }
     }
 
     private func checkAuthentication(_ token: UUID) throws {
