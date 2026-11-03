@@ -18,8 +18,14 @@ extension OathDatabase {
                   let tx = try TransactionRecord.fetchOne(db,key:id) else { return false }
             return try Bool.fetchOne(db,sql:"""
                 SELECT EXISTS(SELECT 1 FROM nearTransactions t JOIN nearSync s ON s.accountID=t.accountID JOIN transactions tx ON tx.id=?
-                WHERE t.accountID=? AND t.hash=? AND s.observedAt>=tx.timestamp AND s.failure IS NULL)
-                """,arguments:[tx.id,send.accountID,tx.hash]) == true
+                JOIN nearHoldings sent ON sent.accountID=t.accountID AND sent.assetID=?
+                JOIN nearHoldings fee ON fee.accountID=t.accountID AND fee.reference='native'
+                WHERE t.accountID=? AND t.hash=? AND s.observedAt>=tx.timestamp AND s.failure IS NULL
+                AND sent.amountAtomic IS NOT NULL AND sent.failure IS NULL
+                AND sent.observedAt>=tx.timestamp AND sent.blockHeight>=tx.blockHeight
+                AND fee.amountAtomic IS NOT NULL AND fee.failure IS NULL
+                AND fee.observedAt>=tx.timestamp AND fee.blockHeight>=tx.blockHeight)
+                """,arguments:[tx.id,send.assetID,send.accountID,tx.hash]) == true
         }
     }
     /// Reserve the sender, including duplicate imports in other wallets. Concurrent sends must not spend the same balance or resources.
