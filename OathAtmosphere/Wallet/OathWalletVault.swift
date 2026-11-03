@@ -79,6 +79,14 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     private let storage: any OathVaultStorage
     nonisolated let biometricStore: any OathBiometricCredentialStoring
     private var authenticationGeneration = UUID()
+    // A signing request cannot survive a committed removal, even if the same
+    // wallet is recovered before an awaited account read returns.
+    private struct SigningAuthorization: Sendable {
+        let authentication: UUID
+        let walletID: String
+        let removalGeneration: UUID?
+    }
+    private var signingRevocations: [String: UUID] = [:]
     private var contents: OathVaultContents?
     private var secret: OathWalletSecret? { contents?.activeWallets.first { $0.id == profile?.id } }
     private var encryptionKey: SymmetricKey?
@@ -91,7 +99,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     private var removalAuthorization: (id: UUID, action: OathWalletRemovalAction, deadline: ContinuousClock.Instant)?
     private var resetAuthorization: (id: UUID, deadline: ContinuousClock.Instant)?
     private let permissionClock: @Sendable () -> ContinuousClock.Instant
-    private var permissionAuthorization: (id: UUID, scopes: [String: PermissionBatchScope], deadline: ContinuousClock.Instant)?
+    private var permissionAuthorization: (id: UUID, walletID: String, scopes: [String: PermissionBatchScope], deadline: ContinuousClock.Instant)?
     private var resetting = false
     private var resetWorkInProgress = false
     private var legacyMigrationInProgress = false
@@ -398,6 +406,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
 
     func lock() {
         authenticationGeneration = UUID()
+        signingRevocations.removeAll()
         permissionAuthorization = nil
         securityAuthorization = nil
         biometricEnrollment = nil
@@ -413,7 +422,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               !scopes.isEmpty, scopes.count <= PermissionBatchScope.maximumItems, Set(scopes.map(\.sendID)).count == scopes.count,
               Set(scopes.map(\.walletID)).count == 1 else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: scopes[0].walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -424,7 +433,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         try checkAuthentication(token)
         guard opened.activeWallets.contains(where: { $0.id.uuidString == scopes[0].walletID }) else { throw OathWalletError.locked }
         let id = UUID()
-        permissionAuthorization = (id, Dictionary(uniqueKeysWithValues: scopes.map { ($0.sendID, $0) }),
+        permissionAuthorization = (id, scopes[0].walletID, Dictionary(uniqueKeysWithValues: scopes.map { ($0.sendID, $0) }),
                                    permissionClock().advanced(by: .seconds(1_800)))
         return id
     }
@@ -476,7 +485,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signBitcoinSend(sendID: String, quote: OathBitcoinQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> BitcoinSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -519,7 +528,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signSuiSend(sendID: String, quote: OathSuiQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> SuiSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -549,7 +558,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signXrplSend(sendID: String, quote: OathXrplQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> XrplSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -579,7 +588,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signStellarSend(sendID: String, quote: OathStellarQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> StellarSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -673,7 +682,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signTronSend(sendID: String, quote: OathTronQuote, digits: [UInt8]?, reason: String, permissionAuthorization: UUID? = nil, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> TronSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -712,7 +721,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signNearSend(sendID: String, quote: OathNearQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> NearSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -743,7 +752,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signPolkadotSend(sendID: String, quote: OathPolkadotQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> PolkadotSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -784,7 +793,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signThorchainSend(sendID: String, quote: OathThorchainQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> ThorchainSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -826,7 +835,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectXrpl(walletID: String, accountID: String, request: WalletConnectXrplRequest,
         review: WalletConnectXrplReview, digits: [UInt8]?, reason: String) async throws -> WalletConnectXrplSigned {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -845,7 +854,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectStellar(walletID: String, accountID: String, request: WalletConnectStellarRequest,
         review: WalletConnectStellarReview, digits: [UInt8]?, reason: String) async throws -> WalletConnectStellarSigned {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -864,7 +873,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectNear(walletID: String, accountID: String, request: WalletConnectNearRequest,
         review: WalletConnectNearReview, digits: [UInt8]?, reason: String) async throws -> NearJSON {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -883,7 +892,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectSui(walletID: String, accountID: String, request: WalletConnectSuiRequest,
         review: WalletConnectSuiReview?, digits: [UInt8]?, reason: String) async throws -> WalletConnectSuiSignature {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -911,7 +920,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectPolkadot(walletID: String, accountID: String, request: WalletConnectPolkadotRequest,
         review: PolkadotConnectReview?, digits: [UInt8]?, reason: String) async throws -> TronJSON {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -930,7 +939,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectTron(walletID: String, accountID: String, request: WalletConnectTronRequest,
         review: WalletConnectTronReview?, digits: [UInt8]?, reason: String) async throws -> TronJSON {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -949,7 +958,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectBitcoin(walletID: String, accountID: String, request: BitcoinConnectRequest,
         plan: BitcoinConnectPlan?, address: BitcoinDerivedAddress?, digits: [UInt8]?, reason: String) async throws -> OathBitcoinConnectSignature {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits,now:.now).2 }
@@ -969,7 +978,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectTon(walletID: String, accountID: String, request: WalletConnectTonRequest,
                               plan: WalletConnectTonPlan?, digits: [UInt8]?, reason: String) async throws -> OathTonWalletConnectSignature {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -990,7 +999,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectTonProof(walletID: String, accountID: String, request: WalletConnectTonProofRequest,
                               timestamp: UInt64, digits: [UInt8]?, reason: String) async throws -> Data {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -1011,7 +1020,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectSolana(walletID: String, accountID: String, request: WalletConnectSolanaRequest,
                                  digits: [UInt8]?, reason: String) async throws -> WalletConnectSolanaSigned {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -1033,7 +1042,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signSolanaSend(sendID: String, quote: OathSolanaQuote, digits: [UInt8]?, reason: String, permissionAuthorization: UUID? = nil, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> SolanaSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -1078,7 +1087,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
                                   digits: [UInt8]?, reason: String) async throws -> String {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               message.count <= 4_096 else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -1102,7 +1111,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signWalletConnectTypedData(walletID: String, accountID: String, data: WalletConnectTypedData,
                                     digits: [UInt8]?, reason: String) async throws -> String {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -1127,7 +1136,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
                                    digits: [UInt8]?, reason: String) async throws -> SolanaJSON {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               request.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: walletID)
         let opened: OathVaultContents
         if envelope.passcodeEnabled {
             if let digits { opened = try openWithPasscode(digits, now: .now).2 }
@@ -1149,7 +1158,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signArcSend(sendID: String, quote: OathArcQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> ArcSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -1180,7 +1189,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signEVMSend(sendID: String, quote: OathEVMQuote, digits: [UInt8]?, reason: String, permissionAuthorization: UUID? = nil, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> EVMSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               !quote.plan.network.isTestnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -1219,7 +1228,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signAptosSend(sendID: String, quote: OathAptosQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> AptosSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -1259,7 +1268,7 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
     func signTonSend(sendID: String, quote: OathTonQuote, digits: [UInt8]?, reason: String, prepare: (@Sendable () async throws -> Void)? = nil) async throws -> TonSignedSend {
         guard encryptionKey != nil, let envelope, profile != nil, walletMutation == nil, !resetting,
               quote.plan.network == .mainnet else { throw OathWalletError.locked }
-        let token = authenticationGeneration
+        let token = signingAuthorization(walletID: quote.walletID)
         // Start independent preparation without putting it ahead of Face ID.
         // Authentication stays inside this invocation and cannot be reused.
         async let prepared: Void? = prepare?()
@@ -1844,6 +1853,17 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
         return updated
     }
 
+    private func signingAuthorization(walletID: String) -> SigningAuthorization {
+        .init(authentication: authenticationGeneration, walletID: walletID,
+              removalGeneration: signingRevocations[walletID])
+    }
+
+    private func checkAuthentication(_ token: SigningAuthorization) throws {
+        try checkAuthentication(token.authentication)
+        guard signingRevocations[token.walletID] == token.removalGeneration
+        else { throw CancellationError() }
+    }
+
     private func checkAuthentication(_ token: UUID) throws {
         try Task.checkCancellation()
         guard token == authenticationGeneration, !resetting else { throw CancellationError() }
@@ -2383,6 +2403,12 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
                 }
             }
             let committed = try persistLifecycle(updated, sealed: sealed, key: key, token: token)
+            // Invalidate only after the encrypted removal is durable. A failed
+            // save preserves existing consent; other wallets keep their grants.
+            for walletID in action.ids { signingRevocations[walletID] = UUID() }
+            if let grant = permissionAuthorization, action.ids.contains(grant.walletID) {
+                permissionAuthorization = nil
+            }
             vaultCommitted = true
             self.contents = updated; self.envelope = committed
             let (current, recovered, selected) = try await reconcileUnlocked(sealed: committed, key: key, opened: updated, token: token, now: now)
