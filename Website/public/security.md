@@ -4,7 +4,7 @@ Oath Wallet keeps recovery input and signing credentials in its protected local 
 
 ## Open source and App Store builds
 
-The technical descriptions and source excerpts on this page were checked on 2 November 2026 against Oath Wallet **5.0.1 (103)**, source tag **v5.0.1-build103**. App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. The GitHub release records the source checks, host tests and unsigned iOS build.
+The technical descriptions and source excerpts on this page were checked on 2 November 2026 against Oath Wallet **5.0.1 (103)**, source tag **v5.0.1-build103**. The GitHub release records the source checks, host tests and unsigned iOS build.
 
 Read the [5.0.1 release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103), [current security model](https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md), and [security reporting policy](https://github.com/devdasx/oath-wallet/security/policy). Provider configuration and Apple signing are supplied through encrypted GitHub deployment secrets and excluded from public source.
 

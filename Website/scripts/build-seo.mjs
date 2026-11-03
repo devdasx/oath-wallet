@@ -39,21 +39,15 @@ home=home.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(
  for(const node of schema['@graph']||[]) {
   if(node['@type']==='WebPage'){node.name=title;node.description=description;}
   if(node['@type']==='MobileApplication'){
-   node.name='Oath: Crypto & Bitcoin Wallet';node.softwareVersion=data.facts.app_store_version;
+   node.name='Oath: Crypto & Bitcoin Wallet';node.softwareVersion=data.facts.app_version;
    node.aggregateRating={...node.aggregateRating,ratingValue:'4.8',ratingCount:'38'};
    node.softwareHelp='https://help.oathwallet.org/';
   }
  }
  return `<script type="application/ld+json">${json(schema)}</script>`;
 });
-const releaseStatus = data.facts.source_release_status;
-const distribution = `Version ${data.facts.app_store_version} is available on the App Store.`;
-home=home.replace(/(<p id="app-review-status"[^>]*>).*?(<\/p>)/s,
- (_,open,close)=>open+esc(distribution)+' '+esc(releaseStatus)+close);
 await write('index.html',home);
 let markdown=await read('index.md');
-markdown=markdown.replace(/<!-- app-review-status:start -->[\s\S]*?<!-- app-review-status:end -->/,
- `<!-- app-review-status:start -->\n${distribution} ${releaseStatus}\n<!-- app-review-status:end -->`);
 markdown=markdown.replace(/\n<!-- oath-questions:start -->[\s\S]*?<!-- oath-questions:end -->\n?/g,'')
  .replace('from 37 ratings','from 38 ratings').replace(/checked (?:September 28|October 20), 2026 on the App Store/g,'checked October 27, 2026 on the App Store');
 markdown+='\n<!-- oath-questions:start -->\n## Self-custody, explained\n\n'+questions.map(q=>`### ${q.question}\n\n${q.answer}\n\n[${q.label}](${q.url})`).join('\n\n')+'\n<!-- oath-questions:end -->\n';

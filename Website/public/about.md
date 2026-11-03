@@ -24,7 +24,7 @@ Follow the [official Oath Wallet account](https://x.com/OathWallet) and [Marco V
 
 ## Open source and review scope
 
-The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 2, 2026 against version 5.0.1 (103), tag v5.0.1-build103. App Store Connect listed iOS version 5.0.1 as Waiting for Review on 2 November 2026. The GitHub release records the source checks, host tests and unsigned iOS build.
+The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 2, 2026 against version 5.0.1 (103), tag v5.0.1-build103. The GitHub release records the source checks, host tests and unsigned iOS build.
 
 Public source does not establish an independent security audit or prove that a particular App Store binary matches that source. [Read the security evidence and limitations](/security), including the release-specific Silent Payments restrictions.
 
