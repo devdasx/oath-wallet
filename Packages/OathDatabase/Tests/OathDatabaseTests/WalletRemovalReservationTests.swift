@@ -4,6 +4,22 @@ import GRDB
 @testable import OathDatabase
 
 @MainActor final class WalletRemovalReservationTests: XCTestCase {
+    func testUpgradePreservesExistingWalletAndCreatesEmptyFence() async throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent("RemovalMigration-"+UUID().uuidString)
+        try FileManager.default.createDirectory(at:folder,withIntermediateDirectories:true)
+        defer { try? FileManager.default.removeItem(at:folder) }
+        let url = folder.appendingPathComponent("wallet.sqlite"), old = try DatabaseQueue(path:url.path)
+        try Schema.migrator.migrate(old,upTo:"v105_bitcoin_signed_payload_digest")
+        try await old.write { sql in
+            try sql.execute(sql:"INSERT INTO wallets(id,name,kind,vaultReference,createdAt,backedUp) VALUES('w1','Kept name','hd','fixture',1,0)")
+        }
+        try old.close()
+        let db = try await OathDatabase.open(at:url)
+        let wallet = try await db.wallet("w1"); XCTAssertEqual(wallet?.name,"Kept name")
+        let empty = try await db.pendingWalletRemovalReservations(); XCTAssertTrue(empty.isEmpty)
+        let token = try await db.reserveWalletRemoval(["w1"])
+        let durable = try await db.pendingWalletRemovalReservations(); XCTAssertEqual(durable,[token])
+    }
     func testRealJournalAndReservationAreMutuallyExclusive() async throws {
         let (db,folder,plan,signed) = try await WalletConnectXrplJournalTests().fixture()
         defer { try? FileManager.default.removeItem(at:folder) }

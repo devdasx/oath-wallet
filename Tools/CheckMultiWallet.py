@@ -232,7 +232,7 @@ enum OathWalletEngine {
         (sources / "SuiSigningAdapter.swift").write_text("import Foundation\nimport OathAnkr\nimport OathDatabase\nextension OathWalletEngine { static func signSui(_ plan:SuiSendPlan, secret:OathWalletSecret, account:AccountRecord) throws -> SuiSignedSend { throw SuiSendError.signing } }")
     xrpl_types = (root / "OathAtmosphere/Send/OathXrplSendService.swift").read_text().split("/// App-lifetime")[0]
     (sources / "XrplSendTypes.swift").write_text(xrpl_types)
-    if "--xrpl-send" in sys.argv or "--xrpl-multisig" in sys.argv or "--removal-journal-race" in sys.argv:
+    if "--xrpl-send" in sys.argv or "--xrpl-multisig" in sys.argv or "--removal-journal-race" in sys.argv or "--removal-recovery" in sys.argv:
         fixture = fixture.replace('address: $0.network == "solana" ?', 'address: $0.network == "xrpl" && secret.privateKey != nil ? (try! XrplSendCrypto.address(privateKey:secret.privateKey!.bytes)) : $0.network == "solana" ?')
         adapter = (root / "OathAtmosphere/Wallet/OathXrplWallet.swift").read_text().replace("import WalletCore\n", "")
         start = adapter.index('            let passphrase =')
@@ -557,10 +557,10 @@ struct FixtureMarketService: Sendable {
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
         shutil.copyfile(root / "Tools/CheckSuiSendAuthorization.swift", sources / "CheckSuiSendAuthorization.swift")
-    if "--xrpl-send" in sys.argv or "--removal-journal-race" in sys.argv:
+    if "--xrpl-send" in sys.argv or "--removal-journal-race" in sys.argv or "--removal-recovery" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
-        shutil.copyfile(root / ("Tools/CheckWalletRemovalJournalRace.swift" if "--removal-journal-race" in sys.argv else "Tools/CheckXrplSendAuthorization.swift"), sources / "CheckXrplSendAuthorization.swift")
+        shutil.copyfile(root / ("Tools/CheckWalletRemovalRecovery.swift" if "--removal-recovery" in sys.argv else "Tools/CheckWalletRemovalJournalRace.swift" if "--removal-journal-race" in sys.argv else "Tools/CheckXrplSendAuthorization.swift"), sources / "CheckXrplSendAuthorization.swift")
     if "--tron-send" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
