@@ -163,7 +163,13 @@ struct OathAllWalletBackupPage: View {
                 let record = try await db.cloudBackup(walletID: id)
                 guard operationID == operation, !Task.isCancelled else { return }
                 records[id] = record
-            } catch { OathDiagnostics.record(error); failure = "failed" }
+            } catch {
+                OathDiagnostics.record(error)
+                // A failed read can return after cancellation and a new batch.
+                // Keep the same ownership gate used by the success path.
+                guard operationID == operation, !Task.isCancelled else { return }
+                failure = "failed"
+            }
         }
         remaining.remove(id); finishedCount += 1
     }
