@@ -1860,9 +1860,10 @@ actor OathWalletVault: OathRecoveryPhraseReading, OathPrivateKeyReading {
 
     private func checkAuthentication(_ token: SigningAuthorization) throws {
         try checkAuthentication(token.authentication)
-        guard signingRevocations[token.walletID] == token.removalGeneration,
-              contents?.activeWallets.contains(where: { $0.id.uuidString == token.walletID }) == true
+        guard signingRevocations[token.walletID] == token.removalGeneration
         else { throw CancellationError() }
+        guard contents?.activeWallets.contains(where: { $0.id.uuidString == token.walletID }) == true
+        else { throw OathWalletError.locked }
     }
 
     private func checkAuthentication(_ token: UUID) throws {
