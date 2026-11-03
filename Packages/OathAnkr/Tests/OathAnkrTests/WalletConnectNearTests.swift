@@ -25,6 +25,30 @@ final class WalletConnectNearTests:XCTestCase {
             XCTAssertEqual(SuiSendCrypto.base58(Data(SHA256.hash(data:bytes))),v["hash"].string)
         }
     }
+    func testTransactionDataSlicesPreserveDecodedFields() throws {
+        let vectors = try JSONDecoder().decode([NearJSON].self, from: NearSendTests.fixture("vectors"))
+        for vector in vectors {
+            let bytes = try XCTUnwrap(Data(base64Encoded: try XCTUnwrap(vector["raw"].string)))
+            let expected = try WalletConnectNearTransaction(bytes)
+            for prefixCount in [1, 7, 64] {
+                let padded = Data(repeating: 99, count: prefixCount) + bytes + Data([88])
+                let slice = padded.dropFirst(prefixCount).dropLast()
+                XCTAssertEqual(slice.startIndex, prefixCount)
+                XCTAssertEqual(try WalletConnectNearTransaction(slice), expected)
+            }
+        }
+    }
+    func testMalformedTransactionDataSlicesThrow() throws {
+        let bytes = try raw()
+        let padded = Data([99]) + bytes
+        let slice = padded.dropFirst()
+        XCTAssertEqual(slice.startIndex, 1)
+        for count in 0..<slice.count {
+            XCTAssertThrowsError(try WalletConnectNearTransaction(slice.prefix(count)))
+        }
+        let trailing = Data([99]) + bytes + Data([0])
+        XCTAssertThrowsError(try WalletConnectNearTransaction(trailing.dropFirst()))
+    }
     func testWrongOwnerKeyNetworkAndExpiredReview() throws {
         let bytes = try raw(); XCTAssertThrowsError(try request(bytes,account:"attacker.testnet"))
         let r = try request(bytes), tx = try WalletConnectNearTransaction(bytes)
