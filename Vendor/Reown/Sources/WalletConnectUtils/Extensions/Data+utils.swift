@@ -18,36 +18,38 @@ extension Data {
 
 extension Data {
 
-    static func value(of nibble: UInt8) -> UInt8? {
-        guard let letter = String(bytes: [nibble], encoding: .ascii) else { return nil }
-        return UInt8(letter, radix: 16)
+    public enum HexDecodingError: Error {
+        case oddLength
+        case invalidCharacter
     }
 
+    /// Legacy nonthrowing conversion. Malformed input produces empty data.
+    /// Key constructors use validatingHex to distinguish malformed input.
     public init(hex: String) {
-        var data = Data()
-        let string = hex.hasPrefix("0x") ? String(hex.dropFirst(2)) : hex
+        self = (try? Data(validatingHex: hex)) ?? Data()
+    }
 
-        // Convert the string to bytes for better performance
-        guard
-            let stringData = string.data(using: .ascii, allowLossyConversion: true)
-        else {
-            self = data
-            return
+    public init(validatingHex hex: String) throws {
+        let body = hex.hasPrefix("0x") || hex.hasPrefix("0X") ? hex.dropFirst(2) : hex[...]
+        let input = Array(body.utf8)
+        guard input.count.isMultiple(of: 2) else { throw HexDecodingError.oddLength }
+        var output = Data(capacity: input.count / 2)
+        for index in stride(from: 0, to: input.count, by: 2) {
+            guard let high = Self.hexNibble(input[index]), let low = Self.hexNibble(input[index + 1]) else {
+                throw HexDecodingError.invalidCharacter
+            }
+            output.append((high << 4) | low)
         }
+        self = output
+    }
 
-        let stringBytes = Array(stringData)
-        for idx in stride(from: 0, to: stringBytes.count, by: 2) {
-            guard let high = Data.value(of: stringBytes[idx]) else {
-                data.removeAll()
-                break
-            }
-            if idx < stringBytes.count - 1, let low = Data.value(of: stringBytes[idx + 1]) {
-                data.append((high << 4) | low)
-            } else {
-                data.append(high)
-            }
+    private static func hexNibble(_ byte: UInt8) -> UInt8? {
+        switch byte {
+        case 48...57: return byte - 48
+        case 65...70: return byte - 55
+        case 97...102: return byte - 87
+        default: return nil
         }
-        self = data
     }
 
     public func toHexString() -> String {

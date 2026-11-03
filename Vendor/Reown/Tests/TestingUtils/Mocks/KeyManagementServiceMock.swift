@@ -54,9 +54,9 @@ final class KeyManagementServiceMock: KeyManagementServiceProtocol {
         guard let privateKey = try getPrivateKey(for: selfPublicKey) else {
             fatalError() // TODO: handle error
         }
-        let peerPublicKey = try AgreementPublicKey(rawRepresentation: Data(hex: hexRepresentation))
+        let peerPublicKey = try AgreementPublicKey(hex: hexRepresentation)
         let sharedSecret = try privateKey.sharedSecretFromKeyAgreement(with: peerPublicKey)
-        let sharedKey = sharedSecret.deriveSymmetricKey()
+        let sharedKey = try sharedSecret.deriveSymmetricKey()
         return AgreementKeys(sharedKey: sharedKey, publicKey: privateKey.publicKey)
     }
 
