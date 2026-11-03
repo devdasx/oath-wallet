@@ -43,7 +43,7 @@ public actor ENSResolver {
         )
 
         let address = try await resolver.address(namehash: namehash)
-        let eip55 = EIP55(crypto: crypto).encode(address)
+        let eip55 = try EIP55(crypto: crypto).encode(address)
 
         guard let account = Account(blockchain: blockchain, address: eip55)
         else { throw Errors.invalidAccount }
