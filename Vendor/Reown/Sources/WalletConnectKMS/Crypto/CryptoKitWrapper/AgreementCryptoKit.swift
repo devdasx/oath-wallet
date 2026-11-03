@@ -23,7 +23,7 @@ public struct AgreementPublicKey: GenericPasswordConvertible, Equatable {
     }
 
     public init(hex: String) throws {
-        let data = Data(hex: hex)
+        let data = try Data(validatingHex: hex)
         try self.init(rawRepresentation: data)
     }
 
@@ -75,7 +75,7 @@ public struct AgreementPrivateKey: GenericPasswordConvertible, Equatable {
     }
 
     public init(hex: String) throws {
-        let data = Data(hex: hex)
+        let data = try Data(validatingHex: hex)
         try self.init(rawRepresentation: data)
     }
 

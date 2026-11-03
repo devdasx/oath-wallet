@@ -9,7 +9,10 @@ public struct SymmetricKey: Equatable {
         rawRepresentation.toHexString()
     }
 
-    public init(key: CryptoKit.SymmetricKey) {
+    public enum Errors: Error { case invalidLength }
+
+    public init(key: CryptoKit.SymmetricKey) throws {
+        guard key.bitCount == 256 else { throw Errors.invalidLength }
         self.key = key
     }
 
@@ -21,7 +24,7 @@ public struct SymmetricKey: Equatable {
     }
 
     public init(hex: String) throws {
-        let data = Data(hex: hex)
+        let data = try Data(validatingHex: hex)
         try self.init(rawRepresentation: data)
     }
 
@@ -38,6 +41,7 @@ extension SymmetricKey: GenericPasswordConvertible {
     }
 
     public init<D>(rawRepresentation data: D) throws where D: ContiguousBytes {
+        guard data.withUnsafeBytes({ $0.count }) == 32 else { throw Errors.invalidLength }
         self.key = CryptoKit.SymmetricKey(data: data)
     }
 }

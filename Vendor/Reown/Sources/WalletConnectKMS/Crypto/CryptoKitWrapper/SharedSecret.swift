@@ -11,8 +11,8 @@ struct SharedSecret {
         self.sharedSecret = sharedSecret
     }
 
-    func deriveSymmetricKey() -> SymmetricKey {
+    func deriveSymmetricKey() throws -> SymmetricKey {
         let symKey = sharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: Data(), sharedInfo: Data(), outputByteCount: 32)
-        return SymmetricKey(key: symKey)
+        return try SymmetricKey(key: symKey)
     }
 }
