@@ -91,6 +91,8 @@ enum StellarSendXDR {
     struct Reader {
         let data: Data
         var offset = 0
+        // XDR offsets are relative to the buffer, including Data slices.
+        init(data: Data) { self.data = Data(data) }
         mutating func take(_ count: Int) throws -> Data {
             guard count >= 0, offset <= data.count, count <= data.count-offset else { throw StellarSendError.malformed }
             defer { offset += count };return data.subdata(in:offset..<offset+count)
