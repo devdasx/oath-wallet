@@ -211,6 +211,9 @@ public actor TronClient {
     }
     public func inventory(owner: String, additionalTokens: [String] = []) async throws -> TronInventory {
         _ = try TronIdentity.bytes(owner); try await verifyNetwork()
+        // A late response may still contain state read before a send. Use the
+        // start of this inventory request, not its completion, for freshness.
+        let observedAt = Date.now
         async let state = post("wallet/getaccount", ["address": .string(owner), "visible": .bool(true)])
         async let discovery = await OathDiagnostics.attempt("token_discovery") { try await indexed(owner) }
         let (account, index) = try await (state, discovery)
@@ -275,7 +278,7 @@ public actor TronClient {
             for await (ref, value, nft) in group { if let value { holdings.append(value) } else if nft { excludedNFTs.append(ref) } else { failed.append(ref) }; enqueue() }
         }
         try Task.checkCancellation()
-        return .init(owner: owner, holdings: holdings, failedReferences: Array(Set(failed)).sorted(), excludedNFTs: excludedNFTs.sorted(), discoveryComplete: index != nil, observedAt: .now,
+        return .init(owner: owner, holdings: holdings, failedReferences: Array(Set(failed)).sorted(), excludedNFTs: excludedNFTs.sorted(), discoveryComplete: index != nil, observedAt: observedAt,
                      raw: try JSONEncoder().encode(TronJSON.object(["node": account, "discovery": index ?? .null])))
     }
     private func balances(_ chunk: [String], ownerHex: String) async throws -> ([String:String],[String]) {

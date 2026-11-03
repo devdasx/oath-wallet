@@ -183,6 +183,9 @@ public actor TonClient {
     }
     public func inventory(owner address: String) async throws -> TonInventory {
         let owner = try TonIdentity.raw(address); try await verifyNetwork()
+        // A late response may still contain state read before a send. Use the
+        // start of this inventory request, not its completion, for freshness.
+        let observedAt = Date.now
         async let state = rpc("getAddressInformation", ["address":.string(owner)])
         async let tokens = discovery(owner)
         let (account,(rows,pages,complete,discoveryError)) = try await (state,tokens)
@@ -219,7 +222,7 @@ public actor TonClient {
                   let usd = TonMarkets.positive(row["price"]["prices"]["USD"]) else { continue }
             prices.append(.init(reference:ref,usd:usd,source:"TonAPI",fetchedAt:.now))
         }
-        return .init(owner:owner,holdings:holdings.sorted{$0.token.reference<$1.token.reference},prices:prices,failedReferences:failed.sorted(),discoveryComplete:complete,observedAt:.now,
+        return .init(owner:owner,holdings:holdings.sorted{$0.token.reference<$1.token.reference},prices:prices,failedReferences:failed.sorted(),discoveryComplete:complete,observedAt:observedAt,
                      raw:try JSONEncoder().encode(TonJSON.object(["account":account,"index":.array(pages),"wallets":.object(node)])),discoveryError:discoveryError,holdingErrors:holdingErrors)
     }
     public func history(owner address: String, stream: TonStream, before: Int64? = nil, limit: Int = 100) async throws -> TonHistoryPage {

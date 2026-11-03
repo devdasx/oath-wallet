@@ -28,8 +28,8 @@ extension OathDatabase {
                   let tx = try TransactionRecord.fetchOne(db,key:id) else { return false }
             return try Bool.fetchOne(db,sql:"""
                 SELECT EXISTS(SELECT 1 FROM tronTransactions t JOIN tronSync s ON s.accountID=t.accountID JOIN transactions tx ON tx.id=?
-                WHERE t.accountID=? AND t.hash=? AND s.observedAt>=tx.timestamp AND s.failure IS NULL)
-                """,arguments:[tx.id,send.accountID,tx.hash]) == true
+                WHERE t.accountID=? AND t.hash=? AND s.observedAt>=tx.timestamp AND s.observedAt>=? AND s.failure IS NULL)
+                """,arguments:[tx.id,send.accountID,tx.hash,send.updatedAt]) == true
         }
     }
     /// Reserve the sender, including duplicate imports in other wallets. Concurrent sends must not spend the same balance or resources.
