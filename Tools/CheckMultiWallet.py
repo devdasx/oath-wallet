@@ -15,6 +15,8 @@ import sys
 import tempfile
 
 root = Path(__file__).resolve().parents[1]
+if "--walletconnect-removal-read" in sys.argv:
+    sys.argv.append("--walletconnect")
 if "--walletconnect-transactions" in sys.argv or "--permission-batch" in sys.argv or "--permission-batch-races" in sys.argv:
     sys.argv.append("--evm-send")
 with tempfile.TemporaryDirectory(prefix="oath-multiwallet-") as temporary:
@@ -670,7 +672,7 @@ extension OathPostSendBalanceRefresh { func submitted(walletID: String, networkI
     if "--walletconnect" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
-        shutil.copyfile(root / "Tools/CheckWalletConnectAuthorization.swift", sources / "CheckWalletConnectAuthorization.swift")
+        shutil.copyfile(root / ("Tools/CheckWalletConnectRemovalRead.swift" if "--walletconnect-removal-read" in sys.argv else "Tools/CheckWalletConnectAuthorization.swift"), sources / "CheckWalletConnectAuthorization.swift")
     if "--authentication" in sys.argv:
         check = sources / "CheckMultiWallet.swift"
         check.write_text(check.read_text().replace("@main", ""))
