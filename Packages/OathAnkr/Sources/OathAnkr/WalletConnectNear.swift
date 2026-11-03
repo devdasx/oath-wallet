@@ -123,7 +123,10 @@ private struct NearConnectReader {
     var offset = 0
     mutating func take(_ n:Int) throws -> Data {
         guard n >= 0, n <= bytes.count-offset else { throw NearSendError.malformed }
-        defer { offset += n }; return Data(bytes[offset..<offset+n])
+        let start = bytes.index(bytes.startIndex, offsetBy: offset)
+        let end = bytes.index(start, offsetBy: n)
+        defer { offset += n }
+        return Data(bytes[start..<end])
     }
     mutating func uint(_ n:Int) throws -> UInt64 { try take(n).enumerated().reduce(UInt64(0)){$0 | UInt64($1.element) << ($1.offset*8)} }
     mutating func length(_ max:Int) throws -> Int { let n = try uint(4); guard n <= max else { throw NearSendError.malformed }; return Int(n) }
