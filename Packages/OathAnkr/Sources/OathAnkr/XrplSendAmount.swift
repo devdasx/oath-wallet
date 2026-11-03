@@ -21,8 +21,11 @@ public enum XrplSendAmount {
         while carry > 0 { product.append(UInt8(carry%10)+48); carry /= 10 }
         var result = [UInt8](); carry = 0
         for d in product.reversed() { let n = carry*10+UInt64(d-48); result.append(UInt8(n/denominator)+48); carry = n%denominator }
-        let value = try canonical(String(decoding:result,as:UTF8.self))
-        return up && carry > 0 ? SuiIdentity.add(value,"1") : value
+        // Long division emits padding for the multiplied numerator. Apply the
+        // amount bound to the quotient, not that temporary padded buffer.
+        let significant = result.drop(while: { $0 == 48 })
+        let value = try canonical(significant.isEmpty ? "0" : String(decoding:significant,as:UTF8.self))
+        return try canonical(up && carry > 0 ? SuiIdentity.add(value,"1") : value)
     }
     public static func roundedIssued(_ atomic: String, up: Bool) throws -> String {
         let digits = try canonical(atomic)

@@ -2,6 +2,18 @@ import XCTest
 @testable import OathAnkr
 
 final class XrplSendTests: XCTestCase {
+    func testLargeIssuedTransferRateKeepsExactQuotient() throws {
+        let amount = try XrplIdentity.issuedAmount("1e90")
+        let doubled = try XrplIdentity.issuedAmount("2e90")
+        for up in [false, true] {
+            XCTAssertEqual(try XrplSendAmount.ratio(amount,numerator:1_000_000_000,denominator:1_000_000_000,up:up),amount)
+            XCTAssertEqual(try XrplSendAmount.ratio(amount,numerator:2_000_000_000,denominator:1_000_000_000,up:up),doubled)
+        }
+        XCTAssertEqual(try XrplSendAmount.ratio("1",numerator:1,denominator:2,up:false),"0")
+        XCTAssertEqual(try XrplSendAmount.ratio("1",numerator:1,denominator:2,up:true),"1")
+        XCTAssertThrowsError(try XrplSendAmount.ratio(String(repeating:"9",count:193),numerator:2,denominator:1,up:false))
+    }
+
     func testOfficialSDKPaymentBytesAndSignatures() throws {
         struct Vector: Decodable { let reference:String,amount:String,bytes:String,hash:String }
         struct Fixture: Decodable { let testOnlyKey:String,address:String,publicKey:String,vectors:[Vector] }
