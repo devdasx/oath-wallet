@@ -193,9 +193,8 @@ private final class LanguageListController: UITableViewController, UISearchResul
         OathLayoutDirection.apply(strings.language, to: search.searchBar.searchTextField)
         search.searchBar.placeholder = strings.text(.searchLanguages)
         OathKeyboardAccessory.removeFromSearch(search.searchBar.searchTextField)
-        search.searchBar.searchTextField.font = strings.language == .arabic
-            ? OathArabicFont.regular.uiFont(size: 17, relativeTo: .body)
-            : .preferredFont(forTextStyle: .body)
+        search.searchBar.searchTextField.font = .preferredFont(forTextStyle: .body)
+        search.searchBar.searchTextField.adjustsFontForContentSizeCategory = true
         if !usesParentNavigationItem {
             title = strings.text(.language)
             navigationItem.leftBarButtonItem = OathSheetNavigationControls.back(strings: strings, identifier: "language.back") { [weak self] in

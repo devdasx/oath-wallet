@@ -163,7 +163,7 @@ public struct OathOnboardingScreen: View {
                 .accessibilityIdentifier("onboarding.brandLine")
 
             Text(strings.text(.headline))
-                .oathFont(.largeTitle, weight: .semibold, size: expanded ? expandedTitleSize : compactTitleSize, alreadyScaled: true)
+                .oathFont(.largeTitle, weight: .semibold, size: expanded ? expandedTitleSize : compactTitleSize)
                 .tracking(strings.language == .arabic ? 0 : -0.7)
                 .multilineTextAlignment(.center)
                 .fixedSize(horizontal: false, vertical: true)
@@ -202,7 +202,7 @@ public struct OathOnboardingScreen: View {
             .accessibilityIdentifier("onboarding.createWallet")
 
             // Clear glass disappears against the white footer. Use the native
-            // filled treatment with our adaptive neutral surface and label.
+            // filled treatment with adaptive neutral surface and label colors.
             OathActionButton(title: strings.text(.importWallet),
                              accent: Color(uiColor: OathSurfaceColors.field), foreground: .primary) {
                 onImportWallet()

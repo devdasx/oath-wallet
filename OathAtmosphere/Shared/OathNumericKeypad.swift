@@ -200,9 +200,7 @@ private final class OathKeypadButton: UIButton {
         case .digit(let digit):
             let size = bounds.width > 0 ? bounds.width : OathKeypadGeometry.circularDiameter
             let numberSize = size * 0.46
-            let numberFont = language == .arabic
-                ? UIFont(name: OathArabicFont.regular.rawValue, size: numberSize) ?? .systemFont(ofSize: numberSize)
-                : .systemFont(ofSize: numberSize, weight: .regular)
+            let numberFont = UIFont.systemFont(ofSize: numberSize, weight: .regular)
             let lettersSize = size * 0.13
             config.attributedTitle = AttributedString(localizedNumber ?? String(digit),
                 attributes: AttributeContainer([.font: numberFont]))

@@ -1,5 +1,4 @@
 import Foundation
-import CoreText
 
 @main struct CheckLocalization {
     static func main() throws {
@@ -175,14 +174,10 @@ import CoreText
             check(camera != "NSCameraUsageDescription" && !camera.isEmpty, "Camera permission is localized")
             check(!camera.localizedCaseInsensitiveContains("Oath"), "Camera explanation has no app branding")
         }
-        for weight in ["Regular", "Medium", "SemiBold", "Bold"] {
-            let name = "IBMPlexSansArabic-\(weight)"
-            let file = bundle.url(forResource: name, withExtension: "ttf")!
-            let descriptor = (CTFontManagerCreateFontDescriptorsFromURL(file as CFURL) as! [CTFontDescriptor])[0]
-            let font = CTFontCreateWithFontDescriptor(descriptor, 17, nil)
-            check(CTFontCopyPostScriptName(font) as String == name, "Font registration name matches source")
-            let characterSet = CTFontCopyCharacterSet(font) as CharacterSet
-            check("محفظةشبكةإرسال".unicodeScalars.allSatisfy { characterSet.contains($0) }, "Arabic glyph coverage")
+        check(bundle.object(forInfoDictionaryKey: "UIAppFonts") == nil, "All languages use native system fonts")
+        for extensionName in ["ttf", "otf", "ttc"] {
+            check((bundle.urls(forResourcesWithExtension: extensionName, subdirectory: nil) ?? []).isEmpty,
+                  "Typography uses native fonts without bundled replacements")
         }
         print("Passed \(checks) compiled-localization, language-registry, 57-language name, search, format, font, and preference checks.")
     }

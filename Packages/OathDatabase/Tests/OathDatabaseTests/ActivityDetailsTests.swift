@@ -71,6 +71,42 @@ extension AptosLedgerTests {
 }
 
 @MainActor final class ActivityDetailsTests: XCTestCase {
+    func testSenderTotalFollowsTheSelectedAccountAndActivity() async throws {
+        let (database, url) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+        try await database.pool.write { db in
+            try AccountRecord(id: "receiver", walletID: "w", networkID: "ethereum", address: "peer", derivationPath: "").insert(db)
+            try TransactionRecord(id: "payment", networkID: "ethereum", hash: "payment", state: "pending",
+                                  timestamp: 1, feeAtomic: "2", updatedAt: 1).insert(db)
+            for (accountID, direction, peer) in [("a", "outgoing", "peer"), ("receiver", "incoming", "public")] {
+                try ActivityRecord(id: accountID, walletID: "w", accountID: accountID, networkID: "ethereum",
+                    transactionID: "payment", assetID: "ethereum:native", direction: direction,
+                    amountAtomic: "10", counterparty: peer, timestamp: 1).insert(db)
+            }
+        }
+        for state in ["pending", "confirmed", "failed"] {
+            try await database.pool.write { try $0.execute(sql: "UPDATE transactions SET state=? WHERE id='payment'", arguments: [state]) }
+            let sent = try await database.transactionDetails(accountID: "a", transactionID: "payment")
+            let received = try await database.transactionDetails(accountID: "receiver", transactionID: "payment")
+            XCTAssertEqual(sent?.historyEntries.first?.showsSenderTotal, true)
+            XCTAssertEqual(sent?.totalAmount?.components.map(\.amount.rawValue), [state == "failed" ? "2" : "12"])
+            XCTAssertEqual(received?.historyEntries.first?.showsSenderTotal, false)
+            XCTAssertNil(received?.totalAmount)
+            XCTAssertEqual(received?.transaction.feeAtomic, "2")
+        }
+        // Both legs can belong to one account. Selecting its received leg must
+        // hide the row even when the transaction has a known sender total.
+        try await database.pool.write { db in
+            try db.execute(sql: "UPDATE transactions SET state='confirmed' WHERE id='payment'")
+            try ActivityRecord(id: "received-leg", walletID: "w", accountID: "a", networkID: "ethereum",
+                transactionID: "payment", assetID: "ethereum:native", direction: "incoming",
+                amountAtomic: "3", counterparty: "peer", timestamp: 1).insert(db)
+        }
+        let mixed = try await database.transactionDetails(accountID: "a", transactionID: "payment")
+        XCTAssertEqual(mixed?.totalAmount?.components.map(\.amount.rawValue), ["12"])
+        XCTAssertEqual(mixed?.historyEntries.first { $0.id == "received-leg" }?.showsSenderTotal, false)
+    }
+
     func testEVMChecksummedAccountDoesNotDuplicateReceiptAddress() async throws {
         let (database, url) = try await fixture()
         defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
@@ -105,17 +141,24 @@ extension AptosLedgerTests {
         let (database, url) = try await fixture()
         defer { try? FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
         try await database.pool.write { db in
-            try TransactionRecord(id: "many", networkID: "ethereum", hash: "many", state: "confirmed", timestamp: 1, updatedAt: 1).insert(db)
+            try TransactionRecord(id: "many", networkID: "ethereum", hash: "many", state: "confirmed", timestamp: 1, feeAtomic: "2", updatedAt: 1).insert(db)
             try ActivityRecord(id: "many-row", walletID: "w", accountID: "a", networkID: "ethereum", transactionID: "many", assetID: "ethereum:native", direction: "outgoing", amountAtomic: "30", counterparty: "", timestamp: 1).insert(db)
             for (index, recipient) in ["recipient-1", "recipient-2", "recipient-1"].enumerated() {
                 try TransferRecord(id: "transfer-\(index)", transactionID: "many", networkID: "ethereum", assetID: "ethereum:native", eventIndex: index, fromAddress: "public", toAddress: recipient, amountAtomic: "10").insert(db)
+                try ActivityRecord(id: "indexed-\(index)", walletID: "w", accountID: "a", networkID: "ethereum",
+                    transactionID: "many", assetID: "ethereum:native", direction: "outgoing", amountAtomic: "10",
+                    counterparty: recipient, timestamp: 1).insert(db)
             }
         }
         let result = try await database.transactionDetails(accountID: "a", transactionID: "many")
         XCTAssertEqual(result?.fromAddresses, ["public"])
         XCTAssertEqual(result?.toAddresses, ["recipient-1", "recipient-2"])
+        XCTAssertEqual(result?.totalAmount?.components.map(\.amount.rawValue), ["32"])
         let unrelated = try await database.transactionDetails(accountID: "unrelated", transactionID: "many")
         XCTAssertNil(unrelated)
+        try await database.pool.write { try $0.execute(sql: "UPDATE transactions SET state='failed' WHERE id='many'") }
+        let failed = try await database.transactionDetails(accountID: "a", transactionID: "many")
+        XCTAssertEqual(failed?.totalAmount?.components.map(\.amount.rawValue), ["2"])
     }
 
     func testSolanaReceiptUsesSelectedDerivationAndActivityOwner() async throws {
@@ -189,6 +232,9 @@ extension AptosLedgerTests {
         }
         let missing = try await database.transactionDetails(accountID: "a", transactionID: "fee-tx", currency: "JOD")
         XCTAssertNil(missing?.feeFiatValue)
+        XCTAssertNil(missing?.totalAmount?.fiatValue)
+        XCTAssertEqual(missing?.totalAmount?.components.map(\.asset.id), ["token", "ethereum:native"])
+        XCTAssertEqual(missing?.totalAmount?.components.map(\.amount.rawValue), ["1000000", "21000000000000"])
         try await database.savePrices([
             .init(assetID: "token", currency: "USD", value: "1000000", observedAt: 20, source: "fixture"),
             .init(assetID: "ethereum:native", currency: "USD", value: "2000", observedAt: 10, source: "fixture"),
@@ -196,6 +242,7 @@ extension AptosLedgerTests {
         try await database.saveExchangeRates(.init(rates: ["USD": "1", "JOD": "0.709"], observedAt: 20, fetchedAt: 20, source: "fixture"))
         let local = try await database.transactionDetails(accountID: "a", transactionID: "fee-tx", currency: "JOD")
         XCTAssertEqual(local?.feeFiatValue, Decimal(string: "0.044667"))
+        XCTAssertEqual(local?.totalAmount?.fiatValue, Decimal(string: "709000.044667"))
         let usd = try await database.transactionDetails(accountID: "a", transactionID: "fee-tx")
         XCTAssertEqual(usd?.feeFiatValue, Decimal(string: "0.063"))
         let unavailableFX = try await database.transactionDetails(accountID: "a", transactionID: "fee-tx", currency: "EUR")
@@ -212,6 +259,10 @@ extension AptosLedgerTests {
         try await database.pool.write { try $0.execute(sql: "UPDATE transactions SET feeAtomic='0' WHERE id='fee-tx'") }
         let zero = try await database.transactionDetails(accountID: "a", transactionID: "fee-tx", currency: "EUR")
         XCTAssertEqual(zero?.feeFiatValue, 0)
+        XCTAssertEqual(zero?.totalAmount?.components.map(\.asset.id), ["token"])
+        try await database.pool.write { try $0.execute(sql: "UPDATE transactions SET feeAtomic=NULL WHERE id='fee-tx'") }
+        let unknown = try await database.transactionDetails(accountID: "a", transactionID: "fee-tx")
+        XCTAssertNil(unknown?.totalAmount)
     }
 
     func fixture(_ network: String = "ethereum") async throws -> (OathDatabase, URL) {
@@ -245,6 +296,7 @@ extension AptosLedgerTests {
             let detail = try await db.transactionDetails(accountID: "a", transactionID: "old")
             XCTAssertEqual(detail?.state, cancelled ? "canceled" : "replaced")
             XCTAssertEqual(detail?.replacementHash, "new")
+            XCTAssertNil(detail?.totalAmount)
             let unrelated = try await db.transactionDetails(accountID: "other", transactionID: "old")
             XCTAssertNil(unrelated)
             let reopened = try await OathDatabase.open(at: url)
@@ -368,12 +420,16 @@ extension AptosLedgerTests {
             XCTAssertTrue(secondWork.contains { $0.txid == fundingID }, "Global transaction cache must not skip another account's projection")
             let sentDetails = try await db.transactionDetails(accountID: "a", transactionID: network.rawValue + ":" + sentID)
             XCTAssertEqual(sentDetails?.transaction.feeAtomic, "100")
+            XCTAssertEqual(sentDetails?.historyEntries.first?.showsSenderTotal, true)
+            XCTAssertEqual(sentDetails?.totalAmount?.components.map(\.amount.rawValue), ["7100"])
             let ownAddress = try XCTUnwrap(BitcoinTransactions.details(funding, network: network).outputs.first?.address)
             let sentAddresses = try BitcoinTransactions.details(sent, network: network).outputs.compactMap(\.address).sorted()
             XCTAssertEqual(sentDetails?.fromAddresses, [ownAddress])
             XCTAssertEqual(sentDetails?.toAddresses, sentAddresses, "Keep recipient and change outputs distinct")
             let fundingDetails = try await db.transactionDetails(accountID: "a", transactionID: network.rawValue + ":" + fundingID)
             XCTAssertEqual(fundingDetails?.inputs, [], "Coinbase has no input addresses")
+            XCTAssertEqual(fundingDetails?.historyEntries.first?.showsSenderTotal, false)
+            XCTAssertNil(fundingDetails?.totalAmount)
             XCTAssertEqual(sentDetails?.inputs?.count, 1)
             XCTAssertEqual(sentDetails?.outputs?.count, 2)
             XCTAssertEqual(sentDetails?.outputs?.map(\.id), ["0", "1"])
@@ -381,7 +437,9 @@ extension AptosLedgerTests {
             XCTAssertEqual(fundingDetails?.toAddresses, [ownAddress])
             // Two inputs have no single representative sender. Both must still
             // be searchable, including after an offline cache migration.
-            let multiFunding = transaction(parent: nil, outputs: [(own, 21_000)])
+            let changeBranch = try XCTUnwrap(descriptor.branches.first { $0.change == 1 })
+            let changeAddress = try BitcoinKeys.addresses(branch: changeBranch, range: 0..<1)[0]
+            let multiFunding = transaction(parent: nil, outputs: [(changeAddress.script, 21_000)])
             let multiFundingID = try BitcoinTransactions.txid(multiFunding, network: network)
             let otherFunding = transaction(parent: nil, outputs: [(other, 8_000)])
             let otherFundingID = try BitcoinTransactions.txid(otherFunding, network: network)
@@ -401,7 +459,11 @@ extension AptosLedgerTests {
                 raw: [multiFundingID: multiFunding, otherFundingID: otherFunding, multiID: multi], times: [3: 1_700_000_200])
             let otherAddress = try XCTUnwrap(BitcoinTransactions.details(otherFunding, network: network).outputs.first?.address)
             let multiDetails = try await db.transactionDetails(accountID: "a", transactionID: network.rawValue + ":" + multiID)
-            XCTAssertEqual(multiDetails?.fromAddresses, [ownAddress, otherAddress].sorted())
+            XCTAssertEqual(multiDetails?.fromAddresses, [changeAddress.address, otherAddress].sorted())
+            XCTAssertEqual(multiDetails?.inputs?.map(\.ownership), [.change, .unrecognized])
+            XCTAssertEqual(multiDetails?.historyEntries.first?.showsSenderTotal, false)
+            XCTAssertNil(multiDetails?.totalAmount, "Mixed funding does not prove the wallet's share of the fee")
+            XCTAssertEqual(multiDetails?.outputs?.map(\.ownership), [.owned])
             XCTAssertEqual(multiDetails?.toAddresses, [ownAddress])
             XCTAssertEqual(multiDetails?.inputs?.map(\.amountAtomic), ["21000", "8000"])
             XCTAssertEqual(multiDetails?.outputs?.map(\.amountAtomic), ["28900"])
@@ -414,6 +476,8 @@ extension AptosLedgerTests {
             let repeatedDetails = try await db.transactionDetails(accountID: "a", transactionID: network.rawValue + ":" + repeatedID)
             XCTAssertEqual(repeatedDetails?.outputs?.map(\.address), [ownAddress, ownAddress], "Do not merge distinct outputs to the same address")
             XCTAssertEqual(repeatedDetails?.outputs?.map(\.amountAtomic), ["14000", "14000"])
+            XCTAssertEqual(repeatedDetails?.outputs?.map(\.ownership), [.owned, .owned])
+            XCTAssertNil(repeatedDetails?.totalAmount, "A pair of identical outputs without a journal cannot distinguish self-payment from change")
             let results = try await db.chainHistory(walletID: "w", currency: "USD", search: otherAddress)
             XCTAssertTrue(results.contains { $0.entry.hash == multiID })
             try await db.pool.write { db in

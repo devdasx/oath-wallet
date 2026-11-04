@@ -901,7 +901,7 @@ struct OathHomeScreen: View {
                 } label: {
                     OathAssetTreeRow(entry: tree) {
                         OathHomeAssetRow(chain: chain, presentation: presentation,
-                            balancesHidden: balancesHidden, showsSeparator: showsSeparator)
+                            balancesHidden: balancesHidden, showsSeparator: showsSeparator, isSearchResult: searching)
                             .equatable()
                     }
                 }

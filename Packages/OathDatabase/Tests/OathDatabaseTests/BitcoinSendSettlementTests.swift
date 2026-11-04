@@ -28,7 +28,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
 @MainActor final class BitcoinSendSettlementTests: XCTestCase {
     private let seed = Data(0..<32) // Published deterministic host-test material only.
     private func fixture(_ chain: UTXONetwork, selfTransfer: Bool = false, inputCount: UInt32 = 1,
-                         addressType: BitcoinAddressType? = nil, options: BitcoinSendOptions = .init(), journal: Bool = true, requestedAmount: Int64? = nil) async throws -> (OathDatabase, BitcoinSendPlan, BitcoinSignedSend) {
+                         addressType: BitcoinAddressType? = nil, reuseReceiveForChange: Bool = false, options: BitcoinSendOptions = .init(), journal: Bool = true, requestedAmount: Int64? = nil) async throws -> (OathDatabase, BitcoinSendPlan, BitcoinSignedSend) {
         let db = try await OathDatabase.open(at: FileManager.default.temporaryDirectory.appendingPathComponent("StatusUTXO-" + UUID().uuidString).appendingPathComponent("db.sqlite"))
         try await db.seed(networks: [.init(id: chain.rawValue, name: "Test", family: "utxo", symbol: "TEST", decimals: 8, derivationPath: "fixture", logo: "", sortOrder: 0)],
             assets: [.init(id: chain.rawValue + ":native", networkID: chain.rawValue, reference: "native", name: "Test", symbol: "TEST", decimals: 8)])
@@ -40,7 +40,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
         try await db.importWalletIfNeeded(.init(id: "w", name: "Test", kind: "hd", vaultReference: "fixture", createdAt: 1),
             accounts: [.init(id: "a", walletID: "w", networkID: chain.rawValue, address: source.address, derivationPath: source.path)])
         try await db.prepareBitcoin(accountID: "a", descriptor: descriptor)
-        let change = try await db.bitcoinChangeAddress(accountID: "a")
+        let change = try await reuseReceiveForChange ? db.bitcoinReceiveAddress(accountID: "a") : db.bitcoinChangeAddress(accountID: "a")
         var coins: [BitcoinSendCoin] = []
         for address in sources {
             var raw = BitcoinWire.little(UInt32(2)) + Data([1]) + Data(repeating: 17, count: 32)
@@ -157,6 +157,10 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             let (db, plan, signed) = try await fixture(chain, selfTransfer: true)
             var history = try await db.history(walletID: "w")
             var entry = try XCTUnwrap(history.first { $0.hash == signed.txid })
+            let receipt = try await db.transactionDetails(accountID: "a", transactionID: entry.transactionID)
+            XCTAssertEqual(receipt?.inputs?.map(\.ownership), [.owned])
+            XCTAssertEqual(receipt?.outputs?.map(\.ownership), [.owned, .change])
+            XCTAssertEqual(receipt?.totalAmount?.components.map(\.amount.rawValue), [String(plan.total)], chain.rawValue)
             XCTAssertEqual(entry.direction, "self", chain.rawValue)
             XCTAssertEqual(entry.displayAmountAtomic, String(plan.fee), chain.rawValue)
             XCTAssertEqual(entry.displayDirection, "outgoing")
@@ -165,8 +169,11 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             entry = try XCTUnwrap(history.first { $0.hash == signed.txid })
             XCTAssertEqual(entry.state, "confirmed")
             XCTAssertEqual(entry.displayAmountAtomic, String(plan.fee), chain.rawValue)
+            let confirmed = try await db.transactionDetails(accountID: "a", transactionID: entry.transactionID)
+            XCTAssertEqual(confirmed?.totalAmount, receipt?.totalAmount)
         }
     }
+
     func testScanStartedBeforeConfirmationCannotRestoreASpentInput() async throws {
         let (db, plan, signed) = try await fixture(.bitcoin)
         let descriptor = try UTXONetwork.bitcoin.wallet(seed: seed)
@@ -234,10 +241,13 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             XCTAssertEqual(Set(receipt.toAddresses), Set([plan.recipient, plan.change.address]), chain.rawValue)
             XCTAssertEqual(receipt.inputs?.map(\.amountAtomic), ["100000000"], chain.rawValue)
             XCTAssertEqual(receipt.outputs?.count, 2, chain.rawValue)
+            XCTAssertEqual(receipt.outputs?.map(\.ownership), [.unrecognized, .change], chain.rawValue)
             XCTAssertEqual(receipt.transaction.feeAtomic, String(plan.fee))
             XCTAssertEqual(receipt.historyEntries.first?.amountAtomic, String(plan.recipientAmount))
+            XCTAssertEqual(receipt.totalAmount?.components.map(\.amount.rawValue), [String(plan.total)], chain.rawValue)
         }
     }
+
     func testReceiptKeepsMultipleInputsAndChangeAfterReopenWithoutIndexedParents() async throws {
         for chain in UTXONetwork.allCases {
             let (db, plan, signed) = try await fixture(chain, inputCount: 2)
@@ -246,6 +256,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             let value = try await reopened.transactionDetails(accountID: "a", transactionID: chain.rawValue + ":" + signed.txid)
             let receipt = try XCTUnwrap(value)
             XCTAssertEqual(receipt.fromAddresses, plan.coins.map { $0.address.address }.sorted(), chain.rawValue)
+            XCTAssertEqual(receipt.inputs?.map(\.ownership), [.owned, .owned], chain.rawValue)
             XCTAssertEqual(receipt.inputs?.map(\.id), plan.coins.map(\.id), chain.rawValue)
             XCTAssertEqual(receipt.inputs?.map(\.amountAtomic), ["100000000", "100000000"], chain.rawValue)
             XCTAssertEqual(Set(receipt.toAddresses), Set([plan.recipient, plan.change.address]), chain.rawValue)
@@ -256,6 +267,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             XCTAssertEqual(confirmed?.state, "confirmed")
         }
     }
+
 
     func testMessageOutputSurvivesJournalReopenAndIndexingForEveryAddressType() async throws {
         let message = "Payment note 💙\nرسالة"
@@ -273,6 +285,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
                 XCTAssertTrue(outputs.prefix(2).allSatisfy { $0.address != nil && $0.dataOutput == nil })
                 let dataOutput = try XCTUnwrap(outputs.last)
                 XCTAssertEqual(dataOutput.id, "2")
+                XCTAssertEqual(dataOutput.ownership, .unrecognized)
                 XCTAssertNil(dataOutput.address)
                 XCTAssertEqual(dataOutput.amountAtomic, "0")
                 XCTAssertEqual(dataOutput.dataOutput?.message, message)
@@ -294,6 +307,7 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
             }
         }
     }
+
     func testReceiptDoesNotReadAnotherWalletsSignedJournal() async throws {
         let (db, plan, signed) = try await fixture(.bitcoin)
         try await db.importWalletIfNeeded(.init(id: "other", name: "Other", kind: "hd", vaultReference: "fixture-other", createdAt: 1),
@@ -308,7 +322,46 @@ private struct StatusHistoryQuery: BitcoinSendStatusReading {
         XCTAssertEqual(receipt.fromAddresses, [])
         XCTAssertEqual(receipt.toAddresses, [])
         XCTAssertNil(receipt.inputs)
+        XCTAssertNil(receipt.totalAmount)
     }
+
+    func testOnlyJournaledChangeOutputIsBadgedWhenPaymentUsesSameAddress() async throws {
+        let (db, plan, signed) = try await fixture(.bitcoin, selfTransfer: true, reuseReceiveForChange: true)
+        XCTAssertEqual(plan.recipient, plan.change.address)
+        let receipt = try await db.transactionDetails(accountID: "a", transactionID: "bitcoin:" + signed.txid)
+        XCTAssertEqual(receipt?.outputs?.map(\.ownership), [.owned, .change])
+        XCTAssertEqual(receipt?.totalAmount?.components.map(\.amount.rawValue), [String(plan.total)])
+    }
+
+    func testIndexedReceiptResolvesScriptsAcrossOnlyThisWalletAndChain() async throws {
+        let (db, plan, signed) = try await fixture(.bitcoin)
+        let id = "bitcoin:" + signed.txid
+        try await db.pool.write { sql in
+            try sql.execute(sql: "INSERT INTO bitcoinTransactions(accountID,txid,raw) VALUES(?,?,?)",
+                            arguments: ["a", signed.txid, signed.raw])
+            try sql.execute(sql: "DELETE FROM bitcoinSendPlans WHERE sendID='send'")
+        }
+        let other = try UTXONetwork.bitcoin.wallet(seed: Data(1...32))
+        let recipient = try BitcoinKeys.addresses(branch: other.branches[0], range: 0..<1)[0]
+        for (wallet, account) in [("foreign", "foreign"), ("w", "sibling")] {
+            try await db.importWalletIfNeeded(.init(id: wallet, name: "Test", kind: "hd",
+                vaultReference: wallet == "w" ? "fixture" : wallet, createdAt: 1),
+                accounts: [.init(id: account, walletID: wallet, networkID: "bitcoin", address: recipient.address,
+                                 derivationPath: recipient.path)])
+            try await db.prepareBitcoin(accountID: account, descriptor: other)
+            if account == "sibling" {
+                try await db.pool.write { sql in
+                    try sql.execute(sql: "UPDATE bitcoinTransactions SET accountID=? WHERE accountID='a' AND txid=?",
+                                    arguments: [account, plan.coins[0].txid])
+                }
+            }
+            let receipt = try await db.transactionDetails(accountID: "a", transactionID: id)
+            XCTAssertEqual(receipt?.inputs?.map(\.ownership), [.owned])
+            XCTAssertEqual(receipt?.outputs?.map(\.ownership), [wallet == "w" ? .owned : .unrecognized, .change])
+        }
+        XCTAssertEqual(plan.recipient, recipient.address)
+    }
+
     func testReceiptRejectsMismatchedSignedBytesAndParentHashes() async throws {
         let (db, plan, signed) = try await fixture(.bitcoin)
         let id = "bitcoin:" + signed.txid

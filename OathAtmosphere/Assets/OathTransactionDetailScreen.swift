@@ -122,6 +122,8 @@ struct OathTransactionDetailScreen: View {
         let entry = currentEntry
         return OathTransactionReceiptContent(state: details?.state ?? entry.state, timestamp: details?.transaction.timestamp ?? entry.timestamp,
             networkName: networkName, fee: details?.transaction.feeAtomic == nil ? nil : feeText,
+            showsSenderTotal: entry.showsSenderTotal && entry.transactionID == self.entry.transactionID,
+            total: details?.totalAmount, currency: currency,
             fromAddresses: details?.fromAddresses ?? [], toAddresses: details?.toAddresses ?? [],
             replacement: details?.replacementHash, hash: details?.transaction.hash ?? entry.hash,
             confirmations: details?.confirmations, inputs: details?.inputs, outputs: details?.outputs,
@@ -184,6 +186,9 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
     let timestamp: Double
     let networkName: String
     let fee: String?
+    let showsSenderTotal: Bool
+    let total: TransactionReceiptTotal?
+    let currency: String
     let fromAddresses: [String]
     let toAddresses: [String]
     let replacement: String?
@@ -233,6 +238,29 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
                         Text(strings.invariant(fee)).foregroundStyle(.secondary)
                             .oathBalanceConcealed(balancesHidden)
                     }.accessibilityIdentifier("transaction.fee")
+                }
+                if showsSenderTotal {
+                    field(title: strings.text(.sendTotal)) {
+                        VStack(alignment: typeSize.isAccessibilitySize ? .leading : .trailing, spacing: 4) {
+                            if let total {
+                                if let fiat = total.fiatValue {
+                                    Text(strings.invariant(OathAssetAmountFormat(locale: strings.language.locale,
+                                        selectedCurrencyCode: currency).money(fiat)))
+                                }
+                                let units = total.components.map { component in
+                                    let quantity = OathSendAmount.units(component.amount.rawValue, decimals: component.asset.decimals) ?? "—"
+                                    return quantity + " " + component.asset.symbol
+                                }.joined(separator: " + ")
+                                Text(strings.invariant(units))
+                                    .oathFont(total.fiatValue == nil ? .body : .footnote)
+                            } else {
+                                Text(strings.text(.sendFeeUnavailable))
+                            }
+                        }
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(typeSize.isAccessibilitySize ? .leading : .trailing)
+                        .oathBalanceConcealed(balancesHidden)
+                    }.accessibilityIdentifier("transaction.totalAmount")
                 }
             }
             OathSettingsSectionRule()
@@ -299,12 +327,25 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
         field(title: strings.text(key)) { copyValue(value, key: key.rawValue) }
     }
 
-    private func copyValue(_ value: String, key: String, amount: String? = nil) -> some View {
+    private func copyValue(_ value: String, key: String, amount: String? = nil,
+                           ownership: TransactionEndpoint.Ownership = .unrecognized) -> some View {
         let copyID = key + ":" + value
         return HStack(spacing: 8) {
             VStack(alignment: .trailing, spacing: 4) {
-                Text(value).lineLimit(1).truncationMode(.middle).foregroundStyle(.secondary)
-                    .accessibilityLabel(value)
+                HStack(spacing: 6) {
+                    Text(value).lineLimit(1).truncationMode(.middle)
+                        .foregroundStyle(ownership == .unrecognized ? Color.secondary : Color.primary)
+                        .accessibilityLabel(value)
+                    if ownership == .change {
+                        Text(strings.text(.privateKeyChangeAddresses))
+                            .oathFont(.caption, weight: .semibold)
+                            .foregroundStyle(.primary)
+                            .padding(.horizontal, 6).padding(.vertical, 2)
+                            .background(Color(uiColor: .tertiarySystemFill), in: Capsule())
+                            .layoutPriority(1)
+                            .environment(\.layoutDirection, strings.language.isRightToLeft ? .rightToLeft : .leftToRight)
+                    }
+                }
                 if let amount {
                     Text(strings.invariant(amount))
                         .oathFont(.footnote).foregroundStyle(.secondary)
@@ -409,7 +450,7 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
                     }
                 }
             } else if let address = endpoint.address {
-                copyValue(address, key: key, amount: amount)
+                copyValue(address, key: key, amount: amount, ownership: endpoint.ownership)
             } else {
                 VStack(alignment: .trailing, spacing: 4) {
                     Text(verbatim: "—").foregroundStyle(.secondary)

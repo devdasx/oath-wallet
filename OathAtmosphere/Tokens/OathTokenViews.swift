@@ -183,22 +183,23 @@ struct OathTokenSearchResults: View {
                 OathButton(feedback: nil) { select(token) } label: {
                     // Match Home's display fallback, without creating a zero
                     // balance or guessing decimals in the database.
-                    OathRefinedListRow(title: strings.invariant(token.name),
-                        subtitle: strings.invariant(format.nativeSummary(nil, ticker: token.symbol)),
+                    OathRefinedListRow(title: strings.invariant(token.symbol),
+                        subtitle: strings.invariant(token.name),
                         value: String(format.fiat(.unavailable).characters),
+                        detail: strings.invariant(format.nativeSummary(nil, ticker: token.symbol)),
                         showsSeparator: hasSavedMatches || token.id != model.results.first?.id,
-                        concealsAmounts: balancesHidden, concealsSubtitle: balancesHidden,
-                        emphasizesBalanceSubtitle: true,
-                        titleBadgeAsset: token.isNativeRepresentation ? nil : token.network.chain.logoAsset) { size in
+                        concealsAmounts: balancesHidden,
+                        titleBadgeAsset: token.network.chain.logoAsset,
+                        assetNetworkName: strings.invariant(token.network.chain.name)) { size in
                             OathBadgedAssetLogo(networkID: token.network.id, isNative: token.isNativeRepresentation,
                                 source: token.logoURL?.absoluteString, symbol: token.symbol,
                                 identity: token.artworkIdentity, size: size, showsChainBadge: false)
                         }
                 }
                 .buttonStyle(OathSettingsRowButtonStyle())
-                .accessibilityLabel([token.name, token.network.chain.name,
-                    balancesHidden ? strings.text(.balanceHidden) : format.nativeSummary(nil, ticker: token.symbol),
-                    balancesHidden ? "" : String(format.fiat(.unavailable).characters)].joined(separator: ", "))
+                .accessibilityLabel([token.symbol, token.name, token.network.chain.name,
+                    balancesHidden ? strings.text(.balanceHidden) : String(format.fiat(.unavailable).characters),
+                    balancesHidden ? "" : format.nativeSummary(nil, ticker: token.symbol)].joined(separator: ", "))
                 .accessibilityIdentifier("token.result.\(token.id)")
             }
             if model.isSearching || (!model.isCatalogQuery && active) {

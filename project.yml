@@ -142,11 +142,6 @@ targets:
             NSUbiquitousContainerIsDocumentScopePublic: true
             NSUbiquitousContainerName: Oath Wallet
             NSUbiquitousContainerSupportedFolderLevels: Any
-        UIAppFonts:
-        - IBMPlexSansArabic-Regular.ttf
-        - IBMPlexSansArabic-Medium.ttf
-        - IBMPlexSansArabic-SemiBold.ttf
-        - IBMPlexSansArabic-Bold.ttf
     sources:
     - path: OathApp
       excludes:

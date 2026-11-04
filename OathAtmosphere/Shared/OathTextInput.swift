@@ -47,10 +47,8 @@ struct OathTextInput: UIViewRepresentable {
             context.coordinator.configuration = configuration
             let language = context.environment.oathLanguage
             let style: UIFont.TextStyle = prominent ? .largeTitle : .body
-            field.font = language == .arabic
-                ? (prominent ? OathArabicFont.semibold : .regular).uiFont(size: prominent ? 34 : 17, relativeTo: style)
-                : UIFontMetrics(forTextStyle: style).scaledFont(for: .systemFont(ofSize: prominent ? 34 : 17,
-                                                                               weight: prominent ? .semibold : .regular))
+            field.font = UIFontMetrics(forTextStyle: style).scaledFont(for: .systemFont(ofSize: prominent ? 34 : 17,
+                                                                                      weight: prominent ? .semibold : .regular))
             field.textColor = prominent ? .white : .label
             field.keyboardType = secret || address ? .asciiCapable : .default
             field.returnKeyType = returnKeyType

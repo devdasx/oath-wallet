@@ -12,6 +12,8 @@ import OathDatabase
     static let field = adaptive(light: OathNeutralColors.lightField, dark: OathNeutralColors.darkField)
     static let sheet = adaptive(light: OathNeutralColors.lightGroupedCanvas, dark: OathNeutralColors.darkSheet)
     static let sheetCard = adaptive(light: OathNeutralColors.lightCanvas, dark: OathNeutralColors.darkSheetCard)
+    // Quiet neutral badges retain contrast without the heavy foreground fill.
+    static let networkBadge = adaptive(light: 0xF3F3F5, dark: 0x29292C)
 
     // SwiftUI also resolves dynamic colors on its asynchronous render thread,
     // notably during native navigation transitions. Construct the immutable

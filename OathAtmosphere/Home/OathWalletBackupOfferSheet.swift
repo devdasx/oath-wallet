@@ -183,9 +183,14 @@ struct OathBackupOfferMenu: View {
             }
             .frame(maxWidth: .infinity)
             .padding(20)
-            if let choices = cloudStatus?.visibleOffer(for: offer), choices != .manualOnly {
-                choice(.cloudBackupSwitch, icon: "lock.icloud", action: onCloud)
-                if choices == .cloudOrManual { OathSettingsSectionRule() }
+            if let cloudStatus, offer != .manualOnly {
+                if cloudStatus == .uploaded {
+                    OathSettingsRow(title: strings.text(.cloudBackupSwitch), icon: "lock.icloud", accessory: .completed)
+                        .accessibilityValue(strings.text(.cloudBackupComplete))
+                } else {
+                    choice(.cloudBackupSwitch, icon: "lock.icloud", action: onCloud)
+                }
+                if offer == .cloudOrManual { OathSettingsSectionRule() }
             }
             if offer != .cloudOnly {
                 choice(.backupManually, icon: "text.alignleft", subtitle: strings.text(manualTitle), action: onManual)
@@ -202,7 +207,7 @@ struct OathBackupOfferMenu: View {
 
 /// One host owns the detent for the entire offer. Only its measured content,
 /// navigation items and pinned actions change when the user chooses a step.
-struct OathBackupPageLayout<Content: View, Actions: View>: View {
+struct OathBackupPageLayout<Content: View & SendableMetatype, Actions: View>: View {
     let contentID: AnyHashable
     let navigation: OathSheetNavigationConfiguration
     var avoidsKeyboard = false

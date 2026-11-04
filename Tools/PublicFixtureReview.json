@@ -522,7 +522,7 @@
     },
     {
       "path": "Packages/OathAnkr/Tests/OathAnkrTests/SolanaTests.swift",
-      "sha256": "8ad87590a01ef410be921d3ea3dbfead3881d5a8cac9521dfbc87cca082fbb98",
+      "sha256": "a061fa97b268d18979e27dfe9a1b71fa638ed2762182c31f3c1476e0c689dd75",
       "reason": "Public Solana mint addresses assigned to token-named fixture variables.",
       "fingerprints": [
         "Packages/OathAnkr/Tests/OathAnkrTests/SolanaTests.swift:generic-api-key:8"
@@ -563,10 +563,10 @@
     },
     {
       "path": "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift",
-      "sha256": "c54de1001ec4988b74640ef91475013973c2e37abaf68ce087f3628855607cee",
+      "sha256": "1ef5068dfd19b6de711c854ba54113e410a47eeca354e3c369657288fb3c4933",
       "reason": "SQL excluded.conflictKeys assignment text falsely matches generic API key detection; no credential.",
       "fingerprints": [
-        "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:310"
+        "Packages/OathDatabase/Sources/OathDatabase/TransactionDetails.swift:generic-api-key:402"
       ]
     },
     {

@@ -389,9 +389,7 @@ struct OathAssetsToolbar: UIViewRepresentable {
             self.action = action
             OathLayoutDirection.apply(strings.language, to: bar)
             let heading = strings.text(.assets)
-            let font = strings.language == .arabic
-                ? OathArabicFont.semibold.uiFont(size: 17, relativeTo: .headline)
-                : UIFont.preferredFont(forTextStyle: .headline)
+            let font = UIFont.preferredFont(forTextStyle: .headline)
             // UIKit lays out this custom view inside a SwiftUI list. Resizing it or
             // replacing an equal badge on every update feeds another layout back
             // into that list, which can keep the main run loop busy indefinitely.
