@@ -40,11 +40,7 @@ import UIKit
     static func configure(_ bar: UINavigationBar, strings: OathLocalizer) {
         OathLayoutDirection.apply(strings.language, to: bar)
         let appearance = bar.standardAppearance.copy()
-        if strings.language == .arabic {
-            appearance.titleTextAttributes[.font] = OathArabicFont.semibold.uiFont(size: 17, relativeTo: .headline)
-        } else {
-            appearance.titleTextAttributes.removeValue(forKey: .font)
-        }
+        appearance.titleTextAttributes.removeValue(forKey: .font)
         bar.standardAppearance = appearance
         bar.scrollEdgeAppearance = appearance
     }

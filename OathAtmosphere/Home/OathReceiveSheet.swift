@@ -753,9 +753,7 @@ struct OathReceiveNetworkNotice: View {
 
     private func emphasized(_ value: String) -> Text {
         let text = Text(strings.invariant(value)).foregroundColor(isError ? .red : .primary)
-        return strings.language == .arabic
-            ? text.font(.custom(OathArabicFont.bold.rawValue, size: 13, relativeTo: .footnote))
-            : text.bold()
+        return text.bold()
     }
 
     private var notice: Text {
@@ -777,9 +775,7 @@ struct OathReceiveNetworkNotice: View {
 
     private var noticeWithLink: Text {
         guard let inlineLink else { return notice }
-        let link = strings.language == .arabic
-            ? Text(inlineLink).font(.custom(OathArabicFont.bold.rawValue, size: 13, relativeTo: .footnote))
-            : Text(inlineLink).bold()
+        let link = Text(inlineLink).bold()
         return Text("\(notice) \(link)")
     }
 

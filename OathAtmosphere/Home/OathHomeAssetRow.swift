@@ -5,6 +5,7 @@ struct OathHomeAssetRow: View, Equatable {
     let presentation: OathHomeAssetPresentation
     let balancesHidden: Bool
     var showsSeparator = false
+    var isSearchResult = false
     private var pendingCountText: String {
         presentation.holding.pendingTransactionCount.formatted(
             .number.grouping(.never).locale(strings.language.locale))
@@ -14,19 +15,22 @@ struct OathHomeAssetRow: View, Equatable {
 
     nonisolated static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.chain == rhs.chain && lhs.presentation == rhs.presentation &&
-        lhs.balancesHidden == rhs.balancesHidden && lhs.showsSeparator == rhs.showsSeparator
+        lhs.balancesHidden == rhs.balancesHidden && lhs.showsSeparator == rhs.showsSeparator &&
+        lhs.isSearchResult == rhs.isSearchResult
     }
 
     var body: some View {
         OathRefinedListRow(
-            title: strings.invariant(presentation.holding.name),
-            subtitle: strings.invariant(presentation.nativeSummary),
+            title: strings.invariant(isSearchResult ? presentation.holding.symbol : presentation.holding.name),
+            subtitle: strings.invariant(isSearchResult ? presentation.holding.name : presentation.nativeSummary),
             value: presentation.fiat,
+            detail: isSearchResult ? strings.invariant(presentation.nativeSummary) : nil,
             showsSeparator: showsSeparator,
             concealsAmounts: balancesHidden,
-            concealsSubtitle: balancesHidden,
-            emphasizesBalanceSubtitle: true,
-            titleBadgeAsset: presentation.holding.reference == "native" ? nil : chain.logoAsset
+            concealsSubtitle: balancesHidden && !isSearchResult,
+            emphasizesBalanceSubtitle: !isSearchResult,
+            titleBadgeAsset: isSearchResult || presentation.holding.reference != "native" ? chain.logoAsset : nil,
+            assetNetworkName: isSearchResult ? strings.invariant(chain.name) : nil
         ) { size in
             OathSendLogo(holding: presentation.holding, size: size, showsChainBadge: false)
                 .overlay(alignment: .topTrailing) {
@@ -48,7 +52,8 @@ struct OathHomeAssetRow: View, Equatable {
     private var accessibilityText: String {
         let pending = presentation.holding.pendingTransactionCount
         let pendingDescription = pending > 0 ? ", \(strings.text(.assetPending)): \(pendingCountText)" : ""
-        let identity = "\(presentation.holding.name), \(chain.name)\(pendingDescription)"
+        let symbol = isSearchResult ? "\(presentation.holding.symbol), " : ""
+        let identity = "\(symbol)\(presentation.holding.name), \(chain.name)\(pendingDescription)"
         if balancesHidden { return "\(identity), \(strings.text(.balanceHidden))" }
         return "\(identity), \(presentation.fiat), \(presentation.nativeFull)"
     }

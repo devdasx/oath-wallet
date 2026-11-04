@@ -2,7 +2,7 @@ import SwiftUI
 import OathDatabase
 import OathTokenImages
 
-/// All saved-asset pickers use Home's row, including its amount formatting.
+/// Saved-asset pickers share the search layout and Home's amount formatting.
 struct OathAssetSelectionRow: View {
     let holding: Holding
     let currency: String
@@ -12,14 +12,17 @@ struct OathAssetSelectionRow: View {
     var body: some View {
         let format = OathAssetAmountFormat(locale: strings.language.locale, selectedCurrencyCode: currency)
         let amounts = OathAssetAmounts(native: holding.nativeDisplayValue, fiat: holding.fiatDisplayValue, currencyCode: currency)
-        OathRefinedListRow(title: strings.invariant(holding.name),
-            subtitle: strings.invariant(format.nativeSummary(amounts.native, ticker: holding.symbol)),
-            value: String(format.fiat(amounts).characters), showsSeparator: showsSeparator,
-            emphasizesBalanceSubtitle: true,
-            titleBadgeAsset: holding.reference == "native" ? nil : OathImportChain(rawValue: holding.networkID)?.logoAsset) { size in
+        let chain = OathImportChain(rawValue: holding.networkID)
+        OathRefinedListRow(title: strings.invariant(holding.symbol),
+            subtitle: strings.invariant(holding.name),
+            value: String(format.fiat(amounts).characters),
+            detail: strings.invariant(format.nativeSummary(amounts.native, ticker: holding.symbol)),
+            showsSeparator: showsSeparator,
+            titleBadgeAsset: chain?.logoAsset,
+            assetNetworkName: strings.invariant(chain?.name ?? holding.networkID)) { size in
                 OathSendLogo(holding: holding, size: size, showsChainBadge: false)
             }
-            .accessibilityLabel([holding.name, OathImportChain(rawValue: holding.networkID)?.name,
+            .accessibilityLabel([holding.symbol, holding.name, chain?.name,
                 String(format.fiat(amounts).characters), format.native(amounts.native, ticker: holding.symbol)]
                 .compactMap { $0 }.joined(separator: ", "))
     }

@@ -1532,6 +1532,9 @@ enum Schema {
         migrations.registerMigration("v106_wallet_removal_reservations") { db in
             try OathDatabase.migrateWalletRemovalReservations(db)
         }
+        migrations.registerMigration("v107_solana_unix_timestamps") { db in
+            try SolanaTimestampRepair.migrate(db)
+        }
         return migrations
     }
 }

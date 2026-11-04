@@ -163,7 +163,7 @@ struct OathPasscodeEntry: View {
     private func prompt(title: String, detail: String?, isPlaceholder: Bool = false) -> some View {
         VStack(spacing: 6) {
             Text(title)
-                .oathFont(.title2, size: titleSize, alreadyScaled: true)
+                .oathFont(.title2, size: titleSize)
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityIdentifier(isPlaceholder ? "" : titleIdentifier)
             ZStack {

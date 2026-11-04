@@ -68,7 +68,6 @@
 		2CE4692B479BDF347538D868 /* OathAssetDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2802571F0F0341EBB4075 /* OathAssetDetailScreen.swift */; };
 		2D0C791582D145D095E36ABF /* OathWalletSwitcherSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E25A15C9AC95DB5931B41 /* OathWalletSwitcherSheet.swift */; };
 		2D218FCBFFBEFCE944C81B77 /* OathInputStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41225CF1B3C4C26C1594C90 /* OathInputStyle.swift */; };
-		2D3D891F4B46C2FE373A33DF /* IBMPlexSansArabic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 32F0FFA6D7E6FC01A34AE368 /* IBMPlexSansArabic-Bold.ttf */; };
 		2DDE27E9A701D087D94F22E4 /* OathScanPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85221B6283BECC3D88F49D3 /* OathScanPayload.swift */; };
 		2E14D8E4F0D4F4E66EA01A49 /* OathStartup-azure-light-reading.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 34DAD738B9148EC37A9D33E4 /* OathStartup-azure-light-reading.jpg */; };
 		2E4E482AD24612C125B2F541 /* OathRecoveryPhrasePages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B726AB5EB588F947AF18CE /* OathRecoveryPhrasePages.swift */; };
@@ -121,7 +120,6 @@
 		4A507B75F6BB229B0669B82D /* OathStartup-amethyst-light-reading.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BE7CB4B996E768B1BFB48301 /* OathStartup-amethyst-light-reading.jpg */; };
 		4A848AE8EBD3A022757C6898 /* OathWalletSheets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5858AD9B98DBDAFE58CE4DDD /* OathWalletSheets.swift */; };
 		4B847A47BE21DE6E9B385292 /* OathWalletConnectMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BF031577D594AAA5041AED /* OathWalletConnectMessage.swift */; };
-		4CAE4316884DB343E51EF270 /* IBMPlexSansArabic-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6561E312B97D4F1F85766B98 /* IBMPlexSansArabic-SemiBold.ttf */; };
 		4E4E0508ECFABE0BC89C43B8 /* OathArtworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5D3F7EAFBA95C80E9DB4D7 /* OathArtworkWorker.swift */; };
 		4E605FF32F89292310D9CF97 /* OathActionMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB6265B2D2B812EF983B049 /* OathActionMetrics.swift */; };
 		4E60FE2F5A4D46E554F86548 /* OathExchangeRates in Frameworks */ = {isa = PBXBuildFile; productRef = 557CAA963D1FF25156786D51 /* OathExchangeRates */; };
@@ -149,7 +147,6 @@
 		5D2886C491B9C92C0E2049E0 /* OathSendAmountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903C4FE433D9EC5881EB8754 /* OathSendAmountPage.swift */; };
 		5D6DCDC22F835BC6C602EF1E /* OathScanRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D529493DF944CBC2227F17 /* OathScanRecognizer.swift */; };
 		5D9618A611E03DE00FD163ED /* OathStartup-indigo-dark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6D4038911C635848C82D9981 /* OathStartup-indigo-dark.jpg */; };
-		5DAF07B31FCFA29FB06F468F /* IBMPlexSansArabic-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AD4C7308C142864AF46FF830 /* IBMPlexSansArabic-Medium.ttf */; };
 		5DE05A9FC319479AA1F5B797 /* OathSolanaMultisigSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B3F9B8A5D0F0277706D55D /* OathSolanaMultisigSetup.swift */; };
 		5DFACB3E7C446B8B28D4D20D /* OathLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90745F88C0EAA066AE48481E /* OathLocalization.swift */; };
 		5EC03353F224A8528EB32DC8 /* OathSendDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46544F77BD9CB481FE749109 /* OathSendDiagnostics.swift */; };
@@ -282,7 +279,6 @@
 		B0139CE8FF7C95ACB3BEE0D4 /* OathStartup-ruby-light-reading.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2E0A6CCEC6CE13E4B075F9EE /* OathStartup-ruby-light-reading.jpg */; };
 		B06224444180C7BA21053F57 /* OathLogoTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0455D0862C86B4903203CFE5 /* OathLogoTexture.swift */; };
 		B0EC06582510341AD24F9D63 /* OathExchangeRateEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493D1ED07B8D4733EEAFBC2A /* OathExchangeRateEnvironment.swift */; };
-		B162F34DC5985AB32BFE4E69 /* IBMPlexSansArabic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B18307FBF8649278EAF42877 /* IBMPlexSansArabic-Regular.ttf */; };
 		B1B4CE0E36FCF78144082A70 /* OathNetworkLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A60A2049EE61F05A46E565 /* OathNetworkLogo.swift */; };
 		B1C07B0955669AEB66C3A9BC /* OathChooseChainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54148F5A29B7E648AD46ECC /* OathChooseChainScreen.swift */; };
 		B1D23A444C6E7978940778BF /* OathTokenCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB297E6D1D5D031DC27314 /* OathTokenCodec.swift */; };
@@ -508,7 +504,6 @@
 		31FD062495D8A84370540AD2 /* OathAssetAmountFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathAssetAmountFormat.swift; sourceTree = "<group>"; };
 		321EEFCE2A9B4404B310EC44 /* bip39_chinese_simplified.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bip39_chinese_simplified.txt; sourceTree = "<group>"; };
 		327AC76A373CD64004CB2807 /* OathPermissionReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathPermissionReview.swift; sourceTree = "<group>"; };
-		32F0FFA6D7E6FC01A34AE368 /* IBMPlexSansArabic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Bold.ttf"; sourceTree = "<group>"; };
 		3329F032E2D10A156A792F63 /* OathArtworkResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathArtworkResources.swift; sourceTree = "<group>"; };
 		34B726AB5EB588F947AF18CE /* OathRecoveryPhrasePages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathRecoveryPhrasePages.swift; sourceTree = "<group>"; };
 		34DAD738B9148EC37A9D33E4 /* OathStartup-azure-light-reading.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "OathStartup-azure-light-reading.jpg"; sourceTree = "<group>"; };
@@ -598,7 +593,6 @@
 		63991507F65A75FB5DF13AD0 /* OathVaultEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathVaultEnvelope.swift; sourceTree = "<group>"; };
 		644516BAE33FBAEC75D048F3 /* OathLanguageCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathLanguageCatalog.swift; sourceTree = "<group>"; };
 		65515A83EF4FAAB0674C4FE4 /* bip39_portuguese.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = bip39_portuguese.txt; sourceTree = "<group>"; };
-		6561E312B97D4F1F85766B98 /* IBMPlexSansArabic-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-SemiBold.ttf"; sourceTree = "<group>"; };
 		6669944F2FE63709003454C1 /* OathEVMSigning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathEVMSigning.swift; sourceTree = "<group>"; };
 		674FE79304ED2583BA8B00B6 /* OathDataEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathDataEnvironment.swift; sourceTree = "<group>"; };
 		681553D41D6051E5EC50300D /* OathSendRecipientPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathSendRecipientPage.swift; sourceTree = "<group>"; };
@@ -706,12 +700,10 @@
 		AC945EB5E9AAB43D744B6368 /* OathKeyboardAccessory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathKeyboardAccessory.swift; sourceTree = "<group>"; };
 		AD3AB7787CE556BAD5A1E9FD /* OathEVMSendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathEVMSendModel.swift; sourceTree = "<group>"; };
 		AD414E17F7EBC6C23CEABD59 /* OathWalletConnectBitcoinViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathWalletConnectBitcoinViews.swift; sourceTree = "<group>"; };
-		AD4C7308C142864AF46FF830 /* IBMPlexSansArabic-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Medium.ttf"; sourceTree = "<group>"; };
 		AEEBC28AFF53A581FA37E431 /* OathPasscodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathPasscodeStore.swift; sourceTree = "<group>"; };
 		AEF1184475438694A1C5895B /* OathLanguageSheetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathLanguageSheetUITests.swift; sourceTree = "<group>"; };
 		B09692E4B14F4E4C9EAF3FBE /* OathWalletConnectThorchainViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathWalletConnectThorchainViews.swift; sourceTree = "<group>"; };
 		B0DA2CB15DA8B73AC304E03E /* OathAptosSendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathAptosSendService.swift; sourceTree = "<group>"; };
-		B18307FBF8649278EAF42877 /* IBMPlexSansArabic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSansArabic-Regular.ttf"; sourceTree = "<group>"; };
 		B20DA523E14275EDD78C6305 /* OathDeviceBiometrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathDeviceBiometrics.swift; sourceTree = "<group>"; };
 		B2A60F40C0E986A21D403861 /* OathHistoryFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathHistoryFilters.swift; sourceTree = "<group>"; };
 		B31773501B7EE444ACD1E83C /* OathSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OathSceneDelegate.swift; sourceTree = "<group>"; };
@@ -918,10 +910,6 @@
 		3085D2BA15FED2D82AB43359 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				32F0FFA6D7E6FC01A34AE368 /* IBMPlexSansArabic-Bold.ttf */,
-				AD4C7308C142864AF46FF830 /* IBMPlexSansArabic-Medium.ttf */,
-				B18307FBF8649278EAF42877 /* IBMPlexSansArabic-Regular.ttf */,
-				6561E312B97D4F1F85766B98 /* IBMPlexSansArabic-SemiBold.ttf */,
 				71D18560B705D2D8912ECB55 /* OFL.txt */,
 			);
 			path = Fonts;
@@ -1680,10 +1668,6 @@
 				A9146ABC55A1E7362EE3EAA6 /* Assets.xcassets in Resources */,
 				6CEBC71F74D3AD14EE6B492B /* HelpCenterArticles.json in Resources */,
 				39FEC93C9C31CC121DA72726 /* HelpCenterTranslations.json in Resources */,
-				2D3D891F4B46C2FE373A33DF /* IBMPlexSansArabic-Bold.ttf in Resources */,
-				5DAF07B31FCFA29FB06F468F /* IBMPlexSansArabic-Medium.ttf in Resources */,
-				B162F34DC5985AB32BFE4E69 /* IBMPlexSansArabic-Regular.ttf in Resources */,
-				4CAE4316884DB343E51EF270 /* IBMPlexSansArabic-SemiBold.ttf in Resources */,
 				EE0FC2EC994301A2D88E3C54 /* InfoPlist.xcstrings in Resources */,
 				487227BAE4B9196CED91A527 /* LanguageNames.xcstrings in Resources */,
 				D12014E4E3335A919A8563B2 /* Localizable.xcstrings in Resources */,

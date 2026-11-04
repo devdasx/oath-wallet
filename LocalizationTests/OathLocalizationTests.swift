@@ -94,13 +94,11 @@ final class OathLocalizationTests: XCTestCase {
         XCTAssertEqual(sample.scheme, .light)
     }
 
-    @MainActor func testArabicFontsAreRegisteredByIOS() throws {
-        for face in OathArabicFont.allCases {
-            let font = try XCTUnwrap(UIFont(name: face.rawValue, size: 17))
-            XCTAssertEqual(font.fontName, face.rawValue)
-            XCTAssertTrue(font.familyName.contains("IBM Plex Sans Arabic"))
-            let scaled = face.uiFont(size: 17, relativeTo: .body)
-            XCTAssertEqual(scaled.fontName, face.rawValue)
+    @MainActor func testAppDoesNotRegisterOrBundleCustomFonts() {
+        let bundle = Bundle(for: OathKeypadView.self)
+        XCTAssertNil(bundle.object(forInfoDictionaryKey: "UIAppFonts"))
+        for extensionName in ["ttf", "otf", "ttc"] {
+            XCTAssertTrue((bundle.urls(forResourcesWithExtension: extensionName, subdirectory: nil) ?? []).isEmpty)
         }
     }
 

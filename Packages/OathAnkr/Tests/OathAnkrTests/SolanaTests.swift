@@ -38,8 +38,18 @@ final class SolanaTests: XCTestCase, @unchecked Sendable {
         XCTAssertFalse(SolanaIdentity.isAddress(String(repeating:"1",count:33)))
         XCTAssertTrue(SolanaIdentity.isAddress(String(repeating:"1",count:32)))
     }
+    func testSignatureBlockTimeUsesNumericUnixSeconds() throws {
+        let values = try json([["signature": signature, "slot": 123,
+                               "blockTime": 1_700_000_000, "err": NSNull()]])
+        XCTAssertEqual(try SolanaDecoding.signatures(values).first?.blockTime, 1_700_000_000)
+        let unknown = try json([["signature": signature, "slot": 123,
+                                "blockTime": NSNull(), "err": NSNull()]])
+        XCTAssertNil(try SolanaDecoding.signatures(unknown).first?.blockTime)
+    }
+
     func testNetTokenChangesFeesFailedTransactionsAndTokenOnlyDeposits() throws {
         let result = try SolanaDecoding.transaction(tx(), signature: signature, owner: owner)
+        XCTAssertEqual(result.timestamp, 1_700_000_000, "Unix seconds must use numeric conversion, not bitPattern initialization")
         XCTAssertEqual(result.fee,"5000")
         XCTAssertEqual(result.changes.first { $0.mint == "native" }?.amount,"20000000")
         XCTAssertEqual(result.changes.first { $0.mint == mint }?.amount,"100000")

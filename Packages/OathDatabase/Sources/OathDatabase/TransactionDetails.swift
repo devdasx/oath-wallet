@@ -6,11 +6,15 @@ import OathDiagnostics
 
 /// One decoded input/output. Repeated addresses retain their distinct positions.
 public struct TransactionEndpoint: Equatable, Sendable, Identifiable {
+    public enum Ownership: Equatable, Sendable { case unrecognized, owned, change }
+    public let ownership: Ownership
     public let id: String
     public let address: String?
     public let amountAtomic: String?
     public let dataOutput: BitcoinDataOutput?
-    public init(id: String, address: String?, amountAtomic: String? = nil, dataOutput: BitcoinDataOutput? = nil) {
+    public init(id: String, address: String?, amountAtomic: String? = nil, dataOutput: BitcoinDataOutput? = nil,
+                ownership: Ownership = .unrecognized) {
+        self.ownership = ownership
         self.id = id; self.address = address; self.amountAtomic = amountAtomic; self.dataOutput = dataOutput
     }
 }
@@ -29,6 +33,7 @@ public struct TransactionDetails: Equatable, Sendable {
     /// Current cached value in the requested display currency. Missing market
     /// data stays unknown; a missing price must never turn a paid fee into zero.
     public let feeFiatValue: Decimal?
+    public var totalAmount: TransactionReceiptTotal? = nil
     /// Observed block depth for height-based chains. Nil means the provider has
     /// not supplied a usable head, or the chain reports finality instead.
     public var confirmations: Int64? = nil
@@ -65,19 +70,19 @@ extension OathDatabase {
                 asset = try AssetRecord.fetchOne(db, sql: "SELECT * FROM assets WHERE networkID='celo' AND reference=?", arguments: [currency.reference])
             }
         }
-        let price: String? = try asset.flatMap {
-            try String.fetchOne(db, sql: "SELECT value FROM prices WHERE assetID=? AND currency='USD' ORDER BY observedAt DESC LIMIT 1", arguments: [$0.id])
-        }
         let exchangeRate = try Self.exchangeRates(db)?.rate(for: currency) ?? (currency == "USD" ? 1 : nil)
-        var fiat: Decimal?
-        if let fee = tx.feeAtomic, let asset,
-           let units = try? AtomicAmount(fee).units(decimals: asset.decimals),
-           let quantity = Decimal(string: units, locale: Locale(identifier: "en_US_POSIX")) {
-            if quantity == 0 { fiat = 0 }
-            else if let price, let usd = Decimal(string: price, locale: Locale(identifier: "en_US_POSIX")),
-                    let exchangeRate, let localPrice = FiatConversion.multiply(usd, exchangeRate) {
-                fiat = FiatConversion.multiply(quantity, localPrice)
-            }
+        func value(_ amount: AtomicAmount, _ asset: AssetRecord) throws -> Decimal? {
+            if amount.rawValue == "0" { return 0 }
+            let locale = Locale(identifier: "en_US_POSIX")
+            guard let exchangeRate, let units = try? amount.units(decimals: asset.decimals),
+                  let quantity = Decimal(string: units, locale: locale),
+                  let price = try String.fetchOne(db, sql: "SELECT value FROM prices WHERE assetID=? AND currency='USD' ORDER BY observedAt DESC LIMIT 1", arguments: [asset.id]),
+                  let usd = Decimal(string: price, locale: locale),
+                  let localPrice = FiatConversion.multiply(usd, exchangeRate) else { return nil }
+            return FiatConversion.multiply(quantity, localPrice)
+        }
+        let fiat = try asset.flatMap { asset in
+            try tx.feeAtomic.flatMap { try? AtomicAmount($0) }.flatMap { try value($0, asset) }
         }
         let outcome = try String.fetchOne(db, sql: "SELECT outcome FROM transactionEvidence WHERE accountID=? AND transactionID=?",
                                          arguments: [accountID, transactionID])
@@ -97,11 +102,14 @@ extension OathDatabase {
         let swap = try readChainHistory(db, walletID: wallet, networkID: tx.networkID, accountID: accountID,
             assetID: nil, currency: currency, before: nil, limit: 1, search: "", filter: .init(),
             localeIdentifier: "en_US_POSIX", transactionID: transactionID).first(where: { ["swap", "bridge", "bridgeIncoming", "bridgeOutgoing"].contains($0.entry.direction) })
-        return TransactionDetails(transaction: tx, state: outcome ?? tx.state,
+        let state = outcome ?? tx.state
+        let total = try receiptTotal(db, transaction: tx, state: state, entries: entries, transfers: transfers,
+                                     feeAsset: asset, parties: parties, value: value)
+        return TransactionDetails(transaction: tx, state: state,
             transfers: transfers, fromAddresses: parties.from, toAddresses: parties.to,
             feeAsset: asset,
             replacementHash: try String.fetchOne(db, sql: "SELECT replacementHash FROM transactionEvidence WHERE accountID=? AND transactionID=?", arguments: [accountID, transactionID]),
-            feeFiatValue: fiat,
+            feeFiatValue: fiat, totalAmount: total,
             confirmations: try transactionConfirmations(db, accountID: accountID, transaction: tx, state: outcome ?? tx.state),
             inputs: parties.inputs, outputs: parties.outputs, swap: swap, historyEntries: entries)
     }
@@ -139,16 +147,50 @@ extension OathDatabase {
         return head - height + 1
     }
 
+    /// Match public locking scripts across accounts of this wallet on this chain.
+    /// Page the indexed lookups so even consolidation receipts fit SQLite's bind limit.
+    private static func bitcoinReceiptOwnership(_ db: Database, accountID: String, network: UTXONetwork,
+                                                scripts: Set<String>) throws -> [String: TransactionEndpoint.Ownership] {
+        guard !scripts.isEmpty else { return [:] }
+        var roles: [String: TransactionEndpoint.Ownership] = [:]
+        let accounts = try Row.fetchAll(db, sql: """
+            SELECT id,address FROM walletAccounts
+            WHERE walletID=(SELECT walletID FROM walletAccounts WHERE id=?) AND networkID=?
+            """, arguments: [accountID, network.rawValue])
+        let keys = Array(scripts)
+        for account in accounts {
+            // Older accounts can have a public receive address before discovery runs.
+            if let bytes = try? BitcoinSendPlan.recipientScript(account["address"], chain: network) {
+                let script = bytes.map { String(format: "%02x", $0) }.joined()
+                if scripts.contains(script), roles[script] == nil { roles[script] = .owned }
+            }
+            for start in stride(from: 0, to: keys.count, by: 400) {
+                let batch = keys[start..<min(start + 400, keys.count)]
+                let placeholders = Array(repeating: "?", count: batch.count).joined(separator: ",")
+                let records = try Data.fetchAll(db, sql: """
+                    SELECT detail FROM bitcoinAddresses WHERE accountID=? AND script IN (\(placeholders))
+                    """, arguments: StatementArguments([account["id"] as String] + batch))
+                for record in records {
+                    let address = try JSONDecoder().decode(BitcoinDerivedAddress.self, from: record)
+                    if address.change == 1 { roles[address.script] = .change }
+                    else if roles[address.script] == nil { roles[address.script] = .owned }
+                }
+            }
+        }
+        return roles
+    }
+
     /// Public, offline receipt projection. A history row's single counterparty
     /// is intentionally blank for multi-party transactions; it is not the full
     /// sender/recipient record. Preserve every known address without choosing a
     /// random Bitcoin input or using an HD account's representative address.
     private static func transactionParties(_ db: Database, accountID: String, transaction tx: TransactionRecord,
-                                          transfers: [TransferRecord], publicOwner: String? = nil, includeHiddenActivity: Bool = false) throws -> (from: [String], to: [String], inputs: [TransactionEndpoint]?, outputs: [TransactionEndpoint]?) {
+                                          transfers: [TransferRecord], publicOwner: String? = nil, includeHiddenActivity: Bool = false) throws -> ReceiptParties {
         var from = Set(transfers.map(\.fromAddress).filter { !$0.isEmpty })
         var to = Set(transfers.map(\.toAddress).filter { !$0.isEmpty })
         if let network = UTXONetwork(rawValue: tx.networkID) {
             var inputs: [TransactionEndpoint]?, outputs: [TransactionEndpoint]?
+            var signedRecipientAmount: String?
             // A send is visible immediately after signing, before the indexer
             // stores its raw transaction. Read the durable, validated journal
             // without inserting synthetic indexer history or changing send state.
@@ -162,30 +204,34 @@ extension OathDatabase {
                 ORDER BY s.createdAt,s.id LIMIT 1
                 """, arguments: [accountID, tx.networkID, tx.id])
             let journalRaw: Data? = journal?["signedPayload"]
-            let indexedRaw = try Data.fetchOne(db, sql: "SELECT raw FROM bitcoinTransactions WHERE accountID=? AND txid=?", arguments: [accountID, tx.hash])
+            func indexedTransaction(_ hash: String) throws -> Data? {
+                // A parent can have been indexed under a sibling account that received the coin.
+                try Data.fetchOne(db, sql: """
+                    SELECT t.raw FROM walletAccounts a JOIN bitcoinTransactions t ON t.accountID=a.id
+                    WHERE a.walletID=(SELECT walletID FROM walletAccounts WHERE id=?) AND a.networkID=? AND t.txid=?
+                    ORDER BY t.accountID=? DESC LIMIT 1
+                    """, arguments: [accountID, tx.networkID, hash, accountID])
+            }
+            let indexedRaw = try indexedTransaction(tx.hash)
             if let raw = indexedRaw ?? journalRaw {
                 let details = try BitcoinTransactions.details(raw, network: network)
                 guard details.txid == tx.hash else {
                     throw OathDiagnostics.failure(StoreError.conflictingIdentity, reason: "receipt_transaction_hash_mismatch")
                 }
-                inputs = []
-                outputs = details.outputs.enumerated().map {
-                    TransactionEndpoint(id: String($0.offset), address: $0.element.address,
-                        amountAtomic: String($0.element.value), dataOutput: $0.element.dataOutput)
+                let journalPlan: BitcoinSendPlan? = try (journal?["plan"] as Data?).map {
+                    let plan = try JSONDecoder().decode(BitcoinSendPlan.self, from: $0)
+                    guard plan.chain == network else {
+                        throw OathDiagnostics.failure(StoreError.conflictingIdentity, reason: "receipt_journal_chain_mismatch")
+                    }
+                    return plan
                 }
                 to.formUnion(details.outputs.compactMap(\.address))
                 var parents: [String: BitcoinTransactions.Details] = [:]
-                var journalPlan: BitcoinSendPlan?
+                var prevouts: [BitcoinTransactions.Output?] = []
                 for input in details.inputs {
                     if parents[input.txid] == nil {
-                        var parentRaw = try Data.fetchOne(db, sql: "SELECT raw FROM bitcoinTransactions WHERE accountID=? AND txid=?", arguments: [accountID, input.txid])
-                        if parentRaw == nil, let bytes: Data = journal?["plan"] {
-                            if journalPlan == nil {
-                                journalPlan = try JSONDecoder().decode(BitcoinSendPlan.self, from: bytes)
-                                guard journalPlan?.chain == network else {
-                                    throw OathDiagnostics.failure(StoreError.conflictingIdentity, reason: "receipt_journal_chain_mismatch")
-                                }
-                            }
+                        var parentRaw = try indexedTransaction(input.txid)
+                        if parentRaw == nil {
                             parentRaw = journalPlan?.coins.first { $0.id == input.outpoint }?.previousTransaction
                         }
                         if let parentRaw {
@@ -198,17 +244,41 @@ extension OathDatabase {
                     }
                     let output = parents[input.txid].flatMap { $0.outputs.indices.contains(input.index) ? $0.outputs[input.index] : nil }
                     if let address = output?.address { from.insert(address) }
-                    inputs?.append(TransactionEndpoint(id: input.outpoint, address: output?.address,
-                        amountAtomic: output.map { String($0.value) }))
+                    prevouts.append(output)
+                }
+                let scripts = Set(details.outputs.filter { $0.address != nil }.map(\.script))
+                    .union(prevouts.compactMap { $0?.script })
+                let roles = try bitcoinReceiptOwnership(db, accountID: accountID, network: network, scripts: scripts)
+                inputs = zip(details.inputs, prevouts).map { input, output in
+                    TransactionEndpoint(id: input.outpoint, address: output?.address, amountAtomic: output.map { String($0.value) },
+                                        ownership: output.flatMap { roles[$0.script] } ?? .unrecognized)
+                }
+                let changeIndex = journalPlan?.outputs.firstIndex(where: \.isChange)
+                signedRecipientAmount = journalPlan.map { String($0.recipientAmount) }
+                outputs = details.outputs.enumerated().map { index, output in
+                    var role = roles[output.script] ?? .unrecognized
+                    if let journalPlan {
+                        // A single-key wallet can pay and receive change on the same script.
+                        if index == changeIndex, output.script == journalPlan.change.script, output.value == journalPlan.changeAmount {
+                            role = .change
+                        } else if role == .change {
+                            role = .owned
+                        }
+                    }
+                    return TransactionEndpoint(id: String(index), address: output.address, amountAtomic: String(output.value),
+                                               dataOutput: output.dataOutput, ownership: role)
                 }
             }
             // Missing parents and non-address scripts are unknown, not the
             // wallet's current receive address. Coinbase has no sender address.
-            return (from.sorted(), to.sorted(), inputs, outputs)
+            return ReceiptParties(from: from.sorted(), to: to.sorted(), senderFee: tx.feeAtomic, inputs: inputs, outputs: outputs,
+                                 signedRecipientAmount: signedRecipientAmount)
         }
-        guard let account = try AccountRecord.fetchOne(db, key: accountID) else { return (from.sorted(), to.sorted(), nil, nil) }
+        guard let account = try AccountRecord.fetchOne(db, key: accountID) else { return ReceiptParties(from: from.sorted(), to: to.sorted(), senderFee: nil) }
         let selectedSolana = tx.networkID == "solana" ? try publicOwner ?? String.fetchOne(db,
             sql: "SELECT address FROM solanaReceiveAddresses WHERE accountID=? AND isSelected=1", arguments: [accountID]) ?? account.address : nil
+        var scopedEntryIDs: Set<String>? = selectedSolana == nil ? nil : []
+        var senderFee = tx.feeAtomic
         func movement(_ direction: String, owner: String, peer: String?) {
             if direction == "incoming" { to.insert(owner); if let peer, !peer.isEmpty { from.insert(peer) } }
             else if direction == "outgoing" { from.insert(owner); if let peer, !peer.isEmpty { to.insert(peer) } }
@@ -221,18 +291,30 @@ extension OathDatabase {
                 // Solana derivations share an account record. Match the owner
                 // attached to this activity, never its representative address.
                 if let owner = try String.fetchOne(db, sql: "SELECT owner FROM solanaActivity WHERE activityID=?", arguments: [row.id]),
-                   owner == selectedSolana { movement(row.direction, owner: owner, peer: row.counterparty) }
+                   owner == selectedSolana {
+                    scopedEntryIDs?.insert(row.id)
+                    movement(row.direction, owner: owner, peer: row.counterparty)
+                }
             } else { movement(row.direction, owner: account.address, peer: row.counterparty) }
         }
         let decoder = JSONDecoder()
         if tx.networkID == "stellar" {
+            var paidFee: String?
             for data in try Data.fetchAll(db, sql: "SELECT detail FROM stellarEvents WHERE accountID=? AND hash=?", arguments: [accountID, tx.hash]) {
                 let event = try decoder.decode(StellarEvent.self, from: data)
-                if event.kind != "fee" { movement(event.direction, owner: account.address, peer: event.counterparty) }
+                if event.kind == "fee" {
+                    try Validation.amount(event.amount.hasPrefix("-") ? String(event.amount.dropFirst()) : event.amount)
+                    paidFee = StellarIdentity.sum(paidFee ?? "0", event.amount)
+                } else {
+                    movement(event.direction, owner: account.address, peer: event.counterparty)
+                }
             }
+            senderFee = paidFee ?? senderFee
         } else if tx.networkID == "aptos",
                   let data = try Data.fetchOne(db, sql: "SELECT detail FROM aptosTransactions WHERE accountID=? AND hash=?", arguments: [accountID, tx.hash]) {
             let detail = try decoder.decode(AptosTransaction.self, from: data)
+            let payer = try decoder.decode(AptosJSON.self, from: detail.raw)["receipt"]["signature"]["fee_payer_address"].string
+            if let payer, try AptosIdentity.address(payer) != AptosIdentity.address(detail.sender) { senderFee = "0" }
             for event in detail.events { movement(event.direction, owner: event.owner, peer: nil) }
             let parties = try AptosDecoding.parties(detail)
             from.formUnion(parties.from); to.formUnion(parties.to)
@@ -242,9 +324,18 @@ extension OathDatabase {
             for change in detail.changes { movement(change.direction, owner: owner, peer: change.counterparty) }
             let parties = try SolanaDecoding.parties(detail, owner: owner)
             from.formUnion(parties.from); to.formUnion(parties.to)
+            let payer = try decoder.decode(SolanaJSON.self, from: detail.raw)["transaction"]["message"]["accountKeys"].array?.first
+            let payerAddress = payer?["pubkey"].string ?? payer?.string
+            senderFee = from.count == 1 ? payerAddress.map { from.contains($0) ? detail.fee : "0" } : nil
         } else if tx.networkID == "sui",
                   let data = try Data.fetchOne(db, sql: "SELECT detail FROM suiTransactions WHERE accountID=? AND hash=?", arguments: [accountID, tx.hash]) {
             let detail = try decoder.decode(SuiTransaction.self, from: data)
+            if detail.owner == detail.sender, let paid = detail.fee {
+                senderFee = paid
+            } else {
+                let sponsor = try decoder.decode(SuiJSON.self, from: detail.raw)["gasInput"]["gasSponsor"]["address"].string
+                senderFee = try sponsor.map(SuiIdentity.address).flatMap { $0 == detail.sender ? tx.feeAtomic : "0" }
+            }
             let parties = try SuiDecoding.parties(detail)
             from.formUnion(parties.from); to.formUnion(parties.to)
         } else if tx.networkID == "tron",
@@ -298,7 +389,8 @@ extension OathDatabase {
         func unique(_ addresses: Set<String>) -> [String] {
             Set(addresses.filter { !$0.isEmpty }.map { isEVM && AnkrQuantity.address($0) ? $0.lowercased() : $0 }).sorted()
         }
-        return (unique(from), unique(to), nil, nil)
+        return ReceiptParties(from: unique(from), to: unique(to), senderFee: senderFee, owner: selectedSolana ?? account.address,
+                             isEVM: isEVM, scopedEntryIDs: scopedEntryIDs)
     }
 
     /// A conflict key is an actual spent outpoint, or an EVM sender + nonce.

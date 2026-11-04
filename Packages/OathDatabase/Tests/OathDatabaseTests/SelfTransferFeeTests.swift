@@ -128,7 +128,24 @@ import OathBitcoin
         let details = try await db.transactionDetails(accountID: "a", transactionID: "tx")
         XCTAssertEqual(details?.transaction.feeAtomic, "999")
         XCTAssertEqual(details?.historyEntries.first?.displayAmountAtomic, "12")
+        XCTAssertEqual(details?.totalAmount?.components.map(\.amount.rawValue), ["12"])
         XCTAssertEqual(details?.historyEntries.first?.displayDirection, "outgoing")
+    }
+
+    func testReceiptRecoversSelfPaymentPrincipalWhenIndexOnlyRetainsNetMovement() async throws {
+        let (db, folder) = try await fixture("stellar", family: "account", amount: "0", fee: "22")
+        defer { try? FileManager.default.removeItem(at: folder) }
+        try await db.pool.write { sql in
+            var send = SendRecord(id: "self-send", walletID: "w", accountID: "a", networkID: "stellar",
+                assetID: "stellar:native", idempotencyKey: "self-send", recipient: "0x1234", amountAtomic: "2300",
+                state: "confirmed", createdAt: 1, updatedAt: 2)
+            send.senderAddress = send.recipient
+            send.transactionID = "tx"
+            send.signedPayload = Data([1])
+            try send.insert(sql)
+        }
+        let receipt = try await db.transactionDetails(accountID: "a", transactionID: "tx")
+        XCTAssertEqual(receipt?.totalAmount?.components.map(\.amount.rawValue), ["2322"])
     }
 
     func testSuiSelfTransferOnlyChargesItsOwnGasWithoutChargingSponsorOrRebate() async throws {

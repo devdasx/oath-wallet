@@ -2,72 +2,13 @@ import OathDiagnostics
 import SwiftUI
 import UIKit
 
-enum OathArabicFont: String, CaseIterable {
-    case regular = "IBMPlexSansArabic-Regular"
-    case medium = "IBMPlexSansArabic-Medium"
-    case semibold = "IBMPlexSansArabic-SemiBold"
-    case bold = "IBMPlexSansArabic-Bold"
-
-    static func face(for weight: Font.Weight) -> Self {
-        switch weight {
-        case .bold, .heavy, .black: .bold
-        case .semibold: .semibold
-        case .medium: .medium
-        default: .regular
-        }
-    }
-
-    func uiFont(size: CGFloat, relativeTo style: UIFont.TextStyle) -> UIFont {
-        // UIAppFonts registers the bundled family. The fallback keeps content
-        // readable if a damaged installation loses a resource; tests assert
-        // every registered name so a fallback never counts as validation.
-        let font = UIFont(name: rawValue, size: size) ?? .systemFont(ofSize: size)
-        return UIFontMetrics(forTextStyle: style).scaledFont(for: font)
-    }
-}
-
-private struct OathFontModifier: ViewModifier {
-    @Environment(\.oathLanguage) private var language
-    let style: Font.TextStyle
-    let weight: Font.Weight
-    let size: CGFloat?
-    let alreadyScaled: Bool
-
-    func body(content: Content) -> some View {
-        content.font(font)
-    }
-
-    private var font: Font {
-        if language == .arabic {
-            let name = OathArabicFont.face(for: weight).rawValue
-            if alreadyScaled, let size { return .custom(name, fixedSize: size) }
-            return .custom(name, size: size ?? baseSize, relativeTo: style)
-        }
-        if let size { return .system(size: size, weight: weight) }
-        return .system(style, design: .default).weight(weight)
-    }
-
-    private var baseSize: CGFloat {
-        switch style {
-        case .largeTitle: 34
-        case .title: 28
-        case .title2: 22
-        case .title3: 20
-        case .headline, .body: 17
-        case .callout: 16
-        case .subheadline: 15
-        case .footnote: 13
-        case .caption: 12
-        case .caption2: 11
-        @unknown default: 17
-        }
-    }
-}
-
 extension View {
+    /// Native system fonts in every language. Text styles retain Dynamic Type;
+    /// callers providing an explicit size own any scaling through ScaledMetric.
     func oathFont(_ style: Font.TextStyle, weight: Font.Weight = .regular,
-                  size: CGFloat? = nil, alreadyScaled: Bool = false) -> some View {
-        modifier(OathFontModifier(style: style, weight: weight, size: size, alreadyScaled: alreadyScaled))
+                  size: CGFloat? = nil) -> some View {
+        font(size.map { .system(size: $0, weight: weight) }
+             ?? .system(style, design: .default, weight: weight))
     }
 
     func oathNativeLocalization(navigationTint: UIColor? = nil, onArtwork: Bool = false,
@@ -180,21 +121,11 @@ private struct OathNativeLocalizationChrome: UIViewControllerRepresentable {
                     controller.navigationItem.backButtonTitle = backTitle
                 }
             }
-            // Search/keyboard transitions update the hosting view repeatedly.
-            // Reassigning equal appearance copies invalidates native bar layout
-            // during that animation. Only change attributes that actually differ.
-            if let updated = appearance(bar.standardAppearance) { bar.standardAppearance = updated }
-            for path in [\UINavigationBar.scrollEdgeAppearance, \.compactAppearance, \.compactScrollEdgeAppearance] {
-                if let current = bar[keyPath: path], let updated = appearance(current) {
-                    bar[keyPath: path] = updated
-                }
-            }
             if let field = navigation.topViewController?.navigationItem.searchController?.searchBar.searchTextField {
                 OathKeyboardAccessory.removeFromSearch(field)
                 OathLayoutDirection.apply(language, to: field)
-                let font: UIFont = language == .arabic
-                    ? OathArabicFont.regular.uiFont(size: 17, relativeTo: .body)
-                    : .preferredFont(forTextStyle: .body)
+                let font = UIFont.preferredFont(forTextStyle: .body)
+                field.adjustsFontForContentSizeCategory = true
                 if field.font != font { field.font = font }
             }
         }
@@ -206,34 +137,6 @@ private struct OathNativeLocalizationChrome: UIViewControllerRepresentable {
         }
 
         deinit { NotificationCenter.default.removeObserver(self) }
-
-        private func appearance(_ original: UINavigationBarAppearance) -> UINavigationBarAppearance? {
-            let titleFont = language == .arabic ? OathArabicFont.semibold.uiFont(size: 17, relativeTo: .headline) : nil
-            let largeFont = language == .arabic ? OathArabicFont.bold.uiFont(size: 34, relativeTo: .largeTitle) : nil
-            let buttonFont = language == .arabic ? OathArabicFont.medium.uiFont(size: 17, relativeTo: .body) : nil
-            // Compare the attributes we own, not opaque appearance-object
-            // identity. Leave SwiftUI's glass, colors and backgrounds intact.
-            let buttons = [original.buttonAppearance, original.doneButtonAppearance, original.backButtonAppearance]
-            guard original.titleTextAttributes[.font] as? UIFont != titleFont
-                || original.largeTitleTextAttributes[.font] as? UIFont != largeFont
-                || buttons.contains(where: { $0.normal.titleTextAttributes[.font] as? UIFont != buttonFont })
-            else { return nil }
-            let copy = original.copy()
-            if language == .arabic {
-                copy.titleTextAttributes[.font] = titleFont
-                copy.largeTitleTextAttributes[.font] = largeFont
-                for button in [copy.buttonAppearance, copy.doneButtonAppearance, copy.backButtonAppearance] {
-                    button.normal.titleTextAttributes[.font] = buttonFont
-                }
-            } else {
-                copy.titleTextAttributes.removeValue(forKey: .font)
-                copy.largeTitleTextAttributes.removeValue(forKey: .font)
-                for button in [copy.buttonAppearance, copy.doneButtonAppearance, copy.backButtonAppearance] {
-                    button.normal.titleTextAttributes.removeValue(forKey: .font)
-                }
-            }
-            return copy
-        }
     }
 }
 

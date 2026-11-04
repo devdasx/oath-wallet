@@ -79,7 +79,7 @@ public struct BitcoinSendPlan: Codable, Equatable, Sendable {
     }
     public var outputs: [BitcoinSendOutput] {
         var result = [BitcoinSendOutput(value: recipientAmount, script: recipientScript)]
-        if changeAmount > 0, let script = Data(hex: change.script) { result.append(.init(value: changeAmount, script: script)) }
+        if changeAmount > 0, let script = Data(hex: change.script) { result.append(.init(value: changeAmount, script: script, isChange: true)) }
         if let script = options.dataScript { result.append(.init(value: 0, script: script)) }
         return result
     }

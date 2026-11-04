@@ -37,7 +37,7 @@ public enum SolanaDecoding {
             guard let signature = item["signature"].string, SolanaIdentity.isSignature(signature), seen.insert(signature).inserted,
                   let slot = item["slot"].integer, slot <= previous, slot <= UInt64(Int64.max) else { throw SolanaError.malformed }
             previous = slot
-            return .init(signature: signature, slot: slot, blockTime: item["blockTime"].integer.map(Double.init), failed: !item["err"].isNull)
+            return .init(signature: signature, slot: slot, blockTime: item["blockTime"].integer.map { Double($0) }, failed: !item["err"].isNull)
         }
     }
     public static func transaction(_ value: SolanaJSON, signature: String, owner: String) throws -> SolanaTransaction {
@@ -134,7 +134,7 @@ public enum SolanaDecoding {
             return .init(mint: change.mint, decimals: change.decimals, amount: change.amount,
                          direction: change.direction, counterparty: addresses.count == 1 ? addresses.first : nil)
         }
-        return .init(signature: signature, slot: slot, timestamp: value["blockTime"].integer.map(Double.init), failed: failed,
+        return .init(signature: signature, slot: slot, timestamp: value["blockTime"].integer.map { Double($0) }, failed: failed,
             fee: String(fee), changes: changes, tokenAccounts: owned.sorted(), raw: try JSONEncoder().encode(value))
     }
 

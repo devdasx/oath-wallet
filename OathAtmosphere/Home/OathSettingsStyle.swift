@@ -30,7 +30,7 @@ struct OathSettingsIcon: View {
 }
 
 struct OathSettingsRow: View {
-    enum Accessory { case disclosure, selection(Bool), none }
+    enum Accessory { case disclosure, selection(Bool), completed, none }
 
     let title: String
     var icon: String? = nil
@@ -101,6 +101,11 @@ struct OathSettingsRow: View {
                         .font(.body.weight(.semibold))
                         .foregroundStyle(OathOnboardingColors.blue)
                         .opacity(selected ? 1 : 0)
+                        .accessibilityHidden(true)
+                case .completed:
+                    Image(systemName: "checkmark")
+                        .font(.body.weight(.semibold))
+                        .foregroundStyle(.green)
                         .accessibilityHidden(true)
                 case .none:
                     EmptyView()

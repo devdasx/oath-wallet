@@ -45,9 +45,7 @@ struct OathSecureInput: UIViewRepresentable {
         context.coordinator.accessory.toolbar.update(words: [], doneLabel: context.environment.oathLocalizer.text(.done),
             onWord: { _ in }, onDone: { [weak coordinator = context.coordinator] in coordinator?.parent.onDismissKeyboard() })
         let language = context.environment.oathLanguage
-        field.font = language == .arabic
-            ? OathArabicFont.regular.uiFont(size: 17, relativeTo: .body)
-            : .preferredFont(forTextStyle: .body)
+        field.font = .preferredFont(forTextStyle: .body)
         field.semanticContentAttribute = language.isRightToLeft ? .forceRightToLeft : .forceLeftToRight
         context.coordinator.accessory.toolbar.semanticContentAttribute = field.semanticContentAttribute
         field.textAlignment = .natural

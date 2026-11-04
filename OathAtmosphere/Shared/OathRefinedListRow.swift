@@ -1,4 +1,5 @@
 import SwiftUI
+import OathTokenImages
 
 /// Use display pixels, rather than points, for every app-owned separator.
 enum OathHairlineMetrics {
@@ -29,6 +30,9 @@ struct OathRefinedListRow<Icon: View>: View {
     var concealsSubtitle = false
     var emphasizesBalanceSubtitle = false
     var titleBadgeAsset: String? = nil
+    // Asset pickers/search show symbol + network above the full asset name,
+    // with both balances in the trailing column. History keeps its own layout.
+    var assetNetworkName: String? = nil
     // Rich transaction titles reuse the same row metrics and amount column.
     var customTitle: AnyView? = nil
     @ViewBuilder let icon: (CGFloat) -> Icon
@@ -47,16 +51,17 @@ struct OathRefinedListRow<Icon: View>: View {
                 .accessibilityHidden(true)
             if typeSize.isAccessibilitySize {
                 stackedLabels
+            } else if assetNetworkName != nil {
+                // Keep the full network identity readable when long names or
+                // balances need more room than the two-column arrangement.
+                ViewThatFits(in: .horizontal) {
+                    columnLabels
+                    stackedLabels
+                }
             } else if detail != nil {
                 transactionLabels
             } else {
-                HStack(spacing: 12) {
-                    identity.frame(maxWidth: .infinity, alignment: .leading)
-                    amounts(alignment: .trailing).layoutPriority(1)
-                }
-                .lineLimit(1)
-                .truncationMode(.middle)
-                .minimumScaleFactor(0.85)
+                columnLabels
             }
         }
         .padding(.vertical, 13)
@@ -74,12 +79,22 @@ struct OathRefinedListRow<Icon: View>: View {
         .accessibilityElement(children: .combine)
     }
 
+    private var columnLabels: some View {
+        HStack(alignment: assetNetworkName == nil ? .center : .top, spacing: 12) {
+            identity.frame(maxWidth: .infinity, alignment: .leading)
+            amounts(alignment: .trailing).layoutPriority(1)
+        }
+        .lineLimit(1)
+        .truncationMode(.middle)
+        .minimumScaleFactor(0.85)
+    }
+
     private var identity: some View {
         VStack(alignment: .leading, spacing: 5) {
             titleLabel
             Text(verbatim: subtitle)
                 .oathFont(.caption, weight: emphasizesBalanceSubtitle ? .medium : .regular,
-                          size: emphasizesBalanceSubtitle ? balanceSubtitleSize : nil, alreadyScaled: true)
+                          size: emphasizesBalanceSubtitle ? balanceSubtitleSize : nil)
                 .foregroundStyle(.secondary)
                 .oathBalanceConcealed(concealsSubtitle)
         }
@@ -89,7 +104,7 @@ struct OathRefinedListRow<Icon: View>: View {
 
     private var titleLabel: some View {
         HStack(spacing: 6) {
-            if let titleBadgeAsset {
+            if assetNetworkName == nil, let titleBadgeAsset {
                 OathNetworkLogo(asset: titleBadgeAsset, size: titleBadgeSize)
                     .fixedSize()
                     .accessibilityHidden(true)
@@ -101,7 +116,37 @@ struct OathRefinedListRow<Icon: View>: View {
             .oathFont(.callout, weight: .semibold)
             .foregroundStyle(.primary)
             .truncationMode(.tail)
+            if let assetNetworkName {
+                HStack(spacing: 4) {
+                    if let titleBadgeAsset {
+                        OathNetworkLogo(asset: titleBadgeAsset, size: titleBadgeSize)
+                            .fixedSize()
+                            .accessibilityHidden(true)
+                    }
+                    Text(verbatim: assetNetworkName)
+                        .oathFont(.caption2, weight: .medium)
+                        .foregroundStyle(.secondary)
+                        .truncationMode(.tail)
+                }
+                .padding(.leading, titleBadgeAsset == nil ? 5 : 3)
+                .padding(.trailing, 5)
+                .padding(.vertical, 3)
+                .background(Color(uiColor: OathSurfaceColors.networkBadge), in: networkBadgeShape)
+            }
         }
+    }
+
+    private var networkBadgeShape: UnevenRoundedRectangle {
+        let pillRadius = (titleBadgeSize + 6) / 2
+        // Match the logo's continuous corners plus its equal three-point inset.
+        // Semantic leading corners follow the logo in both LTR and RTL layouts.
+        let logoRadius = titleBadgeAsset == nil ? pillRadius
+            : titleBadgeSize * TokenArtworkStyle.cornerRadiusFraction + 3
+        return UnevenRoundedRectangle(topLeadingRadius: logoRadius,
+                                      bottomLeadingRadius: logoRadius,
+                                      bottomTrailingRadius: pillRadius,
+                                      topTrailingRadius: pillRadius,
+                                      style: .continuous)
     }
 
     // Size each line independently: an exact token amount can be much longer

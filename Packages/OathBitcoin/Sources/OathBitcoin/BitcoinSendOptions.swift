@@ -49,4 +49,5 @@ public struct BitcoinSendOptions: Codable, Equatable, Sendable {
 public struct BitcoinSendOutput: Equatable, Sendable {
     public let value: Int64
     public let script: Data
+    public var isChange = false
 }

@@ -186,13 +186,6 @@
 	</dict>
 	<key>OathWalletConnectKeychainGroup</key>
 	<string>$(AppIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>IBMPlexSansArabic-Regular.ttf</string>
-		<string>IBMPlexSansArabic-Medium.ttf</string>
-		<string>IBMPlexSansArabic-SemiBold.ttf</string>
-		<string>IBMPlexSansArabic-Bold.ttf</string>
-	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

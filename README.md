@@ -2,14 +2,19 @@
 
 A native multichain wallet for iPhone and iPad.
 
-**GitHub prerelease: 5.0.2 (104).** This version contains subsequent audit fixes and has not been uploaded to App Store Connect. The separate **5.0.1 (103)** submission remains the version reported as Waiting for Review on 2 November 2026.
+**GitHub release: 5.0.2 (104).** This release adds receipt and asset-list improvements, a Solana history-date repair, native typography, and further audit fixes. It has not been uploaded to App Store Connect as part of this release.
 
-[Prerelease notes](releases/5.0.2.md) · [Website](https://oathwallet.org) ·
+[Release notes](releases/5.0.2.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
 
 ## What's new
 
+- Adds sender totals with separately denominated fees, and identifies wallet-owned Bitcoin inputs and change outputs in receipts.
+- Repairs legacy Solana transaction dates offline while preserving history, cached receipts, and reset boundaries.
+- Shows asset symbols, full names, network badges, and both native and fiat balances in asset selection and search.
+- Uses native system typography across supported languages and keeps completed iCloud backup status visible.
+- Preserves signing revocation after wallet removal, rejects invalid history checkpoints, and hardens NEAR/Sui/XDR/SCALE parsing and Stellar plan timestamp bounds.
 - Includes the public audit repairs made after build 103: interrupted wallet-import recovery, wallet ordering and Bitcoin address discovery.
 - Improves encrypted backup file handling and stale-progress protection, and clears revealed private keys when the app leaves the foreground.
 - Hardens malformed WalletConnect encodings and XRP amount/simulation validation.
@@ -31,7 +36,7 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-The [5.0.2 (104) prerelease](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104) identifies this source and build settings. Its [verification record](releases/5.0.2.md) distinguishes new checks from earlier audit evidence. This is a GitHub prerelease, not an Apple submission or a completed audit.
+The [5.0.2 (104) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104) identifies this source and build settings. Its [verification record](releases/5.0.2.md) distinguishes new checks from earlier audit evidence. Publishing this source release does not constitute an Apple submission or a completed audit.
 
 The [5.0.0 (102) delivery record](releases/5.0.0.md) documents the earlier build delivered to Apple.
 
@@ -88,7 +93,7 @@ See the bundled third-party notices and dependency licenses for attribution.
 ## Reproducible security review
 
 A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
-now tracks the [5.0.2 (104) prerelease](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104).
+now tracks the [5.0.2 (104) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104).
 Earlier audit results retain their original tested commits; the current target and remaining work are recorded in the review repository.
 It publishes its exact source targets, findings, tests, and outstanding coverage.
 The review is **in progress**, is not independent certification, and does not

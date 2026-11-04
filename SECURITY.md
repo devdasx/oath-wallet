@@ -30,7 +30,7 @@ in the fixture READMEs and are not production service credentials.
 ## Reproducible security review
 
 A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
-now tracks the [5.0.2 (104) prerelease](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104).
+now tracks the [5.0.2 (104) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104).
 Earlier audit results retain their original tested commits; the current target and remaining work are recorded in the review repository.
 It publishes its exact source targets, findings, tests, and outstanding coverage.
 The review is **in progress**, is not independent certification, and does not
