@@ -248,6 +248,13 @@ Write requests and other hosts are outside this exception. Automated clients
 should identify themselves truthfully; never impersonate a verified crawler to
 obtain privileges. Cloudflare zone configuration is separate from Worker deploys.
 
+On 2026-11-05 the same rule was extended to the public `/release-status.json`
+endpoint on the main and Help Center hosts, the main-site `/bug-bounty` and
+`/bug-bounty.md` pages, and public `/networks/` documents. The method and host
+restrictions and all other security controls remain unchanged. The deployment
+check now tests every Markdown document and release metadata with a default
+Python client User-Agent, in addition to the identified documentation checker.
+
 ### Shared website logo
 
 Edit `content/brand/oath-logo.svg` to update Oath's logo. `npm run build:brand`

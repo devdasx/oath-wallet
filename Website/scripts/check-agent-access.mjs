@@ -14,7 +14,9 @@ await Promise.all(Array.from({length:4},async()=>{
  while(queue.length){const d=queue.shift();
   const md=await request(d.markdown_url),neg=await request(d.url,{headers:{Accept:'text/markdown'}});
   assert.match(md.headers.get('content-type'),/text\/markdown/);assert.match(neg.headers.get('vary'),/Accept/i);
-  assert.equal(await md.text(),await neg.text(),d.url);
+  const expected=await md.text();assert.equal(expected,await neg.text(),d.url);
+  const plainClient=await request(d.markdown_url,{headers:{'User-Agent':'Python-urllib/3.14'}});
+  assert.equal(await plainClient.text(),expected,d.markdown_url);
   const html=await request(d.url,{headers:{Accept:'text/html'}});assert.match(html.headers.get('content-type'),/text\/html/);assert.ok(html.headers.get('link')?.includes(d.markdown_url));completed++;
  }
 }));
@@ -23,8 +25,8 @@ for(const host of ['oathwallet.org','help.oathwallet.org','articles.oathwallet.o
  const guide=await(await request(`https://${host}/llms.txt`,{headers:{'User-Agent':'Python-urllib/3.9'}})).text();
  assert.ok(guide.includes(`Oath Wallet ${currentStatus.version} (${currentStatus.build})`));
  assert.ok(guide.includes(currentStatus.review.url));
- assert.deepEqual(await(await request(`https://${host}/release-status.json`)).json(),currentStatus);
- const hostIndex=await(await request(`https://${host}/agent-documents.json`)).json();
+ assert.deepEqual(await(await request(`https://${host}/release-status.json`,{headers:{'User-Agent':'Python-urllib/3.14'}})).json(),currentStatus);
+ const hostIndex=await(await request(`https://${host}/agent-documents.json`,{headers:{'User-Agent':'Python-urllib/3.14'}})).json();
  assert.deepEqual(hostIndex.current_status,currentStatus);
 }
 const rpc=async(name,args={})=>(await(await request(origin+'/mcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name,arguments:args}})})).json()).result;
@@ -36,4 +38,4 @@ assert.ok((await rpc('search_help',{query:'restore iCloud'})).structuredContent.
 assert.match((await rpc('read_document',{url:origin+'/networks'})).structuredContent.text,/Bitcoin/);
 assert.match((await rpc('get_download')).structuredContent.url,/apps.apple.com/);
 assert.equal((await rpc('read_document',{url:'http://169.254.169.254/'})).isError,true);
-console.log(`Passed ${completed} live documents (Markdown, negotiated Markdown, HTML); 3 default Python client probes; current release and review scope on all 3 hosts; MCP release/review/recovery/network/download and URL restrictions.`);
+console.log(`Passed ${completed} live documents (Markdown, negotiated Markdown, HTML, default Python client); 3 default Python client probes; current release and review scope on all 3 hosts; MCP release/review/recovery/network/download and URL restrictions.`);
