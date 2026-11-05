@@ -10,7 +10,9 @@ Read the [5.0.2 release verification record](https://github.com/devdasx/oath-wal
 
 ## What the checks establish
 
-The release record covers source inspection, secret scanning, compilation and focused host tests. No simulator or physical-device checks were run for build 103. It does not establish an independent security audit or an independently reproduced comparison with an App Store download. Apple approval alone would not establish either result.
+The release record covers source inspection, secret scanning, compilation and focused host tests. The 4 November source-validation run for build 104 did not launch a simulator or operate a physical device. It does not establish an independent security audit or an independently reproduced comparison with an App Store download. Apple approval alone would not establish either result.
+
+The [published security review](https://github.com/devdasx/oath-wallet-security-review) records findings, repairs, tests and outstanding coverage. It is a maintainer-commissioned, Codex-led review and remains in progress. Each result identifies its tested source revision; this is not independent certification.
 
 ## Recovery formats and local signing
 

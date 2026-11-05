@@ -30,6 +30,8 @@
     "get_policy",
     "list_articles",
     "list_documents",
-    "read_document"
+    "read_document",
+    "get_release_status",
+    "get_security_review"
   ]
 }

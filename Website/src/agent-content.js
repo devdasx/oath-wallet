@@ -2,6 +2,7 @@ import networkCatalog from '../content/networks.json' with {type:'json'};
 import help from './help/content.json' with {type:'json'};
 import facts from '../public/oath-data.json' with {type:'json'};
 import evidence from '../content/release-evidence.json' with {type:'json'};
+import distribution from '../../releases/5.0.2-distribution.json' with {type:'json'};
 import {migrateArticleLinks} from './article-host.js';
 import {articleRoutes} from './article-routes.js';
 const main='https://oathwallet.org', support='https://help.oathwallet.org', articles='https://articles.oathwallet.org';
@@ -21,10 +22,17 @@ export const documents=[
 ];
 export const publicDocument=d=>Object.fromEntries(Object.entries(d).filter(([k,v])=>!['file','id'].includes(k)&&v!==undefined));
 export const evidenceScope={version:evidence.version,build:evidence.build,reviewed_on:evidence.reviewed_on,source_url:`https://github.com/devdasx/oath-wallet/tree/${evidence.source_commit}`,scope:'Pinned source excerpts, not an independent audit or confirmation of the current App Store version.',app_store_url:facts.facts.download};
+// Release identity, excerpt verification and review coverage are separate facts.
+export const currentStatus={schema_version:1,checked_on:distribution.confirmed_on,name:facts.name,
+ version:facts.facts.app_version,build:facts.facts.app_build,distribution_status:distribution.status,
+ release_url:facts.security.release_record,source_commit:facts.security.release_source_commit,
+ distribution_evidence_url:`https://github.com/devdasx/oath-wallet/blob/main/releases/${facts.facts.app_version}-distribution.json`,
+ review:facts.security.published_review,source_evidence:evidenceScope};
+export const statusText=()=>`Current release: Oath Wallet ${currentStatus.version} (${currentStatus.build}). Release facts checked ${currentStatus.checked_on}.\nRelease and verification record: ${currentStatus.release_url}\nCurrent release metadata: ${main}/release-status.json\nPublished security review: ${currentStatus.review.url}\nReview status: ${currentStatus.review.kind}; in progress. ${currentStatus.review.limitations}\nEach review result retains its tested source revision. Older articles, tags and directory snapshots describe their recorded versions.\n`;
 const link=d=>`- [${d.title}](${d.markdown_url})${d.summary?': '+d.summary:''}`;
 export function guide(origin) {
  const docs=documents.filter(d=>origin===main || new URL(d.url).origin===origin);
- return `# Oath Wallet — public documentation\n\nOfficial product information only. Never submit recovery phrases, private keys, passcodes or wallet data to these interfaces.\n\nRead-only MCP: ${main}/mcp\nDocument index: ${main}/agent-documents.json\nApp Store: ${facts.facts.download}\nPublic source and releases: ${facts.facts.source_code}\n\nHelp instructions carry their applicable app version and authored update dates. Source excerpts cover ${evidence.version} (${evidence.build}), reviewed ${evidence.reviewed_on}; this is not an independent audit or proof of App Store availability.\n\n${docs.map(link).join('\n')}\n\nFull text: ${main}/llms-full.txt\n`;
+ return `# Oath Wallet — public documentation\n\nOfficial product information only. Never submit recovery phrases, private keys, passcodes or wallet data to these interfaces.\n\nRead-only MCP: ${main}/mcp\nDocument index: ${main}/agent-documents.json\nApp Store: ${facts.facts.download}\nPublic source and releases: ${facts.facts.source_code}\n\n${statusText()}\nHelp instructions carry their applicable app version and authored update dates. Source excerpts cover ${evidence.version} (${evidence.build}), reviewed ${evidence.reviewed_on}; this is not an independent audit or proof of App Store availability.\n\n${docs.map(link).join('\n')}\n\nFull text: ${main}/llms-full.txt\n`;
 }
 export async function documentText(d,env,asset) {
  let body;
@@ -64,8 +72,10 @@ export async function handleAgentContent(request,env) {
  let body;
  if(u.pathname==='/llms.txt') {
   body=guide(u.origin);headers['Content-Type']='text/plain; charset=utf-8';headers['X-Robots-Tag']='noindex';
+ } else if(u.pathname==='/release-status.json') {
+  body=JSON.stringify(currentStatus);headers['Content-Type']='application/json; charset=utf-8';headers['X-Robots-Tag']='noindex';
  } else if(u.pathname==='/agent-documents.json') {
-  body=JSON.stringify({schema_version:1,source_evidence:evidenceScope,documents:documents.filter(d=>u.origin===main||new URL(d.url).origin===u.origin).map(publicDocument)});headers['Content-Type']='application/json; charset=utf-8';headers['X-Robots-Tag']='noindex';
+  body=JSON.stringify({schema_version:1,current_status:currentStatus,source_evidence:evidenceScope,documents:documents.filter(d=>u.origin===main||new URL(d.url).origin===u.origin).map(publicDocument)});headers['Content-Type']='application/json; charset=utf-8';headers['X-Robots-Tag']='noindex';
  } else {
   const d=documents.find(d=>d.markdown_url===u.origin+u.pathname || d.url===u.origin+u.pathname);
   if(!d)return null;

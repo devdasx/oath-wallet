@@ -1,4 +1,4 @@
-import { documents, publicDocument, documentText, searchHelp, evidenceScope } from './agent-content.js';
+import { documents, publicDocument, documentText, searchHelp, evidenceScope, currentStatus, statusText } from './agent-content.js';
 import { migrateArticleLinks } from './article-host.js';
 // Cloudflare implementation of the supplied read-only PHP MCP endpoint.
 // Public answers and resources are read from the same assets as the website.
@@ -13,6 +13,8 @@ const tool = (name, title, description, properties = {}, required = []) => ({
 const tools = [
   tool('list_documents', 'Documentation index', 'List official pages, help articles and editorial articles with canonical URLs and version scope.'),
   tool('read_document', 'Read an official document', 'Read a document from list_documents by exact canonical or Markdown URL. No arbitrary URL fetching.', {url:{type:'string'}}, ['url']),
+  tool('get_release_status', 'Current Oath release', 'Dated current version, build, distribution evidence, exact source and review scope.'),
+  tool('get_security_review', 'Published security review', 'Published maintainer-commissioned Codex-led review, findings, coverage and explicit limitations.'),
   tool('get_overview', 'What is Oath?', 'Overview of the Oath self-custody iPhone wallet and key facts.'),
   tool('list_features', 'List features', 'List core features with short descriptions.'),
   tool('get_feature', 'Get a feature', 'Details about a feature by id or keywords.', { feature: { type: 'string' } }, ['feature']),
@@ -46,12 +48,14 @@ async function callTool(name, args, env) {
       Object.entries(args).some(([k, v]) => typeof v !== 'string' || (schema.properties[k].enum && !schema.properties[k].enum.includes(v)))) {
     return toolError('Arguments do not match this tool’s input schema.');
   }
-  if (name === 'list_documents') return structured({documents:documents.map(publicDocument),source_evidence:evidenceScope}, 'Official documentation index.');
+  if (name === 'list_documents') return structured({documents:documents.map(publicDocument),current_status:currentStatus,source_evidence:evidenceScope}, 'Official documentation index.');
   if (name === 'read_document') {
     const d=documents.find(d=>d.url===args.url||d.markdown_url===args.url);
     return d ? structured({...publicDocument(d),text:await documentText(d,env)}, 'Official document.') : toolError('Unknown document. Use list_documents.');
   }
-  if (name === 'get_overview') return text(await readAsset(env, 'index.md'));
+  if (name === 'get_release_status') return structured(currentStatus, 'Current release facts with separate review scope.');
+  if (name === 'get_security_review') return structured(currentStatus.review, 'Published review evidence and limitations.');
+  if (name === 'get_overview') return text(statusText()+'\n'+await readAsset(env, 'index.md'));
   if (name === 'get_policy') return text(await readAsset(env, `${args.document}.md`));
   const data = JSON.parse(await readAsset(env, 'oath-data.json'));
   const facts = data.facts;
