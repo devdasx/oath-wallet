@@ -1,6 +1,6 @@
 {
   "name": "Oath Wallet",
-  "updated": "2026-11-02",
+  "updated": "2026-11-05",
   "facts": {
     "name": "Oath Wallet",
     "slogan": "A wallet, not a marketplace.",
@@ -28,9 +28,9 @@
       "source": "Apple App Store (US)",
       "checked_on": "2026-10-27"
     },
-    "source_version": "5.0.1 (103)",
-    "app_version": "5.0.1",
-    "app_build": 103
+    "source_version": "5.0.2 (104)",
+    "app_version": "5.0.2",
+    "app_build": 104
   },
   "features": [
     {
@@ -198,7 +198,7 @@
       "category": "Security",
       "author_name": "Oath Wallet",
       "published_at": "2026-10-19T00:52:50.213485+00:00",
-      "updated_at": "2026-10-28T00:00:00Z",
+      "updated_at": "2026-11-05T00:00:00Z",
       "locale": "en",
       "language_name": "English",
       "reading_minutes": 10,
@@ -681,28 +681,28 @@
     }
   ],
   "security": {
-    "reviewed_source_version": "5.0.1 (103)",
-    "reviewed_source_commit": "c7acd23bb139864a40273f405d18b479589d2b20",
-    "reviewed_on": "2026-11-02",
+    "reviewed_source_version": "5.0.2 (104)",
+    "reviewed_source_commit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+    "reviewed_on": "2026-11-05",
     "mnemonic": "BIP39, Electrum and aezeed retain distinct validation and derivation rules",
     "storage": "AES-GCM local vault; device-only Keychain and protected installation key; passcode key derivation uses PBKDF2-HMAC-SHA256 with 600,000 rounds",
     "backup": "Eligible wallets use AES-256-GCM password-encrypted .oathbackup files; Electrum and aezeed excluded",
     "independent_audit": "Not established by the published source release",
     "app_store_binary_match": "The release record covers source and unsigned build checks. An independently reproduced comparison with the distributed App Store binary remains outstanding.",
-    "silent_payments": "Receiving and discovery are not supported in 5.0.1",
-    "source": "https://github.com/devdasx/oath-wallet/blob/c7acd23bb139864a40273f405d18b479589d2b20/README.md",
+    "silent_payments": "Receiving and discovery are not supported in 5.0.2",
+    "source": "https://github.com/devdasx/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/README.md",
     "scope": "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md",
     "reporting_policy": "https://github.com/devdasx/oath-wallet/security/policy",
     "source_correspondence": {
       "status": "source-tagged",
-      "confirmed_on": "2026-11-02",
-      "statement": "The public source tag identifies version 5.0.1, build 103.",
-      "source_verification": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json",
+      "confirmed_on": "2026-11-05",
+      "statement": "The public source tag identifies version 5.0.2, build 104.",
+      "source_verification": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json",
       "readme": "https://github.com/devdasx/oath-wallet#release-verification"
     },
-    "technical_examples_scope": "Six source excerpts verified against 5.0.1 (103) on 2026-11-02.",
-    "page_updated_on": "2026-11-02",
-    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103",
-    "release_source_commit": "c7acd23bb139864a40273f405d18b479589d2b20"
+    "technical_examples_scope": "Six source excerpts verified against 5.0.2 (104) on 2026-11-05.",
+    "page_updated_on": "2026-11-05",
+    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104",
+    "release_source_commit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca"
   }
 }

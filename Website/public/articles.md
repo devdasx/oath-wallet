@@ -12,7 +12,7 @@ English · Published 2026-11-01 · Updated 2026-11-01
 
 What connects public source code to the app you install? A practical guide to reproducible builds, signed releases, App Store approval, and Oath’s current evidence.
 
-English · Published 2026-10-19 · Updated 2026-10-28
+English · Published 2026-10-19 · Updated 2026-11-05
 
 ## [Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call](https://oathwallet.org/articles/bitget-388-million-hack-self-custody)
 

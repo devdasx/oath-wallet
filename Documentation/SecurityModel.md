@@ -1,6 +1,6 @@
 # Security model — 4.1.14 (98)
 
-Current source prerelease: [5.0.2 (104)](../releases/5.0.2.md). The sections below record the scope of the original 4.1.14 source review.
+Current Apple-approved release: [5.0.2 (104)](../releases/5.0.2.md). The sections below record the scope of the original 4.1.14 source review.
 
 
 Oath Wallet keeps recovery input and signing credentials in its protected local vault. Optional encrypted iCloud backups, deliberate exports and WalletConnect requests have separate user-controlled boundaries.

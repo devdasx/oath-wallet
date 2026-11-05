@@ -80,9 +80,9 @@ For any wallet that offers only a repository link, the fair conclusion is limite
 
 Compare the platform, release, method, and result. A brand-wide label hides too much.
 
-## Oath Wallet 5.0.1 and its public build record
+## Oath Wallet 5.0.2 and its public build record
 
-Oath publishes the MIT-licensed [source for 5.0.1 (103)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json) identifies the source commit, unsigned iOS Release build and host test results.
+Oath publishes the MIT-licensed [source for 5.0.2 (104)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json) identifies the source commit, unsigned iOS Release build and host test results.
 
 
 

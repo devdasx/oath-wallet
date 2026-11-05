@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "source_evidence": {
-    "version": "5.0.1",
-    "build": 103,
-    "reviewed_on": "2026-11-02",
-    "source_url": "https://github.com/devdasx/oath-wallet/tree/c7acd23bb139864a40273f405d18b479589d2b20",
+    "version": "5.0.2",
+    "build": 104,
+    "reviewed_on": "2026-11-05",
+    "source_url": "https://github.com/devdasx/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
     "scope": "Pinned source excerpts, not an independent audit or confirmation of the current App Store version.",
     "app_store_url": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"
   },
@@ -1789,7 +1789,7 @@
       "markdown_url": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds.md",
       "title": "The Missing Link Between Open Source and the Wallet on Your Phone",
       "summary": "",
-      "updated_at": "2026-10-28T00:00:00Z",
+      "updated_at": "2026-11-05T00:00:00Z",
       "published_at": "2026-10-19T00:52:50.213485+00:00",
       "kind": "article"
     },
