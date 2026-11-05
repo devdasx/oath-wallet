@@ -82,7 +82,7 @@ Compare the platform, release, method, and result. A brand-wide label hides too 
 
 ## Oath Wallet 5.0.2 and its public build record
 
-Oath publishes the MIT-licensed [source for 5.0.2 (104)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json) identifies the source commit, unsigned iOS Release build and host test results.
+Oath publishes the MIT-licensed [source for 5.0.2 (104)](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104). Its [verification record](https://github.com/OathWallet/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json) identifies the source commit, unsigned iOS Release build and host test results.
 
 
 

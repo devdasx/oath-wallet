@@ -90,7 +90,7 @@
     "status": "maintainer-confirmed",
     "confirmed_on": "2026-10-19",
     "statement": "Oath’s maintainers confirm that the App Store release corresponds to the source published on GitHub. Documented public-source boundaries and configuration requirements still apply.",
-    "readme": "https://github.com/devdasx/oath-wallet#app-store-source-correspondence",
+    "readme": "https://github.com/OathWallet/oath-wallet#app-store-source-correspondence",
     "guide": "https://articles.oathwallet.org/open-source-wallets-verifiable-builds",
     "independent_verification": "This statement is distinct from an independently reproduced, byte-for-byte comparison of an App Store download. This update supplies no new binary comparison, independent reproducibility report, or security audit."
   }

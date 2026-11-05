@@ -52,7 +52,7 @@ _Security_ — That is a scam. Oath will never ask for your recovery phrase, pri
 
 ### Is Oath open source?
 
-_Security_ — Yes. The full source is published on GitHub at github.com/devdasx/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary.
+_Security_ — Yes. The full source is published on GitHub at github.com/OathWallet/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary.
 
 ### What is EVM Access?
 
@@ -77,4 +77,4 @@ Step-by-step help, with release notes and recovery limitations. Start with the g
 
 ## Security vulnerabilities
 
-Use [GitHub private vulnerability reporting](https://github.com/devdasx/oath-wallet/security/advisories/new) and follow the [security policy](https://github.com/devdasx/oath-wallet/security/policy). Reports go privately to repository maintainers. Never include real wallet credentials or post exploit details in a public issue.
+Use [GitHub private vulnerability reporting](https://github.com/OathWallet/oath-wallet/security/advisories/new) and follow the [security policy](https://github.com/OathWallet/oath-wallet/security/policy). Reports go privately to repository maintainers. Never include real wallet credentials or post exploit details in a public issue.

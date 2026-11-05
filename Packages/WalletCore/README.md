@@ -2,7 +2,7 @@
 
 This source selects Wallet Core 4.8.4 with ten reviewed source repairs.
 The upstream source pin is `d40d24a63d92619167903369308bf0e2f7eb3a59`.
-[The public security-review repository](https://github.com/devdasx/oath-wallet-security-review)
+[The public security-review repository](https://github.com/OathWallet/oath-wallet-security-review)
 contains the patches, exact input pins, build scripts and before/after evidence.
 `provenance.json` records this package's selected artifacts and checksums.
 

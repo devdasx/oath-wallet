@@ -98,7 +98,7 @@ Network and price requests are not stored by us beyond what our providers need f
 
 ## 13. Security
 
-The published source uses device-only Keychain storage, local signing, authenticated encryption for the local vault and optional iCloud backup, and encrypted network connections. Blockchain private keys are not described as Secure Enclave signing keys. The version-specific evidence and limitations are documented at https://oathwallet.org/security; published source is available at https://github.com/devdasx/oath-wallet.
+The published source uses device-only Keychain storage, local signing, authenticated encryption for the local vault and optional iCloud backup, and encrypted network connections. Blockchain private keys are not described as Secure Enclave signing keys. The version-specific evidence and limitations are documented at https://oathwallet.org/security; published source is available at https://github.com/OathWallet/oath-wallet.
 
 ## 14. Your rights
 

@@ -1,6 +1,6 @@
 # Deploy from the public repository
 
-The canonical repository is `devdasx/oath-wallet`. The iOS app is at the root;
+The canonical repository is `OathWallet/oath-wallet`. The iOS app is at the root;
 `Website/` contains the main site, Help Center, articles, newsletter interface,
 assets, tests and website service implementations. Credentials are encrypted
 GitHub Actions secrets, not source files. The website services are not included in the self-custodial app.

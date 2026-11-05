@@ -45,6 +45,6 @@ Only send using the network the recipient explicitly supports. A matching addres
 
 Features depend on the app version, network, wallet type and the service you connect to. Check the available actions in your installed app before transferring.
 
-[Network catalog](https://github.com/devdasx/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
+[Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)

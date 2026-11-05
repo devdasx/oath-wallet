@@ -154,7 +154,7 @@ Coldcard의 현재 상태 페이지는 범위를 표현하는 좋은 사례를 �
 
 ## Oath가 정직하게 주장할 수 있는 것
 
-Oath는 전용 하드웨어 서명 장치와는 다른 자산 보관 아키텍처, 즉 소스가 공개된 iPhone 및 iPad 애플리케이션을 기반으로 한다. [공개 저장소](https://github.com/devdasx/oath-wallet)는 MIT 라이선스에 따라 모바일 클라이언트와 빌드 지침을 공개한다. [공개된 보안 모델](https://oathwallet.org/data/security-model.json)은 지갑 비밀을 앱 범위의 iOS Keychain에 이 기기 전용 보호 방식으로 저장하고, 로컬 데이터베이스에는 복구 문구나 개인 키 대신 불투명 참조만 보관한다고 명시한다. 거래는 기기에서 구성하고 서명한 뒤, 서명된 데이터만 네트워크 인프라로 전송한다.
+Oath는 전용 하드웨어 서명 장치와는 다른 자산 보관 아키텍처, 즉 소스가 공개된 iPhone 및 iPad 애플리케이션을 기반으로 한다. [공개 저장소](https://github.com/OathWallet/oath-wallet)는 MIT 라이선스에 따라 모바일 클라이언트와 빌드 지침을 공개한다. [공개된 보안 모델](https://oathwallet.org/data/security-model.json)은 지갑 비밀을 앱 범위의 iOS Keychain에 이 기기 전용 보호 방식으로 저장하고, 로컬 데이터베이스에는 복구 문구나 개인 키 대신 불투명 참조만 보관한다고 명시한다. 거래는 기기에서 구성하고 서명한 뒤, 서명된 데이터만 네트워크 인프라로 전송한다.
 
 Apple의 [플랫폼 보안 문서](https://support.apple.com/guide/security/intro-app-security-ios-ipados-visionos-secf49cad4db/web)는 의무적 코드 서명, 신원이 확인된 개발자, 자동화 및 사람에 의한 App Store 심사, 샌드박싱, 런타임 서명 강제를 설명한다. Apple의 [Keychain 문서](https://support.apple.com/guide/security/secb0694df1a/1/web/1)는 항목별 보호와 Keychain 키 처리 과정에 Secure Enclave가 관여하는 방식을 설명한다. 이는 실제로 존재하는 플랫폼 통제다. 하지만 Oath의 블록체인 개인 키 자체가 Secure Enclave 키라는 주장은 아니며, Oath도 그런 주장을 하지 않는다.
 

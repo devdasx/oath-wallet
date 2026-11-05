@@ -23,7 +23,7 @@ test('current source evidence agrees with the interactive code viewer and metada
  const files=JSON.parse(security.match(/const FILES = (\[[\s\S]*?\]);/)[1]);
  assert.deepEqual(files,evidence.files);assert.equal(files.length,6);
  for(const f of files){assert.ok(f.code.trim().length>60);assert.equal(f.code.trimEnd().split('\n').length <= f.end-f.start+1,true);assert.ok(f.start>0);}
- assert.ok(security.includes('const GH = "https://github.com/devdasx/oath-wallet/blob/'+evidence.source_commit+'/"') || security.includes("const GH = 'https://github.com/devdasx/oath-wallet/blob/"+evidence.source_commit+"/'"));
+ assert.ok(security.includes('const GH = "https://github.com/OathWallet/oath-wallet/blob/'+evidence.source_commit+'/"') || security.includes("const GH = 'https://github.com/OathWallet/oath-wallet/blob/"+evidence.source_commit+"/'"));
  assert.match(security,/November 5, 2026|5 November 2026/);
  assert.doesNotMatch(security,/4\.0\.0|580cf943|210,000|passkey-backed/);
 });

@@ -2,7 +2,7 @@
   "updated": "2026-11-01",
   "version": "1.1",
   "startsAt": "2026-12-01T00:00:00Z",
-  "reportURL": "https://github.com/devdasx/oath-wallet/security/advisories/new",
+  "reportURL": "https://github.com/OathWallet/oath-wallet/security/advisories/new",
   "email": "care@oathwallet.org",
   "rewards": [
     {"name":"Low","amount":0,"range":"CVSS 0.1–3.9","description":"Limited security impact. Useful findings that strengthen the details.","example":"A narrowly constrained information exposure with no sensitive wallet data or meaningful privilege gain."},
@@ -12,7 +12,7 @@
   ],
   "scope": [
     {"name":"Oath for iOS & iPadOS","tag":"Application","description":"The current publicly released Oath Wallet app. Include the exact app build, OS version and affected network. Focus on key protection, authentication, recovery, transaction construction and signing.","url":"https://apps.apple.com/app/id6780187283","label":"View the app"},
-    {"name":"Public source","tag":"Code","description":"Security-relevant Oath code in devdasx/oath-wallet. Pin the commit and demonstrate a reachable impact in a current supported feature. A source-only finding must identify the affected code and must not claim it proves App Store binary behavior.","url":"https://github.com/devdasx/oath-wallet","label":"Explore the source"},
+    {"name":"Public source","tag":"Code","description":"Security-relevant Oath code in OathWallet/oath-wallet. Pin the commit and demonstrate a reachable impact in a current supported feature. A source-only finding must identify the affected code and must not claim it proves App Store binary behavior.","url":"https://github.com/OathWallet/oath-wallet","label":"Explore the source"},
     {"name":"Oath websites","tag":"Web","description":"Oath-controlled application behavior on oathwallet.org, help.oathwallet.org and articles.oathwallet.org. Use only your own account and test data. These exact hosts are in scope; other subdomains and infrastructure are not included automatically.","url":"https://oathwallet.org/","label":"Visit the website"}
   ],
   "rules": [

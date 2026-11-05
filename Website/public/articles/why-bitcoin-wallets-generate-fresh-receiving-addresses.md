@@ -8,7 +8,7 @@ A fresh address can belong to the same supported HD wallet; verify the wallet an
 
 ## Guide source version
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/OathWallet/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Older screenshots are illustrative.
 
 ## One recovery method, several addresses
 
@@ -26,4 +26,4 @@ Oath scans supported branches with bounded discovery rules. A single imported pr
 
 Select the intended wallet and supported address type. Copy the address shown by your app, check sender compatibility and retain the original recovery material. Do not substitute a demonstration address from an article.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r3).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.0-build102-r3).

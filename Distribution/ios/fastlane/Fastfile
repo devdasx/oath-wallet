@@ -13,7 +13,7 @@ platform :ios do
     temporary = File.expand_path(ENV.fetch("SIGNING_DIRECTORY"))
     output = File.expand_path(ENV.fetch("RELEASE_OUTPUT"))
     receipt = JSON.parse(File.read(File.join(output, "source.json")))
-    receipt["workflow_run"] = "#{ENV.fetch('GITHUB_SERVER_URL', 'https://github.com')}/#{ENV.fetch('GITHUB_REPOSITORY', 'devdasx/oath-wallet')}/actions/runs/#{ENV.fetch('GITHUB_RUN_ID', 'local')}"
+    receipt["workflow_run"] = "#{ENV.fetch('GITHUB_SERVER_URL', 'https://github.com')}/#{ENV.fetch('GITHUB_REPOSITORY', 'OathWallet/oath-wallet')}/actions/runs/#{ENV.fetch('GITHUB_RUN_ID', 'local')}"
     receipt["workflow_commit"] = ENV["GITHUB_SHA"]
     receipt["toolchain"] = Open3.capture2("xcodebuild", "-version").first.strip
     notes_root = File.join(root, "Distribution", "metadata", receipt.fetch("version"))

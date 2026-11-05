@@ -19,7 +19,7 @@ Oath Wallet is a self-custody Bitcoin and crypto wallet for iPhone and iPad, dev
 OFFICIAL LINKS
 Website: https://oathwallet.org/
 App Store: https://apps.apple.com/app/id6780187283
-Source: https://github.com/devdasx/oath-wallet
+Source: https://github.com/OathWallet/oath-wallet
 Security: https://oathwallet.org/security
 Supported networks: https://oathwallet.org/networks
 X: https://x.com/OathWallet

@@ -154,7 +154,7 @@ Coldcardの現行ステータスページは、適切な範囲記述の模範を
 
 ## Oathが誠実に主張できること
 
-Oathは、専用ハードウェア署名器ではなく、ソースコード公開型のiPhone/iPadアプリという異なるカストディ設計を採用している。[公開リポジトリ](https://github.com/devdasx/oath-wallet)では、MITライセンスの下でモバイルクライアントとビルド手順を公開している。また、[公開済みのセキュリティモデル](https://oathwallet.org/data/security-model.json)には、ウォレットの秘密がアプリ専用のiOS Keychainを通じて、このデバイスのみ（this-device-only）の保護を用いて保存される一方、ローカルデータベースにはリカバリーフレーズや秘密鍵ではなく、不透明な参照のみを保持すると記載されている。トランザクションはデバイス上で構築・署名され、その後、署名済みデータがネットワーク基盤へ送信される。
+Oathは、専用ハードウェア署名器ではなく、ソースコード公開型のiPhone/iPadアプリという異なるカストディ設計を採用している。[公開リポジトリ](https://github.com/OathWallet/oath-wallet)では、MITライセンスの下でモバイルクライアントとビルド手順を公開している。また、[公開済みのセキュリティモデル](https://oathwallet.org/data/security-model.json)には、ウォレットの秘密がアプリ専用のiOS Keychainを通じて、このデバイスのみ（this-device-only）の保護を用いて保存される一方、ローカルデータベースにはリカバリーフレーズや秘密鍵ではなく、不透明な参照のみを保持すると記載されている。トランザクションはデバイス上で構築・署名され、その後、署名済みデータがネットワーク基盤へ送信される。
 
 Appleの[プラットフォームセキュリティ文書](https://support.apple.com/guide/security/intro-app-security-ios-ipados-visionos-secf49cad4db/web)には、必須のコード署名、身元を確認された開発者、自動および人手によるApp Store審査、サンドボックス化、実行時の署名検証が記載されている。また、[Keychainに関する文書](https://support.apple.com/guide/security/secb0694df1a/1/web/1)には、項目単位の保護と、Keychainの鍵処理におけるSecure Enclaveの関与が記載されている。これらは実際に備わっているプラットフォーム上の保護策である。ただし、Oathのブロックチェーン秘密鍵そのものがSecure Enclaveの鍵であるという主張ではなく、Oathもそのようには主張していない。
 

@@ -154,7 +154,7 @@ Coldcard 当前的状态页面示范了良好的范围表述：它列出针对�
 
 ## Oath 可以如实声称什么
 
-Oath 采用不同的资产保管架构：它是一款源代码公开的 iPhone 与 iPad 应用，而不是专用硬件签名器。其[公开代码库](https://github.com/devdasx/oath-wallet)依据 MIT 许可证公开移动客户端与构建说明。其[已发布的安全模型](https://oathwallet.org/data/security-model.json)说明，钱包秘密通过应用作用域内的 iOS Keychain 存储，并采用仅限本机的保护方式；本地数据库保存的是不透明引用，而非恢复短语或私钥。交易在设备上构建并签名，随后才把已签名数据发送给网络基础设施。
+Oath 采用不同的资产保管架构：它是一款源代码公开的 iPhone 与 iPad 应用，而不是专用硬件签名器。其[公开代码库](https://github.com/OathWallet/oath-wallet)依据 MIT 许可证公开移动客户端与构建说明。其[已发布的安全模型](https://oathwallet.org/data/security-model.json)说明，钱包秘密通过应用作用域内的 iOS Keychain 存储，并采用仅限本机的保护方式；本地数据库保存的是不透明引用，而非恢复短语或私钥。交易在设备上构建并签名，随后才把已签名数据发送给网络基础设施。
 
 Apple 的[平台安全文档](https://support.apple.com/guide/security/intro-app-security-ios-ipados-visionos-secf49cad4db/web)介绍了强制代码签名、开发者身份识别、自动与人工 App Store 审查、沙盒机制及运行时签名强制执行。其[Keychain 文档](https://support.apple.com/guide/security/secb0694df1a/1/web/1)介绍了逐项保护，以及 Secure Enclave 对 Keychain 密钥处理的参与。这些都是真实的平台控制措施；但它们并不意味着 Oath 的区块链私钥本身就是 Secure Enclave 密钥，Oath 也从未作出这项声明。
 

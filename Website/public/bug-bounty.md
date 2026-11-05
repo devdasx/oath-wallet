@@ -6,7 +6,7 @@ Bounty program opens December 1, 2026 · 00:00 UTC. Private security reports rem
 
 Help us find vulnerabilities in Oath and make self-custody stronger for everyone.
 
-[Report privately on GitHub](https://github.com/devdasx/oath-wallet/security/advisories/new). Private reporting is enabled; a GitHub account is required. Email alternative: care@oathwallet.org. Start with a non-sensitive summary.
+[Report privately on GitHub](https://github.com/OathWallet/oath-wallet/security/advisories/new). Private reporting is enabled; a GitHub account is required. Email alternative: care@oathwallet.org. Start with a non-sensitive summary.
 
 ## Rewards (USD)
 
@@ -54,9 +54,9 @@ The current publicly released Oath Wallet app. Include the exact app build, OS v
 
 ### Public source
 
-Security-relevant Oath code in devdasx/oath-wallet. Pin the commit and demonstrate a reachable impact in a current supported feature. A source-only finding must identify the affected code and must not claim it proves App Store binary behavior.
+Security-relevant Oath code in OathWallet/oath-wallet. Pin the commit and demonstrate a reachable impact in a current supported feature. A source-only finding must identify the affected code and must not claim it proves App Store binary behavior.
 
-[Explore the source](https://github.com/devdasx/oath-wallet)
+[Explore the source](https://github.com/OathWallet/oath-wallet)
 
 ### Oath websites
 

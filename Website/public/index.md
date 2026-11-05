@@ -37,7 +37,7 @@ Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30
 - **Price:** Free to download; users pay only blockchain network fees
 - **Custody:** Oath never holds, controls or has access to user funds, private keys, recovery phrases or passkeys. It cannot recover, reverse or freeze transactions.
 - **Accounts:** No account, email, phone number or KYC is required to use Oath.
-- **Source code:** https://github.com/devdasx/oath-wallet
+- **Source code:** https://github.com/OathWallet/oath-wallet
 - **Contact:** care@oathwallet.org · X: https://x.com/OathWallet
 
 ## Find your next step

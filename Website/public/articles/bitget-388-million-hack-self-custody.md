@@ -142,7 +142,7 @@ These practices cannot guarantee safety. They can make control informed and usab
 
 ## Why we build Oath Wallet
 
-Oath Wallet is built around a simple commitment: the wallet should serve the person who holds it. Our [product overview](https://oathwallet.org/features) describes that approach, and our [source repository](https://github.com/devdasx/oath-wallet) is available for inspection.
+Oath Wallet is built around a simple commitment: the wallet should serve the person who holds it. Our [product overview](https://oathwallet.org/features) describes that approach, and our [source repository](https://github.com/OathWallet/oath-wallet) is available for inspection.
 
 We believe a wallet should make receiving, holding, sending, and recovery understandable. A user should be able to distinguish a transaction from an approval, a backup from a login, and a wallet balance from a platform’s promise. Good design helps people notice the decisions that matter.
 

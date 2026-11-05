@@ -8,7 +8,7 @@ A passphrase derives another wallet; it is not an app lock or backup-file passwo
 
 ## Guide source version
 
-Checked against [Oath 5.0.0 (102) source](https://github.com/devdasx/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Older screenshots are illustrative.
+Checked against [Oath 5.0.0 (102) source](https://github.com/OathWallet/oath-wallet/tree/ecb16953a5766471e1214eae6655cf783d0d062a). Older screenshots are illustrative.
 
 ## BIP39 passphrase wallets
 
@@ -26,4 +26,4 @@ Keep the original words and correct extension together in a secure recovery plan
 
 Eligible BIP39 passphrase backups encrypt the passphrase with the recovery payload. Electrum and aezeed wallets are excluded from iCloud backup in 5.0.0, so retain their original manual recovery material. Verify known public addresses before receiving funds.
 
-Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.0-build102-r3).
+Read the [security model](https://oathwallet.org/security), [Help Center](https://help.oathwallet.org/), and [release verification record](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.0-build102-r3).

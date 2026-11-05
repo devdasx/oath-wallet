@@ -16,7 +16,7 @@ Oath is available in 57 app localizations, with right-to-left layouts, local num
 
 ## 04. Open source, with a documented review scope
 
-The full source code is public on GitHub at https://github.com/devdasx/oath-wallet. The published release includes its security model, verification record and reporting policy. Public source is available for review; it does not establish an independent audit or a verified match to the App Store binary.
+The full source code is public on GitHub at https://github.com/OathWallet/oath-wallet. The published release includes its security model, verification record and reporting policy. Public source is available for review; it does not establish an independent audit or a verified match to the App Store binary.
 
 ## 05. Bitcoin address options
 

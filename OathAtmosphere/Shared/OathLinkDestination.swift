@@ -27,7 +27,7 @@ enum OathLinkDestination: Equatable {
 
 enum OathSupportLinks {
     static let appStore = URL(string: "https://apps.apple.com/app/id6780187283")!
-    static let issues = URL(string: "https://github.com/devdasx/oath-wallet/issues")!
+    static let issues = URL(string: "https://github.com/OathWallet/oath-wallet/issues")!
     static let contact = URL(string: "mailto:care@oathwallet.org")!
     static let articles = URL(string: "https://articles.oathwallet.org")!
     static let privacy = URL(string: "https://oathwallet.org/privacy")!

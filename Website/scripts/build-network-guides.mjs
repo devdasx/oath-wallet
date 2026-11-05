@@ -8,7 +8,7 @@ const write=(p,v)=>writeFile(new URL(p,root),v);
 const esc=v=>String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const json=v=>JSON.stringify(v).replaceAll('<','\\u003c');
 const app='https://apps.apple.com/app/id6780187283';
-const source=`https://github.com/devdasx/oath-wallet/blob/${sourceCommit}/OathAtmosphere/Import/OathImportCatalog.swift`;
+const source=`https://github.com/OathWallet/oath-wallet/blob/${sourceCommit}/OathAtmosphere/Import/OathImportCatalog.swift`;
 const scope='Features depend on the app version, network, wallet type and the service you connect to. Check the available actions in your installed app before transferring.';
 const chrome=await buildSiteChrome();
 const header='<a class="skip" href="#content">Skip to content</a><!-- oath-shared-header:start -->'+chrome.header+'<!-- oath-shared-header:end -->';

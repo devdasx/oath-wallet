@@ -20,7 +20,7 @@ import Foundation
         check(OathLinkDestination(OathSupportLinks.appStore) == .web(OathSupportLinks.appStore))
         let spoofedStore = URL(string: "https://apps.apple.com.example.org/app/id6780187283")!
         check(OathLinkDestination(spoofedStore) == .web(spoofedStore))
-        check(OathSupportLinks.issues.absoluteString == "https://github.com/devdasx/oath-wallet/issues")
+        check(OathSupportLinks.issues.absoluteString == "https://github.com/OathWallet/oath-wallet/issues")
         check(OathSupportLinks.help.absoluteString == "https://help.oathwallet.org")
         check(OathSupportLinks.accountActivation.absoluteString == "https://help.oathwallet.org/articles/account-activation-and-reserves")
         check(OathSupportLinks.accountActivation.query == nil)

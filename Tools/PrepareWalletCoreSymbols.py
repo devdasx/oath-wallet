@@ -17,7 +17,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
 VERSION = "4.8.4-oath-review2"
-RELEASE_BASE = "https://github.com/devdasx/oath-wallet-security-review/releases/download/walletcore-4.8.4-swift-paths-1"
+RELEASE_BASE = "https://github.com/OathWallet/oath-wallet-security-review/releases/download/walletcore-4.8.4-swift-paths-1"
 ASSETS = {
     "WalletCore": (
         "67cdbfd8d605c82ae987baa29670e7488fc6508448ec136aadaecfa0add8f5e3",

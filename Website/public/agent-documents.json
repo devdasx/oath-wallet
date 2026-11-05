@@ -7,24 +7,24 @@
     "version": "5.0.2",
     "build": 104,
     "distribution_status": "READY_FOR_DISTRIBUTION",
-    "release_url": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104",
+    "release_url": "https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104",
     "source_commit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
-    "distribution_evidence_url": "https://github.com/devdasx/oath-wallet/blob/main/releases/5.0.2-distribution.json",
+    "distribution_evidence_url": "https://github.com/OathWallet/oath-wallet/blob/main/releases/5.0.2-distribution.json",
     "review": {
       "kind": "maintainer-commissioned, Codex-led security review",
       "status": "in_progress",
       "independent_certification": false,
-      "url": "https://github.com/devdasx/oath-wallet-security-review",
-      "report_url": "https://github.com/devdasx/oath-wallet-security-review/blob/main/review/REPORT.md",
-      "coverage_url": "https://github.com/devdasx/oath-wallet-security-review/blob/main/scope/inventory.json",
-      "findings_url": "https://github.com/devdasx/oath-wallet-security-review/tree/main/findings",
+      "url": "https://github.com/OathWallet/oath-wallet-security-review",
+      "report_url": "https://github.com/OathWallet/oath-wallet-security-review/blob/main/review/REPORT.md",
+      "coverage_url": "https://github.com/OathWallet/oath-wallet-security-review/blob/main/scope/inventory.json",
+      "findings_url": "https://github.com/OathWallet/oath-wallet-security-review/tree/main/findings",
       "limitations": "The whole-wallet review remains incomplete. Findings, fixes and tests apply to their recorded source commits; later releases do not automatically inherit coverage. No independent security-company certification or independently reproduced App Store binary match is established."
     },
     "source_evidence": {
       "version": "5.0.2",
       "build": 104,
       "reviewed_on": "2026-11-05",
-      "source_url": "https://github.com/devdasx/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+      "source_url": "https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
       "scope": "Pinned source excerpts, not an independent audit or confirmation of the current App Store version.",
       "app_store_url": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"
     }
@@ -33,7 +33,7 @@
     "version": "5.0.2",
     "build": 104,
     "reviewed_on": "2026-11-05",
-    "source_url": "https://github.com/devdasx/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+    "source_url": "https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
     "scope": "Pinned source excerpts, not an independent audit or confirmation of the current App Store version.",
     "app_store_url": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"
   },

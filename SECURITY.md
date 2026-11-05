@@ -1,7 +1,7 @@
 # Security
 
 Oath Wallet 5.0.2 (104) is an Apple-approved self-custody release. Its public source remains available for independent audit.
-The [published maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review) records findings, repairs, tests and outstanding coverage. That review is in progress.
+The [published maintainer-commissioned, Codex-led review](https://github.com/OathWallet/oath-wallet-security-review) records findings, repairs, tests and outstanding coverage. That review is in progress.
 No independent audit or absolute security guarantee is claimed.
 
 The core invariant is that an operator cannot obtain a wallet's private keys or
@@ -12,7 +12,7 @@ boundaries; see the [current security model](Documentation/SecurityModel.md) and
 
 ## Report a vulnerability privately
 
-Use [GitHub private vulnerability reporting](https://github.com/devdasx/oath-wallet/security/advisories/new).
+Use [GitHub private vulnerability reporting](https://github.com/OathWallet/oath-wallet/security/advisories/new).
 Reports go to the repository maintainers and are not public issues. A GitHub account is required.
 Include the affected app version or source commit, a description of the impact,
 and reproduction steps using an unfunded test wallet. Do not include a real recovery
@@ -30,8 +30,8 @@ in the fixture READMEs and are not production service credentials.
 
 ## Reproducible security review
 
-A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
-now tracks the [5.0.2 (104) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104).
+A [maintainer-commissioned, Codex-led review](https://github.com/OathWallet/oath-wallet-security-review)
+now tracks the [5.0.2 (104) release](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104).
 Earlier audit results retain their original tested commits; the current target and remaining work are recorded in the review repository.
 It publishes its exact source targets, findings, tests, and outstanding coverage.
 The review is **in progress**, is not independent certification, and does not

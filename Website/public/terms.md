@@ -57,7 +57,7 @@ You agree not to use the Service to break any law, including sanctions, anti-mon
 
 ## 10. Open source and licence
 
-Oath’s source code is published at github.com/devdasx/oath-wallet under its open-source licence, which governs your rights in that code. Subject to these Terms, we grant you a personal, non-exclusive, non-transferable, revocable licence to use the app we distribute. Oath’s name, logo and brand are our trademarks and are not licensed to you.
+Oath’s source code is published at github.com/OathWallet/oath-wallet under its open-source licence, which governs your rights in that code. Subject to these Terms, we grant you a personal, non-exclusive, non-transferable, revocable licence to use the app we distribute. Oath’s name, logo and brand are our trademarks and are not licensed to you.
 
 ## 11. Apple App Store terms
 

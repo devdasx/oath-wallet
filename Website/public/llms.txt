@@ -5,12 +5,12 @@ Official product information only. Never submit recovery phrases, private keys, 
 Read-only MCP: https://oathwallet.org/mcp
 Document index: https://oathwallet.org/agent-documents.json
 App Store: https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283
-Public source and releases: https://github.com/devdasx/oath-wallet
+Public source and releases: https://github.com/OathWallet/oath-wallet
 
 Current release: Oath Wallet 5.0.2 (104). Release facts checked 2026-11-05.
-Release and verification record: https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104
+Release and verification record: https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104
 Current release metadata: https://oathwallet.org/release-status.json
-Published security review: https://github.com/devdasx/oath-wallet-security-review
+Published security review: https://github.com/OathWallet/oath-wallet-security-review
 Review status: maintainer-commissioned, Codex-led security review; in progress. The whole-wallet review remains incomplete. Findings, fixes and tests apply to their recorded source commits; later releases do not automatically inherit coverage. No independent security-company certification or independently reproduced App Store binary match is established.
 Each review result retains its tested source revision. Older articles, tags and directory snapshots describe their recorded versions.
 

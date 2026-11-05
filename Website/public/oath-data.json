@@ -8,7 +8,7 @@
     "platform": "iPhone and iPad; Apple App Store",
     "price": "Free to download; users pay only blockchain network fees",
     "download": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283",
-    "source_code": "https://github.com/devdasx/oath-wallet",
+    "source_code": "https://github.com/OathWallet/oath-wallet",
     "website": "https://oathwallet.org",
     "email": "care@oathwallet.org",
     "x": "https://x.com/OathWallet",
@@ -51,7 +51,7 @@
     {
       "id": "open-source",
       "name": "Open source, with a documented review scope",
-      "summary": "The full source code is public on GitHub at https://github.com/devdasx/oath-wallet. The published release includes its security model, verification record and reporting policy. Public source is available for review; it does not establish an independent audit or a verified match to the App Store binary."
+      "summary": "The full source code is public on GitHub at https://github.com/OathWallet/oath-wallet. The published release includes its security model, verification record and reporting policy. Public source is available for review; it does not establish an independent audit or a verified match to the App Store binary."
     },
     {
       "id": "bitcoin-address-types",
@@ -133,7 +133,7 @@
     {
       "category": "Security",
       "q": "Is Oath open source?",
-      "a": "Yes. The full source is published on GitHub at github.com/devdasx/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary."
+      "a": "Yes. The full source is published on GitHub at github.com/OathWallet/oath-wallet, with a current security model, release verification record and security policy. Public source does not establish an independent audit or a verified match to the App Store binary."
     },
     {
       "category": "EVM Access",
@@ -690,28 +690,28 @@
     "independent_audit": "Not established by the published source release",
     "app_store_binary_match": "The release record covers source and unsigned build checks. An independently reproduced comparison with the distributed App Store binary remains outstanding.",
     "silent_payments": "Receiving and discovery are not supported in 5.0.2",
-    "source": "https://github.com/devdasx/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/README.md",
-    "scope": "https://github.com/devdasx/oath-wallet/blob/main/Documentation/SecurityModel.md",
-    "reporting_policy": "https://github.com/devdasx/oath-wallet/security/policy",
+    "source": "https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/README.md",
+    "scope": "https://github.com/OathWallet/oath-wallet/blob/main/Documentation/SecurityModel.md",
+    "reporting_policy": "https://github.com/OathWallet/oath-wallet/security/policy",
     "source_correspondence": {
       "status": "source-tagged",
       "confirmed_on": "2026-11-05",
       "statement": "The public source tag identifies version 5.0.2, build 104.",
-      "source_verification": "https://github.com/devdasx/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json",
-      "readme": "https://github.com/devdasx/oath-wallet#release-verification"
+      "source_verification": "https://github.com/OathWallet/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json",
+      "readme": "https://github.com/OathWallet/oath-wallet#release-verification"
     },
     "technical_examples_scope": "Six source excerpts verified against 5.0.2 (104) on 2026-11-05.",
     "page_updated_on": "2026-11-05",
-    "release_record": "https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104",
+    "release_record": "https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104",
     "release_source_commit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
     "published_review": {
       "kind": "maintainer-commissioned, Codex-led security review",
       "status": "in_progress",
       "independent_certification": false,
-      "url": "https://github.com/devdasx/oath-wallet-security-review",
-      "report_url": "https://github.com/devdasx/oath-wallet-security-review/blob/main/review/REPORT.md",
-      "coverage_url": "https://github.com/devdasx/oath-wallet-security-review/blob/main/scope/inventory.json",
-      "findings_url": "https://github.com/devdasx/oath-wallet-security-review/tree/main/findings",
+      "url": "https://github.com/OathWallet/oath-wallet-security-review",
+      "report_url": "https://github.com/OathWallet/oath-wallet-security-review/blob/main/review/REPORT.md",
+      "coverage_url": "https://github.com/OathWallet/oath-wallet-security-review/blob/main/scope/inventory.json",
+      "findings_url": "https://github.com/OathWallet/oath-wallet-security-review/tree/main/findings",
       "limitations": "The whole-wallet review remains incomplete. Findings, fixes and tests apply to their recorded source commits; later releases do not automatically inherit coverage. No independent security-company certification or independently reproduced App Store binary match is established."
     }
   }

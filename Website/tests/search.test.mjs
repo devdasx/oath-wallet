@@ -87,10 +87,10 @@ test('security evidence is pinned and agrees across public representations', asy
     assert.match(text,/600,000|600_000/);
     assert.match(text,/password/i);
   }
-  const links=[...html.matchAll(/https:\/\/github\.com\/devdasx\/oath-wallet\/blob\/([^/]+)\//g)];
+  const links=[...html.matchAll(/https:\/\/github\.com\/OathWallet\/oath-wallet\/blob\/([^/]+)\//g)];
   assert.ok(links.length>=7);
   assert.ok(links.every(m=>m[1]===data.security.reviewed_source_commit || m[1]==='main'));
-  const swiftLinks=[...html.matchAll(/https:\/\/github\.com\/devdasx\/oath-wallet\/blob\/([^/]+)\/[^"\s<>]+\.swift/g)];
+  const swiftLinks=[...html.matchAll(/https:\/\/github\.com\/OathWallet\/oath-wallet\/blob\/([^/]+)\/[^"\s<>]+\.swift/g)];
   assert.ok(swiftLinks.every(m=>m[1]===data.security.reviewed_source_commit));
   assert.match(markdown,/receiving (?:and|or) discovery/);
   assert.match(markdown,/does not establish an independent security audit/);

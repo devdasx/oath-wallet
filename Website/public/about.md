@@ -24,7 +24,7 @@ Follow the [official Oath Wallet account](https://x.com/OathWallet) and [Marco V
 
 ## Open source and review scope
 
-The [public source repository](https://github.com/devdasx/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 5, 2026 against version 5.0.2 (104), tag v5.0.2-build104. The GitHub release records the source checks, host tests and unsigned iOS build.
+The [public source repository](https://github.com/OathWallet/oath-wallet) includes the code, license, review scope and security policy. The current source references were checked on November 5, 2026 against version 5.0.2 (104), tag v5.0.2-build104. The GitHub release records the source checks, host tests and unsigned iOS build.
 
 Public source does not establish an independent security audit or prove that a particular App Store binary matches that source. [Read the security evidence and limitations](/security), including the release-specific Silent Payments restrictions.
 
@@ -37,7 +37,7 @@ Oath Editorial is the byline used for Oath’s product guides. These articles ar
 
 ## Help and vulnerability reports
 
-For product guidance, use the [support page](/support) and [practical guides](/articles). For a security issue, follow the [repository’s reporting policy](https://github.com/devdasx/oath-wallet/security/policy). That policy describes the status of its private reporting channel; do not post exploit details in a public issue while arranging a private channel.
+For product guidance, use the [support page](/support) and [practical guides](/articles). For a security issue, follow the [repository’s reporting policy](https://github.com/OathWallet/oath-wallet/security/policy). That policy describes the status of its private reporting channel; do not post exploit details in a public issue while arranging a private channel.
 
 Never send a recovery phrase, private key, passphrase, backup credential or passkey to anyone claiming to be support. Oath cannot recover missing credentials or reverse an on-chain transaction.
 

@@ -2,7 +2,7 @@
 
 Production: https://oathwallet.org
 
-Canonical source: `Website/` in the public [devdasx/oath-wallet repository](https://github.com/devdasx/oath-wallet/tree/main/Website).
+Canonical source: `Website/` in the public [OathWallet/oath-wallet repository](https://github.com/OathWallet/oath-wallet/tree/main/Website).
 
 Website, help, articles, public service implementations and deployment workflows are maintained together.
 See [deployment instructions](../Distribution/README.md). The npm `private` flag only prevents accidental npm-package publication; this source is public.

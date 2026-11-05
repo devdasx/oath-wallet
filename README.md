@@ -4,7 +4,7 @@ A native multichain wallet for iPhone and iPad.
 
 **Apple-approved release: 5.0.2 (104).** This release adds receipt and asset-list improvements, a Solana history-date repair, native typography, and further audit fixes. App Store Connect shows Ready for Distribution, confirmed on 5 November 2026.
 
-[Published security review and remaining scope](https://github.com/devdasx/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
+[Published security review and remaining scope](https://github.com/OathWallet/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
 
 [Release notes](releases/5.0.2.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
@@ -38,7 +38,7 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-The [5.0.2 (104) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104) identifies this source and build settings. Its [verification record](releases/5.0.2.md) distinguishes new checks from earlier audit evidence. Apple approval and source/build verification are separate: approval does not establish a completed audit or an independently reproduced source-to-store binary match.
+The [5.0.2 (104) release](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104) identifies this source and build settings. Its [verification record](releases/5.0.2.md) distinguishes new checks from earlier audit evidence. Apple approval and source/build verification are separate: approval does not establish a completed audit or an independently reproduced source-to-store binary match.
 
 The [5.0.0 (102) delivery record](releases/5.0.0.md) documents the earlier build delivered to Apple.
 
@@ -52,7 +52,7 @@ Use Xcode 27 and Swift 6. The app deployment target is iOS 17; individual visual
 features use availability checks for newer system versions.
 
 ```sh
-git clone https://github.com/devdasx/oath-wallet.git
+git clone https://github.com/OathWallet/oath-wallet.git
 cd oath-wallet
 sh Tools/PreparePublicBuild.sh
 open OathAtmosphere.xcodeproj
@@ -89,13 +89,13 @@ false positives. Their file hashes are checked by the release validator; changes
 require renewed review. Live network tests are opt-in. Simulator, device, and
 App Store results must be reported separately from source and host tests.
 
-For security issues, use [private vulnerability reporting](https://github.com/devdasx/oath-wallet/security/advisories/new).
+For security issues, use [private vulnerability reporting](https://github.com/OathWallet/oath-wallet/security/advisories/new).
 See the bundled third-party notices and dependency licenses for attribution.
 
 ## Reproducible security review
 
-A [maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review)
-now tracks the [5.0.2 (104) release](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104).
+A [maintainer-commissioned, Codex-led review](https://github.com/OathWallet/oath-wallet-security-review)
+now tracks the [5.0.2 (104) release](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104).
 Earlier audit results retain their original tested commits; the current target and remaining work are recorded in the review repository.
 It publishes its exact source targets, findings, tests, and outstanding coverage.
 The review is **in progress**, is not independent certification, and does not
