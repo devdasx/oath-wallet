@@ -40,6 +40,18 @@ test('current guides agree across article text, HTML, feeds and modification dat
   assert.ok(html.includes(a.reading_minutes+' min read'),slug+' reading time agrees with the listing');
  }
 });
+test('build-verification article feed matches the current article and release',async()=>{
+ const slug='open-source-wallets-verifiable-builds';
+ const html=await read('public/articles/'+slug+'.html');
+ const feed=JSON.parse(await read('public/articles/feed.json'));
+ const item=feed.items.find(a=>a.url.endsWith('/'+slug));
+ const metadata=data.articles.find(a=>a.url.endsWith('/'+slug));
+ assert.equal(item.date_modified,metadata.updated_at);
+ assert.match(item.date_modified,/2026-11-05/);
+ assert.equal(item.content_html,html.split('<div class="article-body">')[1].split('<div class="article-end">')[0].trim());
+ assert.match(item.content_html,/5\.0\.2/);
+ assert.doesNotMatch(item.content_html,/4\.1\.14|build 86/);
+});
 test('help release and historical screenshots keep separate versions',()=>{
  for(const article of help.articles){assert.equal(article.app_version,'Oath 5.0.0');assert.equal(article.screenshot_version,'Oath 4.0.3');assert.ok(!article.tags.some(t=>t.includes('4.0.3')));}
 });

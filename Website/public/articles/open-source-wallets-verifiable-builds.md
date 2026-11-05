@@ -116,5 +116,5 @@ Open source makes inspection possible. Reproducible builds make a specified sour
 
 For self-custody, those distinctions deserve plain language. A wallet should make it easy to see what has been checked, what the result proves, and what remains unproven. Confidence is more useful when you can trace where it comes from.
 
-*Published October 19, 2026. Oath release evidence updated October 30, 2026. Oath’s source-correspondence statement is supplied by its maintainers. The technical explanations cite public documentation; this article is not an independent wallet audit or a new reproduction of an App Store or Google Play release.*
+*Published October 19, 2026. Oath release evidence updated November 5, 2026. Oath’s source-correspondence statement is supplied by its maintainers. The technical explanations cite public documentation; this article is not an independent wallet audit or a new reproduction of an App Store or Google Play release.*
 
