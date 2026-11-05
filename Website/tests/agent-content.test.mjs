@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import worker from '../src/index.js';
-import {documents,documentText,guide,wantsMarkdown} from '../src/agent-content.js';
+import {documents,documentText,guide,wantsMarkdown,currentStatus} from '../src/agent-content.js';
 import help from '../src/help/content.json' with {type:'json'};
 const env={ASSETS:{async fetch(req){const path=new URL(req.url).pathname;try{return new Response(await readFile(new URL('../public'+path,import.meta.url)),{headers:{'Content-Type':path.endsWith('.html')?'text/html':path.endsWith('.md')?'text/markdown':'text/plain'}});}catch{return new Response(null,{status:404});}}}};
 const call=async(name,args={})=>(await(await worker.fetch(new Request('https://oathwallet.org/mcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/call',params:{name,arguments:args}})}),env)).json()).result;
@@ -40,4 +40,27 @@ test('private routes, redirects and cross-origin MCP protections remain intact',
  assert.equal((await worker.fetch(new Request('http://help.oathwallet.org/articles/create-wallet',{headers:{Accept:'text/markdown'}}),env)).status,301);
  assert.match((await worker.fetch(new Request('https://oathwallet.org/wc',{headers:{Accept:'text/markdown'}}),env)).headers.get('X-Robots-Tag'),/noindex/);
  for(const host of ['oathwallet.org','help.oathwallet.org','articles.oathwallet.org'])assert.equal((await worker.fetch(new Request(`https://${host}/llms.txt`),env)).status,200);
+});
+
+test('release status stays consistent across all hosts, generated files and MCP',async()=>{
+ const distribution=JSON.parse(await readFile(new URL('../../releases/5.0.2-distribution.json',import.meta.url),'utf8'));
+ assert.equal(currentStatus.version,distribution.version);assert.equal(currentStatus.build,distribution.build);
+ assert.equal(currentStatus.source_commit,distribution.source_commit);assert.equal(currentStatus.distribution_status,distribution.status);
+ assert.equal(currentStatus.review.status,'in_progress');assert.equal(currentStatus.review.independent_certification,false);
+ assert.match(currentStatus.review.coverage_url,/scope\/inventory\.json$/);
+ assert.deepEqual(JSON.parse(await readFile(new URL('../public/release-status.json',import.meta.url),'utf8')),currentStatus);
+ for(const host of ['oathwallet.org','help.oathwallet.org','articles.oathwallet.org']){
+  const response=await worker.fetch(new Request(`https://${host}/release-status.json`),env);
+  assert.equal(response.status,200);assert.match(response.headers.get('Content-Type'),/application\/json/);
+  assert.deepEqual(await response.json(),currentStatus);
+  assert.equal(await(await worker.fetch(new Request(`https://${host}/release-status.json`,{method:'HEAD'}),env)).text(),'');
+  const index=await(await worker.fetch(new Request(`https://${host}/agent-documents.json`),env)).json();assert.deepEqual(index.current_status,currentStatus);
+  const guideText=await(await worker.fetch(new Request(`https://${host}/llms.txt`),env)).text();
+  assert.ok(guideText.includes(`Oath Wallet ${distribution.version} (${distribution.build})`));assert.ok(guideText.includes(currentStatus.review.url));
+ }
+ assert.deepEqual((await call('get_release_status')).structuredContent,currentStatus);
+ assert.deepEqual((await call('get_security_review')).structuredContent,currentStatus.review);
+ const overview=(await call('get_overview')).content[0].text;assert.ok(overview.includes(currentStatus.review.url));assert.ok(overview.includes(`Oath Wallet ${distribution.version} (${distribution.build})`));
+ const card=JSON.parse(await readFile(new URL('../public/.well-known/mcp.json',import.meta.url),'utf8'));
+ for(const name of ['get_release_status','get_security_review'])assert.ok(card.tools.includes(name));
 });

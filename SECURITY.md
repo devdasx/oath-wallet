@@ -1,6 +1,7 @@
 # Security
 
 Oath Wallet 5.0.2 (104) is an Apple-approved self-custody release. Its public source remains available for independent audit.
+The [published maintainer-commissioned, Codex-led review](https://github.com/devdasx/oath-wallet-security-review) records findings, repairs, tests and outstanding coverage. That review is in progress.
 No independent audit or absolute security guarantee is claimed.
 
 The core invariant is that an operator cannot obtain a wallet's private keys or

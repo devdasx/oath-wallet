@@ -4,6 +4,8 @@ A native multichain wallet for iPhone and iPad.
 
 **Apple-approved release: 5.0.2 (104).** This release adds receipt and asset-list improvements, a Solana history-date repair, native typography, and further audit fixes. App Store Connect shows Ready for Distribution, confirmed on 5 November 2026.
 
+[Published security review and remaining scope](https://github.com/devdasx/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
+
 [Release notes](releases/5.0.2.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
