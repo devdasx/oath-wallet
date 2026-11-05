@@ -17,14 +17,14 @@ function component(overrides={}) {
  return context.subject;
 }
 test('current source evidence agrees with the interactive code viewer and metadata',()=>{
- assert.equal(evidence.version,'5.0.1');assert.equal(evidence.build,103);
+ assert.equal(evidence.version,'5.0.2');assert.equal(evidence.build,104);
  assert.equal(data.security.reviewed_source_commit,evidence.source_commit);
  assert.equal(data.security.reviewed_on,evidence.reviewed_on);
  const files=JSON.parse(security.match(/const FILES = (\[[\s\S]*?\]);/)[1]);
  assert.deepEqual(files,evidence.files);assert.equal(files.length,6);
  for(const f of files){assert.ok(f.code.trim().length>60);assert.equal(f.code.trimEnd().split('\n').length <= f.end-f.start+1,true);assert.ok(f.start>0);}
  assert.ok(security.includes('const GH = "https://github.com/devdasx/oath-wallet/blob/'+evidence.source_commit+'/"') || security.includes("const GH = 'https://github.com/devdasx/oath-wallet/blob/"+evidence.source_commit+"/'"));
- assert.match(security,/November 2, 2026|2 November 2026/);
+ assert.match(security,/November 5, 2026|5 November 2026/);
  assert.doesNotMatch(security,/4\.0\.0|580cf943|210,000|passkey-backed/);
 });
 test('current guides agree across article text, HTML, feeds and modification dates',async()=>{
@@ -40,6 +40,18 @@ test('current guides agree across article text, HTML, feeds and modification dat
   assert.ok(html.includes(a.reading_minutes+' min read'),slug+' reading time agrees with the listing');
  }
 });
+test('build-verification article feed matches the current article and release',async()=>{
+ const slug='open-source-wallets-verifiable-builds';
+ const html=await read('public/articles/'+slug+'.html');
+ const feed=JSON.parse(await read('public/articles/feed.json'));
+ const item=feed.items.find(a=>a.url.endsWith('/'+slug));
+ const metadata=data.articles.find(a=>a.url.endsWith('/'+slug));
+ assert.equal(item.date_modified,metadata.updated_at);
+ assert.match(item.date_modified,/2026-11-05/);
+ assert.equal(item.content_html,html.split('<div class="article-body">')[1].split('<div class="article-end">')[0].trim());
+ assert.match(item.content_html,/5\.0\.2/);
+ assert.doesNotMatch(item.content_html,/4\.1\.14|build 86/);
+});
 test('help release and historical screenshots keep separate versions',()=>{
  for(const article of help.articles){assert.equal(article.app_version,'Oath 5.0.0');assert.equal(article.screenshot_version,'Oath 4.0.3');assert.ok(!article.tags.some(t=>t.includes('4.0.3')));}
 });
@@ -49,9 +61,9 @@ test('website version references omit review-status UI and distribution claims',
  for(const copy of copies){
   assert.doesNotMatch(copy,/Waiting for Review|App Store Connect listed|Version 4\.1\.2 is available|app-review-status/);
  }
- assert.equal(data.facts.source_version,'5.0.1 (103)');
- assert.equal(data.facts.app_version,'5.0.1');
- assert.equal(data.facts.app_build,103);
+ assert.equal(data.facts.source_version,'5.0.2 (104)');
+ assert.equal(data.facts.app_version,'5.0.2');
+ assert.equal(data.facts.app_build,104);
  assert.equal(data.facts.app_store_review_status,undefined);
  assert.equal(data.facts.app_store_version,undefined);
  assert.equal(data.security.source_correspondence.delivery_receipt,undefined);

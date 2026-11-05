@@ -80,9 +80,9 @@ For any wallet that offers only a repository link, the fair conclusion is limite
 
 Compare the platform, release, method, and result. A brand-wide label hides too much.
 
-## Oath Wallet 5.0.1 and its public build record
+## Oath Wallet 5.0.2 and its public build record
 
-Oath publishes the MIT-licensed [source for 5.0.1 (103)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.1-build103). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.1-build103/verification-5.0.1-build103.json) identifies the source commit, unsigned iOS Release build and host test results.
+Oath publishes the MIT-licensed [source for 5.0.2 (104)](https://github.com/devdasx/oath-wallet/releases/tag/v5.0.2-build104). Its [verification record](https://github.com/devdasx/oath-wallet/releases/download/v5.0.2-build104/verification-5.0.2-build104.json) identifies the source commit, unsigned iOS Release build and host test results.
 
 
 
@@ -116,5 +116,5 @@ Open source makes inspection possible. Reproducible builds make a specified sour
 
 For self-custody, those distinctions deserve plain language. A wallet should make it easy to see what has been checked, what the result proves, and what remains unproven. Confidence is more useful when you can trace where it comes from.
 
-*Published October 19, 2026. Oath release evidence updated October 30, 2026. Oath’s source-correspondence statement is supplied by its maintainers. The technical explanations cite public documentation; this article is not an independent wallet audit or a new reproduction of an App Store or Google Play release.*
+*Published October 19, 2026. Oath release evidence updated November 5, 2026. Oath’s source-correspondence statement is supplied by its maintainers. The technical explanations cite public documentation; this article is not an independent wallet audit or a new reproduction of an App Store or Google Play release.*
 

@@ -1,0 +1,11 @@
+{
+  "version": "5.0.2",
+  "build": 104,
+  "status": "READY_FOR_DISTRIBUTION",
+  "confirmed_on": "2026-11-05",
+  "confirmation": "Maintainer-provided App Store Connect screenshot shows iOS version 5.0.2 Ready for Distribution; the maintainer identifies build 104.",
+  "source_tag": "v5.0.2-build104",
+  "source_commit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+  "app_store_url": "https://apps.apple.com/app/id6780187283",
+  "scope": "Apple distribution status only. Original source-validation records and tags are unchanged; this is not independent binary reproducibility evidence."
+}
