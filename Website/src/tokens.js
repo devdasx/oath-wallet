@@ -76,6 +76,7 @@ function markdown(html){return html.replace(/<img\b[^>]*>/g,'').replace(/<a\b[^>
 async function pageResponse(request,env,model,path,{status=200,noindex=false,md=false,crumbs=[]}={}){
   const canonical=origin+path;
   const headers={'Content-Type':md?'text/markdown; charset=utf-8':'text/html; charset=utf-8','Cache-Control':noindex||status!==200?'no-store':'public, max-age=300, stale-while-revalidate=3600','Vary':'Accept','X-Content-Type-Options':'nosniff','Link':`<${canonical}>; rel="canonical"`};
+  headers['X-Oath-Catalog-Version']=manifest.version;
   if(noindex||md||status!==200)headers['X-Robots-Tag']='noindex, follow';
   if(md){headers['Access-Control-Allow-Origin']='*';return new Response(request.method==='HEAD'?null:`Canonical: ${canonical}\n\n${markdown(model.content)}\n`,{status,headers});}
   const chrome=await data(env,'chrome.json');

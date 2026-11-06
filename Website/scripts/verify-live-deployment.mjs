@@ -10,6 +10,21 @@ await Promise.all(urls.map(async url => {
 }));
 console.log('Production main site, security, articles and Git-owned Help Center verified.');
 
+const {default:tokens}=await import('../src/tokens-manifest.json',{with:{type:'json'}});
+const published=await fetch('https://oathwallet.org'+tokens.prefix+'/manifest.json',{signal:AbortSignal.timeout(20000)});
+assert.equal(published.status,200);assert.deepEqual(await published.json(),tokens,'Published catalog differs from this commit');
+for(let offset=0;offset<tokens.samples.length;offset+=5){
+ await Promise.all(tokens.samples.slice(offset,offset+5).map(async path=>{
+  const r=await fetch('https://oathwallet.org'+path,{method:'HEAD',signal:AbortSignal.timeout(20000)});
+  assert.equal(r.status,200,path);assert.equal(r.headers.get('x-oath-catalog-version'),tokens.version,path);assert.ok(r.headers.get('link')?.includes('https://oathwallet.org'+path+'>; rel="canonical"'),path);
+ }));
+}
+const search=await fetch('https://oathwallet.org/tokens?q=USDC&network=base',{signal:AbortSignal.timeout(20000)});
+assert.equal(search.status,200);assert.ok(search.headers.get('x-robots-tag')?.includes('noindex'));assert.ok((await search.text()).includes('/tokens/usdc/base'));
+const tokenDocuments=await fetch('https://oathwallet.org/tokens/documents.json',{signal:AbortSignal.timeout(20000)});
+assert.equal(tokenDocuments.status,200);assert.equal((await tokenDocuments.json()).documents.length,100);
+console.log(`Verified catalog ${tokens.version}: ${tokens.count} identities; ${tokens.samples.length} live samples covering every token network, search and bounded discovery.`);
+
 // Compare the deployed text with the Markdown generated from this checkout.
 const {documents,documentText} = await import('../src/agent-content.js');
 const {readFile} = await import('node:fs/promises');

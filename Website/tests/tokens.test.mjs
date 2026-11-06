@@ -5,7 +5,7 @@ import {gunzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {validateSnapshot,assignRoutes,digest,identity,readLedger,nativeAlias} from '../scripts/token-catalog.mjs';
 import {sitemapURLs} from '../scripts/sitemaps.mjs';
-import {detailContent,escapeHTML} from '../src/tokens.js';
+import {detailContent,escapeHTML,cachedTokens} from '../src/tokens.js';
 import worker from '../src/index.js';
 import manifest from '../src/tokens-manifest.json' with {type:'json'};
 import networks from '../content/networks.json' with {type:'json'};
@@ -20,6 +20,20 @@ const routeSet=new Set(routes.map(r=>r.path));
 const environment=()=>({ASSETS:{async fetch(req){try{const p=new URL(req.url).pathname;return new Response(await read(p),{headers:{'Content-Type':p.endsWith('.html')?'text/html':p.endsWith('.json')?'application/json':'text/plain'}});}catch{return new Response('Missing',{status:404});}}}});
 const env=environment();
 const get=(path,options)=>worker.fetch(new Request(main+path,options),env);
+
+test('edge cache keeps search and Markdown separate and survives asset read failures',async()=>{
+ const previous=globalThis.caches,stored=new Map(),pending=[];
+ globalThis.caches={default:{async match(key){return stored.get(key.url)?.clone();},async put(key,response){stored.set(key.url,response.clone());}}};
+ const ctx={waitUntil:p=>pending.push(p)};
+ try{
+  const first=await cachedTokens(new Request(main+'/tokens'),env,ctx);assert.equal(first.status,200);await Promise.all(pending);assert.equal(stored.size,1);
+  const unavailable={ASSETS:{fetch:async()=>new Response(null,{status:503})}};
+  const hit=await cachedTokens(new Request(main+'/tokens'),unavailable,ctx);assert.equal(hit.status,200);assert.match(await hit.text(),/Find your token/);
+  const search=await cachedTokens(new Request(main+'/tokens?q=USDC'),env,ctx);assert.match(search.headers.get('X-Robots-Tag'),/noindex/);
+  const md=await cachedTokens(new Request(main+'/tokens',{headers:{Accept:'text/markdown'}}),env,ctx);assert.match(md.headers.get('Content-Type'),/text\/markdown/);assert.equal(stored.size,1);
+  assert.equal((await cachedTokens(new Request(main+'/tokens?q=USDC'),unavailable,ctx)).status,503);
+ }finally{if(previous===undefined)delete globalThis.caches;else globalThis.caches=previous;}
+});
 
 test('accepted snapshot exactly matches the approved Git release after native-alias filtering',async()=>{
  const evidence=JSON.parse(await readFile(new URL('../content/release-evidence.json',import.meta.url)));
