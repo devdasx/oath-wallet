@@ -35,6 +35,12 @@ snapshot.updatedDate=accepted?.sha256===snapshot.sha256&&accepted?.revision===re
 const networkCatalog=JSON.parse(await readFile(new URL('Website/content/networks.json',root)));
 let ledger;try{ledger=readLedger(JSON.parse(await readFile(new URL('Website/content/tokens/routes.json',root))));}catch(e){if(e.code!=='ENOENT')throw e;}
 assignRoutes({...snapshot,networks:networkCatalog.networks.filter(n=>enabled.includes(n.id))},ledger);
+// zlib output can differ across Node/OS versions even for identical JSON.
+// Keep the accepted bytes when the release content has not changed.
+if(JSON.stringify(accepted)===JSON.stringify(snapshot)) {
+  console.log(`Released catalog is unchanged: ${snapshot.entries.length} entries, ${revision}.`);
+  process.exit(0);
+}
 const destination = new URL('Website/content/tokens/',root);
 await mkdir(destination,{recursive:true});
 const bytes = gzipSync(JSON.stringify(snapshot),{level:9,mtime:0});
