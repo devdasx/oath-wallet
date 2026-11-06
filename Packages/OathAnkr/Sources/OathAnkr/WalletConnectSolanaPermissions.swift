@@ -30,6 +30,24 @@ struct WalletConnectSolanaTokenState {
 }
 
 extension SolanaSendClient {
+    static let walletConnectStakeProgram = "Stake11111111111111111111111111111111111111"
+
+    /// The balance/delegation preview does not describe stake-account control.
+    /// Permit an unchanged account referenced by another program, but reject
+    /// changes, creation or closure until stake effects have a dedicated review.
+    static func walletConnectValidateStakeSnapshots(before: [SolanaJSON], after: [SolanaJSON]) throws {
+        guard before.count == after.count else { throw SolanaSendError.malformed }
+        for (pre, post) in zip(before, after) where
+            pre["owner"].string == walletConnectStakeProgram || post["owner"].string == walletConnectStakeProgram {
+            guard pre["owner"].string == walletConnectStakeProgram,
+                  post["owner"].string == walletConnectStakeProgram,
+                  pre["executable"] == .bool(false), post["executable"] == .bool(false),
+                  let start = pre["lamports"].integer, let end = post["lamports"].integer, start == end,
+                  let old = walletConnectAccountBytes(pre), let new = walletConnectAccountBytes(post),
+                  old == new else { throw SolanaSendError.unsupportedToken }
+        }
+    }
+
     static func walletConnectTokenState(_ json: SolanaJSON) throws -> WalletConnectSolanaTokenState? {
         guard let program = json["owner"].string,
               [SolanaIdentity.tokenProgram, SolanaIdentity.token2022Program].contains(program) else { return nil }
