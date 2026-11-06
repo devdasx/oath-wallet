@@ -60,11 +60,11 @@ export function paletteAt(seconds) {
 // Lazy initialization: one small canvas, a 30fps cap, no rendering offscreen or in hidden tabs.
 // Native Cobalt poster stays visible if WebGL is unavailable or the context is lost.
 export function mountWalletMotion(canvas) {
-  let disposed=false, visible=false, lost=false, frame=0, elapsed=0, last=null;
+  let disposed=false, visible=false, lost=false, frame=0, elapsed=0, last=null, slowFrames=0;
   let gl, program, buffer, shaders=[], uniforms, initializing=false, failed=false;
   const abort=new AbortController();
   const media=window.matchMedia('(prefers-reduced-motion: reduce)');
-  const stop=()=>{cancelAnimationFrame(frame);frame=0;last=null;};
+  const stop=()=>{cancelAnimationFrame(frame);frame=0;last=null;slowFrames=0;};
   const release=()=>{
     if(gl){if(buffer)gl.deleteBuffer(buffer);if(program)gl.deleteProgram(program);shaders.forEach(s=>gl.deleteShader(s));}
     buffer=null;program=null;shaders=[];uniforms=null;
@@ -72,9 +72,6 @@ export function mountWalletMotion(canvas) {
   const draw=()=>{
     if(!program || lost || disposed)return;
     const palette=paletteAt(elapsed);
-    gl.useProgram(program);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
-    const attribute=gl.getAttribLocation(program,'position');
-    gl.enableVertexAttribArray(attribute);gl.vertexAttribPointer(attribute,2,gl.FLOAT,false,0,0);
     gl.viewport(0,0,canvas.width,canvas.height);
     gl.uniform2f(uniforms.resolution,canvas.width,canvas.height);gl.uniform1f(uniforms.time,elapsed);
     ['deep','crest','reflectionColor','darkReflection'].forEach((name,i)=>gl.uniform3fv(uniforms[name],palette.values.slice(i*3,i*3+3)));
@@ -85,7 +82,17 @@ export function mountWalletMotion(canvas) {
     frame=0;
     if(disposed || !visible || document.hidden || media.matches || lost)return;
     if(last===null){last=now;draw();}
-    else if(now-last>=1000/30){elapsed+=(now-last)/1000;last=now;draw();}
+    else if(now-last>=1000/30){
+      const delta=now-last;elapsed+=delta/1000;last=now;
+      // Adapt to sustained missed frames on slow/software GPUs, without stopping
+      // the animation or changing its timeline. Text stays full-resolution HTML.
+      slowFrames=delta>70?slowFrames+1:Math.max(0,slowFrames-1);
+      if(slowFrames>=3 && canvas.width>220){
+        canvas.width=Math.max(220,Math.round(canvas.width*.75));
+        canvas.height=Math.round(canvas.width*460/440);slowFrames=0;
+      }
+      draw();
+    }
     frame=requestAnimationFrame(tick);
   };
   const sync=()=>{
@@ -105,8 +112,8 @@ export function mountWalletMotion(canvas) {
       if(disposed || lost)return;
       gl=canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,powerPreference:'low-power'});
       if(!gl)throw new Error('WebGL unavailable');
-      // Fixed 1.5x drawing buffer; text remains full-resolution HTML.
-      canvas.width=660;canvas.height=690;
+      // Native-size soft artwork; CSS fixes its presentation independently of the buffer.
+      canvas.width=440;canvas.height=460;
       const compile=(type,source)=>{
         const shader=gl.createShader(type);shaders.push(shader);gl.shaderSource(shader,source);gl.compileShader(shader);
         if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS))throw new Error('Artwork shader unavailable');
@@ -117,6 +124,11 @@ export function mountWalletMotion(canvas) {
       gl.attachShader(program,compile(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(program);
       if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error('Artwork pipeline unavailable');
       buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+      // The context belongs to this renderer. Configure immutable vertex state once,
+      // avoiding a synchronous shader query and attribute revalidation every frame.
+      gl.useProgram(program);
+      const attribute=gl.getAttribLocation(program,'position');
+      gl.enableVertexAttribArray(attribute);gl.vertexAttribPointer(attribute,2,gl.FLOAT,false,0,0);
       uniforms=Object.fromEntries(['resolution','time','deep','crest','reflectionColor','darkReflection'].map(key=>[key,gl.getUniformLocation(program,key)]));
       canvas.dataset.motion='ready';sync();
     }catch(error){

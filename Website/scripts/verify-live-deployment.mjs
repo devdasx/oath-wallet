@@ -89,3 +89,10 @@ for(const [url,name]of [['https://oathwallet.org/','Oath Wallet'],['https://arti
  }
 }
 console.log(`Verified all three site identities, rating markup, ${decisionGuides.pages.length} decision guides and ${priorityPaths.length} enriched priority pages.`);
+
+for(const path of ['/assets/home-preview/wallet-motion.js','/assets/home-preview/cobalt.webp','/Oath App Home.dc.html']){
+ const response=await fetch('https://oathwallet.org'+encodeURI(path),{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200,path);
+ assert.equal(createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex'),createHash('sha256').update(await readFile(new URL('../public'+path,import.meta.url))).digest('hex'),path+' differs from the deployed commit');
+}
+console.log('Verified the published homepage artwork and bounded animation renderer.');

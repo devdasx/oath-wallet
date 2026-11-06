@@ -64,3 +64,15 @@ test('context loss shows poster, restoration resumes from paused time',async t=>
 test('unmount during asynchronous initialization cannot start a renderer',async t=>{
   const h=harness(t);h.visible(true);h.dispose();await h.settled();assert.equal(h.state.draws,0);assert.equal(h.state.pending,0);
 });
+
+test('slow frames reduce the artwork buffer while keeping animation and layout alive',async t=>{
+  const h=harness(t);h.visible(true);await h.settled();
+  assert.equal(h.canvas.width,440);assert.equal(h.canvas.height,460);
+  h.step(0);for(let i=1;i<=12;i++)h.step(i*100);
+  assert.equal(h.canvas.width,220);assert.equal(h.canvas.height,230);
+  assert.ok(h.state.draws>10);assert.equal(h.state.pending,1);
+  assert.ok(Math.abs(h.state.time-1.2)<1e-8);
+  const source=readFileSync(new URL('../public/Oath App Home.dc.html',import.meta.url),'utf8');
+  assert.match(source,/<canvas[^>]+width:100%;height:100%/);
+  h.visible(false);assert.equal(h.state.pending,0);h.dispose();
+});
