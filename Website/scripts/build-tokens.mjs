@@ -12,7 +12,7 @@ const ledgerFile=new URL('content/tokens/routes.json',base);
 let previous;
 try{previous=readLedger(JSON.parse(await readFile(ledgerFile)));}catch(e){if(e.code!=='ENOENT')throw e;}
 const {ledger,rows}=assignRoutes(source,previous);
-const template=await Promise.all(['src/tokens.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
+const template=await Promise.all(['src/tokens.js','src/transfer-preparation.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
 const version=digest(JSON.stringify({source,ledger,template})).slice(0,16), prefix=`/token-data/${version}`;
 const stage=new URL('public/token-data-next/',base);
 await rm(stage,{recursive:true,force:true});await mkdir(stage,{recursive:true});

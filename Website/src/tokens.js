@@ -1,4 +1,5 @@
 import {priorityHTML} from './seo-guidance.js';
+import {transferURL, identifierLabel} from './transfer-preparation.js';
 import manifest from './tokens-manifest.json' with {type:'json'};
 import {wantsMarkdown} from './agent-content.js';
 
@@ -34,7 +35,7 @@ async function data(env,path){
   while(entries.size>17)entries.delete(entries.keys().next().value);
   return value;
 }
-async function coin(env,slug){
+export async function coin(env,slug){
   const hash=new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(slug)));
   const shard=hash[0].toString(16).padStart(2,'0');
   const shardData=await data(env,`coins/${shard}.json`);
@@ -50,7 +51,6 @@ function pager(path,page,total,query=''){
 function form(q='',network=''){
   return `<form class="token-search" action="/tokens" method="get" role="search"><div><label for="token-query">Find a token</label><input id="token-query" name="q" type="search" maxlength="160" value="${h(q)}" placeholder="Name, symbol or full token identifier"></div><div><label for="token-network">Network</label><select id="token-network" name="network"><option value="">All networks</option>${networks.map(n=>`<option value="${h(n.id)}"${network===n.id?' selected':''}>${h(n.name)} (${count(n.count)})</option>`).join('')}</select></div><button class="token-button" type="submit">Search</button>${q?link('/tokens','Clear search'):''}</form>`;
 }
-const identifierLabel=n=>({solana:'Token mint',ton:'Jetton master',stellar:'Contract or asset and issuer',xrpl:'Currency and issuer',near:'Token account',aptos:'Coin type or fungible asset',sui:'Coin type',polkadot:'Asset reference',thorchain:'Asset denomination'}[n]||'Token contract');
 function priorityText(c,a,n){
   if(!['tether','usd-coin'].includes(c.coinID))return '';
   const name=c.coinID==='tether'?'USDT':'USDC';
@@ -65,6 +65,7 @@ export function detailContent(c,a){
   const related=c.assets.filter(x=>x.path!==a.path);
   const content=`<header class="token-hero"><p class="token-eyebrow">${badge(n.id)} · Token guide</p><h1>${h(title)}</h1><p>Find this exact ${h(a.symbol)} asset in Oath’s catalog, check its network and prepare to receive it on iPhone or iPad.</p>${link(download,'Get Oath for iPhone','token-button')}</header>
   <section class="token-identity"><h2>Check the identity</h2><dl><div><dt>Asset</dt><dd>${h(a.name)} (${h(a.symbol)})</dd></div><div><dt>Network</dt><dd>${link('/networks/'+n.slug,n.name)}${n.chainId?' · Chain ID '+n.chainId:''}</dd></div><div><dt>${identifierLabel(a.network)}</dt><dd><code dir="ltr">${h(a.reference)}</code></dd></div>${a.decimals!=null&&a.network!=='xrpl'?`<div><dt>Catalog decimals</dt><dd>${a.decimals}</dd></div>`:''}<div><dt>Catalog asset ID</dt><dd><code>${h(c.coinID)}</code></dd></div></dl><p><strong>This token identifier is not your receiving address.</strong> Copy your personal address from Receive in Oath. Never send funds to the contract, mint or issuer shown here.</p></section>
+  <section class="token-preparation"><h2>Before you transfer</h2><p>Open the transfer checklist with this exact token and network selected. Check its identifier, receiving steps and fee requirements before using the sending service.</p><a class="token-button" rel="nofollow" href="${h(transferURL(a))}">Prepare a transfer</a></section>
   ${priorityText(c,a,n)}
   <div class="token-columns"><section><h2>Receive ${h(a.symbol)} on ${h(n.name)}</h2><ol><li>Open Oath, select your wallet and open Receive.</li><li>Choose ${h(n.name)} and find ${h(a.name)} (${h(a.symbol)}). Match the full identifier above; symbols can be shared by unrelated assets.</li><li>Use the receiving address or QR code shown in the app. Confirm the exact network with the sender and include any required memo or tag.</li><li>Check that the sender and your account support this token before transferring. For a first transfer, start with a small amount.</li></ol><p>${h(n.receive)}</p></section>
   <section><h2>Sending and fees</h2><p>${h(n.send)}</p><p>The network’s fee asset is ${h(fee)}. Receiving an ordinary transfer does not mean you can send it without a fee balance. Account activation, reserves, storage or token-account creation can add requirements.</p><p>Select the exact asset in Oath, choose Send if available, and review the destination, amount and final fee. Token-specific restrictions, missing metadata or unsupported token extensions can prevent a transfer; catalog presence alone is not a sending test.</p></section></div>

@@ -5,6 +5,7 @@ import {gunzipSync} from 'node:zlib';
 import {execFileSync} from 'node:child_process';
 import {validateSnapshot,assignRoutes,digest,identity,readLedger,nativeAlias} from '../scripts/token-catalog.mjs';
 import {sitemapURLs} from '../scripts/sitemaps.mjs';
+import {transferURL, transferPath} from '../src/transfer-preparation.js';
 import {detailContent,escapeHTML,cachedTokens} from '../src/tokens.js';
 import worker from '../src/index.js';
 import manifest from '../src/tokens-manifest.json' with {type:'json'};
@@ -78,7 +79,14 @@ test('every catalog identity and route is unique, pinned, escaped and in the sit
   assert.ok(m.content.includes(escapeHTML(a.reference)));
   assert.match(m.content,/not your receiving address/);
   assert.ok(m.title.includes(manifest.networks[a.network].name));
-  for(const [,path]of m.content.matchAll(/href="(\/[^"#]*)"/g))assert.ok(all.has(path)||core.has(path),a.path+' links to '+path);
+  for(const [,path]of m.content.matchAll(/href="(\/[^"#]*)"/g)){
+   if(path.startsWith(transferPath+'?'))assert.equal(path,escapeHTML(transferURL(a).split('#')[0]),a.path);
+   else assert.ok(all.has(path)||core.has(path),a.path+' links to '+path);
+  }
+  assert.ok(m.content.includes(escapeHTML(transferURL(a))),a.path+' exact transfer link');
+  const preparation=new URL(transferURL(a),main);
+  assert.match(preparation.searchParams.get('token'),/^[a-z0-9-]{1,200}$/);
+  assert.match(preparation.searchParams.get('network'),/^[a-z0-9-]{1,200}$/);
   if(a.decimals==null||a.network==='xrpl')assert.ok(!m.content.includes('Catalog decimals'));
  }
  for(const c of Object.values(coins))assert.equal(routeSet.has('/tokens/'+c.slug),c.assets.length>1);

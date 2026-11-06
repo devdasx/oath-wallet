@@ -1,5 +1,6 @@
 import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import { cachedTokens } from './tokens.js';
+import { handleTransferPreparation } from './transfer-route.js';
 import featureCatalog from '../content/features.json' with {type:'json'};
 import networkCatalog from '../content/networks.json' with {type:'json'};
 import { handleRetiredArticle } from './retired-articles.js';
@@ -20,7 +21,7 @@ export default {
   async scheduled(_event, env, ctx) { ctx.waitUntil(newsletterScheduled(env)); },
   async fetch(request, env, ctx) {
     let response;
-    const special = handleRetiredArticle(request) || await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
+    const special = handleRetiredArticle(request) || await handleTransferPreparation(request, env) || await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
     const newsletter = special || await handleNewsletter(request, env);
     if (newsletter) {
       response = newsletter;

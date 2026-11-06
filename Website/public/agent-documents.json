@@ -47,8 +47,8 @@
     {
       "url": "https://oathwallet.org/networks/choose-token-network",
       "markdown_url": "https://oathwallet.org/networks/choose-token-network.md",
-      "title": "Choose a USDT or USDC Network | Oath Wallet",
-      "summary": "Compare USDT and USDC entries in Oath’s released catalog. Match the sender’s network, exact token identity and fee asset before transferring.",
+      "title": "Prepare a Crypto Transfer | Token, Network & Fees | Oath",
+      "summary": "Prepare a token transfer with Oath. Start with USDT or USDC, or open any catalog token’s checklist to compare its exact identity, receiving network and fee requirements.",
       "kind": "decision-guide",
       "updated_at": "2026-11-06"
     },

@@ -14,11 +14,32 @@ const esc=v=>String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll
 const json=v=>JSON.stringify(v).replaceAll('<','\\u003c');
 const questions=JSON.parse(await readFile(new URL('../content/self-custody-questions.json',import.meta.url),'utf8'));
 const data=JSON.parse(await read('oath-data.json'));
+const release=JSON.parse(await read('release-status.json'));
+if(data.facts.app_version!==release.version || data.facts.app_build!==release.build)throw Error('Current product facts disagree with the published release record');
+
+// Current product metadata comes from the same reviewed facts as agent discovery.
+// Historical articles and screenshot versions keep their original provenance.
+let features=await read('features.html');
+features=features.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,raw)=>{
+ const schema=JSON.parse(raw);
+ for(const node of schema['@graph']||[]){
+  if(node['@type']==='MobileApplication'){node.softwareVersion=release.version;node.featureList=data.features.map(f=>f.name);node.softwareHelp='https://help.oathwallet.org/';}
+  if(node['@type']==='ItemList'&&node.name==='Oath features')node.itemListElement=data.features.map((f,i)=>({'@type':'ListItem',position:i+1,name:f.name,description:f.summary}));
+ }
+ return `<script type="application/ld+json">${json(schema)}</script>`;
+});
+await write('features.html',features);
 
 // Preserve the designed homepage; provide the same useful answers before and
 // after enhancement. Do not add FAQ rich-result markup: this is not a health
 // or government site eligible for Google's FAQ feature.
 let home=await read('index.html');
+const transferStart='<!-- oath-transfer-entry:start -->',transferEnd='<!-- oath-transfer-entry:end -->';
+const transferBlock=new RegExp(transferStart+'[\\s\\S]*?'+transferEnd+'\\s*','g');
+const transferSection=`${transferStart}<section id="transfer-preparation" style="max-width:1320px;margin:0 auto;padding:72px clamp(20px,5vw,32px);border-top:1px solid rgba(242,240,234,.14)"><p style="font:12px/1.5 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#B9B7B0">Before your next transfer</p><h2 style="margin:16px 0 24px;font:400 clamp(36px,5vw,64px)/1.08 'Instrument Serif',serif">The right token.<br>The right network.</h2><p style="max-width:64ch;font:400 18px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">A familiar symbol is only the beginning. Match the exact token, check its receiving network and find the fee asset before you send.</p><p style="font:400 17px/1.6 'Instrument Sans',sans-serif"><a href="/networks/choose-token-network#prepare-transfer" style="display:inline-block;padding:14px 22px;background:#F2F0EA;color:#0A0A0B;border-radius:8px;text-decoration:none">Prepare a transfer →</a></p><p style="font:400 15px/1.6 'Instrument Sans',sans-serif;color:#B9B7B0">Start with USDT or USDC, or <a href="/tokens">find your token</a> in Oath’s catalog.</p></section>${transferEnd}`;
+home=home.replace(transferBlock,'');
+if(!home.includes('<section id="get"'))throw Error('Homepage transfer entry anchor missing');
+home=home.replace('<section id="get"',transferSection+'\n<section id="get"');
 home=home.replace(/<link rel="stylesheet" href="\/self-custody\.css[^"]*">\s*/g,'');
 home=home.replace('</head>','<link rel="stylesheet" href="/self-custody.css?v=20261031-list"></head>');
 const section=`<!-- oath-self-custody:start --><section id="self-custody" style="max-width:1320px;margin:0 auto;padding:80px clamp(20px,5vw,32px);border-top:1px solid rgba(242,240,234,.14)">
@@ -53,6 +74,8 @@ home=home.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(
 });
 await write('index.html',home);
 let markdown=await read('index.md');
+markdown=markdown.replace(transferBlock,'');
+markdown+='\n'+transferStart+'\n## The right token. The right network.\n\nMatch the exact token, check its receiving network and find the fee asset before you send. Start with USDT or USDC, or find your token in Oath’s catalog.\n\n[Prepare a transfer](https://oathwallet.org/networks/choose-token-network#prepare-transfer) · [Find your token](https://oathwallet.org/tokens)\n'+transferEnd+'\n';
 markdown=markdown.replace(/\n<!-- oath-questions:start -->[\s\S]*?<!-- oath-questions:end -->\n?/g,'')
  .replace('from 37 ratings','from 38 ratings').replace(/checked (?:September 28|October 20), 2026 on the App Store/g,'checked October 27, 2026 on the App Store');
 markdown+='\n<!-- oath-questions:start -->\n## Self-custody, explained\n\n'+questions.map(q=>`### ${q.question}\n\n${q.answer}\n\n[${q.label}](${q.url})`).join('\n\n')+'\n<!-- oath-questions:end -->\n';
@@ -114,7 +137,8 @@ for (const path of mainPaths) {
  if(decisionGuides.pages.some(p=>p.path===path)||priorityGuidance.pages[path]||path==='/about') dates.set('https://oathwallet.org'+path,'2026-11-06');
  else if(path==='/features'||path.startsWith('/features/')) dates.set('https://oathwallet.org'+path,featureCatalog.reviewed);
  else if(path==='/bug-bounty') dates.set('https://oathwallet.org'+path,'2026-10-31');
- else if(path==='/' || path.startsWith('/networks')) dates.set('https://oathwallet.org'+path,networkCatalog.reviewed);
+ else if(path==='/') dates.set('https://oathwallet.org'+path,'2026-11-06');
+ else if(path.startsWith('/networks')) dates.set('https://oathwallet.org'+path,networkCatalog.reviewed);
  else if(!dates.has('https://oathwallet.org'+path)) dates.set('https://oathwallet.org'+path,'2026-10-27');
 }
 const xml=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${mainPaths.map(path=>{const url='https://oathwallet.org'+path;return `  <url><loc>${url}</loc>${dates.has(url)?`<lastmod>${esc(dates.get(url))}</lastmod>`:''}</url>`;}).join('\n')}\n</urlset>\n`;

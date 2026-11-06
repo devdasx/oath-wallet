@@ -19,7 +19,7 @@ Everything you need. Nothing you don’t.
 
 ## 01. Create or import a recovery phrase
 
-New wallets use BIP39. Import supported BIP39, Electrum and aezeed phrases in their original format. Electrum and aezeed recover supported Bitcoin accounts and require manual recovery backups; they are not eligible for iCloud backup in 4.1.14.
+New wallets use BIP39. Import supported BIP39, Electrum and aezeed phrases in their original format. Electrum and aezeed recover supported Bitcoin accounts and require manual recovery backups; they are not eligible for iCloud backup in 5.0.2.
 
 ## 02. Restore an encrypted backup
 
@@ -35,7 +35,7 @@ The full source code is public on GitHub at https://github.com/OathWallet/oath-w
 
 ## 05. Bitcoin address options
 
-Compatible Bitcoin wallets support Taproot, Native SegWit, nested SegWit and Legacy, depending on the imported material. Capabilities vary by network. Oath 4.1.14 does not support Silent Payments receiving or discovery; see the Silent Payments guide before relying on that feature.
+Compatible Bitcoin wallets support Taproot, Native SegWit, nested SegWit and Legacy, depending on the imported material. Capabilities vary by network. Oath 5.0.2 does not support Silent Payments receiving or discovery; see the Silent Payments guide before relying on that feature.
 
 ## 06. EVM Access
 

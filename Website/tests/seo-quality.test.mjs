@@ -44,7 +44,7 @@ test('decision guides expose all entries without JavaScript and retain canonical
  const fees=await(await get('/networks/fees')).text();for(const n of networks.networks){assert.ok(fees.includes('id="'+n.slug+'"'));assert.ok(fees.includes(escape(n.send)));}
  const choice=await(await get('/networks/choose-token-network')).text();let expected=0;
  for(const slug of ['usdt','usdc']){const shard=createHash('sha256').update(slug).digest('hex').slice(0,2),c=JSON.parse(await read(manifest.prefix+'/coins/'+shard+'.json'))[slug];expected+=c.assets.length;for(const a of c.assets)assert.ok(choice.includes('href="'+a.path+'"'),a.path);}
- assert.equal((choice.match(/data-decision-value=/g)||[]).length,expected);assert.doesNotMatch(choice,/<input|connectWallet|ethereum\.request/);
+ assert.equal((choice.match(/data-transfer-path=/g)||[]).length,expected);assert.doesNotMatch(choice,/<input[^>]*type="(?:text|password|number)"|connectWallet|ethereum\.request/);
 });
 test('decision filters preserve entries and announce the result count',async()=>{
  const cards=['tether','usd-coin','tether'].map(value=>({dataset:{decisionValue:value},hidden:false}));const panel={hidden:true},status={},filter={value:'',addEventListener(event,fn){this.change=fn;}};
