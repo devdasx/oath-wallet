@@ -1,6 +1,6 @@
 # Oath Wallet press kit
 
-Edition 2026.10.31. [Download the complete press kit](https://oathwallet.org/assets/press/2026-10/oath-press-kit.zip?v=02b4f36bd00e)
+Edition 2026.10.31. [Download the complete press kit](https://oathwallet.org/assets/press/2026-10/oath-press-kit.zip?v=947428bf6dbd)
 
 ## At a glance
 
@@ -61,11 +61,11 @@ Do not claim guaranteed returns, guaranteed safety, insurance, regulatory approv
 
 ### Clear space
 
-Keep at least one quarter of the visible symbol’s height clear on every side. For the horizontal logo, measure from the symbol. This space is outside the visible artwork; do not count transparent file padding twice.
+Keep at least one quarter of the visible symbol’s height clear on every side. This space is outside the visible artwork; do not count transparent file padding twice.
 
 ### Minimum size
 
-Recommended screen widths: app icon 32 px, standalone symbol 24 px, horizontal logo 120 px. For print, start at 8 mm, 6 mm and 30 mm respectively. Always check legibility in the final output.
+Recommended screen widths: app icon 32 px and standalone symbol 24 px. For print, start at 8 mm and 6 mm respectively. Always check legibility in the final output.
 
 ### Background & contrast
 
@@ -73,7 +73,7 @@ Use the ink mark or wordmark on a light background and the white versions on a d
 
 ### File choice
 
-Use SVG for scalable app icons and symbols. Use transparent PNG for raster layouts and the supplied horizontal wordmarks. Use the complete icon file without changing its rounded silhouette.
+Use SVG for scalable app icons and symbols. Use transparent PNG for raster layouts. Use the complete icon file without changing its rounded silhouette.
 
 ### Name & writing
 
@@ -89,21 +89,19 @@ The supplied assets may be used for the editorial and accurate identification pu
 
 ## Downloads
 
-- [brand-guide.txt](https://oathwallet.org/assets/press/2026-10/brand-guide.txt?v=02b4f36bd00e)
-- [brand-guidelines.html](https://oathwallet.org/assets/press/2026-10/brand-guidelines.html?v=02b4f36bd00e)
-- [press-facts.txt](https://oathwallet.org/assets/press/2026-10/press-facts.txt?v=02b4f36bd00e)
-- [colours.json](https://oathwallet.org/assets/press/2026-10/colours.json?v=02b4f36bd00e)
-- [oath-app-icon.svg](https://oathwallet.org/assets/press/2026-10/oath-app-icon.svg?v=02b4f36bd00e)
-- [oath-app-icon.png](https://oathwallet.org/assets/press/2026-10/oath-app-icon.png?v=02b4f36bd00e)
-- [oath-mark-ink.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.svg?v=02b4f36bd00e)
-- [oath-mark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.png?v=02b4f36bd00e)
-- [oath-mark-white.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-white.svg?v=02b4f36bd00e)
-- [oath-mark-white.png](https://oathwallet.org/assets/press/2026-10/oath-mark-white.png?v=02b4f36bd00e)
-- [oath-wordmark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-wordmark-ink.png?v=02b4f36bd00e)
-- [oath-wordmark-white.png](https://oathwallet.org/assets/press/2026-10/oath-wordmark-white.png?v=02b4f36bd00e)
-- [oath-portfolio-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-portfolio-iphone.png?v=02b4f36bd00e)
-- [oath-market-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-market-iphone.png?v=02b4f36bd00e)
-- [oath-receive-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-receive-iphone.png?v=02b4f36bd00e)
+- [brand-guide.txt](https://oathwallet.org/assets/press/2026-10/brand-guide.txt?v=947428bf6dbd)
+- [brand-guidelines.html](https://oathwallet.org/assets/press/2026-10/brand-guidelines.html?v=947428bf6dbd)
+- [press-facts.txt](https://oathwallet.org/assets/press/2026-10/press-facts.txt?v=947428bf6dbd)
+- [colours.json](https://oathwallet.org/assets/press/2026-10/colours.json?v=947428bf6dbd)
+- [oath-app-icon.svg](https://oathwallet.org/assets/press/2026-10/oath-app-icon.svg?v=947428bf6dbd)
+- [oath-app-icon.png](https://oathwallet.org/assets/press/2026-10/oath-app-icon.png?v=947428bf6dbd)
+- [oath-mark-ink.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.svg?v=947428bf6dbd)
+- [oath-mark-ink.png](https://oathwallet.org/assets/press/2026-10/oath-mark-ink.png?v=947428bf6dbd)
+- [oath-mark-white.svg](https://oathwallet.org/assets/press/2026-10/oath-mark-white.svg?v=947428bf6dbd)
+- [oath-mark-white.png](https://oathwallet.org/assets/press/2026-10/oath-mark-white.png?v=947428bf6dbd)
+- [oath-portfolio-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-portfolio-iphone.png?v=947428bf6dbd)
+- [oath-market-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-market-iphone.png?v=947428bf6dbd)
+- [oath-receive-iphone.png](https://oathwallet.org/assets/press/2026-10/oath-receive-iphone.png?v=947428bf6dbd)
 
 ## Press contact
 

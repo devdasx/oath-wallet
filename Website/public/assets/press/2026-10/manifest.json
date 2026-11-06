@@ -4,13 +4,13 @@
   "files": [
     {
       "name": "brand-guide.txt",
-      "bytes": 4003,
-      "sha256": "f78138bf8114c809cf9fc3dd422b0836027a66758df86cfc73a58d34dc01d4b2"
+      "bytes": 3887,
+      "sha256": "f6fd53295e7ff6aa58c84b3ebe64b8d997c2b35668ce5256f8ee776cc38557ae"
     },
     {
       "name": "brand-guidelines.html",
-      "bytes": 5389,
-      "sha256": "6b01952475b95690c1abdf77ce2d5820f185af3e9e17324daf6ce28a5a52f4dd"
+      "bytes": 5273,
+      "sha256": "f27fa27a96b682f3d43eef1268d4e32507150de6d342164781824f85fb56fe98"
     },
     {
       "name": "press-facts.txt",
@@ -51,16 +51,6 @@
       "name": "oath-mark-white.png",
       "bytes": 48410,
       "sha256": "cc138147b0e4ba0b01b0280f6f06f1d2f4655cb1d148b234e3434d1ec8ee3c17"
-    },
-    {
-      "name": "oath-wordmark-ink.png",
-      "bytes": 40394,
-      "sha256": "50c6905df676444dffb97fd7ded0ca942401cd1eb1c97555ac116eb751569b83"
-    },
-    {
-      "name": "oath-wordmark-white.png",
-      "bytes": 42556,
-      "sha256": "7d8d2d659a6818eacb12e8babc286b0f9930e6a92b801b3dd6928faee3f9e013"
     },
     {
       "name": "oath-portfolio-iphone.png",

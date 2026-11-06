@@ -1,9 +1,12 @@
-// Edit content/brand/oath-logo.svg only. All website logo formats derive from it.
+// All website logo formats derive from the approved installed app icon.
 import {readFile,writeFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import sharp from 'sharp';
 const root=new URL('../public/',import.meta.url);
-const svg=await readFile(new URL('../content/brand/oath-logo.svg',import.meta.url));
+const master=await readFile(new URL('../../Design/AppIcons/oath-solid-blue.svg',import.meta.url),'utf8');
+if (/<(?:linear|radial)Gradient|url\(/.test(master)) throw Error('The Oath logo must use solid colors');
+const svg=Buffer.from(master.replace('<rect ', '<rect rx="225.28" ry="225.28" '));
+for(const file of ['brand/oath-logo.svg','press/oath-app-icon.svg']) await writeFile(new URL('../content/'+file,import.meta.url),svg);
 const version=createHash('sha256').update(svg).digest('hex').slice(0,12);
 for(const file of ['assets/brand/oath-logo.svg','assets/brand/oath-mark-dark.svg','assets/brand/oath-mark-light.svg','favicon.svg'])await writeFile(new URL(file,root),svg);
 const sizes={'favicon-16.png':16,'favicon-32.png':32,'apple-touch-icon.png':180,'icon-192.png':192,'icon-512.png':512,'wallet-logo.png':512,'assets/brand/oath-mark-dark-1600.png':1600,'assets/brand/oath-mark-light-1600.png':1600};

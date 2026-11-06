@@ -29,7 +29,7 @@ struct BrandedRefreshIndicator: View {
                     .transition(replacement)
                     .accessibilityIdentifier("refresh.logo.failure")
             } else {
-                OathRefreshGlassMark(model: model)
+                OathRefreshSolidMark(model: model)
                     .transition(replacement)
                     .accessibilityIdentifier("refresh.logo.mark")
             }
@@ -45,56 +45,27 @@ struct BrandedRefreshIndicator: View {
     private var replacement: AnyTransition { reduceMotion ? .opacity : AnyTransition(.blurReplace) }
 }
 
-private struct OathRefreshGlassMark: View {
-    let model: RefreshIndicatorModel
-    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
-
-    var body: some View {
-        ZStack {
-            if reduceTransparency {
-                OathRefreshMark().fill(.white)
-            }
-            // A separate, small color surface lets the native glass refract
-            // the fill. Neither the glass path nor Home rerenders every tick.
-            OathRefreshColorFill(model: model)
-            if !reduceTransparency {
-                if #available(iOS 26, macOS 26, *) {
-                    Color.clear.glassEffect(.clear, in: OathRefreshMark())
-                } else {
-                    OathRefreshMark().fill(.ultraThinMaterial)
-                }
-            }
-        }
-        .frame(width: 54, height: 54 * 580 / 860)
-    }
-}
-
-private struct OathRefreshColorFill: View {
+private struct OathRefreshSolidMark: View {
     let model: RefreshIndicatorModel
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
-    private let colors: [Color] = [.cyan, .blue, .indigo, .purple, .pink, .orange, .mint, .cyan]
 
     var body: some View {
         let animates = model.cycle.phase == .refreshing && !model.cycle.isReturning && model.isActive && !reduceMotion
         TimelineView(.animation(minimumInterval: 1 / 30, paused: !animates)) { context in
             let elapsed = animates ? max(0, context.date.timeIntervalSince(model.startedAt)) : 0
-            let angle = model.cycle.progress * 90 + elapsed * 300
+            // A single white mark fills with the pull, then gently breathes while
+            // loading. No rainbow fill or material can recolor the approved mark.
             OathRefreshMark()
-                .fill(AngularGradient(colors: colors, center: .center, angle: .degrees(angle)))
-                .mask {
+                .fill(.white)
+                .opacity(animates ? 0.8 + 0.2 * cos(elapsed * .pi * 2) : 1)
+                .mask(alignment: .bottom) {
                     GeometryReader { geometry in
-                        // A soft leading edge rises through both rings; at 1
-                        // the full vector, including every crossing, is filled.
-                        let progress = model.cycle.progress
-                        LinearGradient(stops: [
-                            .init(color: .clear, location: max(0, 1 - progress - 0.045)),
-                            .init(color: .white, location: max(0, 1 - progress)),
-                            .init(color: .white, location: 1)
-                        ], startPoint: .top, endPoint: .bottom)
-                        .opacity(progress > 0 ? 1 : 0)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        Rectangle()
+                            .frame(height: geometry.size.height * model.cycle.progress)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
                     }
                 }
         }
+        .frame(width: 54, height: 54 * 504.465087890625 / 748)
     }
 }
