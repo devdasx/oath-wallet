@@ -53,8 +53,9 @@ extension OathDatabase {
             let records = try AssetRecord.fetchAll(db, sql: """
                 SELECT a.* FROM assets a WHERE a.networkID=? AND a.reference<>'native' AND
                 (EXISTS(SELECT 1 FROM indexedEVMHoldings h WHERE h.accountID=? AND h.assetID=a.id)
-                OR EXISTS(SELECT 1 FROM trackedAssets t WHERE t.accountID=? AND t.assetID=a.id))
-                """, arguments: [account.networkID,accountID,accountID])
+                OR EXISTS(SELECT 1 FROM trackedAssets t WHERE t.accountID=? AND t.assetID=a.id)
+                OR (a.networkID='story' AND EXISTS(SELECT 1 FROM balances b WHERE b.accountID=? AND b.assetID=a.id AND b.source='ankr')))
+                """, arguments: [account.networkID,accountID,accountID,accountID])
             return try records.map { try IndexedEVMToken(reference: $0.reference, name: $0.name, symbol: $0.symbol, decimals: $0.decimals, logo: $0.logo) }
         }
     }
@@ -75,7 +76,8 @@ extension OathDatabase {
                 let asset = try Self.ankrAsset(networkID: ticket.account.networkID, reference: token.reference,
                     name: token.name, symbol: token.symbol, decimals: token.decimals, logo: token.logo, db: db)
                 let oldVerified = (try Int.fetchOne(db, sql: "SELECT verified FROM indexedEVMHoldings WHERE accountID=? AND reference=?", arguments: [ticket.account.id,token.reference])) == 1
-                let verified = catalog.contains(token.reference) || (catalog.ids.isEmpty && oldVerified)
+                let legacyVerified = value.chain == .story ? (try Int.fetchOne(db, sql: "SELECT onlyWhitelisted FROM ankrAssets WHERE accountID=? AND assetID=?", arguments: [ticket.account.id,asset.id])) == 1 : false
+                let verified = catalog.contains(token.reference) || (catalog.ids.isEmpty && (oldVerified || legacyVerified))
                 try db.execute(sql: """
                     INSERT INTO indexedEVMHoldings(accountID,reference,assetID,detail,amountAtomic,observedAt,checkpoint,verified) VALUES(?,?,?,?,?,?,?,?)
                     ON CONFLICT(accountID,reference) DO UPDATE SET detail=excluded.detail,amountAtomic=excluded.amountAtomic,
@@ -131,10 +133,15 @@ extension OathDatabase {
                     tx.feeAtomic = nil // A token-denominated fee is not a native debit.
                 }
                 try tx.upsert(db)
-                let eventID = ticket.account.networkID + ":" + event.id
+                let index = Int(event.id.split(separator: ":").last ?? "") ?? -1
+                // Story's provider transition keeps the existing external/log
+                // identity, so replaying old ANKR history cannot duplicate it.
+                // Internal calls were never covered by that old history route.
+                let eventID = Self.indexedEVMActivityID(chain: ticket.account.networkID, txID: txID,
+                    event: event, stream: cursor.stream, index: index, assetID: asset.id)
                 let direction = event.from == owner ? (event.to == owner ? "self" : "outgoing") : "incoming"
                 try TransferRecord(id: eventID, transactionID: txID, networkID: ticket.account.networkID, assetID: asset.id,
-                    eventIndex: Int(event.id.split(separator: ":").last ?? "") ?? -1,
+                    eventIndex: index,
                     fromAddress: event.from, toAddress: event.to, amountAtomic: event.amount).upsert(db)
                 try ActivityRecord(id: ticket.account.id + ":" + eventID, walletID: ticket.account.walletID, accountID: ticket.account.id,
                     networkID: ticket.account.networkID, transactionID: txID, assetID: asset.id, direction: direction, amountAtomic: event.amount,
@@ -145,6 +152,13 @@ extension OathDatabase {
             try db.execute(sql: "INSERT INTO indexedEVMPages(accountID,pageKey,raw) VALUES(?,?,?) ON CONFLICT(accountID,pageKey) DO UPDATE SET raw=excluded.raw", arguments: [ticket.account.id,key,page.raw])
             try db.execute(sql: "UPDATE indexedEVMHistoryCursors SET cursor=?,complete=?,failure=NULL WHERE accountID=? AND stream=? AND lane=?", arguments: [page.next,page.next == nil,ticket.account.id,cursor.stream,cursor.lane])
         }
+    }
+    private static func indexedEVMActivityID(chain: String, txID: String, event: IndexedEVMEvent,
+                                               stream: String, index: Int, assetID: String) -> String {
+        if chain == "story", stream != IndexedEVMHistoryStream.internalTransactions.rawValue {
+            return txID + ":" + String(index) + ":" + assetID
+        }
+        return chain + ":" + event.id
     }
     /// An expired index cursor can replay its fixed time window safely because
     /// events are upserted by transaction/log identity. Never discard history.

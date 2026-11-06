@@ -111,7 +111,10 @@ protocol OathRecoveryPhraseReading: Sendable {
                 let material = try await reader.recoveryMaterial(walletID: walletID, digits: digits)
                 guard let self, self.isCurrent(token) else { return }
                 self.accept(material)
-            } catch { OathDiagnostics.record(error);
+            } catch {
+                // A rejected user-entered PIN is form feedback. Credential,
+                // decryption and storage failures retain their original report.
+                if error as? OathWalletError != .wrongPasscode { OathDiagnostics.record(error) }
                 guard let self, self.isCurrent(token) else { return }
                 self.busy = false; self.work = nil
                 if error is CancellationError { return }

@@ -23,8 +23,12 @@ public actor TonSynchronizer {
         histories[accountID]?.cancel(); histories[accountID] = nil
         let id = UUID()
         let task = Task { [database,client,markets] in
-            let ticket = try await database.beginTonSync(accountID:accountID)
+          try await OathDiagnostics.withChain("ton") {
+           try await OathDiagnostics.$operationID.withValue(UUID()) {
+            var ticketToFail: TonSyncTicket?
             do {
+                let ticket = try await database.beginTonSync(accountID:accountID)
+                ticketToFail = ticket
                 // Inventory, history and USD quotes run independently. The
                 // shared index client respects the anonymous rate allowance.
                 async let inventory = client.inventory(owner:account.address)
@@ -56,11 +60,24 @@ public actor TonSynchronizer {
                     enqueue(); enqueue(); for await _ in group { enqueue() }
                 }
                 if let cause = value.incompleteError { throw cause }
-            } catch { OathDiagnostics.record(error); await OathDiagnostics.attempt("failTonSync", body: { try await database.failTonSync(ticket,history:false,code:Self.code(error)) }); throw error }
+            } catch {
+                OathDiagnostics.record(error,component:"sync",operation:"inventory_refresh")
+                if let ticket = ticketToFail {
+                    await OathDiagnostics.attempt("failTonSync", body: { try await database.failTonSync(ticket,history:false,code:Self.code(error)) })
+                }
+                throw error
+            }
+           }
+          }
         }
         flights[accountID] = (id,task)
         do { try await task.value; if flights[accountID]?.0 == id { flights[accountID] = nil } }
-        catch { OathDiagnostics.record(error); if flights[accountID]?.0 == id { flights[accountID] = nil }; throw error }
+        catch {
+            // diagnostics: ton-flight-cleanup
+            // The shared task reports both ticket creation and refresh failures.
+            // Clearing its flight must not report that same failure again.
+            if flights[accountID]?.0 == id { flights[accountID] = nil }; throw error
+        }
     }
     private static func save(_ quotes: [TonPrice], database: OathDatabase) async throws {
         for quote in quotes {

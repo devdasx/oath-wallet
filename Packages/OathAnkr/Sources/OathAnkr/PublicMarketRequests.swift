@@ -202,7 +202,8 @@ public actor PublicMarketRequests {
         if error as? AnkrError == .transport { return true }
         guard let error = error as? URLError else { return false }
         return [.timedOut, .cannotFindHost, .dnsLookupFailed, .cannotConnectToHost,
-                .networkConnectionLost, .notConnectedToInternet].contains(error.code)
+                .networkConnectionLost, .notConnectedToInternet,
+                .secureConnectionFailed].contains(error.code)
     }
 
     private func retain(_ response: Response, for url: URL, lifetime: Double) {

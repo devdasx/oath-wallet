@@ -127,7 +127,7 @@ private actor BitcoinChartOutage: MarketTransport {
 }
 
 @MainActor final class BitcoinChartDiagnosticsTests: XCTestCase {
-    func testRecoveryPreservesOriginalOutagesInSharedOutbox() async throws {
+    func testRecoveryFiltersAvailabilityFailuresFromSharedOutbox() async throws {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
         let reports = MarketTestDiagnostics.shared, correlation = UUID()
@@ -143,12 +143,11 @@ private actor BitcoinChartOutage: MarketTransport {
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events(for: correlation)
-        XCTAssertEqual(events.count, 3)
-        XCTAssertTrue(events.contains { $0.error.domain == "NSURLErrorDomain" && $0.error.code == -1001 })
-        XCTAssertTrue(events.contains { $0.error.domain == "OathMarketData.MarketDataError" && $0.error.code == 3 })
-        let operation = try XCTUnwrap(events.first?.operationID)
-        XCTAssertEqual(operation, correlation)
-        XCTAssertTrue(events.allSatisfy { $0.operationID == operation && $0.context["chain"] == "bitcoin" && $0.privacyFiltered })
+        XCTAssertTrue(events.isEmpty, "Recovered timeouts and throttling follow the public availability policy")
+        let requests = await feed.requests
+        XCTAssertTrue(requests.contains { $0.host == "api.exchange.coinbase.com" })
+        XCTAssertTrue(requests.contains { $0.host == "api.coingecko.com" })
+        XCTAssertEqual(requests.filter { $0.host == "api.kraken.com" }.count, 1)
     }
 }
 

@@ -339,6 +339,16 @@ private struct OathSceneRoot: View {
     let context: OathSceneContext
 
     var body: some View {
+        if #available(iOS 27, *) {
+            // The embedded native host owns the full scene; its SwiftUI content
+            // still receives UIKit's real safe areas, keyboard and window traits.
+            OathStatusBarHost { sceneContent }.ignoresSafeArea()
+        } else {
+            sceneContent
+        }
+    }
+
+    private var sceneContent: some View {
         OathLocalizedRoot(settings: context.settings) { OathWalletRoot(session: context.session) }
             .oathInAppLinks(walletUnlocked: context.session.isUnlocked)
             .environment(\.scenePhase, context.phase)

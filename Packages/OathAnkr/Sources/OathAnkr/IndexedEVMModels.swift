@@ -4,11 +4,11 @@ import Foundation
 /// Mainnet identity is explicit on every inventory, page, catalog and price.
 /// These networks have RPC access at ANKR, but no Advanced Account API alias.
 public enum IndexedEVMChain: String, Codable, CaseIterable, Sendable {
-    case unichain, monad, celo, chiliz, filecoin, sei, zerog, iotex
-    public var chainID: UInt64 { switch self { case .unichain: 130; case .monad: 143; case .iotex: 4689; case .zerog: 16661; case .sei: 1329; case .filecoin: 314; case .chiliz: 88888; case .celo: 42220 } }
-    public var name: String { switch self { case .unichain: "Unichain"; case .monad: "Monad"; case .iotex: "IoTeX"; case .zerog: "0G"; case .sei: "Sei"; case .filecoin: "Filecoin"; case .chiliz: "Chiliz"; case .celo: "Celo" } }
-    public var symbol: String { switch self { case .unichain: "ETH"; case .monad: "MON"; case .iotex: "IOTX"; case .zerog: "0G"; case .sei: "SEI"; case .filecoin: "FIL"; case .chiliz: "CHZ"; case .celo: "CELO" } }
-    public var nativeCoinID: String { self == .zerog ? "zero-gravity" : self == .unichain ? "ethereum" : self == .sei ? "sei-network" : rawValue }
+    case unichain, monad, celo, chiliz, filecoin, sei, zerog, iotex, story
+    public var chainID: UInt64 { switch self { case .story: 1514; case .unichain: 130; case .monad: 143; case .iotex: 4689; case .zerog: 16661; case .sei: 1329; case .filecoin: 314; case .chiliz: 88888; case .celo: 42220 } }
+    public var name: String { switch self { case .story: "Story"; case .unichain: "Unichain"; case .monad: "Monad"; case .iotex: "IoTeX"; case .zerog: "0G"; case .sei: "Sei"; case .filecoin: "Filecoin"; case .chiliz: "Chiliz"; case .celo: "Celo" } }
+    public var symbol: String { switch self { case .story: "IP"; case .unichain: "ETH"; case .monad: "MON"; case .iotex: "IOTX"; case .zerog: "0G"; case .sei: "SEI"; case .filecoin: "FIL"; case .chiliz: "CHZ"; case .celo: "CELO" } }
+    public var nativeCoinID: String { self == .story ? "story-2" : self == .zerog ? "zero-gravity" : self == .unichain ? "ethereum" : self == .sei ? "sei-network" : rawValue }
     public var rpcPath: String { self == .zerog ? "0g_mainnet_evm" : self == .sei ? "sei_evm" : [.celo, .chiliz, .filecoin, .iotex].contains(self) ? rawValue : rawValue + "_mainnet" }
     public var catalogPlatform: String { self == .zerog ? "0g" : self == .sei ? "sei-v2" : rawValue }
     public var dexNetwork: String { self == .zerog ? "0g" : self == .sei ? "seiv2" : rawValue }
@@ -17,6 +17,7 @@ public enum IndexedEVMChain: String, Codable, CaseIterable, Sendable {
     public var nativeERC20: String? { self == .celo ? "0x471ece3750da237f93b8e339c536989b8978a438" : nil }
     public var wrappedNative: String {
         switch self {
+        case .story: "0x1514000000000000000000000000000000000000"
         case .unichain: "0x4200000000000000000000000000000000000006"
         case .monad: "0x3bd359c1119da7da1d913d1c4d2b7c461115433a"
         case .chiliz: "0x677f7e16c7dd57be1d4c8ad1244883214953dc47"

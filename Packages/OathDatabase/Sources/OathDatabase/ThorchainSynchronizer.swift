@@ -16,6 +16,15 @@ public actor ThorchainSynchronizer {
             try await OathDiagnostics.$chain.withValue("thorchain") {
                 try await OathDiagnostics.$operationID.withValue(UUID()) {
                     do {
+                        // The previous inventory can finish while its history
+                        // is still paging. Stop and join that work before a new
+                        // ticket invalidates its database generation, including
+                        // while the replacement waits for a network height.
+                        let previousHistory = self.histories.removeValue(forKey: accountID)
+                        previousHistory?.cancel()
+                        await previousHistory?.value
+                        try Task.checkCancellation()
+                        guard self.epoch == generation else { throw CancellationError() }
                         let ticket=try await database.beginThorchainSync(accountID:accountID)
                         guard self.epoch == generation else { throw CancellationError() }
                         async let market=client.catalog()

@@ -37,7 +37,7 @@ public struct IndexedEVMMarkets: Sendable {
         do { return try Self.decodeCatalog(await read(URL(string: "https://api.coingecko.com/api/v3/coins/list?include_platform=true")!), chain: chain) }
         catch {
             if error is CancellationError || Task.isCancelled { throw CancellationError() }
-            guard [.filecoin, .sei, .zerog, .iotex].contains(chain) else { throw error }
+            guard [.filecoin, .sei, .zerog, .iotex, .story].contains(chain) else { throw error }
             OathDiagnostics.record(error, component: "prices", operation: "indexed_catalog_fallback", context: ["chain": chain.rawValue, "source": "CoinGecko"])
             struct Seed: Decodable { let entries: [TokenDiscoveryEntry] }
             guard let url = Bundle.module.url(forResource: "TokenDiscoverySeed", withExtension: "json") else { throw error }
@@ -255,8 +255,8 @@ public struct IndexedEVMMarkets: Sendable {
 enum NativePriceFallback {
     struct Quote: Sendable { let usd: String; let source: String; let date: Date }
     static func resolve(_ code: String, read: (URL) async throws -> Data) async throws -> Quote {
-        guard let id = ["ETH": "ethereum", "MON": "monad", "HYPE": "hyperliquid", "CELO": "celo", "CHZ": "chiliz", "FIL": "filecoin", "SEI": "sei-network", "0G": "zero-gravity", "IOTX": "iotex"][code] else { throw AnkrError.invalidResponse }
-        if code == "0G" || code == "IOTX" {
+        guard let id = ["IP": "story-2", "ETH": "ethereum", "MON": "monad", "HYPE": "hyperliquid", "CELO": "celo", "CHZ": "chiliz", "FIL": "filecoin", "SEI": "sei-network", "0G": "zero-gravity", "IOTX": "iotex"][code] else { throw AnkrError.invalidResponse }
+        if code == "0G" || code == "IOTX" || code == "IP" {
             let key = "coingecko:" + id
             let json = try JSONDecoder().decode(SolanaJSON.self, from: await read(URL(string: "https://coins.llama.fi/prices/current/" + key)!))
             return try decodeLlama(json, key: key)

@@ -60,6 +60,14 @@ for root in roots:
                 # cover both supersession and genuine cursor conflicts.
                 observed += 1
                 continue
+            if file.name == 'OathBiometricCredentialStore.swift' and label.strip() == 'let error as LAError' and 'return Self.enrollmentFailure(error, kind: kind)' in body:
+                continue  # The helper reports failures except unavailable optional biometry.
+            if file.name == 'TonSynchronizer.swift' and 'diagnostics: ton-flight-cleanup' in body and 'throw error' in body:
+                continue  # The shared task records ticket creation and refresh failures before rethrow.
+            if file.name == 'XrplClient.swift' and 'diagnostics: xrpl-fresh-window-recovery' in body and 'try await recentRange()' in body:
+                continue  # rpc records the original range rejection; only an unpinned first page retries once.
+            if file.name == 'EVMSendClient.swift' and 'diagnostics: evm-send-permit-cleanup' in body and 'throw error' in body:
+                continue  # Each failed provider reports before the unchanged cleanup rethrow.
             if any(kind in label for kind in expected):
                 continue
             if file.relative_to(ROOT).as_posix() == 'Packages/OathDatabase/Sources/OathDatabase/XrplSynchronizer.swift' and label.strip() == 'XrplError.historyWindowExpired':

@@ -32,7 +32,7 @@ struct OathImportedPrivateKey: Codable, Equatable, Sendable {
     var requiresBitcoinV2: Bool { networks == [.bitcoin] && (compressed == false || bitcoinExtendedKey != nil) }
 
     var isFullEVMScope: Bool {
-        let additions: Set<OathImportChain> = [.fantom,.flare,.somnia,.story,.robinhood,.hyperevm,.monad,.unichain,.celo,.chiliz,.filecoin,.sei,.zerog,.iotex]
+        let additions: Set<OathImportChain> = [.fantom,.flare,.somnia,.story,.robinhood,.hyperevm,.monad,.unichain,.celo,.chiliz,.filecoin,.sei,.zerog,.iotex,.cronos]
         let previous = Set(OathImportChain.allCases.filter(\.isEVM)).subtracting(additions)
         return networks.allSatisfy(\.isEVM) && previous.isSubset(of: Set(networks))
     }

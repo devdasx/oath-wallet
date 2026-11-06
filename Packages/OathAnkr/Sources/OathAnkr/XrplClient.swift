@@ -209,7 +209,7 @@ public actor XrplClient {
     }
     public func history(owner:String, before:String? = nil, upperLedger:Int64? = nil, oldestFetchedLedger: Int64? = nil, limit:Int = 200) async throws -> XrplHistoryPage {
         let owner = try XrplIdentity.address(owner)
-        let lower: Int64, ceiling: Int64
+        var lower: Int64, ceiling: Int64
         let latestOnServingNode = recentHistory && before == nil && upperLedger == nil
         if recentHistory {
             // ANKR documents a rolling XRP history window. Obtain its actual
@@ -240,8 +240,23 @@ public actor XrplClient {
         if before != nil { step = "history_next_page" }
         else if latestOnServingNode { step = "history_latest_page" }
         else { step = "history_pinned_page" }
-        let value = try await OathDiagnostics.withStep(step) {
-            try await rpc("account_tx",p,primaryOnly:recentHistory)
+        let value: XrplJSON
+        do {
+            value = try await OathDiagnostics.withStep(step) {
+                try await rpc("account_tx",p,primaryOnly:recentHistory)
+            }
+        } catch let error as XrplError where error == .rpc("lgrIdxMalformed") && latestOnServingNode {
+            // diagnostics: xrpl-fresh-window-recovery
+            // rpc already reported the rejected range. The rolling floor can
+            // advance between server_info and account_tx. Only a brand-new,
+            // unpinned page may renegotiate once; existing cursors stay exact.
+            let current = try await recentRange()
+            guard current.lower > lower else { throw error }
+            lower = current.lower; ceiling = current.upper
+            p["ledger_index_min"] = .number(String(lower))
+            value = try await OathDiagnostics.withStep(step) {
+                try await rpc("account_tx",p,primaryOnly:true)
+            }
         }
         let upper = try XrplIdentity.number(value["ledger_index_max"])
         if latestOnServingNode, upper > ceiling {

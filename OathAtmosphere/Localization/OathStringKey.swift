@@ -969,6 +969,8 @@ enum OathStringKey: String, CaseIterable, Sendable {
     case sendReceiveFeeAsset = "send.receive_fee_asset"
     case aptosAccountUnsupported, aptosMetadataChanged, aptosFeeTooHigh, aptosInsufficientFunds, aptosSimulationFailed, aptosSendFailed
     case nearAccountUnsupported, nearRecipientMissing, nearMetadataChanged, nearStorageUnsupported, nearFeeTooHigh, nearSendFailed, nearInsufficientFunds, nearStorageDeposit, nearFeeNotice
+
+    case scannerAddressValidFor
     case scannerReady
     case scannerDetail
     case scannerPhotos

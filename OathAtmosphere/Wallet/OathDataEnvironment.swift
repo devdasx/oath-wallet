@@ -42,11 +42,13 @@ actor OathDataEnvironment {
         try await db.seed(networks: ordered.enumerated().map { index, chain in
             NetworkRecord(id: chain.id, name: chain.name, family: chain.isEVM ? "evm" : chain.isUTXO ? "utxo" : "account",
                           symbol: chain.ticker, decimals: chain.nativeDecimals, derivationPath: chain.walletPath,
-                          logo: chain.logoAsset, sortOrder: index)
+                          logo: chain.logoAsset, sortOrder: index, enabled: chain.isEnabled)
         }, assets: ordered.map { chain in
             AssetRecord(id: chain.id + ":native", networkID: chain.id, reference: "native", name: chain.name,
                         symbol: chain.ticker, decimals: chain.nativeDecimals, logo: chain.logoAsset)
         })
+        // Apply to existing installs as well as newly seeded databases.
+        try await db.setNetworkEnabled("cronos", enabled: OathImportChain.cronos.isEnabled)
     }
 }
 
@@ -86,7 +88,7 @@ extension OathWalletProfile {
 
 extension OathWalletAddress {
     static func stored(_ account: AccountRecord, network: NetworkRecord?) -> Self? {
-        guard let chain = OathImportChain(rawValue: account.networkID) else { return nil }
+        guard let chain = OathImportChain(rawValue: account.networkID), chain.isEnabled else { return nil }
         // Display labels are recoverable from the bundled catalogue. They do
         // not validate keys or addresses and must never make a vault unusable.
         if network == nil {

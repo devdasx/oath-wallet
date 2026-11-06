@@ -171,7 +171,8 @@ import Observation
                 } catch {
                     // Missing/declined/unavailable biometrics intentionally offer the
                     // app PIN. Corrupt credentials and unexpected OS failures still report.
-                    if (error as? OathBiometricCredentialError)?.isExpectedAuthenticationOutcome != true {
+                    let rejectedInput = digits != nil && error as? OathWalletError == .wrongPasscode
+                    if !rejectedInput && (error as? OathBiometricCredentialError)?.isExpectedAuthenticationOutcome != true {
                         OathDiagnostics.record(error, operation: "authorize_access", context: ["stage": digits == nil ? "biometric" : "passcode"])
                     }
                     guard let self, self.generation == token, !Task.isCancelled else { return }

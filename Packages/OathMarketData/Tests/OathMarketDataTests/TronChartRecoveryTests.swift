@@ -144,23 +144,20 @@ private actor TronChartReports: DiagnosticTransport {
             XCTAssertEqual(saved?.fetchedAt, good.fetchedAt)
         }
     }
-    func testRecoveredChartStillReportsOriginalRateLimitWithSafeCorrelation() async throws {
+    func testRecoveredChartFiltersRateLimitReports() async throws {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
-        let reports = TronChartReports(), operation = UUID()
-        OathDiagnostics.configure(file: folder.appendingPathComponent("events.json"), transport: reports)
+        let reports = MarketTestDiagnostics.shared, operation = UUID()
         let date = Date(), db = try await OathDatabase.open(at: folder.appendingPathComponent("test.sqlite"))
         let service = MarketDataService(database: db, transport: TronChartOutage(date: date), now: { date })
         _ = try await OathDiagnostics.$operationID.withValue(operation) { try await service.chart(for: asset) }
         for _ in 0..<100 {
             await OathDiagnostics.flush()
-            if await reports.events.filter({ $0.operationID == operation }).count >= 2 { break }
+            if await reports.events(for: operation).count >= 2 { break }
             try await Task.sleep(for: .milliseconds(10))
         }
-        let events = await reports.events.filter { $0.operationID == operation }
-        XCTAssertTrue(events.contains { $0.operation == "market_load" && $0.error.message == "rateLimited" })
-        XCTAssertTrue(events.contains { $0.operation == "kraken_chart_fallback" && $0.error.message == "rateLimited" })
-        XCTAssertTrue(events.allSatisfy { $0.context["chain"] == "tron" && $0.privacyFiltered })
+        let events = await reports.events(for: operation)
+        XCTAssertTrue(events.isEmpty, "Rate limits stay filtered even when an alternate chart provider succeeds")
         let serialized = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         XCTAssertFalse(serialized.contains("https://"))
         XCTAssertFalse(serialized.contains(asset.id))

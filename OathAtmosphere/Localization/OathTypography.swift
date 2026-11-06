@@ -2,6 +2,46 @@ import OathDiagnostics
 import SwiftUI
 import UIKit
 
+/// iOS 27 can stop status-style delegation at SwiftUI's navigation controller:
+/// the destination requests lightContent but the container returns default.
+/// Forward through the documented container API to the visible destination.
+/// This preserves SwiftUI's per-screen preference, including scrolling, without
+/// changing the window theme, navigation background, or presented sheet theme.
+/// https://developer.apple.com/documentation/technotes/tn3105-customizing-uistatusbar-syle
+struct OathStatusBarHost<Content: View>: UIViewControllerRepresentable {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        // Build in the caller's SwiftUI update so scene/settings observations
+        // remain attached to that update rather than a deferred UIKit callback.
+        self.content = content()
+    }
+
+    func makeUIViewController(context: Context) -> Controller {
+        Controller(rootView: content)
+    }
+
+    func updateUIViewController(_ controller: Controller, context: Context) {
+        controller.rootView = content
+    }
+
+    final class Controller: UIHostingController<Content> {
+        override var childForStatusBarStyle: UIViewController? {
+            var candidate = super.childForStatusBarStyle
+            var visited = Set<ObjectIdentifier>()
+            while let current = candidate, current !== self,
+                  visited.insert(ObjectIdentifier(current)).inserted {
+                if let navigation = current as? UINavigationController {
+                    return navigation.visibleViewController
+                }
+                guard let child = current.childForStatusBarStyle else { return current }
+                candidate = child
+            }
+            return nil
+        }
+    }
+}
+
 extension View {
     /// Native system fonts in every language. Text styles retain Dynamic Type;
     /// callers providing an explicit size own any scaling through ScaledMetric.

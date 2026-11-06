@@ -2,15 +2,21 @@ import Foundation
 
 /// Shared network catalog for onboarding and local wallet address derivation.
 public enum OathImportChain: String, CaseIterable, Identifiable, Hashable, Codable, Sendable {
+    case cronos
     case aptos, arbitrum, arc, avalanche, base, bitcoin, bitcoincash, bnb, dogecoin
     case iotex, zerog, sei, chiliz, filecoin, ethereum, fantom, flare, gnosis, hyperevm, celo, monad, unichain, linea, litecoin, near, optimism, polygon, robinhood, scroll, solana, somnia, story
     case polkadot, stellar, sui, taiko, telos, thorchain, ton, tron, xlayer, xrpl
 
+    // Temporarily paused by product decision. Keep Codable identities and
+    // stored accounts intact so support can resume without a wallet migration.
+    public var isEnabled: Bool { self != .cronos }
+    public static var enabledCases: [Self] { allCases.filter(\.isEnabled) }
     public var id: String { rawValue }
     public var logoAsset: String { "network-" + rawValue }
 
     public var name: String {
         switch self {
+        case .cronos: "Cronos"
         case .aptos: "Aptos"
         case .arbitrum: "Arbitrum"
         case .arc: "Arc"
@@ -60,6 +66,7 @@ public enum OathImportChain: String, CaseIterable, Identifiable, Hashable, Codab
     public var supportsTokens: Bool {
         switch self {
         case .bitcoin, .bitcoincash, .dogecoin, .litecoin: false
+        case .cronos: true
         case .aptos, .arbitrum, .arc, .avalanche, .base, .bnb, .ethereum, .fantom, .flare, .somnia, .story,
              .gnosis, .linea, .near, .optimism, .polygon, .chiliz, .filecoin, .sei, .zerog, .iotex, .celo, .monad, .unichain, .hyperevm, .robinhood, .scroll, .solana,
              .polkadot, .stellar, .sui, .taiko, .telos, .thorchain, .ton, .tron, .xlayer, .xrpl: true
@@ -69,6 +76,7 @@ public enum OathImportChain: String, CaseIterable, Identifiable, Hashable, Codab
 
     public var isEVM: Bool {
         switch self {
+        case .cronos: true
         case .arbitrum, .arc, .avalanche, .base, .bnb, .ethereum, .fantom, .flare, .gnosis,
              .linea, .optimism, .polygon, .chiliz, .filecoin, .sei, .zerog, .iotex, .celo, .monad, .unichain, .hyperevm, .robinhood, .scroll, .somnia, .story, .taiko, .telos, .xlayer: true
         default: false
@@ -78,6 +86,7 @@ public enum OathImportChain: String, CaseIterable, Identifiable, Hashable, Codab
     var searchTerms: String {
         let aliases: String
         switch self {
+        case .cronos: aliases = "CRO Cronos EVM Crypto.com"
         case .aptos: aliases = "APT"
         case .arbitrum: aliases = "ARB"
         case .arc: aliases = "USDC"
@@ -140,9 +149,9 @@ public struct OathPrivateKeyChoice: Identifiable, Hashable, Sendable {
 
     public static let evm = Self(
         id: "evm", title: "Ethereum & EVM",
-        networks: [.ethereum] + OathImportChain.allCases.filter { $0.isEVM && $0 != .ethereum }
+        networks: [.ethereum] + OathImportChain.enabledCases.filter { $0.isEVM && $0 != .ethereum }
     )
-    public static let individual = OathImportChain.allCases.filter { !$0.isEVM }.map {
+    public static let individual = OathImportChain.enabledCases.filter { !$0.isEVM }.map {
         Self(id: $0.id, title: $0.name, networks: [$0])
     }
     public static let all = [evm] + individual

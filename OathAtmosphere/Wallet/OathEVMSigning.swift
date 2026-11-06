@@ -8,7 +8,7 @@ extension OathWalletEngine {
     static func signEVM(_ plan: EVMSendPlan, secret: OathWalletSecret, account: AccountRecord) throws -> EVMSignedSend {
         try Task.checkCancellation()
         guard account.walletID == secret.id.uuidString, account.networkID == plan.network.rawValue,
-              let chain=OathImportChain(rawValue:account.networkID),chain.isEVM,
+              let chain=OathImportChain(rawValue:account.networkID),chain.isEVM,chain.isEnabled,
               try EVMSendIdentity.address(account.address) == plan.sender else { throw EVMSendError.wrongOwner }
         if let material = secret.evmMultisig {
             guard material.network == account.networkID, account.derivationPath == "evm-multisig-v1",

@@ -182,11 +182,12 @@ extension OathDatabase {
         }
         let networkRows = try NetworkRecord.fetchAll(db, sql: """
             SELECT * FROM networks WHERE id IN (SELECT networkID FROM walletAccounts WHERE walletID=?)
-            """, arguments: [walletID])
+            AND (enabled=1 OR ?)
+            """, arguments: [walletID, includeAllAssets])
         let order = PortfolioAssetOrder(holdings)
         let networks = AssetOrdering.sorted(networkRows) { order.key(networkID: $0.id, name: $0.name) }
         let accountSync = try AnkrSyncRecord.fetchAll(db, sql: """
-            SELECT s.* FROM ankrSync s JOIN walletAccounts a ON a.id=s.accountID WHERE a.walletID=? ORDER BY s.accountID,s.stream
+            SELECT s.* FROM ankrSync s JOIN walletAccounts a ON a.id=s.accountID WHERE a.walletID=? AND a.networkID<>'story' ORDER BY s.accountID,s.stream
             """, arguments: [walletID])
         return WalletSnapshot(wallet: wallet, accounts: try accounts(db, walletID: walletID), networks: networks,
                               holdings: holdings, settings: settings, assetFilter: assetFilter, currency: quoteCurrency,
@@ -208,7 +209,7 @@ extension OathDatabase {
                 AND NOT (ac.networkID='arc' AND EXISTS(SELECT 1 FROM arcHoldings ah WHERE ah.accountID=b.accountID AND ah.assetID=b.assetID))
                 AND NOT (ac.networkID='robinhood' AND EXISTS(SELECT 1 FROM robinhoodHoldings rh WHERE rh.accountID=b.accountID AND rh.assetID=b.assetID))
                 AND NOT (ac.networkID='hyperevm' AND EXISTS(SELECT 1 FROM hyperevmHoldings rh WHERE rh.accountID=b.accountID AND rh.assetID=b.assetID))
-                AND NOT (ac.networkID IN ('unichain','monad','celo','chiliz','filecoin','sei','zerog','iotex') AND EXISTS(SELECT 1 FROM indexedEVMHoldings rh WHERE rh.accountID=b.accountID AND rh.assetID=b.assetID))
+                AND NOT (ac.networkID IN ('unichain','monad','celo','chiliz','filecoin','sei','zerog','iotex','story') AND EXISTS(SELECT 1 FROM indexedEVMHoldings rh WHERE rh.accountID=b.accountID AND rh.assetID=b.assetID))
                 AND NOT (ac.networkID='polkadot' AND EXISTS(SELECT 1 FROM polkadotHoldings ph WHERE ph.accountID=b.accountID AND ph.assetID=b.assetID))
                 AND NOT (ac.networkID='stellar' AND EXISTS(SELECT 1 FROM stellarHoldings th WHERE th.accountID=b.accountID AND th.assetID=b.assetID))
                 UNION ALL

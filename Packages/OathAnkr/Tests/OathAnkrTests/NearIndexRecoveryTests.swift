@@ -81,7 +81,7 @@ final class NearIndexRecoveryTests: XCTestCase, @unchecked Sendable {
                 else { XCTAssertEqual(error as? NearError, .transport) }
             }
             let requests = await transport.requests
-            let expected = [-1005, -1001, -1004, 408, 500, 502, 503, 504].contains(failure) ? 2 : 1
+            let expected = [-1005, -1001, -1004, 408, 429, 500, 502, 503, 504].contains(failure) ? 2 : 1
             XCTAssertEqual(requests.count, expected, "Failure \(failure)")
         }
     }

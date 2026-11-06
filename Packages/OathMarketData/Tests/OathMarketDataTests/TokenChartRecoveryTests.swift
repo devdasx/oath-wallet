@@ -286,7 +286,7 @@ private actor LiveTokenChartFeed: MarketTransport {
         XCTAssertTrue(events.isEmpty, "Unexpected fixture reports: \(events.map { $0.operation + ":" + $0.error.message })")
     }
 
-    func testRecoveredChartRetainsOriginalFailureCorrelationAndPrivacy() async throws {
+    func testRecoveredChartFiltersAvailabilityReportsAndPreservesPrivacy() async throws {
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
         let reports = MarketTestDiagnostics.shared
@@ -302,9 +302,7 @@ private actor LiveTokenChartFeed: MarketTransport {
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events(for: id)
-        XCTAssertTrue(events.contains { $0.operation == "market_load" && $0.error.domain == "NSURLErrorDomain" && $0.error.code == -1001 })
-        XCTAssertTrue(events.contains { $0.operation == "token_chart_fallback" })
-        XCTAssertTrue(events.allSatisfy { $0.operationID == id && $0.context["chain"] == "bnb" && $0.privacyFiltered })
+        XCTAssertTrue(events.isEmpty, "Recovered chart timeouts remain filtered")
         let encoded = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
         for secret in [asset.id, asset.reference, TokenChartFixtures.pool, "before_timestamp", "https://"] {
             XCTAssertFalse(encoded.contains(secret))

@@ -11,6 +11,7 @@ public actor EVMSendClient {
     private let endpoints:[URL]
     private let permits=AnkrPermits(count:4)
     private var verifiedEndpoints:[URL:Date] = [:]
+    private var freshReadEndpoint: (url: URL, expires: ContinuousClock.Instant)?
     private var primaryLogHistoryLimit: (from: UInt64, expires: ContinuousClock.Instant)?
     public init(network:EVMSendNetwork,endpoints:[URL],transport:any AnkrTransport = AnkrHTTPTransport()) throws {
         guard !endpoints.isEmpty,endpoints.count<=4,endpoints.allSatisfy({$0.scheme=="https" && $0.host != nil}) else { throw EVMSendError.configuration }
@@ -19,11 +20,11 @@ public actor EVMSendClient {
     /// Each request verifies the chain on the same provider, including fallbacks.
     /// One attempt per endpoint, with bounded Celo replica-lag retries for reads.
     /// Transaction rejections and broadcasts are never automatically retried.
-    func rpc(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool = false, logScanHead: UInt64? = nil) async throws -> SolanaJSON {
+    func rpc(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool = false, logScanHead: UInt64? = nil, requireFreshHead: Bool = false) async throws -> SolanaJSON {
         try await OathDiagnostics.withChain(network.rawValue) {
             var retry=0
             while true {
-                do { return try await rpcInContext(method, params, optionalContractProbe: optionalContractProbe, logScanHead: logScanHead) }
+                do { return try await rpcInContext(method, params, optionalContractProbe: optionalContractProbe, logScanHead: logScanHead, requireFreshHead: requireFreshHead) }
                 catch EVMSendError.rpc(-32019) where [.celo,.celoSepolia].contains(network)
                     && ["eth_getBalance","eth_call","eth_getTransactionCount","eth_getBlockByNumber","eth_estimateGas"].contains(method)
                     && retry<2 {
@@ -37,7 +38,7 @@ public actor EVMSendClient {
             }
         }
     }
-    private func rpcInContext(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool, logScanHead: UInt64?) async throws -> SolanaJSON {
+    private func rpcInContext(_ method:String,_ params:[SolanaJSON], optionalContractProbe: Bool, logScanHead: UInt64?, requireFreshHead: Bool) async throws -> SolanaJSON {
         try await permits.acquire()
         do {
             var failure:Error=EVMSendError.transport
@@ -50,6 +51,14 @@ public actor EVMSendClient {
             // A mainnet epoch is 30 seconds. Leave one minute for the head to
             // advance during pagination. Custom endpoints retain their order.
             var targets = endpoints
+            if method != "eth_sendRawTransaction", method != "eth_getLogs",
+               let preferred = freshReadEndpoint, ContinuousClock.now < preferred.expires,
+               let index = targets.firstIndex(of: preferred.url) {
+                // Continue the pinned quote reads on the provider that supplied
+                // its fresh head. A lagging primary may not know that height yet.
+                // Keep broadcast order and Filecoin archive routing unchanged.
+                targets.insert(targets.remove(at: index), at: 0)
+            }
             if network == .filecoin, let head = logScanHead, let from = filecoinLogStart,
                head >= from, head - from >= 2_878, endpoints.count == 2,
                endpoints[0].host == "rpc.ankr.com", endpoints[0].pathComponents.dropFirst().first == "filecoin",
@@ -57,6 +66,8 @@ public actor EVMSendClient {
                 targets.swapAt(0, 1)
             }
             for endpoint in targets {
+                var failureContext = ["chain": network.rawValue, "rpc_method": method,
+                                      "host": endpoint.host ?? "unknown"]
                 do {
                     try Task.checkCancellation()
                     if let from = filecoinLogStart, endpoint == endpoints.first, endpoints.count > 1,
@@ -107,6 +118,25 @@ public actor EVMSendClient {
                         throw EVMDuplicateBroadcast.reconcile(result["error"]["code"].text.flatMap(Int.init) ?? -32000)
                     }
                     let value=try self.result(result, optionalContractProbe: optionalContractProbe, feeContext: ["eth_estimateGas", "linea_estimateGas", "eth_sendRawTransaction"].contains(method))
+                    if requireFreshHead {
+                        // A successful RPC envelope can still come from a lagging
+                        // replica. Validate inside the provider loop so a quote
+                        // can use a fresh, independently chain-verified fallback.
+                        // Historical reads and broadcasts never take this path.
+                        guard method == "eth_getBlockByNumber", params.first == .string("latest"),
+                              let hash = value["hash"].string, AnkrQuantity.hash(hash) else { throw EVMSendError.malformed }
+                        _ = try Self.uint(value["number"])
+                        let timestamp = try Self.uint(value["timestamp"])
+                        let headOffset = Double(timestamp) - Date.now.timeIntervalSince1970
+                        guard abs(headOffset) < (network.isFilecoin ? 180 : 60) else {
+                            // Distinguish the failed condition without guessing
+                            // whether the provider or device clock caused it.
+                            // Attach it to the existing single provider report.
+                            failureContext["reason"] = headOffset > 0 ? "head_timestamp_future" : "head_timestamp_stale"
+                            throw EVMSendError.expired
+                        }
+                        freshReadEndpoint = (endpoint, .now.advanced(by: .seconds(30)))
+                    }
                     // Some EVM replicas can omit a mined hash from their
                     // transaction index. Check the independent provider before
                     // treating the signed payment as absent.
@@ -121,7 +151,7 @@ public actor EVMSendClient {
                     // releasing this RPC permit; it is never a retry here.
                     if error is EVMDuplicateBroadcast { throw error }
                     verifiedEndpoints.removeValue(forKey:endpoint)
-                    OathDiagnostics.record(error,component:"evm_send",operation:method,context:["chain":network.rawValue,"rpc_method":method])
+                    OathDiagnostics.record(error,component:"evm_send",operation:method,context:failureContext)
                     if error is CancellationError || Task.isCancelled { throw CancellationError() }
                     // Deterministic RPC rejection must remain visible. Network/HTTP,
                     // malformed and misrouted providers may use an independent fallback.
@@ -134,8 +164,10 @@ public actor EVMSendClient {
             if missingIndexedLookup { await permits.release();return .null }
             throw failure
         } catch {
+            // diagnostics: evm-send-permit-cleanup
+            // Each failed provider was reported above. Release the permit and
+            // propagate the original failure without recording it a second time.
             await permits.release()
-            if !(error is EVMDuplicateBroadcast) { OathDiagnostics.record(error,component:"evm_send",operation:method,context:["chain":network.rawValue]) }
             throw error
         }
     }
@@ -165,7 +197,9 @@ public actor EVMSendClient {
         guard let n=UInt64(try quantity(j)) else { throw EVMSendError.malformed };return n
     }
     private static func hex(_ n:UInt64)->SolanaJSON { .string("0x"+String(n,radix:16)) }
-    func block(_ tag:SolanaJSON,full:Bool=false) async throws -> SolanaJSON { try await rpc("eth_getBlockByNumber",[tag,.bool(full)]) }
+    func block(_ tag:SolanaJSON,full:Bool=false,requireFresh:Bool=false) async throws -> SolanaJSON {
+        try await rpc("eth_getBlockByNumber",[tag,.bool(full)],requireFreshHead:requireFresh)
+    }
     func call(_ ref:String,_ data:String,_ tag:SolanaJSON) async throws -> SolanaJSON { try await rpc("eth_call",[.object(["to":.string(ref),"data":.string(data)]),tag]) }
     public func balance(owner:String,reference:String) async throws -> String {
         try await balance(owner:network.address(owner),reference:EVMSendIdentity.reference(reference),tag:.string("latest"))
@@ -280,8 +314,8 @@ public actor EVMSendClient {
         }
         guard sender != recipient || removal?.kind == .delegation || request != nil else { throw EVMSendError.sameRecipient }
         guard (requested != "0" || removal != nil || request != nil),recipient != "0x"+String(repeating:"0",count:40) else { throw EVMSendError.amount }
-        let head=try await block(.string("latest")),height=try Self.uint(head["number"])
-        guard let hash=head["hash"].string,AnkrQuantity.hash(hash),abs(Double(try Self.uint(head["timestamp"]))-Date.now.timeIntervalSince1970)<(network.isFilecoin ? 180:60) else { throw EVMSendError.expired }
+        let head=try await block(.string("latest"),requireFresh:true),height=try Self.uint(head["number"])
+        guard let hash=head["hash"].string,AnkrQuantity.hash(hash) else { throw EVMSendError.malformed }
         let tag=network == .hyperevm ? SolanaJSON.string("latest"):Self.hex(height)
         let hasBaseFee = !head["baseFeePerGas"].isNull
         let legacy=request?.legacy ?? !hasBaseFee
@@ -332,7 +366,7 @@ public actor EVMSendClient {
         // ordinary payment must estimate with the actual value: a payable
         // recipient can reject zero or take a different execution path.
         // Neither probe is signed; the final positive payload is simulated below.
-        let feeAdjustedTransfer = ([.celo, .celoSepolia, .chiliz, .chilizSpicy].contains(network) || network.isFilecoin || network.isSei || network.isZeroG || network.isIoTeX) && request == nil && removal == nil
+        let feeAdjustedTransfer = ([.celo, .celoSepolia, .chiliz, .chilizSpicy].contains(network) || network.isFilecoin || network.isSei || network.isZeroG || network.isIoTeX || network.isCronos) && request == nil && removal == nil
         let probe=make(network.maximumGas,!feeAdjustedTransfer && reference == "native" && (maximum || want==native) ? "0":want)
         let estimate:UInt64
         if network == .linea && removal?.kind != .delegation {

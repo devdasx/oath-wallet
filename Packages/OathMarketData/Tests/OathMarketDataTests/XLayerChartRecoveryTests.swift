@@ -35,7 +35,7 @@ private actor XLayerChartFeed: MarketTransport {
 }
 
 @MainActor final class XLayerChartRecoveryTests: XCTestCase {
-    func testExactNativeOKBRecoversCoalescesPersistsAndReportsOriginalFailure() async throws {
+    func testExactNativeOKBRecoversCoalescesPersistsAndFiltersAvailability() async throws {
         let reports = MarketTestDiagnostics.shared, id = UUID()
         let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         defer { try? FileManager.default.removeItem(at: folder) }
@@ -66,9 +66,7 @@ private actor XLayerChartFeed: MarketTransport {
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await reports.events(for: id)
-        XCTAssertTrue(events.contains { $0.operation == "market_load" && $0.error.code == 3 })
-        XCTAssertTrue(events.contains { $0.operation == "kraken_chart_fallback" })
-        XCTAssertTrue(events.allSatisfy { $0.context["chain"] == "xlayer" && $0.privacyFiltered })
+        XCTAssertTrue(events.isEmpty, "Chart recovery does not bypass availability filtering")
     }
 
     func testWrongQuoteCurrencyPreservesExistingChart() async throws {

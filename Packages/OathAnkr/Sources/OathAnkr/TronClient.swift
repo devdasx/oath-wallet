@@ -110,15 +110,25 @@ public actor TronClient {
         let body = TronJSON.array(calls.enumerated().map { i, call in
             .object(["jsonrpc": .string("2.0"), "id": .number(String(i)), "method": .string(call.0), "params": .array(call.1)])
         })
+        var labelRequest = URLRequest(url: endpoint)
+        labelRequest.httpMethod = "POST"
+        if DiagnosticHTTP.optionalEVMTokenLabels { labelRequest.httpBody = try JSONEncoder().encode(body) }
         for attempt in 0..<3 {
             let value = try await request(endpoint, body: body)
             try Task.checkCancellation()
             guard let rows = value.array, rows.count == calls.count else { throw TronError.malformed }
             var results: [Int: TronJSON] = [:]; var transient = false
+            var absentLabels = Set<Int>()
             for row in rows {
                 guard row["jsonrpc"].string == "2.0", let n = row["id"].integer, n < calls.count, results[Int(n)] == nil else { throw TronError.malformed }
                 if !row["error"].isNull {
                     guard let code = row["error"]["code"].text.flatMap(Int.init) else { throw TronError.malformed }
+                    if DiagnosticHTTP.optionalEVMTokenLabels,
+                       DiagnosticHTTP.expectedEVMTokenLabelAbsence(try JSONEncoder().encode(row), status: 200, request: labelRequest) {
+                        // Only a reply-ID-matched name/symbol revert is absent
+                        // metadata. Keep required decimals in this same batch.
+                        results[Int(n)] = .null; absentLabels.insert(Int(n)); continue
+                    }
                     OathDiagnostics.record(NSError(domain: "TronRPC", code: code,
                         userInfo: [NSLocalizedDescriptionKey: row["error"]["message"].string ?? "RPC rejected read"]),
                         component: "provider", operation: "tron_read_envelope",
@@ -132,7 +142,10 @@ public actor TronClient {
                 if attempt < 2 { try await Task.sleep(for: .seconds(1 << attempt)); continue }
                 throw TronError.incomplete
             }
-            return try calls.indices.map { guard let r = results[$0], !r.isNull else { throw TronError.malformed }; return r }
+            return try calls.indices.map {
+                guard let r = results[$0], !r.isNull || absentLabels.contains($0) else { throw TronError.malformed }
+                return r
+            }
         }
         throw TronError.incomplete
     }
@@ -183,7 +196,7 @@ public actor TronClient {
                 ("eth_call", [TronJSON.object(["to": .string(address), "data": .string("0x" + selector)]), .string("latest")])
             }
             let data: [TronJSON]
-            do { data = try await batch(calls) }
+            do { data = try await DiagnosticHTTP.$optionalEVMTokenLabels.withValue(true) { try await batch(calls) } }
             catch { OathDiagnostics.record(error);
                 try Task.checkCancellation()
                 // Name/symbol are optional metadata in the fungible standard.
@@ -191,8 +204,12 @@ public actor TronClient {
                 let supportsNFT = try? await batch([("eth_call",[.object(["to":.string(address),"data":.string("0x01ffc9a780ac58cd" + String(repeating:"0",count:56))]),.string("latest")])])[0]
                 if let word = supportsNFT?.string, (try? TronIdentity.uint256(word)) == "1" { throw TronError.nonFungible }
                 let decimals = try await batch([calls[2]])[0]
-                let name = try? await batch([calls[0]])[0]
-                let symbol = try? await batch([calls[1]])[0]
+                let name = await OathDiagnostics.attempt("tron_token_name") {
+                    try await DiagnosticHTTP.$optionalEVMTokenLabels.withValue(true) { try await batch([calls[0]])[0] }
+                }
+                let symbol = await OathDiagnostics.attempt("tron_token_symbol") {
+                    try await DiagnosticHTTP.$optionalEVMTokenLabels.withValue(true) { try await batch([calls[1]])[0] }
+                }
                 data = [name ?? .null,symbol ?? .null,decimals]
             }
             let decodedDecimals = data[2].string.flatMap { try? TronIdentity.uint256($0) }.flatMap(UInt64.init)

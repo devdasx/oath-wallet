@@ -142,9 +142,12 @@ private actor RateLimitedCatalogTransport: AnkrTransport {
             client: try AnkrClient(apiKey: "fixture", transport: ScriptedAnkrTransport(.empty)),
             catalogTransport: catalogTransport)
         let outcomes = try await sync.refresh(walletID: "wallet")
-        XCTAssertEqual(outcomes.count, 9)
+        XCTAssertEqual(outcomes.count, 6)
+        XCTAssertFalse(outcomes.contains { $0.accountID == "wallet:story" }, "Story uses the indexed synchronizer")
         XCTAssertTrue(outcomes.allSatisfy(\.success))
-        for chain in chains {
+        let storyCatalog = try await db.marketCache(key: "evm.verified.story")
+        XCTAssertNil(storyCatalog, "Advanced API synchronization must not claim Story data")
+        for chain in chains where chain.supportsAdvancedAPI {
             let saved = try await db.marketCache(key: "evm.verified." + chain.networkID)
             let catalog = try JSONDecoder().decode(VerifiedEVMTokenCatalog.self, from: XCTUnwrap(saved).payload)
             XCTAssertEqual(catalog.networkID, chain.networkID)

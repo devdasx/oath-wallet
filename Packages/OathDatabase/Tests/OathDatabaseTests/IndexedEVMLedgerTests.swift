@@ -3,6 +3,11 @@ import OathAnkr
 import GRDB
 @testable import OathDatabase
 
+private struct LegacyStoryTransport: AnkrTransport {
+    let data: Data
+    func send(_ request: URLRequest) async throws -> (Data, Int) { (data, 200) }
+}
+
 @MainActor final class IndexedEVMLedgerTests: XCTestCase {
     private let owner = "0x1111111111111111111111111111111111111111"
     private let other = "0x2222222222222222222222222222222222222222"
@@ -17,6 +22,85 @@ import GRDB
                 accounts:[.init(id:id+":"+chain.rawValue,walletID:id,networkID:chain.rawValue,address:owner,derivationPath:"m/44'/60'/0'/0/0")])
         }
         return (db,url)
+    }
+    private func legacyStoryClient(_ result: [String: Any]) throws -> AnkrClient {
+        try AnkrClient(apiKey: "fixture", transport: LegacyStoryTransport(data:
+            JSONSerialization.data(withJSONObject: ["jsonrpc": "2.0", "id": 1, "result": result])))
+    }
+    func testStoryTransitionKeepsSavedTokensAndReplacesBalancesWithoutDoubleCounting() async throws {
+        let (db, url) = try await fixture(chain: .story)
+        let old = try await db.beginAnkrSync(accountID: "wallet:story", stream: "balances")
+        let assets: [[String: Any]] = [true, false].map { native in
+            ["blockchain": "story_mainnet", "tokenName": "Saved", "tokenSymbol": native ? "IP" : "TKN", "tokenDecimals": native ? 18 : 6,
+             "tokenType": native ? "NATIVE" : "ERC20", "contractAddress": native ? "0x" + String(repeating: "0", count: 40) : token,
+             "holderAddress": owner, "balanceRawInteger": native ? "2000000000000000000" : "123000000", "balance": "", "balanceUsd": "", "tokenPrice": ""]
+        }
+        let page = try await legacyStoryClient(["assets": assets, "totalBalanceUsd": "", "totalCount": 2]).balances(chain: .story, address: owner)
+        try await db.commitAnkrBalances([page], ticket: old)
+        let before = try await db.snapshot(walletID: "wallet", currency: "USD")
+        XCTAssertEqual(before.holdings.first { $0.reference == "native" }?.amountAtomic, "2000000000000000000")
+        let known = try await db.knownIndexedEVMTokens(accountID: "wallet:story")
+        XCTAssertEqual(known.map(\.reference), [token], "Legacy discovered tokens must still refresh if explorer access fails")
+        let failed = try await db.beginAnkrSync(accountID: "wallet:story", stream: "balances")
+        try await db.failAnkrSync(failed, code: "rpc(-32602)")
+        let ticket = try await db.beginIndexedEVMSync(accountID: "wallet:story")
+        try await db.commitIndexedEVMInventory(inventory(chain: .story, complete: false), ticket: ticket, catalog: .empty(.story))
+        let reopened = try await OathDatabase.open(at: url)
+        let snapshot = try await reopened.snapshot(walletID: "wallet", currency: "USD")
+        XCTAssertEqual(snapshot.holdings.filter { $0.reference == "native" }.count, 1)
+        XCTAssertEqual(snapshot.holdings.first { $0.reference == "native" }?.amountAtomic, "1000000000000000000")
+        XCTAssertEqual(snapshot.holdings.first { $0.reference == token }?.amountAtomic, "9007199254740993")
+        let balance = try await reopened.balance(accountID: "wallet:story", assetID: "story:native")
+        XCTAssertEqual(balance?.amountAtomic, "1000000000000000000", "Send preparation must use the current balance")
+        XCTAssertTrue(snapshot.accountSync.isEmpty, "Retired Advanced API failures must not remain the active sync status")
+        let legacy = try await reopened.ankrResponsePages(accountID: "wallet:story", stream: "balances")
+        XCTAssertEqual(legacy.count, 1, "Keep archived provider evidence")
+        let second = try await reopened.snapshot(walletID: "second", currency: "USD")
+        XCTAssertNil(second.holdings.first?.amountAtomic)
+        let partial = try await reopened.pool.read { try String.fetchOne($0, sql: "SELECT failure FROM indexedEVMSync WHERE accountID='wallet:story'") }
+        XCTAssertEqual(partial, "incompleteInventory")
+    }
+    func testStoryHistoryReplayKeepsLegacyNativeAndLogIdentities() async throws {
+        let (db, url) = try await fixture(chain: .story)
+        let hash = "0x" + String(repeating: "b", count: 64)
+        let time = Int(Date().timeIntervalSince1970) - 10
+        let tx: [String: Any] = ["blockchain": "story_mainnet", "hash": hash, "from": other, "to": owner, "value": "123",
+            "blockNumber": "100", "timestamp": String(time), "status": "0x1"]
+        let oldTx = try await db.beginAnkrSync(accountID: "wallet:story", stream: "transactions")
+        let txPage = try await legacyStoryClient(["transactions": [tx]]).transactions(chain: .story, address: owner)
+        try await db.commitAnkrTransactions(txPage, ticket: oldTx, cursor: nil)
+        let transfer: [String: Any] = ["blockchain": "story_mainnet", "transactionHash": hash, "fromAddress": other, "toAddress": owner,
+            "contractAddress": token, "value": "0.000023", "valueRawInteger": "23", "tokenName": "Token", "tokenSymbol": "TKN",
+            "tokenDecimals": 6, "blockHeight": 100, "timestamp": time, "logIndex": 7]
+        let oldTransfer = try await db.beginAnkrSync(accountID: "wallet:story", stream: "transfers")
+        let transferPage = try await legacyStoryClient(["transfers": [transfer]]).transfers(chain: .story, address: owner)
+        try await db.commitAnkrTransfers(transferPage, ticket: oldTransfer, cursor: nil)
+        let oldIDs = try await db.pool.read { try String.fetchAll($0, sql: "SELECT id FROM activity WHERE accountID='wallet:story' ORDER BY id") }
+        XCTAssertEqual(oldIDs.count, 2)
+        let ticket = try await db.beginIndexedEVMSync(accountID: "wallet:story")
+        try await db.commitIndexedEVMInventory(inventory(chain: .story), ticket: ticket, catalog: .init(chain: .story, ids: [token: "fixture"]))
+        let work = try await db.indexedEVMHistoryWork(ticket)
+        for stream in IndexedEVMChain.story.historyStreams {
+            let cursor = try XCTUnwrap(work.first { $0.stream == stream.rawValue && $0.lane == "recent" })
+            var row: [String: Any] = ["block_number": 100, "timestamp": Date(timeIntervalSince1970: Double(time)).ISO8601Format(),
+                "from": ["hash": other], "to": ["hash": owner]]
+            switch stream {
+            case .transactions: row.merge(["hash": hash, "status": "ok", "value": "123"]) { _, new in new }
+            case .transfers: row.merge(["transaction_hash": hash, "log_index": 7,
+                "token": ["type": "ERC-20", "address_hash": token, "name": "Token", "symbol": "TKN", "decimals": "6"],
+                "total": ["decimals": "6", "value": "23"]]) { _, new in new }
+            case .internalTransactions: row.merge(["transaction_hash": hash, "index": 7, "value": "456", "success": true, "type": "call"]) { _, new in new }
+            }
+            let page = try IndexedEVMClient.decodeHistory(JSONSerialization.data(withJSONObject: ["items": [row], "next_page_params": NSNull()]),
+                chain: .story, owner: owner, stream: stream, from: cursor.startTime, through: cursor.endTime)
+            try await db.commitIndexedEVMPage(page, cursor: cursor, ticket: ticket)
+        }
+        let reopened = try await OathDatabase.open(at: url)
+        let ids = try await reopened.pool.read { try String.fetchAll($0, sql: "SELECT id FROM activity WHERE accountID='wallet:story' ORDER BY id") }
+        XCTAssertEqual(ids.count, 3, "Replay updates the two old activities and adds only the newly supported internal transfer")
+        XCTAssertTrue(Set(oldIDs).isSubset(of: Set(ids)))
+        let details = try await reopened.transactionDetails(accountID: "wallet:story", transactionID: "story:" + hash)
+        XCTAssertEqual(details?.confirmations, 1)
     }
     func testIoTeXPersistencePortfolioHistoryAndWalletIsolation() async throws {
         let (db, url) = try await fixture(chain: .iotex)
@@ -191,11 +275,11 @@ import GRDB
         let legacyComplete = try await reopened.pool.read { try Bool.fetchOne($0, sql: "SELECT complete FROM indexedEVMHistoryCursors WHERE accountID='wallet:monad' AND stream='internal-transactions'") }
         XCTAssertEqual(legacyComplete, false, "Unsupported history must not be falsely marked complete")
     }
-    private func inventory(amount:String? = "9007199254740993", complete:Bool = true, block:Int = 100) throws -> IndexedEVMInventory {
+    private func inventory(chain: IndexedEVMChain = .unichain, amount:String? = "9007199254740993", complete:Bool = true, block:Int = 100) throws -> IndexedEVMInventory {
         func holding(_ reference:String,_ units:String?,_ decimals:Int)->[String:Any] {
             ["token":["reference":reference,"name":reference == "native" ? "ETH":"Token","symbol":"TKN","decimals":decimals],"amount":units as Any? ?? NSNull()]
         }
-        let data = try JSONSerialization.data(withJSONObject:["chain":"unichain","owner":owner,"block":block,"blockHash":"0x"+String(repeating:"a",count:64),
+        let data = try JSONSerialization.data(withJSONObject:["chain":chain.rawValue,"owner":owner,"block":block,"blockHash":"0x"+String(repeating:"a",count:64),
             "observedAt":Date().timeIntervalSinceReferenceDate,"holdings":[holding("native","1000000000000000000",18),holding(token,amount,6)],"complete":complete,"raw":Data("{\"index\":[]}".utf8).base64EncodedString()])
         return try JSONDecoder().decode(IndexedEVMInventory.self,from:data)
     }
@@ -395,7 +479,7 @@ private actor IndexedSnapshotRecoveryTransport: AnkrTransport {
         if request.url?.host == "dev.iotexscan.io" { body = ["status":"1", "result":[Any]()] }
         else if request.url?.host == "chainscan.0g.ai" { body = ["status":"1", "result":["list":[], "total":0]] }
         else if request.url?.host == "api-v2.seistream.app" { body = ["items":[], "pagination":["hasMore":false]] }
-        else if ["unichain.blockscout.com", "celo.blockscout.com", "scan-api.chiliz.com", "filecoin.blockscout.com"].contains(request.url?.host ?? "") {
+        else if ["unichain.blockscout.com", "celo.blockscout.com", "scan-api.chiliz.com", "filecoin.blockscout.com", "www.storyscan.io"].contains(request.url?.host ?? "") {
             body = ["items":[], "next_page_params":NSNull()]
         } else if request.url?.host == "api.coingecko.com" {
             body = [chain.nativeCoinID:["usd":1,"last_updated_at":Date().timeIntervalSince1970]]
@@ -406,7 +490,7 @@ private actor IndexedSnapshotRecoveryTransport: AnkrTransport {
         } else if request.url?.host == "api.geckoterminal.com" { body = ["data": [Any]()] }
         else if request.url?.host == "api.dexscreener.com" { body = [Any]() }
         else {
-            let fallbackHost = chain == .iotex ? "babel-api.mainnet.iotex.io" : chain == .zerog ? "evmrpc.0g.ai" : chain == .sei ? "evm-rpc.sei-apis.com" : chain == .filecoin ? "api.node.glif.io" : chain == .chiliz ? "chiliz-rpc.publicnode.com" : chain == .celo ? "forno.celo.org" : chain.rawValue + "-mainnet.g.alchemy.com"
+            let fallbackHost = chain == .story ? "mainnet.storyrpc.io" : chain == .iotex ? "babel-api.mainnet.iotex.io" : chain == .zerog ? "evmrpc.0g.ai" : chain == .sei ? "evm-rpc.sei-apis.com" : chain == .filecoin ? "api.node.glif.io" : chain == .chiliz ? "chiliz-rpc.publicnode.com" : chain == .celo ? "forno.celo.org" : chain.rawValue + "-mainnet.g.alchemy.com"
             // IoTeX now reads pinned balances from its official archive.
             // The success fixture supplies that snapshot; the failure fixture
             // below still fails both the head provider and archive state reads.

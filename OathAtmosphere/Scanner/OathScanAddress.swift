@@ -15,7 +15,7 @@ enum OathScanAddress {
     /// Infer networks for an unqualified scan, separately from validating an
     /// address on a network explicitly selected by a payment URI.
     static func networks(for value: String) -> [OathImportChain] {
-        let matches = OathImportChain.allCases.filter { decode(value, chain: $0) != nil }
+        let matches = OathImportChain.enabledCases.filter { decode(value, chain: $0) != nil }
         guard matches.count > 1, matches.contains(.near) else { return matches }
 
         // NEAR's named-account grammar accepts almost any lowercase identifier,
@@ -36,7 +36,7 @@ enum OathScanAddress {
     }
 
     static func decode(_ value: String, chain: OathImportChain) -> Recipient? {
-        guard !value.isEmpty, value.utf8.count <= 256,
+        guard chain.isEnabled, !value.isEmpty, value.utf8.count <= 256,
               value.utf8.allSatisfy({ (33...126).contains($0) }) else { return nil }
         if chain == .iotex, !value.hasPrefix("0x") {
             guard let address = try? IoTeXIdentity.ethereum(value) else { return nil }

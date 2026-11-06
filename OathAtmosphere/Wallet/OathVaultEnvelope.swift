@@ -298,7 +298,7 @@ struct OathVaultEnvelope: Codable, Sendable {
     }
 
     static func seal(_ secret: OathWalletSecret, key: SymmetricKey, salt: Data, iterations: UInt32) throws -> Self {
-        if secret.isLocalMnemonic || secret.isMultisig || secret.legacy != nil || secret.passphrase != nil || secret.privateKey?.requiresBitcoinV2 == true || secret.privateKey?.requiresDogecoinV2 == true || secret.privateKey?.requiresLitecoinV2 == true || secret.privateKey?.requiresBitcoinCashV2 == true {
+        if secret.isLocalMnemonic || secret.isMultisig || secret.legacy != nil || secret.restoration?.legacyPassphrase == true || secret.passphrase != nil || secret.privateKey?.requiresBitcoinV2 == true || secret.privateKey?.requiresDogecoinV2 == true || secret.privateKey?.requiresLitecoinV2 == true || secret.privateKey?.requiresBitcoinCashV2 == true {
             return try seal(OathVaultContents(wallets: [secret]), rootID: secret.id,
                             key: key, salt: salt, iterations: iterations)
         }

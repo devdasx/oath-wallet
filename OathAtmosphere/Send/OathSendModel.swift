@@ -90,7 +90,7 @@ final class OathSendModel {
     var supportsSuiSend: Bool { chain == .sui }
     var supportsTonSend: Bool { chain == .ton }
     var supportsSolanaSend: Bool { chain == .solana }
-    var supportsEVMSend: Bool { chain.flatMap { EVMSendNetwork(rawValue:$0.rawValue) }?.isTestnet == false && (chain != .arc || snapshot?.wallet.kind == "evmMultisig") }
+    var supportsEVMSend: Bool { chain?.isEnabled == true && chain.flatMap { EVMSendNetwork(rawValue:$0.rawValue) }?.isTestnet == false && (chain != .arc || snapshot?.wallet.kind == "evmMultisig") }
     var supportsArcSend: Bool { chain == .arc && !supportsEVMSend }
     var supportsThorchainSend: Bool { chain == .thorchain }
     var supportsAptosSend: Bool { chain == .aptos }

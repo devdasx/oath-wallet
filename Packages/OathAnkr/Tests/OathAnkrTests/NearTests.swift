@@ -1,6 +1,12 @@
 import Foundation
 import XCTest
+import OathDiagnostics
 @testable import OathAnkr
+
+private actor NearIndexedBalanceReports: DiagnosticTransport {
+    var events: [DiagnosticEvent] = []
+    func upload(_ events: [DiagnosticEvent]) async throws { self.events += events }
+}
 
 private actor NearFixtureTransport:AnkrTransport {
     let handler:@Sendable (URLRequest) throws -> NearJSON
@@ -57,6 +63,48 @@ private actor NearAsyncTransport:AnkrTransport {
         let count = await t.count("ft_metadata"); _ = try await client.token("wrap.near",block:block)
         let after = await t.count("ft_metadata"); XCTAssertEqual(count,after)
     }
+    func testUnavailableIndexedBalanceUsesRPCWithoutFalseFailure() async throws {
+        guard ProcessInfo.processInfo.environment["OATH_NEAR_INDEX_BALANCE_REPORTS"] == "1" else { throw XCTSkip("Isolated diagnostics outbox") }
+        let reports = NearIndexedBalanceReports()
+        let operationID = UUID()
+        let file = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: file) }
+        OathDiagnostics.configure(file: file, transport: reports)
+        for indexed: NearJSON in [.null, .string("100"), .string(""), .string("invalid")] {
+            let transport = NearFixtureTransport { request in
+                if request.url?.host == "api.fastnear.com" {
+                    return .object(["account_id": .string("root.near"), "tokens": .array([
+                        .object(["contract_id": .string("wrap.near"), "balance": indexed])])])
+                }
+                let params = try JSONDecoder().decode(NearJSON.self, from: XCTUnwrap(request.httpBody))["params"]
+                if params["request_type"].string == "view_account" {
+                    return Self.result(.object(["block_hash": .string(Self.blockHash), "block_height": .number("123"),
+                        "amount": .string("10"), "locked": .string("0"), "storage_usage": .number("0")]))
+                }
+                if params["method_name"].string == "ft_metadata" {
+                    return try Self.callResult(.object(["spec": .string("ft-1.0.0"), "name": .string("Wrapped NEAR"), "symbol": .string("wNEAR"), "decimals": .number("24")]))
+                }
+                return try Self.callResult(.string("123"))
+            }
+            let inventory = try await OathDiagnostics.$operationID.withValue(operationID) {
+                try await NearClient(apiKey: "fixture", transport: transport).inventory(owner: "root.near", at: block)
+            }
+            let holding = try XCTUnwrap(inventory.holdings.first { $0.reference == "wrap.near" })
+            XCTAssertEqual(holding.amount, "123", "Only the pinned contract balance determines the holding")
+            XCTAssertEqual(holding.indexedAmount, indexed == .string("100") ? "100" : nil)
+        }
+        for _ in 0..<100 {
+            await OathDiagnostics.flush()
+            if await reports.events.filter({ $0.operationID == operationID }).count >= 2 { break }
+            try await Task.sleep(for: .milliseconds(10))
+        }
+        try await Task.sleep(for: .milliseconds(100))
+        await OathDiagnostics.flush()
+        let events = await reports.events.filter { $0.operationID == operationID }
+        XCTAssertEqual(events.count, 2, "Only malformed non-null index balances are failures")
+        XCTAssertTrue(events.allSatisfy { $0.operation == "decode_indexed_balance" && $0.error.message == "malformed" && $0.privacyFiltered })
+    }
+
     func testMissingAccountIsZeroButProviderFailuresAreNot() async throws {
         for missing in [true,false] {
             let t = NearFixtureTransport { request in
@@ -126,6 +174,67 @@ private actor NearAsyncTransport:AnkrTransport {
         let page = try await NearClient(apiKey:"test",transport:t).history(owner:"root.near",stream:"transactions")
         XCTAssertEqual(page.executions.count,5); XCTAssertTrue(page.executions.allSatisfy{$0.fee != nil && $0.fee != "0"})
         XCTAssertTrue(page.executions.allSatisfy{$0.raw.count>1000})
+    }
+    func testTransactionDetailVersionsKeepCompleteReceiptsWithoutDoubleCountingFees() async throws {
+        let index = try JSONDecoder().decode(NearJSON.self, from: fixture("tx"))
+        let details = try JSONDecoder().decode(NearJSON.self, from: fixture("tx-details"))
+        let rows = try XCTUnwrap(details["transactions"].array)
+        guard case .object(var partial) = rows[0] else { return XCTFail("Fixture object") }
+        partial["receipts"] = .array(Array(try XCTUnwrap(rows[0]["receipts"].array).prefix(1)))
+        partial["data_receipts"] = .array([])
+        let baseline = try await NearClient(apiKey: "fixture", transport: NearFixtureTransport {
+            $0.url?.path == "/v0/account" ? index : details
+        }).history(owner: "root.near", stream: "transactions")
+        for versions in [[NearJSON.object(partial), rows[0]], [rows[0], .object(partial)], [rows[0], rows[0]]] {
+            let returned = NearJSON.object(["transactions": .array(versions + rows.dropFirst())])
+            let page = try await NearClient(apiKey: "fixture", transport: NearFixtureTransport {
+                $0.url?.path == "/v0/account" ? index : returned
+            }).history(owner: "root.near", stream: "transactions")
+            XCTAssertEqual(page.executions.map(\.hash), baseline.executions.map(\.hash))
+            XCTAssertEqual(page.executions.map(\.fee), baseline.executions.map(\.fee))
+            let matched = try XCTUnwrap(page.executions.first { $0.hash == rows[0]["transaction"]["hash"].string })
+            XCTAssertTrue(try JSONDecoder().decode(NearJSON.self, from: matched.raw) == rows[0], "Retain the complete original version")
+        }
+    }
+    func testTransactionDetailVersionsRejectConflictsAndIncompleteBatches() async throws {
+        let index = try JSONDecoder().decode(NearJSON.self, from: fixture("tx"))
+        let details = try JSONDecoder().decode(NearJSON.self, from: fixture("tx-details"))
+        let rows = try XCTUnwrap(details["transactions"].array)
+        guard case .object(let original) = rows[0], let receipts = original["receipts"]?.array,
+              receipts.count > 1 else { return XCTFail("Multiple receipt fixture") }
+        var wrongTransaction = original, wrongOutcome = original, wrongReceipt = original, duplicateReceipt = original
+        wrongTransaction["transaction"] = .object(["hash": rows[0]["transaction"]["hash"], "signer_id": .string("wrong.near")])
+        wrongOutcome["execution_outcome"] = .null
+        guard case .object(var conflictingReceipt) = receipts[0] else { return XCTFail("Receipt object") }
+        conflictingReceipt["execution_outcome"] = .null
+        wrongReceipt["receipts"] = .array([.object(conflictingReceipt)] + receipts.dropFirst())
+        duplicateReceipt["receipts"] = .array(receipts + [receipts[0]])
+        var disjointA = original, disjointB = original
+        disjointA["receipts"] = .array([receipts[0]]); disjointB["receipts"] = .array([receipts[1]])
+        var wrongData = original, unknownHash = original, divergentA = original, divergentB = original
+        let dataReceipts = try XCTUnwrap(original["data_receipts"]?.array)
+        guard case .object(var dataReceipt) = try XCTUnwrap(dataReceipts.first),
+              case .object(var transaction) = original["transaction"] else { return XCTFail("Data receipt and transaction fixture") }
+        dataReceipt["receiver_id"] = .string("wrong.near")
+        wrongData["data_receipts"] = .array([.object(dataReceipt)] + dataReceipts.dropFirst())
+        transaction["hash"] = .string(String(repeating: "1", count: 32))
+        unknownHash["transaction"] = .object(transaction)
+        divergentA["receipts"] = .array(Array(receipts.prefix(1)))
+        divergentB["data_receipts"] = .array([])
+        let badBatches: [[NearJSON]] = [wrongTransaction, wrongOutcome, wrongReceipt, duplicateReceipt].map {
+            rows + [.object($0)]
+        } + [[.object(disjointA), .object(disjointB)] + rows.dropFirst(), Array(rows.dropFirst()),
+             rows + [.object(wrongData)], rows + [.object(unknownHash)],
+             [.object(divergentA), .object(divergentB)] + rows.dropFirst()]
+        for batch in badBatches {
+            let returned = NearJSON.object(["transactions": .array(batch)])
+            do {
+                _ = try await NearClient(apiKey: "fixture", transport: NearFixtureTransport {
+                    $0.url?.path == "/v0/account" ? index : returned
+                }).history(owner: "root.near", stream: "transactions")
+                XCTFail("Conflicting or missing evidence must remain rejected")
+            } catch { XCTAssertEqual(error as? NearError, .malformed) }
+        }
     }
     func testMultipleDetailBatchesAreCompleteAndReorderedByHash() async throws {
         let hashes = Array("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz".prefix(41)).map { String(repeating:"1",count:31)+String($0) }

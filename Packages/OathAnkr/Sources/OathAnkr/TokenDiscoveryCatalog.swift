@@ -21,7 +21,7 @@ public enum TokenDiscoveryNetworks {
     /// token contracts. BCH token-bearing UTXOs are not spendable token assets.
     public static let nativeOnly: Set<String> = ["bitcoin", "bitcoincash", "dogecoin", "litecoin"]
     public static let platforms: [String: String] = [
-        "ethereum": "ethereum", "arbitrum": "arbitrum-one", "arc": "arc",
+        "cronos": "cronos", "ethereum": "ethereum", "arbitrum": "arbitrum-one", "arc": "arc",
         "avalanche": "avalanche", "base": "base", "bnb": "binance-smart-chain",
         "fantom": "fantom", "flare": "flare-network", "gnosis": "xdai", "linea": "linea",
         "optimism": "optimistic-ethereum", "polygon": "polygon-pos", "monad": "monad",

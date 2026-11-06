@@ -25,9 +25,10 @@ public struct PermissionDiscovery: Sendable {
     public func evm(network:EVMSendNetwork,owner:String,client:EVMSendClient) async throws -> PermissionScan {
         let owner=try EVMSendIdentity.address(owner)
         guard client.network==network else { throw PermissionError.changed }
-        guard let alias=AnkrChain(networkID:network.rawValue)?.rawValue else {
+        guard let chain=AnkrChain(networkID:network.rawValue),chain.supportsAdvancedAPI else {
             return try await recentEVM(network:network,owner:owner,client:client)
         }
+        let alias=chain.rawValue
         var candidates=[String:WalletPermission](),cursor:String?,seen=Set<String>(),complete=false
         for _ in 0..<20 {
             try Task.checkCancellation()

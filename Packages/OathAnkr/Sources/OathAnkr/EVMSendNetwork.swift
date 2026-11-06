@@ -6,13 +6,16 @@ public enum EVMSendNetwork: String, Codable, CaseIterable, Sendable {
     case linea, optimism, polygon, chiliz, celo, monad, unichain, hyperevm, robinhood, scroll, taiko, telos, xlayer
     case filecoin, filecoinCalibration, sei, seiTestnet, zerog, zerogGalileo, iotex, iotexTestnet
     case arc, arbitrumSepolia, ethereumSepolia, celoSepolia, chilizSpicy
-    public var isTestnet: Bool { self == .arbitrumSepolia || self == .ethereumSepolia || self == .celoSepolia || self == .chilizSpicy || self == .filecoinCalibration || self == .seiTestnet || self == .zerogGalileo || self == .iotexTestnet }
+    case cronos, cronosTestnet
+    public var isTestnet: Bool { self == .cronosTestnet || self == .arbitrumSepolia || self == .ethereumSepolia || self == .celoSepolia || self == .chilizSpicy || self == .filecoinCalibration || self == .seiTestnet || self == .zerogGalileo || self == .iotexTestnet }
+    var isCronos: Bool { self == .cronos || self == .cronosTestnet }
     var isIoTeX: Bool { self == .iotex || self == .iotexTestnet }
     var isFilecoin: Bool { self == .filecoin || self == .filecoinCalibration }
     var isZeroG: Bool { self == .zerog || self == .zerogGalileo }
     var isSei: Bool { self == .sei || self == .seiTestnet }
     public var chainID: UInt64 {
         switch self {
+        case .cronos: 25; case .cronosTestnet: 338
         case .iotex: 4689; case .iotexTestnet: 4690
         case .zerog: 16661; case .zerogGalileo: 16602
         case .sei: 1329; case .seiTestnet: 1328
@@ -27,6 +30,7 @@ public enum EVMSendNetwork: String, Codable, CaseIterable, Sendable {
     }
     public var symbol: String {
         switch self {
+        case .cronos: "CRO"; case .cronosTestnet: "TCRO"
         case .iotex, .iotexTestnet: "IOTX"
         case .zerog, .zerogGalileo: "0G"
         case .filecoin, .filecoinCalibration: "FIL"

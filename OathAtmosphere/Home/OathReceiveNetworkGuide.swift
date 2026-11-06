@@ -32,7 +32,7 @@ struct OathReceiveNetworkGuide: Sendable {
         case .ton: .receiveJettonExplanation
         case .tron: .receiveTronExplanation
         case .arbitrum, .arc, .avalanche, .base, .bnb, .ethereum, .fantom, .flare, .somnia, .story, .gnosis,
-             .linea, .optimism, .polygon, .chiliz, .filecoin, .sei, .zerog, .iotex, .celo, .monad, .unichain, .hyperevm, .robinhood, .scroll, .taiko, .telos, .xlayer: .receiveEVMExplanation
+             .linea, .optimism, .polygon, .chiliz, .filecoin, .sei, .zerog, .iotex, .celo, .cronos, .monad, .unichain, .hyperevm, .robinhood, .scroll, .taiko, .telos, .xlayer: .receiveEVMExplanation
         }
     }
 

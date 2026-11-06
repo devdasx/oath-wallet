@@ -68,7 +68,7 @@ final class RateLimitedArtworkMetadataTests: XCTestCase, @unchecked Sendable {
             try await Task.sleep(for: .milliseconds(10))
         }
         let events = await capture.events(for: operationID)
-        XCTAssertEqual(events.filter { $0.operation == "market_load" }.count, 1, "Retain the original provider failure")
+        XCTAssertTrue(events.isEmpty, "Artwork recovery preserves the public availability filter")
         XCTAssertFalse(events.contains { $0.operation == "token_metadata" }, "Recovered artwork and cached backoff must not produce repeated failures")
     }
     func testUnlistedArtworkIsNotConfusedWithCatalogFailureOrAnotherToken() async throws {
@@ -92,7 +92,7 @@ final class RateLimitedArtworkMetadataTests: XCTestCase, @unchecked Sendable {
                 try await Task.sleep(for: .milliseconds(10))
             }
             let events = await capture.events(for: id)
-            XCTAssertEqual(events.filter { $0.operation == "market_load" }.count, 1)
+            XCTAssertTrue(events.isEmpty, "Missing optional artwork and throttling are not malformed data")
             XCTAssertFalse(events.contains { $0.operation == "token_metadata" })
         }
         let broken = PublishedArtworkFeed(Data("malformed".utf8))
@@ -106,7 +106,7 @@ final class RateLimitedArtworkMetadataTests: XCTestCase, @unchecked Sendable {
         }
         let errors = await capture.events(for: id)
         XCTAssertTrue(errors.contains { $0.operation == "fallback_catalog" })
-        XCTAssertTrue(errors.contains { $0.operation == "token_metadata" }, "A failed catalog is not proof of missing optional artwork")
+        XCTAssertFalse(errors.contains { $0.operation == "token_metadata" }, "Do not repeat the filtered primary outage after a catalog failure")
         let report = String(decoding: try JSONEncoder().encode(errors), as: UTF8.self)
         XCTAssertFalse(report.contains(reference)); XCTAssertFalse(report.contains("https://"))
     }

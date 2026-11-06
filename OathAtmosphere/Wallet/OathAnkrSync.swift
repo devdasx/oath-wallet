@@ -20,7 +20,19 @@ actor OathAnkrSync {
     private var hyperevm: HyperEVMSynchronizer?
     private var robinhood: RobinhoodSynchronizer?
     private var solana: SolanaSynchronizer?
+    private var cronos: CronosBalanceSynchronizer?
     private var epoch = UUID()
+    func refreshCronos(walletID: String) async throws {
+        guard OathImportChain.cronos.isEnabled else { return }
+        let ticket = epoch
+        let db = try await OathDataEnvironment.shared.database()
+        guard ticket == epoch, !Task.isCancelled else { throw CancellationError() }
+        if cronos == nil {
+            cronos = try CronosBalanceSynchronizer(database: db,
+                client: OathTokenRPCConfiguration.bundled().makeEVMSendClient(network: .cronos))
+        }
+        try await cronos!.refresh(walletID: walletID)
+    }
     private func synchronizer() async throws -> AnkrSynchronizer {
         if let service { return service }
         let ticket = epoch
@@ -153,6 +165,7 @@ actor OathAnkrSync {
     }
     func cancel() async {
         epoch = UUID()
+        async let cronosResult: () = cronos?.cancel() ?? ()
         async let evm: () = service?.cancel() ?? ()
         async let sol: () = solana?.cancel() ?? ()
         async let trx: () = tron?.cancel() ?? ()
@@ -169,6 +182,7 @@ actor OathAnkrSync {
         async let hyperResult: () = hyperevm?.cancel() ?? ()
         async let arcResult: () = arc?.cancel() ?? ()
         _ = await (thorchainResult, indexedResult, hyperResult, arcResult, evm, sol, trx, gram, apt, suiResult, nearResult, xrplResult, stellarResult, robinhoodResult, polkadotResult)
+        _ = await cronosResult
     }
 }
 

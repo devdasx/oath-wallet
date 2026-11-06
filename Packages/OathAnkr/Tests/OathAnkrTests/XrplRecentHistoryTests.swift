@@ -39,6 +39,34 @@ private actor RecentXrplTransport: AnkrTransport {
 
 final class XrplRecentHistoryTests: XCTestCase, @unchecked Sendable {
     private let owner = "r9cZA1mLK5R5Am25ArfXFmqgNwjZgnfk59"
+    func testNewHistoryPageRecoversWhenRollingFloorExpiresBetweenRequests() async throws {
+        let feed = MovingXrplFloor()
+        let page = try await XrplClient(apiKey: "fixture", transport: feed).history(owner: owner)
+        XCTAssertEqual(page.upperLedger, 107981440)
+        let floors = await feed.floors
+        XCTAssertEqual(floors, [107562780,107562780,107562780,107562785])
+        let reads = await feed.rangeReads
+        XCTAssertEqual(reads, 2)
+    }
+    func testMovingFloorCannotRebaseAnExistingCursor() async throws {
+        let feed = MovingXrplFloor()
+        do {
+            _ = try await XrplClient(apiKey: "fixture", transport: feed).history(owner: owner, before: "{\"ledger\":107900000}", upperLedger: 107981435)
+            XCTFail("Pinned pagination must not be rebased")
+        } catch { XCTAssertEqual(error as? XrplError, .rpc("lgrIdxMalformed")) }
+        let reads = await feed.rangeReads
+        XCTAssertEqual(reads, 1)
+    }
+    func testFreshWindowRecoveryIsBoundedAndNeverAcceptsPersistentFailure() async throws {
+        for moves in [false,true] {
+            let feed = MovingXrplFloor(moves:moves,recovers:false)
+            do { _ = try await XrplClient(apiKey:"fixture",transport:feed).history(owner:owner); XCTFail("Rejected range became empty success") }
+            catch { XCTAssertEqual(error as? XrplError,.rpc("lgrIdxMalformed")) }
+            let reads = await feed.rangeReads, floors = await feed.floors
+            XCTAssertEqual(reads,2)
+            XCTAssertEqual(floors.count,moves ? 6:3)
+        }
+    }
     func testAnkrHistoryRequestsOnlyItsAvailableWindowAndKeepsPinnedCursor() async throws {
         let transport = RecentXrplTransport()
         let client = try XrplClient(apiKey: "fixture", transport: transport)
@@ -185,6 +213,32 @@ final class XrplRecentHistoryTests: XCTestCase, @unchecked Sendable {
             XCTAssertTrue(Set(first.transactions.map(\.hash)).isDisjoint(with:second.transactions.map(\.hash)))
         }
         print("ANKR recent XRP history verified: bounded range, validated results, unchanged key")
+    }
+}
+
+private actor MovingXrplFloor: AnkrTransport {
+    let moves: Bool, recovers: Bool
+    init(moves:Bool = true,recovers:Bool = true) { self.moves=moves; self.recovers=recovers }
+    var rangeReads = 0
+    var floors: [UInt64] = []
+    func send(_ request: URLRequest) async throws -> (Data, Int) {
+        XCTAssertEqual(request.url?.host, "rpc.ankr.com")
+        let body = try JSONDecoder().decode(XrplJSON.self, from: XCTUnwrap(request.httpBody))
+        let params = body["params"].array![0]
+        let result: XrplJSON
+        if body["method"].string == "server_info" {
+            rangeReads += 1
+            result = .object(["status":.string("success"), "info":.object([
+                "network_id":.number("0"), "complete_ledgers":.string(rangeReads == 1 || !moves ? "107562780-107981435" : "107562785-107981440")])])
+        } else {
+            floors.append(params["ledger_index_min"].integer!)
+            if recovers, params["ledger_index_min"].integer == 107562785 {
+                XCTAssertTrue(params["marker"].isNull)
+                result = .object(["status":.string("success"),"validated":.bool(true),"account":params["account"],
+                    "ledger_index_min":params["ledger_index_min"],"ledger_index_max":.number("107981440"),"transactions":.array([])])
+            } else { result = .object(["status":.string("error"),"error":.string("lgrIdxMalformed")]) }
+        }
+        return (try JSONEncoder().encode(XrplJSON.object(["result":result])),200)
     }
 }
 

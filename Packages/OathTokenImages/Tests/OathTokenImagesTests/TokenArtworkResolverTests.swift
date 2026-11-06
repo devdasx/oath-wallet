@@ -78,7 +78,8 @@ final class TokenArtworkResolverTests: XCTestCase, @unchecked Sendable {
 
     func testAllTokenNetworksRecoverMissingAndAbsentLogosAndSurviveRelaunch() async throws {
         let networks = TokenArtworkIdentity.evmNetworks.union(["solana", "tron", "ton", "aptos", "sui", "near", "xrpl", "stellar", "thorchain"])
-        XCTAssertEqual(networks.count, 37)
+        XCTAssertEqual(networks.count, 38)
+        XCTAssertTrue(networks.contains("cronos"))
         XCTAssertTrue(networks.contains("filecoin"))
         XCTAssertTrue(networks.contains("iotex"))
         for network in networks.sorted() {

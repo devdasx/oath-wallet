@@ -1,6 +1,7 @@
 # Oath Wallet public source
 
-Version 5.0.2, build 104 (Apple-approved release; Ready for Distribution confirmed 5 November 2026). Use `OathAtmosphere.xcodeproj`, scheme
+Version 5.0.3, build 105 (GitHub prerelease; no App Store upload).
+The Apple-approved release remains 5.0.2 (104). Use `OathAtmosphere.xcodeproj`, scheme
 `OathAtmosphere`, sources `OathApp/` and `OathAtmosphere/`.
 Do not change stored Keychain, container, backup, or migration identities.
 

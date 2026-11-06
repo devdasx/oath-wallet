@@ -92,6 +92,49 @@ final class ArtworkFallbackTests: XCTestCase, @unchecked Sendable {
         XCTAssertTrue(sources?.first?.hasPrefix("https://") == true)
     }
 
+    func testSeiNativeEntriesDoNotDiscardEVMArtwork() throws {
+        let native = ["factory/sei1e3gttzq5e5k49f9f5gzvrl0rltlav65xu6p9xc0aj7e84lantdjqp7cncc/isei",
+                      "sei1hrndqntlvtmx2kepr0zsfgr7nzjptcc72cr4ppk4yav58vvy7v3s4er8ed",
+                      "sei19jwyc77ccfmm5p0tq7vvxk9dwks8n88dl5fq6ymlnjp44547t53qvpyfmc"]
+        let rows = [token(contract, chain: 1329)] + native.map { token($0, chain: 1329) }
+        let decoded = try ArtworkFallbackCatalog.decode(list(rows), chainID: 1329, networkID: "sei")
+        XCTAssertEqual(decoded, [contract: logo], "Never guess an EVM identity for native entries")
+        for invalid in ["0xnot-a-contract", "unknown-native-reference"] {
+            XCTAssertThrowsError(try ArtworkFallbackCatalog.decode(
+                list(rows + [token(invalid, chain: 1329)]), chainID: 1329, networkID: "sei"))
+        }
+        XCTAssertThrowsError(try ArtworkFallbackCatalog.decode(
+            list(rows + [token(contract, chain: 1329, logo: "https://cdn.example.org/other.png")]),
+            chainID: 1329, networkID: "sei"))
+        XCTAssertThrowsError(try ArtworkFallbackCatalog.decode(
+            list([token(native[0], chain: 1)]), chainID: 1, networkID: "ethereum"))
+    }
+
+    func testLiveSeiMixedCatalogResolvesEVMArtwork() async throws {
+        guard ProcessInfo.processInfo.environment["OATH_LIVE_SEI_ARTWORK"] == "1" else {
+            throw XCTSkip("Opt-in public Sei token-list read")
+        }
+        let url = "https://tokens.coingecko.com/sei-v2/all.json"
+        let data = try await ArtworkURLTransport().data(from: URL(string: url)!)
+        let object = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        let rows = try XCTUnwrap(object["tokens"] as? [[String: Any]])
+        let expected = Set(rows.compactMap { row -> String? in
+            guard row["chainId"] as? Int == 1329, let address = row["address"] as? String,
+                  address.range(of: "^0x[0-9a-fA-F]{40}$", options: .regularExpression) != nil,
+                  let image = ArtworkSource.normalized(row["logoURI"] as? String), image.hasPrefix("https://") else { return nil }
+            return address.lowercased()
+        })
+        let decoded = try ArtworkFallbackCatalog.decode(data, chainID: 1329, networkID: "sei")
+        XCTAssertGreaterThan(expected.count, 30)
+        XCTAssertEqual(Set(decoded.keys), expected)
+        let address = try XCTUnwrap(expected.sorted().first)
+        let token = try XCTUnwrap(TokenArtworkIdentity(networkID: "sei", reference: address))
+        let catalog = ArtworkFallbackCatalog(transport: CatalogImageTransport([url: .data(data)]))
+        let sources = await catalog.sources(for: token)
+        XCTAssertEqual(sources, [try XCTUnwrap(decoded[address])])
+        print("SEI_ARTWORK_LIVE preserved \(decoded.count) exact EVM artwork identities from \(rows.count) published rows")
+    }
+
     func testReportedBNBMissingOptionalLogoDoesNotRepeatAfterRelaunch() async throws {
         let reported = "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/smartchain/assets/0x6f4A363845c9B10E69E1CEb9c69b4754209a672f/logo.png"
         XCTAssertEqual(String(ArtworkSource.key(reported).prefix(12)), "fd1b77f2e21c")

@@ -21,6 +21,7 @@ public struct IndexedEVMClient: Sendable {
     private var endpoint: URL
     private let alchemyEndpoint: URL?
     private var fallbackEndpoint: URL? {
+        if chain == .story { return URL(string: "https://mainnet.storyrpc.io") }
         if chain == .iotex { return URL(string: "https://babel-api.mainnet.iotex.io") }
         if chain == .zerog { return URL(string: "https://evmrpc.0g.ai") }
         if chain == .sei { return URL(string: "https://evm-rpc.sei-apis.com") }
@@ -119,7 +120,7 @@ public struct IndexedEVMClient: Sendable {
         }
         if chain == .sei { return try await seiIndex(path: path, params: params) }
         guard chain != .monad else { throw AnkrError.configurationMissing }
-        let host = chain == .filecoin ? "filecoin.blockscout.com" : chain == .chiliz ? "scan-api.chiliz.com" : chain == .celo ? "celo.blockscout.com" : "unichain.blockscout.com"
+        let host = chain == .story ? "www.storyscan.io" : chain == .filecoin ? "filecoin.blockscout.com" : chain == .chiliz ? "scan-api.chiliz.com" : chain == .celo ? "celo.blockscout.com" : "unichain.blockscout.com"
         var url = URLComponents(string: "https://" + host + "/api/v2/" + path)!
         url.queryItems = try params.sorted { $0.key < $1.key }.map { key, value in
             let scalar: String?
@@ -769,7 +770,7 @@ public struct IndexedEVMClient: Sendable {
     /// Work remains bounded by the index page's maximum of 50 transactions.
     private func verifiedBlockReceipt(hash: String, height: Int64) async throws -> (SolanaJSON, Data) {
         let number = SolanaJSON.string("0x" + String(height, radix: 16))
-        let (replies, raw) = try await rpc([
+        let (replies, _) = try await rpc([
             ("eth_chainId", []), ("eth_getBlockByNumber", [number, .bool(false)]),
             ("eth_getBlockReceipts", [number])
         ])
@@ -785,7 +786,15 @@ public struct IndexedEVMClient: Sendable {
         guard receipt["blockHash"].string?.lowercased() == blockHash.lowercased(),
               try IndexedEVMIdentity.height(receipt["blockNumber"]) == height,
               position < transactions.count, transactions[Int(position)].string?.lowercased() == hash else { throw AnkrError.invalidResponse }
-        return (receipt, raw)
+        // The matching receipt is checked against the block above. Unrelated receipts are not
+        // evidence for this wallet's transaction. Retaining all of them for
+        // every recovered hash exhausted the bounded history budget on busy
+        // Celo blocks. Keep the canonical block and exact matched receipt;
+        // the existing response and retained-evidence limits still apply.
+        let evidence = try JSONEncoder().encode(SolanaJSON.object([
+            "chain": try Self.result(replies[0]), "block": block, "receipt": receipt
+        ]))
+        return (receipt, evidence)
     }
     static func isSyntheticNativeTransfer(_ row: SolanaJSON, chain: IndexedEVMChain, stream: IndexedEVMHistoryStream) -> Bool {
         chain == .celo && stream == .transfers &&
@@ -814,6 +823,13 @@ public struct IndexedEVMClient: Sendable {
         if chain == .monad { return try await monadHistory(owner: owner, stream: stream, cursor: cursor) }
         var params = try Self.cursor(cursor)
         if stream == .transfers { params["type"] = .string("ERC-20") }
+        // Busy Celo transactions can each carry hundreds of KB of receipt
+        // logs. Fifty indexed transfers can overflow the existing archive
+        // evidence budget when their hash lookups require block recovery.
+        // Blockscout supports items_count independently of its position keys;
+        // use smaller pages, including when resuming an older larger cursor.
+        // Keep every returned row and the provider's exact continuation.
+        if chain == .celo, stream == .transfers { params["items_count"] = .number("10") }
         // Nested zero-value calls do not change holdings. Top-level contract
         // interactions and failed transactions stay in the transactions stream.
         // Filecoin's unfiltered trace index can time out on dormant accounts.

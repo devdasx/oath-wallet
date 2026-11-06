@@ -48,6 +48,19 @@ import OathDatabase
         _ = nearLimit.reconcilePassphraseFamilies()
         check(nearLimit.wallets.last?.passphraseIndex == Int.max, "An existing family can claim the final number")
 
+        // Restored legacy backups can carry an empty normalized passphrase.
+        // Their format marker still needs v10, even when passphrase is nil.
+        var restoredLegacy = first
+        restoredLegacy.restoration = .init(name: "Synthetic restore", colorHex: nil, accounts: [], legacyPassphrase: true)
+        let sealedRestore = try OathVaultEnvelope.seal(restoredLegacy, key: existingKey,
+            salt: legacy.salt, iterations: legacy.iterations)
+        check(sealedRestore.version >= 10, "Restored legacy passphrase semantics select their compatible envelope version")
+        let openedRestore = try sealedRestore.openContents(using: existingKey)
+        check(openedRestore.wallets.first?.restoration?.legacyPassphrase == true,
+              "Legacy restoration metadata survives authenticated local storage")
+        check(try openedRestore.wallets[0].bip39Passphrase == "", "An empty legacy passphrase stays empty")
+        check(openedRestore.wallets[0].mnemonic == first.mnemonic, "Restoring legacy semantics preserves the original words")
+
         let decodedLegacy = try JSONDecoder().decode(OathVaultEnvelope.self, from: legacyBytes)
         check(decodedLegacy.version == 1 && decodedLegacy.walletIDs == nil, "Legacy format stays readable")
         var contents = try decodedLegacy.openContents(using: existingKey)

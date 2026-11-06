@@ -132,7 +132,7 @@ extension OathDatabase {
             case "arc": "arcSync"
             case "robinhood": "robinhoodSync"
             case "hyperevm": "hyperevmSync"
-            case "chiliz", "filecoin", "sei", "zerog", "iotex", "celo", "unichain", "monad": "indexedEVMSync"
+            case "chiliz", "filecoin", "sei", "zerog", "iotex", "celo", "unichain", "monad", "story": "indexedEVMSync"
             default: nil
             }
             if let table {

@@ -87,14 +87,7 @@ private actor CancelledProviderReportsRateLimit: MarketTransport {
             if recovery.contains(where: { $0.operation == "information_fallback" }) { break }
             try await Task.sleep(for: .milliseconds(10))
         }
-        let fallback = try XCTUnwrap(recovery.first { $0.operation == "information_fallback" })
-        XCTAssertEqual(fallback.component, "prices")
-        XCTAssertEqual(fallback.error.message, "rateLimited")
-        XCTAssertEqual(fallback.context, ["chain": "thorchain", "source": "CoinGecko"])
-        let encoded = String(decoding: try JSONEncoder().encode(recovery), as: UTF8.self)
-        for excluded in ["https://", "rune-thorchain", "217810156", "415000571", "liquidity network"] {
-            XCTAssertFalse(encoded.contains(excluded))
-        }
+        XCTAssertTrue(recovery.isEmpty, "Successful recovery must not bypass availability filtering")
 
         struct ThrottledInformation: MarketTransport {
             func data(from url: URL) async throws -> Data { throw MarketDataError.rateLimited }
@@ -113,8 +106,7 @@ private actor CancelledProviderReportsRateLimit: MarketTransport {
         }
         try await Task.sleep(for: .milliseconds(100))
         let throttledEvents = await capture.events(for: throttledID)
-        XCTAssertEqual(throttledEvents.count, 1, "The original failure reports once; reading its cached backoff is not a new failure")
-        XCTAssertEqual(throttledEvents.first?.error.message, "rateLimited")
+        XCTAssertTrue(throttledEvents.isEmpty, "Throttling remains filtered during repeated reads")
 
         let chartID = UUID()
         let doge = MarketAsset(id: "dogecoin:native", networkID: "dogecoin", reference: "native", decimals: 8)
@@ -128,9 +120,7 @@ private actor CancelledProviderReportsRateLimit: MarketTransport {
         }
         try await Task.sleep(for: .milliseconds(100))
         let chartEvents = await capture.events(for: chartID)
-        XCTAssertEqual(chartEvents.count, 1, "Recovery retains the original timeout without duplicate fallback reports")
-        XCTAssertEqual(chartEvents.first?.error.domain, NSURLErrorDomain)
-        XCTAssertEqual(chartEvents.first?.error.code, URLError.timedOut.rawValue)
+        XCTAssertTrue(chartEvents.isEmpty, "Recovery must not reclassify a filtered timeout")
 
         let interruptedID = UUID()
         do {

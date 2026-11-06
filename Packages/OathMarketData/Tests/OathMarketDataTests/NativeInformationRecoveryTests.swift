@@ -198,7 +198,7 @@ private actor LiveNativeInformationFeed: MarketTransport {
         }
     }
 
-    func testExtendedNativeInformationRetainsOriginalFailureAndChainCorrelation() async throws {
+    func testExtendedNativeInformationRecoversWithoutAvailabilityReports() async throws {
         let reports = MarketTestDiagnostics.shared
         for (network, decimals) in [("sui", 9), ("aptos", 8), ("xlayer", 18)] {
             let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
@@ -215,9 +215,7 @@ private actor LiveNativeInformationFeed: MarketTransport {
                 try await Task.sleep(for: .milliseconds(10))
             }
             let events = await reports.events(for: id)
-            XCTAssertEqual(events.count, 2)
-            XCTAssertEqual(Set(events.map(\.operation)), ["market_load", "information_fallback"])
-            XCTAssertTrue(events.allSatisfy { $0.error.domain == NSURLErrorDomain && $0.error.code == -1001 && $0.context["chain"] == network && $0.privacyFiltered })
+            XCTAssertTrue(events.isEmpty, "A recovered timeout remains filtered on every supported chain")
             let encoded = String(decoding: try JSONEncoder().encode(events), as: UTF8.self)
             XCTAssertFalse(encoded.contains(asset.id))
             XCTAssertFalse(encoded.contains("https://"))

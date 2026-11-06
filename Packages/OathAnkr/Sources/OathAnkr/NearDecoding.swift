@@ -1,6 +1,31 @@
 import Foundation
 
 public enum NearDecoding {
+    /// FastNear can return successive indexed versions of one transaction.
+    /// Accept only an unmodified version that contains all the other version's
+    /// identical receipts. Never merge conflicting outcomes or add fees twice.
+    static func completeTransactionVersion(_ first: NearJSON, _ next: NearJSON) throws -> NearJSON {
+        guard case .object(var a) = first, case .object(var b) = next else { throw NearError.malformed }
+        func receipts(_ value: NearJSON?, data: Bool) throws -> [String: NearJSON] {
+            guard let rows = value?.array else { throw NearError.malformed }
+            var result: [String: NearJSON] = [:]
+            for row in rows {
+                let id = try NearIdentity.hash(data ? row["receipt_id"] : row["receipt"]["receipt_id"])
+                guard result[id] == nil else { throw NearError.malformed }
+                result[id] = row
+            }
+            return result
+        }
+        let ar = try receipts(a.removeValue(forKey: "receipts"), data: false)
+        let br = try receipts(b.removeValue(forKey: "receipts"), data: false)
+        let ad = try receipts(a.removeValue(forKey: "data_receipts"), data: true)
+        let bd = try receipts(b.removeValue(forKey: "data_receipts"), data: true)
+        guard a == b else { throw NearError.malformed }
+        if ar.allSatisfy({ br[$0.key] == $0.value }), ad.allSatisfy({ bd[$0.key] == $0.value }) { return next }
+        if br.allSatisfy({ ar[$0.key] == $0.value }), bd.allSatisfy({ ad[$0.key] == $0.value }) { return first }
+        throw NearError.malformed
+    }
+
     public static func history(_ json:NearJSON, owner:String, stream:String, raw:Data) throws -> NearHistoryPage {
         let owner = try NearIdentity.address(owner)
         guard ["transactions","transfers"].contains(stream), let rows = json[stream == "transfers" ? "transfers":"account_txs"].array else { throw NearError.malformed }

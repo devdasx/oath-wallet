@@ -6,6 +6,9 @@ public enum AnkrChain: String, CaseIterable, Codable, Sendable {
     case arbitrum, avalanche, base, bsc, eth, fantom, flare, gnosis, linea, optimism, polygon, scroll
     case somnia = "somnia_mainnet", story = "story_mainnet"
     case taiko, telos, xlayer
+    /// Story's old alias remains decodable for stored responses. ANKR removed
+    /// it from the indexed Advanced API; current Story reads use IndexedEVM.
+    public var supportsAdvancedAPI: Bool { self != .story }
     public var networkID: String {
         switch self { case .eth: "ethereum"; case .bsc: "bnb"; case .somnia: "somnia"; case .story: "story"; default: rawValue }
     }

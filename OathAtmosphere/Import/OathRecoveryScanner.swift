@@ -17,6 +17,73 @@ enum OathRecoveryScanError: Identifiable {
     }
 }
 
+/// Show the networks validated by the scanner, never the caller's selected
+/// network. Inline artwork keeps translated sentences and long lists wrapping
+/// naturally, including when the chain placeholder comes first in a language.
+private struct OathScannedAddressNetworks: View {
+    let networks: [OathImportChain]
+    @Environment(\.oathLocalizer) private var strings
+    @Environment(\.displayScale) private var displayScale
+    @Environment(\.colorScheme) private var colorScheme
+    @ScaledMetric(relativeTo: .headline) private var badgeSize: CGFloat = 22
+    @ScaledMetric(relativeTo: .headline) private var badgeBaseline: CGFloat = -4
+    @State private var badges: [String: UIImage] = [:]
+
+    private struct BadgeRequest: Equatable {
+        let networks: [String]
+        let size: CGFloat
+        let scale: CGFloat
+        let scheme: ColorScheme
+    }
+    private var badgeRequest: BadgeRequest {
+        .init(networks: networks.map(\.id), size: badgeSize, scale: displayScale, scheme: colorScheme)
+    }
+
+    private var notice: Text {
+        let markers = networks.indices.map { "{oath-scan-network-\($0)}" }
+        let template = strings.format(.scannerAddressValidFor, strings.list(markers))
+        var remaining = template, output = Text("")
+        for (network, marker) in zip(networks, markers) {
+            guard let range = remaining.range(of: marker) else { continue }
+            let prefix = Text(String(remaining[..<range.lowerBound]))
+            let name = Text(strings.invariant(network.name))
+            if let badge = badges[network.id] {
+                let icon = Text(Image(uiImage: badge).renderingMode(.original)).baselineOffset(badgeBaseline)
+                output = Text("\(output)\(prefix)\(icon) \(name)")
+            } else {
+                output = Text("\(output)\(prefix)\(name)")
+            }
+            remaining = String(remaining[range.upperBound...])
+        }
+        return Text("\(output)\(Text(remaining))")
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            notice.oathFont(.headline)
+                .accessibilityLabel(strings.format(.scannerAddressValidFor, strings.list(networks.map(\.name))))
+            if networks.count > 1 {
+                Text(strings.text(.scannerNetworkDetail)).oathFont(.body).foregroundStyle(.secondary)
+            }
+        }
+        .task(id: badgeRequest) {
+            var rendered: [String: UIImage] = [:]
+            for network in networks {
+                let renderer = ImageRenderer(content: OathNetworkLogo(asset: network.logoAsset, size: badgeSize)
+                    .environment(\.colorScheme, colorScheme))
+                renderer.scale = displayScale
+                if let image = renderer.uiImage {
+                    rendered[network.id] = image
+                } else {
+                    OathDiagnostics.record(DiagnosticFailure("scanner_network_logo_render_failed"),
+                        component: "scanner", operation: "network_logo", context: ["chain": network.id])
+                }
+            }
+            badges = rendered
+        }
+    }
+}
+
 private struct OathScanSessionKey: EnvironmentKey { static let defaultValue: OathWalletSession? = nil }
 extension EnvironmentValues {
     var oathScanSession: OathWalletSession? {
@@ -417,9 +484,6 @@ struct OathScanner: View {
         if let message = review.message { return message }
         switch review.payload {
         case .recipient(let result):
-            if case .asset(let chain, _, _) = context {
-                return result.networks.contains(chain) ? .scannerPayment : .scannerMismatch
-            }
             return result.amount != nil ? .scannerPayment : .scannerAddress
         case .recovery: return .scannerRecovery
         case .privateKey: return .scannerPrivateKey
@@ -515,32 +579,45 @@ struct OathScanner: View {
         }
     }
     @ViewBuilder private func recipientReview(_ result: OathScannedRecipient) -> some View {
-        if case .asset(let chain, _, _) = context {
-            resultCard(icon: "network", network: result.networks.count == 1 ? result.networks.first : nil,
-                title: result.networks.contains(chain) ? .scannerPayment : .scannerMismatch,
-                detail: .scannerAssetMismatchDetail, primary: .continueAction, secondary: .cancel, action: {
-                    guard let onSelectAsset else { return }
-                    accept(.deliver { onSelectAsset(result) })
-                }) {
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text(result.original).oathFont(.body, weight: .medium).textSelection(.enabled)
-                            .environment(\.layoutDirection, .leftToRight)
-                            .frame(maxWidth: .infinity, alignment: .leading).padding(16)
-                            .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
-                            .accessibilityIdentifier("scanner.mismatch.address")
-                        detailRow(result.networks.count == 1 ? .scannerNetwork : .scannerNetworkChoice,
-                            result.networks.map(\.name).joined(separator: ", "))
-                        if let token = result.token ?? result.tokenSymbol { detailRow(.scannerToken, token) }
-                        if let amount = result.amount {
-                            detailRow(.scannerAmount, result.amountIsAtomic ? strings.format(.scannerAtomicAmount, strings.invariant(amount)) : amount)
-                        }
-                        if let memo = result.memo { detailRow(.scannerMemo, memo) }
-                        if let note = result.displayNote { detailRow(.scannerRequestNote, note) }
+        if case .asset = context {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    OathScannedAddressNetworks(networks: result.networks)
+                    Text(strings.text(.scannerAssetMismatchDetail)).oathFont(.body).foregroundStyle(.secondary)
+                    recipientAddress(result.original)
+                        .accessibilityIdentifier("scanner.mismatch.address")
+                    if let token = result.token ?? result.tokenSymbol { detailRow(.scannerToken, token) }
+                    if let amount = result.amount {
+                        detailRow(.scannerAmount, result.amountIsAtomic ? strings.format(.scannerAtomicAmount, strings.invariant(amount)) : amount)
+                    }
+                    if let memo = result.memo { detailRow(.scannerMemo, memo) }
+                    if let note = result.displayNote { detailRow(.scannerRequestNote, note) }
+                }.padding(20)
+            }
+            .oathBottomActions {
+                VStack(spacing: OathActionMetrics.spacing) {
+                    OathBottomAction(title: strings.text(.continueAction), identifier: "scanner.result.use") {
+                        guard let onSelectAsset else { return }
+                        accept(.deliver { onSelectAsset(result) })
+                    }
+                    OathBottomAction(title: strings.text(.cancel), identifier: "scanner.result.dismiss", appearance: .secondary) {
+                        model.review = nil
                     }
                 }
+            }
         } else {
             standardRecipientReview(result)
         }
+    }
+
+    private func recipientAddress(_ address: String) -> some View {
+        Text(verbatim: address).oathFont(.body, weight: .medium).textSelection(.enabled)
+            .multilineTextAlignment(.leading)
+            .frame(maxWidth: .infinity, alignment: .leading).padding(16)
+            .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
+            // Apply to the frame as well as the text: leading must stay on the
+            // physical left even when the surrounding sheet reads right to left.
+            .environment(\.layoutDirection, .leftToRight)
     }
 
     private func standardRecipientReview(_ result: OathScannedRecipient) -> some View {
@@ -550,23 +627,13 @@ struct OathScanner: View {
         let acceptsPayment: Bool = if case .contact = context { result.amount == nil && result.memo == nil && recipient?.memo == nil && result.token == nil && result.tokenSymbol == nil } else { true }
         return ScrollView {
             VStack(alignment: .leading, spacing: 16) {
+                OathScannedAddressNetworks(networks: result.networks)
                 if mismatch {
-                    HStack {
-                        if result.networks.count == 1, let scannedNetwork = result.networks.first {
-                            OathNetworkLogo(asset: scannedNetwork.logoAsset, size: 32)
-                        }
-                        Text(strings.text(.scannerMismatch)).oathFont(.headline)
-                    }
                     Text(strings.text(.scannerMismatchDetail)).oathFont(.body).foregroundStyle(.secondary)
                 } else if !acceptsPayment {
                     Text(strings.text(.scannerPaymentUnsupported)).oathFont(.body).foregroundStyle(.secondary)
                 }
-                Text(result.original).oathFont(.body, weight: .medium).textSelection(.enabled)
-                    .environment(\.layoutDirection, .leftToRight).frame(maxWidth: .infinity, alignment: .center).padding(16)
-                    .background(Color(uiColor: .secondarySystemBackground), in: RoundedRectangle(cornerRadius: 20))
-                if let network {
-                    detailRow(.scannerNetwork, network.name)
-                }
+                recipientAddress(result.original)
                 if let amount = result.amount { detailRow(.scannerAmount, result.amountIsAtomic ? strings.format(.scannerAtomicAmount, strings.invariant(amount)) : amount) }
                 if let token = result.token ?? result.tokenSymbol { detailRow(.scannerToken, token) }
                 if let memo = recipient?.memo { detailRow(.scannerMemo, memo) }

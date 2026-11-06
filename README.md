@@ -1,26 +1,27 @@
-# Oath Wallet 5.0.2
+# Oath Wallet 5.0.3 prerelease
 
 A native multichain wallet for iPhone and iPad.
 
-**Apple-approved release: 5.0.2 (104).** This release adds receipt and asset-list improvements, a Solana history-date repair, native typography, and further audit fixes. App Store Connect shows Ready for Distribution, confirmed on 5 November 2026.
+**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization and restored-wallet compatibility. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
 
 [Published security review and remaining scope](https://github.com/OathWallet/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
 
-[Release notes](releases/5.0.2.md) · [Website](https://oathwallet.org) ·
+[Prerelease notes](releases/5.0.3.md) · [Website](https://oathwallet.org) ·
 [Security model](Documentation/SecurityModel.md) · [Reporting policy](SECURITY.md) · [Build configuration](Documentation/PublicBuild.md) ·
 [MIT license](LICENSE)
 
 ## What's new
 
-- Adds sender totals with separately denominated fees, and identifies wallet-owned Bitcoin inputs and change outputs in receipts.
-- Repairs legacy Solana transaction dates offline while preserving history, cached receipts, and reset boundaries.
-- Shows asset symbols, full names, network badges, and both native and fiat balances in asset selection and search.
-- Uses native system typography across supported languages and keeps completed iCloud backup status visible.
-- Preserves signing revocation after wallet removal, rejects invalid history checkpoints, and hardens NEAR/Sui/XDR/SCALE parsing and Stellar plan timestamp bounds.
-- Includes the public audit repairs made after build 103: interrupted wallet-import recovery, wallet ordering and Bitcoin address discovery.
-- Improves encrypted backup file handling and stale-progress protection, and clears revealed private keys when the app leaves the foreground.
-- Hardens malformed WalletConnect encodings and XRP amount/simulation validation.
-- Preserves pending transaction journals during wallet removal and recovers interrupted removal safely.
+- Scanned addresses show their validated networks and logos, with clearer review actions and left-to-right address presentation.
+- EVM send quotes can recover from a stale provider using a fresh, chain-verified fallback; broadcast retry rules remain unchanged.
+- Story uses its dedicated RPC and explorer history path. Celo history uses smaller pages and individual receipt checks.
+- NEAR history handles repeated indexed transaction versions without double-counting fees, and respects bounded rate-limit retry delays.
+- XRP recovers an advancing recent-history window; THORChain refreshes finish cancelling earlier history work before starting a new generation.
+- Restored wallets retain legacy passphrase metadata even when their passphrase is empty. Existing encrypted wallet formats remain readable.
+- Retains the Solana WalletConnect delegate-approval review fix, including explicit allowance and unlimited-approval warnings.
+- Improves optional token artwork, native status-bar handling and expected authentication-error classification.
+
+Cronos infrastructure is included for compatibility testing but remains disabled in the app. It is not advertised as an enabled network.
 
 ## Public source boundaries
 
@@ -38,7 +39,9 @@ configuration. Never put real wallet material in tests, issues, or support repor
 
 ## Release verification
 
-The [5.0.2 (104) release](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.2-build104) identifies this source and build settings. Its [verification record](releases/5.0.2.md) distinguishes new checks from earlier audit evidence. Apple approval and source/build verification are separate: approval does not establish a completed audit or an independently reproduced source-to-store binary match.
+The [5.0.3 (105) prerelease](https://github.com/OathWallet/oath-wallet/releases/tag/v5.0.3-build105) identifies the source and build settings for this preview. Its [verification record](releases/5.0.3.md) lists the checks, exclusions and remaining runtime limitations. This is a GitHub prerelease only; no build 105 upload or review submission was performed.
+
+The [5.0.2 (104) release record](releases/5.0.2.md) retains its Apple approval status and original validation evidence.
 
 The [5.0.0 (102) delivery record](releases/5.0.0.md) documents the earlier build delivered to Apple.
 

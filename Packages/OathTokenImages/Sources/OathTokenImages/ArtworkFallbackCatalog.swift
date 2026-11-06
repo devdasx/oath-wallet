@@ -201,6 +201,7 @@ public actor ArtworkFallbackCatalog {
         case "linea": network = ("linea", 59144, "linea")
         case "optimism": network = ("optimistic-ethereum", 10, "optimism")
         case "chiliz": network = ("chiliz", 88888, "chiliz")
+        case "cronos": network = ("cronos", 25, "cronos")
         case "iotex": network = ("iotex", 4689, "iotex")
         case "zerog": network = ("0g", 16661, "zerog")
         case "sei": network = ("sei-v2", 1329, "sei")
@@ -238,6 +239,11 @@ public actor ArtworkFallbackCatalog {
         var images: [String: String] = [:]
         for token in tokens where token.chainId == chainID {
             guard let contract = canonicalReference(token.address, chainID: chainID, networkID: networkID) else {
+                // Sei's mixed public list also contains native factory/CosmWasm
+                // entries. This resolver only accepts its EVM contract identities;
+                // never infer an EVM mapping or discard valid logos beside them.
+                if chainID == 1329, networkID == "sei",
+                   token.address.hasPrefix("sei1") || token.address.hasPrefix("factory/sei1") { continue }
                 // A published non-EVM list can include unsupported optional
                 // representations (such as a Sui object rather than a coin type).
                 // Never infer their identity or discard valid rows alongside them.

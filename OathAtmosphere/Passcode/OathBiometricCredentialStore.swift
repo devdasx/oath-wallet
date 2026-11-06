@@ -239,9 +239,19 @@ actor OathBiometricCredentialStore: OathBiometricCredentialStoring {
             return .enabled(kind)
         } catch is CancellationError {
             return .failed(kind: kind, reason: .interrupted)
-        } catch let error as LAError { OathDiagnostics.record(error);
-            return .failed(kind: kind, reason: Self.map(error.code))
+        } catch let error as LAError {
+            return Self.enrollmentFailure(error, kind: kind)
         } catch { OathDiagnostics.record(error); return .failed(kind: kind, reason: .storage) }
+    }
+
+    static func enrollmentFailure(_ error: LAError, kind: OathBiometricKind) -> OathBiometricSetupResult {
+        // Availability can change after canEvaluatePolicy. Optional enrollment
+        // already handles unavailable biometry without reporting an app failure.
+        // Keep invalid contexts, forbidden interaction and other failures visible.
+        if error.code != .biometryNotAvailable {
+            OathDiagnostics.record(error, operation: "enable_biometrics")
+        }
+        return .failed(kind: kind, reason: map(error.code))
     }
 
     private static func map(_ error: LAError.Code) -> OathBiometricSetupError {

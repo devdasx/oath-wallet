@@ -53,7 +53,8 @@ public enum DiagnosticHTTP {
         if context["chain"] == nil, let url = request.url {
         if ["api.mainnet.aptoslabs.com", "api.testnet.aptoslabs.com", "archive.mainnet.aptoslabs.com"].contains(url.host ?? "") { context["chain"] = "aptos" }
             if ["api.mainnet-beta.solana.com", "api.devnet.solana.com", "api.testnet.solana.com"].contains(url.host ?? "") { context["chain"] = "solana" }
-            if ["rpc.mainnet.arc.io","rpc.testnet.arc.io","rpc.blockdaemon.mainnet.arc.io","rpc.blockdaemon.testnet.arc.io","rpc.drpc.mainnet.arc.io","rpc.drpc.testnet.arc.io"].contains(url.host ?? "") { context["chain"] = "arc" }
+            if ["rpc.mainnet.arc.io","rpc.testnet.arc.io","rpc.blockdaemon.mainnet.arc.io","rpc.blockdaemon.testnet.arc.io","rpc.drpc.mainnet.arc.io","rpc.drpc.testnet.arc.io","arc-mainnet.g.alchemy.com","arc-testnet.g.alchemy.com"].contains(url.host ?? "") { context["chain"] = "arc" }
+            if ["rpc.mainnet.chain.robinhood.com","rpc.testnet.chain.robinhood.com","robinhood-mainnet.g.alchemy.com","robinhood-testnet.g.alchemy.com","robinhoodchain.blockscout.com"].contains(url.host ?? "") { context["chain"] = "robinhood" }
             if ["babel-api.mainnet.iotex.io", "babel-api.mainnet.iotex.one", "archive-mainnet.iotex.io", "dev.iotexscan.io", "api.iotex.one", "api.mainnet.iotex.one"].contains(url.host ?? "") { context["chain"] = "iotex" }
             if ["babel-api.testnet.iotex.io", "babel-api.testnet.iotex.one"].contains(url.host ?? "") { context["chain"] = "iotexTestnet" }
             if ["evmrpc.0g.ai", "evmrpc-testnet.0g.ai", "chainscan.0g.ai"].contains(url.host ?? "") { context["chain"] = "zerog" }
@@ -261,6 +262,14 @@ public enum DiagnosticHTTP {
         return expectedEVMMetadataAbsence(row, status: status, request: request)
     }
 
+    /// Only optional names/symbols. Decimals, balances and unknown calls must
+    /// remain failures even when they share the same batch and provider code.
+    public static func expectedEVMTokenLabelAbsence(_ data: Data, status: Int, request: URLRequest) -> Bool {
+        guard data.count <= 16_384,
+              let row = (try? JSONSerialization.jsonObject(with: data)) as? [String: Any] else { return false }
+        return expectedEVMMetadataAbsence(row, status: status, request: request, labelsOnly: true)
+    }
+
     static func expectedEVMMetadataAbsence(_ row: [String: Any], status: Int, request: URLRequest, labelsOnly: Bool = false) -> Bool {
         guard status == 200, request.httpMethod == "POST", row["jsonrpc"] as? String == "2.0",
               row["result"] == nil, row["id"] != nil,
@@ -279,7 +288,9 @@ public enum DiagnosticHTTP {
               let data = tx["data"] as? String, data.hasPrefix("0x"),
               data.dropFirst(2).utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }) else { return false }
         if labelsOnly {
-            return message.lowercased() == "execution reverted" && (data == "0x06fdde03" || data == "0x95d89b41")
+            let exactRevert = message.lowercased() == "execution reverted" ||
+                (code == -32000 && message.lowercased() == "revert opcode executed")
+            return exactRevert && (data == "0x06fdde03" || data == "0x95d89b41")
         }
         // Exact ABI lengths, not arbitrary contract calls with these prefixes.
         return data == "0x313ce567" || data == "0x06fdde03" || data == "0x95d89b41" || data == "0x18160ddd" ||

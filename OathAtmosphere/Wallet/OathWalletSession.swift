@@ -703,9 +703,10 @@ final class OathWalletSession {
     }
     func refreshAnkr() async throws {
         guard case .home(let current) = state,
-              current.addresses.contains(where: { AnkrSynchronizer.supports(networkID: $0.chain.id) || $0.chain == .solana || $0.chain == .tron || $0.chain == .ton || $0.chain == .aptos || $0.chain == .sui || $0.chain == .thorchain || $0.chain == .near || $0.chain == .xrpl || $0.chain == .stellar || $0.chain == .polkadot || $0.chain == .robinhood || $0.chain == .arc || $0.chain == .hyperevm || $0.chain == .monad || $0.chain == .unichain || $0.chain == .celo || $0.chain == .chiliz || $0.chain == .filecoin || $0.chain == .sei || $0.chain == .zerog || $0.chain == .iotex }) else { return }
+              current.addresses.contains(where: { AnkrSynchronizer.supports(networkID: $0.chain.id) || $0.chain == .cronos || $0.chain == .story || $0.chain == .solana || $0.chain == .tron || $0.chain == .ton || $0.chain == .aptos || $0.chain == .sui || $0.chain == .thorchain || $0.chain == .near || $0.chain == .xrpl || $0.chain == .stellar || $0.chain == .polkadot || $0.chain == .robinhood || $0.chain == .arc || $0.chain == .hyperevm || $0.chain == .monad || $0.chain == .unichain || $0.chain == .celo || $0.chain == .chiliz || $0.chain == .filecoin || $0.chain == .sei || $0.chain == .zerog || $0.chain == .iotex }) else { return }
         let token = generation
         do {
+            async let cronos: Result<Void, Error> = refreshCronosResult(walletID: current.id.uuidString)
             async let solana: Result<Void, Error> = refreshSolanaResult()
             async let evm: Result<Void, Error> = refreshEVMResult(walletID: current.id.uuidString)
             async let tron: Result<Void, Error> = refreshTronResult()
@@ -722,23 +723,40 @@ final class OathWalletSession {
             async let chiliz: Result<Void, Error> = refreshIndexedEVMResult(.chiliz)
             async let filecoin: Result<Void, Error> = refreshIndexedEVMResult(.filecoin)
             async let iotex: Result<Void, Error> = refreshIndexedEVMResult(.iotex)
+            async let story: Result<Void, Error> = refreshIndexedEVMResult(.story)
             async let zerog: Result<Void, Error> = refreshIndexedEVMResult(.zerog)
             async let sei: Result<Void, Error> = refreshIndexedEVMResult(.sei)
             async let celo: Result<Void, Error> = refreshIndexedEVMResult(.celo)
             async let unichain: Result<Void, Error> = refreshIndexedEVMResult(.unichain)
             async let hyperevm: Result<Void, Error> = refreshHyperEVMResult()
             async let arc: Result<Void, Error> = refreshArcResult()
-            let results = await (solana, evm, tron, ton, aptos, sui, near, xrpl, stellar, robinhood, arc, hyperevm, monad, unichain, thorchain, celo, chiliz, polkadot, filecoin, sei, zerog, iotex)
+            let results = await (solana, evm, tron, ton, aptos, sui, near, xrpl, stellar, robinhood, arc, hyperevm, monad, unichain, thorchain, celo, chiliz, polkadot, filecoin, sei, zerog, iotex, story)
+            let cronosResult = await cronos
             guard token == generation, !Task.isCancelled else { throw CancellationError() }
             // All chains have finished before propagating an original failure.
             // Successful chains keep their committed state even when another fails.
-            for result in [results.0, results.1, results.2, results.3, results.4, results.5, results.6, results.7, results.8, results.9, results.10, results.11, results.12, results.13, results.14, results.15, results.16, results.17, results.18, results.19, results.20, results.21] { try result.get() }
+            for result in [results.0, results.1, results.2, results.3, results.4, results.5, results.6, results.7, results.8, results.9, results.10, results.11, results.12, results.13, results.14, results.15, results.16, results.17, results.18, results.19, results.20, results.21, results.22] { try result.get() }
+            try cronosResult.get()
             ankrRefreshFailed = false; ankrRevision += 1
         } catch { OathDiagnostics.record(error);
             guard token == generation, !Task.isCancelled else { return }
             ankrRefreshFailed = true; ankrRevision += 1
             throw error
         }
+    }
+
+    private func refreshCronosResult(walletID: String) async -> Result<Void, Error> {
+        do { try await refreshCronos(); return .success(()) }
+        catch { OathDiagnostics.record(error, context: ["chain": "cronos"]); return .failure(error) }
+    }
+
+    func refreshCronos() async throws {
+        guard OathImportChain.cronos.isEnabled else { return }
+        guard case .home(let current) = state, isUnlocked,
+              current.addresses.contains(where: { $0.chain == .cronos }) else { return }
+        let token = generation
+        try await OathAnkrSync.shared.refreshCronos(walletID: current.id.uuidString)
+        guard token == generation, isUnlocked, !Task.isCancelled else { throw CancellationError() }
     }
 
     private func refreshEVMResult(walletID: String) async -> Result<Void, Error> {
@@ -1073,7 +1091,7 @@ final class OathWalletSession {
 
     @discardableResult
     func addToken(_ token: OathTokenDefinition, walletID: String) async throws -> WalletSnapshot {
-        guard isUnlocked, !changingWallet, !resetting, displayedProfile?.id.uuidString == walletID else {
+        guard token.network.chain.isEnabled, isUnlocked, !changingWallet, !resetting, displayedProfile?.id.uuidString == walletID else {
             throw OathWalletError.locked
         }
         let request = generation
@@ -1111,6 +1129,9 @@ final class OathWalletSession {
             decimals: token.isNativeRepresentation ? token.network.chain.nativeDecimals : decimals)
         addedTokenPriceWork?.cancel()
         addedTokenPriceWork = Task {
+            async let balanceRefresh: Void? = OathDiagnostics.attempt("added_cronos_balance") {
+                if asset.networkID == "cronos" { try await OathAnkrSync.shared.refreshCronos(walletID: walletID) }
+            }
             await OathDiagnostics.$chain.withValue(asset.networkID) {
                 await OathDiagnostics.$operationID.withValue(UUID()) {
                     do {
@@ -1124,6 +1145,7 @@ final class OathWalletSession {
                     }
                 }
             }
+            _ = await balanceRefresh
         }
         return snapshot
     }

@@ -78,6 +78,7 @@ struct OathAssetDetailScreen: View {
             else if holding.networkID == "polkadot" { try await session.refreshPolkadot() }
             else if holding.networkID == "stellar" { try await session.refreshStellar() }
             else if holding.networkID == "solana" { try await session.refreshSolana() }
+            else if holding.networkID == "cronos" { try await session.refreshCronos() }
             else if holding.networkID == "arc" { try await session.refreshArc() }
             else if let chain = IndexedEVMChain(rawValue: holding.networkID) { try await session.refreshIndexedEVM(chain) }
             else if holding.networkID == "hyperevm" { try await session.refreshHyperEVM() }

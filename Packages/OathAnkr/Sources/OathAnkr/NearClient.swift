@@ -45,8 +45,8 @@ public actor NearClient {
         while true {
             try Task.checkCancellation()
             try await permits.acquire()
-            let response:(Data,Int)
-            do { response = try await transport.send(request) }
+            let response:AnkrHTTPResponse
+            do { response = try await transport.sendResponse(request) }
             catch {
                 await permits.release()
                 if Task.isCancelled || error is CancellationError || (error as? URLError)?.code == .cancelled { throw CancellationError() }
@@ -67,24 +67,50 @@ public actor NearClient {
                 throw NearError.transport
             }
             await permits.release(); try Task.checkCancellation()
-            guard response.1 == 200 else {
+            guard response.status == 200 else {
                 // FastNear POST endpoints query history; they do not broadcast.
                 // Replay the same encoded cursor/body once after a transient
-                // failure. Never retry invalid data or immediately repeat 429s.
+                // failure. Rate limits also get one delayed attempt, respecting
+                // Retry-After. A longer provider wait remains a visible failure;
+                // never shorten it just to fit the foreground retry budget.
                 if let indexStage {
-                    OathDiagnostics.record(NearError.http(response.1), operation:"near_index_read", context:[
+                    OathDiagnostics.record(NearError.http(response.status), operation:"near_index_read", context:[
                         "chain":"near", "stage":indexStage, "host":request.url?.host ?? "",
-                        "http_status":String(response.1), "attempt":String(attempt)])
-                    if attempt == 1, [408,500,502,503,504].contains(response.1) {
+                        "http_status":String(response.status), "attempt":String(attempt)])
+                    if attempt == 1, response.status == 429,
+                       let delay = Self.indexRateLimitDelay(response.retryAfter, now:now()) {
+                        attempt += 1
+                        try await Task.sleep(for:.seconds(delay))
+                        continue
+                    }
+                    if attempt == 1, [408,500,502,503,504].contains(response.status) {
                         attempt += 1
                         try await Task.sleep(for:.milliseconds(500))
                         continue
                     }
                 }
-                throw NearError.http(response.1)
+                throw NearError.http(response.status)
             }
-            return response.0
+            return response.data
         }
+    }
+    static func indexRateLimitDelay(_ header:String?, now:Date) -> Double? {
+        let fallback = Double.random(in:1...2)
+        guard let header else { return fallback }
+        let value = header.trimmingCharacters(in:.whitespacesAndNewlines)
+        let delay:Double
+        if let seconds = Double(value), seconds.isFinite, seconds >= 0 {
+            delay = seconds
+        } else {
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier:"en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT:0)
+            formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
+            guard let date = formatter.date(from:value) else { return fallback }
+            delay = max(0,date.timeIntervalSince(now))
+        }
+        guard delay <= 10 else { return nil }
+        return max(delay,fallback)
     }
     private func rpc(_ method:String, params:NearJSON) async throws -> NearJSON {
         let body:NearJSON = .object(["jsonrpc":.string("2.0"),"id":.number("1"),"method":.string(method),"params":params])
@@ -233,7 +259,13 @@ public actor NearClient {
         for item in discovery["tokens"].array! {
             guard let s = item["contract_id"].string else { throw NearError.malformed }
             let ref = try NearIdentity.address(s); guard refs.insert(ref).inserted else { throw NearError.malformed }
-            indexed[ref] = OathDiagnostics.attempt("decode_indexed_balance", body: { try NearIdentity.amount(item["balance"]) })
+            // FastNear documents null as a balance not indexed yet. The pinned
+            // contract read below remains authoritative. Non-null malformed
+            // values (including the provider's broken-contract empty string)
+            // still report; absence must never become a zero balance.
+            if !item["balance"].isNull {
+                indexed[ref] = OathDiagnostics.attempt("decode_indexed_balance", body: { try NearIdentity.amount(item["balance"]) })
+            }
         }
         for ref in knownReferences where ref != "native" { refs.insert(try NearIdentity.reference(ref)) }
         let liquid = try NearIdentity.amount(state["amount"]), locked = try NearIdentity.amount(state["locked"])
@@ -285,7 +317,10 @@ public actor NearClient {
                         var batch:[String:NearJSON] = [:]
                         for row in rows {
                             let hash = try NearIdentity.hash(row["transaction"]["hash"])
-                            guard hashes.contains(hash), batch[hash] == nil else { throw NearError.malformed }; batch[hash] = row
+                            guard hashes.contains(hash) else { throw NearError.malformed }
+                            if let previous = batch[hash] {
+                                batch[hash] = try NearDecoding.completeTransactionVersion(previous, row)
+                            } else { batch[hash] = row }
                         }
                         guard hashes.allSatisfy({batch[$0] != nil}) else { throw NearError.malformed }
                         return batch

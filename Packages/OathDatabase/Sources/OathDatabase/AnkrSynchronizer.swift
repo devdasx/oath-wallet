@@ -35,8 +35,8 @@ public actor AnkrSynchronizer {
     public init(database: OathDatabase, client: AnkrClient, catalogTransport: any AnkrTransport = AnkrHTTPTransport()) {
         self.database = database; self.client = client; self.catalogTransport = catalogTransport
     }
-    public static func supports(networkID: String) -> Bool { AnkrChain(networkID: networkID) != nil }
-    public static var supportedNetworkIDs: [String] { AnkrChain.allCases.map(\.networkID) }
+    public static func supports(networkID: String) -> Bool { AnkrChain(networkID: networkID)?.supportsAdvancedAPI == true }
+    public static var supportedNetworkIDs: [String] { AnkrChain.allCases.filter(\.supportsAdvancedAPI).map(\.networkID) }
 
     public func refresh(walletID: String) async throws -> [AnkrSyncOutcome] {
         try Task.checkCancellation()
@@ -118,7 +118,7 @@ public actor AnkrSynchronizer {
             var ticket: AnkrSyncTicket?
             do {
                 try Task.checkCancellation()
-                guard let chain = AnkrChain(networkID: account.networkID) else { throw AnkrError.wrongChain }
+                guard let chain = AnkrChain(networkID: account.networkID), chain.supportsAdvancedAPI else { throw AnkrError.wrongChain }
                 // Ankr's history endpoints do not document onlyWhitelisted.
                 // Resolve exact contracts independently, including sold tokens.
                 if stream == "transfers" { await self.refreshCatalog(chain) }

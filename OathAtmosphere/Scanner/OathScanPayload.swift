@@ -155,7 +155,7 @@ struct OathScanParser: Sendable {
     let evmNetworks: [UInt64: OathImportChain]
 
     static let paymentSchemes: [String: OathImportChain] = {
-        var schemes = Dictionary(uniqueKeysWithValues: OathImportChain.allCases.map { ($0.rawValue, $0) })
+        var schemes = Dictionary(uniqueKeysWithValues: OathImportChain.enabledCases.map { ($0.rawValue, $0) })
         for (alias, chain) in ["eth": OathImportChain.ethereum, "btc": .bitcoin, "bch": .bitcoincash, "ltc": .litecoin,
                                "doge": .dogecoin, "bsc": .bnb, "sol": .solana, "trx": .tron,
                                "apt": .aptos, "xlm": .stellar, "xrp": .xrpl, "gram": .ton, "thor": .thorchain, "rune": .thorchain] {
@@ -365,7 +365,7 @@ struct OathScanParser: Sendable {
             memo = bytes.map { String(format: "%02x", $0) }.joined()
             if memoType == "return" { memoType = "returnHash" }
         }
-        let recipient = OathScannedRecipient(original: address, networks: unspecifiedEVMNetwork ? OathImportChain.allCases.filter(\.isEVM) : [network], amount: amount, amountIsAtomic: atomic, amountAssetUnspecified: amountAssetUnspecified,
+        let recipient = OathScannedRecipient(original: address, networks: unspecifiedEVMNetwork ? OathImportChain.enabledCases.filter(\.isEVM) : [network], amount: amount, amountIsAtomic: atomic, amountAssetUnspecified: amountAssetUnspecified,
             token: token ?? (amountAssetUnspecified ? nil : "native"), memo: memo, memoType: memoType, solanaReferences: references, label: query["label"], message: query["message"] ?? query["msg"])
         guard recipient.decoded(on: network) != nil else { return .invalid(.unsupportedRequest) }
         return .recipient(recipient)

@@ -78,7 +78,7 @@ public enum MarketIdentity {
         "bitcoin": ("BTC", "bitcoin"), "ethereum": ("ETH", "ethereum"),
         "arbitrum": ("ETH", "ethereum"), "base": ("ETH", "ethereum"),
         "linea": ("ETH", "ethereum"), "optimism": ("ETH", "ethereum"),
-        "iotex": ("IOTX", "iotex"), "zerog": ("0G", "zero-gravity"), "sei": ("SEI", "sei-network"), "filecoin": ("FIL", "filecoin"), "chiliz": ("CHZ", "chiliz"), "celo": ("CELO", "celo"), "monad": ("MON", "monad"), "unichain": ("ETH", "ethereum"), "hyperevm": ("HYPE", "hyperliquid"), "robinhood": ("ETH", "ethereum"), "scroll": ("ETH", "ethereum"), "taiko": ("ETH", "ethereum"),
+        "cronos": ("CRO", "crypto-com-chain"), "iotex": ("IOTX", "iotex"), "zerog": ("0G", "zero-gravity"), "sei": ("SEI", "sei-network"), "filecoin": ("FIL", "filecoin"), "chiliz": ("CHZ", "chiliz"), "celo": ("CELO", "celo"), "monad": ("MON", "monad"), "unichain": ("ETH", "ethereum"), "hyperevm": ("HYPE", "hyperliquid"), "robinhood": ("ETH", "ethereum"), "scroll": ("ETH", "ethereum"), "taiko": ("ETH", "ethereum"),
         "arc": ("USDC", "usd-coin"), "avalanche": ("AVAX", "avalanche-2"),
         "bnb": ("BNB", "binancecoin"), "polygon": ("POL", "polygon-ecosystem-token"),
         "fantom": ("FTM", "fantom"), "flare": ("FLR", "flare-networks"), "somnia": ("SOMI", "somnia"),
@@ -95,7 +95,7 @@ public enum MarketIdentity {
         "avalanche": "avalanche", "base": "base", "bnb": "binance-smart-chain",
         "fantom": "fantom", "flare": "flare-network", "somnia": "somnia", "story": "story",
         "gnosis": "xdai", "linea": "linea", "optimism": "optimistic-ethereum",
-        "iotex": "iotex", "zerog": "0g", "sei": "sei-v2", "filecoin": "filecoin", "chiliz": "chiliz", "celo": "celo", "monad": "monad", "unichain": "unichain", "hyperevm": "hyperevm", "robinhood": "robinhood", "polygon": "polygon-pos", "scroll": "scroll", "taiko": "taiko",
+        "cronos": "cronos", "iotex": "iotex", "zerog": "0g", "sei": "sei-v2", "filecoin": "filecoin", "chiliz": "chiliz", "celo": "celo", "monad": "monad", "unichain": "unichain", "hyperevm": "hyperevm", "robinhood": "robinhood", "polygon": "polygon-pos", "scroll": "scroll", "taiko": "taiko",
         "telos": "telos", "xlayer": "x-layer", "tron": "tron", "solana": "solana", "thorchain": "thorchain"
     ]
     static let coinbaseNetworks = ["avalanche": "avacchain", "bnb": "bsc", "xrpl": "ripple"]

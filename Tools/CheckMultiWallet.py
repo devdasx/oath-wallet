@@ -482,6 +482,7 @@ actor OathAnkrSync {
         if let refreshFailure { throw refreshFailure }
     }
     func refreshBalances(walletID: String) async throws { try Task.checkCancellation() }
+    func refreshCronos(walletID: String) async throws { try Task.checkCancellation() }
     func refreshSolana(accountID: String) async throws {
         try Task.checkCancellation(); completedSolanaRefreshes += 1
     }

@@ -70,7 +70,8 @@ actor OathEVMSendService {
     }
     func quote(network:EVMSendNetwork,walletID: String, accountID: String, assetID: String, reference: String,
                recipient: String, amount: String, decimals: Int, maximum: Bool, vault: OathWalletVault) async throws -> OathEVMQuote {
-        try await OathDiagnostics.$chain.withValue(network.rawValue) {
+        guard OathImportChain(rawValue: network.rawValue)?.isEnabled == true else { throw EVMSendError.wrongNetwork }
+        return try await OathDiagnostics.$chain.withValue(network.rawValue) {
             try await OathDiagnostics.$operationID.withValue(UUID()) {
                 do {
                     let database = try await vault.database()
@@ -95,7 +96,8 @@ actor OathEVMSendService {
                 walletConnectRequestID: String? = nil,
                 permissionSendID: String? = nil, permissionAuthorization: UUID? = nil,
                 authorization: (@Sendable () async throws -> Void)? = nil) async throws -> OathBitcoinSubmission {
-        try await OathDiagnostics.$chain.withValue(quote.plan.network.rawValue) {
+        guard OathImportChain(rawValue: quote.plan.network.rawValue)?.isEnabled == true else { throw EVMSendError.wrongNetwork }
+        return try await OathDiagnostics.$chain.withValue(quote.plan.network.rawValue) {
             try await OathDiagnostics.$operationID.withValue(UUID()) {
                 try await submitWithDiagnostics(quote,vault:vault,digits:digits,reason:reason,requestID:walletConnectRequestID,authorization:authorization,permissionSendID:permissionSendID,permissionAuthorization:permissionAuthorization)
             }

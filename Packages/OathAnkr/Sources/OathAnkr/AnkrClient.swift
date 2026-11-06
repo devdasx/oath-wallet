@@ -3,6 +3,21 @@ import Foundation
 
 public protocol AnkrTransport: Sendable {
     func send(_ request: URLRequest) async throws -> (Data, Int)
+    func sendResponse(_ request: URLRequest) async throws -> AnkrHTTPResponse
+}
+public struct AnkrHTTPResponse: Sendable {
+    public let data: Data
+    public let status: Int
+    public let retryAfter: String?
+    public init(data: Data, status: Int, retryAfter: String? = nil) {
+        self.data = data; self.status = status; self.retryAfter = retryAfter
+    }
+}
+extension AnkrTransport {
+    public func sendResponse(_ request: URLRequest) async throws -> AnkrHTTPResponse {
+        let (data, status) = try await send(request)
+        return .init(data: data, status: status)
+    }
 }
 public struct AnkrHTTPTransport: AnkrTransport {
     private let session: URLSession
@@ -15,8 +30,12 @@ public struct AnkrHTTPTransport: AnkrTransport {
     }
     init(session: URLSession) { self.session = session }
     public func send(_ request: URLRequest) async throws -> (Data, Int) {
-        let response = try await PublicMarketRequests.shared.send(request) { try await raw(request) }
+        let response = try await sendResponse(request)
         return (response.data, response.status)
+    }
+    public func sendResponse(_ request: URLRequest) async throws -> AnkrHTTPResponse {
+        let response = try await PublicMarketRequests.shared.send(request) { try await raw(request) }
+        return .init(data: response.data, status: response.status, retryAfter: response.retryAfter)
     }
     private func raw(_ request: URLRequest) async throws -> PublicMarketRequests.Response {
         // Balances currently ignore pageSize on some chains (observed >12,000

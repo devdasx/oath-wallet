@@ -118,7 +118,7 @@ extension OathWalletEngine {
         case .tron, .thorchain:
             return .init(value: hex(bytes), format: "secp256k1 · Hex")
         case .arbitrum, .arc, .avalanche, .base, .bnb, .ethereum, .fantom, .flare, .somnia, .story, .gnosis,
-             .linea, .optimism, .polygon, .chiliz, .filecoin, .sei, .zerog, .iotex, .celo, .monad, .unichain, .hyperevm, .robinhood, .scroll, .taiko, .telos, .xlayer:
+             .linea, .optimism, .polygon, .chiliz, .filecoin, .sei, .zerog, .iotex, .cronos, .celo, .monad, .unichain, .hyperevm, .robinhood, .scroll, .taiko, .telos, .xlayer:
             return .init(value: "0x" + hex(bytes), format: "secp256k1 · Hex")
         }
     }

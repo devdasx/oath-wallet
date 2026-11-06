@@ -1,6 +1,7 @@
 import Foundation
 import XCTest
 import GRDB
+import OathDiagnostics
 @testable import OathDatabase
 @testable import OathAnkr
 
@@ -57,6 +58,34 @@ private actor ThorchainRefreshTransport: AnkrTransport {
         return (try JSONEncoder().encode(json), 200)
     }
 }
+private actor ThorchainRefreshOverlapTransport: AnkrTransport {
+    private let fallback = ThorchainRefreshTransport()
+    private var holdHistory = true
+    private var historyWaiters: [CheckedContinuation<Void, Never>] = []
+    private var heightWaiter: CheckedContinuation<Void, Never>?
+    private(set) var heightReads = 0
+    private(set) var historyReads = 0
+    func send(_ request: URLRequest) async throws -> (Data, Int) {
+        if request.url?.path.hasSuffix("/blocks/latest") == true {
+            heightReads += 1
+            if heightReads == 2 { await withCheckedContinuation { heightWaiter = $0 } }
+        }
+        if request.url?.path.hasSuffix("/txs") == true, holdHistory {
+            historyReads += 1
+            // Deliberately finish a transport that does not stop immediately on
+            // cancellation. The production client must join it before rotating.
+            await withCheckedContinuation { historyWaiters.append($0) }
+        }
+        return try await fallback.send(request)
+    }
+    func releaseHistory() {
+        holdHistory = false
+        let waiters = historyWaiters; historyWaiters.removeAll()
+        waiters.forEach { $0.resume() }
+    }
+    func releaseHeight() { heightWaiter?.resume(); heightWaiter = nil }
+}
+
 private actor ThorchainLaggingHeightTransport: AnkrTransport {
     private var heights: [Int64]
     private let namedAvailable: Bool
@@ -143,6 +172,80 @@ private actor ThorchainLiveRefreshTransport: AnkrTransport {
         for i in 1...2 { try await db.importWalletIfNeeded(.init(id:"w\(i)",name:"Test",kind:"hd",vaultReference:"test\(i)",createdAt:1),accounts:[.init(id:"a\(i)",walletID:"w\(i)",networkID:"thorchain",address:owner,derivationPath:"m/44'/931'/0'/0/0")]) }
         return (db,folder)
     }
+    func testRefreshJoinsOldHistoryBeforeReplacingItsGeneration() async throws {
+        let (db, folder) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let reports = DatabaseDiagnosticProbe.shared
+        await reports.configure()
+        let previousIDs = Set(await reports.events().map(\.id))
+        let transport = ThorchainRefreshOverlapTransport()
+        let sync = ThorchainSynchronizer(database: db, client: ThorchainClient(transport: transport))
+        try await sync.refresh(accountID: "a1")
+        for _ in 0..<200 {
+            if await transport.historyReads == 3 { break }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+        let historyReads = await transport.historyReads
+        XCTAssertEqual(historyReads, 3)
+        let originalRun = try await db.pool.read { try String.fetchOne($0, sql: "SELECT runID FROM thorchainSync WHERE accountID='a1'") }
+        let refresh = Task { try await sync.refresh(accountID: "a1") }
+        // Allow the replacement refresh to reach its first network/database
+        // suspension while the previous three history workers remain held.
+        try await Task.sleep(for: .milliseconds(200))
+        let whileHistoryHeld = try await db.pool.read { try String.fetchOne($0, sql: "SELECT runID FROM thorchainSync WHERE accountID='a1'") }
+        XCTAssertEqual(whileHistoryHeld, originalRun, "An unfinished history worker must retain its valid database generation")
+        let heightsBeforeJoining = await transport.heightReads
+        XCTAssertEqual(heightsBeforeJoining, 1, "Replacement network work waits for old history teardown")
+        await transport.releaseHistory()
+        for _ in 0..<200 {
+            if await transport.heightReads == 2 { break }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+        // Before the fix, this joins the uncancelled old history while the new
+        // height is held, deterministically exposing its generation rejection.
+        await sync.waitForHistory(accountID: "a1")
+        await transport.releaseHeight()
+        try await refresh.value
+        await sync.waitForHistory(accountID: "a1")
+        let replacementRun = try await db.pool.read { try String.fetchOne($0, sql: "SELECT runID FROM thorchainSync WHERE accountID='a1'") }
+        XCTAssertNotEqual(replacementRun, originalRun)
+        let cursors = try await db.pool.read { try ThorchainCursor.fetchAll($0, sql: "SELECT * FROM thorchainHistory WHERE accountID='a1'") }
+        XCTAssertEqual(cursors.count, 6)
+        XCTAssertTrue(cursors.allSatisfy(\.complete), "The replacement resumes and completes all history lanes")
+        let balance = try await db.balance(accountID: "a1", assetID: "thorchain:native")
+        XCTAssertEqual(balance?.amountAtomic, "456")
+        await sync.cancel()
+        try await Task.sleep(for: .milliseconds(100))
+        let failures = await reports.events().filter { !previousIDs.contains($0.id) && $0.error.message == "staleSync" }
+        XCTAssertTrue(failures.isEmpty, "Unexpected staleSync reports: \(failures.map { $0.operation + ":" + ($0.context["stage"] ?? "none") }.sorted())")
+    }
+
+    func testCancellationWhileJoiningHistoryDoesNotCreateANewGeneration() async throws {
+        let (db, folder) = try await fixture()
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let transport = ThorchainRefreshOverlapTransport()
+        let sync = ThorchainSynchronizer(database: db, client: ThorchainClient(transport: transport))
+        try await sync.refresh(accountID: "a1")
+        for _ in 0..<200 {
+            if await transport.historyReads == 3 { break }
+            try await Task.sleep(for: .milliseconds(5))
+        }
+        let originalRun = try await db.pool.read { try String.fetchOne($0, sql: "SELECT runID FROM thorchainSync WHERE accountID='a1'") }
+        let refresh = Task { try await sync.refresh(accountID: "a1") }
+        try await Task.sleep(for: .milliseconds(100))
+        let cancellation = Task { await sync.cancel() }
+        try await Task.sleep(for: .milliseconds(50))
+        await transport.releaseHistory()
+        await transport.releaseHeight()
+        await cancellation.value
+        do { try await refresh.value; XCTFail("Cancelled replacement refresh succeeded") }
+        catch { XCTAssertTrue(error is CancellationError) }
+        let finalRun = try await db.pool.read { try String.fetchOne($0, sql: "SELECT runID FROM thorchainSync WHERE accountID='a1'") }
+        XCTAssertEqual(finalRun, originalRun)
+        let heights = await transport.heightReads
+        XCTAssertEqual(heights, 1)
+    }
+
     func testRefreshRetriesOlderNodeHeightBeforeFetchingInventory() async throws {
         let (db, folder) = try await fixture()
         defer { try? FileManager.default.removeItem(at: folder) }

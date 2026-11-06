@@ -154,6 +154,10 @@ extension OathDatabase {
         guard balance.observedAt.isFinite else { throw StoreError.invalidValue("balance timestamp") }
         if let old = try BalanceRecord.fetchOne(db, key: ["accountID": balance.accountID, "assetID": balance.assetID]) {
             guard old.networkID == balance.networkID else { throw StoreError.conflictingIdentity }
+            // A pinned Cronos refresh may finish after a newer receipt refresh.
+            // Completion time must never make an older chain state authoritative.
+            if balance.networkID == "cronos", let oldHeight = old.blockHeight,
+               let incomingHeight = balance.blockHeight, incomingHeight < oldHeight { return }
             if old.observedAt > balance.observedAt { return }
         }
         try balance.upsert(db)
@@ -215,7 +219,7 @@ extension OathDatabase {
                     FROM nearHoldings WHERE accountID=? AND assetID=? AND amountAtomic IS NOT NULL
                     """, arguments: [accountID,assetID]) { return balance }
             }
-            if let account = try AccountRecord.fetchOne(db, key: accountID), ["chiliz", "filecoin", "sei", "zerog", "iotex", "celo", "unichain", "monad"].contains(account.networkID) {
+            if let account = try AccountRecord.fetchOne(db, key: accountID), ["chiliz", "filecoin", "sei", "zerog", "iotex", "celo", "unichain", "monad", "story"].contains(account.networkID) {
                 if let balance = try BalanceRecord.fetchOne(db, sql: """
                     SELECT accountID,assetID,? AS networkID,amountAtomic,observedAt,checkpoint AS blockHeight,'indexedEVM' AS source
                     FROM indexedEVMHoldings WHERE accountID=? AND assetID=?

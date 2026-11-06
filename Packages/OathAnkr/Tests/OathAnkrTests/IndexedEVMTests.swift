@@ -23,7 +23,7 @@ private actor IndexedEVMTransport: AnkrTransport {
     }
     func send(_ request: URLRequest) async throws -> (Data, Int) {
         requests.append(request)
-        if ["unichain.blockscout.com", "scan-api.chiliz.com", "filecoin.blockscout.com"].contains(request.url?.host ?? "") {
+        if ["unichain.blockscout.com", "scan-api.chiliz.com", "filecoin.blockscout.com", "www.storyscan.io"].contains(request.url?.host ?? "") {
             if unavailable { return (Data(), 403) }
             let second = request.url!.query?.contains("items_count") == true
             let token: [String:Any] = ["type":"ERC-20","address_hash":uniToken,"name":"Fixture","symbol":"FIX","decimals":"6"]
@@ -54,14 +54,15 @@ private actor IndexedEVMTransport: AnkrTransport {
 
 private actor IndexedEVMHistoryTransport: AnkrTransport {
     let indexed: Data
+    let chain: IndexedEVMChain
     let wrongChain: Bool
     let wrongAmount: Bool
     let wrongBlock: Bool
-    init(indexed: Data, wrongChain: Bool = false, wrongAmount: Bool = false, wrongBlock: Bool = false) {
-        self.indexed = indexed; self.wrongChain = wrongChain; self.wrongAmount = wrongAmount; self.wrongBlock = wrongBlock
+    init(indexed: Data, chain: IndexedEVMChain = .unichain, wrongChain: Bool = false, wrongAmount: Bool = false, wrongBlock: Bool = false) {
+        self.indexed = indexed; self.chain = chain; self.wrongChain = wrongChain; self.wrongAmount = wrongAmount; self.wrongBlock = wrongBlock
     }
     func send(_ request: URLRequest) async throws -> (Data, Int) {
-        if request.url?.host == "unichain.blockscout.com" { return (indexed, 200) }
+        if ["unichain.blockscout.com", "www.storyscan.io"].contains(request.url?.host ?? "") { return (indexed, 200) }
         let calls = try JSONSerialization.jsonObject(with: XCTUnwrap(request.httpBody)) as! [[String:Any]]
         let pad = String(repeating: "0", count: 24)
         let log: [String:Any] = ["address":uniToken, "logIndex":"0x7", "data":wrongAmount ? "0x1" : "0x20000000000001",
@@ -70,7 +71,7 @@ private actor IndexedEVMHistoryTransport: AnkrTransport {
         let receipt: [String:Any] = ["transactionHash":uniHash,"blockNumber":wrongBlock ? "0x65":"0x64",
             "blockHash":uniHash,"status":"0x1","gasUsed":"0x5208","effectiveGasPrice":"0x3b9aca00","l1Fee":"0x64","logs":[log]]
         let replies: [[String:Any]] = calls.map { call in
-            ["jsonrpc":"2.0","id":call["id"]!,"result":call["method"] as? String == "eth_chainId" ? (wrongChain ? "0x1":"0x82") as Any :
+            ["jsonrpc":"2.0","id":call["id"]!,"result":call["method"] as? String == "eth_chainId" ? (wrongChain ? "0x1":"0x" + String(chain.chainID, radix: 16)) as Any :
                 call["method"] as? String == "eth_getTransactionByHash" ? ["hash":uniHash,"blockHash":uniHash,"from":uniOwner,"to":uniOther,"value":"0x7b"] : receipt]
         }
         return (try JSONSerialization.data(withJSONObject:replies.reversed().map{$0}),200)
@@ -78,6 +79,35 @@ private actor IndexedEVMHistoryTransport: AnkrTransport {
 }
 
 final class IndexedEVMTests: XCTestCase, @unchecked Sendable {
+    func testStoryUsesStandardRPCAndExplorerWithPinnedBalancesAndVerifiedHistory() async throws {
+        let transport = IndexedEVMTransport(chain: .story, paginated: true)
+        let inventory = try await IndexedEVMClient(chain: .story, apiKey: "fixture", transport: transport).inventory(owner: uniOwner)
+        XCTAssertTrue(inventory.complete)
+        XCTAssertEqual(inventory.holdings.count, 2)
+        XCTAssertEqual(inventory.holdings.first { $0.token.reference == "native" }?.token.symbol, "IP")
+        XCTAssertEqual(inventory.holdings.first { $0.token.reference == uniToken }?.amount, "3000000")
+        let requests = await transport.requests
+        XCTAssertEqual(requests.filter { $0.url?.host == "www.storyscan.io" }.count, 2)
+        XCTAssertTrue(requests.filter { $0.httpBody != nil }.allSatisfy { $0.url?.path == "/story_mainnet/fixture" })
+        XCTAssertFalse(AnkrChain.story.supportsAdvancedAPI)
+        XCTAssertEqual(IndexedEVMChain.story.chainID, EVMSendNetwork.story.chainID)
+        for request in requests where request.httpBody != nil {
+            let calls = try XCTUnwrap(JSONSerialization.jsonObject(with: request.httpBody!) as? [[String: Any]])
+            for call in calls where ["eth_call", "eth_getBalance"].contains(call["method"] as? String ?? "") {
+                XCTAssertEqual((call["params"] as? [Any])?.last as? String, "0x64")
+            }
+        }
+        let history = try await IndexedEVMClient(chain: .story, apiKey: "fixture",
+            transport: IndexedEVMHistoryTransport(indexed: page([transfer()]), chain: .story))
+            .history(owner: uniOwner, stream: .transfers, through: 2_000_000_000)
+        XCTAssertEqual(history.events.first?.amount, "9007199254740993")
+        XCTAssertEqual(history.events.first?.block, 100)
+        let partial = try await IndexedEVMClient(chain: .story, apiKey: "fixture",
+            transport: IndexedEVMTransport(chain: .story, unavailable: true)).inventory(owner: uniOwner,
+                tracked: [try IndexedEVMToken(reference: uniToken, name: "Saved", symbol: "FIX", decimals: 6)])
+        XCTAssertFalse(partial.complete)
+        XCTAssertEqual(partial.holdings.first { $0.token.reference == uniToken }?.amount, "3000000")
+    }
     func testChilizDEXPricesRequireExactChainContractAndLiquidity() throws {
         func payload(network: String = "chiliz-chain", depth: String = "20000", duplicate: Bool = false) throws -> Data {
             let row: [String: Any] = ["type": "token", "id": network + "_" + uniToken,

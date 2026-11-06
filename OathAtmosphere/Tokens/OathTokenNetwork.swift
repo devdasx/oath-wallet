@@ -13,7 +13,9 @@ struct OathTokenNetwork: Hashable, Sendable {
     let artworkDirectory: String
     var id: String { chain.id }
 
-    static let all: [Self] = [
+    static var all: [Self] { registered.filter { $0.chain.isEnabled } }
+    static let registered: [Self] = [
+        .init(chain: .cronos, chainID: 25, ankrPath: "", artworkDirectory: "cronos"),
         .init(chain: .ethereum, chainID: 1, ankrPath: "eth", artworkDirectory: "ethereum"),
         .init(chain: .arbitrum, chainID: 42161, ankrPath: "arbitrum", artworkDirectory: "arbitrum"),
         .init(chain: .arc, chainID: 5042, ankrPath: "arc", artworkDirectory: "arc"),
@@ -230,8 +232,11 @@ struct OathTokenRPCConfiguration: Sendable {
     }
     func makeEVMSendClient(network:EVMSendNetwork) throws -> EVMSendClient {
         guard !network.isTestnet,let chain=OathImportChain(rawValue:network.rawValue),
-              let entry=OathTokenNetwork.find(chain),entry.chainID==network.chainID else { throw EVMSendError.wrongNetwork }
+              let entry=OathTokenNetwork.registered.first(where: { $0.chain == chain }),entry.chainID==network.chainID else { throw EVMSendError.wrongNetwork }
         var providers=endpoints(for:entry)
+        // Quote preparation must have an independent Ethereum provider when
+        // the primary's latest block is stale. Every fallback verifies chain ID.
+        if network == .ethereum { providers.append(URL(string:"https://ethereum-rpc.publicnode.com")!) }
         // ANKR currently omits Linea's calldata-aware fee method. The official
         // mainnet node is a chain-checked fallback, not a guessed fee schedule.
         if network == .linea { providers.append(URL(string:"https://rpc.linea.build")!) }
@@ -285,6 +290,10 @@ struct OathTokenRPCConfiguration: Sendable {
     }
 
     func endpoints(for network: OathTokenNetwork) -> [URL] {
+        if network.chain == .cronos {
+            return [URL(string: "https://evm.cronos.com")!,
+                    URL(string: "https://cronos-evm-rpc.publicnode.com")!]
+        }
         // Arc's official mainnet RPC is separate from its testnet. Never fall
         // back to a testnet merely because a mainnet provider rejects access.
         if network.chain == .arc {

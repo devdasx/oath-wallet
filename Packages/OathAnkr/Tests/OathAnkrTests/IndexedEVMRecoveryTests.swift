@@ -30,7 +30,7 @@ private actor IndexedRecoveryTransport: AnkrTransport {
         if request.url?.host == "dev.iotexscan.io" { return (Data("{\"status\":\"1\",\"result\":[]}".utf8), 200) }
         if request.url?.host == "chainscan.0g.ai" { return (Data("{\"status\":\"1\",\"result\":{\"list\":[],\"total\":0}}".utf8), 200) }
         if request.url?.host == "api-v2.seistream.app" { return (Data("{\"items\":[],\"pagination\":{\"hasMore\":false}}".utf8), 200) }
-        if ["unichain.blockscout.com", "celo.blockscout.com", "scan-api.chiliz.com", "filecoin.blockscout.com"].contains(request.url?.host ?? "") {
+        if ["www.storyscan.io", "unichain.blockscout.com", "celo.blockscout.com", "scan-api.chiliz.com", "filecoin.blockscout.com"].contains(request.url?.host ?? "") {
             return (Data("{\"items\":[],\"next_page_params\":null}".utf8), 200)
         }
         let json = try JSONDecoder().decode(SolanaJSON.self, from: XCTUnwrap(request.httpBody))
@@ -51,7 +51,7 @@ private actor IndexedRecoveryTransport: AnkrTransport {
             default: return try await tls.send(request)
             }
         } else {
-            let fallbackHost = chain == .iotex ? "babel-api.mainnet.iotex.io" : chain == .zerog ? "evmrpc.0g.ai" : chain == .sei ? "evm-rpc.sei-apis.com" : chain == .filecoin ? "api.node.glif.io" : chain == .chiliz ? "chiliz-rpc.publicnode.com" : chain == .celo ? "forno.celo.org" : chain.rawValue + "-mainnet.g.alchemy.com"
+            let fallbackHost = chain == .story ? "mainnet.storyrpc.io" : chain == .iotex ? "babel-api.mainnet.iotex.io" : chain == .zerog ? "evmrpc.0g.ai" : chain == .sei ? "evm-rpc.sei-apis.com" : chain == .filecoin ? "api.node.glif.io" : chain == .chiliz ? "chiliz-rpc.publicnode.com" : chain == .celo ? "forno.celo.org" : chain.rawValue + "-mainnet.g.alchemy.com"
             let allowedHosts = chain == .iotex ? [fallbackHost, "archive-mainnet.iotex.io"] : [fallbackHost]
             XCTAssertTrue(allowedHosts.contains(request.url?.host ?? ""), "Never route one chain to another chain's RPC")
             XCTAssertEqual(request.url?.scheme, "https")
@@ -147,7 +147,7 @@ final class IndexedEVMRecoveryTests: XCTestCase, @unchecked Sendable {
                 let transport = IndexedRecoveryTransport(chain: chain, failure: .both)
                 do { _ = try await inventory(transport, chain: chain, key: key); XCTFail("Never fabricate a zero balance") }
                 catch { XCTAssertEqual(error as? AnkrError,.transport) }
-                let counts = await transport.counts(); XCTAssertEqual(counts.0,3); XCTAssertEqual(counts.1,key == nil && ![.celo, .chiliz, .filecoin, .sei, .zerog, .iotex].contains(chain) ? 0:3)
+                let counts = await transport.counts(); XCTAssertEqual(counts.0,3); XCTAssertEqual(counts.1,key == nil && ![.story, .celo, .chiliz, .filecoin, .sei, .zerog, .iotex].contains(chain) ? 0:3)
             }
         }
     }

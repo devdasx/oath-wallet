@@ -169,6 +169,7 @@ extension OathImportChain {
 
     var ticker: String {
         switch self {
+        case .cronos: "CRO"
         case .aptos: "APT"
         case .bitcoin: "BTC"
         case .bitcoincash: "BCH"

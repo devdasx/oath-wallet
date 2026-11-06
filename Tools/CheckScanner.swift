@@ -60,7 +60,7 @@ import OathBitcoin
         // Public scalar 1 and deterministic public Ed25519 test seed, never funded or imported.
         let scalar = Data(repeating: 0, count: 31) + Data([1]), ed = Data(0..<32)
         var addresses: [(OathImportChain, String)] = []
-        for chain in OathImportChain.allCases.filter(\.isEVM) {
+        for chain in OathImportChain.enabledCases.filter(\.isEVM) {
             addresses.append((chain, "0x52908400098527886E0F7030069857D2E4169EE7"))
         }
         let descriptors: [(OathImportChain, BitcoinWalletDescriptor)] = [
@@ -87,6 +87,11 @@ import OathBitcoin
             (.xrpl, try XrplSendCrypto.address(privateKey: scalar)), (.stellar, try StellarSendCrypto.address(privateKey: ed))]
         let ton = try TonSendCrypto.address(publicKey: TonSendCrypto.publicKey(privateKey: ed))
         addresses += [(.ton, ton), (.ton, try TonIdentity.friendly(ton)), (.ton, try TonIdentity.friendly(ton, bounceable: false))]
+        try check(!OathImportChain.cronos.isEnabled, "Paused Cronos must remain unavailable")
+        try check(recipient("ethereum:0x52908400098527886E0F7030069857D2E4169EE7@25?value=1") == nil,
+                  "A paused network URI must not become an enabled-chain payment")
+        try check(recipient(addresses[0].1)?.networks.contains(.cronos) == false,
+                  "Bare addresses must not offer paused networks")
         var covered = Set<OathImportChain>()
         for (chain, address) in addresses {
             let scanned = try qr(address)
@@ -121,7 +126,7 @@ import OathBitcoin
             try check(nativeContext.accepts(.recipient(external)), "Asset scanner accepts payment requests")
             try check(!nativeContext.accepts(.walletConnect("fixture")) && !nativeContext.accepts(.privateKey("fixture")),
                       "Asset scanner cannot start an unrelated connection or import")
-            for other in OathImportChain.allCases where other != chain {
+            for other in OathImportChain.enabledCases where other != chain {
                 try check(OathScannerContext.asset(other, reference: "native", symbol: other.id.uppercased()).route(external) == .review,
                           "Explicit different network requires confirmation: " + other.id)
             }
@@ -138,7 +143,7 @@ import OathBitcoin
             }
             covered.insert(chain)
         }
-        try check(covered == Set(OathImportChain.allCases), "Chain catalog coverage incomplete")
+        try check(covered == Set(OathImportChain.enabledCases), "Chain catalog coverage incomplete")
         for (chain, address) in addresses {
             guard let invoice = recipient(try qr(address + "?amount=50.125&label=Shop&message=Invoice%2042")) else {
                 throw Failure.assertion("Schemeless payment QR rejected: " + chain.id)
@@ -229,7 +234,7 @@ import OathBitcoin
         // that overlap; only the broad named-account fallback has lower priority.
         let ethImplicit = "0x" + String(repeating: "ab", count: 20)
         let implicitNetworks = Set(recipient(ethImplicit)?.networks ?? [])
-        try check(implicitNetworks == Set(OathImportChain.allCases.filter(\.isEVM) + [.near, .sui, .aptos, .tron]), "NEAR Ethereum-like overlap lost")
+        try check(implicitNetworks == Set(OathImportChain.enabledCases.filter(\.isEVM) + [.near, .sui, .aptos, .tron]), "NEAR Ethereum-like overlap lost")
         try check(Set(recipient("0x1")?.networks ?? []) == [.sui, .aptos], "Short Move address misidentified as a NEAR name")
         // An explicit NEAR request can still name an account that happens to look
         // like another chain's address. Detection must not change NEAR validation.
@@ -241,7 +246,7 @@ import OathBitcoin
         for (_, address) in addresses {
             guard let result = recipient(address) else { throw Failure.assertion("Missing scan recipient") }
             try check(OathScannerContext.home.route(result) == .assets, "Home address scan did not open asset selection")
-            for chain in OathImportChain.allCases {
+            for chain in OathImportChain.enabledCases {
                 let compatible = result.networks.contains(chain)
                 try check(result.matchesAsset(networkID: chain.id, reference: "native") == compatible, "Native asset filter disagrees with scan network")
                 try check(result.matchesAsset(networkID: chain.id, reference: "test-token") == compatible, "Token asset filter disagrees with scan network")
@@ -349,7 +354,7 @@ import OathBitcoin
         try check(solanaPayment.decoded(on: .solana)?.memo == "hello", "Token payment memo lost")
         // Payment QR matrix uses the actual chain registry and real image decoder.
         var paymentChains = Set<OathImportChain>(), tokenChains = Set<OathImportChain>()
-        for chain in OathImportChain.allCases {
+        for chain in OathImportChain.enabledCases {
             let destination = addresses.first { $0.0 == chain }!.1
             let uri: String
             if chain.isEVM {
@@ -375,8 +380,8 @@ import OathBitcoin
                 tokenChains.insert(chain)
             }
         }
-        try check(paymentChains == Set(OathImportChain.allCases), "Native payment matrix incomplete")
-        try check(tokenChains == Set(OathImportChain.allCases.filter(\.supportsTokens)), "Token payment matrix incomplete")
+        try check(paymentChains == Set(OathImportChain.enabledCases), "Native payment matrix incomplete")
+        try check(tokenChains == Set(OathImportChain.enabledCases.filter(\.supportsTokens)), "Token payment matrix incomplete")
         // Exact reported payload, with a public synthetic recipient substituted.
         let exchange = recipient(try qr("usdt:\(addresses[0].1)?amount=200"))!
         try check(exchange.networks.contains(.bnb) && exchange.networks.contains(.ethereum), "Ticker-only QR must not assume BNB")
@@ -391,7 +396,7 @@ import OathBitcoin
         let legacyInvoice = "ethereum:0x3E6D14A9e27eD8eAbC2B8669Df45968Dd8D4ebeB?amount=50"
         let legacyRequest = recipient(try qr(legacyInvoice))
         try check(legacyRequest?.amount == "50" && legacyRequest?.amountIsAtomic == false && legacyRequest?.amountAssetUnspecified == true, "Exchange amount must remain selected-asset units")
-        try check(Set(legacyRequest?.networks ?? []) == Set(OathImportChain.allCases.filter(\.isEVM)), "Exchange QR must not invent BSC from an unqualified address")
+        try check(Set(legacyRequest?.networks ?? []) == Set(OathImportChain.enabledCases.filter(\.isEVM)), "Exchange QR must not invent BSC from an unqualified address")
         try check(legacyRequest?.matchesAsset(networkID: "bnb", reference: "0x55d398326f99059ff775485246999027b3197955") == true, "Exchange quantity must apply to selected BSC USDT")
         if let fixture = ProcessInfo.processInfo.environment["OATH_LEGACY_PAYMENT_QR_FIXTURE"] {
             let codes = try OathScanImage.codes(in: Data(contentsOf: URL(fileURLWithPath: fixture)))
@@ -404,7 +409,7 @@ import OathBitcoin
             try check(invalid("ethereum:\(addresses[0].1)@\(id)?amount=50&value=1"), "Conflicting amount scales accepted")
             try check(recipient("\(chain.id):\(addresses[0].1)?value=1e3")?.amount == "1000", "EVM alias did not preserve atomic units")
         }
-        for chain in OathImportChain.allCases {
+        for chain in OathImportChain.enabledCases {
             let target = addresses.first { $0.0 == chain }!.1.replacingOccurrences(of: "bitcoincash:", with: "")
             let base = chain == .ton ? "ton://transfer/" : chain.id + ":"
             let note = recipient(try qr(base + target + "?amount=1&label=Shop&message=Thanks%20for%20the%20order"))
@@ -448,7 +453,7 @@ import OathBitcoin
         try check(OathScannerContext.contact(.bnb).route(exchange) == .review, "Ticker payment must not become a plain contact")
         try check(invalid("ton://transfer/\(ton)?amount=1&memo=ignored"), "Unsupported TON memo must not be silently dropped")
         let noNetwork = recipient("ethereum:\(addresses[0].1)?value=1")!
-        try check(Set(noNetwork.networks) == Set(OathImportChain.allCases.filter(\.isEVM)), "Unspecified EVM network must remain selectable")
+        try check(Set(noNetwork.networks) == Set(OathImportChain.enabledCases.filter(\.isEVM)), "Unspecified EVM network must remain selectable")
         let issued = recipient(try qr("web+stellar:pay?destination=\(stellar)&amount=2.5&asset_code=USDT&asset_issuer=\(stellar)"))!
         try check(issued.token == (try StellarIdentity.contract(code: "USDT", issuer: stellar)) && issued.amount == "2.5", "SEP7 issuer identity lost")
         for (type, value, expectedType) in [("MEMO_TEXT", "Invoice", "text"), ("MEMO_ID", "18446744073709551615", "id"),
