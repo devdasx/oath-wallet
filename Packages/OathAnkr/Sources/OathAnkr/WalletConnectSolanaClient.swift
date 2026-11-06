@@ -137,8 +137,9 @@ extension SolanaSendClient {
             return valid
         }
         let result = try await rpc("getAccountInfo", [.string(nonce.address), config])
-        guard let slot = result["context"]["slot"].integer, slot >= minimumSlot else { throw SolanaSendError.malformed }
-        let account = result["value"]
+        // Only an explicit null proves absence. A missing value is not
+        // evidence that a pending durable-nonce transaction has expired.
+        let account = try value(result, slot: minimumSlot)
         if account.isNull { return false }
         guard account["owner"].string == SolanaSendCrypto.system,
               account["executable"] == .bool(false), let bytes = Self.walletConnectAccountBytes(account),
