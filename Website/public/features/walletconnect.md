@@ -77,6 +77,26 @@ No. Compatibility depends on the network, wallet account and action requested by
 - [Review token access separately](https://help.oathwallet.org/articles/revoke-token-access)
 
 
+
+
+## When a dApp will not connect
+
+### The dApp shows only browser-extension wallets. Can Oath connect?
+
+The dApp needs a compatible WalletConnect or mobile app-link flow. Oath cannot make an extension-only connection option work. Check the dApp’s supported mobile wallets and exact network.
+
+### Does connecting permit every future transaction?
+
+A session and a signing request have separate reviews. Read the website, account, network and requested action each time. Disconnect a session you no longer use and review token approvals separately.
+
+- [Check Solana dApp and test-network scope](https://help.oathwallet.org/articles/walletconnect-solana)
+- [Review token approvals separately](https://oathwallet.org/features/revoke-token-approvals)
+- [Find network-specific connection guidance](https://oathwallet.org/networks)
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
+
 ## Release and source details
 
 Feature scope reviewed for Oath 5.0.2 (104) on 2026-11-06. Screens show Oath 4.0.3; appearance can differ in newer versions.

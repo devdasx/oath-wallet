@@ -56,3 +56,17 @@ There is no network fee to derive an address from recovery material. Later sends
 Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca). Source review covers the [default EVM derivation](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/OathAtmosphere/Wallet/OathWalletEngine.swift) and [private-key import](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/OathAtmosphere/Wallet/OathPrivateKeyImport.swift). Offline public vectors check the first EVM address, distinguish the next account, and reproduce that account's address from its individual key. This is derivation evidence, not a live transfer test or verification of smart-account behavior.
 
 [Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Move from Trust Wallet](https://articles.oathwallet.org/move-from-trust-wallet-to-oath) · [Restore an Electrum Bitcoin wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+
+## Check the account in Oath
+
+![Oath receiving screen with sample data](https://articles.oathwallet.org/assets/articles/editorials/use-metamask-wallet-in-oath/oath-receive.webp)
+
+Oath 4.0.3 app screenshot with sample data. Check the exact network as well as the full address. This older capture does not establish that every MetaMask account was imported.
+
+## After checking compatibility
+
+- [Ethereum account and fee guidance](https://oathwallet.org/networks/ethereum)
+- [Base account and fee guidance](https://oathwallet.org/networks/base)
+- [Review existing token approvals](https://oathwallet.org/features/revoke-token-approvals)
+- [Find the network fee asset](https://oathwallet.org/networks/fees)
+- [Read current release information](https://articles.oathwallet.org/oath-wallet-release-history)

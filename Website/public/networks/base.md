@@ -49,6 +49,36 @@ Features depend on the app version, network, wallet type and the service you con
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
 
+
+## When a transfer needs a closer look
+
+### Can ETH on Ethereum pay a Base fee?
+
+No. For Oath’s ordinary Base send flow, keep ETH on Base. The same public address can exist on both networks, but their balances and transactions are separate.
+
+### Why is my token balance available but Send cannot continue?
+
+A token balance and the network fee balance are separate. Check that ETH is available on Base, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee.
+
+### The sender says it is complete. Where is my transfer?
+
+Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath.
+
+### What if I selected the wrong network?
+
+Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support.
+
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Choose a network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+- [Follow the receiving instructions](https://help.oathwallet.org/articles/receive-crypto)
+
+![Receive crypto with a QR code in Oath](https://oathwallet.org/help/assets/guide-05-receive.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
 <!-- token-catalog:start -->
 ## Tokens on Base
 

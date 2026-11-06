@@ -1,6 +1,7 @@
 // Publish each reviewed Markdown folder alongside the existing multilingual archive.
 import {readFile, writeFile, readdir, mkdir, rm, copyFile, lstat} from 'node:fs/promises';
 import {join} from 'node:path';
+import sharp from 'sharp';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {archiveRoutes} from '../src/article-routes.js';
@@ -47,7 +48,7 @@ async function compile(slug) {
   const markdown = (await read(join(folder,'article.md'))).trim();
   if (!markdown || /^# /m.test(markdown)) throw Error(slug + ': supply a body with section headings (##), and the title in metadata');
   const sections = [];
-  const body = renderMarkdown(markdown, (alt, name) => '<p><img loading="lazy" alt="'+escape(alt)+'" src="'+asset(name)+'"></p>')
+  let body = renderMarkdown(markdown, (alt, name) => '<p><img loading="lazy" alt="'+escape(alt)+'" src="'+asset(name)+'"></p>')
     .replaceAll('<div class="oath-readable-table">', '<p class="article-table-hint">Scroll sideways to read the full table.</p><div class="oath-readable-table" role="region" aria-label="Article table" tabindex="0">')
     .replace(/<h2>(.*?)<\/h2>/g, (_, label) => {
       const id = 'section-' + (sections.length + 1);
@@ -61,11 +62,19 @@ async function compile(slug) {
     if (!(await lstat(file)).isFile()) throw Error(slug + ': expected a regular image file ' + name);
     await copyFile(file,join(publicDir,mediaPath,name));
   }
+  // Reserve the actual image ratio before bytes load to avoid layout shifts.
+  for (const name of images) {
+    const dimensions=await sharp(join(folder,name)).metadata();
+    if(!dimensions.width||!dimensions.height)throw Error(slug+': image has no dimensions');
+    const src=asset(name);
+    body=body.replaceAll('src="'+src+'"','src="'+src+'" width="'+dimensions.width+'" height="'+dimensions.height+'" decoding="async"');
+  }
+  const coverDimensions=await sharp(join(folder,meta.cover)).metadata();
   const minutes = Math.max(1, Math.ceil(body.replace(/<[^>]+>/g,' ').trim().split(/\s+/).length/220));
-  const row = {title:meta.title,excerpt:meta.excerpt,category:meta.category,author_name:'Oath Wallet',published_at:published,updated_at:updated,locale:'en',language_name:'English',reading_minutes:minutes,url,cover_image_url:cover,markdown_url:url+'.md',github_editorial:true};
+  const row = {title:meta.title,excerpt:meta.excerpt,category:meta.category,author_name:'Oath Editorial',published_at:published,updated_at:updated,locale:'en',language_name:'English',reading_minutes:minutes,url,cover_image_url:cover,markdown_url:url+'.md',github_editorial:true};
   const schema = {'@context':'https://schema.org','@type':'BlogPosting',headline:row.title,description:row.excerpt,
     datePublished:published,dateModified:updated,inLanguage:'en',mainEntityOfPage:url,image:cover,
-    author:{'@type':'Organization',name:row.author_name,url:'https://oathwallet.org/about'},
+    author:{'@type':'Organization',name:row.author_name,url:'https://oathwallet.org/about#editorial'},
     publisher:{'@type':'Organization',name:'Oath Wallet',url:'https://oathwallet.org/'}};
   if (meta.original_url) schema.sameAs = meta.original_url;
   const h = escape, title = h(row.title), description = h(row.excerpt);
@@ -76,8 +85,8 @@ async function compile(slug) {
 <meta property="og:type" content="article"><meta property="og:site_name" content="Oath Wallet"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${cover}"><meta property="og:image:alt" content="${h(meta.cover_alt)}"><meta property="article:published_time" content="${published}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@OathWallet">
 <script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script></head><body>
 <a class="skip" href="#content">Skip to article</a><!-- oath-shared-header:start --><!-- oath-shared-header:end -->
-<main id="content"><article><div class="article-hero"><div class="eyebrow">${h(row.category)} · <time datetime="${published}">${published.slice(0,10)}</time></div><h1>${title}</h1><p class="dek">${description}</p><div class="byline"><span>Oath Wallet · ${minutes} min read</span>${original}</div></div>
-<div class="cover"><img src="${cover}" alt="${h(meta.cover_alt)}" fetchpriority="high"></div>
+<main id="content"><article><div class="article-hero"><div class="eyebrow">${h(row.category)} · <time datetime="${published}">${published.slice(0,10)}</time></div><h1>${title}</h1><p class="dek">${description}</p><div class="byline"><span><a href="https://oathwallet.org/about#editorial">Oath Editorial</a> · ${minutes} min read</span><span>Updated <time datetime="${updated}">${updated.slice(0,10)}</time></span>${original}</div></div>
+<div class="cover"><img src="${cover}" alt="${h(meta.cover_alt)}" width="${coverDimensions.width}" height="${coverDimensions.height}" fetchpriority="high"></div>
 <div class="reading-layout"><aside>${sections.length ? '<details class="toc"><summary>In this article</summary><ol>'+sections.join('')+'</ol></details>' : ''}</aside><div class="article-body">${body}<div class="article-end"><a href="${origin}/">Explore all articles</a></div></div></div></article></main>
 <!-- oath-shared-footer:start --><!-- oath-shared-footer:end --></body></html>\n`;
   const mirror = markdown.replace(/^!\[([^\]]+)\]\(([^)]+)\)$/gm,(_,alt,name)=>'!['+alt+']('+asset(name)+')');

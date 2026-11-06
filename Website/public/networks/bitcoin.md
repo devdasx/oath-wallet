@@ -48,3 +48,29 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+
+## Match your Bitcoin account and address
+
+### Which Bitcoin address should I use?
+
+Choose a format supported by both the sender and your imported wallet. Taproot, Native SegWit, wrapped SegWit and Legacy are Bitcoin address choices, not different coins. The choices available in Oath depend on your recovery material.
+
+### Why does my receiving address change?
+
+A supported Bitcoin account can derive multiple receiving and change addresses. Compare an earlier address and its transaction history when checking recovery; a new receiving address alone does not establish an account mismatch.
+
+### Can I receive a Lightning payment here?
+
+This guide is for on-chain BTC. A Lightning invoice, Bitcoin Cash address or wrapped BTC token is a different destination or asset.
+
+- [Choose a Bitcoin address type](https://help.oathwallet.org/articles/bitcoin-address-types)
+- [Restore a compatible Electrum wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+
+![Choose a Bitcoin address type in Oath](https://oathwallet.org/help/assets/guide-receive-bitcoin.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).

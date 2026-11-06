@@ -34,6 +34,23 @@ test('phone preview points to working density candidates without changing its pr
   assert.ok((await readFile(new URL('.'+path,root))).length>0);
  }
  const home=await readFile(new URL('index.html',root),'utf8');
- assert.match(home,/<link rel="preload" as="image" href="\/assets\/home-preview\/cobalt.jpg" fetchpriority="high">/);
+ assert.match(home,/<link rel="preload" as="image" href="\/assets\/home-preview\/cobalt.webp" fetchpriority="high">/);
  assert.match(home,/class="network-card"[^]*?srcset="\/assets\/networks\/responsive\//);
+});
+
+test('shared footer uses small fallback icons and a compact homepage poster',async()=>{
+ const {buildSiteChrome}=await import('../scripts/build-help-chrome.mjs');
+ const chrome=await buildSiteChrome();
+ const icons=[...chrome.footer.matchAll(/<img\b[^>]*src="([^"]*assets\/networks[^"]*)"[^>]*>/g)];
+ assert.equal(icons.length,42);let delivered=0,original=0;
+ for(const [,path]of icons){
+  assert.match(path,/responsive\/[^/]+-56\.webp$/);
+  delivered+=(await readFile(new URL('.'+path,root))).length;
+  original+=(await readFile(new URL('.'+path.replace('/responsive/','/').replace('-56.webp','.webp'),root))).length;
+ }
+ assert.ok(delivered<original*.1);
+ const poster=await readFile(new URL('assets/home-preview/cobalt.webp',root));
+ const source=await readFile(new URL('assets/home-preview/cobalt.jpg',root));
+ assert.ok(poster.length<source.length*.25);
+ const dimensions=await sharp(poster).metadata();assert.equal(dimensions.width,880);assert.equal(dimensions.height,2200);
 });

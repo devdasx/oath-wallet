@@ -124,7 +124,7 @@ All eight public pages use extensionless URLs. Legacy `.html` links redirect per
 The verified Search Console domain property is `sc-domain:oathwallet.org`; it
 covers the main site, `articles.oathwallet.org` and `help.oathwallet.org`. Each host
 has its own sitemap, referenced in robots.txt and submitted in Search Console.
-The main sitemap contains only the eight current main-site pages. Legacy support
+The main sitemap is an index with separate core-page and bounded token sitemaps. Legacy support
 URLs permanently redirect to the Help Center, and legacy article URLs permanently
 redirect to their matching article, preserving the path and query parameters.
 
@@ -138,11 +138,30 @@ The readable-page build defers `support.js` and preloads its two required local
 React dependencies with matching integrity/CORS settings, keeping the existing
 interactive design while removing a parser-blocking enhancement script.
 
-The App Store rating/version snapshot in `build-seo.mjs` was verified against
-Apple's public lookup on October 27, 2026 (version 4.1.2). Check the source fixture for the dated rating values.
-When refreshing it, update the dated visible disclosure, structured data and
-regression assertion together; never invent ratings or an audit claim. The older
-public source-review version has a separate, explicitly dated scope.
+The homepage retains a dated, attributed App Store rating for readers. Imported
+App Store reviews and ratings are not included in Google's review markup.
+`MobileApplication` still describes the actual app and its public release.
+Keep the visible snapshot and its source date honest when refreshing it.
+
+`content/priority-guidance.json` supplies practical questions, original versioned
+screenshots and related links for priority network, token and feature pages.
+`build:decisions` builds `/networks/fees` from the existing network guidance and
+`/networks/choose-token-network` from the accepted token snapshot and identity
+ledger. All entries are rendered before JavaScript; filters are progressive
+controls, not separate indexable URLs. No live provider or wallet connection is
+used. Catalog refreshes regenerate these pages through the normal build.
+
+`content/articles/oath-wallet-release-history` describes recorded distribution
+separately from earlier source releases. Update it only from release evidence.
+The About page explains editorial attribution, review limits and corrections.
+
+For a private aggregate landing-page report, use `scripts/seo-organic-report.sql`
+through an already authorized database connection. It is a read-only query of
+existing data and needs no migration or new tracking. It reports sessions with
+App Store clicks, not installations; referrer attribution can be incomplete and
+does not establish whether a search referral was paid or organic. Compare its
+28-day reporting window with Search Console's available dates. Do not publish
+raw visitor rows or private dashboard results.
 
 After deployment run:
 

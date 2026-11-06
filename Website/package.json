@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "build:search": "node scripts/build-search-content.mjs",
-    "predeploy": "npm run build:brand && npm run build:press && npm run build:bounty && npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:features && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:tokens && npm run build:agents && npm run build:images",
+    "predeploy": "npm run build:brand && npm run build:press && npm run build:bounty && npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:features && npm run build:decisions && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:tokens && npm run build:agents && npm run build:images",
     "build:seo": "node scripts/build-seo.mjs",
     "deploy": "wrangler deploy",
     "postdeploy": "node scripts/submit-indexnow.mjs",
@@ -27,7 +27,8 @@
     "build:images": "node scripts/build-image-delivery.mjs",
     "build:tokens": "node scripts/build-tokens.mjs",
     "refresh:tokens": "node scripts/sync-token-source.mjs && npm run predeploy && npm run test:unit",
-    "build:features": "node scripts/build-feature-pages.mjs"
+    "build:features": "node scripts/build-feature-pages.mjs",
+    "build:decisions": "node scripts/build-decision-guides.mjs"
   },
   "devDependencies": {
     "playwright": "1.63.0",

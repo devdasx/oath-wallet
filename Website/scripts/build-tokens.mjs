@@ -12,7 +12,7 @@ const ledgerFile=new URL('content/tokens/routes.json',base);
 let previous;
 try{previous=readLedger(JSON.parse(await readFile(ledgerFile)));}catch(e){if(e.code!=='ENOENT')throw e;}
 const {ledger,rows}=assignRoutes(source,previous);
-const template=await Promise.all(['src/tokens.js','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
+const template=await Promise.all(['src/tokens.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
 const version=digest(JSON.stringify({source,ledger,template})).slice(0,16), prefix=`/token-data/${version}`;
 const stage=new URL('public/token-data-next/',base);
 await rm(stage,{recursive:true,force:true});await mkdir(stage,{recursive:true});
@@ -99,7 +99,9 @@ let core=await readFile(new URL('sitemap.xml',root),'utf8');
 if(core.includes('<sitemapindex'))core=await readFile(new URL('sitemaps/pages.xml',root),'utf8');
 core=core.replace(/<url>[\s\S]*?<\/url>/g,block=>{
   if(!Object.values(networkInfo).some(n=>block.includes(`<loc>https://oathwallet.org/networks/${n.slug}</loc>`)))return block;
-  return block.replace(/<lastmod>[^<]+<\/lastmod>/,'') .replace('</url>',`<lastmod>${source.updatedDate}</lastmod></url>`);
+  const existing=block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1]||'';
+  const modified=[existing,source.updatedDate].sort().at(-1);
+  return block.replace(/<lastmod>[^<]+<\/lastmod>/,'').replace('</url>',`<lastmod>${modified}</lastmod></url>`);
 });
 await writeFile(new URL('sitemaps/pages.xml',root),core);
 const maps=['https://oathwallet.org/sitemaps/pages.xml'];
