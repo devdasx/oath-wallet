@@ -1,8 +1,5 @@
 # OathNativeRefresh
 
-Current release: [4.1.15 (99) verification record](../../releases/4.1.15.md). Historical checks below describe their original scope; they are not an independent audit of this release.
-
-
 iOS 17+ native SwiftUI `List` with its native `.refreshable` control, exposed
 through the existing `NativeRefreshScroll` API. Native reusable cells keep both
 rendered content and button hit testing in the same coordinate space during the
@@ -222,6 +219,15 @@ ownership paths while retaining the same `BrandedRefreshIndicator` and model.
 Direction changes and temporary absence of a mounted refresh control are normal
 UI lifecycle events, not diagnostic failures. Existing refresh error reporting,
 cancellation and operation correlation remain in `RefreshAction`.
+
+The progress ring also carries the caller's layout direction and locale into
+its separate hosted SwiftUI environment, including updates to an existing result.
+The completion checkmark opts into native RTL mirroring; the loading ring and
+failure symbol keep their existing rendering. The focused pixel regression is
+`--only-testing DirectionTests/DirectionTests/testRingCheckmarkFollowsAppDirectionOnHomeAndAsset`
+with `CheckNativeRefreshPlacement.py`. It verifies Arabic RTL and English LTR
+results through the production refresh control using synthetic Home/Asset
+content and no wallet or network data. It requires justified simulator use.
 
 Run `python3 Tools/CheckNativeListDirection.py` for the source guard and use
 `Tools/LanguageDirectionRegression` only when runtime verification is justified.

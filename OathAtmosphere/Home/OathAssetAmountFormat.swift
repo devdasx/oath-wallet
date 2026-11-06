@@ -47,8 +47,14 @@ struct OathAssetAmountFormat {
         let signedStyle = style.sign(strategy: .always(showZero: false))
         if value != 0 && abs(value) < minimum {
             let bound = value < 0 ? -minimum : minimum
-            return AttributedString(value < 0 ? "> " : "< ") +
-                (signed ? bound.formatted(signedStyle.attributed) : bound.formatted(style.attributed))
+            let comparison = value < 0 ? "> " : "< "
+            let formattedBound = signed ? bound.formatted(signedStyle.attributed) : bound.formatted(style.attributed)
+            // Keep the mathematical operator LTR so RTL shaping cannot turn
+            // '<' into '>'. Isolate the localized operand separately to retain
+            // Foundation's currency placement, signs, digits and attributes.
+            // Controls survive callers converting this display value to String.
+            return AttributedString("\u{2066}\(comparison)\u{2068}") + formattedBound +
+                AttributedString("\u{2069}\u{2069}")
         }
         return signed ? value.formatted(signedStyle.attributed) : value.formatted(style.attributed)
     }

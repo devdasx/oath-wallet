@@ -113,6 +113,8 @@ public struct NativeRefreshScroll<Content: View>: View {
         if controller.model.isActive != enabled { controller.model.isActive = enabled }
         if controller.model.labels != labels { controller.model.labels = labels }
         controller.tint = tint
+        controller.indicatorLayoutDirection = environment.layoutDirection
+        controller.indicatorLocale = environment.locale
         controller.control.tintColor = indicator == .system ? tint : .clear
         controller.control.isEnabled = controller.enabled
         controller.control.accessibilityElementsHidden = indicator != .system
@@ -146,6 +148,8 @@ public struct NativeRefreshScroll<Content: View>: View {
         private let unattachedControl = UIRefreshControl()
         fileprivate var control: UIRefreshControl { scroll.refreshControl ?? unattachedControl }
         fileprivate var tint = UIColor.label
+        fileprivate var indicatorLayoutDirection: LayoutDirection = .leftToRight
+        fileprivate var indicatorLocale = Locale.current
         fileprivate var identifier = ""
         fileprivate let ringIndicatorView = ProgressRingRefreshIndicator(frame: .zero)
         fileprivate var indicatorView: UIView { indicator == .progressRing ? ringIndicatorView : logoIndicatorView }
@@ -315,6 +319,7 @@ public struct NativeRefreshScroll<Content: View>: View {
             }
             if indicator == .progressRing {
                 ringIndicatorView.update(cycle: model.cycle, tint: tint, labels: model.labels,
+                                         layoutDirection: indicatorLayoutDirection, locale: indicatorLocale,
                                          active: enabled, reduceMotion: UIAccessibility.isReduceMotionEnabled)
             }
             indicatorView.frame = nativeControl.bounds

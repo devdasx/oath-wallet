@@ -1,4 +1,6 @@
 import Foundation
+import AppKit
+import CoreText
 
 @main struct CheckAssetAmounts {
     // Mac-host check; no simulator or device:
@@ -11,6 +13,9 @@ import Foundation
             checks += 1
         }
         func decimal(_ value: String) -> Decimal { Decimal(string: value, locale: Locale(identifier: "en_US_POSIX"))! }
+        func withoutIsolates(_ value: String) -> String {
+            String(String.UnicodeScalarView(value.unicodeScalars.filter { !(0x2066...0x2069).contains($0.value) }))
+        }
         let us = OathAssetAmountFormat(locale: Locale(identifier: "en_US"))
         check(us.native(0, ticker: "BTC") == "0 BTC", "Confirmed zero uses native units")
         check(us.native(nil, ticker: "BTC") == "0 BTC", "Missing native amounts display zero")
@@ -83,8 +88,8 @@ import Foundation
         let feeFormat = OathAssetAmountFormat(locale: Locale(identifier: "en_US"), selectedCurrencyCode: "USD")
         check(feeFormat.fee(nil) == nil && feeFormat.fee(.nan) == nil, "Missing fee pricing stays unknown")
         check(feeFormat.fee(0) == "$0.00", "A real zero fee is displayed")
-        check(feeFormat.fee(decimal("0.000031")) == "< $0.01", "A paid sub-cent fee is not rounded to zero")
-        check(feeFormat.fee(decimal("0.0000000001")) == "< $0.01", "Tiny paid fees retain a nonzero upper bound")
+        check(feeFormat.fee(decimal("0.000031")).map(withoutIsolates) == "< $0.01", "A paid sub-cent fee is not rounded to zero")
+        check(feeFormat.fee(decimal("0.0000000001")).map(withoutIsolates) == "< $0.01", "Tiny paid fees retain a nonzero upper bound")
         for code in ["JPY", "JOD", "USD"] {
             let formatter = OathAssetAmountFormat(locale: Locale(identifier: "en_US"), selectedCurrencyCode: code)
             let fee = decimal("12.3456")
@@ -92,12 +97,12 @@ import Foundation
         }
 
         for input in ["0.000000001", "0.009", "0.00999999"] {
-            check(us.money(decimal(input)) == "< $0.01", "Nonzero sub-cent amounts use a cent bound")
-            check(us.money(-decimal(input)) == "> -$0.01", "Negative sub-cent amount remains negative")
+            check(withoutIsolates(us.money(decimal(input))) == "< $0.01", "Nonzero sub-cent amounts use a cent bound")
+            check(withoutIsolates(us.money(-decimal(input))) == "> -$0.01", "Negative sub-cent amount remains negative")
         }
         check(us.money(decimal("0.01")) == "$0.01", "One cent is exact")
         check(us.money(decimal("123.456789")) == "$123.46", "Local amounts never exceed two decimals")
-        check(us.money(decimal("0.001"), signed: true) == "< +$0.01", "Incoming dust retains direction")
+        check(withoutIsolates(us.money(decimal("0.001"), signed: true)) == "< +$0.01", "Incoming dust retains direction")
         for (input, expected) in [("98.864689267516090857", "98.86468926"),
             ("123456789123456789123456789123456789.123456789", "123456789123456789123456789123456789.12345678"),
             ("0.000000000001", "< 0.00000001"), ("-0.000000000001", "> -0.00000001"),
@@ -123,6 +128,37 @@ import Foundation
         let registry = CommandLine.arguments.dropFirst().first ?? "Design/Localization/languages.json"
         let languages = try JSONDecoder().decode([Language].self, from: Data(contentsOf: URL(fileURLWithPath: registry)))
         check(!languages.isEmpty, "Supported language coverage must not be empty")
+        var shapingChecks = 0
+        // Check the actual glyph selected by the platform's bidi shaper. Merely
+        // checking String.contains("<") cannot detect a visually reversed sign.
+        for language in languages {
+            for code in ["USD", "EUR", "SAR", "ILS", "JOD", "JPY"] {
+                let locale = Locale(identifier: language.locale)
+                let formatter = OathAssetAmountFormat(locale: locale, selectedCurrencyCode: code)
+                for negative in [false, true] {
+                    for signed in [false, true] {
+                        let amount = decimal(negative ? "-0.001" : "0.001")
+                        let symbol = negative ? ">" : "<"
+                        let value = formatter.fiatValue(amount, signed: signed)
+                        let text = String(value.characters)
+                        let bound = decimal(negative ? "-0.01" : "0.01")
+                        let style = Decimal.FormatStyle.Currency(code: code).locale(locale).precision(.fractionLength(2))
+                        let operand = signed ? bound.formatted(style.sign(strategy: .always(showZero: false)).attributed) : bound.formatted(style.attributed)
+                        check(withoutIsolates(text) == symbol + " " + String(operand.characters), "Bounded value preserves localized currency and sign")
+                        let operandRange = value.range(of: String(operand.characters))!
+                        check(AttributedString(value[operandRange]) == operand, "Directional isolation preserves all operand attributes")
+                        check(formatter.money(amount, signed: signed) == text, "String callers preserve display direction")
+                        for direction: NSWritingDirection in [.leftToRight, .rightToLeft] {
+                            check(shapesComparison(text, as: symbol, direction: direction), "Incorrect shaped comparison: \(locale.identifier)/\(code)/\(negative)/\(signed)/\(direction.rawValue)")
+                            shapingChecks += 1
+                        }
+                    }
+                }
+            }
+        }
+        // Negative controls establish that this check detects the original bug.
+        check(!shapesComparison("< $0.01", as: "<", direction: .rightToLeft), "Unisolated less-than sign must expose RTL mirroring")
+        check(!shapesComparison("> -$0.01", as: ">", direction: .rightToLeft), "Unisolated greater-than sign must expose RTL mirroring")
         for language in languages {
             var regional = Locale.Components(identifier: language.locale)
             regional.region = Locale.Region(language.region)
@@ -140,6 +176,33 @@ import Foundation
                 }
             }
         }
-        print("Passed \(checks) asset amount, currency-region, precision, and semantic styling checks across \(languages.count) supported languages.")
+        print("Passed \(checks) asset amount, currency-region, precision, and semantic styling checks across \(languages.count) supported languages; \(shapingChecks) CoreText directional glyph checks.")
+    }
+
+    private static func shapesComparison(_ text: String, as symbol: String, direction: NSWritingDirection) -> Bool {
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.baseWritingDirection = direction
+        let attributed = NSAttributedString(string: text, attributes: [
+            .font: NSFont.systemFont(ofSize: 32), .paragraphStyle: paragraph
+        ])
+        let line = CTLineCreateWithAttributedString(attributed)
+        let offset = (text as NSString).range(of: symbol).location
+        guard offset != NSNotFound else { return false }
+        for run in CTLineGetGlyphRuns(line) as! [CTRun] {
+            let count = CTRunGetGlyphCount(run)
+            var indices = [CFIndex](repeating: 0, count: count)
+            var glyphs = [CGGlyph](repeating: 0, count: count)
+            CTRunGetStringIndices(run, CFRange(location: 0, length: 0), &indices)
+            CTRunGetGlyphs(run, CFRange(location: 0, length: 0), &glyphs)
+            if let index = indices.firstIndex(of: offset) {
+                let attributes = CTRunGetAttributes(run) as NSDictionary
+                guard let font = attributes[kCTFontAttributeName] else { return false }
+                var character = symbol.utf16.first!
+                var expected: CGGlyph = 0
+                return CTFontGetGlyphsForCharacters(font as! CTFont, &character, &expected, 1)
+                    && glyphs[index] == expected
+            }
+        }
+        return false
     }
 }

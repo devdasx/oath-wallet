@@ -27,8 +27,10 @@ import Observation
     }
 
     func update(cycle: RefreshCycle, tint: UIColor, labels: NativeRefreshLabels,
+                layoutDirection: LayoutDirection, locale: Locale,
                 active: Bool, reduceMotion: Bool) {
         let next = RingPresentationState(cycle: cycle, tint: tint, labels: labels,
+                                         layoutDirection: layoutDirection, locale: locale,
                                          active: active, reduceMotion: reduceMotion)
         guard next != model.state else { return }
         let replacesRing = model.state.cycle.phase == .refreshing && next.isResult
@@ -46,6 +48,8 @@ private struct RingPresentationState: Equatable {
     var cycle = RefreshCycle()
     var tint = UIColor.white
     var labels = NativeRefreshLabels.english
+    var layoutDirection: LayoutDirection = .leftToRight
+    var locale = Locale.current
     var active = true
     var reduceMotion = false
     var isResult: Bool {
@@ -74,6 +78,7 @@ private struct RingPresentation: View {
                 Image(systemName: state.cycle.phase == .failed ? "exclamationmark" : "checkmark")
                     .font(.system(size: 24, weight: .medium))
                     .foregroundStyle(Color(uiColor: state.tint))
+                    .flipsForRightToLeftLayoutDirection(state.cycle.phase != .failed)
                     .frame(width: 28, height: 28)
                     .accessibilityIdentifier(state.cycle.phase == .failed
                         ? "refresh.ring.failure" : "refresh.ring.success")
@@ -85,6 +90,10 @@ private struct RingPresentation: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        // UIHostingConfiguration starts a separate SwiftUI environment. Carry
+        // the app's language through so checkmark mirroring follows that language.
+        .environment(\.layoutDirection, state.layoutDirection)
+        .environment(\.locale, state.locale)
         .accessibilityElement(children: .contain)
         .accessibilityLabel(state.label)
         .accessibilityValue(state.cycle.phase == .pulling

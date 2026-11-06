@@ -45,11 +45,15 @@ def main():
                 "PlacementUITests": {
                     "type": "bundle.ui-testing", "platform": "iOS", "sources": ["Fixture/PlacementUITests.swift"],
                     "dependencies": [{"target": "RefreshPlacement"}],
-                    "settings": {"base": {"PRODUCT_BUNDLE_IDENTIFIER": "org.oathwallet.refresh-placement.tests"}}}
+                    "settings": {"base": {"PRODUCT_BUNDLE_IDENTIFIER": "org.oathwallet.refresh-placement.tests"}}},
+                "DirectionTests": {
+                    "type": "bundle.unit-test", "platform": "iOS", "sources": ["Fixture/DirectionTests.swift"],
+                    "dependencies": [{"target": "RefreshPlacement"}, {"package": "OathNativeRefresh"}],
+                    "settings": {"base": {"PRODUCT_BUNDLE_IDENTIFIER": "org.oathwallet.refresh-direction.tests"}}}
             },
             "schemes": {"RefreshPlacement": {
-                "build": {"targets": {"RefreshPlacement": "all", "PlacementUITests": ["test"]}},
-                "test": {"targets": ["PlacementUITests"], "environmentVariables": {"OATH_REFRESH_BASELINE": "1" if args.unmodified_baseline else "0"}}}}
+                "build": {"targets": {"RefreshPlacement": "all", "PlacementUITests": ["test"], "DirectionTests": ["test"]}},
+                "test": {"targets": ["PlacementUITests", "DirectionTests"], "environmentVariables": {"OATH_REFRESH_BASELINE": "1" if args.unmodified_baseline else "0"}}}}
         }
         (work / "project.yml").write_text(json.dumps(spec))
         run("xcodegen", "generate", "--spec", str(work / "project.yml"))

@@ -170,7 +170,9 @@ import Foundation
         for currency in ["USD", "JPY", "KWD", "JOD"] {
             let money = OathAssetAmountFormat(locale: en, selectedCurrencyCode: currency)
             check(money.money(Decimal(string: "12.3456")!).hasSuffix("12.35"), "Send review follows shared two-decimal policy for every currency")
-            check(money.money(Decimal(string: "0.001")!).hasPrefix("< ") && money.money(Decimal(string: "0.001")!).hasSuffix("0.01"), "Sub-cent send values use the lower bound")
+            let bounded = money.money(Decimal(string: "0.001")!)
+            let visible = String(String.UnicodeScalarView(bounded.unicodeScalars.filter { !(0x2066...0x2069).contains($0.value) }))
+            check(visible.hasPrefix("< ") && visible.hasSuffix("0.01"), "Sub-cent send values retain the visible bound and currency")
         }
         let usd = OathSendAmountFormat(locale: en, currency: "USD")
         check(usd.amount("0", fiat: true, symbol: "BTC", decimals: 8, belowFiatMinimum: true) == "< $0.01", "Positive sub-cent Max displays a bound, not zero")
