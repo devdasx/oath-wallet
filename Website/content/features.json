@@ -1,0 +1,390 @@
+{
+  "format": 1,
+  "version": "5.0.2",
+  "build": 104,
+  "sourceCommit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+  "reviewed": "2026-11-06",
+  "features": [
+    {
+      "slug": "revoke-token-approvals",
+      "title": "Check & Revoke Token Approvals on iPhone | Oath",
+      "name": "Check and revoke token approvals",
+      "heading": "Check and revoke token approvals.",
+      "description": "Check discovered token approvals in Oath for iPhone. Review supported EVM, TRON and Solana access, estimate network fees and verify supported revocations.",
+      "intro": "See which discovered permissions can still use your assets. Review the wallet, network and approved address, then remove supported access from Oath.",
+      "label": "Token approvals",
+      "guide": "revoke-token-access",
+      "image": {
+        "path": "/help/assets/guide-permission-list.webp",
+        "alt": "Oath token-access screen with example permissions grouped by network",
+        "caption": "Actual app screen with synthetic allowances. This capture does not show a completed revocation.",
+        "version": "Oath 4.0.3",
+        "width": 1320,
+        "height": 2868,
+        "sha256": "82fb2d8c820e4faf3443eaaaf686708fa749737f5ae436cea4f3f58e5fcb44c2"
+      },
+      "highlights": [
+        {
+          "title": "See the scope",
+          "text": "Identify the asset, network and spender or delegate before changing a permission."
+        },
+        {
+          "title": "Review the fee",
+          "text": "A supported revocation is an on-chain transaction. Oath presents its network fee before confirmation."
+        },
+        {
+          "title": "Check the result",
+          "text": "Follow Recent changes and refresh the scan. A transaction hash alone does not prove access was removed."
+        }
+      ],
+      "scopeTitle": "Different permissions. Different limits.",
+      "scopeIntro": "The released app can discover and prepare supported removals on these network families. Coverage depends on providers, the account and the permission type.",
+      "scope": [
+        {
+          "label": "EVM networks",
+          "detail": "Supported token allowances, NFT approvals and Permit2 operations. Review the exact permission and network; not every contract or account-control entry can be removed.",
+          "links": [
+            "ethereum",
+            "base",
+            "arbitrum",
+            "polygon"
+          ]
+        },
+        {
+          "label": "TRON",
+          "detail": "Supported token and collectible permissions use the TRON removal flow. Account-control keys have a different scope and are not ordinary token allowances.",
+          "links": [
+            "tron"
+          ]
+        },
+        {
+          "label": "Solana",
+          "detail": "Supported token-account delegate revocations. Permanent delegates and other token restrictions are not interchangeable with removable account delegates.",
+          "links": [
+            "solana"
+          ]
+        }
+      ],
+      "stepsTitle": "From approval to a verified result.",
+      "steps": [
+        {
+          "title": "Choose your wallet",
+          "text": "Open Settings → Permissions → Token access. Wait for the scan and read its coverage status."
+        },
+        {
+          "title": "Inspect the permission",
+          "text": "Match the network, asset and approved address. Open a removable entry and review what the removal will change."
+        },
+        {
+          "title": "Confirm, then verify",
+          "text": "Check the fee, confirm in Oath and follow Recent changes. Refresh the scan after confirmation before treating access as removed."
+        }
+      ],
+      "detailTitle": "Several permissions, one review flow.",
+      "detail": "Select supported entries to prepare a batch. Each network can require a separate transaction and fee. Results can be mixed, so check confirmed, pending and failed items individually.",
+      "detailGuide": "bulk-revoke-access",
+      "detailLink": "Read the batch revocation guide",
+      "questions": [
+        {
+          "q": "Does disconnecting a dApp revoke its token approvals?",
+          "a": "No. A WalletConnect session and an on-chain allowance are different permissions. Disconnect the session when needed, and review token access separately."
+        },
+        {
+          "q": "Does an empty scan mean my wallet has no approvals?",
+          "a": "No. Read whether coverage is checked, partial, unavailable or unsupported. An unavailable provider or incomplete discovery must not be treated as proof that no permissions exist."
+        },
+        {
+          "q": "Can revoking an approval recover stolen funds?",
+          "a": "No. Revocation can remove supported future access after it is confirmed; it does not reverse completed transfers or cancel every possible off-chain signature."
+        },
+        {
+          "q": "Do I need a network fee balance?",
+          "a": "Yes, supported revocations require the relevant network fee asset. Review the actual estimate in Oath before confirming."
+        }
+      ],
+      "guides": [
+        {
+          "slug": "revoke-token-access",
+          "label": "Revoke one permission"
+        },
+        {
+          "slug": "bulk-revoke-access",
+          "label": "Review a batch"
+        },
+        {
+          "slug": "permission-coverage",
+          "label": "Understand scan coverage"
+        }
+      ],
+      "path": "/features/revoke-token-approvals",
+      "sources": [
+        {
+          "path": "OathAtmosphere/Permissions/OathPermissionService.swift",
+          "sha256": "dd9b6342008a1de69efbccfbbf2e02a3f56c0d170f2612ecb75895e2ab55d113"
+        },
+        {
+          "path": "Packages/OathAnkr/Sources/OathAnkr/Permissions.swift",
+          "sha256": "0a11bf114d72a76069c35a26718c692f65341ca93f9c42b310de8a65f6d12710"
+        },
+        {
+          "path": "Packages/OathAnkr/Sources/OathAnkr/PermissionDiscovery.swift",
+          "sha256": "b9056f439d0d22b16cf3b71fc341c5af1c54993b524d9627b528958800b66255"
+        }
+      ]
+    },
+    {
+      "slug": "icloud-wallet-backup",
+      "title": "Encrypted iCloud Wallet Backup for iPhone | Oath",
+      "name": "Encrypted iCloud wallet backup",
+      "heading": "Your wallet backup. Encrypted before upload.",
+      "description": "Back up eligible Oath wallets to iCloud Drive with password encryption. Learn what is supported, how to confirm uploads and what you need to restore.",
+      "intro": "Create password-encrypted backups of eligible wallets in your iCloud Drive. Keep the backup password and an independent recovery copy so you have a way back to your wallet.",
+      "label": "Encrypted iCloud backup",
+      "guide": "backup-all-wallets",
+      "image": {
+        "path": "/help/assets/guide-help-backup-password.webp",
+        "alt": "Oath Encrypt Your Backup screen with empty password and confirmation fields",
+        "caption": "Actual app screen with empty password fields. This capture does not demonstrate a completed iCloud upload.",
+        "version": "Oath 4.0.3",
+        "width": 1320,
+        "height": 2868,
+        "sha256": "5418c387ed5fd39aae644704bdb69567d0ce29c81d96abd55967ae518845a879"
+      },
+      "highlights": [
+        {
+          "title": "Encrypted on your device",
+          "text": "Oath encrypts supported wallet material before writing the backup file to iCloud Drive."
+        },
+        {
+          "title": "A password you choose",
+          "text": "The backup password protects the file. Your app passcode and Apple Account sign-in do not replace it."
+        },
+        {
+          "title": "A status for each wallet",
+          "text": "Check that each upload completed. Preparing, queued and uploading states are still in progress."
+        }
+      ],
+      "scopeTitle": "Know what your backup covers.",
+      "scopeIntro": "Backup availability depends on the wallet type, app version and iCloud Drive access. This page describes Oath 5.0.2 (104).",
+      "scope": [
+        {
+          "label": "Eligible active wallets",
+          "detail": "The backup flow exports supported wallet material and creates a separate encrypted file for each eligible wallet. Restore all-wallet backups one file at a time.",
+          "links": []
+        },
+        {
+          "label": "Electrum and aezeed",
+          "detail": "These recovery formats are excluded from iCloud backup in this release. Retain their original recovery material and any required password or seed extension.",
+          "links": []
+        },
+        {
+          "label": "Recently Deleted wallets",
+          "detail": "The all-wallet backup flow uses active wallets and excludes Recently Deleted wallets. A successful backup of one wallet does not establish that another was saved.",
+          "links": []
+        }
+      ],
+      "stepsTitle": "Create it. Confirm it. Keep a recovery route.",
+      "steps": [
+        {
+          "title": "Prepare iCloud Drive",
+          "text": "Use the Apple Account that will hold the backup, enable iCloud Drive and check available storage. Open Settings → Backup in Oath."
+        },
+        {
+          "title": "Choose the backup password",
+          "text": "Start Back Up All Wallets and choose a strong password of at least eight characters. Keep it somewhere you can reach without this phone."
+        },
+        {
+          "title": "Check every upload",
+          "text": "Keep Oath open while it prepares the files. Review each wallet’s status and resolve failed or unavailable uploads before relying on the backup."
+        }
+      ],
+      "detailTitle": "Restore with the file and its password.",
+      "detail": "On a supported device, choose Restore from iCloud, select the intended backup and enter the password used for that file. After restoration, compare the public addresses with your original wallet. Oath cannot reset the password of an encrypted backup.",
+      "detailGuide": "restore-icloud",
+      "detailLink": "Read the restore guide",
+      "questions": [
+        {
+          "q": "How does Oath encrypt the backup?",
+          "a": "The reviewed release uses AES-256-GCM. A password-derived key uses PBKDF2-HMAC-SHA256 with 600,000 rounds and a fresh salt. A strong, recoverable password remains essential."
+        },
+        {
+          "q": "Is this the same as an iPhone device backup?",
+          "a": "No. This feature creates Oath encrypted wallet files in iCloud Drive. Do not assume an ordinary device backup or Apple Account sign-in replaces an Oath backup file and its password."
+        },
+        {
+          "q": "What if I forget the backup password?",
+          "a": "Oath cannot reset it or decrypt the old file with a new password. If the wallet is still accessible, create a new backup with a password you can retain. Keep independent recovery material, including any required passphrase."
+        },
+        {
+          "q": "Does “uploading” mean my wallet is backed up?",
+          "a": "No. Wait for completion for the relevant wallet. Account, storage or network problems can leave an upload pending or failed."
+        }
+      ],
+      "guides": [
+        {
+          "slug": "backup-all-wallets",
+          "label": "Back up eligible wallets"
+        },
+        {
+          "slug": "backup-password",
+          "label": "Keep the right backup password"
+        },
+        {
+          "slug": "restore-icloud",
+          "label": "Restore from an encrypted file"
+        }
+      ],
+      "externalLinks": [
+        {
+          "url": "https://support.apple.com/en-gb/118443",
+          "label": "Apple: set up iCloud Drive"
+        }
+      ],
+      "path": "/features/icloud-wallet-backup",
+      "sources": [
+        {
+          "path": "OathAtmosphere/Wallet/OathCloudBackupService.swift",
+          "sha256": "3d807dc15c08007b4df8c89959ab33cb1446cbd6226166e25ce937ce86af34d8"
+        },
+        {
+          "path": "OathAtmosphere/Wallet/OathWalletVault.swift",
+          "sha256": "1b0b5fcd4d6fdd57e59c97008c16e52b7f282544e195a5259f8a6159bf5f8852"
+        },
+        {
+          "path": "OathAtmosphere/Wallet/OathVaultEnvelope.swift",
+          "sha256": "227900c01f8eab10d5f0e629d1ff2230378fd2cec95372f7e501d95914ee461d"
+        },
+        {
+          "path": "Packages/OathCloudBackup/Sources/OathCloudBackup/BackupDocument.swift",
+          "sha256": "fb791336a451172f0f66bf10000cda2aef7dd43f613493a8113619ab5c61bf72"
+        }
+      ]
+    },
+    {
+      "slug": "walletconnect",
+      "title": "Connect to dApps with WalletConnect on iPhone | Oath",
+      "name": "Connect to dApps with WalletConnect",
+      "heading": "Connect to a dApp. Review every request.",
+      "description": "Use WalletConnect with Oath on iPhone. Review the dApp, wallet, networks and permissions, then approve supported requests individually.",
+      "intro": "Connect Oath to a compatible dApp using its WalletConnect QR code or app link. Choose the wallet and networks you intend to share, then review each later request in Oath.",
+      "label": "WalletConnect",
+      "guide": "connect-dapp",
+      "image": {
+        "path": "/help/assets/guide-wc-connect.webp",
+        "alt": "Oath WalletConnect proposal showing the website, selected wallet, networks and connection permissions",
+        "caption": "Actual app screen showing an offline sample proposal. It does not establish a live connection, endorsement or completed transaction.",
+        "version": "Oath 4.0.3",
+        "width": 1320,
+        "height": 2868,
+        "sha256": "870beb181c6fecad441f3f86b1ec5d4b89b8da89de4d117823a3abc96f40afa2"
+      },
+      "highlights": [
+        {
+          "title": "Check the website",
+          "text": "Compare the full website address and read verification warnings. A familiar name or icon can be copied."
+        },
+        {
+          "title": "Choose the connection",
+          "text": "Review the proposed accounts, networks and methods before approving the session."
+        },
+        {
+          "title": "Approve requests separately",
+          "text": "A connection lets the dApp request supported actions. It does not approve every future signature or transfer."
+        }
+      ],
+      "scopeTitle": "Compatibility is specific to the request.",
+      "scopeIntro": "A network in your portfolio does not guarantee every dApp or signing method works. The released app checks the requested network and method before proceeding.",
+      "scope": [
+        {
+          "label": "Compatible EVM requests",
+          "detail": "Supported mainnet EVM connections allow the signing and transaction requests implemented in Oath. Arc connections are not supported in this release.",
+          "links": [
+            "ethereum",
+            "base",
+            "arbitrum",
+            "polygon"
+          ]
+        },
+        {
+          "label": "Other supported networks",
+          "detail": "Oath supports compatible requests for Bitcoin, Solana, THORChain, XRP Ledger, Stellar, NEAR, Sui, Polkadot, TRON and Gram/TON. Available actions differ by network and dApp.",
+          "links": [
+            "bitcoin",
+            "solana",
+            "thorchain",
+            "near",
+            "polkadot",
+            "gram"
+          ]
+        },
+        {
+          "label": "dApp and protocol limits",
+          "detail": "The dApp must offer a compatible mobile WalletConnect connection. WalletConnect is separate from TON Connect and browser-extension-only connections. Unsupported required methods or networks can prevent a session.",
+          "links": []
+        }
+      ],
+      "stepsTitle": "Connect with the details in view.",
+      "steps": [
+        {
+          "title": "Start from the dApp",
+          "text": "Open the intended website and choose WalletConnect. On another screen, scan the QR with Oath; on the same device, use the Oath link offered by the dApp."
+        },
+        {
+          "title": "Review the proposal",
+          "text": "Unlock Oath if asked. Check the website, wallet, networks and requested permissions before connecting. Reject a proposal you cannot explain."
+        },
+        {
+          "title": "Review each request",
+          "text": "Return to the dApp, then inspect each signature or transaction in Oath. Check the network, destination, amount and fee where applicable."
+        }
+      ],
+      "detailTitle": "Manage the session when you are finished.",
+      "detail": "Find connections in Settings → WalletConnect or Permissions → Connected DApps. Disconnect an unwanted session, then check token approvals separately if you also want to remove on-chain access.",
+      "detailGuide": "dapp-disconnect",
+      "detailLink": "Read the disconnect guide",
+      "questions": [
+        {
+          "q": "Does connecting share my recovery phrase?",
+          "a": "No. A connection shares the approved public accounts and permits supported requests. Never enter recovery words or private keys into a dApp, and never publish a WalletConnect pairing QR or URI."
+        },
+        {
+          "q": "Why can a connection be rejected?",
+          "a": "The proposal may be expired, or require a network, method or account the installed app cannot support. Read the message in Oath and start a fresh connection from the intended dApp if needed."
+        },
+        {
+          "q": "Is connecting the same as approving a token allowance?",
+          "a": "No. Session approval and on-chain token access are separate. Review each request, and use the token-access tools to inspect supported allowances."
+        },
+        {
+          "q": "Can every Oath network use every dApp?",
+          "a": "No. Compatibility depends on the network, wallet account and action requested by the dApp. Follow the relevant network guide and the options shown in your installed app."
+        }
+      ],
+      "guides": [
+        {
+          "slug": "connect-dapp",
+          "label": "Connect your wallet"
+        },
+        {
+          "slug": "dapp-disconnect",
+          "label": "Disconnect a session"
+        },
+        {
+          "slug": "revoke-token-access",
+          "label": "Review token access separately"
+        }
+      ],
+      "path": "/features/walletconnect",
+      "sources": [
+        {
+          "path": "OathAtmosphere/Scanner/OathWalletConnectPolicy.swift",
+          "sha256": "60a6ad1d44ca92137a3425c57fcd90b53ff4a7645293243cc832095ac67a5879"
+        },
+        {
+          "path": "OathAtmosphere/Scanner/OathWalletConnectConnections.swift",
+          "sha256": "d74ff884ab46153800c96867d9fe8a4287d389dedc657260d945914809563d52"
+        }
+      ]
+    }
+  ]
+}

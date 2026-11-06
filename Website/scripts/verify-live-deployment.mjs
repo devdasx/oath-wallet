@@ -39,3 +39,28 @@ for (const article of catalog.articles.filter(a=>a.github_editorial)) {
   assert.equal(await res.text(),expected,doc.markdown_url+' differs from the deployed commit');
   console.log('Verified published article: '+doc.url);
 }
+
+// Feature pages must match this commit, not merely return a successful status.
+const {default:features}=await import('../content/features.json',{with:{type:'json'}});
+const {createHash}=await import('node:crypto');
+const featureCSS=await fetch('https://oathwallet.org/feature-pages.css',{signal:AbortSignal.timeout(20000)});
+assert.equal(featureCSS.status,200);
+assert.equal(await featureCSS.text(),await readFile(new URL('../public/feature-pages.css',import.meta.url),'utf8'),'Feature stylesheet differs from commit');
+for(const feature of features.features){
+ const url='https://oathwallet.org'+feature.path;
+ const response=await fetch(url,{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200,url);
+ const html=await response.text();
+ assert.ok(html.includes('<link rel="canonical" href="'+url+'">'),url);
+ assert.ok(html.includes(feature.image.path)&&html.includes(feature.image.version),url+' screenshot provenance');
+ const localHTML=await readFile(new URL('../public'+feature.path+'.html',import.meta.url),'utf8');
+ assert.equal(html.match(/<main\b[\s\S]*?<\/main>/)?.[0],localHTML.match(/<main\b[\s\S]*?<\/main>/)?.[0],url+' initial HTML differs from commit');
+ const doc=documents.find(d=>d.url===url);
+ const expected=await documentText(doc,{},new Response(await readFile(new URL('../public'+doc.file,import.meta.url))));
+ const markdown=await fetch(doc.markdown_url,{signal:AbortSignal.timeout(20000)});
+ assert.equal(markdown.status,200);assert.equal(await markdown.text(),expected,url+' content differs from commit');
+ const image=await fetch('https://oathwallet.org'+feature.image.path,{signal:AbortSignal.timeout(20000)});
+ assert.equal(image.status,200);
+ assert.equal(createHash('sha256').update(Buffer.from(await image.arrayBuffer())).digest('hex'),feature.image.sha256);
+ console.log('Verified published feature and original screenshot: '+url);
+}

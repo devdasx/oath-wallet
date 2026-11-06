@@ -45,6 +45,33 @@
   },
   "documents": [
     {
+      "url": "https://oathwallet.org/features/revoke-token-approvals",
+      "markdown_url": "https://oathwallet.org/features/revoke-token-approvals.md",
+      "title": "Check and revoke token approvals",
+      "summary": "Check discovered token approvals in Oath for iPhone. Review supported EVM, TRON and Solana access, estimate network fees and verify supported revocations.",
+      "kind": "feature",
+      "updated_at": "2026-11-06",
+      "app_version": "5.0.2"
+    },
+    {
+      "url": "https://oathwallet.org/features/icloud-wallet-backup",
+      "markdown_url": "https://oathwallet.org/features/icloud-wallet-backup.md",
+      "title": "Encrypted iCloud wallet backup",
+      "summary": "Back up eligible Oath wallets to iCloud Drive with password encryption. Learn what is supported, how to confirm uploads and what you need to restore.",
+      "kind": "feature",
+      "updated_at": "2026-11-06",
+      "app_version": "5.0.2"
+    },
+    {
+      "url": "https://oathwallet.org/features/walletconnect",
+      "markdown_url": "https://oathwallet.org/features/walletconnect.md",
+      "title": "Connect to dApps with WalletConnect",
+      "summary": "Use WalletConnect with Oath on iPhone. Review the dApp, wallet, networks and permissions, then approve supported requests individually.",
+      "kind": "feature",
+      "updated_at": "2026-11-06",
+      "app_version": "5.0.2"
+    },
+    {
       "url": "https://oathwallet.org/networks/bitcoin",
       "markdown_url": "https://oathwallet.org/networks/bitcoin.md",
       "title": "Bitcoin wallet: send, receive and dApp connections",
