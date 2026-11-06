@@ -1,7 +1,7 @@
 {
   "format": 1,
-  "version": "b7349f21520b03e8",
-  "prefix": "/token-data/b7349f21520b03e8",
+  "version": "fb1a00350b690217",
+  "prefix": "/token-data/fb1a00350b690217",
   "pageSize": 50,
   "count": 32135,
   "coinCount": 20017,
@@ -4173,7 +4173,8 @@
           "reference": "0xfbe42ef178bf43b51f51699f1974f6b0aad4beb2",
           "slug": "4663-token-2",
           "path": "/tokens/4663-token-2/robinhood-chain",
-          "artwork": "/token-artwork/568305dba787108b/831401e5bf19d02037da62a950c6ebec"
+          "artwork": "/token-artwork/568305dba787108b/831401e5bf19d02037da62a950c6ebec",
+          "titleQualifier": "0xfbe4…d4beb2"
         },
         {
           "name": "4663",
@@ -4183,7 +4184,8 @@
           "network": "robinhood",
           "slug": "4663-token",
           "path": "/tokens/4663-token/robinhood-chain",
-          "artwork": "/token-artwork/568305dba787108b/cfc217236eb0bb8b3dc533f29db0eb4e"
+          "artwork": "/token-artwork/568305dba787108b/cfc217236eb0bb8b3dc533f29db0eb4e",
+          "titleQualifier": "0xd405…65b6dd"
         },
         {
           "symbol": "4AI",
