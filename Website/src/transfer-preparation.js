@@ -12,7 +12,8 @@ export function preparationMarkdown(html) {
     .replace(/<fieldset[\s\S]*?<\/fieldset>|<noscript>[\s\S]*?<\/noscript>/g, '')
     .replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_,u,t) => `[${t}](${u.startsWith('/') ? 'https://oathwallet.org' : ''}${u})`)
     .replace(/<h([1-6])[^>]*>(.*?)<\/h\1>/g, (_,n,t) => '\n\n'+'#'.repeat(+n)+' '+t+'\n\n')
-    .replace(/<li[^>]*>/g, '\n- ').replace(/<\/dt>/g, ': ').replace(/<\/(?:p|article|section|header|nav|div|dl|dd|ol|ul)>/g, '\n\n')
+    .replace(/<li[^>]*>/g, '\n- ').replace(/<dt>/g, '\n**').replace(/<\/dt>/g, '**\n\n')
+    .replace(/<code[^>]*>(.*?)<\/code>/g, '`$1`').replace(/<\/(?:p|article|section|header|nav|div|dl|dd|ol|ul)>/g, '\n\n')
     .replace(/<[^>]+>/g, '').replace(/&(?:amp|lt|gt|quot|#39);/g, s => ({'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&#39;':"'"}[s]))
     .replace(/\n{3,}/g,'\n\n').trim();
 }

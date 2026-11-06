@@ -39,11 +39,17 @@ Aptos · USDT
 
 ### Tether on Aptos
 
-Coin type or fungible asset: 0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b
+**Coin type or fungible asset**
 
-Catalog asset ID: tether
+`0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b`
 
-Fee asset on this network: APT on Aptos
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+APT on Aptos
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -67,11 +73,17 @@ Aptos · USDC
 
 ### USDC on Aptos
 
-Coin type or fungible asset: 0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b
+**Coin type or fungible asset**
 
-Catalog asset ID: usd-coin
+`0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b`
 
-Fee asset on this network: APT on Aptos
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+APT on Aptos
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -95,11 +107,17 @@ Arbitrum · USDC
 
 ### USDC on Arbitrum
 
-Token contract: 0xaf88d065e77c8cc2239327c5edb3a432268e5831
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xaf88d065e77c8cc2239327c5edb3a432268e5831`
 
-Fee asset on this network: ETH on Arbitrum
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+ETH on Arbitrum
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -123,11 +141,17 @@ Avalanche C-Chain · USDT
 
 ### Tether on Avalanche C-Chain
 
-Token contract: 0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7
+**Token contract**
 
-Catalog asset ID: tether
+`0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7`
 
-Fee asset on this network: AVAX on Avalanche C-Chain
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+AVAX on Avalanche C-Chain
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -151,11 +175,17 @@ Avalanche C-Chain · USDC
 
 ### USDC on Avalanche C-Chain
 
-Token contract: 0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e`
 
-Fee asset on this network: AVAX on Avalanche C-Chain
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+AVAX on Avalanche C-Chain
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -179,11 +209,17 @@ Base · USDC
 
 ### USDC on Base
 
-Token contract: 0x833589fcd6edb6e08f4c7c32d4f71b54bda02913
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0x833589fcd6edb6e08f4c7c32d4f71b54bda02913`
 
-Fee asset on this network: ETH on Base
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+ETH on Base
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -207,11 +243,17 @@ Celo · USDT
 
 ### Tether on Celo
 
-Token contract: 0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e
+**Token contract**
 
-Catalog asset ID: tether
+`0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e`
 
-Fee asset on this network: CELO on Celo
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+CELO on Celo
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -235,11 +277,17 @@ Celo · USDC
 
 ### USDC on Celo
 
-Token contract: 0xceba9300f2b948710d2653dd7b07f33a8b32118c
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xceba9300f2b948710d2653dd7b07f33a8b32118c`
 
-Fee asset on this network: CELO on Celo
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+CELO on Celo
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -263,11 +311,17 @@ Ethereum · USDC
 
 ### USDC on Ethereum
 
-Token contract: 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48`
 
-Fee asset on this network: ETH on Ethereum
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+ETH on Ethereum
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -291,11 +345,17 @@ Ethereum · USDT
 
 ### Tether on Ethereum
 
-Token contract: 0xdac17f958d2ee523a2206206994597c13d831ec7
+**Token contract**
 
-Catalog asset ID: tether
+`0xdac17f958d2ee523a2206206994597c13d831ec7`
 
-Fee asset on this network: ETH on Ethereum
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+ETH on Ethereum
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -319,11 +379,17 @@ HyperEVM · USDC
 
 ### USDC on HyperEVM
 
-Token contract: 0xb88339cb7199b77e23db6e890353e22632ba630f
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xb88339cb7199b77e23db6e890353e22632ba630f`
 
-Fee asset on this network: HYPE on HyperEVM
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+HYPE on HyperEVM
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -347,11 +413,17 @@ Monad · USDC
 
 ### USDC on Monad
 
-Token contract: 0x754704bc059f8c67012fed69bc8a327a5aafb603
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0x754704bc059f8c67012fed69bc8a327a5aafb603`
 
-Fee asset on this network: MON on Monad
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+MON on Monad
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -375,11 +447,17 @@ NEAR Protocol · USDC
 
 ### USDC on NEAR Protocol
 
-Token account: 17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1
+**Token account**
 
-Catalog asset ID: usd-coin
+`17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1`
 
-Fee asset on this network: NEAR on NEAR Protocol
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+NEAR on NEAR Protocol
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -403,11 +481,17 @@ NEAR Protocol · USDT
 
 ### Tether on NEAR Protocol
 
-Token account: usdt.tether-token.near
+**Token account**
 
-Catalog asset ID: tether
+`usdt.tether-token.near`
 
-Fee asset on this network: NEAR on NEAR Protocol
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+NEAR on NEAR Protocol
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -431,11 +515,17 @@ Optimism · USDC
 
 ### USDC on Optimism
 
-Token contract: 0x0b2c639c533813f4aa9d7837caf62653d097ff85
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0x0b2c639c533813f4aa9d7837caf62653d097ff85`
 
-Fee asset on this network: ETH on Optimism
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+ETH on Optimism
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -459,11 +549,17 @@ Polkadot · USDC
 
 ### USDC on Polkadot
 
-Asset reference: assets:1337
+**Asset reference**
 
-Catalog asset ID: usd-coin
+`assets:1337`
 
-Fee asset on this network: DOT on Polkadot
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+DOT on Polkadot
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -487,11 +583,17 @@ Polkadot · USDt
 
 ### Tether on Polkadot
 
-Asset reference: assets:1984
+**Asset reference**
 
-Catalog asset ID: tether
+`assets:1984`
 
-Fee asset on this network: DOT on Polkadot
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+DOT on Polkadot
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -515,11 +617,17 @@ Polygon · USDC
 
 ### USDC on Polygon
 
-Token contract: 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0x3c499c542cef5e3811e1192ce70d8cc03d5c3359`
 
-Fee asset on this network: POL on Polygon
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+POL on Polygon
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -543,11 +651,17 @@ Sei · USDC
 
 ### USDC on Sei
 
-Token contract: 0xe15fc38f6d8c56af07bbcbe3baf5708a2bf42392
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xe15fc38f6d8c56af07bbcbe3baf5708a2bf42392`
 
-Fee asset on this network: SEI on Sei
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+SEI on Sei
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -571,11 +685,17 @@ Solana · USDC
 
 ### USDC on Solana
 
-Token mint: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+**Token mint**
 
-Catalog asset ID: usd-coin
+`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`
 
-Fee asset on this network: SOL on Solana
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+SOL on Solana
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -599,11 +719,17 @@ Solana · USDT
 
 ### Tether on Solana
 
-Token mint: Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+**Token mint**
 
-Catalog asset ID: tether
+`Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB`
 
-Fee asset on this network: SOL on Solana
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+SOL on Solana
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -627,11 +753,17 @@ Stellar · USDC
 
 ### USDC on Stellar
 
-Contract or asset and issuer: CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75
+**Contract or asset and issuer**
 
-Catalog asset ID: usd-coin
+`CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75`
 
-Fee asset on this network: XLM on Stellar
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+XLM on Stellar
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -655,11 +787,17 @@ Sui Network · USDC
 
 ### USDC on Sui Network
 
-Coin type: 0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC
+**Coin type**
 
-Catalog asset ID: usd-coin
+`0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC`
 
-Fee asset on this network: SUI on Sui Network
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+SUI on Sui Network
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -683,11 +821,17 @@ Gram · USDT
 
 ### Tether on Gram
 
-Jetton master: 0:b113a994b5024a16719f69139328eb759596c38a25f59028b146fecdc3621dfe
+**Jetton master**
 
-Catalog asset ID: tether
+`0:b113a994b5024a16719f69139328eb759596c38a25f59028b146fecdc3621dfe`
 
-Fee asset on this network: GRAM on Gram
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+GRAM on Gram
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -711,11 +855,17 @@ TRON · USDT
 
 ### Tether on TRON
 
-Token contract: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+**Token contract**
 
-Catalog asset ID: tether
+`TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t`
 
-Fee asset on this network: TRX on TRON
+**Catalog asset ID**
+
+tether
+
+**Fee asset on this network**
+
+TRX on TRON
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -739,11 +889,17 @@ Unichain · USDC
 
 ### USDC on Unichain
 
-Token contract: 0x078d782b760474a361dda0af3839290b0ef57ad6
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0x078d782b760474a361dda0af3839290b0ef57ad6`
 
-Fee asset on this network: ETH on Unichain
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+ETH on Unichain
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -767,11 +923,17 @@ X Layer · USDC
 
 ### USDC on X Layer
 
-Token contract: 0xb6ceceab302e2e4948951ee7843fc24e92933061
+**Token contract**
 
-Catalog asset ID: usd-coin
+`0xb6ceceab302e2e4948951ee7843fc24e92933061`
 
-Fee asset on this network: OKB on X Layer
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+OKB on X Layer
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 
@@ -795,11 +957,17 @@ XRP Ledger · USDC
 
 ### USDC on XRP Ledger
 
-Currency and issuer: 5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE
+**Currency and issuer**
 
-Catalog asset ID: usd-coin
+`5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE`
 
-Fee asset on this network: XRP on XRP Ledger
+**Catalog asset ID**
+
+usd-coin
+
+**Fee asset on this network**
+
+XRP on XRP Ledger
 
 This token identifier is not your receiving address. Copy your own receiving address from Oath. Never send funds to the contract, mint or issuer above.
 

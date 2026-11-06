@@ -29,6 +29,7 @@ test('exact-asset preparation works across every released token network', async 
     assert.match(md.headers.get('Content-Type'),/text\/markdown/);
     const text = await md.text();
     assert.ok(text.includes(asset.reference));
+    assert.ok(text.includes('`'+asset.reference+'`'), 'Public token identifiers use code formatting');
     assert.ok(text.includes(manifest.networks[asset.network].send));
     assert.doesNotMatch(text,/Choose a tokenChoose|Clear selection|checkbox|<select/);
     assert.equal((await get(transferURL(asset),{method:'HEAD'})).status,200);
