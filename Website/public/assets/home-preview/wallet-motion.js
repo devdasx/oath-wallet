@@ -87,8 +87,8 @@ export function mountWalletMotion(canvas) {
       // Adapt to sustained missed frames on slow/software GPUs, without stopping
       // the animation or changing its timeline. Text stays full-resolution HTML.
       slowFrames=delta>70?slowFrames+1:Math.max(0,slowFrames-1);
-      if(slowFrames>=3 && canvas.width>220){
-        canvas.width=Math.max(220,Math.round(canvas.width*.75));
+      if(slowFrames>=3 && canvas.width>165){
+        canvas.width=Math.max(165,Math.round(canvas.width*.75));
         canvas.height=Math.round(canvas.width*460/440);slowFrames=0;
       }
       draw();
@@ -112,8 +112,9 @@ export function mountWalletMotion(canvas) {
       if(disposed || lost)return;
       gl=canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,stencil:false,powerPreference:'low-power'});
       if(!gl)throw new Error('WebGL unavailable');
-      // Native-size soft artwork; CSS fixes its presentation independently of the buffer.
-      canvas.width=440;canvas.height=460;
+      // Soft decorative folds use a half-size buffer; all text and controls remain
+      // full-resolution HTML. CSS fixes presentation independently of this budget.
+      canvas.width=220;canvas.height=230;
       const compile=(type,source)=>{
         const shader=gl.createShader(type);shaders.push(shader);gl.shaderSource(shader,source);gl.compileShader(shader);
         if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS))throw new Error('Artwork shader unavailable');
