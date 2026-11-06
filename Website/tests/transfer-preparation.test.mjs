@@ -23,7 +23,7 @@ test('exact-asset preparation works across every released token network', async 
     assert.equal(r.headers.get('Cache-Control'),'no-store');
     assert.ok(html.includes(`href="${origin+transferPath}"`));
     assert.ok(html.includes(`value="${asset.path}" data-token="${asset.slug}" selected`),asset.path);
-    assert.ok(html.includes(`data-transfer-path="${asset.path}"><p`), 'Selected entry must be visible without JS');
+    assert.ok(html.includes(`data-transfer-path="${asset.path}">`), 'Selected entry must be visible without JS');
     assert.ok(html.includes('This token identifier is not your receiving address.'));
     const md = await get(transferURL(asset), {headers:{Accept:'text/markdown'}});
     assert.match(md.headers.get('Content-Type'),/text\/markdown/);
@@ -47,7 +47,7 @@ test('same-network variants retain exact references and independent selections',
     return new Response(JSON.stringify(data));
   };
   const response=await worker.fetch(new Request(origin+transferURL(variant)),mock),html=await response.text();
-  assert.equal(response.status,200);assert.ok(html.includes(`data-transfer-path="${variant.path}"><p`));
+  assert.equal(response.status,200);assert.ok(html.includes(`data-transfer-path="${variant.path}">`));
   assert.ok(html.includes(`data-transfer-path="${original.path}" hidden`));
   assert.ok(html.includes(`Base · ${variant.reference}</option>`));
   assert.ok(html.includes(`Base · ${original.reference}</option>`));

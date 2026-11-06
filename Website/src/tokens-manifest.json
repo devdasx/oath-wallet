@@ -1,7 +1,7 @@
 {
   "format": 1,
-  "version": "779ab60913275a5f",
-  "prefix": "/token-data/779ab60913275a5f",
+  "version": "b7349f21520b03e8",
+  "prefix": "/token-data/b7349f21520b03e8",
   "pageSize": 50,
   "count": 32135,
   "coinCount": 20017,
@@ -40,7 +40,8 @@
           "network": "ethereum",
           "coinID": "tether",
           "slug": "usdt",
-          "path": "/tokens/usdt/ethereum"
+          "path": "/tokens/usdt/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/0da2aa49e8fda02e31ed4f405a7a7ba4"
         },
         {
           "symbol": "USDC",
@@ -49,7 +50,8 @@
           "coinID": "usd-coin",
           "network": "ethereum",
           "slug": "usdc",
-          "path": "/tokens/usdc/ethereum"
+          "path": "/tokens/usdc/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/58bdd10a8c94bf2a1aae0f917d4d239c"
         },
         {
           "reference": "0x6b175474e89094c44da98b954eedeac495271d0f",
@@ -58,7 +60,8 @@
           "network": "ethereum",
           "symbol": "DAI",
           "slug": "dai",
-          "path": "/tokens/dai/ethereum"
+          "path": "/tokens/dai/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/0718aae233136a778d43250e7bd65fb3"
         },
         {
           "network": "ethereum",
@@ -67,7 +70,8 @@
           "symbol": "WBTC",
           "reference": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
           "slug": "wrapped-bitcoin",
-          "path": "/tokens/wrapped-bitcoin/ethereum"
+          "path": "/tokens/wrapped-bitcoin/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/26f96e87cef1edd295082bf64c056d54"
         },
         {
           "network": "ethereum",
@@ -76,7 +80,8 @@
           "symbol": "LINK",
           "coinID": "chainlink",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/ethereum"
+          "path": "/tokens/chainlink/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/5ae15f3621a13caf05789adf531b11f9"
         },
         {
           "reference": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
@@ -85,7 +90,8 @@
           "network": "ethereum",
           "coinID": "uniswap",
           "slug": "uniswap",
-          "path": "/tokens/uniswap/ethereum"
+          "path": "/tokens/uniswap/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/303112ba05830a476df17d2b1dfeaf2c"
         },
         {
           "network": "ethereum",
@@ -94,7 +100,8 @@
           "name": "Aave",
           "symbol": "AAVE",
           "slug": "aave",
-          "path": "/tokens/aave/ethereum"
+          "path": "/tokens/aave/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/80ee7c407710a1e25430c85ea17d5ee2"
         },
         {
           "reference": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
@@ -103,7 +110,8 @@
           "network": "ethereum",
           "name": "Ethena USDe",
           "slug": "ethena-usde",
-          "path": "/tokens/ethena-usde/ethereum"
+          "path": "/tokens/ethena-usde/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/4797a10069454bb83df2d0a49051b55b"
         },
         {
           "reference": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
@@ -112,7 +120,8 @@
           "coinID": "paypal-usd",
           "name": "PayPal USD",
           "slug": "paypal-usd",
-          "path": "/tokens/paypal-usd/ethereum"
+          "path": "/tokens/paypal-usd/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/f7958bdb9a0b0847089ad44db5ca2261"
         },
         {
           "symbol": "WETH",
@@ -121,7 +130,8 @@
           "reference": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
           "name": "WETH",
           "slug": "weth",
-          "path": "/tokens/weth/ethereum"
+          "path": "/tokens/weth/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/d8bde9a81b1021b5a7af3ae1a4462e52"
         },
         {
           "symbol": "SLUGLORD",
@@ -130,7 +140,8 @@
           "network": "ethereum",
           "reference": "0x5791254f5d7a4d7ce4dda0391ce15812b65ac2a2",
           "slug": "g-o",
-          "path": "/tokens/g-o/ethereum"
+          "path": "/tokens/g-o/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/6e1500740f9a0c98d28380b44187c423"
         },
         {
           "network": "ethereum",
@@ -139,7 +150,8 @@
           "name": "$AIBOT IYI",
           "symbol": "AIB",
           "slug": "aibot-iyi",
-          "path": "/tokens/aibot-iyi/ethereum"
+          "path": "/tokens/aibot-iyi/ethereum",
+          "artwork": "/token-artwork/568305dba787108b/2453ceac386b85b067e31093d6c0871c"
         }
       ]
     },
@@ -168,7 +180,8 @@
           "reference": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
           "name": "USDC",
           "slug": "usdc",
-          "path": "/tokens/usdc/solana"
+          "path": "/tokens/usdc/solana",
+          "artwork": "/token-artwork/568305dba787108b/66c3270edd2dba359d117cd12d5d1833"
         },
         {
           "network": "solana",
@@ -177,7 +190,8 @@
           "symbol": "USDT",
           "coinID": "tether",
           "slug": "usdt",
-          "path": "/tokens/usdt/solana"
+          "path": "/tokens/usdt/solana",
+          "artwork": "/token-artwork/568305dba787108b/51354908db6ba21fd667517c1cd3501b"
         },
         {
           "network": "solana",
@@ -186,7 +200,8 @@
           "name": "Jupiter",
           "symbol": "JUP",
           "slug": "jupiter-exchange-solana",
-          "path": "/tokens/jupiter-exchange-solana/solana"
+          "path": "/tokens/jupiter-exchange-solana/solana",
+          "artwork": "/token-artwork/568305dba787108b/f80ff58f18b1cd010e8e5cb7e21e2cc4"
         },
         {
           "network": "solana",
@@ -195,7 +210,8 @@
           "symbol": "JTO",
           "reference": "jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL",
           "slug": "jito-governance-token",
-          "path": "/tokens/jito-governance-token/solana"
+          "path": "/tokens/jito-governance-token/solana",
+          "artwork": "/token-artwork/568305dba787108b/b27891f0123f8956e3db3869a9464206"
         },
         {
           "coinID": "paypal-usd",
@@ -204,7 +220,8 @@
           "name": "PayPal USD",
           "reference": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
           "slug": "paypal-usd",
-          "path": "/tokens/paypal-usd/solana"
+          "path": "/tokens/paypal-usd/solana",
+          "artwork": "/token-artwork/568305dba787108b/e95dc2be2d047566ee04c48f21da557b"
         },
         {
           "name": "Bonk",
@@ -213,7 +230,8 @@
           "reference": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
           "coinID": "bonk",
           "slug": "bonk",
-          "path": "/tokens/bonk/solana"
+          "path": "/tokens/bonk/solana",
+          "artwork": "/token-artwork/568305dba787108b/bdac818310aee36625b2d9f92360bfac"
         },
         {
           "reference": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
@@ -222,7 +240,8 @@
           "coinID": "raydium",
           "symbol": "RAY",
           "slug": "raydium",
-          "path": "/tokens/raydium/solana"
+          "path": "/tokens/raydium/solana",
+          "artwork": "/token-artwork/568305dba787108b/015c38d8a81f33f83da1e933be1059f6"
         },
         {
           "symbol": "RENDER",
@@ -231,7 +250,8 @@
           "name": "Render",
           "network": "solana",
           "slug": "render-token",
-          "path": "/tokens/render-token/solana"
+          "path": "/tokens/render-token/solana",
+          "artwork": "/token-artwork/568305dba787108b/c15a4dae4af9ba34a81dcc8357662a74"
         },
         {
           "coinID": "pyth-network",
@@ -240,7 +260,8 @@
           "reference": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
           "name": "Pyth Network",
           "slug": "pyth-network",
-          "path": "/tokens/pyth-network/solana"
+          "path": "/tokens/pyth-network/solana",
+          "artwork": "/token-artwork/568305dba787108b/f29553097c9b6a57aecbbcbaadbddaaa"
         },
         {
           "name": "dogwifhat",
@@ -249,7 +270,8 @@
           "network": "solana",
           "coinID": "dogwifcoin",
           "slug": "dogwifcoin",
-          "path": "/tokens/dogwifcoin/solana"
+          "path": "/tokens/dogwifcoin/solana",
+          "artwork": "/token-artwork/568305dba787108b/8db8e56fdf1601328e28022562afd6f1"
         },
         {
           "reference": "58mWi7CzpsRjrDsv61BN1ynpNLoGHUbxAUeec141pump",
@@ -258,7 +280,8 @@
           "symbol": ".PNG",
           "network": "solana",
           "slug": "png",
-          "path": "/tokens/png/solana"
+          "path": "/tokens/png/solana",
+          "artwork": "/token-artwork/568305dba787108b/d95e04f29560f917f995e3abd41c2288"
         },
         {
           "symbol": "\"　\"",
@@ -267,7 +290,8 @@
           "reference": "9qriMjPPAJTMCtfQnz7Mo9BsV2jAWTr2ff7yc3JWpump",
           "coinID": "-6",
           "slug": "6",
-          "path": "/tokens/6/solana"
+          "path": "/tokens/6/solana",
+          "artwork": "/token-artwork/568305dba787108b/ee83b9f1b123c90d8eeebd24cbfde637"
         }
       ]
     },
@@ -296,7 +320,8 @@
           "network": "ton",
           "reference": "0:bbae71c7b4c5412b28621a701bb58225cc6c52d1d7e2dd96c7131157d0b622f5",
           "slug": "1rus-btc25",
-          "path": "/tokens/1rus-btc25/gram"
+          "path": "/tokens/1rus-btc25/gram",
+          "artwork": "/token-artwork/568305dba787108b/e7777828e7c02cacf32387258c30d8e3"
         },
         {
           "network": "ton",
@@ -305,7 +330,8 @@
           "name": "$TON Mixer",
           "symbol": "MIXER",
           "slug": "ton-mixer",
-          "path": "/tokens/ton-mixer/gram"
+          "path": "/tokens/ton-mixer/gram",
+          "artwork": "/token-artwork/568305dba787108b/a701bf9bd6f64d494d3cc41553b6809a"
         },
         {
           "network": "ton",
@@ -314,7 +340,8 @@
           "name": "00 Token",
           "symbol": "00",
           "slug": "zer0zer0",
-          "path": "/tokens/zer0zer0/gram"
+          "path": "/tokens/zer0zer0/gram",
+          "artwork": "/token-artwork/568305dba787108b/5018a71eeb00187baf3fd01afb36dee1"
         },
         {
           "network": "ton",
@@ -323,7 +350,8 @@
           "coinID": "1rus-dao",
           "name": "1RUS DAO",
           "slug": "1rus-dao",
-          "path": "/tokens/1rus-dao/gram"
+          "path": "/tokens/1rus-dao/gram",
+          "artwork": "/token-artwork/568305dba787108b/c9e3fa91d6efee2e6c75f6e295a8627d"
         },
         {
           "symbol": "MMMX",
@@ -332,7 +360,8 @@
           "reference": "0:3f85ae7551c7d576517d887716d6f2b47f6a17311a32d21be2601636b1825ae2",
           "name": "3M xStock",
           "slug": "3m-xstock",
-          "path": "/tokens/3m-xstock/gram"
+          "path": "/tokens/3m-xstock/gram",
+          "artwork": "/token-artwork/568305dba787108b/c755de9dc950fddaae9426dcd2d569b5"
         },
         {
           "network": "ton",
@@ -341,7 +370,8 @@
           "reference": "0:6d2bee26564954d6afda23cb0fc5ae6dd753bedbdde6adbf0cd5b8679c3ad6c4",
           "coinID": "3x-short-semiconductor-etf-xstock",
           "slug": "3x-short-semiconductor-etf-xstock",
-          "path": "/tokens/3x-short-semiconductor-etf-xstock/gram"
+          "path": "/tokens/3x-short-semiconductor-etf-xstock/gram",
+          "artwork": "/token-artwork/568305dba787108b/25fd81c868914d303eeacd7e3063f591"
         },
         {
           "symbol": "ABBVX",
@@ -350,7 +380,8 @@
           "coinID": "abbvie-xstock",
           "name": "AbbVie xStock",
           "slug": "abbvie-xstock",
-          "path": "/tokens/abbvie-xstock/gram"
+          "path": "/tokens/abbvie-xstock/gram",
+          "artwork": "/token-artwork/568305dba787108b/a76c7467b75d1048837d3b51669e68b2"
         },
         {
           "network": "ton",
@@ -359,7 +390,8 @@
           "name": "abrdn Physical Palladium Shares xStock",
           "symbol": "PALLX",
           "slug": "abrdn-physical-palladium-shares-xstock",
-          "path": "/tokens/abrdn-physical-palladium-shares-xstock/gram"
+          "path": "/tokens/abrdn-physical-palladium-shares-xstock/gram",
+          "artwork": "/token-artwork/568305dba787108b/8d16a7b537c50993f82e734442e78b9f"
         },
         {
           "reference": "0:c24abc2b64f7b8656f8e054d6fc716a54710dea332a5fe653d3a7863f9a994c0",
@@ -368,7 +400,8 @@
           "network": "ton",
           "coinID": "abrdn-physical-platinum-shares-xstock",
           "slug": "abrdn-physical-platinum-shares-xstock",
-          "path": "/tokens/abrdn-physical-platinum-shares-xstock/gram"
+          "path": "/tokens/abrdn-physical-platinum-shares-xstock/gram",
+          "artwork": "/token-artwork/568305dba787108b/731b43fa5f6027bacfb7a6159e285047"
         },
         {
           "network": "ton",
@@ -377,7 +410,8 @@
           "reference": "0:6b13f8073488178981e8031b45305780d3bc4db585a959cedbaa48108784be6d",
           "coinID": "acton",
           "slug": "acton",
-          "path": "/tokens/acton/gram"
+          "path": "/tokens/acton/gram",
+          "artwork": "/token-artwork/568305dba787108b/5a6da45f92f7b747a39e9eb84504d579"
         },
         {
           "name": "adDICted",
@@ -386,7 +420,8 @@
           "symbol": "DIC",
           "network": "ton",
           "slug": "addickted",
-          "path": "/tokens/addickted/gram"
+          "path": "/tokens/addickted/gram",
+          "artwork": "/token-artwork/568305dba787108b/ccf48f8e34c0f67ff64f8ee84c4ad66c"
         },
         {
           "reference": "0:e0179dc9d5518f5c62ce8057e5298595b948bfe58f40df6811ae83fa1d5b05ff",
@@ -395,7 +430,8 @@
           "symbol": "WMSX",
           "coinID": "advanced-drainage-systems-xstock",
           "slug": "advanced-drainage-systems-xstock",
-          "path": "/tokens/advanced-drainage-systems-xstock/gram"
+          "path": "/tokens/advanced-drainage-systems-xstock/gram",
+          "artwork": "/token-artwork/568305dba787108b/e9421b0acecb3764b63ba76dd794ec1c"
         }
       ]
     },
@@ -454,7 +490,8 @@
           "network": "bnb",
           "name": "Binance Bridged USDT (BNB Smart Chain)",
           "slug": "binance-bridged-usdt-bnb-smart-chain",
-          "path": "/tokens/binance-bridged-usdt-bnb-smart-chain/bnb-smart-chain"
+          "path": "/tokens/binance-bridged-usdt-bnb-smart-chain/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/0b13d5cf6ee6cbcd65d8518fdea3bebe"
         },
         {
           "name": "Binance Bridged USDC (BNB Smart Chain)",
@@ -463,7 +500,8 @@
           "network": "bnb",
           "symbol": "USDC",
           "slug": "binance-bridged-usdc-bnb-smart-chain",
-          "path": "/tokens/binance-bridged-usdc-bnb-smart-chain/bnb-smart-chain"
+          "path": "/tokens/binance-bridged-usdc-bnb-smart-chain/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/573873c1e1bb045c51005b1602d82ee8"
         },
         {
           "reference": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
@@ -472,7 +510,8 @@
           "symbol": "CAKE",
           "network": "bnb",
           "slug": "pancakeswap-token",
-          "path": "/tokens/pancakeswap-token/bnb-smart-chain"
+          "path": "/tokens/pancakeswap-token/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/2ebef490774a394852e35d3f214afb5b"
         },
         {
           "coinID": "binance-bitcoin",
@@ -481,7 +520,8 @@
           "network": "bnb",
           "name": "Binance Bitcoin",
           "slug": "binance-bitcoin",
-          "path": "/tokens/binance-bitcoin/bnb-smart-chain"
+          "path": "/tokens/binance-bitcoin/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/1c6cf69d6c4aad8dfca4db31eb6ac058"
         },
         {
           "name": "Binance-Peg WETH",
@@ -490,7 +530,8 @@
           "network": "bnb",
           "coinID": "binance-peg-weth",
           "slug": "binance-peg-weth",
-          "path": "/tokens/binance-peg-weth/bnb-smart-chain"
+          "path": "/tokens/binance-peg-weth/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/7bcebd20066162d4531fb7f79b0f62ad"
         },
         {
           "network": "bnb",
@@ -499,7 +540,8 @@
           "symbol": "XVS",
           "coinID": "venus",
           "slug": "venus",
-          "path": "/tokens/venus/bnb-smart-chain"
+          "path": "/tokens/venus/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/f4c48d610f27e96a640f2e5b90dfab35"
         },
         {
           "name": "First Digital USD",
@@ -508,7 +550,8 @@
           "reference": "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409",
           "coinID": "first-digital-usd",
           "slug": "first-digital-usd",
-          "path": "/tokens/first-digital-usd/bnb-smart-chain"
+          "path": "/tokens/first-digital-usd/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/c1d79edd146c9077e00823a462f2d2c1"
         },
         {
           "name": "Chainlink",
@@ -517,7 +560,8 @@
           "network": "bnb",
           "symbol": "LINK",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/bnb-smart-chain"
+          "path": "/tokens/chainlink/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/fdaa56a37d8178b954ba8a46d9d1c6a7"
         },
         {
           "name": "Uniswap",
@@ -526,7 +570,8 @@
           "network": "bnb",
           "reference": "0xbf5140a22578168fd562dccf235e5d43a02ce9b1",
           "slug": "uniswap",
-          "path": "/tokens/uniswap/bnb-smart-chain"
+          "path": "/tokens/uniswap/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/c2b75af13c21bad5b0cff5c48e776d8f"
         },
         {
           "reference": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
@@ -535,7 +580,8 @@
           "symbol": "WBNB",
           "coinID": "wbnb",
           "slug": "wbnb",
-          "path": "/tokens/wbnb/bnb-smart-chain"
+          "path": "/tokens/wbnb/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/5f60d2d8bfca0edc3150e58ce6c65a7c"
         },
         {
           "symbol": "🔶",
@@ -553,7 +599,8 @@
           "reference": "0xf3f780e892fbe10ff0cde02316246722e3954444",
           "name": "🤌 (Money Sign)",
           "slug": "money-sign",
-          "path": "/tokens/money-sign/bnb-smart-chain"
+          "path": "/tokens/money-sign/bnb-smart-chain",
+          "artwork": "/token-artwork/568305dba787108b/8d6e6b98244e1d19fbac828801429fff"
         }
       ]
     },
@@ -582,7 +629,8 @@
           "reference": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
           "name": "USDT0",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/polygon"
+          "path": "/tokens/usdt0/polygon",
+          "artwork": "/token-artwork/568305dba787108b/c79fd6d1c6d3a675f5872af132732589"
         },
         {
           "name": "USDC",
@@ -591,7 +639,8 @@
           "coinID": "usd-coin",
           "symbol": "USDC",
           "slug": "usdc",
-          "path": "/tokens/usdc/polygon"
+          "path": "/tokens/usdc/polygon",
+          "artwork": "/token-artwork/568305dba787108b/6ca101eb19fbd20277cf2557927f64a0"
         },
         {
           "symbol": "WETH",
@@ -600,7 +649,8 @@
           "reference": "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
           "coinID": "polygon-pos-bridged-weth-polygon-pos",
           "slug": "polygon-pos-bridged-weth-polygon-pos",
-          "path": "/tokens/polygon-pos-bridged-weth-polygon-pos/polygon"
+          "path": "/tokens/polygon-pos-bridged-weth-polygon-pos/polygon",
+          "artwork": "/token-artwork/568305dba787108b/47819db07b5e8486b058cc5b8d7b165b"
         },
         {
           "network": "polygon",
@@ -609,7 +659,8 @@
           "symbol": "WBTC",
           "coinID": "polygon-bridged-wbtc-polygon-pos",
           "slug": "polygon-bridged-wbtc-polygon-pos",
-          "path": "/tokens/polygon-bridged-wbtc-polygon-pos/polygon"
+          "path": "/tokens/polygon-bridged-wbtc-polygon-pos/polygon",
+          "artwork": "/token-artwork/568305dba787108b/7b75e276a34c5ca1f82199b7c1ab234b"
         },
         {
           "network": "polygon",
@@ -618,7 +669,8 @@
           "name": "Polygon PoS Bridged DAI (Polygon POS)",
           "coinID": "polygon-pos-bridged-dai-polygon-pos",
           "slug": "polygon-pos-bridged-dai-polygon-pos",
-          "path": "/tokens/polygon-pos-bridged-dai-polygon-pos/polygon"
+          "path": "/tokens/polygon-pos-bridged-dai-polygon-pos/polygon",
+          "artwork": "/token-artwork/568305dba787108b/a7d5d3c80acf41cad3e67c00b7bb80a3"
         },
         {
           "reference": "0x53e0bca35ec356bd5dddfebbd1fc0fd03fabad39",
@@ -627,7 +679,8 @@
           "coinID": "chainlink",
           "network": "polygon",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/polygon"
+          "path": "/tokens/chainlink/polygon",
+          "artwork": "/token-artwork/568305dba787108b/16daba37a038c801e9e244dd24014eae"
         },
         {
           "network": "polygon",
@@ -636,7 +689,8 @@
           "reference": "0xd6df932a45c0f255f85145f286ea0b292b21c90b",
           "coinID": "aave",
           "slug": "aave",
-          "path": "/tokens/aave/polygon"
+          "path": "/tokens/aave/polygon",
+          "artwork": "/token-artwork/568305dba787108b/733d638cf124baa0811085e7b12c3d9a"
         },
         {
           "network": "polygon",
@@ -645,7 +699,8 @@
           "coinID": "quickswap",
           "name": "Quickswap",
           "slug": "quickswap",
-          "path": "/tokens/quickswap/polygon"
+          "path": "/tokens/quickswap/polygon",
+          "artwork": "/token-artwork/568305dba787108b/6bcd9f72377f094ac1c64f207d52b205"
         },
         {
           "network": "polygon",
@@ -654,7 +709,8 @@
           "name": "Aavegotchi",
           "symbol": "GHST",
           "slug": "aavegotchi",
-          "path": "/tokens/aavegotchi/polygon"
+          "path": "/tokens/aavegotchi/polygon",
+          "artwork": "/token-artwork/568305dba787108b/431e6fa10bdc0958d8a76e0121f40535"
         },
         {
           "reference": "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
@@ -663,7 +719,8 @@
           "coinID": "wmatic",
           "network": "polygon",
           "slug": "wmatic",
-          "path": "/tokens/wmatic/polygon"
+          "path": "/tokens/wmatic/polygon",
+          "artwork": "/token-artwork/568305dba787108b/f3acec13bc939a3a7cfdcae5ac569d66"
         },
         {
           "network": "polygon",
@@ -672,7 +729,8 @@
           "reference": "0xdc4f4ed9872571d5ec8986a502a0d88f3a175f1e",
           "coinID": "dez",
           "slug": "dez",
-          "path": "/tokens/dez/polygon"
+          "path": "/tokens/dez/polygon",
+          "artwork": "/token-artwork/568305dba787108b/bba79308e4e6f034a519f56399b66017"
         },
         {
           "coinID": "oxbitcoin",
@@ -681,7 +739,8 @@
           "symbol": "0XBTC",
           "network": "polygon",
           "slug": "oxbitcoin",
-          "path": "/tokens/oxbitcoin/polygon"
+          "path": "/tokens/oxbitcoin/polygon",
+          "artwork": "/token-artwork/568305dba787108b/6c564ad6342a0565e99d5e99d63d7040"
         }
       ]
     },
@@ -710,7 +769,8 @@
           "symbol": "USDC",
           "coinID": "usd-coin",
           "slug": "usdc",
-          "path": "/tokens/usdc/arbitrum"
+          "path": "/tokens/usdc/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/30521cb102340d6507d1e76ab052bad9"
         },
         {
           "coinID": "usdt0",
@@ -719,7 +779,8 @@
           "symbol": "USDT0",
           "reference": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/arbitrum"
+          "path": "/tokens/usdt0/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/8a3810a715f6545c856ad508ae0587c7"
         },
         {
           "coinID": "arbitrum",
@@ -728,7 +789,8 @@
           "network": "arbitrum",
           "symbol": "ARB",
           "slug": "arbitrum",
-          "path": "/tokens/arbitrum/arbitrum"
+          "path": "/tokens/arbitrum/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/67510bf5814a45d30136a8b8d11fe3f5"
         },
         {
           "coinID": "arbitrum-bridged-wbtc-arbitrum-one",
@@ -737,7 +799,8 @@
           "symbol": "WBTC",
           "name": "Arbitrum Bridged WBTC (Arbitrum One)",
           "slug": "arbitrum-bridged-wbtc-arbitrum-one",
-          "path": "/tokens/arbitrum-bridged-wbtc-arbitrum-one/arbitrum"
+          "path": "/tokens/arbitrum-bridged-wbtc-arbitrum-one/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/29f488f3e38d99786dfad9d136750629"
         },
         {
           "coinID": "arbitrum-bridged-weth-arbitrum-one",
@@ -746,7 +809,8 @@
           "reference": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
           "name": "Arbitrum Bridged WETH (Arbitrum One)",
           "slug": "arbitrum-bridged-weth-arbitrum-one",
-          "path": "/tokens/arbitrum-bridged-weth-arbitrum-one/arbitrum"
+          "path": "/tokens/arbitrum-bridged-weth-arbitrum-one/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/f83f95f07b66a354adbafdaefcf8cabd"
         },
         {
           "reference": "0xf97f4df75117a78c1a5a0dbb814af92458539fb4",
@@ -755,7 +819,8 @@
           "coinID": "chainlink",
           "symbol": "LINK",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/arbitrum"
+          "path": "/tokens/chainlink/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/ba963e0aec67329bc8d0f72333381e7d"
         },
         {
           "coinID": "gmx",
@@ -764,7 +829,8 @@
           "symbol": "GMX",
           "reference": "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
           "slug": "gmx",
-          "path": "/tokens/gmx/arbitrum"
+          "path": "/tokens/gmx/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/f22fbd4b671df716a17b31bae4c3f8cf"
         },
         {
           "reference": "0x0c880f6761f1af8d9aa9c466984b80dab9a8c9e8",
@@ -773,7 +839,8 @@
           "name": "Pendle",
           "symbol": "PENDLE",
           "slug": "pendle",
-          "path": "/tokens/pendle/arbitrum"
+          "path": "/tokens/pendle/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/4347106d677529f1b840951548b03304"
         },
         {
           "reference": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
@@ -782,7 +849,8 @@
           "name": "MakerDAO Arbitrum Bridged DAI (Arbitrum One)",
           "symbol": "DAI",
           "slug": "makerdao-arbitrum-bridged-dai-arbitrum-one",
-          "path": "/tokens/makerdao-arbitrum-bridged-dai-arbitrum-one/arbitrum"
+          "path": "/tokens/makerdao-arbitrum-bridged-dai-arbitrum-one/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/a2dbf415b2752933032dbefa330be108"
         },
         {
           "network": "arbitrum",
@@ -791,7 +859,8 @@
           "name": "Camelot Token",
           "symbol": "GRAIL",
           "slug": "camelot-token",
-          "path": "/tokens/camelot-token/arbitrum"
+          "path": "/tokens/camelot-token/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/3b253f0909668d26009f28f71c9b90cf"
         },
         {
           "coinID": "oxbitcoin",
@@ -800,7 +869,8 @@
           "network": "arbitrum",
           "reference": "0x7cb16cb78ea464ad35c8a50abf95dff3c9e09d5d",
           "slug": "oxbitcoin",
-          "path": "/tokens/oxbitcoin/arbitrum"
+          "path": "/tokens/oxbitcoin/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/7be93d5bcb79137dd2784160f0fa3627"
         },
         {
           "coinID": "1-800-flowers-com-inc-astock",
@@ -809,7 +879,8 @@
           "name": "1-800-Flowers.Com Inc aStock",
           "symbol": "AFLWS",
           "slug": "1-800-flowers-com-inc-astock",
-          "path": "/tokens/1-800-flowers-com-inc-astock/arbitrum"
+          "path": "/tokens/1-800-flowers-com-inc-astock/arbitrum",
+          "artwork": "/token-artwork/568305dba787108b/540fe1821e0c8f68c2159d4b268eed5c"
         }
       ]
     },
@@ -838,7 +909,8 @@
           "name": "USDC",
           "reference": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
           "slug": "usdc",
-          "path": "/tokens/usdc/base"
+          "path": "/tokens/usdc/base",
+          "artwork": "/token-artwork/568305dba787108b/7926440e00135765d94ffedd0a4ef4c5"
         },
         {
           "network": "base",
@@ -847,7 +919,8 @@
           "reference": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
           "coinID": "coinbase-wrapped-btc",
           "slug": "coinbase-wrapped-btc",
-          "path": "/tokens/coinbase-wrapped-btc/base"
+          "path": "/tokens/coinbase-wrapped-btc/base",
+          "artwork": "/token-artwork/568305dba787108b/0cec59d8d2d5db9027fc454ea23b6afa"
         },
         {
           "reference": "0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22",
@@ -856,7 +929,8 @@
           "symbol": "CBETH",
           "network": "base",
           "slug": "coinbase-wrapped-staked-eth",
-          "path": "/tokens/coinbase-wrapped-staked-eth/base"
+          "path": "/tokens/coinbase-wrapped-staked-eth/base",
+          "artwork": "/token-artwork/568305dba787108b/5bab24339643f73d0c6d68c0a8577e3e"
         },
         {
           "reference": "0x940181a94a35a4569e4529a3cdfb74e38fd98631",
@@ -865,7 +939,8 @@
           "network": "base",
           "coinID": "aerodrome-finance",
           "slug": "aerodrome-finance",
-          "path": "/tokens/aerodrome-finance/base"
+          "path": "/tokens/aerodrome-finance/base",
+          "artwork": "/token-artwork/568305dba787108b/ab159c97fd89047758638e77d87b0ac8"
         },
         {
           "reference": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
@@ -874,7 +949,8 @@
           "name": "Degen",
           "network": "base",
           "slug": "degen-base",
-          "path": "/tokens/degen-base/base"
+          "path": "/tokens/degen-base/base",
+          "artwork": "/token-artwork/568305dba787108b/ab88797233295ef2d06e094e08599e35"
         },
         {
           "reference": "0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b",
@@ -883,7 +959,8 @@
           "name": "Virtuals Protocol",
           "symbol": "VIRTUAL",
           "slug": "virtual-protocol",
-          "path": "/tokens/virtual-protocol/base"
+          "path": "/tokens/virtual-protocol/base",
+          "artwork": "/token-artwork/568305dba787108b/74040611a4cd8c7af62bc5d79b663df5"
         },
         {
           "symbol": "EURC",
@@ -892,7 +969,8 @@
           "name": "EURC",
           "coinID": "euro-coin",
           "slug": "euro-coin",
-          "path": "/tokens/euro-coin/base"
+          "path": "/tokens/euro-coin/base",
+          "artwork": "/token-artwork/568305dba787108b/764818773aac04efb13d1b2dbc58700c"
         },
         {
           "reference": "0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842",
@@ -901,7 +979,8 @@
           "symbol": "MORPHO",
           "network": "base",
           "slug": "morpho",
-          "path": "/tokens/morpho/base"
+          "path": "/tokens/morpho/base",
+          "artwork": "/token-artwork/568305dba787108b/bd267f09931f40e9641bf158a847f6ba"
         },
         {
           "coinID": "l2-standard-bridged-dai-base",
@@ -910,7 +989,8 @@
           "network": "base",
           "symbol": "DAI",
           "slug": "l2-standard-bridged-dai-base",
-          "path": "/tokens/l2-standard-bridged-dai-base/base"
+          "path": "/tokens/l2-standard-bridged-dai-base/base",
+          "artwork": "/token-artwork/568305dba787108b/dfc49a99d5bbda87b4313b62ef7f90d5"
         },
         {
           "reference": "0x4200000000000000000000000000000000000006",
@@ -919,7 +999,8 @@
           "coinID": "l2-standard-bridged-weth-base",
           "symbol": "WETH",
           "slug": "l2-standard-bridged-weth-base",
-          "path": "/tokens/l2-standard-bridged-weth-base/base"
+          "path": "/tokens/l2-standard-bridged-weth-base/base",
+          "artwork": "/token-artwork/568305dba787108b/55e332a62b51d7d35d2366b243dc4fa7"
         },
         {
           "name": "/onchain",
@@ -928,7 +1009,8 @@
           "coinID": "onchain",
           "symbol": "ONCHAIN",
           "slug": "onchain",
-          "path": "/tokens/onchain/base"
+          "path": "/tokens/onchain/base",
+          "artwork": "/token-artwork/568305dba787108b/6aa59924c1cfd4774011f4eca4e358d4"
         },
         {
           "name": "$BRAINS - your greed is my fuel 🤯🧠 by Virtuals",
@@ -937,7 +1019,8 @@
           "coinID": "brains-your-greed-is-my-fuel-by-virtuals",
           "symbol": "BRAINS",
           "slug": "brains-your-greed-is-my-fuel-by-virtuals",
-          "path": "/tokens/brains-your-greed-is-my-fuel-by-virtuals/base"
+          "path": "/tokens/brains-your-greed-is-my-fuel-by-virtuals/base",
+          "artwork": "/token-artwork/568305dba787108b/0042277eaa3f3fba48e8650cbadb0238"
         }
       ]
     },
@@ -966,7 +1049,8 @@
           "network": "optimism",
           "symbol": "OP",
           "slug": "optimism",
-          "path": "/tokens/optimism/optimism"
+          "path": "/tokens/optimism/optimism",
+          "artwork": "/token-artwork/568305dba787108b/a7a763804656a65e89b6c75777bd5322"
         },
         {
           "symbol": "USDC",
@@ -975,7 +1059,8 @@
           "coinID": "usd-coin",
           "network": "optimism",
           "slug": "usdc",
-          "path": "/tokens/usdc/optimism"
+          "path": "/tokens/usdc/optimism",
+          "artwork": "/token-artwork/568305dba787108b/35d729c003e8f5fea432a94613a641aa"
         },
         {
           "coinID": "bridged-usdt",
@@ -984,7 +1069,8 @@
           "name": "Bridged USDT",
           "symbol": "USDT",
           "slug": "bridged-usdt",
-          "path": "/tokens/bridged-usdt/optimism"
+          "path": "/tokens/bridged-usdt/optimism",
+          "artwork": "/token-artwork/568305dba787108b/796d7cf22a5ad88b24778e38c2689c14"
         },
         {
           "coinID": "makerdao-optimism-bridged-dai-optimism",
@@ -993,7 +1079,8 @@
           "network": "optimism",
           "name": "MakerDAO Optimism Bridged DAI (Optimism)",
           "slug": "makerdao-optimism-bridged-dai-optimism",
-          "path": "/tokens/makerdao-optimism-bridged-dai-optimism/optimism"
+          "path": "/tokens/makerdao-optimism-bridged-dai-optimism/optimism",
+          "artwork": "/token-artwork/568305dba787108b/251f82949e802de287ee3331053da0ab"
         },
         {
           "reference": "0x4200000000000000000000000000000000000006",
@@ -1002,7 +1089,8 @@
           "network": "optimism",
           "symbol": "WETH",
           "slug": "l2-standard-bridged-weth-optimism",
-          "path": "/tokens/l2-standard-bridged-weth-optimism/optimism"
+          "path": "/tokens/l2-standard-bridged-weth-optimism/optimism",
+          "artwork": "/token-artwork/568305dba787108b/076d00c089345761f8da1d0a2442b4cd"
         },
         {
           "name": "Wrapped Bitcoin",
@@ -1011,7 +1099,8 @@
           "symbol": "WBTC",
           "network": "optimism",
           "slug": "wrapped-bitcoin",
-          "path": "/tokens/wrapped-bitcoin/optimism"
+          "path": "/tokens/wrapped-bitcoin/optimism",
+          "artwork": "/token-artwork/568305dba787108b/89a0c4953e4d029fb61b9c774e06386d"
         },
         {
           "name": "Synthetix",
@@ -1020,7 +1109,8 @@
           "coinID": "havven",
           "reference": "0x8700daec35af8ff88c16bdf0418774cb3d7599b4",
           "slug": "havven",
-          "path": "/tokens/havven/optimism"
+          "path": "/tokens/havven/optimism",
+          "artwork": "/token-artwork/568305dba787108b/d6a9b1644cbf4ab313107bfc056bab14"
         },
         {
           "coinID": "velodrome-finance",
@@ -1029,7 +1119,8 @@
           "name": "Velodrome Finance",
           "symbol": "VELO",
           "slug": "velodrome-finance",
-          "path": "/tokens/velodrome-finance/optimism"
+          "path": "/tokens/velodrome-finance/optimism",
+          "artwork": "/token-artwork/568305dba787108b/40e8c6f5604dd8a0eee6a068fbf3a5f2"
         },
         {
           "name": "Superbridge Bridged wstETH (Optimism)",
@@ -1038,7 +1129,8 @@
           "reference": "0x1f32b1c2345538c0c6f582fcb022739c4a194ebb",
           "symbol": "WSTETH",
           "slug": "superbridge-bridged-wsteth-optimism",
-          "path": "/tokens/superbridge-bridged-wsteth-optimism/optimism"
+          "path": "/tokens/superbridge-bridged-wsteth-optimism/optimism",
+          "artwork": "/token-artwork/568305dba787108b/5e06b62d5095bdac333ed441744490e1"
         },
         {
           "name": "Liquity USD",
@@ -1047,7 +1139,8 @@
           "coinID": "liquity-usd",
           "reference": "0xc40f949f8a4e094d1b49a23ea9241d289b7b2819",
           "slug": "liquity-usd",
-          "path": "/tokens/liquity-usd/optimism"
+          "path": "/tokens/liquity-usd/optimism",
+          "artwork": "/token-artwork/568305dba787108b/b52a0df28fcf0746ef4f4c851a831ea8"
         },
         {
           "reference": "0xe0bb0d3de8c10976511e5030ca403dbf4c25165b",
@@ -1056,7 +1149,8 @@
           "network": "optimism",
           "symbol": "0XBTC",
           "slug": "oxbitcoin",
-          "path": "/tokens/oxbitcoin/optimism"
+          "path": "/tokens/oxbitcoin/optimism",
+          "artwork": "/token-artwork/568305dba787108b/c0587720e30b2af37e85f764b3b3ca64"
         },
         {
           "network": "optimism",
@@ -1065,7 +1159,8 @@
           "reference": "0xad42d013ac31486b73b6b059e748172994736426",
           "name": "1INCH",
           "slug": "1inch",
-          "path": "/tokens/1inch/optimism"
+          "path": "/tokens/1inch/optimism",
+          "artwork": "/token-artwork/568305dba787108b/c111215ccf26ba2f3cd1c9df98b39380"
         }
       ]
     },
@@ -1094,7 +1189,8 @@
           "reference": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
           "coinID": "usd-coin",
           "slug": "usdc",
-          "path": "/tokens/usdc/avalanche"
+          "path": "/tokens/usdc/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/96d3b4f3c5721fd3709b625ec3e45313"
         },
         {
           "network": "avalanche",
@@ -1103,7 +1199,8 @@
           "reference": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
           "name": "Tether",
           "slug": "usdt",
-          "path": "/tokens/usdt/avalanche"
+          "path": "/tokens/usdt/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/b49ca0546b4823eeca46ece4994f0603"
         },
         {
           "network": "avalanche",
@@ -1112,7 +1209,8 @@
           "reference": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
           "coinID": "wrapped-avax",
           "slug": "wrapped-avax",
-          "path": "/tokens/wrapped-avax/avalanche"
+          "path": "/tokens/wrapped-avax/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/adc7494de8abfb0c412ac5f2940a86d3"
         },
         {
           "symbol": "BTC.B",
@@ -1121,7 +1219,8 @@
           "network": "avalanche",
           "name": "Lombard Bridged BTC",
           "slug": "bitcoin-avalanche-bridged-btc-b",
-          "path": "/tokens/bitcoin-avalanche-bridged-btc-b/avalanche"
+          "path": "/tokens/bitcoin-avalanche-bridged-btc-b/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/e802c410e06b68aa7f86b172ee53897b"
         },
         {
           "coinID": "joe",
@@ -1130,7 +1229,8 @@
           "network": "avalanche",
           "reference": "0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd",
           "slug": "joe",
-          "path": "/tokens/joe/avalanche"
+          "path": "/tokens/joe/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/04b227d620630fb900ff1242f98a0ca3"
         },
         {
           "name": "Chainlink",
@@ -1139,7 +1239,8 @@
           "network": "avalanche",
           "symbol": "LINK",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/avalanche"
+          "path": "/tokens/chainlink/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/3cc659c4fe52f2980cc0831fc326495d"
         },
         {
           "name": "Aave",
@@ -1148,7 +1249,8 @@
           "coinID": "aave",
           "symbol": "AAVE",
           "slug": "aave",
-          "path": "/tokens/aave/avalanche"
+          "path": "/tokens/aave/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/4389d38820eaaae8995e666bfeecf72c"
         },
         {
           "network": "avalanche",
@@ -1157,7 +1259,8 @@
           "coinID": "benqi-liquid-staked-avax",
           "symbol": "SAVAX",
           "slug": "benqi-liquid-staked-avax",
-          "path": "/tokens/benqi-liquid-staked-avax/avalanche"
+          "path": "/tokens/benqi-liquid-staked-avax/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/e5e84699684ca7e84405542bafd47382"
         },
         {
           "reference": "0x8729438eb15e2c8b576fcc6aecda6a148776c0f5",
@@ -1166,7 +1269,8 @@
           "symbol": "QI",
           "coinID": "benqi",
           "slug": "benqi",
-          "path": "/tokens/benqi/avalanche"
+          "path": "/tokens/benqi/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/aa5f2447b04ed7116f26845471bbbad3"
         },
         {
           "name": "Pangolin",
@@ -1175,7 +1279,8 @@
           "coinID": "pangolin",
           "symbol": "PNG",
           "slug": "pangolin",
-          "path": "/tokens/pangolin/avalanche"
+          "path": "/tokens/pangolin/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/cbb636e6c2b8a71381d58ee285760842"
         },
         {
           "coinID": "1inch",
@@ -1184,7 +1289,8 @@
           "network": "avalanche",
           "reference": "0xd501281565bf7789224523144fe5d98e8b28f267",
           "slug": "1inch",
-          "path": "/tokens/1inch/avalanche"
+          "path": "/tokens/1inch/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/8868085d181ec5b3fd15e42c92e482e2"
         },
         {
           "network": "avalanche",
@@ -1193,7 +1299,8 @@
           "name": "2x Bitcoin Strategy ETF (Dinari Tokenized ETF)",
           "coinID": "2x-bitcoin-strategy-etf-dinari-tokenized-etf",
           "slug": "2x-bitcoin-strategy-etf-dinari-tokenized-etf",
-          "path": "/tokens/2x-bitcoin-strategy-etf-dinari-tokenized-etf/avalanche"
+          "path": "/tokens/2x-bitcoin-strategy-etf-dinari-tokenized-etf/avalanche",
+          "artwork": "/token-artwork/568305dba787108b/c22b63bee240f1da7ae0cfee24033d1c"
         }
       ]
     },
@@ -1222,7 +1329,8 @@
           "reference": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
           "network": "tron",
           "slug": "usdt",
-          "path": "/tokens/usdt/tron"
+          "path": "/tokens/usdt/tron",
+          "artwork": "/token-artwork/568305dba787108b/52605028179b71ea1908850f4229c467"
         },
         {
           "network": "tron",
@@ -1231,7 +1339,8 @@
           "coinID": "usdd",
           "name": "USDD",
           "slug": "usdd",
-          "path": "/tokens/usdd/tron"
+          "path": "/tokens/usdd/tron",
+          "artwork": "/token-artwork/568305dba787108b/0b9c94982abe44fc1ca2f884a4fab54b"
         },
         {
           "symbol": "JST",
@@ -1240,7 +1349,8 @@
           "coinID": "just",
           "network": "tron",
           "slug": "just",
-          "path": "/tokens/just/tron"
+          "path": "/tokens/just/tron",
+          "artwork": "/token-artwork/568305dba787108b/b93893843234068ee2b38e064c4a7665"
         },
         {
           "coinID": "sun-token",
@@ -1249,7 +1359,8 @@
           "reference": "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S",
           "network": "tron",
           "slug": "sun-token",
-          "path": "/tokens/sun-token/tron"
+          "path": "/tokens/sun-token/tron",
+          "artwork": "/token-artwork/568305dba787108b/9bdb0228cc56b06ea7ebf23f870df079"
         },
         {
           "symbol": "BTT",
@@ -1258,7 +1369,8 @@
           "coinID": "bittorrent",
           "network": "tron",
           "slug": "bittorrent",
-          "path": "/tokens/bittorrent/tron"
+          "path": "/tokens/bittorrent/tron",
+          "artwork": "/token-artwork/568305dba787108b/26c68fdc807b44d7ed3171c3937b2e7b"
         },
         {
           "coinID": "wink",
@@ -1267,7 +1379,8 @@
           "reference": "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7",
           "network": "tron",
           "slug": "wink",
-          "path": "/tokens/wink/tron"
+          "path": "/tokens/wink/tron",
+          "artwork": "/token-artwork/568305dba787108b/7d66fb02a73f931f34b3ac2fda7eb0d5"
         },
         {
           "symbol": "NFT",
@@ -1276,7 +1389,8 @@
           "coinID": "apenft",
           "network": "tron",
           "slug": "apenft",
-          "path": "/tokens/apenft/tron"
+          "path": "/tokens/apenft/tron",
+          "artwork": "/token-artwork/568305dba787108b/58f4ed6714d236b0a79d2837eb2991a9"
         },
         {
           "network": "tron",
@@ -1285,7 +1399,8 @@
           "coinID": "true-usd",
           "name": "TrueUSD",
           "slug": "true-usd",
-          "path": "/tokens/true-usd/tron"
+          "path": "/tokens/true-usd/tron",
+          "artwork": "/token-artwork/568305dba787108b/b30f8bb1df962532e702190383795325"
         },
         {
           "network": "tron",
@@ -1294,7 +1409,8 @@
           "coinID": "htx-dao",
           "name": "HTX DAO",
           "slug": "htx-dao",
-          "path": "/tokens/htx-dao/tron"
+          "path": "/tokens/htx-dao/tron",
+          "artwork": "/token-artwork/568305dba787108b/fe05b713c7efbfbe3d79a86d79e5c7ed"
         },
         {
           "coinID": "usd1-wlfi",
@@ -1303,7 +1419,8 @@
           "reference": "TPFqcBAaaUMCSVRCqPaQ9QnzKhmuoLR6Rc",
           "network": "tron",
           "slug": "usd1-wlfi",
-          "path": "/tokens/usd1-wlfi/tron"
+          "path": "/tokens/usd1-wlfi/tron",
+          "artwork": "/token-artwork/568305dba787108b/d5e7ff2f401b40750ce4430067814903"
         },
         {
           "coinID": "4tb-coin",
@@ -1312,7 +1429,8 @@
           "reference": "TQgcDvhr6c1EUDnFxiAmuYpBewT3uJSnHF",
           "network": "tron",
           "slug": "4tb-coin",
-          "path": "/tokens/4tb-coin/tron"
+          "path": "/tokens/4tb-coin/tron",
+          "artwork": "/token-artwork/568305dba787108b/dfc23b8d1c053209bb48537633a3c34a"
         },
         {
           "coinID": "a7a5",
@@ -1321,7 +1439,8 @@
           "reference": "TLeVfrdym8RoJreJ23dAGyfJDygRtiWKBZ",
           "network": "tron",
           "slug": "a7a5",
-          "path": "/tokens/a7a5/tron"
+          "path": "/tokens/a7a5/tron",
+          "artwork": "/token-artwork/568305dba787108b/ff89dfd8b09f90f85690c509a88299e2"
         }
       ]
     },
@@ -1351,7 +1470,8 @@
           "network": "xrpl",
           "reference": "524C555344000000000000000000000000000000.rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
           "slug": "ripple-usd",
-          "path": "/tokens/ripple-usd/xrp-ledger"
+          "path": "/tokens/ripple-usd/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/bddc0ffa623f121f5f18b8d9586a75d5"
         },
         {
           "symbol": "USDC",
@@ -1361,7 +1481,8 @@
           "network": "xrpl",
           "reference": "5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE",
           "slug": "usdc",
-          "path": "/tokens/usdc/xrp-ledger"
+          "path": "/tokens/usdc/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/6bcae665c9c1e07beadbcaa6daa083fb"
         },
         {
           "name": "EUR CoinVertible",
@@ -1371,7 +1492,8 @@
           "symbol": "EURCV",
           "network": "xrpl",
           "slug": "societe-generale-forge-eurcv",
-          "path": "/tokens/societe-generale-forge-eurcv/xrp-ledger"
+          "path": "/tokens/societe-generale-forge-eurcv/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/27467223612c2d3ad6cc28d6ee1ee7f4"
         },
         {
           "name": "Australian Digital Dollar",
@@ -1381,7 +1503,8 @@
           "symbol": "AUDD",
           "network": "xrpl",
           "slug": "novatti-australian-digital-dollar",
-          "path": "/tokens/novatti-australian-digital-dollar/xrp-ledger"
+          "path": "/tokens/novatti-australian-digital-dollar/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/a990d64981be7ef12b9afbc710df4bd7"
         },
         {
           "symbol": "SOLO",
@@ -1391,7 +1514,8 @@
           "network": "xrpl",
           "reference": "534F4C4F00000000000000000000000000000000.rsoLo2S1kiGeCcn6hCUXVrCpGMWLrRrLZz",
           "slug": "solo-coin",
-          "path": "/tokens/solo-coin/xrp-ledger"
+          "path": "/tokens/solo-coin/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/2050a8d40765bd7e44ca401fe89b5f72"
         },
         {
           "symbol": "TBILL",
@@ -1411,7 +1535,8 @@
           "symbol": "AMERICAFIRST",
           "network": "xrpl",
           "slug": "americafirst",
-          "path": "/tokens/americafirst/xrp-ledger"
+          "path": "/tokens/americafirst/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/1fd874d3a0cb3454e9583e9d2c352400"
         },
         {
           "symbol": "AURA",
@@ -1421,7 +1546,8 @@
           "network": "xrpl",
           "reference": "6175726100000000000000000000000000000000.rpjuvqrH37RGzb88UVibzCQYSNrM9FxJDy",
           "slug": "aura-3",
-          "path": "/tokens/aura-3/xrp-ledger"
+          "path": "/tokens/aura-3/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/5f3bf0cd157d2c38c61f980d9126a9fe"
         },
         {
           "symbol": "BXE",
@@ -1441,7 +1567,8 @@
           "network": "xrpl",
           "reference": "BRB.rUkuT9TCDTP2oeAPsrCN7XKcHZfdvHvFkG",
           "slug": "bear-bull",
-          "path": "/tokens/bear-bull/xrp-ledger"
+          "path": "/tokens/bear-bull/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/6b91c949b8b8a09fe1b286fe5ec39c33"
         },
         {
           "name": "Bear Champ",
@@ -1451,7 +1578,8 @@
           "symbol": "BCHAMP",
           "network": "xrpl",
           "slug": "bear-champ",
-          "path": "/tokens/bear-champ/xrp-ledger"
+          "path": "/tokens/bear-champ/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/60a59996b1b97fda637ff9739e4c3be3"
         },
         {
           "name": "BEARXRPL",
@@ -1461,7 +1589,8 @@
           "symbol": "BEAR",
           "network": "xrpl",
           "slug": "bearxrpl",
-          "path": "/tokens/bearxrpl/xrp-ledger"
+          "path": "/tokens/bearxrpl/xrp-ledger",
+          "artwork": "/token-artwork/568305dba787108b/0a7d9d779e971e0a2af4d36ac37e1552"
         }
       ]
     },
@@ -1490,7 +1619,8 @@
           "name": "Tether",
           "coinID": "tether",
           "slug": "usdt",
-          "path": "/tokens/usdt/near"
+          "path": "/tokens/usdt/near",
+          "artwork": "/token-artwork/568305dba787108b/494d0e32dbcf2679857e3d5231feb4d8"
         },
         {
           "name": "Rainbow Bridged USDC (Near)",
@@ -1499,7 +1629,8 @@
           "reference": "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near",
           "symbol": "USDC.E",
           "slug": "usdc-rainbow-bridge",
-          "path": "/tokens/usdc-rainbow-bridge/near"
+          "path": "/tokens/usdc-rainbow-bridge/near",
+          "artwork": "/token-artwork/568305dba787108b/1de08dee0da5f90101c11d961ab79f47"
         },
         {
           "symbol": "REF",
@@ -1508,7 +1639,8 @@
           "name": "Ref Finance",
           "coinID": "ref-finance",
           "slug": "ref-finance",
-          "path": "/tokens/ref-finance/near"
+          "path": "/tokens/ref-finance/near",
+          "artwork": "/token-artwork/568305dba787108b/abad5292ba46e315b19050f329b64624"
         },
         {
           "name": "Aurora",
@@ -1517,7 +1649,8 @@
           "reference": "aaaaaa20d9e0e2461697782ef11675f668207961.factory.bridge.near",
           "symbol": "AURORA",
           "slug": "aurora-near",
-          "path": "/tokens/aurora-near/near"
+          "path": "/tokens/aurora-near/near",
+          "artwork": "/token-artwork/568305dba787108b/657f046cc30e081ec5c351bf60094d4c"
         },
         {
           "symbol": "LINEAR",
@@ -1526,7 +1659,8 @@
           "name": "LiNEAR Protocol Staked NEAR",
           "network": "near",
           "slug": "linear-protocol",
-          "path": "/tokens/linear-protocol/near"
+          "path": "/tokens/linear-protocol/near",
+          "artwork": "/token-artwork/568305dba787108b/acf760106f006538b5ff1ef677e0b3f5"
         },
         {
           "symbol": "STNEAR",
@@ -1535,7 +1669,8 @@
           "name": "Staked NEAR",
           "network": "near",
           "slug": "staked-near",
-          "path": "/tokens/staked-near/near"
+          "path": "/tokens/staked-near/near",
+          "artwork": "/token-artwork/568305dba787108b/a7e74005a7f8f48acea1f3ecf7e1ff47"
         },
         {
           "symbol": "SWEAT",
@@ -1544,7 +1679,8 @@
           "name": "SWEAT",
           "coinID": "sweatcoin",
           "slug": "sweatcoin",
-          "path": "/tokens/sweatcoin/near"
+          "path": "/tokens/sweatcoin/near",
+          "artwork": "/token-artwork/568305dba787108b/488e456fd5b20876ceb3349ffb93dbee"
         },
         {
           "symbol": "NEKO",
@@ -1553,7 +1689,8 @@
           "name": "NEKO",
           "network": "near",
           "slug": "neko",
-          "path": "/tokens/neko/near"
+          "path": "/tokens/neko/near",
+          "artwork": "/token-artwork/568305dba787108b/fd934b284c5df4743d91ca026a68702d"
         },
         {
           "symbol": "OCT",
@@ -1562,7 +1699,8 @@
           "name": "Omnity Convertible Token",
           "network": "near",
           "slug": "octopus-network",
-          "path": "/tokens/octopus-network/near"
+          "path": "/tokens/octopus-network/near",
+          "artwork": "/token-artwork/568305dba787108b/c44fd0d6aeb6eaaa3893040e9d7e144d"
         },
         {
           "name": "1MillionNFTs",
@@ -1571,7 +1709,8 @@
           "reference": "a4ef4b0b23c1fc81d3f9ecf93510e64f58a4a016.factory.bridge.near",
           "symbol": "1MIL",
           "slug": "1million-nfts",
-          "path": "/tokens/1million-nfts/near"
+          "path": "/tokens/1million-nfts/near",
+          "artwork": "/token-artwork/568305dba787108b/9adbf76e099c3d77f9096f29b0968fb1"
         },
         {
           "name": "Aave",
@@ -1580,7 +1719,8 @@
           "reference": "7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9.factory.bridge.near",
           "symbol": "AAVE",
           "slug": "aave",
-          "path": "/tokens/aave/near"
+          "path": "/tokens/aave/near",
+          "artwork": "/token-artwork/568305dba787108b/d8f01a357b529bda2f43690f0b513adb"
         },
         {
           "symbol": "SOL",
@@ -1589,7 +1729,8 @@
           "name": "Allbridge Bridged SOL (Near Protocol)",
           "network": "near",
           "slug": "allbridge-bridged-sol-near-protocol",
-          "path": "/tokens/allbridge-bridged-sol-near-protocol/near"
+          "path": "/tokens/allbridge-bridged-sol-near-protocol/near",
+          "artwork": "/token-artwork/568305dba787108b/7c9ee271b6ba88e59b42a1401cbd8abe"
         }
       ]
     },
@@ -1618,7 +1759,8 @@
           "name": "USDC",
           "coinID": "usd-coin",
           "slug": "usdc",
-          "path": "/tokens/usdc/sui"
+          "path": "/tokens/usdc/sui",
+          "artwork": "/token-artwork/568305dba787108b/66419b3d8159e125ee6bd24932796170"
         },
         {
           "reference": "0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP",
@@ -1627,7 +1769,8 @@
           "name": "DeepBook",
           "coinID": "deep",
           "slug": "deep",
-          "path": "/tokens/deep/sui"
+          "path": "/tokens/deep/sui",
+          "artwork": "/token-artwork/568305dba787108b/239efc12aaf54caa4d00610aa32466c8"
         },
         {
           "name": "Cetus Protocol",
@@ -1636,7 +1779,8 @@
           "coinID": "cetus-protocol",
           "reference": "0x6864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS",
           "slug": "cetus-protocol",
-          "path": "/tokens/cetus-protocol/sui"
+          "path": "/tokens/cetus-protocol/sui",
+          "artwork": "/token-artwork/568305dba787108b/c0b19790973260d8d02b5bef5f0ab42a"
         },
         {
           "reference": "0xa99b8952d4f7d947ea77fe0ecdcc9e5fc0bcab2841d6e2a5aa00c3044e5544b5::navx::NAVX",
@@ -1645,7 +1789,8 @@
           "network": "sui",
           "coinID": "navi",
           "slug": "navi",
-          "path": "/tokens/navi/sui"
+          "path": "/tokens/navi/sui",
+          "artwork": "/token-artwork/568305dba787108b/3fa9ed45881366967e8650e7d8367e48"
         },
         {
           "name": "Scallop",
@@ -1654,7 +1799,8 @@
           "coinID": "scallop-2",
           "reference": "0x7016aae72cfc67f2fadf55769c0a7dd54291a583b63051a5ed71081cce836ac6::sca::SCA",
           "slug": "scallop-2",
-          "path": "/tokens/scallop-2/sui"
+          "path": "/tokens/scallop-2/sui",
+          "artwork": "/token-artwork/568305dba787108b/dc7cb4870cebd86aaf8032de800db2a1"
         },
         {
           "reference": "0xce7ff77a83ea0cb6fd39bd8748e2ec89a3f41e8efdc3f4eb123e0ca37b184db2::buck::BUCK",
@@ -1663,7 +1809,8 @@
           "name": "Bucket Protocol BUCK Stablecoin",
           "coinID": "bucket-protocol-buck-stablecoin",
           "slug": "bucket-protocol-buck-stablecoin",
-          "path": "/tokens/bucket-protocol-buck-stablecoin/sui"
+          "path": "/tokens/bucket-protocol-buck-stablecoin/sui",
+          "artwork": "/token-artwork/568305dba787108b/fea3c7ca3ad80ac28ccdffd621197e02"
         },
         {
           "network": "sui",
@@ -1672,7 +1819,8 @@
           "reference": "0xf325ce1300e8dac124071d3152c5c5ee6174914f8bc2161e88329cf579246efc::afsui::AFSUI",
           "symbol": "AFSUI",
           "slug": "aftermath-staked-sui",
-          "path": "/tokens/aftermath-staked-sui/sui"
+          "path": "/tokens/aftermath-staked-sui/sui",
+          "artwork": "/token-artwork/568305dba787108b/55bdeb1995764178e1e772b0b3e1c80c"
         },
         {
           "reference": "0xbde4ba4c2e274a60ce15c1cfff9e5c42e41654ac8b6d906a57efa4bd3c29f47d::hasui::HASUI",
@@ -1681,7 +1829,8 @@
           "name": "Haedal Staked SUI",
           "coinID": "haedal-staked-sui",
           "slug": "haedal-staked-sui",
-          "path": "/tokens/haedal-staked-sui/sui"
+          "path": "/tokens/haedal-staked-sui/sui",
+          "artwork": "/token-artwork/568305dba787108b/14b3ae02fdb81cbf341bc89dfd3eb06f"
         },
         {
           "reference": "0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN",
@@ -1690,7 +1839,8 @@
           "name": "Wormhole Bridged USDT",
           "coinID": "tether-usd-wormhole-from-ethereum",
           "slug": "tether-usd-wormhole-from-ethereum",
-          "path": "/tokens/tether-usd-wormhole-from-ethereum/sui"
+          "path": "/tokens/tether-usd-wormhole-from-ethereum/sui",
+          "artwork": "/token-artwork/568305dba787108b/64c65585c62e422040310ffd471eb6dd"
         },
         {
           "reference": "0x960b531667636f39e85867775f52f6b1f220a058c4de786905bdf761e06a56bb::usdy::USDY",
@@ -1699,7 +1849,8 @@
           "network": "sui",
           "coinID": "ondo-us-dollar-yield",
           "slug": "ondo-us-dollar-yield",
-          "path": "/tokens/ondo-us-dollar-yield/sui"
+          "path": "/tokens/ondo-us-dollar-yield/sui",
+          "artwork": "/token-artwork/568305dba787108b/8fae307d74dd406744b519d9813991e4"
         },
         {
           "reference": "0xea65bb5a79ff34ca83e2995f9ff6edd0887b08da9b45bf2e31f930d3efb82866::s::S",
@@ -1708,7 +1859,8 @@
           "name": "Agent S",
           "coinID": "agent-s",
           "slug": "agent-s",
-          "path": "/tokens/agent-s/sui"
+          "path": "/tokens/agent-s/sui",
+          "artwork": "/token-artwork/568305dba787108b/c3deed1067a37f48e3569fc3f26e6018"
         },
         {
           "reference": "0xcee208b8ae33196244b389e61ffd1202e7a1ae06c8ec210d33402ff649038892::aida::AIDA",
@@ -1717,7 +1869,8 @@
           "name": "Aida",
           "coinID": "aida-2",
           "slug": "aida-2",
-          "path": "/tokens/aida-2/sui"
+          "path": "/tokens/aida-2/sui",
+          "artwork": "/token-artwork/568305dba787108b/16c7f1e90665bf8c7c96d73e6ee245ec"
         }
       ]
     },
@@ -1746,7 +1899,8 @@
           "symbol": "USDC",
           "coinID": "usd-coin",
           "slug": "usdc",
-          "path": "/tokens/usdc/aptos"
+          "path": "/tokens/usdc/aptos",
+          "artwork": "/token-artwork/568305dba787108b/5ad390a451f735502606539c35d2fcaa"
         },
         {
           "coinID": "tether",
@@ -1755,7 +1909,8 @@
           "network": "aptos",
           "reference": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
           "slug": "usdt",
-          "path": "/tokens/usdt/aptos"
+          "path": "/tokens/usdt/aptos",
+          "artwork": "/token-artwork/568305dba787108b/7e1fcc400c7a16ff2bab73069dee34f1"
         },
         {
           "coinID": "thala",
@@ -1764,7 +1919,8 @@
           "network": "aptos",
           "reference": "0x7fd500c11216f0fe3095d0c4b8aa4d64a4e2e04f83758462f2b127255643615::thl_coin::THL",
           "slug": "thala",
-          "path": "/tokens/thala/aptos"
+          "path": "/tokens/thala/aptos",
+          "artwork": "/token-artwork/568305dba787108b/8c2e4be0cbdb99eb2f13a9d42f029c79"
         },
         {
           "name": "Gui Inu",
@@ -1773,7 +1929,8 @@
           "symbol": "GUI",
           "coinID": "gui-inu",
           "slug": "gui-inu",
-          "path": "/tokens/gui-inu/aptos"
+          "path": "/tokens/gui-inu/aptos",
+          "artwork": "/token-artwork/568305dba787108b/4c43974f9a76b17fe173b856d6ea360e"
         },
         {
           "coinID": "cellena-finance",
@@ -1782,7 +1939,8 @@
           "network": "aptos",
           "reference": "0x2ebb2ccac5e027a87fa0e2e5f656a3a4238d6a48d93ec9b610d570fc0aa0df12",
           "slug": "cellena-finance",
-          "path": "/tokens/cellena-finance/aptos"
+          "path": "/tokens/cellena-finance/aptos",
+          "artwork": "/token-artwork/568305dba787108b/2c025df9cb5f14671ca2581f3ea08e1e"
         },
         {
           "coinID": "move-dollar",
@@ -1791,7 +1949,8 @@
           "network": "aptos",
           "reference": "0x6f986d146e4a90b828d8c12c14b6f4e003fdff11a8eecceceb63744363eaac01::mod_coin::MOD",
           "slug": "move-dollar",
-          "path": "/tokens/move-dollar/aptos"
+          "path": "/tokens/move-dollar/aptos",
+          "artwork": "/token-artwork/568305dba787108b/1dad6cba0dd21e4426605c48ea680dce"
         },
         {
           "coinID": "amnis-staked-aptos-coin",
@@ -1800,7 +1959,8 @@
           "network": "aptos",
           "reference": "0x111ae3e5bc816a5e63c2da97d0aa3886519e0cd5e4b046659fa35796bd11542a::stapt_token::StakedApt",
           "slug": "amnis-staked-aptos-coin",
-          "path": "/tokens/amnis-staked-aptos-coin/aptos"
+          "path": "/tokens/amnis-staked-aptos-coin/aptos",
+          "artwork": "/token-artwork/568305dba787108b/40b103465f565e29a0d6c2cf9937cb58"
         },
         {
           "coinID": "tortuga-staked-aptos",
@@ -1809,7 +1969,8 @@
           "network": "aptos",
           "reference": "0x84d7aeef42d38a5ffc3ccef853e1b82e4958659d16a7de736a29c55fbbeb0114::staked_aptos_coin::StakedAptosCoin",
           "slug": "tortuga-staked-aptos",
-          "path": "/tokens/tortuga-staked-aptos/aptos"
+          "path": "/tokens/tortuga-staked-aptos/aptos",
+          "artwork": "/token-artwork/568305dba787108b/9c6dcdc4db6acb996b92337d247d5164"
         },
         {
           "coinID": "wrapped-bitcoin",
@@ -1818,7 +1979,8 @@
           "network": "aptos",
           "reference": "0x68844a0d7f2587e726ad0579f3d640865bb4162c08a4589eeda3f9689ec52a3d",
           "slug": "wrapped-bitcoin",
-          "path": "/tokens/wrapped-bitcoin/aptos"
+          "path": "/tokens/wrapped-bitcoin/aptos",
+          "artwork": "/token-artwork/568305dba787108b/d95b0181d7a00ee5758dfabc1f7c3e00"
         },
         {
           "name": "Ondo US Dollar Yield",
@@ -1827,7 +1989,8 @@
           "symbol": "USDY",
           "coinID": "ondo-us-dollar-yield",
           "slug": "ondo-us-dollar-yield",
-          "path": "/tokens/ondo-us-dollar-yield/aptos"
+          "path": "/tokens/ondo-us-dollar-yield/aptos",
+          "artwork": "/token-artwork/568305dba787108b/9775151844f7bec2be185465dab58193"
         },
         {
           "coinID": "abel-finance",
@@ -1836,7 +1999,8 @@
           "network": "aptos",
           "reference": "0x7c0322595a73b3fc53bb166f5783470afeb1ed9f46d1176db62139991505dc61::abel_coin::AbelCoin",
           "slug": "abel-finance",
-          "path": "/tokens/abel-finance/aptos"
+          "path": "/tokens/abel-finance/aptos",
+          "artwork": "/token-artwork/568305dba787108b/d69edf9cfccb2f48650179e4690fc179"
         },
         {
           "name": "aBTC",
@@ -1845,7 +2009,8 @@
           "symbol": "ABTC",
           "coinID": "abtc",
           "slug": "abtc",
-          "path": "/tokens/abtc/aptos"
+          "path": "/tokens/abtc/aptos",
+          "artwork": "/token-artwork/568305dba787108b/3485ac0325e6aef467e23ed9b0cff16c"
         }
       ]
     },
@@ -1876,7 +2041,8 @@
           "decimals": 6,
           "logo": "https://coin-images.coingecko.com/coins/images/6319/small/USDC.png?1769615602",
           "slug": "usdc",
-          "path": "/tokens/usdc/polkadot"
+          "path": "/tokens/usdc/polkadot",
+          "artwork": "/token-artwork/568305dba787108b/afb620a382b17004566a910ccc6afb9f"
         },
         {
           "coinID": "tether",
@@ -1887,7 +2053,8 @@
           "decimals": 6,
           "logo": "https://coin-images.coingecko.com/coins/images/325/small/Tether.png?1696501661",
           "slug": "usdt",
-          "path": "/tokens/usdt/polkadot"
+          "path": "/tokens/usdt/polkadot",
+          "artwork": "/token-artwork/568305dba787108b/a3d5561beb75d4d26926c255a1092352"
         },
         {
           "coinID": "gavun-wud",
@@ -1934,7 +2101,8 @@
           "network": "stellar",
           "name": "USDC",
           "slug": "usdc",
-          "path": "/tokens/usdc/stellar"
+          "path": "/tokens/usdc/stellar",
+          "artwork": "/token-artwork/568305dba787108b/e407e3a10c9990f212b85996ac2ed30e"
         },
         {
           "symbol": "PYUSD",
@@ -1943,7 +2111,8 @@
           "network": "stellar",
           "name": "PayPal USD",
           "slug": "paypal-usd",
-          "path": "/tokens/paypal-usd/stellar"
+          "path": "/tokens/paypal-usd/stellar",
+          "artwork": "/token-artwork/568305dba787108b/64fab94cdfa70fc071337ba7f569aaff"
         },
         {
           "symbol": "AFR",
@@ -1962,7 +2131,8 @@
           "symbol": "EURAU",
           "name": "AllUnity EUR",
           "slug": "allunity-eur",
-          "path": "/tokens/allunity-eur/stellar"
+          "path": "/tokens/allunity-eur/stellar",
+          "artwork": "/token-artwork/568305dba787108b/049af9a44e3478d94b6993ceaf4d1d27"
         },
         {
           "reference": "CAUIKL3IYGMERDRUN6YSCLWVAKIFG5Q4YJHUKM4S4NJZQIA3BAS6OJPK",
@@ -2021,7 +2191,8 @@
           "symbol": "DEJAAA",
           "name": "DeFi Janus Henderson Anemoy AAA CLO Fund",
           "slug": "defi-janus-henderson-anemoy-aaa-clo-fund",
-          "path": "/tokens/defi-janus-henderson-anemoy-aaa-clo-fund/stellar"
+          "path": "/tokens/defi-janus-henderson-anemoy-aaa-clo-fund/stellar",
+          "artwork": "/token-artwork/568305dba787108b/2b594ef4558f6c15641d25ea062b9e91"
         },
         {
           "reference": "CAL6ER2TI6CTRAY6BFXWNWA7WTYXUXTQCHUBCIBU5O6KM3HJFG6Z6VXV",
@@ -2070,7 +2241,8 @@
           "symbol": "EURC",
           "network": "arc",
           "slug": "euro-coin",
-          "path": "/tokens/euro-coin/arc"
+          "path": "/tokens/euro-coin/arc",
+          "artwork": "/token-artwork/568305dba787108b/d4788645ad7e4fa8cc553437a2b4d428"
         },
         {
           "symbol": "LINK",
@@ -2079,7 +2251,8 @@
           "name": "Chainlink",
           "network": "arc",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/arc"
+          "path": "/tokens/chainlink/arc",
+          "artwork": "/token-artwork/568305dba787108b/22b80bea174f9d8e32f799f2d7d097ab"
         },
         {
           "symbol": "WETH",
@@ -2088,7 +2261,8 @@
           "name": "Arc Bridged WETH (Arc)",
           "network": "arc",
           "slug": "arc-bridged-weth-arc",
-          "path": "/tokens/arc-bridged-weth-arc/arc"
+          "path": "/tokens/arc-bridged-weth-arc/arc",
+          "artwork": "/token-artwork/568305dba787108b/3a765934d62d44c66f273077c1acf469"
         },
         {
           "coinID": "virtual-protocol",
@@ -2097,7 +2271,8 @@
           "symbol": "VIRTUAL",
           "network": "arc",
           "slug": "virtual-protocol",
-          "path": "/tokens/virtual-protocol/arc"
+          "path": "/tokens/virtual-protocol/arc",
+          "artwork": "/token-artwork/568305dba787108b/676bb1a2435bb891a0c1efbebba2e7bb"
         },
         {
           "symbol": "XAUM",
@@ -2106,7 +2281,8 @@
           "name": "Matrixdock Gold",
           "network": "arc",
           "slug": "matrixdock-gold",
-          "path": "/tokens/matrixdock-gold/arc"
+          "path": "/tokens/matrixdock-gold/arc",
+          "artwork": "/token-artwork/568305dba787108b/300d3ddff07e3e7359222877478cb765"
         },
         {
           "symbol": "EURAU",
@@ -2115,7 +2291,8 @@
           "name": "AllUnity EUR",
           "network": "arc",
           "slug": "allunity-eur",
-          "path": "/tokens/allunity-eur/arc"
+          "path": "/tokens/allunity-eur/arc",
+          "artwork": "/token-artwork/568305dba787108b/ca3bfc9471bb03f42fc4a20ea5e7a7e8"
         },
         {
           "coinID": "allunity-chf",
@@ -2124,7 +2301,8 @@
           "symbol": "CHFAU",
           "network": "arc",
           "slug": "allunity-chf",
-          "path": "/tokens/allunity-chf/arc"
+          "path": "/tokens/allunity-chf/arc",
+          "artwork": "/token-artwork/568305dba787108b/ddbc769dd60c75c32a57ed5f5aa726d8"
         },
         {
           "coinID": "stablecorp-qcad",
@@ -2133,7 +2311,8 @@
           "symbol": "QCAD",
           "network": "arc",
           "slug": "stablecorp-qcad",
-          "path": "/tokens/stablecorp-qcad/arc"
+          "path": "/tokens/stablecorp-qcad/arc",
+          "artwork": "/token-artwork/568305dba787108b/1079e2c5dc7d4be5f1fde1c63e071b57"
         },
         {
           "symbol": "KRW1",
@@ -2142,7 +2321,8 @@
           "name": "KRW1",
           "network": "arc",
           "slug": "krw1",
-          "path": "/tokens/krw1/arc"
+          "path": "/tokens/krw1/arc",
+          "artwork": "/token-artwork/568305dba787108b/0f2d0316d95d8635f06b281fe94ab29b"
         },
         {
           "symbol": "SOLD",
@@ -2151,7 +2331,8 @@
           "name": "$SOLD",
           "network": "arc",
           "slug": "sold",
-          "path": "/tokens/sold/arc"
+          "path": "/tokens/sold/arc",
+          "artwork": "/token-artwork/568305dba787108b/c45c34c432a06697d860e7eef74899bd"
         },
         {
           "symbol": "PI",
@@ -2160,7 +2341,8 @@
           "name": "3.141592653589793238462643383279",
           "network": "arc",
           "slug": "3-141592653589793238462643383279",
-          "path": "/tokens/3-141592653589793238462643383279/arc"
+          "path": "/tokens/3-141592653589793238462643383279/arc",
+          "artwork": "/token-artwork/568305dba787108b/345a0fa7dd40244de13187205796c0d5"
         },
         {
           "name": "ACAT",
@@ -2169,7 +2351,8 @@
           "coinID": "acat",
           "network": "arc",
           "slug": "acat",
-          "path": "/tokens/acat/arc"
+          "path": "/tokens/acat/arc",
+          "artwork": "/token-artwork/568305dba787108b/f330c300eb62ca9da93cc17cbe647886"
         }
       ]
     },
@@ -2198,7 +2381,8 @@
           "network": "fantom",
           "name": "Wrapped Fantom",
           "slug": "wrapped-fantom",
-          "path": "/tokens/wrapped-fantom/fantom"
+          "path": "/tokens/wrapped-fantom/fantom",
+          "artwork": "/token-artwork/568305dba787108b/1119eff7e242ea9b5759f3692d0d93a7"
         },
         {
           "reference": "0x1b6382dbdea11d97f24495c9a90b7c88469134a4",
@@ -2207,7 +2391,8 @@
           "network": "fantom",
           "name": "Axelar Bridged USDC",
           "slug": "axlusdc",
-          "path": "/tokens/axlusdc/fantom"
+          "path": "/tokens/axlusdc/fantom",
+          "artwork": "/token-artwork/568305dba787108b/dc3aafadefb09e78fc8d026d9af4a315"
         },
         {
           "reference": "0x1e4f97b9f9f913c46f1632781732927b9019c68b",
@@ -2216,7 +2401,8 @@
           "network": "fantom",
           "name": "Curve DAO",
           "slug": "curve-dao-token",
-          "path": "/tokens/curve-dao-token/fantom"
+          "path": "/tokens/curve-dao-token/fantom",
+          "artwork": "/token-artwork/568305dba787108b/fbf372fd58f0e7ba68b599fc41496886"
         },
         {
           "reference": "0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b",
@@ -2225,7 +2411,8 @@
           "symbol": "AAVE",
           "network": "fantom",
           "slug": "aave",
-          "path": "/tokens/aave/fantom"
+          "path": "/tokens/aave/fantom",
+          "artwork": "/token-artwork/568305dba787108b/b00924a466a8925a2e19bacc35327b9f"
         },
         {
           "reference": "0x513c7e3a9c69ca3e22550ef58ac1c0088e918fff",
@@ -2234,7 +2421,8 @@
           "symbol": "ACRV",
           "network": "fantom",
           "slug": "aave-crv",
-          "path": "/tokens/aave-crv/fantom"
+          "path": "/tokens/aave-crv/fantom",
+          "artwork": "/token-artwork/568305dba787108b/795618de1c2a662ebc7208be34888985"
         },
         {
           "name": "Aave DAI",
@@ -2243,7 +2431,8 @@
           "network": "fantom",
           "coinID": "aave-dai",
           "slug": "aave-dai",
-          "path": "/tokens/aave-dai/fantom"
+          "path": "/tokens/aave-dai/fantom",
+          "artwork": "/token-artwork/568305dba787108b/323951b4c79b8fdf856c5eecb2e9aedf"
         },
         {
           "reference": "0x191c10aa4af7c30e871e70c95db0e4eb77237530",
@@ -2252,7 +2441,8 @@
           "network": "fantom",
           "name": "Aave LINK",
           "slug": "aave-link",
-          "path": "/tokens/aave-link/fantom"
+          "path": "/tokens/aave-link/fantom",
+          "artwork": "/token-artwork/568305dba787108b/2d35f832709f3e247d96d2c16527a1dd"
         },
         {
           "reference": "0x6ab707aca953edaefbc4fd23ba73294241490620",
@@ -2261,7 +2451,8 @@
           "symbol": "AUSDT",
           "network": "fantom",
           "slug": "aave-usdt",
-          "path": "/tokens/aave-usdt/fantom"
+          "path": "/tokens/aave-usdt/fantom",
+          "artwork": "/token-artwork/568305dba787108b/5e12e2ab70ccf00281360b1d83f9bea4"
         },
         {
           "reference": "0x078f358208685046a11c85e8ad32895ded33a249",
@@ -2270,7 +2461,8 @@
           "network": "fantom",
           "name": "Aave WBTC",
           "slug": "aave-wbtc",
-          "path": "/tokens/aave-wbtc/fantom"
+          "path": "/tokens/aave-wbtc/fantom",
+          "artwork": "/token-artwork/568305dba787108b/cf6ea75d6972b44e126bdfaf7a7b2635"
         },
         {
           "name": "Aave WETH",
@@ -2279,7 +2471,8 @@
           "reference": "0xe50fa9b3c56ffb159cb0fca61f5c9d750e8128c8",
           "coinID": "aave-weth",
           "slug": "aave-weth",
-          "path": "/tokens/aave-weth/fantom"
+          "path": "/tokens/aave-weth/fantom",
+          "artwork": "/token-artwork/568305dba787108b/ba1c30861509fdff9b9270696ffff99f"
         },
         {
           "name": "Alchemix USD",
@@ -2288,7 +2481,8 @@
           "network": "fantom",
           "coinID": "alchemix-usd",
           "slug": "alchemix-usd",
-          "path": "/tokens/alchemix-usd/fantom"
+          "path": "/tokens/alchemix-usd/fantom",
+          "artwork": "/token-artwork/568305dba787108b/fbedc727bb028aa712703d47addd1245"
         },
         {
           "reference": "0x543acd673960041eee1305500893260f1887b679",
@@ -2297,7 +2491,8 @@
           "symbol": "ABR0",
           "network": "fantom",
           "slug": "allbridge",
-          "path": "/tokens/allbridge/fantom"
+          "path": "/tokens/allbridge/fantom",
+          "artwork": "/token-artwork/568305dba787108b/8b7fdc799671d10e566805130408ebcb"
         }
       ]
     },
@@ -2326,7 +2521,8 @@
           "coinID": "wrapped-flare",
           "network": "flare",
           "slug": "wrapped-flare",
-          "path": "/tokens/wrapped-flare/flare"
+          "path": "/tokens/wrapped-flare/flare",
+          "artwork": "/token-artwork/568305dba787108b/ea512c7931fa0c1f67a81f38089ac24e"
         },
         {
           "reference": "0xe7cd86e13ac4309349f30b3435a9d337750fc82d",
@@ -2335,7 +2531,8 @@
           "coinID": "usdt0",
           "network": "flare",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/flare"
+          "path": "/tokens/usdt0/flare",
+          "artwork": "/token-artwork/568305dba787108b/87c3d914083c90339761c133140a6cf0"
         },
         {
           "reference": "0xfbda5f676cb37624f28265a144a48b0d6e87d3b6",
@@ -2344,7 +2541,8 @@
           "coinID": "stargate-bridged-usdc",
           "network": "flare",
           "slug": "stargate-bridged-usdc",
-          "path": "/tokens/stargate-bridged-usdc/flare"
+          "path": "/tokens/stargate-bridged-usdc/flare",
+          "artwork": "/token-artwork/568305dba787108b/1fdfb71ddd851dc5788ca82d4b568223"
         },
         {
           "reference": "0xff56eb5b1a7faa972291117e5e9565da29bc808d",
@@ -2353,7 +2551,8 @@
           "coinID": "apsis",
           "network": "flare",
           "slug": "apsis",
-          "path": "/tokens/apsis/flare"
+          "path": "/tokens/apsis/flare",
+          "artwork": "/token-artwork/568305dba787108b/9d79a9831cab3d2d7e20c4979367849d"
         },
         {
           "reference": "0x6c1490729ce19e809cf9f7e3e223c0490833de02",
@@ -2362,7 +2561,8 @@
           "coinID": "bugo",
           "network": "flare",
           "slug": "bugo",
-          "path": "/tokens/bugo/flare"
+          "path": "/tokens/bugo/flare",
+          "artwork": "/token-artwork/568305dba787108b/a43377e6a0b2ef483d96c6904d3aa899"
         },
         {
           "reference": "0x19831cfb53a0dbead9866c43557c1d48dff76567",
@@ -2371,7 +2571,8 @@
           "coinID": "cyclo-cysflr",
           "network": "flare",
           "slug": "cyclo-cysflr",
-          "path": "/tokens/cyclo-cysflr/flare"
+          "path": "/tokens/cyclo-cysflr/flare",
+          "artwork": "/token-artwork/568305dba787108b/9a8eb8ad579c3aca76fd2a8379bd4d0f"
         },
         {
           "reference": "0xd8bf1d2720e9ffd01a2f9a2efc3e101a05b852b4",
@@ -2380,7 +2581,8 @@
           "coinID": "cyclo-cyweth",
           "network": "flare",
           "slug": "cyclo-cyweth",
-          "path": "/tokens/cyclo-cyweth/flare"
+          "path": "/tokens/cyclo-cyweth/flare",
+          "artwork": "/token-artwork/568305dba787108b/6d4a4e822f17f6837007299be742288a"
         },
         {
           "name": "Ēnosys",
@@ -2389,7 +2591,8 @@
           "reference": "0x140d8d3649ec605cf69018c627fb44ccc76ec89f",
           "coinID": "enosys",
           "slug": "enosys",
-          "path": "/tokens/enosys/flare"
+          "path": "/tokens/enosys/flare",
+          "artwork": "/token-artwork/568305dba787108b/2110b887430fa689f982f9e0f7b2035e"
         },
         {
           "reference": "0x6cd3a5ba46fa254d4d2e3c2b37350ae337e94a0f",
@@ -2398,7 +2601,8 @@
           "coinID": "enosys-loans-cdp",
           "network": "flare",
           "slug": "enosys-loans-cdp",
-          "path": "/tokens/enosys-loans-cdp/flare"
+          "path": "/tokens/enosys-loans-cdp/flare",
+          "artwork": "/token-artwork/568305dba787108b/d7588b932cd26a450bc25c753f1050ee"
         },
         {
           "reference": "0x96b41289d90444b8add57e6f265db5ae8651df29",
@@ -2407,7 +2611,8 @@
           "coinID": "enosys-usdt",
           "network": "flare",
           "slug": "enosys-usdt",
-          "path": "/tokens/enosys-usdt/flare"
+          "path": "/tokens/enosys-usdt/flare",
+          "artwork": "/token-artwork/568305dba787108b/fd4407aa938ec7ae34da92683968154c"
         },
         {
           "reference": "0x4c18ff3c89632c3dd62e796c0afa5c07c4c1b2b3",
@@ -2416,7 +2621,8 @@
           "coinID": "firelight-staked-xrp",
           "network": "flare",
           "slug": "firelight-staked-xrp",
-          "path": "/tokens/firelight-staked-xrp/flare"
+          "path": "/tokens/firelight-staked-xrp/flare",
+          "artwork": "/token-artwork/568305dba787108b/9a506c6e0982ebd14f699e05fd286467"
         },
         {
           "reference": "0xad552a648c74d49e10027ab8a618a3ad4901c5be",
@@ -2425,7 +2631,8 @@
           "coinID": "flare-bridged-xrp-flare",
           "network": "flare",
           "slug": "flare-bridged-xrp-flare",
-          "path": "/tokens/flare-bridged-xrp-flare/flare"
+          "path": "/tokens/flare-bridged-xrp-flare/flare",
+          "artwork": "/token-artwork/568305dba787108b/eb1aa1bef4df22e35bf4c4e82b8b8251"
         }
       ]
     },
@@ -2454,7 +2661,8 @@
           "symbol": "USDC",
           "network": "gnosis",
           "slug": "gnosis-xdai-bridged-usdc-gnosis",
-          "path": "/tokens/gnosis-xdai-bridged-usdc-gnosis/gnosis"
+          "path": "/tokens/gnosis-xdai-bridged-usdc-gnosis/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/2da56e05e32c77aad0f13b61a67074fc"
         },
         {
           "reference": "0x4ecaba5870353805a9f068101a40e0f32ed605c6",
@@ -2463,7 +2671,8 @@
           "coinID": "gnosis-xdai-bridged-usdt-gnosis",
           "symbol": "USDT",
           "slug": "gnosis-xdai-bridged-usdt-gnosis",
-          "path": "/tokens/gnosis-xdai-bridged-usdt-gnosis/gnosis"
+          "path": "/tokens/gnosis-xdai-bridged-usdt-gnosis/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/597e9ad209db142c4e00591583085964"
         },
         {
           "network": "gnosis",
@@ -2472,7 +2681,8 @@
           "coinID": "gnosis",
           "symbol": "GNO",
           "slug": "gnosis",
-          "path": "/tokens/gnosis/gnosis"
+          "path": "/tokens/gnosis/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/3391e858d9a8f049fc13f7ac7ab20f98"
         },
         {
           "reference": "0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1",
@@ -2481,7 +2691,8 @@
           "coinID": "gnosis-xdai-bridged-weth-gnosis-chain",
           "symbol": "WETH",
           "slug": "gnosis-xdai-bridged-weth-gnosis-chain",
-          "path": "/tokens/gnosis-xdai-bridged-weth-gnosis-chain/gnosis"
+          "path": "/tokens/gnosis-xdai-bridged-weth-gnosis-chain/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/58d285507ddd6f2068a6555075aacf86"
         },
         {
           "network": "gnosis",
@@ -2490,7 +2701,8 @@
           "coinID": "gnosis-xdai-bridged-wbtc-gnosis-chain",
           "symbol": "WBTC",
           "slug": "gnosis-xdai-bridged-wbtc-gnosis-chain",
-          "path": "/tokens/gnosis-xdai-bridged-wbtc-gnosis-chain/gnosis"
+          "path": "/tokens/gnosis-xdai-bridged-wbtc-gnosis-chain/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/15ac0ca5bd85898970d8ac7f5ba6a2eb"
         },
         {
           "reference": "0x420ca0f9b9b604ce0fd9c18ef134c705e5fa3430",
@@ -2499,7 +2711,8 @@
           "coinID": "monerium-eur-money-2",
           "symbol": "EURE",
           "slug": "monerium-eur-money-2",
-          "path": "/tokens/monerium-eur-money-2/gnosis"
+          "path": "/tokens/monerium-eur-money-2/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/91278cd2292bae79e9cef578bae68a8a"
         },
         {
           "network": "gnosis",
@@ -2508,7 +2721,8 @@
           "coinID": "savings-xdai",
           "symbol": "SDAI",
           "slug": "savings-xdai",
-          "path": "/tokens/savings-xdai/gnosis"
+          "path": "/tokens/savings-xdai/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/a1cfa115a4f27e67510a59a5b13b78c9"
         },
         {
           "network": "gnosis",
@@ -2517,7 +2731,8 @@
           "coinID": "balancer",
           "symbol": "BAL",
           "slug": "balancer",
-          "path": "/tokens/balancer/gnosis"
+          "path": "/tokens/balancer/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/f5c20eeb5a2109cdb103d17884ebe32b"
         },
         {
           "reference": "0x177127622c4a00f3d409b75571e12cb3c8973d3c",
@@ -2526,7 +2741,8 @@
           "coinID": "cow-protocol",
           "network": "gnosis",
           "slug": "cow-protocol",
-          "path": "/tokens/cow-protocol/gnosis"
+          "path": "/tokens/cow-protocol/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/6482e094f77f3ba63a19c2bfd4ab2f4f"
         },
         {
           "reference": "0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
@@ -2535,7 +2751,8 @@
           "symbol": "XDAI",
           "network": "gnosis",
           "slug": "xdai",
-          "path": "/tokens/xdai/gnosis"
+          "path": "/tokens/xdai/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/3a403b1a36ab97045b148d88148ab7c9"
         },
         {
           "reference": "0x4291f029b9e7acb02d49428458cf6fceac545f81",
@@ -2544,7 +2761,8 @@
           "coinID": "1hive-water",
           "symbol": "WATER",
           "slug": "1hive-water",
-          "path": "/tokens/1hive-water/gnosis"
+          "path": "/tokens/1hive-water/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/f243be1c1e11dbddc9a28ea1fea6625a"
         },
         {
           "reference": "0xd0dd6cef72143e22cced4867eb0d5f2328715533",
@@ -2553,7 +2771,8 @@
           "symbol": "ADAI",
           "network": "gnosis",
           "slug": "aave-v3-dai",
-          "path": "/tokens/aave-v3-dai/gnosis"
+          "path": "/tokens/aave-v3-dai/gnosis",
+          "artwork": "/token-artwork/568305dba787108b/47b014656c73f9de8e2677172bec81a8"
         }
       ]
     },
@@ -2582,7 +2801,8 @@
           "network": "linea",
           "reference": "0x1789e0043623282d5dcc7f213d703c6d8bafbb04",
           "slug": "linea",
-          "path": "/tokens/linea/linea"
+          "path": "/tokens/linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/95f058186d7597a50aa9d85be7e3b058"
         },
         {
           "coinID": "bridged-usd-coin-linea",
@@ -2591,7 +2811,8 @@
           "network": "linea",
           "reference": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
           "slug": "bridged-usd-coin-linea",
-          "path": "/tokens/bridged-usd-coin-linea/linea"
+          "path": "/tokens/bridged-usd-coin-linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/4782bc97fa1d085fd028a170a4fb0b3f"
         },
         {
           "network": "linea",
@@ -2600,7 +2821,8 @@
           "symbol": "USDT",
           "name": "Linea Bridged USDT (Linea)",
           "slug": "bridged-tether-linea",
-          "path": "/tokens/bridged-tether-linea/linea"
+          "path": "/tokens/bridged-tether-linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/5ad3f0a6901da7b127d6560ab3e9e355"
         },
         {
           "reference": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
@@ -2609,7 +2831,8 @@
           "coinID": "wrapped-ether-linea",
           "name": "Bridged Wrapped Ether (Linea)",
           "slug": "wrapped-ether-linea",
-          "path": "/tokens/wrapped-ether-linea/linea"
+          "path": "/tokens/wrapped-ether-linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/bbcb119c8355d859a9058c12820fd46a"
         },
         {
           "coinID": "linea-bridged-wbtc-linea",
@@ -2618,7 +2841,8 @@
           "network": "linea",
           "reference": "0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4",
           "slug": "linea-bridged-wbtc-linea",
-          "path": "/tokens/linea-bridged-wbtc-linea/linea"
+          "path": "/tokens/linea-bridged-wbtc-linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/89e7c00f0c677a406a3af3318f88ba4a"
         },
         {
           "network": "linea",
@@ -2627,7 +2851,8 @@
           "symbol": "LINK",
           "name": "Chainlink",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/linea"
+          "path": "/tokens/chainlink/linea",
+          "artwork": "/token-artwork/568305dba787108b/65feb646019641b23882e2a1571198b3"
         },
         {
           "network": "linea",
@@ -2636,7 +2861,8 @@
           "symbol": "DAI",
           "name": "Bridged Dai Stablecoin (Linea)",
           "slug": "bridged-dai-stablecoin-linea",
-          "path": "/tokens/bridged-dai-stablecoin-linea/linea"
+          "path": "/tokens/bridged-dai-stablecoin-linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/6d876847f40281f9b856c172aa188a04"
         },
         {
           "reference": "0xb5bedd42000b71fdde22d3ee8a79bd49a568fc8f",
@@ -2645,7 +2871,8 @@
           "coinID": "linea-bridged-wsteth-linea",
           "name": "Linea Bridged wstETH (Linea)",
           "slug": "linea-bridged-wsteth-linea",
-          "path": "/tokens/linea-bridged-wsteth-linea/linea"
+          "path": "/tokens/linea-bridged-wsteth-linea/linea",
+          "artwork": "/token-artwork/568305dba787108b/ea30c22eb6c7754e6e2eed3b26fe9c08"
         },
         {
           "network": "linea",
@@ -2654,7 +2881,8 @@
           "symbol": "ZERO",
           "name": "ZeroLend",
           "slug": "zerolend",
-          "path": "/tokens/zerolend/linea"
+          "path": "/tokens/zerolend/linea",
+          "artwork": "/token-artwork/568305dba787108b/1f9968e32cd1667baf40894b7caf0891"
         },
         {
           "reference": "0xaaaac83751090c6ea42379626435f805ddf54dc8",
@@ -2663,7 +2891,8 @@
           "coinID": "nile",
           "name": "Nile",
           "slug": "nile",
-          "path": "/tokens/nile/linea"
+          "path": "/tokens/nile/linea",
+          "artwork": "/token-artwork/568305dba787108b/9d3b111e08ba040016b3b343b419e12c"
         },
         {
           "coinID": "1inch",
@@ -2672,7 +2901,8 @@
           "network": "linea",
           "reference": "0x10f04e61bd6019d6c9b0bf4907e805a64b92ee3e",
           "slug": "1inch",
-          "path": "/tokens/1inch/linea"
+          "path": "/tokens/1inch/linea",
+          "artwork": "/token-artwork/568305dba787108b/cd4ddd5c79b94f101bcbe4f70758068b"
         },
         {
           "coinID": "3a-lending-protocol",
@@ -2681,7 +2911,8 @@
           "network": "linea",
           "reference": "0x3d4b2132ed4ea0aa93903713a4de9f98e625a5c7",
           "slug": "3a-lending-protocol",
-          "path": "/tokens/3a-lending-protocol/linea"
+          "path": "/tokens/3a-lending-protocol/linea",
+          "artwork": "/token-artwork/568305dba787108b/245418aeda53b586b3e4012fb72805f7"
         }
       ]
     },
@@ -2710,7 +2941,8 @@
           "reference": "0x677f7e16c7dd57be1d4c8ad1244883214953dc47",
           "symbol": "WCHZ",
           "slug": "wrapped-chiliz-kayen",
-          "path": "/tokens/wrapped-chiliz-kayen/chiliz"
+          "path": "/tokens/wrapped-chiliz-kayen/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/36bc3f614326561b5186786d40ee3dd6"
         },
         {
           "coinID": "paris-saint-germain-fan-token",
@@ -2719,7 +2951,8 @@
           "reference": "0xfe1d4a935df7a4a52f835f6104c97af9d72217f2",
           "symbol": "PSG",
           "slug": "paris-saint-germain-fan-token",
-          "path": "/tokens/paris-saint-germain-fan-token/chiliz"
+          "path": "/tokens/paris-saint-germain-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/7f7835eb389603f77377ebcf7e54035d"
         },
         {
           "coinID": "fc-barcelona-fan-token",
@@ -2728,7 +2961,8 @@
           "reference": "0x1589248b4b61ed472cc21ca1f2114d93ab6910d5",
           "symbol": "BAR",
           "slug": "fc-barcelona-fan-token",
-          "path": "/tokens/fc-barcelona-fan-token/chiliz"
+          "path": "/tokens/fc-barcelona-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/b5a8f0b99c2f39826d4ed0e78fd9a2c0"
         },
         {
           "coinID": "juventus-fan-token",
@@ -2737,7 +2971,8 @@
           "reference": "0xeaf368dadc22524def47e8a1c26bfc17ac16e6f5",
           "symbol": "JUV",
           "slug": "juventus-fan-token",
-          "path": "/tokens/juventus-fan-token/chiliz"
+          "path": "/tokens/juventus-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/79d619577f84588e82cef787adc604aa"
         },
         {
           "coinID": "ac-milan-fan-token",
@@ -2746,7 +2981,8 @@
           "reference": "0x062f6004fd0bf204d272ff115e5b84f7a01489d1",
           "symbol": "ACM",
           "slug": "ac-milan-fan-token",
-          "path": "/tokens/ac-milan-fan-token/chiliz"
+          "path": "/tokens/ac-milan-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/1524e312b17ac8b0ba7668e487c8e9cb"
         },
         {
           "coinID": "alanyaspor-fan-token",
@@ -2755,7 +2991,8 @@
           "reference": "0x3b60f483fe311fc063b50a67bf327f96b76696e6",
           "symbol": "ALA",
           "slug": "alanyaspor-fan-token",
-          "path": "/tokens/alanyaspor-fan-token/chiliz"
+          "path": "/tokens/alanyaspor-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/633ebf2edb5f78c22426b1792e28ca61"
         },
         {
           "coinID": "alfa-romeo-racing-orlen-fan-token",
@@ -2764,7 +3001,8 @@
           "reference": "0xe64c9d1471cfb5e7b03c998ac8137b441c60af6d",
           "symbol": "SAUBER",
           "slug": "alfa-romeo-racing-orlen-fan-token",
-          "path": "/tokens/alfa-romeo-racing-orlen-fan-token/chiliz"
+          "path": "/tokens/alfa-romeo-racing-orlen-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/35e524cf0736118964476d1d3c029ded"
         },
         {
           "coinID": "alliance-fan-token",
@@ -2773,7 +3011,8 @@
           "reference": "0x109b738569a04ea31ca06b47af06cfdda87adf48",
           "symbol": "ALL",
           "slug": "alliance-fan-token",
-          "path": "/tokens/alliance-fan-token/chiliz"
+          "path": "/tokens/alliance-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/cbfefeca5678d9dfb2c4a042d743f5a6"
         },
         {
           "coinID": "argentine-football-association-fan-token",
@@ -2782,7 +3021,8 @@
           "reference": "0x4394886b1eec08fe88681462914702dc99d97eb7",
           "symbol": "ARG",
           "slug": "argentine-football-association-fan-token",
-          "path": "/tokens/argentine-football-association-fan-token/chiliz"
+          "path": "/tokens/argentine-football-association-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/4b6388164005c8a05f7b2a407105b8ac"
         },
         {
           "coinID": "arsenal-fan-token",
@@ -2791,7 +3031,8 @@
           "reference": "0x76088f3ed5dc655de9295d93868ec1eec654a615",
           "symbol": "AFC",
           "slug": "arsenal-fan-token",
-          "path": "/tokens/arsenal-fan-token/chiliz"
+          "path": "/tokens/arsenal-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/f282bad90f740d9bdc1884ebdc97b6e4"
         },
         {
           "coinID": "as-monaco-fan-token",
@@ -2800,7 +3041,8 @@
           "reference": "0x57f3d2382025cf5d6c3b126dce0360d9cf3aff49",
           "symbol": "ASM",
           "slug": "as-monaco-fan-token",
-          "path": "/tokens/as-monaco-fan-token/chiliz"
+          "path": "/tokens/as-monaco-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/9130e9db32e662343a865dabf49338fc"
         },
         {
           "coinID": "as-roma-fan-token",
@@ -2809,7 +3051,8 @@
           "reference": "0x0ac7bf9783ca1dcd86a39b5a2607160d29256eb0",
           "symbol": "ASR",
           "slug": "as-roma-fan-token",
-          "path": "/tokens/as-roma-fan-token/chiliz"
+          "path": "/tokens/as-roma-fan-token/chiliz",
+          "artwork": "/token-artwork/568305dba787108b/182bacd237b370a91e8b58f17ca71529"
         }
       ]
     },
@@ -2840,7 +3083,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/17923/thumb/Njsdvvpv_400x400.jpg?1696517443",
           "slug": "wrapped-iotex",
-          "path": "/tokens/wrapped-iotex/iotex"
+          "path": "/tokens/wrapped-iotex/iotex",
+          "artwork": "/token-artwork/568305dba787108b/998054305ced1797e97bd760eecc9db4"
         },
         {
           "coinID": "ioeth",
@@ -2851,7 +3095,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/19342/thumb/io1qfvgvmk6lpxkpqwlzanqx4atyzs86ryqjnfuad.png?1696518783",
           "slug": "ioeth",
-          "path": "/tokens/ioeth/iotex"
+          "path": "/tokens/ioeth/iotex",
+          "artwork": "/token-artwork/568305dba787108b/f51eb5f3ef9c02c5ea452ca0ebec83bd"
         },
         {
           "coinID": "iousdc",
@@ -2862,7 +3107,8 @@
           "decimals": 6,
           "logo": "https://assets.coingecko.com/coins/images/19346/thumb/io18v4l9dfr74xyu320pz4zsmgrz9d07vnvy20yrh.png?1696518787",
           "slug": "iousdc",
-          "path": "/tokens/iousdc/iotex"
+          "path": "/tokens/iousdc/iotex",
+          "artwork": "/token-artwork/568305dba787108b/f095bd2a95b081d7f9f15953e28b726c"
         },
         {
           "coinID": "iousdt",
@@ -2873,7 +3119,8 @@
           "decimals": 6,
           "logo": "https://assets.coingecko.com/coins/images/19345/thumb/io1d77dcytfk5fsck089eg7669gfpqunrx35ue5ln.png?1696518786",
           "slug": "iousdt",
-          "path": "/tokens/iousdt/iotex"
+          "path": "/tokens/iousdt/iotex",
+          "artwork": "/token-artwork/568305dba787108b/984804c9d3ea9773dc11ba6aefc80149"
         },
         {
           "coinID": "bridged-usdt",
@@ -2884,7 +3131,8 @@
           "decimals": 6,
           "logo": "https://assets.coingecko.com/coins/images/35001/thumb/logo.png?1706959346",
           "slug": "bridged-usdt",
-          "path": "/tokens/bridged-usdt/iotex"
+          "path": "/tokens/bridged-usdt/iotex",
+          "artwork": "/token-artwork/568305dba787108b/551e5af244ff018cda0b509082f3be46"
         },
         {
           "coinID": "cyclone-protocol",
@@ -2904,7 +3152,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/52026/thumb/depins.png?1732355695",
           "slug": "depins",
-          "path": "/tokens/depins/iotex"
+          "path": "/tokens/depins/iotex",
+          "artwork": "/token-artwork/568305dba787108b/97e8ac9626602556259b6235288b6dec"
         },
         {
           "coinID": "dimo",
@@ -2915,7 +3164,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/28383/thumb/square_coin_720.png?1732072773",
           "slug": "dimo",
-          "path": "/tokens/dimo/iotex"
+          "path": "/tokens/dimo/iotex",
+          "artwork": "/token-artwork/568305dba787108b/e188494ac977b1c1c660618a4df0aeb3"
         },
         {
           "coinID": "drop-wireless-infrastructure",
@@ -2926,7 +3176,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/31695/thumb/icon_png.png?1696530513",
           "slug": "drop-wireless-infrastructure",
-          "path": "/tokens/drop-wireless-infrastructure/iotex"
+          "path": "/tokens/drop-wireless-infrastructure/iotex",
+          "artwork": "/token-artwork/568305dba787108b/6dc0de9af02f64e5ef56924ba3aa069e"
         },
         {
           "coinID": "game-fantasy-token",
@@ -2937,7 +3188,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/19135/thumb/gft.png?1696518587",
           "slug": "game-fantasy-token",
-          "path": "/tokens/game-fantasy-token/iotex"
+          "path": "/tokens/game-fantasy-token/iotex",
+          "artwork": "/token-artwork/568305dba787108b/3e40363fa65f404a76f530629b091e30"
         },
         {
           "coinID": "iobusd",
@@ -2948,7 +3200,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/19254/thumb/io14nhfkywdfvl40evgsqnh43ev33q6he8yez8c8a.png?1696518699",
           "slug": "iobusd",
-          "path": "/tokens/iobusd/iotex"
+          "path": "/tokens/iobusd/iotex",
+          "artwork": "/token-artwork/568305dba787108b/2a008fbbd303eba62db1a1cd1890e1a5"
         },
         {
           "coinID": "iotex-bridged-busd-iotex",
@@ -2959,7 +3212,8 @@
           "decimals": 18,
           "logo": "https://assets.coingecko.com/coins/images/36881/thumb/busd.png?1772613737",
           "slug": "iotex-bridged-busd-iotex",
-          "path": "/tokens/iotex-bridged-busd-iotex/iotex"
+          "path": "/tokens/iotex-bridged-busd-iotex/iotex",
+          "artwork": "/token-artwork/568305dba787108b/4951b1a89b475fececed9891f4055524"
         }
       ]
     },
@@ -2988,7 +3242,8 @@
           "reference": "0x1cd0690ff9a693f5ef2dd976660a8dafc81a109c",
           "symbol": "W0G",
           "slug": "wrapped-0g",
-          "path": "/tokens/wrapped-0g/0g"
+          "path": "/tokens/wrapped-0g/0g",
+          "artwork": "/token-artwork/568305dba787108b/e0807ccc70459b4cfc53326c95260cc5"
         },
         {
           "coinID": "xswap-bridged-usdc-0g",
@@ -2997,7 +3252,8 @@
           "reference": "0x1f3aa82227281ca364bfb3d253b0f1af1da6473e",
           "symbol": "USDC.E",
           "slug": "xswap-bridged-usdc-0g",
-          "path": "/tokens/xswap-bridged-usdc-0g/0g"
+          "path": "/tokens/xswap-bridged-usdc-0g/0g",
+          "artwork": "/token-artwork/568305dba787108b/fae1dfc058bc8ca874c154cf878af2e8"
         },
         {
           "coinID": "stargate-bridged-weth",
@@ -3006,7 +3262,8 @@
           "reference": "0x564770837ef8bbf077cfe54e5f6106538c815b22",
           "symbol": "WETH",
           "slug": "stargate-bridged-weth",
-          "path": "/tokens/stargate-bridged-weth/0g"
+          "path": "/tokens/stargate-bridged-weth/0g",
+          "artwork": "/token-artwork/568305dba787108b/9dfbff65d7dc77766927cce572bb6345"
         },
         {
           "coinID": "0g-wrapped-wbtc-0g",
@@ -3015,7 +3272,8 @@
           "reference": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
           "symbol": "WBTC",
           "slug": "0g-wrapped-wbtc-0g",
-          "path": "/tokens/0g-wrapped-wbtc-0g/0g"
+          "path": "/tokens/0g-wrapped-wbtc-0g/0g",
+          "artwork": "/token-artwork/568305dba787108b/6636f1ee9f3155163025661b6dbf1951"
         },
         {
           "coinID": "ascend-staked-0g",
@@ -3024,7 +3282,8 @@
           "reference": "0x4b3c2f55fa67679b382c979a082df1b32079b4cb",
           "symbol": "A0G",
           "slug": "ascend-staked-0g",
-          "path": "/tokens/ascend-staked-0g/0g"
+          "path": "/tokens/ascend-staked-0g/0g",
+          "artwork": "/token-artwork/568305dba787108b/c71e22a7ba426e038e051b4b2dc3b91b"
         },
         {
           "coinID": "gimo-staked-0g",
@@ -3033,7 +3292,8 @@
           "reference": "0x7bbc63d01ca42491c3e084c941c3e86e55951404",
           "symbol": "ST0G",
           "slug": "gimo-staked-0g",
-          "path": "/tokens/gimo-staked-0g/0g"
+          "path": "/tokens/gimo-staked-0g/0g",
+          "artwork": "/token-artwork/568305dba787108b/854482ec1e33ab04db8a13d4c7536ebb"
         },
         {
           "coinID": "infinite-ai",
@@ -3042,7 +3302,8 @@
           "reference": "0xc77fbd3824cc68e612b26114d176879addc29463",
           "symbol": "IAI",
           "slug": "infinite-ai",
-          "path": "/tokens/infinite-ai/0g"
+          "path": "/tokens/infinite-ai/0g",
+          "artwork": "/token-artwork/568305dba787108b/f7fdffca6b35d29cb898d59a15ddf974"
         },
         {
           "coinID": "midas-medge",
@@ -3051,7 +3312,8 @@
           "reference": "0xa1027783fc183a150126b094037a5eb2f5db30ba",
           "symbol": "MEDGE",
           "slug": "midas-medge",
-          "path": "/tokens/midas-medge/0g"
+          "path": "/tokens/midas-medge/0g",
+          "artwork": "/token-artwork/568305dba787108b/36352f6a490668d2224e86f9bb02d9b7"
         }
       ]
     },
@@ -3080,7 +3342,8 @@
           "reference": "0xe15fc38f6d8c56af07bbcbe3baf5708a2bf42392",
           "symbol": "USDC",
           "slug": "usdc",
-          "path": "/tokens/usdc/sei"
+          "path": "/tokens/usdc/sei",
+          "artwork": "/token-artwork/568305dba787108b/ac14137327a23783fce934ae8ec42780"
         },
         {
           "coinID": "wrapped-sei",
@@ -3089,7 +3352,8 @@
           "reference": "0xe30fedd158a2e3b13e9badaeabafc5516e95e8c7",
           "symbol": "WSEI",
           "slug": "wrapped-sei",
-          "path": "/tokens/wrapped-sei/sei"
+          "path": "/tokens/wrapped-sei/sei",
+          "artwork": "/token-artwork/568305dba787108b/4405bb245e3e8f3e0ab97ea02d5d500c"
         },
         {
           "coinID": "usdt0",
@@ -3098,7 +3362,8 @@
           "reference": "0x9151434b16b9763660705744891fa906f660ecc5",
           "symbol": "USDT0",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/sei"
+          "path": "/tokens/usdt0/sei",
+          "artwork": "/token-artwork/568305dba787108b/2d396429d6aa5b822a50ab7f619893e9"
         },
         {
           "coinID": "wrapped-bitcoin",
@@ -3107,7 +3372,8 @@
           "reference": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
           "symbol": "WBTC",
           "slug": "wrapped-bitcoin",
-          "path": "/tokens/wrapped-bitcoin/sei"
+          "path": "/tokens/wrapped-bitcoin/sei",
+          "artwork": "/token-artwork/568305dba787108b/3b88b2d9876cfd329e014653081b0d8b"
         },
         {
           "coinID": "bedrock-btc",
@@ -3116,7 +3382,8 @@
           "reference": "0x93919784c523f39cacaa98ee0a9d96c3f32b593e",
           "symbol": "BRBTC",
           "slug": "bedrock-btc",
-          "path": "/tokens/bedrock-btc/sei"
+          "path": "/tokens/bedrock-btc/sei",
+          "artwork": "/token-artwork/568305dba787108b/a5b2224eb1881cc5f9e2c46857895b12"
         },
         {
           "coinID": "bitbat-token",
@@ -3125,7 +3392,8 @@
           "reference": "0x443ac9f358226f5f48f2cd10bc0121e7a6176323",
           "symbol": "BAT",
           "slug": "bitbat-token",
-          "path": "/tokens/bitbat-token/sei"
+          "path": "/tokens/bitbat-token/sei",
+          "artwork": "/token-artwork/568305dba787108b/0d8eba5a040839211eaf46f50cbd8399"
         },
         {
           "coinID": "chainlink",
@@ -3134,7 +3402,8 @@
           "reference": "0x71052bae71c25c78e37fd12e5ff1101a71d9018f",
           "symbol": "LINK",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/sei"
+          "path": "/tokens/chainlink/sei",
+          "artwork": "/token-artwork/568305dba787108b/edb71e9ddfb6107ba4eff6935dc910c8"
         },
         {
           "coinID": "chips-2",
@@ -3143,7 +3412,8 @@
           "reference": "0xbd82f3bfe1df0c84faec88a22ebc34c9a86595dc",
           "symbol": "CHIPS",
           "slug": "chips-2",
-          "path": "/tokens/chips-2/sei"
+          "path": "/tokens/chips-2/sei",
+          "artwork": "/token-artwork/568305dba787108b/e2ea30db00d350bd9442c5a54415c1c8"
         },
         {
           "coinID": "dragonswap",
@@ -3152,7 +3422,8 @@
           "reference": "0x0a526e425809aea71eb279d24ae22dee6c92a4fe",
           "symbol": "DRG",
           "slug": "dragonswap",
-          "path": "/tokens/dragonswap/sei"
+          "path": "/tokens/dragonswap/sei",
+          "artwork": "/token-artwork/568305dba787108b/971be3cfbb13be8151217c159037fcd4"
         },
         {
           "coinID": "evolve-eusd",
@@ -3161,7 +3432,8 @@
           "reference": "0xf2282e641cd3ceeafd4e24663d409fcb68edc1df",
           "symbol": "EUSD",
           "slug": "evolve-eusd",
-          "path": "/tokens/evolve-eusd/sei"
+          "path": "/tokens/evolve-eusd/sei",
+          "artwork": "/token-artwork/568305dba787108b/0c3197b0fc4f48f3817bd47ad46a7b29"
         },
         {
           "coinID": "fiamma-btc",
@@ -3170,7 +3442,8 @@
           "reference": "0x60c230c38af6d86b0277a98a1caeaa345a7b061f",
           "symbol": "FIABTC",
           "slug": "fiamma-btc",
-          "path": "/tokens/fiamma-btc/sei"
+          "path": "/tokens/fiamma-btc/sei",
+          "artwork": "/token-artwork/568305dba787108b/8167df647580f2d90d28d086dcece9fb"
         },
         {
           "coinID": "fishwar",
@@ -3179,7 +3452,8 @@
           "reference": "0x805679729df385815c57c24b20f4161bd34b655f",
           "symbol": "FISHW",
           "slug": "fishwar",
-          "path": "/tokens/fishwar/sei"
+          "path": "/tokens/fishwar/sei",
+          "artwork": "/token-artwork/568305dba787108b/d4f9f5835818660f428703654823e65c"
         }
       ]
     },
@@ -3208,7 +3482,8 @@
           "reference": "0x60e1773636cf5e4a227d9ac24f20feca034ee25a",
           "symbol": "WFIL",
           "slug": "wrapped-fil",
-          "path": "/tokens/wrapped-fil/filecoin"
+          "path": "/tokens/wrapped-fil/filecoin",
+          "artwork": "/token-artwork/568305dba787108b/ba24f1c002aa198aae0857f87bc42f27"
         },
         {
           "coinID": "usdfc",
@@ -3217,7 +3492,8 @@
           "reference": "0x80b98d3aa09ffff255c3ba4a241111ff1262f045",
           "symbol": "USDFC",
           "slug": "usdfc",
-          "path": "/tokens/usdfc/filecoin"
+          "path": "/tokens/usdfc/filecoin",
+          "artwork": "/token-artwork/568305dba787108b/b29e980bc397667cb120c2c7e618d4ec"
         },
         {
           "coinID": "axlusdc",
@@ -3226,7 +3502,8 @@
           "reference": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
           "symbol": "AXLUSDC",
           "slug": "axlusdc",
-          "path": "/tokens/axlusdc/filecoin"
+          "path": "/tokens/axlusdc/filecoin",
+          "artwork": "/token-artwork/568305dba787108b/7975b839b29637cd8d895db477c4bd8b"
         },
         {
           "coinID": "axlweth",
@@ -3235,7 +3512,8 @@
           "reference": "0xb829b68f57cc546da7e5806a929e53be32a4625d",
           "symbol": "AXLETH",
           "slug": "axlweth",
-          "path": "/tokens/axlweth/filecoin"
+          "path": "/tokens/axlweth/filecoin",
+          "artwork": "/token-artwork/568305dba787108b/3ed41c94d2e5bed5db99761236e93af0"
         },
         {
           "coinID": "celer-bridged-usdc-filecoin",
@@ -3244,7 +3522,8 @@
           "reference": "0x2421db204968a367cc2c866cd057fa754cb84edf",
           "symbol": "USDC",
           "slug": "celer-bridged-usdc-filecoin",
-          "path": "/tokens/celer-bridged-usdc-filecoin/filecoin"
+          "path": "/tokens/celer-bridged-usdc-filecoin/filecoin",
+          "artwork": "/token-artwork/568305dba787108b/41b9f7940406697d205d6eb04d150df5"
         },
         {
           "coinID": "filecoin-bridged-weth-filecoin",
@@ -3253,7 +3532,8 @@
           "reference": "0x522b61755b5ff8176b2931da7bf1a5f9414eb710",
           "symbol": "WETH",
           "slug": "filecoin-bridged-weth-filecoin",
-          "path": "/tokens/filecoin-bridged-weth-filecoin/filecoin"
+          "path": "/tokens/filecoin-bridged-weth-filecoin/filecoin",
+          "artwork": "/token-artwork/568305dba787108b/ecc766d672aafda8f3e29e3151a24e50"
         }
       ]
     },
@@ -3282,7 +3562,8 @@
           "reference": "0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e",
           "name": "Tether",
           "slug": "usdt",
-          "path": "/tokens/usdt/celo"
+          "path": "/tokens/usdt/celo",
+          "artwork": "/token-artwork/568305dba787108b/c197226026c1290d9d0f560c7d5a6933"
         },
         {
           "coinID": "usd-coin",
@@ -3291,7 +3572,8 @@
           "name": "USDC",
           "network": "celo",
           "slug": "usdc",
-          "path": "/tokens/usdc/celo"
+          "path": "/tokens/usdc/celo",
+          "artwork": "/token-artwork/568305dba787108b/abbd67812821be4a619fe5f8525193ee"
         },
         {
           "symbol": "ABR0",
@@ -3300,7 +3582,8 @@
           "reference": "0x6e512bfc33be36f2666754e996ff103ad1680cc9",
           "name": "Allbridge Zero",
           "slug": "allbridge",
-          "path": "/tokens/allbridge/celo"
+          "path": "/tokens/allbridge/celo",
+          "artwork": "/token-artwork/568305dba787108b/a5eae94ceb2f99206afab9612e825b9e"
         },
         {
           "network": "celo",
@@ -3309,7 +3592,8 @@
           "name": "Argentine Peso",
           "symbol": "WARS",
           "slug": "argentine-peso",
-          "path": "/tokens/argentine-peso/celo"
+          "path": "/tokens/argentine-peso/celo",
+          "artwork": "/token-artwork/568305dba787108b/953738cefc2345d7cd69185e125c7411"
         },
         {
           "symbol": "OLAS",
@@ -3318,7 +3602,8 @@
           "reference": "0xacffae8e57ec6e394eb1b41939a8cf7892dbdc51",
           "name": "Autonolas",
           "slug": "autonolas",
-          "path": "/tokens/autonolas/celo"
+          "path": "/tokens/autonolas/celo",
+          "artwork": "/token-artwork/568305dba787108b/571d51f3c9f5f22c5ddd14c2511f9f0a"
         },
         {
           "coinID": "axlusdc",
@@ -3327,7 +3612,8 @@
           "name": "Axelar Bridged USDC",
           "network": "celo",
           "slug": "axlusdc",
-          "path": "/tokens/axlusdc/celo"
+          "path": "/tokens/axlusdc/celo",
+          "artwork": "/token-artwork/568305dba787108b/0b67859bc234cb93af26105a8f11c4f9"
         },
         {
           "symbol": "CHAR",
@@ -3336,7 +3622,8 @@
           "reference": "0x50e85c754929840b58614f48e29c64bc78c58345",
           "name": "Biochar",
           "slug": "biochar",
-          "path": "/tokens/biochar/celo"
+          "path": "/tokens/biochar/celo",
+          "artwork": "/token-artwork/568305dba787108b/5d51e199f80f093857ed7e3caafdb5fb"
         },
         {
           "coinID": "brazilian-real",
@@ -3345,7 +3632,8 @@
           "name": "Brazilian real",
           "network": "celo",
           "slug": "brazilian-real",
-          "path": "/tokens/brazilian-real/celo"
+          "path": "/tokens/brazilian-real/celo",
+          "artwork": "/token-artwork/568305dba787108b/56cdacaa8b1394260d838142a4d1cefc"
         },
         {
           "symbol": "USDCET",
@@ -3354,7 +3642,8 @@
           "reference": "0x37f750b7cc259a2f741af45294f6a16572cf5cad",
           "name": "Bridged USD Coin (Wormhole Ethereum)",
           "slug": "usd-coin-wormhole-from-ethereum",
-          "path": "/tokens/usd-coin-wormhole-from-ethereum/celo"
+          "path": "/tokens/usd-coin-wormhole-from-ethereum/celo",
+          "artwork": "/token-artwork/568305dba787108b/d4406488975f7f5a2221147666db2c6e"
         },
         {
           "coinID": "bridged-wbtc",
@@ -3363,7 +3652,8 @@
           "name": "Bridged WBTC",
           "network": "celo",
           "slug": "bridged-wbtc",
-          "path": "/tokens/bridged-wbtc/celo"
+          "path": "/tokens/bridged-wbtc/celo",
+          "artwork": "/token-artwork/568305dba787108b/d1bfb8a380310210b108dac448543ae2"
         },
         {
           "coinID": "brla-digital-brla",
@@ -3372,7 +3662,8 @@
           "name": "BRLA Digital BRLA",
           "network": "celo",
           "slug": "brla-digital-brla",
-          "path": "/tokens/brla-digital-brla/celo"
+          "path": "/tokens/brla-digital-brla/celo",
+          "artwork": "/token-artwork/568305dba787108b/f7c385fc5a37508e6a1e8e995e64d7aa"
         },
         {
           "symbol": "WBTC",
@@ -3381,7 +3672,8 @@
           "reference": "0x8ac2901dd8a1f17a1a4768a6ba4c3751e3995b2d",
           "name": "Celo Bridged WBTC (Celo)",
           "slug": "celo-bridged-wbtc-celo",
-          "path": "/tokens/celo-bridged-wbtc-celo/celo"
+          "path": "/tokens/celo-bridged-wbtc-celo/celo",
+          "artwork": "/token-artwork/568305dba787108b/fb358f6d9069ddb3f6b4ba65c418ecc3"
         }
       ]
     },
@@ -3410,7 +3702,8 @@
           "network": "monad",
           "name": "Wrapped MON",
           "slug": "wrapped-monad",
-          "path": "/tokens/wrapped-monad/monad"
+          "path": "/tokens/wrapped-monad/monad",
+          "artwork": "/token-artwork/568305dba787108b/0034240410eb9830234b18eecabbbed2"
         },
         {
           "coinID": "usd-coin",
@@ -3419,7 +3712,8 @@
           "reference": "0x754704bc059f8c67012fed69bc8a327a5aafb603",
           "network": "monad",
           "slug": "usdc",
-          "path": "/tokens/usdc/monad"
+          "path": "/tokens/usdc/monad",
+          "artwork": "/token-artwork/568305dba787108b/83ac6c95a578ba58aa48bd9bdb7117a0"
         },
         {
           "symbol": "USDT0",
@@ -3428,7 +3722,8 @@
           "reference": "0xe7cd86e13ac4309349f30b3435a9d337750fc82d",
           "name": "USDT0",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/monad"
+          "path": "/tokens/usdt0/monad",
+          "artwork": "/token-artwork/568305dba787108b/9c5c4f5295a4109715dbb6dcce9e5924"
         },
         {
           "reference": "0x3a013978cbd3ed7b270c92009e6a6d1be8e6ac25",
@@ -3437,7 +3732,8 @@
           "network": "monad",
           "name": "1-800-Flowers.Com Inc aStock",
           "slug": "1-800-flowers-com-inc-astock",
-          "path": "/tokens/1-800-flowers-com-inc-astock/monad"
+          "path": "/tokens/1-800-flowers-com-inc-astock/monad",
+          "artwork": "/token-artwork/568305dba787108b/1f8116a6558a35f80db07619b19046a6"
         },
         {
           "reference": "0x3842751a46d23b41a47e702473dff316e6237777",
@@ -3446,7 +3742,8 @@
           "network": "monad",
           "name": "143",
           "slug": "143-token",
-          "path": "/tokens/143-token/monad"
+          "path": "/tokens/143-token/monad",
+          "artwork": "/token-artwork/568305dba787108b/f73a8b28a5f5144ad8b62a7ecf4ee824"
         },
         {
           "network": "monad",
@@ -3455,7 +3752,8 @@
           "reference": "0xbdf82c0dafcf73834d10639c0f0bf14b84808c43",
           "name": "Advanced Micro Devices aStock",
           "slug": "advanced-micro-devices-astock",
-          "path": "/tokens/advanced-micro-devices-astock/monad"
+          "path": "/tokens/advanced-micro-devices-astock/monad",
+          "artwork": "/token-artwork/568305dba787108b/6e811d631fc0b75aa5574b92e3bcdb5e"
         },
         {
           "coinID": "agua-global-carry-vault",
@@ -3464,7 +3762,8 @@
           "network": "monad",
           "reference": "0x2abc42250154752273a4560e875c858623f83ecc",
           "slug": "agua-global-carry-vault",
-          "path": "/tokens/agua-global-carry-vault/monad"
+          "path": "/tokens/agua-global-carry-vault/monad",
+          "artwork": "/token-artwork/568305dba787108b/cb723f26b611c8f037908d38e166ef51"
         },
         {
           "coinID": "alloca",
@@ -3473,7 +3772,8 @@
           "network": "monad",
           "reference": "0x1ad7052bb331a0529c1981c3ec2bc4663498a110",
           "slug": "alloca",
-          "path": "/tokens/alloca/monad"
+          "path": "/tokens/alloca/monad",
+          "artwork": "/token-artwork/568305dba787108b/ac2d94c7bd6d8cc1372b2e71156b34d4"
         },
         {
           "network": "monad",
@@ -3482,7 +3782,8 @@
           "reference": "0xbde676cdf5564ef64ccd8555aa9b56867d8d1ad5",
           "name": "Alphabet aStock",
           "slug": "alphabet-astock",
-          "path": "/tokens/alphabet-astock/monad"
+          "path": "/tokens/alphabet-astock/monad",
+          "artwork": "/token-artwork/568305dba787108b/2aca7232e758af0a5a5762b4c161940e"
         },
         {
           "reference": "0x06f272082339a90e81e1dcb8ab892fd1a8c5e4c0",
@@ -3491,7 +3792,8 @@
           "coinID": "amazon-astock",
           "name": "Amazon aStock",
           "slug": "amazon-astock",
-          "path": "/tokens/amazon-astock/monad"
+          "path": "/tokens/amazon-astock/monad",
+          "artwork": "/token-artwork/568305dba787108b/cbc6688489632fd36024537eddda3675"
         },
         {
           "reference": "0x3ec7310937281ca4bf89d5bb11704be9b7ff7777",
@@ -3500,7 +3802,8 @@
           "network": "monad",
           "name": "ANAGO",
           "slug": "anago",
-          "path": "/tokens/anago/monad"
+          "path": "/tokens/anago/monad",
+          "artwork": "/token-artwork/568305dba787108b/09f013ee269c038e4976ab07fba0b91d"
         },
         {
           "coinID": "anemoy-tokenized-apollo-diversified-credit-fund",
@@ -3509,7 +3812,8 @@
           "network": "monad",
           "reference": "0x2fabf1c784b8583d63c00c5c9c0377d8cf1a3245",
           "slug": "anemoy-tokenized-apollo-diversified-credit-fund",
-          "path": "/tokens/anemoy-tokenized-apollo-diversified-credit-fund/monad"
+          "path": "/tokens/anemoy-tokenized-apollo-diversified-credit-fund/monad",
+          "artwork": "/token-artwork/568305dba787108b/98584aa379b9dfc4aca428b010455625"
         }
       ]
     },
@@ -3538,7 +3842,8 @@
           "coinID": "usd-coin",
           "name": "USDC",
           "slug": "usdc",
-          "path": "/tokens/usdc/unichain"
+          "path": "/tokens/usdc/unichain",
+          "artwork": "/token-artwork/568305dba787108b/fc4f5f9decb98942811e6072a0e128e8"
         },
         {
           "name": "USDT0",
@@ -3547,7 +3852,8 @@
           "network": "unichain",
           "coinID": "usdt0",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/unichain"
+          "path": "/tokens/usdt0/unichain",
+          "artwork": "/token-artwork/568305dba787108b/67ee8c52b93598856ae7e91aff0f4c11"
         },
         {
           "network": "unichain",
@@ -3556,7 +3862,8 @@
           "coinID": "unichain-bridged-weth-unichain",
           "name": "Unichain Bridged WETH (Unichain)",
           "slug": "unichain-bridged-weth-unichain",
-          "path": "/tokens/unichain-bridged-weth-unichain/unichain"
+          "path": "/tokens/unichain-bridged-weth-unichain/unichain",
+          "artwork": "/token-artwork/568305dba787108b/9426fd0357500fa08da74a26bfbc797e"
         },
         {
           "name": "Uniswap",
@@ -3565,7 +3872,8 @@
           "network": "unichain",
           "coinID": "uniswap",
           "slug": "uniswap",
-          "path": "/tokens/uniswap/unichain"
+          "path": "/tokens/uniswap/unichain",
+          "artwork": "/token-artwork/568305dba787108b/b0c20babf257e772ab37bca03c177e19"
         },
         {
           "name": "1INCH",
@@ -3574,7 +3882,8 @@
           "network": "unichain",
           "coinID": "1inch",
           "slug": "1inch",
-          "path": "/tokens/1inch/unichain"
+          "path": "/tokens/1inch/unichain",
+          "artwork": "/token-artwork/568305dba787108b/3d8224db7a15b263ffab9e67684e9c9c"
         },
         {
           "name": "Abe",
@@ -3583,7 +3892,8 @@
           "network": "unichain",
           "coinID": "abe-2",
           "slug": "abe-2",
-          "path": "/tokens/abe-2/unichain"
+          "path": "/tokens/abe-2/unichain",
+          "artwork": "/token-artwork/568305dba787108b/d44b9bbc7ca5ea77610994aa01c58cdd"
         },
         {
           "name": "Bedrock BTC",
@@ -3592,7 +3902,8 @@
           "network": "unichain",
           "coinID": "bedrock-btc",
           "slug": "bedrock-btc",
-          "path": "/tokens/bedrock-btc/unichain"
+          "path": "/tokens/bedrock-btc/unichain",
+          "artwork": "/token-artwork/568305dba787108b/63fa8ff007623e889099f3711761a652"
         },
         {
           "name": "BetSwirl",
@@ -3601,7 +3912,8 @@
           "network": "unichain",
           "coinID": "betswirl",
           "slug": "betswirl",
-          "path": "/tokens/betswirl/unichain"
+          "path": "/tokens/betswirl/unichain",
+          "artwork": "/token-artwork/568305dba787108b/77a1b140587fdf7443c56ab92c1b3d94"
         },
         {
           "name": "Bonk",
@@ -3610,7 +3922,8 @@
           "network": "unichain",
           "coinID": "bonk",
           "slug": "bonk",
-          "path": "/tokens/bonk/unichain"
+          "path": "/tokens/bonk/unichain",
+          "artwork": "/token-artwork/568305dba787108b/3a5f8eff807c74980a4c6ba073df5c0d"
         },
         {
           "name": "Catex",
@@ -3619,7 +3932,8 @@
           "network": "unichain",
           "coinID": "catex-2",
           "slug": "catex-2",
-          "path": "/tokens/catex-2/unichain"
+          "path": "/tokens/catex-2/unichain",
+          "artwork": "/token-artwork/568305dba787108b/1216d50daf6ddc2fafa6e45111863877"
         },
         {
           "name": "Chainlink",
@@ -3628,7 +3942,8 @@
           "network": "unichain",
           "coinID": "chainlink",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/unichain"
+          "path": "/tokens/chainlink/unichain",
+          "artwork": "/token-artwork/568305dba787108b/a103f5427fe8441621d99bf8bd521156"
         },
         {
           "name": "dogwifhat",
@@ -3637,7 +3952,8 @@
           "network": "unichain",
           "coinID": "dogwifcoin",
           "slug": "dogwifcoin",
-          "path": "/tokens/dogwifcoin/unichain"
+          "path": "/tokens/dogwifcoin/unichain",
+          "artwork": "/token-artwork/568305dba787108b/1a6dedf0622eea70a70873384697b8e8"
         }
       ]
     },
@@ -3666,7 +3982,8 @@
           "network": "hyperevm",
           "coinID": "wrapped-hype",
           "slug": "wrapped-hype",
-          "path": "/tokens/wrapped-hype/hyperevm"
+          "path": "/tokens/wrapped-hype/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/65c909aca43ea1047f0414050b8f4044"
         },
         {
           "name": "USDC",
@@ -3675,7 +3992,8 @@
           "symbol": "USDC",
           "reference": "0xb88339cb7199b77e23db6e890353e22632ba630f",
           "slug": "usdc",
-          "path": "/tokens/usdc/hyperevm"
+          "path": "/tokens/usdc/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/e30e47c133060eb43554b7dff00cda0d"
         },
         {
           "name": "USDT0",
@@ -3684,7 +4002,8 @@
           "symbol": "USDT0",
           "reference": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
           "slug": "usdt0",
-          "path": "/tokens/usdt0/hyperevm"
+          "path": "/tokens/usdt0/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/a6631ed54d461e4248dc10aad128cd83"
         },
         {
           "network": "hyperevm",
@@ -3693,7 +4012,8 @@
           "name": "3M xStock",
           "symbol": "MMMX",
           "slug": "3m-xstock",
-          "path": "/tokens/3m-xstock/hyperevm"
+          "path": "/tokens/3m-xstock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/b4e83cb543ac255392707e297919f16d"
         },
         {
           "network": "hyperevm",
@@ -3702,7 +4022,8 @@
           "name": "3x Short Semiconductor ETF xStock",
           "coinID": "3x-short-semiconductor-etf-xstock",
           "slug": "3x-short-semiconductor-etf-xstock",
-          "path": "/tokens/3x-short-semiconductor-etf-xstock/hyperevm"
+          "path": "/tokens/3x-short-semiconductor-etf-xstock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/daddbc137748c9937635640eb2cdb38e"
         },
         {
           "network": "hyperevm",
@@ -3711,7 +4032,8 @@
           "reference": "0x5ff6e08a0bdbc1ff11004ffb62b7ac7cdcf101bd",
           "coinID": "abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks",
           "slug": "abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks",
-          "path": "/tokens/abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks/hyperevm"
+          "path": "/tokens/abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/df6c5dd214c0337e9a9b34cf90b16f29"
         },
         {
           "name": "abrdn Physical Platinum Shares ETF (Ondo Tokenized)",
@@ -3720,7 +4042,8 @@
           "symbol": "PPLTON",
           "reference": "0xb4c0eaf28ae7f667d9dabaa995f7a6e75e094770",
           "slug": "abrdn-physical-platinum-shares-etf-ondo-tokenized",
-          "path": "/tokens/abrdn-physical-platinum-shares-etf-ondo-tokenized/hyperevm"
+          "path": "/tokens/abrdn-physical-platinum-shares-etf-ondo-tokenized/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/c61d609e737c6b407f2129892cc0e9d3"
         },
         {
           "network": "hyperevm",
@@ -3729,7 +4052,8 @@
           "name": "Adecoagro (Dinari Tokenized Stock)",
           "symbol": "AGRO",
           "slug": "adecoagro-dinari-tokenized-stock",
-          "path": "/tokens/adecoagro-dinari-tokenized-stock/hyperevm"
+          "path": "/tokens/adecoagro-dinari-tokenized-stock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/6236591dace6b9a6474e7c91a21a9db4"
         },
         {
           "network": "hyperevm",
@@ -3738,7 +4062,8 @@
           "name": "Advanced Drainage Systems xStock",
           "symbol": "WMSX",
           "slug": "advanced-drainage-systems-xstock",
-          "path": "/tokens/advanced-drainage-systems-xstock/hyperevm"
+          "path": "/tokens/advanced-drainage-systems-xstock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/d14fe8c8b43a878841e8a582ae818eca"
         },
         {
           "network": "hyperevm",
@@ -3747,7 +4072,8 @@
           "name": "Advanced Energy Industries xStock",
           "symbol": "AEISX",
           "slug": "advanced-energy-industries-xstock",
-          "path": "/tokens/advanced-energy-industries-xstock/hyperevm"
+          "path": "/tokens/advanced-energy-industries-xstock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/77f9d741bd635c36684f5e631f448831"
         },
         {
           "reference": "0xdb0245163fda906f27dc5813d2d2b51673c33bde",
@@ -3756,7 +4082,8 @@
           "coinID": "affirm-xstock",
           "symbol": "AFRMX",
           "slug": "affirm-xstock",
-          "path": "/tokens/affirm-xstock/hyperevm"
+          "path": "/tokens/affirm-xstock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/72b27e94d802e723a1cdfea7466c6936"
         },
         {
           "network": "hyperevm",
@@ -3765,7 +4092,8 @@
           "name": "Aflac xStock",
           "symbol": "AFLX",
           "slug": "aflac-xstock",
-          "path": "/tokens/aflac-xstock/hyperevm"
+          "path": "/tokens/aflac-xstock/hyperevm",
+          "artwork": "/token-artwork/568305dba787108b/dda175dafdfa79aea06443f12e57e35c"
         }
       ]
     },
@@ -3794,7 +4122,8 @@
           "coinID": "robinhood-wrapped-eth-robinhood-chain",
           "network": "robinhood",
           "slug": "robinhood-wrapped-eth-robinhood-chain",
-          "path": "/tokens/robinhood-wrapped-eth-robinhood-chain/robinhood-chain"
+          "path": "/tokens/robinhood-wrapped-eth-robinhood-chain/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/619e73ee875e6d5f837ecab765ae5545"
         },
         {
           "network": "robinhood",
@@ -3803,7 +4132,8 @@
           "symbol": "🪶",
           "reference": "0xa870f8c7cae9705194a141b0c2964b6c79ee3742",
           "slug": "feather-2",
-          "path": "/tokens/feather-2/robinhood-chain"
+          "path": "/tokens/feather-2/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/36eabedfa567c78bb49e0f13733639b4"
         },
         {
           "reference": "0x6365fd27ddefc42f50895994b67b04fab5f08d5e",
@@ -3812,7 +4142,8 @@
           "name": "$1 is all you need",
           "symbol": "$1",
           "slug": "1-is-all-you-need-2",
-          "path": "/tokens/1-is-all-you-need-2/robinhood-chain"
+          "path": "/tokens/1-is-all-you-need-2/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/ad887ab49c43852906aec6200a04bba3"
         },
         {
           "reference": "0x3a013978cbd3ed7b270c92009e6a6d1be8e6ac25",
@@ -3821,7 +4152,8 @@
           "network": "robinhood",
           "coinID": "1-800-flowers-com-inc-astock",
           "slug": "1-800-flowers-com-inc-astock",
-          "path": "/tokens/1-800-flowers-com-inc-astock/robinhood-chain"
+          "path": "/tokens/1-800-flowers-com-inc-astock/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/1c61b7950e0ab4468df08277ddabf87e"
         },
         {
           "network": "robinhood",
@@ -3830,7 +4162,8 @@
           "reference": "0x1755c2910c126ee1b0cf1e08a307dc9e787285a0",
           "name": "1INCH",
           "slug": "1inch",
-          "path": "/tokens/1inch/robinhood-chain"
+          "path": "/tokens/1inch/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/5511f3966f1aa1b760ffaedac8882646"
         },
         {
           "name": "4663",
@@ -3839,7 +4172,8 @@
           "network": "robinhood",
           "reference": "0xfbe42ef178bf43b51f51699f1974f6b0aad4beb2",
           "slug": "4663-token-2",
-          "path": "/tokens/4663-token-2/robinhood-chain"
+          "path": "/tokens/4663-token-2/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/831401e5bf19d02037da62a950c6ebec"
         },
         {
           "name": "4663",
@@ -3848,7 +4182,8 @@
           "reference": "0xd4052415613b34af236024b895574c467f65b6dd",
           "network": "robinhood",
           "slug": "4663-token",
-          "path": "/tokens/4663-token/robinhood-chain"
+          "path": "/tokens/4663-token/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/cfc217236eb0bb8b3dc533f29db0eb4e"
         },
         {
           "symbol": "4AI",
@@ -3857,7 +4192,8 @@
           "reference": "0xc305c433c315ce5a9e6fc750fedae3f6fc66bbc1",
           "name": "4AI",
           "slug": "4ai",
-          "path": "/tokens/4ai/robinhood-chain"
+          "path": "/tokens/4ai/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/27b5b18d3c961fdf9e394c0c7efec91a"
         },
         {
           "symbol": "6",
@@ -3866,7 +4202,8 @@
           "coinID": "6-token",
           "network": "robinhood",
           "slug": "6-token",
-          "path": "/tokens/6-token/robinhood-chain"
+          "path": "/tokens/6-token/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/9c515f6b4ec3c57d04da85db3ad1068d"
         },
         {
           "reference": "0x385307be7df9b45f55f8be72e0cf8b36466813ee",
@@ -3875,7 +4212,8 @@
           "network": "robinhood",
           "coinID": "9e9-world",
           "slug": "9e9-world",
-          "path": "/tokens/9e9-world/robinhood-chain"
+          "path": "/tokens/9e9-world/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/2f66c71d57e2447c719318fa3ffeb934"
         },
         {
           "reference": "0x223e93b1bed7de244445db2dea4c7900e8045acc",
@@ -3884,7 +4222,8 @@
           "name": "9TO5",
           "symbol": "9TO5",
           "slug": "9to5",
-          "path": "/tokens/9to5/robinhood-chain"
+          "path": "/tokens/9to5/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/7b448e0f466533c96dbb4a30186b6bbd"
         },
         {
           "reference": "0x385f4f8ae47651ce5f58f5265395a669f8281e18",
@@ -3893,7 +4232,8 @@
           "network": "robinhood",
           "coinID": "a-meme-coin",
           "slug": "a-meme-coin",
-          "path": "/tokens/a-meme-coin/robinhood-chain"
+          "path": "/tokens/a-meme-coin/robinhood-chain",
+          "artwork": "/token-artwork/568305dba787108b/c425f8a75dd497026f413f9bc1522f6f"
         }
       ]
     },
@@ -3922,7 +4262,8 @@
           "name": "Scroll",
           "network": "scroll",
           "slug": "scroll",
-          "path": "/tokens/scroll/scroll"
+          "path": "/tokens/scroll/scroll",
+          "artwork": "/token-artwork/568305dba787108b/11896dc7a433cb212d3e6c7b167df522"
         },
         {
           "symbol": "USDC",
@@ -3931,7 +4272,8 @@
           "reference": "0x06efdbff2a14a7c8e15944d1f4a48f9f95f663a4",
           "network": "scroll",
           "slug": "bridged-usd-coin-scroll",
-          "path": "/tokens/bridged-usd-coin-scroll/scroll"
+          "path": "/tokens/bridged-usd-coin-scroll/scroll",
+          "artwork": "/token-artwork/568305dba787108b/1fb61a3a175c08cf3c60ec5b7d7bc1f0"
         },
         {
           "reference": "0xf55bec9cafdbe8730f096aa55dad6d22d44099df",
@@ -3940,7 +4282,8 @@
           "name": "Scroll Bridged USDT (Scroll)",
           "network": "scroll",
           "slug": "bridged-tether-scroll",
-          "path": "/tokens/bridged-tether-scroll/scroll"
+          "path": "/tokens/bridged-tether-scroll/scroll",
+          "artwork": "/token-artwork/568305dba787108b/608aa5635a5b3cb9c752d92f9d93b94e"
         },
         {
           "symbol": "WETH",
@@ -3949,7 +4292,8 @@
           "reference": "0x5300000000000000000000000000000000000004",
           "network": "scroll",
           "slug": "bridged-wrapped-ether-scroll",
-          "path": "/tokens/bridged-wrapped-ether-scroll/scroll"
+          "path": "/tokens/bridged-wrapped-ether-scroll/scroll",
+          "artwork": "/token-artwork/568305dba787108b/4fa7c5ea1853360cbbe3e2ed1305614b"
         },
         {
           "symbol": "WBTC",
@@ -3958,7 +4302,8 @@
           "reference": "0x3c1bca5a656e69edcd0d4e36bebb3fcdaca60cf1",
           "network": "scroll",
           "slug": "bridged-wrapped-bitcoin-scroll",
-          "path": "/tokens/bridged-wrapped-bitcoin-scroll/scroll"
+          "path": "/tokens/bridged-wrapped-bitcoin-scroll/scroll",
+          "artwork": "/token-artwork/568305dba787108b/3648e3bd216fd5df3a954efcee494aa8"
         },
         {
           "reference": "0xf610a9dfb7c89644979b4a0f27063e9e7d7cda32",
@@ -3967,7 +4312,8 @@
           "name": "Bridged Wrapped Lido Staked Ether (Scroll)",
           "network": "scroll",
           "slug": "bridged-wrapped-lido-staked-ether-scroll",
-          "path": "/tokens/bridged-wrapped-lido-staked-ether-scroll/scroll"
+          "path": "/tokens/bridged-wrapped-lido-staked-ether-scroll/scroll",
+          "artwork": "/token-artwork/568305dba787108b/52afd14f834ab2380fb1a38a1e932e54"
         },
         {
           "reference": "0x80137510979822322193fc997d400d5a6c747bf7",
@@ -3976,7 +4322,8 @@
           "name": "StakeStone ETH",
           "network": "scroll",
           "slug": "stakestone-ether",
-          "path": "/tokens/stakestone-ether/scroll"
+          "path": "/tokens/stakestone-ether/scroll",
+          "artwork": "/token-artwork/568305dba787108b/6521bc32c35b002bd98818421f393f71"
         },
         {
           "symbol": "WEETH",
@@ -3985,7 +4332,8 @@
           "reference": "0x01f0a31698c4d065659b9bdc21b3610292a1c506",
           "network": "scroll",
           "slug": "wrapped-eeth",
-          "path": "/tokens/wrapped-eeth/scroll"
+          "path": "/tokens/wrapped-eeth/scroll",
+          "artwork": "/token-artwork/568305dba787108b/46edc5140e2184f862280dbe6cf8ef46"
         },
         {
           "reference": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
@@ -3994,7 +4342,8 @@
           "name": "Ethena USDe",
           "network": "scroll",
           "slug": "ethena-usde",
-          "path": "/tokens/ethena-usde/scroll"
+          "path": "/tokens/ethena-usde/scroll",
+          "artwork": "/token-artwork/568305dba787108b/708ab35ef65cdd9e9beb8ec41c5f3dbd"
         },
         {
           "reference": "0x548c6944cba02b9d1c0570102c89de64d258d3ac",
@@ -4003,7 +4352,8 @@
           "name": "Chainlink",
           "network": "scroll",
           "slug": "chainlink",
-          "path": "/tokens/chainlink/scroll"
+          "path": "/tokens/chainlink/scroll",
+          "artwork": "/token-artwork/568305dba787108b/406c0cf86e23664a1b084754abdda542"
         },
         {
           "symbol": "ABCNURI",
@@ -4012,7 +4362,8 @@
           "reference": "0x330c43d22bd65a60ffea93a197f04e87faa27b70",
           "network": "scroll",
           "slug": "abcnuri",
-          "path": "/tokens/abcnuri/scroll"
+          "path": "/tokens/abcnuri/scroll",
+          "artwork": "/token-artwork/568305dba787108b/a789bf383f26f68aa5c508ffae58e6a5"
         },
         {
           "reference": "0xdf474b7109b73b7d57926d43598d5934131136b2",
@@ -4021,7 +4372,8 @@
           "name": "Ankr Network",
           "network": "scroll",
           "slug": "ankr",
-          "path": "/tokens/ankr/scroll"
+          "path": "/tokens/ankr/scroll",
+          "artwork": "/token-artwork/568305dba787108b/9ebd0f338083fbf476b51718bafaf3c3"
         }
       ]
     },
@@ -4050,7 +4402,8 @@
           "symbol": "WSOMI",
           "name": "Wrapped SOMI",
           "slug": "wrapped-somi",
-          "path": "/tokens/wrapped-somi/somnia"
+          "path": "/tokens/wrapped-somi/somnia",
+          "artwork": "/token-artwork/568305dba787108b/3ec87679b107683feab1cf6530faa3d4"
         },
         {
           "reference": "0x28bec7e30e6faee657a03e19bf1128aad7632a00",
@@ -4059,7 +4412,8 @@
           "symbol": "USDC.E",
           "name": "Stargate Bridged USDC",
           "slug": "stargate-bridged-usdc",
-          "path": "/tokens/stargate-bridged-usdc/somnia"
+          "path": "/tokens/stargate-bridged-usdc/somnia",
+          "artwork": "/token-artwork/568305dba787108b/f6e6c8a890514dc4a3e3e3ce15d08725"
         },
         {
           "reference": "0x67b302e35aef5eee8c32d934f5856869ef428330",
@@ -4068,7 +4422,8 @@
           "symbol": "USDT",
           "name": "Stargate Bridged USDT",
           "slug": "stargate-bridged-usdt",
-          "path": "/tokens/stargate-bridged-usdt/somnia"
+          "path": "/tokens/stargate-bridged-usdt/somnia",
+          "artwork": "/token-artwork/568305dba787108b/449f7f96d55062752485c6b31776e33f"
         },
         {
           "reference": "0x936ab8c674bcb567cd5deb85d8a216494704e9d8",
@@ -4077,7 +4432,8 @@
           "symbol": "WETH",
           "name": "Stargate Bridged WETH",
           "slug": "stargate-bridged-weth",
-          "path": "/tokens/stargate-bridged-weth/somnia"
+          "path": "/tokens/stargate-bridged-weth/somnia",
+          "artwork": "/token-artwork/568305dba787108b/f56bfa2924cee5db78e7201ed1fc12d9"
         },
         {
           "reference": "0xc063b29cd6b30885783b505ae180b3079e0a2154",
@@ -4086,7 +4442,8 @@
           "symbol": "NIA",
           "name": "Nia",
           "slug": "nia-2",
-          "path": "/tokens/nia-2/somnia"
+          "path": "/tokens/nia-2/somnia",
+          "artwork": "/token-artwork/568305dba787108b/1ba849a8946309eaf4de668c36c0c4b9"
         },
         {
           "reference": "0x00000022da000002656c64d9ea6011ea952d008a",
@@ -4095,7 +4452,8 @@
           "symbol": "USDSO",
           "name": "USD Somnia",
           "slug": "usd-somnia",
-          "path": "/tokens/usd-somnia/somnia"
+          "path": "/tokens/usd-somnia/somnia",
+          "artwork": "/token-artwork/568305dba787108b/52fe5d5a72ff00c74ac09a5afe4d4c9d"
         }
       ]
     },
@@ -4124,7 +4482,8 @@
           "network": "story",
           "name": "Wrapped IP",
           "slug": "wrapped-ip",
-          "path": "/tokens/wrapped-ip/story"
+          "path": "/tokens/wrapped-ip/story",
+          "artwork": "/token-artwork/568305dba787108b/d1fd8d64b0ab17ebb7d196992eb97cfc"
         },
         {
           "symbol": "USDC.E",
@@ -4133,7 +4492,8 @@
           "network": "story",
           "name": "Stargate Bridged USDC",
           "slug": "stargate-bridged-usdc",
-          "path": "/tokens/stargate-bridged-usdc/story"
+          "path": "/tokens/stargate-bridged-usdc/story",
+          "artwork": "/token-artwork/568305dba787108b/4e9e6cee53bf44404289cd88e0f6e67f"
         },
         {
           "symbol": "WETH",
@@ -4142,7 +4502,8 @@
           "network": "story",
           "name": "Stargate Bridged WETH",
           "slug": "stargate-bridged-weth",
-          "path": "/tokens/stargate-bridged-weth/story"
+          "path": "/tokens/stargate-bridged-weth/story",
+          "artwork": "/token-artwork/568305dba787108b/1d58fe2683bc257d95ab717e70eda41c"
         },
         {
           "symbol": "ARIAIP",
@@ -4151,7 +4512,8 @@
           "network": "story",
           "name": "Aria",
           "slug": "aria-2",
-          "path": "/tokens/aria-2/story"
+          "path": "/tokens/aria-2/story",
+          "artwork": "/token-artwork/568305dba787108b/f4b05c33e204194144a4eff45c923a20"
         },
         {
           "symbol": "LARRY",
@@ -4160,7 +4522,8 @@
           "network": "story",
           "name": "Evil Larry",
           "slug": "evil-larry",
-          "path": "/tokens/evil-larry/story"
+          "path": "/tokens/evil-larry/story",
+          "artwork": "/token-artwork/568305dba787108b/dd59a9c9eca2a55e906d1caeb7ba6582"
         },
         {
           "symbol": "IPPY",
@@ -4169,7 +4532,8 @@
           "network": "story",
           "name": "IPPY",
           "slug": "ippy",
-          "path": "/tokens/ippy/story"
+          "path": "/tokens/ippy/story",
+          "artwork": "/token-artwork/568305dba787108b/e2e1f6963b320e3b7c38eb828bbee954"
         },
         {
           "symbol": "LYRA",
@@ -4178,7 +4542,8 @@
           "network": "story",
           "name": "LYRA",
           "slug": "lyra-3",
-          "path": "/tokens/lyra-3/story"
+          "path": "/tokens/lyra-3/story",
+          "artwork": "/token-artwork/568305dba787108b/ca4983e3b634d6b7df0b38e891c37b36"
         }
       ]
     },
@@ -4207,7 +4572,8 @@
           "reference": "0xa9d23408b9ba935c230493c40c73824df71a0975",
           "symbol": "TAIKO",
           "slug": "taiko",
-          "path": "/tokens/taiko/taiko"
+          "path": "/tokens/taiko/taiko",
+          "artwork": "/token-artwork/568305dba787108b/ea45f4b2ab46ede18e08aa9c68ab8170"
         },
         {
           "network": "taiko",
@@ -4216,7 +4582,8 @@
           "reference": "0x07d83526730c7438048d55a4fc0b850e2aab6f0b",
           "symbol": "USDC",
           "slug": "taiko-bridged-usdc-taiko",
-          "path": "/tokens/taiko-bridged-usdc-taiko/taiko"
+          "path": "/tokens/taiko-bridged-usdc-taiko/taiko",
+          "artwork": "/token-artwork/568305dba787108b/8d4dfdd06a50d9d2112aa9d6b426eac1"
         },
         {
           "network": "taiko",
@@ -4225,7 +4592,8 @@
           "reference": "0x9c2dc7377717603eb92b2655c5f2e7997a4945bd",
           "symbol": "USDT",
           "slug": "stargate-bridged-usdt",
-          "path": "/tokens/stargate-bridged-usdt/taiko"
+          "path": "/tokens/stargate-bridged-usdt/taiko",
+          "artwork": "/token-artwork/568305dba787108b/6a95e5fc051d3985f2c4992a5930ae33"
         },
         {
           "network": "taiko",
@@ -4234,7 +4602,8 @@
           "reference": "0xa51894664a773981c6c112c43ce576f315d5b1b6",
           "symbol": "WETH",
           "slug": "wrapped-eth-taiko",
-          "path": "/tokens/wrapped-eth-taiko/taiko"
+          "path": "/tokens/wrapped-eth-taiko/taiko",
+          "artwork": "/token-artwork/568305dba787108b/756e2e00feb1515c23514d8e1f6e4377"
         },
         {
           "network": "taiko",
@@ -4261,7 +4630,8 @@
           "reference": "0x541fd749419ca806a8bc7da8ac23d346f2df8b77",
           "symbol": "SOLVBTC",
           "slug": "solv-btc",
-          "path": "/tokens/solv-btc/taiko"
+          "path": "/tokens/solv-btc/taiko",
+          "artwork": "/token-artwork/568305dba787108b/6a8ff9800c463b69893232669a917b31"
         },
         {
           "network": "taiko",
@@ -4279,7 +4649,8 @@
           "reference": "0x19e26b0638bf63aa9fa4d14c6baf8d52ebe86c5c",
           "symbol": "USDC.E",
           "slug": "stargate-bridged-usdc",
-          "path": "/tokens/stargate-bridged-usdc/taiko"
+          "path": "/tokens/stargate-bridged-usdc/taiko",
+          "artwork": "/token-artwork/568305dba787108b/94eded67236b39060274d424e9fbdd42"
         },
         {
           "network": "taiko",
@@ -4335,7 +4706,8 @@
           "reference": "0xd102ce6a4db07d247fcc28f366a623df0938ca9e",
           "symbol": "WTLOS",
           "slug": "wrapped-telos",
-          "path": "/tokens/wrapped-telos/telos"
+          "path": "/tokens/wrapped-telos/telos",
+          "artwork": "/token-artwork/568305dba787108b/2302480fd49801eb7d42e900fc4c3a7d"
         },
         {
           "network": "telos",
@@ -4344,7 +4716,8 @@
           "reference": "0xbab93b7ad7fe8692a878b95a8e689423437cc500",
           "symbol": "WETH",
           "slug": "stargate-bridged-weth",
-          "path": "/tokens/stargate-bridged-weth/telos"
+          "path": "/tokens/stargate-bridged-weth/telos",
+          "artwork": "/token-artwork/568305dba787108b/704857dbe549cdd6a61042fd679ef93c"
         },
         {
           "network": "telos",
@@ -4353,7 +4726,8 @@
           "reference": "0x7627b27594bc71e6ab0fce755ae8931eb1e12dac",
           "symbol": "WBTC",
           "slug": "wrapped-bitcoin",
-          "path": "/tokens/wrapped-bitcoin/telos"
+          "path": "/tokens/wrapped-bitcoin/telos",
+          "artwork": "/token-artwork/568305dba787108b/352112647a7d4e68f23f209a0653ec79"
         },
         {
           "network": "telos",
@@ -4371,7 +4745,8 @@
           "reference": "0xf1815bd50389c46847f0bda824ec8da914045d14",
           "symbol": "USDC.E",
           "slug": "stargate-bridged-usdc",
-          "path": "/tokens/stargate-bridged-usdc/telos"
+          "path": "/tokens/stargate-bridged-usdc/telos",
+          "artwork": "/token-artwork/568305dba787108b/49f74b08c508eccc29deed82718e1d83"
         },
         {
           "network": "telos",
@@ -4380,7 +4755,8 @@
           "reference": "0x332730a4f6e03d9c55829435f10360e13cfa41ff",
           "symbol": "WPOL",
           "slug": "wmatic",
-          "path": "/tokens/wmatic/telos"
+          "path": "/tokens/wmatic/telos",
+          "artwork": "/token-artwork/568305dba787108b/58e66afa5515e9a58aa556ceb5ac82c7"
         },
         {
           "network": "telos",
@@ -4389,7 +4765,8 @@
           "reference": "0xc1be9a4d5d45beeacae296a7bd5fadbfc14602c4",
           "symbol": "WFTM",
           "slug": "wrapped-fantom",
-          "path": "/tokens/wrapped-fantom/telos"
+          "path": "/tokens/wrapped-fantom/telos",
+          "artwork": "/token-artwork/568305dba787108b/375e14de9caaec758386028b335d8ff1"
         },
         {
           "network": "telos",
@@ -4398,7 +4775,8 @@
           "reference": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
           "symbol": "ELK",
           "slug": "elk-finance",
-          "path": "/tokens/elk-finance/telos"
+          "path": "/tokens/elk-finance/telos",
+          "artwork": "/token-artwork/568305dba787108b/e7c12dbfc1136fc41996c1888bc2e868"
         },
         {
           "network": "telos",
@@ -4407,7 +4785,8 @@
           "reference": "0x7e1cfe10949a6086a28c38aa4a43fdeab34f198a",
           "symbol": "DECO",
           "slug": "destiny-world",
-          "path": "/tokens/destiny-world/telos"
+          "path": "/tokens/destiny-world/telos",
+          "artwork": "/token-artwork/568305dba787108b/53c837ac75230393f6d1b92b27aade06"
         }
       ]
     },
@@ -4436,7 +4815,8 @@
           "coinID": "polygon-hermez-bridged-usdc-x-layer",
           "reference": "0x74b7f16337b8972027f6196a17a631ac6de26d22",
           "slug": "polygon-hermez-bridged-usdc-x-layer",
-          "path": "/tokens/polygon-hermez-bridged-usdc-x-layer/x-layer"
+          "path": "/tokens/polygon-hermez-bridged-usdc-x-layer/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/14608fa3ea33c406c080b70f203c4373"
         },
         {
           "symbol": "USDT",
@@ -4445,7 +4825,8 @@
           "reference": "0x1e4a5963abfd975d8c9021ce480b42188849d41d",
           "name": "Polygon Hermez Bridged USDT (x Layer)",
           "slug": "polygon-hermez-bridged-usdt-x-layer",
-          "path": "/tokens/polygon-hermez-bridged-usdt-x-layer/x-layer"
+          "path": "/tokens/polygon-hermez-bridged-usdt-x-layer/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/01a58246440e8979769a7de9613f1898"
         },
         {
           "coinID": "paypal-usd",
@@ -4454,7 +4835,8 @@
           "reference": "0x87b4a8176b3df6b71e26cc095edcaf4db07506b4",
           "symbol": "PYUSD",
           "slug": "paypal-usd",
-          "path": "/tokens/paypal-usd/x-layer"
+          "path": "/tokens/paypal-usd/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/f601d7cdc2e84fce488972bce81f28a3"
         },
         {
           "name": "Wrapped OKB",
@@ -4463,7 +4845,8 @@
           "coinID": "wrapped-okb",
           "reference": "0xe538905cf8410324e03a5a23c1c177a474d59b2b",
           "slug": "wrapped-okb",
-          "path": "/tokens/wrapped-okb/x-layer"
+          "path": "/tokens/wrapped-okb/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/5099bdb7a3e3b6c7f03a17572fed48ac"
         },
         {
           "coinID": "bridged-wrapped-ether-x-layer",
@@ -4472,7 +4855,8 @@
           "network": "xlayer",
           "symbol": "WETH",
           "slug": "bridged-wrapped-ether-x-layer",
-          "path": "/tokens/bridged-wrapped-ether-x-layer/x-layer"
+          "path": "/tokens/bridged-wrapped-ether-x-layer/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/a67b058b17444c72a7541bd96b5286f7"
         },
         {
           "name": "OKX Wrapped ETH",
@@ -4481,7 +4865,8 @@
           "coinID": "okx-wrapped-eth",
           "reference": "0xe7b000003a45145decf8a28fc755ad5ec5ea025a",
           "slug": "okx-wrapped-eth",
-          "path": "/tokens/okx-wrapped-eth/x-layer"
+          "path": "/tokens/okx-wrapped-eth/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/10d24b0c6abd70f864e26c85b4fdc511"
         },
         {
           "coinID": "okx-wrapped-sol",
@@ -4490,7 +4875,8 @@
           "network": "xlayer",
           "symbol": "XSOL",
           "slug": "okx-wrapped-sol",
-          "path": "/tokens/okx-wrapped-sol/x-layer"
+          "path": "/tokens/okx-wrapped-sol/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/aac4a0c23fa3961c94e2cd93dd54df80"
         },
         {
           "symbol": "XBTC",
@@ -4499,7 +4885,8 @@
           "coinID": "okx-wrapped-btc",
           "network": "xlayer",
           "slug": "okx-wrapped-btc",
-          "path": "/tokens/okx-wrapped-btc/x-layer"
+          "path": "/tokens/okx-wrapped-btc/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/a4779619c0d17af9664783dcbe31e0e3"
         },
         {
           "reference": "0xcef6c74ce218c0e1f48ca2430635d0a65cd3737a",
@@ -4508,7 +4895,8 @@
           "network": "xlayer",
           "coinID": "satoshi-stablecoin",
           "slug": "satoshi-stablecoin",
-          "path": "/tokens/satoshi-stablecoin/x-layer"
+          "path": "/tokens/satoshi-stablecoin/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/2ec065822021bab24e62c1df48f6b938"
         },
         {
           "coinID": "staked-frax-usd",
@@ -4517,7 +4905,8 @@
           "network": "xlayer",
           "reference": "0x5bff88ca1442c2496f7e475e9e7786383bc070c0",
           "slug": "staked-frax-usd",
-          "path": "/tokens/staked-frax-usd/x-layer"
+          "path": "/tokens/staked-frax-usd/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/3b81519505c317ffe19a3693e2638245"
         },
         {
           "network": "xlayer",
@@ -4526,7 +4915,8 @@
           "coinID": "3m-xstock",
           "reference": "0x707c6bc22b6cf83b930b0a68c3bb20a94836de71",
           "slug": "3m-xstock",
-          "path": "/tokens/3m-xstock/x-layer"
+          "path": "/tokens/3m-xstock/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/25706a96e028f184e1e8d14744c388f0"
         },
         {
           "reference": "0x0782a5fae365eba67a6f6b688e415211c618f8d4",
@@ -4535,7 +4925,8 @@
           "network": "xlayer",
           "name": "3x Short Semiconductor ETF xStock",
           "slug": "3x-short-semiconductor-etf-xstock",
-          "path": "/tokens/3x-short-semiconductor-etf-xstock/x-layer"
+          "path": "/tokens/3x-short-semiconductor-etf-xstock/x-layer",
+          "artwork": "/token-artwork/568305dba787108b/ef3e75ec072f705f09dccc5a6a34d4c8"
         }
       ]
     }

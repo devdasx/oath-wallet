@@ -19,6 +19,16 @@ The Worker serves complete HTML and Markdown, using 256 bounded asset shards, 50
 
 Catalog inclusion is discovery evidence, not issuer verification or tested sending. Unknown logos use a text monogram; unknown decimals are omitted. XRP Ledger's internal scale sentinel is not presented as token decimals. Network fee and capability notes come from the existing reviewed guides. USDT/USDC pages add network-specific guidance and issuer reference links without declaring every catalog deployment issuer-approved.
 
+## Token artwork
+
+`artwork.json.gz` is an accepted artwork-only snapshot tied to the released catalog revision and source hash. It combines the seed's explicit images, bundled app details (asset ID plus exact network reference), published CoinGecko/GlueX token lists and the app's GeckoTerminal batch fallback. Network and canonical contract/mint/issuer/reference determine every match; symbols never determine artwork. No provider names, decimals, verification flags or financial metadata enter the catalog through this process.
+
+`npm run refresh:artwork` explicitly refreshes public metadata, records source hashes and per-network coverage, then builds and tests. Provider failures retain accepted matches; removed catalog identities are discarded. A complete failure never empties the existing snapshot. `refresh:tokens` also refreshes artwork after accepting a released catalog. Builds and deployments never query these metadata providers. Commit the snapshot, generated manifests and tracked pages together.
+
+The offline build produces 256 compact metadata shards under ignored `public/token-artwork-data/{version}/`. Visitors request only the images on their page through `/token-artwork/{version}/{identity-hash}`. This route accepts known identities only, restricts upstream hosts and redirects, bounds downloads and concurrency, validates passive image formats, and isolates direct SVG visits with a restrictive content policy. Images are cached at the edge for 30 days; after seven days they can refresh in the background while the previous image remains available. Browser caching lasts one day. Failed cold requests return escaped initials with a 60-second retry cache. Missing metadata displays initials without making an image request. A browser image error also reveals the initials.
+
+Coverage counts represent matched image metadata, not a claim that every external image URL was downloaded or remains available. Logos do not imply issuer verification or asset safety. The same component serves directory/search rows, overview and exact-token guides, network lists, featured tokens and the transfer tool. Dimensions are reserved to prevent layout shifts, decorative images have empty alternate text, and visible token names and network badges remain accessible. Token text and navigation work without JavaScript.
+
 ## Verification and publication
 
 Run `npm run test:unit` for all existing tests and exhaustive catalog identity, route, sitemap, rendering and link checks. `TokenDiscoverySnapshotTests` also validates every shipping identity with the app's actual canonicalizers. Run the browser test with the local Worker:

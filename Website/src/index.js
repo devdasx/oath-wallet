@@ -1,3 +1,4 @@
+import {handleArtwork} from './artwork-route.js';
 import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import { cachedTokens } from './tokens.js';
 import { handleTransferPreparation } from './transfer-route.js';
@@ -61,6 +62,8 @@ async function serveRequest(request, env, ctx) {
     return Response.redirect(url.href, 301);
   }
 
+  const artwork = await handleArtwork(request, env, ctx);
+  if (artwork) return artwork;
   const tokens = await cachedTokens(request, env, ctx);
   if (tokens) return tokens;
   // Search Console found this historical asset folder as a 404. The public
