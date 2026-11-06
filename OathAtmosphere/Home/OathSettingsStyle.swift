@@ -21,6 +21,7 @@ struct OathSettingsIcon: View {
 
     var body: some View {
         Image(systemName: symbol)
+            .flipsForRightToLeftLayoutDirection(symbol == "checkmark.circle" || symbol == "checkmark.circle.fill")
             .font(.system(size: size * 0.54, weight: .regular))
             .foregroundStyle(color)
             .frame(width: size, height: size)
@@ -85,7 +86,7 @@ struct OathSettingsRow: View {
                 ProgressView()
             } else {
                 if isSelected {
-                    Image(systemName: "checkmark")
+                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
                         .font(.body.weight(.semibold))
                         .foregroundStyle(OathOnboardingColors.blue)
                         .accessibilityHidden(true)
@@ -97,13 +98,13 @@ struct OathSettingsRow: View {
                         .foregroundStyle(Color(uiColor: .secondaryLabel))
                         .accessibilityHidden(true)
                 case .selection(let selected):
-                    Image(systemName: "checkmark")
+                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
                         .font(.body.weight(.semibold))
                         .foregroundStyle(OathOnboardingColors.blue)
                         .opacity(selected ? 1 : 0)
                         .accessibilityHidden(true)
                 case .completed:
-                    Image(systemName: "checkmark")
+                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
                         .font(.body.weight(.semibold))
                         .foregroundStyle(.green)
                         .accessibilityHidden(true)

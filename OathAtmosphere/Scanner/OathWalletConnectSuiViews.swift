@@ -20,19 +20,21 @@ struct OathWCSuiReview: View {
                 }
                 ForEach(Array(review.changes.enumerated()),id:\.offset) { _, change in
                     Text(changeText(change,review:review)).oathFont(.body).textSelection(.enabled)
+                        .environment(\.layoutDirection, .leftToRight)
                         .frame(maxWidth:.infinity,alignment:.leading).padding(20)
                 }
                 NavigationLink {
                     OathWCContent {
                         ForEach(Array(review.details.enumerated()),id:\.offset) { _, detail in
                             Text(detail).font(.system(.footnote,design:.monospaced)).textSelection(.enabled)
+                                .environment(\.layoutDirection, .leftToRight)
                                 .frame(maxWidth:.infinity,alignment:.leading).padding(20)
                         }
                     }.navigationTitle(strings.text(.wcSignData)).navigationBarTitleDisplayMode(.inline)
                 } label: { OathSettingsRow(title:strings.text(.wcSignData),icon:"text.alignleft") }
                     .buttonStyle(OathSettingsRowButtonStyle())
                 OathSettingsFooter { Text(strings.text(.wcCallWarning)) }
-            }.environment(\.layoutDirection,.leftToRight)
+            }
         }
     }
     private func changeText(_ row:String,review:WalletConnectSuiReview) -> String {
@@ -63,7 +65,7 @@ struct OathWCSuiCompletion: View {
     var body: some View {
         OathWCResultContent(identity: identity) {
             VStack(spacing: 18) {
-                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock")
+                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock").flipsForRightToLeftLayoutDirection(confirmed)
                     .font(.system(size: 52)).foregroundStyle(failed ? Color.red : OathOnboardingColors.blue)
                 Text(strings.text(confirmed ? .wcTransactionConfirmed : failed ? .wcTransactionFailed : checking ? .sendChecking : .wcTransactionPending))
                     .oathFont(.title2, weight: .semibold)

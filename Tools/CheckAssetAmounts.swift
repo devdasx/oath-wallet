@@ -21,14 +21,14 @@ import CoreText
         check(us.native(nil, ticker: "BTC") == "0 BTC", "Missing native amounts display zero")
         check(us.native(.nan, ticker: "BTC") == "0 BTC", "Invalid native amounts display zero")
         check(us.native(decimal("0.00000001"), ticker: "BTC") == "0.00000001 BTC", "One satoshi survives formatting")
-        check(us.native(decimal("0.000000000000000001"), ticker: "ETH") == "< 0.00000001 ETH", "One wei survives formatting")
-        check(us.native(decimal("0.000000000000000000000001"), ticker: "NEAR") == "< 0.00000001 NEAR", "One yoctoNEAR survives formatting")
+        check(withoutIsolates(us.native(decimal("0.000000000000000001"), ticker: "ETH")) == "< 0.00000001 ETH", "One wei survives formatting")
+        check(withoutIsolates(us.native(decimal("0.000000000000000000000001"), ticker: "NEAR")) == "< 0.00000001 NEAR", "One yoctoNEAR survives formatting")
         check(us.native(decimal("123456789.123456789"), ticker: "SOL") == "123456789.12345678 SOL", "Decimal precision is not converted to floating point")
         check(us.nativeSummary(decimal("0.578460528618856998992951"), ticker: "NEAR") == "0.57846052 NEAR", "NEAR's 24 decimals must not expand a list row")
         check(us.nativeSummary(decimal("0.00047087"), ticker: "BTC") == "0.00047087 BTC", "List presentation retains satoshi precision")
         check(us.nativeSummary(decimal("110.1499085"), ticker: "DOGE") == "110.1499085 DOGE", "Native balance belongs beneath the asset name")
-        check(us.nativeSummary(decimal("0.000000000000000001"), ticker: "ETH") == "< 0.00000001 ETH", "Small positive balances never become zero")
-        check(us.nativeSummary(decimal("-0.000000000000000001"), ticker: "ETH") == "> -0.00000001 ETH", "Small negative quantities preserve their sign")
+        check(withoutIsolates(us.nativeSummary(decimal("0.000000000000000001"), ticker: "ETH")) == "< 0.00000001 ETH", "Small positive balances never become zero")
+        check(withoutIsolates(us.nativeSummary(decimal("-0.000000000000000001"), ticker: "ETH")) == "> -0.00000001 ETH", "Small negative quantities preserve their sign")
         check(us.nativeSummary(decimal("0.999999999999"), ticker: "NEAR") == "0.99999999 NEAR", "List rounding must not overstate a balance")
         check(us.nativeSummary(nil, ticker: "NEAR") == "0 NEAR", "Unknown native values follow the app's zero display policy")
         check(String(us.fiat(.unavailable).characters) == "$0.00", "Missing fiat quotes display a formatted zero")
@@ -107,7 +107,7 @@ import CoreText
             ("123456789123456789123456789123456789.123456789", "123456789123456789123456789123456789.12345678"),
             ("0.000000000001", "< 0.00000001"), ("-0.000000000001", "> -0.00000001"),
             ("100.000000000", "100"), ("1.23456789", "1.23456789")] {
-            check(OathAssetAmountFormat.boundedUnits(input) == expected, "Exact string display cap: \(input)")
+            check(withoutIsolates(OathAssetAmountFormat.boundedUnits(input)) == expected, "Exact string display cap: \(input)")
         }
 
         // The reported double label: a localized US$ must never gain a USD prefix.

@@ -192,7 +192,7 @@ struct OathRecoveryPhraseScreen: View {
         if state.isValid || hasError {
             HStack(alignment: .firstTextBaseline, spacing: 6) {
                 if state.isValid {
-                    Image(systemName: "checkmark.circle.fill").accessibilityHidden(true)
+                    Image(systemName: "checkmark.circle.fill").flipsForRightToLeftLayoutDirection(true).accessibilityHidden(true)
                     Text(strings.text(.recoveryValid))
                 } else {
                     Text(message(for: state))

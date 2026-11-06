@@ -2,13 +2,14 @@ import AppKit
 import SwiftUI
 import Vision
 
-// swiftc -swift-version 6 -parse-as-library OathAtmosphere/Shared/OathRefinedListRow.swift \
-//   OathAtmosphere/Home/OathAssetAmountFormat.swift Tools/CheckRefinedRows.swift -o /tmp/oath-rows
-// /tmp/oath-rows
+// python3 Tools/CheckRefinedRows.py
 
 // Host-only UIKit/font bridges; the row layout and amount formatter below are
 // production sources. This checks sizing, not the iOS glass renderer or font.
-@MainActor enum OathSurfaceColors { static let field = NSColor.controlBackgroundColor }
+@MainActor enum OathSurfaceColors {
+    static let field = NSColor.controlBackgroundColor
+    static let networkBadge = NSColor.controlBackgroundColor
+}
 extension NSColor { static var separator: NSColor { .separatorColor } }
 extension Color { init(uiColor: NSColor) { self.init(nsColor: uiColor) } }
 extension View {
@@ -67,7 +68,7 @@ extension EnvironmentValues {
                                 Text("Bridge")
                                 OathNetworkLogo(asset: "bnb", size: 14).fixedSize()
                                 Text("USDT")
-                                Image(systemName: "arrow.right").imageScale(.small)
+                                Image(systemName: "arrow.forward").imageScale(.small)
                                 OathNetworkLogo(asset: "robinhood", size: 14).fixedSize()
                                 Text("USDe")
                             }

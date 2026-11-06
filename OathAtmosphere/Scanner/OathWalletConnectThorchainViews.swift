@@ -164,7 +164,7 @@ struct OathWCThorchainProgress: View {
     var body: some View {
         OathWCContent {
             VStack(spacing: 18) {
-                Image(systemName: value.isFinished ? "checkmark.circle.fill" : "clock")
+                Image(systemName: value.isFinished ? "checkmark.circle.fill" : "clock").flipsForRightToLeftLayoutDirection(value.isFinished)
                     .font(.system(size: 56)).foregroundStyle(OathOnboardingColors.blue)
                 Text(strings.text(value.refundObserved ? .wcSwapRefunded : value.outboundHash != nil ? .wcSwapObserved : value.refundPlanned ? .wcSwapRefundPending : .wcSwapProgress))
                     .oathFont(.title2, weight: .semibold)
@@ -210,7 +210,7 @@ struct OathWCThorchainProgress: View {
     }
     private func stage(_ title: OathStringKey, done: Bool) -> some View {
         HStack(spacing: 16) {
-            Image(systemName: done ? "checkmark.circle.fill" : "circle")
+            Image(systemName: done ? "checkmark.circle.fill" : "circle").flipsForRightToLeftLayoutDirection(done)
                 .foregroundStyle(done ? OathOnboardingColors.blue : Color.secondary).font(.title2)
             Text(strings.text(title)).oathFont(.body)
             Spacer()
@@ -390,7 +390,7 @@ private struct OathWCSwapAddressCopy: View {
             OathClipboard.copy(value)
             copyID = UUID()
         } label: {
-            Image(systemName: copyID == nil ? "square.on.square" : "checkmark")
+            Image(systemName: copyID == nil ? "square.on.square" : "checkmark").flipsForRightToLeftLayoutDirection(copyID != nil)
                 .foregroundStyle(.secondary)
                 .contentTransition(reduceMotion ? .identity : .symbolEffect(.replace))
                 .animation(reduceMotion ? nil : .default, value: copyID != nil)

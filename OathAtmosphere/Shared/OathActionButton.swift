@@ -138,7 +138,7 @@ private struct OathToolbarButton: View {
         } label: {
             HStack(spacing: 6) {
                 if showsCheckmark && role != .destructive {
-                    Image(systemName: "checkmark").accessibilityHidden(true)
+                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true).accessibilityHidden(true)
                 } else {
                     if let icon { Image(systemName: icon).accessibilityHidden(true) }
                     Text(strings.text(title))

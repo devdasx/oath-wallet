@@ -13,7 +13,7 @@ struct OathWCXrplCompletion: View {
     var body: some View {
         OathWCResultContent(identity: identity) {
             VStack(spacing: 18) {
-                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock")
+                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock").flipsForRightToLeftLayoutDirection(confirmed)
                     .font(.system(size: 52)).foregroundStyle(failed ? Color.red : OathOnboardingColors.blue)
                 Text(strings.text(confirmed ? .wcTransactionConfirmed : failed ? .wcTransactionFailed : checking ? .sendChecking : .wcTransactionPending))
                     .oathFont(.title2, weight: .semibold)
@@ -60,8 +60,9 @@ struct OathWCXrplReview: View {
             Divider()
             Text(review.transaction["TransactionType"].string ?? "").oathFont(.title2, weight: .semibold).padding(20)
             Text(transactionText).oathFont(.body).textSelection(.enabled)
+                .environment(\.layoutDirection, .leftToRight)
                 .frame(maxWidth: .infinity, alignment: .leading).padding(20)
-        }.environment(\.layoutDirection, .leftToRight)
+        }
     }
     private func memoText(_ hex: String) -> String {
         // Non-text memos retain their exact hex representation.

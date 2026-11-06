@@ -227,7 +227,7 @@ struct OathRecoveryWordsContent: View {
                             OathSensitiveClipboard.copy(passphrase)
                             passphraseCopied = true
                         } label: {
-                            Image(systemName: passphraseCopied ? "checkmark" : "doc.on.doc")
+                            Image(systemName: passphraseCopied ? "checkmark" : "doc.on.doc").flipsForRightToLeftLayoutDirection(passphraseCopied)
                                 .font(.body)
                                 .contentTransition(reduceMotion ? .identity : .symbolEffect(.replace))
                                 .animation(reduceMotion ? nil : .default, value: passphraseCopied)

@@ -399,7 +399,7 @@ struct OathWCSpenderRow: View {
                 OathDAppLogo(icons: brand.map { [$0.iconURL] } ?? [], size: 28)
                 Text(verbatim: brand?.name ?? checkedIdentity?.name ?? strings.text(.permissionUnknown))
                     .oathFont(.body, weight: .semibold).multilineTextAlignment(.trailing)
-                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+                Image(systemName: "chevron.forward").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
             }.foregroundStyle(.primary).padding(20).contentShape(Rectangle())
         }.buttonStyle(OathSettingsRowButtonStyle())
             .accessibilityIdentifier("walletconnect.transaction.spender")
@@ -531,7 +531,7 @@ private struct OathWCEVMCompletionStatus: View {
     }
     var body: some View {
         VStack(spacing: 18) {
-            Image(systemName: symbol)
+            Image(systemName: symbol).flipsForRightToLeftLayoutDirection(confirmed)
                 .font(.system(size: 56)).foregroundStyle(failed ? Color.red : OathOnboardingColors.blue)
             Text(strings.text(title))
                 .oathFont(.title2, weight: .semibold)
@@ -557,7 +557,7 @@ struct OathWCGasPage: View {
             OathWCValue(title: strings.text(.tokenNetwork), value: TronSendNetwork(walletConnectChain: network)?.walletConnectName ?? TonSendNetwork(walletConnectChain: network)?.walletConnectName ?? OathImportChain(rawValue: network)?.name ?? network, leftToRight: true)
             NavigationLink {
                 OathWCReceiveGas(network: network, address: address, close: close)
-            } label: { OathSettingsRow(title: strings.text(.receive), icon: "arrow.down.left") }
+            } label: { OathSettingsRow(title: strings.text(.receive), icon: "arrow.down.backward") }
                 .buttonStyle(OathSettingsRowButtonStyle()).accessibilityIdentifier("walletconnect.gas.receive")
         }.toolbar {
             ToolbarItem(placement: .topBarTrailing) {

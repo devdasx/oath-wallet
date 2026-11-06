@@ -16,11 +16,12 @@ struct OathWCNearReview: View {
                 OathWCValue(title:strings.text(.sendRecipient),value:tx.receiver,leftToRight:true)
                 ForEach(Array(tx.actions.enumerated()),id:\.offset) { _, action in
                     Text(actionText(action)).oathFont(.body).textSelection(.enabled)
+                        .environment(\.layoutDirection, .leftToRight)
                         .frame(maxWidth:.infinity,alignment:.leading).padding(20)
                 }
             }
             OathSettingsFooter { Text(strings.text(.wcCallWarning)) }
-        }.environment(\.layoutDirection,.leftToRight)
+        }
     }
     private func actionText(_ action:WalletConnectNearTransaction.Action) -> String {
         var value = action.description.components(separatedBy:"\n").map { line in
@@ -49,7 +50,7 @@ struct OathWCNearCompletion: View {
     var body: some View {
         OathWCResultContent(identity: identity) {
             VStack(spacing: 18) {
-                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock")
+                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock").flipsForRightToLeftLayoutDirection(confirmed)
                     .font(.system(size: 52)).foregroundStyle(failed ? Color.red : OathOnboardingColors.blue)
                 Text(strings.text(confirmed ? .wcTransactionConfirmed : failed ? .wcTransactionFailed : checking ? .sendChecking : .wcTransactionPending))
                     .oathFont(.title2, weight: .semibold)

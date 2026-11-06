@@ -191,7 +191,7 @@ struct OathSendRecipientPage: View {
                             }
                             Spacer(minLength: 4)
                             if model.address == entry.address {
-                                Image(systemName: "checkmark").foregroundStyle(OathOnboardingColors.blue)
+                                Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true).foregroundStyle(OathOnboardingColors.blue)
                             }
                         }.foregroundStyle(.primary).padding(.vertical, 8).contentShape(Rectangle())
                     }.buttonStyle(.plain).accessibilityIdentifier("send.contact.\(entry.id)")

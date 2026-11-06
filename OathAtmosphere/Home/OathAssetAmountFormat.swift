@@ -25,8 +25,10 @@ struct OathAssetAmountFormat {
         let minimum = Decimal(string: "0.00000001", locale: Locale(identifier: "en_US_POSIX"))!
         let format = Decimal.FormatStyle.number.locale(locale).grouping(.never)
             .precision(.fractionLength(0...8)).rounded(rule: .towardZero)
-        if amount > 0 && amount < minimum { return "< \(minimum.formatted(format)) \(ticker)" }
-        if amount < 0 && amount > -minimum { return "> \((-minimum).formatted(format)) \(ticker)" }
+        if amount != 0 && abs(amount) < minimum {
+            let bound = amount < 0 ? -minimum : minimum
+            return Self.comparison("\(bound.formatted(format)) \(ticker)", negative: amount < 0)
+        }
         return "\(amount.formatted(format)) \(ticker)"
     }
 
@@ -70,15 +72,25 @@ struct OathAssetAmountFormat {
 
     /// Canonical decimal strings may exceed Decimal's precision. Trim only the
     /// fractional display, preserving all integer digits and never rounding up.
-    static func boundedUnits(_ units: String) -> String {
+    /// `sign` is a display-only transfer prefix, never part of editable units.
+    /// Apply it before isolating the bound so tiny outgoing amounts keep `>`.
+    static func boundedUnits(_ units: String, sign: String = "") -> String {
         let parts = units.split(separator: ".", omittingEmptySubsequences: false)
-        guard parts.count == 2 else { return units }
+        guard parts.count == 2 else { return sign + units }
         let fraction = parts[1].prefix(8).reversed().drop(while: { $0 == "0" }).reversed()
         let integer = String(parts[0])
         if fraction.isEmpty, ["0", "-0"].contains(integer), parts[1].contains(where: { $0 != "0" }) {
-            return integer.hasPrefix("-") ? "> -0.00000001" : "< 0.00000001"
+            let negative = integer.hasPrefix("-") || sign == "−" || sign == "-"
+            let bound = (integer.hasPrefix("-") ? "-" : "") + "0.00000001"
+            return comparison(sign + bound, negative: negative)
         }
-        return integer + (fraction.isEmpty ? "" : "." + String(fraction))
+        return sign + integer + (fraction.isEmpty ? "" : "." + String(fraction))
+    }
+
+    private static func comparison(_ operand: String, negative: Bool) -> String {
+        // The operator has a mathematical direction, independent of the UI or
+        // the operand's localized minus sign and digits. Display controls only.
+        "\u{2066}\(negative ? ">" : "<") \u{2068}\(operand)\u{2069}\u{2069}"
     }
 
     private func displayAmount(_ amount: Decimal?) -> Decimal {

@@ -2,7 +2,7 @@
 
 A native multichain wallet for iPhone and iPad.
 
-**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization, restored-wallet compatibility, home-screen typography, tiny-balance comparisons and refresh feedback in right-to-left languages. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
+**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization, restored-wallet compatibility, home-screen typography, tiny-amount comparisons and right-to-left wallet and transaction presentation. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
 
 [Published security review and remaining scope](https://github.com/OathWallet/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
 
@@ -24,6 +24,8 @@ A native multichain wallet for iPhone and iPad.
 - Improves optional token artwork, native status-bar handling and expected authentication-error classification.
 - Refresh completion symbols follow the app’s selected language direction, including when it differs from the device language.
 - Tiny fiat balances and fees preserve the mathematical meaning of their comparison signs in both left-to-right and right-to-left text.
+- Tiny native balances, signed transaction amounts and below-cent send previews also preserve their comparison signs in right-to-left text, without changing editable amounts or signing.
+- Wallet setup, settings, history and WalletConnect review use directional symbols and layout while keeping addresses and raw transaction data left-to-right.
 
 Cronos infrastructure is included for compatibility testing but remains disabled in the app. It is not advertised as an enabled network.
 

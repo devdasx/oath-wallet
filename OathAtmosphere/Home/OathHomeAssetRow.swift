@@ -12,6 +12,7 @@ struct OathHomeAssetRow: View, Equatable {
     }
     @ScaledMetric(relativeTo: .caption2) private var badgeSize = 18.0
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
 
     nonisolated static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.chain == rhs.chain && lhs.presentation == rhs.presentation &&
@@ -42,7 +43,7 @@ struct OathHomeAssetRow: View, Equatable {
                             .padding(.horizontal, 4)
                             .frame(minWidth: badgeSize, minHeight: badgeSize)
                             .background(.red, in: Capsule())
-                            .offset(x: 5, y: -5)
+                            .offset(x: layoutDirection == .rightToLeft ? -5 : 5, y: -5)
                             .accessibilityHidden(true)
                     }
                 }

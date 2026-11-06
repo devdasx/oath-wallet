@@ -949,7 +949,7 @@ struct OathSendReviewPage: View {
         }
         // Keep one Image identity across states so SF Symbols can replace the
         // whole symbol instead of removing/reinserting it with the text blur.
-        return Image(systemName: symbol)
+        return Image(systemName: symbol).flipsForRightToLeftLayoutDirection(outcome == .submitted || outcome == .confirmed)
             .font(.system(size: 64))
             .foregroundStyle(color)
             .contentTransition(reduceMotion ? .identity : .symbolEffect(.replace.downUp.wholeSymbol, options: .nonRepeating))

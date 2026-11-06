@@ -294,6 +294,7 @@ struct OathActivityRows: View {
 private struct OathActivityAssetIcon: View {
     let item: ChainHistoryItem
     let size: CGFloat
+    @Environment(\.layoutDirection) private var layoutDirection
     private var pending: Bool { item.entry.state == "pending" || item.entry.state == "reorged" }
     private var color: Color {
         switch item.entry.state {
@@ -318,7 +319,7 @@ private struct OathActivityAssetIcon: View {
                 .frame(width: size * 0.46, height: size * 0.46)
                 .background(Color(uiColor: OathSurfaceColors.groupedCanvas), in: Circle())
                 .overlay(Circle().strokeBorder(Color.primary.opacity(0.12), lineWidth: 0.5))
-                .offset(x: size * 0.05, y: size * 0.05)
+                .offset(x: size * (layoutDirection == .rightToLeft ? -0.05 : 0.05), y: size * 0.05)
         }
         .accessibilityHidden(true)
     }
@@ -333,6 +334,7 @@ private struct OathHistorySwapRow: View {
     let balancesHidden: Bool
     let showsSeparator: Bool
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
         if let output = item.outputHolding, let received = item.receivedAtomic {
@@ -357,7 +359,7 @@ private struct OathHistorySwapRow: View {
                             .frame(width: size * 0.46, height: size * 0.46)
                             .background(Color(uiColor: OathSurfaceColors.groupedCanvas), in: Circle())
                             .overlay(Circle().strokeBorder(Color.primary.opacity(0.12), lineWidth: 0.5))
-                            .offset(x: size * 0.05, y: size * 0.05)
+                            .offset(x: size * (layoutDirection == .rightToLeft ? -0.05 : 0.05), y: size * 0.05)
                     }
             }
         }
@@ -375,7 +377,7 @@ private struct OathHistorySwapTitle: View {
             Text(strings.text(item.bridgeProtocol == nil ? .historySwap : .historyBridge))
             badge(item.holding.networkID)
             Text(strings.invariant(item.holding.symbol))
-            Image(systemName: "arrow.right").imageScale(.small).accessibilityHidden(true)
+            Image(systemName: "arrow.forward").imageScale(.small).accessibilityHidden(true)
             badge(output.networkID)
             Text(strings.invariant(output.symbol))
         }
@@ -404,7 +406,7 @@ struct OathHistorySwapSummary: View {
                     Text(strings.text(item.bridgeProtocol == nil ? .historySwap : .historyBridge))
                     badge(item.holding.networkID)
                     Text(strings.invariant(item.holding.symbol))
-                    Image(systemName: "arrow.right").font(.caption)
+                    Image(systemName: "arrow.forward").font(.caption)
                     badge(output.networkID)
                     Text(strings.invariant(output.symbol))
                 }
@@ -412,7 +414,7 @@ struct OathHistorySwapSummary: View {
                 .lineLimit(1).minimumScaleFactor(0.7)
                 HStack(spacing: 12) {
                     leg(item.holding, atomic: item.entry.amountAtomic, direction: "outgoing")
-                    Image(systemName: "arrow.right").foregroundStyle(.secondary)
+                    Image(systemName: "arrow.forward").foregroundStyle(.secondary)
                         .accessibilityHidden(true)
                     leg(output, atomic: received, direction: "incoming")
                 }
