@@ -24,6 +24,7 @@ struct OathRefinedListRow<Icon: View>: View {
     let title: String
     let subtitle: String
     let value: String
+    var primaryFontWeight: Font.Weight = .semibold
     var detail: String? = nil
     var showsSeparator = false
     var concealsAmounts = false
@@ -113,7 +114,7 @@ struct OathRefinedListRow<Icon: View>: View {
                 if let customTitle { customTitle }
                 else { Text(verbatim: title) }
             }
-            .oathFont(.callout, weight: .semibold)
+            .oathFont(.callout, weight: primaryFontWeight)
             .foregroundStyle(.primary)
             .truncationMode(.tail)
             if let assetNetworkName {
@@ -157,7 +158,7 @@ struct OathRefinedListRow<Icon: View>: View {
                 titleLabel
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(verbatim: value)
-                    .oathFont(.body, weight: .semibold)
+                    .oathFont(.body, weight: primaryFontWeight)
                     .foregroundStyle(.primary)
                     .monospacedDigit()
                     .oathBalanceConcealed(concealsAmounts)
@@ -189,7 +190,7 @@ struct OathRefinedListRow<Icon: View>: View {
     private func amounts(alignment: HorizontalAlignment) -> some View {
         VStack(alignment: alignment, spacing: 5) {
             Text(verbatim: value)
-                .oathFont(.body, weight: .semibold)
+                .oathFont(.body, weight: primaryFontWeight)
                 .foregroundStyle(.primary)
             if let detail {
                 Text(verbatim: detail)

@@ -2,7 +2,7 @@
 
 A native multichain wallet for iPhone and iPad.
 
-**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization and restored-wallet compatibility. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
+**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization, restored-wallet compatibility and home-screen typography. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
 
 [Published security review and remaining scope](https://github.com/OathWallet/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
 

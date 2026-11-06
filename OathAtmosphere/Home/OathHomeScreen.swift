@@ -740,7 +740,7 @@ struct OathHomeScreen: View {
                             .fixedSize(horizontal: false, vertical: true)
                             .accessibilityIdentifier("home.balanceTitle")
                         Text(totalBalance)
-                            .font(.system(size: 58, weight: .semibold, design: .rounded))
+                            .font(.system(size: 58, weight: .semibold, design: .default))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                             .monospacedDigit()

@@ -24,6 +24,7 @@ struct OathHomeAssetRow: View, Equatable {
             title: strings.invariant(isSearchResult ? presentation.holding.symbol : presentation.holding.name),
             subtitle: strings.invariant(isSearchResult ? presentation.holding.name : presentation.nativeSummary),
             value: presentation.fiat,
+            primaryFontWeight: .medium,
             detail: isSearchResult ? strings.invariant(presentation.nativeSummary) : nil,
             showsSeparator: showsSeparator,
             concealsAmounts: balancesHidden,
