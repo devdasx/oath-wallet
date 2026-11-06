@@ -93,6 +93,10 @@ console.log(`Verified all three site identities, rating markup, ${decisionGuides
 for(const path of ['/assets/home-preview/wallet-motion.js','/assets/home-preview/cobalt.webp','/Oath App Home.dc.html']){
  const response=await fetch('https://oathwallet.org'+encodeURI(path),{signal:AbortSignal.timeout(20000)});
  assert.equal(response.status,200,path);
- assert.equal(createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex'),createHash('sha256').update(await readFile(new URL('../public'+path,import.meta.url))).digest('hex'),path+' differs from the deployed commit');
+ let expected=await readFile(new URL('../public'+path,import.meta.url));
+ // The public Worker appends these shared scripts to every successful HTML head.
+ // Compare the exact served representation, including that deliberate transform.
+ if(path.endsWith('.html')) expected=Buffer.from(expected.toString().replace('</head>','<script src="/visitor-events.js" defer></script><link rel="stylesheet" href="/newsletter.css"><script src="/newsletter.js" defer></script></head>'));
+ assert.equal(createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex'),createHash('sha256').update(expected).digest('hex'),path+' differs from the deployed commit');
 }
 console.log('Verified the published homepage artwork and bounded animation renderer.');

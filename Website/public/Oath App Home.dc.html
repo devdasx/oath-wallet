@@ -11,7 +11,7 @@
 <script type="text/x-dc" data-dc-script data-props="{}">
 class Component extends DCLogic {
 state = {s:1}; box = React.createRef(); silk = React.createRef();
-componentDidMount(){const el=this.box.current;if(!el)return;const fit=()=>{if(el.clientWidth)this.setState({s:el.clientWidth/440});};this._ro=new ResizeObserver(fit);this._ro.observe(el);fit();import('/assets/home-preview/wallet-motion.js?v=20261106-adaptive').then(({mountWalletMotion})=>{if(!this._disposed && this.silk.current)this._motion=mountWalletMotion(this.silk.current);}).catch(()=>{/* Bundled Cobalt artwork remains visible if motion cannot load. */});}
+componentDidMount(){const el=this.box.current;if(!el)return;const fit=()=>{if(el.clientWidth)this.setState({s:el.clientWidth/440});};this._ro=new ResizeObserver(fit);this._ro.observe(el);fit();import('/assets/home-preview/wallet-motion.js?v=20261106-bounded').then(({mountWalletMotion})=>{if(!this._disposed && this.silk.current)this._motion=mountWalletMotion(this.silk.current);}).catch(()=>{/* Bundled Cobalt artwork remains visible if motion cannot load. */});}
 componentWillUnmount(){this._disposed=true;this._motion?.();this._ro?.disconnect();}
 renderVals(){return {box:this.box,silk:this.silk,scale:`scale(${this.state.s})`,assets:[
 {icon:'/assets/home-preview/bitcoin.png',name:'Bitcoin',qty:'10 BTC',val:'$900,000.00'},
