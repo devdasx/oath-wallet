@@ -61,7 +61,7 @@ struct OathWCBitcoinCompletion: View {
     var body: some View {
         OathWCResultContent(identity: identity) {
             VStack(spacing: 18) {
-                Image(systemName: confirmed ? "checkmark.circle" : "clock").flipsForRightToLeftLayoutDirection(confirmed)
+                Image(systemName: confirmed ? "checkmark.circle" : "clock")
                     .font(.system(size: 52)).foregroundStyle(OathOnboardingColors.blue)
                 Text(strings.text(confirmed ? .wcTransactionConfirmed : checking ? .sendChecking : .wcTransactionPending))
                     .oathFont(.title2, weight: .semibold)

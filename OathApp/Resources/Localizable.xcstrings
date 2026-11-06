@@ -39252,349 +39252,696 @@
         }
       }
     },
+    "asset.price_untracked_detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "am" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ለዚህ ንብረት የምንከታተለው ዋጋ የለም። ቆይተው እንደገና ይሞክሩ ወይም ለማደስ ወደ ታች ይሳቡ። አንዳንድ ንብረቶች የዋጋ መረጃ ላይኖራቸው ይችላል።"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا يتوفر لدينا سعر متتبّع لهذا الأصل. حاول لاحقًا أو اسحب للأسفل للتحديث. قد لا تتوفر بيانات أسعار لبعض الأصول."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "এই সম্পদের মূল্য আমরা ট্র্যাক করছি না। পরে আবার চেষ্টা করুন অথবা রিফ্রেশ করতে নিচের দিকে টানুন। কিছু সম্পদের মূল্যের তথ্য নাও থাকতে পারে।"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pro toto aktivum nemáme sledovanou cenu. Zkuste to později nebo obnovte data tažením dolů. U některých aktiv nemusí být cenová data k dispozici."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi har ingen sporet pris for dette aktiv. Prøv igen senere, eller træk ned for at opdatere. Nogle aktiver har muligvis ingen prisdata."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für diesen Vermögenswert erfassen wir keinen Preis. Versuche es später erneut oder ziehe zum Aktualisieren nach unten. Für manche Vermögenswerte sind möglicherweise keine Preisdaten verfügbar."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν έχουμε καταγεγραμμένη τιμή για αυτό το περιουσιακό στοιχείο. Δοκιμάστε ξανά αργότερα ή σύρετε προς τα κάτω για ανανέωση. Ορισμένα περιουσιακά στοιχεία ενδέχεται να μην έχουν δεδομένα τιμών."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We don’t have a tracked price for this asset. Try again later or pull down to refresh. Some assets may not have price data."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tenemos un precio registrado para este activo. Inténtalo de nuevo más tarde o desliza hacia abajo para actualizar. Algunos activos pueden no tener datos de precios."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قیمت این دارایی را پیگیری نمی‌کنیم. بعداً دوباره تلاش کنید یا برای تازه‌سازی، صفحه را به پایین بکشید. ممکن است برخی دارایی‌ها داده‌های قیمت نداشته باشند."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tämän omaisuuserän hintaa ei seurata. Yritä myöhemmin uudelleen tai päivitä vetämällä alaspäin. Kaikille omaisuuserille ei välttämättä ole hintatietoja."
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wala kaming sinusubaybayang presyo para sa asset na ito. Subukan ulit mamaya o hilahin pababa para i-refresh. Maaaring walang datos ng presyo ang ilang asset."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous ne suivons pas le prix de cet actif. Réessayez plus tard ou faites glisser vers le bas pour actualiser. Certains actifs peuvent ne pas disposer de données de prix."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "અમે આ સંપત્તિની કિંમત ટ્રૅક કરી રહ્યા નથી. થોડી વાર પછી ફરી પ્રયાસ કરો અથવા રિફ્રેશ કરવા નીચે ખેંચો. કેટલીક સંપત્તિઓ માટે કિંમતનો ડેટા ઉપલબ્ધ ન હોઈ શકે."
+          }
+        },
+        "ha" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ba mu da farashin da ake bi na wannan kadara. A sake gwadawa daga baya ko a ja ƙasa don sabuntawa. Wasu kadarori na iya rashin bayanan farashi."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אין לנו מחיר במעקב עבור הנכס הזה. אפשר לנסות שוב מאוחר יותר או למשוך למטה כדי לרענן. ייתכן שלחלק מהנכסים אין נתוני מחיר."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हम इस एसेट की कीमत ट्रैक नहीं कर रहे हैं। बाद में फिर कोशिश करें या रीफ़्रेश करने के लिए नीचे खींचें। कुछ एसेट के लिए कीमत का डेटा उपलब्ध नहीं हो सकता।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za ovu imovinu nemamo praćenu cijenu. Pokušajte ponovno kasnije ili povucite prema dolje za osvježavanje. Za neku imovinu podaci o cijeni možda nisu dostupni."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ehhez az eszközhöz nincs követett árunk. Próbálja újra később, vagy húzza lefelé a frissítéshez. Egyes eszközökhöz nem feltétlenül érhetők el áradatok."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kami tidak memiliki harga yang dilacak untuk aset ini. Coba lagi nanti atau tarik ke bawah untuk menyegarkan. Beberapa aset mungkin tidak memiliki data harga."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non monitoriamo il prezzo di questa risorsa. Riprova più tardi o trascina verso il basso per aggiornare. Alcune risorse potrebbero non avere dati sui prezzi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この資産の価格は追跡されていません。しばらくしてからもう一度試すか、下に引っ張って更新してください。一部の資産には価格データがない場合があります。"
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ამ აქტივის ფასს არ ვაკონტროლებთ. სცადეთ მოგვიანებით ან განახლებისთვის ჩამოწიეთ ეკრანი. ზოგიერთი აქტივის ფასის მონაცემები შესაძლოა არ არსებობდეს."
+          }
+        },
+        "km" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "យើងមិនមានតម្លៃដែលកំពុងតាមដានសម្រាប់ទ្រព្យសកម្មនេះទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ ឬអូសចុះក្រោមដើម្បីធ្វើបច្ចុប្បន្នភាព។ ទ្រព្យសកម្មមួយចំនួនអាចមិនមានទិន្នន័យតម្លៃ។"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಈ ಆಸ್ತಿಯ ಬೆಲೆಯನ್ನು ನಾವು ಟ್ರ್ಯಾಕ್ ಮಾಡುತ್ತಿಲ್ಲ. ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ ಅಥವಾ ರಿಫ್ರೆಶ್ ಮಾಡಲು ಕೆಳಕ್ಕೆ ಎಳೆಯಿರಿ. ಕೆಲವು ಆಸ್ತಿಗಳಿಗೆ ಬೆಲೆ ಮಾಹಿತಿ ಇಲ್ಲದಿರಬಹುದು."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 자산의 가격을 추적하고 있지 않습니다. 나중에 다시 시도하거나 아래로 당겨 새로고침하세요. 일부 자산은 가격 데이터가 없을 수 있습니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ഈ ആസ്തിയുടെ വില ഞങ്ങൾ ട്രാക്ക് ചെയ്യുന്നില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ പുതുക്കാൻ താഴേക്ക് വലിക്കുക. ചില ആസ്തികൾക്ക് വില വിവരങ്ങൾ ലഭ്യമാകണമെന്നില്ല."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आम्ही या मालमत्तेची किंमत ट्रॅक करत नाही. नंतर पुन्हा प्रयत्न करा किंवा रिफ्रेश करण्यासाठी खाली खेचा. काही मालमत्तांसाठी किमतीचा डेटा उपलब्ध नसेल."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kami tidak mempunyai harga yang dijejaki untuk aset ini. Cuba lagi kemudian atau tarik ke bawah untuk memuat semula. Sesetengah aset mungkin tiada data harga."
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ဤပိုင်ဆိုင်မှုအတွက် စောင့်ကြည့်ထားသော ဈေးနှုန်း မရှိပါ။ နောက်မှ ပြန်စမ်းကြည့်ပါ သို့မဟုတ် ပြန်လည်မွမ်းမံရန် အောက်သို့ ဆွဲချပါ။ ပိုင်ဆိုင်မှုအချို့အတွက် ဈေးနှုန်းဒေတာ မရှိနိုင်ပါ။"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi har ingen sporet pris for denne eiendelen. Prøv igjen senere, eller trekk ned for å oppdatere. Noen eiendeler har kanskje ikke prisdata."
+          }
+        },
+        "ne" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "हामीले यस सम्पत्तिको मूल्य ट्र्याक गरेका छैनौँ। पछि फेरि प्रयास गर्नुहोस् वा रिफ्रेस गर्न तल तान्नुहोस्। केही सम्पत्तिका मूल्यसम्बन्धी डेटा नहुन सक्छन्।"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We volgen geen prijs voor dit activum. Probeer het later opnieuw of trek omlaag om te vernieuwen. Voor sommige activa zijn mogelijk geen prijsgegevens beschikbaar."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଆମେ ଏହି ସମ୍ପତ୍ତିର ମୂଲ୍ୟ ଟ୍ରାକ୍ କରୁନାହୁଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ରିଫ୍ରେଶ୍ କରିବାକୁ ତଳକୁ ଟାଣନ୍ତୁ। କିଛି ସମ୍ପତ୍ତି ପାଇଁ ମୂଲ୍ୟ ତଥ୍ୟ ନଥାଇପାରେ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਅਸੀਂ ਇਸ ਸੰਪਤੀ ਦੀ ਕੀਮਤ ਟ੍ਰੈਕ ਨਹੀਂ ਕਰ ਰਹੇ। ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜਾਂ ਰਿਫ੍ਰੈਸ਼ ਕਰਨ ਲਈ ਹੇਠਾਂ ਖਿੱਚੋ। ਕੁਝ ਸੰਪਤੀਆਂ ਲਈ ਕੀਮਤ ਦਾ ਡਾਟਾ ਨਹੀਂ ਵੀ ਹੋ ਸਕਦਾ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie śledzimy ceny tego aktywa. Spróbuj ponownie później lub przeciągnij w dół, aby odświeżyć. Niektóre aktywa mogą nie mieć danych cenowych."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não temos um preço monitorado para este ativo. Tente novamente mais tarde ou puxe para baixo para atualizar. Alguns ativos podem não ter dados de preço."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não temos um preço monitorizado para este ativo. Tente novamente mais tarde ou puxe para baixo para atualizar. Alguns ativos podem não ter dados de preço."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nu avem un preț monitorizat pentru acest activ. Încearcă din nou mai târziu sau trage în jos pentru a reîmprospăta. Este posibil ca unele active să nu aibă date despre preț."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мы не отслеживаем цену этого актива. Попробуйте позже или потяните вниз для обновления. Для некоторых активов данные о цене могут отсутствовать."
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسان وٽ هن اثاثي جي ٽريڪ ٿيندڙ قيمت ناهي. ڪجهه دير کان پوءِ ٻيهر ڪوشش ڪريو يا تازو ڪرڻ لاءِ هيٺ ڇڪيو. ڪجهه اثاثن لاءِ قيمت جي ڊيٽا موجود نه ٿي سگهي."
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "මෙම වත්කම සඳහා අප නිරීක්ෂණය කරන මිලක් නැත. පසුව නැවත උත්සාහ කරන්න හෝ නැවුම් කිරීමට පහළට අදින්න. සමහර වත්කම් සඳහා මිල දත්ත නොතිබිය හැක."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pre toto aktívum nemáme sledovanú cenu. Skúste to neskôr alebo potiahnite nadol na obnovenie. Niektoré aktíva nemusia mať cenové údaje."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za to sredstvo nimamo spremljane cene. Poskusite znova pozneje ali povlecite navzdol za osvežitev. Nekatera sredstva morda nimajo podatkov o ceni."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi har inget bevakat pris för den här tillgången. Försök igen senare eller dra nedåt för att uppdatera. Vissa tillgångar kanske saknar prisdata."
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hatuna bei inayofuatiliwa ya mali hii. Jaribu tena baadaye au vuta chini ili kuonyesha upya. Baadhi ya mali huenda zisiwe na data ya bei."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இந்தச் சொத்தின் விலையை நாங்கள் கண்காணிக்கவில்லை. பிறகு மீண்டும் முயற்சிக்கவும் அல்லது புதுப்பிக்கக் கீழே இழுக்கவும். சில சொத்துகளுக்கு விலைத் தரவு இல்லாமல் இருக்கலாம்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "మేము ఈ ఆస్తి ధరను ట్రాక్ చేయడం లేదు. తర్వాత మళ్లీ ప్రయత్నించండి లేదా రిఫ్రెష్ చేయడానికి కిందికి లాగండి. కొన్ని ఆస్తులకు ధర సమాచారం లేకపోవచ్చు."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เราไม่มีราคาที่ติดตามสำหรับสินทรัพย์นี้ ลองอีกครั้งในภายหลังหรือดึงลงเพื่อรีเฟรช สินทรัพย์บางรายการอาจไม่มีข้อมูลราคา"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu varlık için takip edilen bir fiyatımız yok. Daha sonra tekrar deneyin veya yenilemek için aşağı çekin. Bazı varlıklar için fiyat verisi bulunmayabilir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ми не відстежуємо ціну цього активу. Спробуйте пізніше або потягніть униз для оновлення. Для деяких активів дані про ціну можуть бути відсутні."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ہم اس اثاثے کی قیمت ٹریک نہیں کر رہے۔ کچھ دیر بعد دوبارہ کوشش کریں یا تازہ کرنے کے لیے نیچے کھینچیں۔ بعض اثاثوں کی قیمت کا ڈیٹا موجود نہیں ہو سکتا۔"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu aktiv uchun kuzatilayotgan narx yo‘q. Keyinroq qayta urinib ko‘ring yoki yangilash uchun pastga torting. Ayrim aktivlarda narx ma’lumotlari bo‘lmasligi mumkin."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúng tôi chưa theo dõi giá của tài sản này. Hãy thử lại sau hoặc kéo xuống để làm mới. Một số tài sản có thể không có dữ liệu giá."
+          }
+        },
+        "yo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kò ní iye owó tí a ń tọpa fún ohun ìní yìí. Gbìyànjú lẹ́ẹ̀kan sí i nígbà tó bá yá tàbí fà sílẹ̀ láti sọ dọ̀tun. Àwọn ohun ìní kan lè má ní dátà iye owó."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们尚未追踪此资产的价格。请稍后重试或下拉刷新。部分资产可能没有价格数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我們尚未追蹤此資產的價格。請稍後再試或下拉重新整理。部分資產可能沒有價格資料。"
+          }
+        }
+      }
+    },
     "asset.price_unavailable" : {
       "extractionState" : "manual",
       "localizations" : {
         "am" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ዋጋ አይገኝም"
+            "value" : "ዋጋው አይከታተልም"
           }
         },
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "السعر غير متاح"
+            "value" : "السعر غير متتبّع"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "মূল্য পাওয়া যাচ্ছে না"
+            "value" : "মূল্য ট্র্যাক করা হচ্ছে না"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cena není dostupná"
+            "value" : "Cena se nesleduje"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pris ikke tilgængelig"
+            "value" : "Prisen spores ikke"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preis nicht verfügbar"
+            "value" : "Preis wird nicht erfasst"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Η τιμή δεν είναι διαθέσιμη"
+            "value" : "Η τιμή δεν παρακολουθείται"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Price unavailable"
+            "value" : "Price Untracked"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Precio no disponible"
+            "value" : "Precio sin seguimiento"
           }
         },
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "قیمت در دسترس نیست"
+            "value" : "قیمت پیگیری نمی‌شود"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hintaa ei saatavilla"
+            "value" : "Hintaa ei seurata"
           }
         },
         "fil" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hindi available ang presyo"
+            "value" : "Hindi sinusubaybayan ang presyo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cours indisponible"
+            "value" : "Prix non suivi"
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ભાવ ઉપલબ્ધ નથી"
+            "value" : "કિંમત ટ્રૅક થતી નથી"
           }
         },
         "ha" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Farashi ba ya samuwa"
+            "value" : "Ba a bibiyar farashi"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "המחיר אינו זמין"
+            "value" : "המחיר אינו במעקב"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "मूल्य उपलब्ध नहीं"
+            "value" : "कीमत ट्रैक नहीं की जा रही"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cijena nije dostupna"
+            "value" : "Cijena se ne prati"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Az ár nem érhető el"
+            "value" : "Az ár nincs követve"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Harga tidak tersedia"
+            "value" : "Harga tidak dilacak"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prezzo non disponibile"
+            "value" : "Prezzo non monitorato"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "価格を取得できません"
+            "value" : "価格未追跡"
           }
         },
         "ka" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ფასი მიუწვდომელია"
+            "value" : "ფასი არ კონტროლდება"
           }
         },
         "km" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "មិនមានតម្លៃ"
+            "value" : "មិនមានការតាមដានតម្លៃ"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಬೆಲೆ ಲಭ್ಯವಿಲ್ಲ"
+            "value" : "ಬೆಲೆಯನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಲಾಗುತ್ತಿಲ್ಲ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "가격 정보 없음"
+            "value" : "가격 추적 안 됨"
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "വില ലഭ്യമല്ല"
+            "value" : "വില ട്രാക്ക് ചെയ്യുന്നില്ല"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "किंमत उपलब्ध नाही"
+            "value" : "किंमत ट्रॅक केली जात नाही"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Harga tidak tersedia"
+            "value" : "Harga tidak dijejaki"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ဈေးနှုန်း မရနိုင်ပါ"
+            "value" : "ဈေးနှုန်းကို မစောင့်ကြည့်ထားပါ"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pris ikke tilgjengelig"
+            "value" : "Prisen spores ikke"
           }
         },
         "ne" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "मूल्य उपलब्ध छैन"
+            "value" : "मूल्य ट्र्याक गरिएको छैन"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prijs niet beschikbaar"
+            "value" : "Prijs wordt niet gevolgd"
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଦର ଉପଲବ୍ଧ ନାହିଁ"
+            "value" : "ମୂଲ୍ୟ ଟ୍ରାକ୍ ହେଉନାହିଁ"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਕੀਮਤ ਉਪਲਬਧ ਨਹੀਂ"
+            "value" : "ਕੀਮਤ ਟ੍ਰੈਕ ਨਹੀਂ ਕੀਤੀ ਜਾ ਰਹੀ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cena niedostępna"
+            "value" : "Cena nie jest śledzona"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preço indisponível"
+            "value" : "Preço não monitorado"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preço indisponível"
+            "value" : "Preço não monitorizado"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Preț indisponibil"
+            "value" : "Preț nemonitorizat"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Цена недоступна"
+            "value" : "Цена не отслеживается"
           }
         },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "قيمت موجود ناهي"
+            "value" : "قيمت ٽريڪ نٿي ٿئي"
           }
         },
         "si" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "මිල නොමැත"
+            "value" : "මිල නිරීක්ෂණය නොකෙරේ"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cena nie je dostupná"
+            "value" : "Cena sa nesleduje"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cena ni na voljo"
+            "value" : "Cena se ne spremlja"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pris saknas"
+            "value" : "Priset följs inte"
           }
         },
         "sw" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bei haipatikani"
+            "value" : "Bei haifuatiliwi"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "விலை கிடைக்கவில்லை"
+            "value" : "விலை கண்காணிக்கப்படவில்லை"
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ధర అందుబాటులో లేదు"
+            "value" : "ధరను ట్రాక్ చేయడం లేదు"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่มีข้อมูลราคา"
+            "value" : "ไม่ได้ติดตามราคา"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fiyat kullanılamıyor"
+            "value" : "Fiyat takip edilmiyor"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ціна недоступна"
+            "value" : "Ціна не відстежується"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "قیمت دستیاب نہیں"
+            "value" : "قیمت ٹریک نہیں ہو رہی"
           }
         },
         "uz" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Narx mavjud emas"
+            "value" : "Narx kuzatilmayapti"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chưa có giá"
+            "value" : "Giá chưa được theo dõi"
           }
         },
         "yo" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iye kò sí"
+            "value" : "A kò ń tọpa iye owó"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "价格不可用"
+            "value" : "价格未追踪"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法取得價格"
+            "value" : "價格未追蹤"
           }
         }
       }

@@ -132,7 +132,7 @@ struct OathWCStatePage: View {
         VStack(spacing: 22) {
             if isWorking { ProgressView().controlSize(.large).tint(OathOnboardingColors.blue) }
             else {
-                Image(systemName: symbol).flipsForRightToLeftLayoutDirection(symbol.hasPrefix("checkmark")).font(.system(size: 56, weight: .regular))
+                Image(systemName: symbol).font(.system(size: 56, weight: .regular))
                     .foregroundStyle(isError ? Color.red : OathOnboardingColors.blue).accessibilityHidden(true)
             }
             Text(strings.text(title)).oathFont(.title2, weight: .semibold)

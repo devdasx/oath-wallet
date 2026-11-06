@@ -47,7 +47,7 @@ for path in paths:
         # in one boundary; its parent screen retains model and draft state.
         # A full language identity (for example localized Help catalog content)
         # also recreates the collection whenever its direction changes.
-        if not re.match(r'\s*\.id\(strings\.language\.(?:isRightToLeft|rawValue)\)', code[end:]):
+        if not re.match(r'\s*(?:\.id\(profile\?\.id\)\s*)?\.id\(strings\.language\.(?:isRightToLeft|rawValue)\)', code[end:]):
             failures.append(f"{path.relative_to(root)}:{source[:match.start()].count(chr(10)) + 1}")
 if failures:
     sys.exit("Native collections missing their direction boundary:\n" + "\n".join(failures))

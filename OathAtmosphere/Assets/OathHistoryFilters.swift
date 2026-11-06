@@ -270,7 +270,7 @@ struct OathHistoryFilterSheet: View {
                     if selected { selection.wrappedValue.remove(value) } else { selection.wrappedValue.insert(value) }
                 } label: {
                     HStack(spacing: 8) {
-                        Image(systemName: selected ? "checkmark.circle.fill" : "circle").flipsForRightToLeftLayoutDirection(selected)
+                        Image(systemName: selected ? "checkmark.circle.fill" : "circle")
                             .foregroundStyle(selected ? OathOnboardingColors.blue : Color(uiColor: .label))
                         Text(title(value)).multilineTextAlignment(.leading)
                         Spacer(minLength: 0)

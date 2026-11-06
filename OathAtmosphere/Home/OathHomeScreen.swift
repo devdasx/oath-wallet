@@ -77,12 +77,14 @@ struct OathHomeScreen: View {
         case backup(UUID, WalletBackupOffer)
         case multisig(UUID, [PublicMultisigEvidence])
         case stablecoin(UUID, [StablecoinRestrictionToken])
+        case priceUntracked
         var id: String {
             switch self {
             case .wallets: "wallets"
             case .send: "send"
             case .receive: "receive"
             case .assetFilters: "assetFilters"
+            case .priceUntracked: "priceUntracked"
             case .xrplMultisigSetup: "xrplMultisigSetup"
             case .stellarMultisigSetup: "stellarMultisigSetup"
             case .evmMultisigSetup: "evmMultisigSetup"
@@ -398,6 +400,10 @@ struct OathHomeScreen: View {
                         try await session.saveAssetFilters(selection, walletID: walletID)
                     }
                 case .address(let address): OathReceiveSheet(address: address, session: session)
+                case .priceUntracked:
+                    OathWalletInfoSheet(title: .assetPriceUnavailable, icon: "exclamationmark.circle",
+                                        detail: .assetPriceUntrackedDetail)
+                        .accessibilityIdentifier("asset.priceUntracked.sheet")
                 }
             }
             .oathLanguage(strings.language)
@@ -655,8 +661,11 @@ struct OathHomeScreen: View {
                     Color.clear.frame(height: 20)
                 }
             }
-            // Renew native cells and refresh together; preserve the screen's
-            // wallet, navigation, search and filter state above this boundary.
+            // A different wallet starts at its balance header, including when
+            // creation replaces the wallet under the switcher/customization.
+            // The backup offer's appearance gate then runs above the new list.
+            // Same-wallet balance updates keep the user's scroll position.
+            .id(profile?.id)
             .id(strings.language.isRightToLeft)
             .modifier(OathHomeScrollEdgeAppearance())
             .modifier(OathHeaderScrollBackground {
@@ -907,6 +916,7 @@ struct OathHomeScreen: View {
                 }
                 .buttonStyle(OathSettingsRowButtonStyle())
                 .accessibilityIdentifier(item.reference == "native" ? "home.network.\(item.networkID)" : "home.token.\(item.assetID)")
+                .oathUntrackedPriceAction { sheet = .priceUntracked }
                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                     if !searching {
                         OathButton(feedback: nil) {

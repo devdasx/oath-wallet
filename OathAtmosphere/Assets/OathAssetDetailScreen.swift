@@ -25,12 +25,13 @@ struct OathAssetDetailScreen: View {
     @State private var chartExpanded = false
     @State private var chartSelectedDate: Date?
     private enum Sheet: Identifiable {
-        case receive, send, information
+        case receive, send, information, priceUntracked
         var id: String {
             switch self {
             case .receive: "receive"
             case .send: "send"
             case .information: "information"
+            case .priceUntracked: "priceUntracked"
             }
         }
     }
@@ -210,6 +211,10 @@ struct OathAssetDetailScreen: View {
                     startsScannedAmount: scanUsesCurrentAsset && scannedRecipient != nil)
                 case .information:
                     OathAssetInformationSheet(holding: holding, networkName: networkName, currency: currency, model: model)
+                case .priceUntracked:
+                    OathWalletInfoSheet(title: .assetPriceUnavailable, icon: "exclamationmark.circle",
+                                        detail: .assetPriceUntrackedDetail)
+                        .accessibilityIdentifier("asset.priceUntracked.sheet")
                 }
             }.oathLanguage(strings.language)
         }
@@ -313,8 +318,13 @@ struct OathAssetDetailScreen: View {
                     } else if model.quoteLoading && !route.holding.isCatalogPreview {
                         ProgressView().accessibilityLabel(strings.text(.assetMarketLoading))
                     } else {
-                        Text(strings.text(.assetPriceUnavailable)).oathFont(.body).foregroundStyle(.secondary)
-                            .accessibilityIdentifier("asset.priceUnavailable")
+                        OathButton { sheet = .priceUntracked } label: {
+                            Label(strings.text(.assetPriceUnavailable), systemImage: "exclamationmark.circle")
+                                .oathFont(.body).foregroundStyle(.secondary)
+                                .frame(minHeight: 44).contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityIdentifier("asset.priceUntracked")
                     }
                 }
                 Spacer(minLength: 4)

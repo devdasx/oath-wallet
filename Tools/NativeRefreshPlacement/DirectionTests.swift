@@ -7,11 +7,31 @@ import OathNativeRefresh
 @MainActor final class DirectionTests: XCTestCase {
     override func setUp() { continueAfterFailure = false }
 
-    func testRingCheckmarkFollowsAppDirectionOnHomeAndAsset() async throws {
+    func testRingCheckmarkKeepsNativeShapeOnHomeAndAsset() async throws {
         for screen in ["home", "asset"] {
             for direction in [LayoutDirection.rightToLeft, .leftToRight] {
                 try await checkResult(screen: screen, direction: direction)
             }
+        }
+    }
+
+    func testSettingsCheckMovesButNeverMirrors() throws {
+        for code in ["en", "ar", "he", "fa", "sd", "ur", "en"] {
+            let rtl = code != "en"
+            let row = OathSettingsRow(title: rtl ? "اليوم" : "Today", accessory: .selection(true))
+                .frame(width: 390, height: 100).background(.white)
+                .environment(\.colorScheme, .light)
+                .environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
+                .environment(\.locale, Locale(identifier: code))
+            let renderer = ImageRenderer(content: row)
+            renderer.scale = 3
+            let image = try XCTUnwrap(renderer.cgImage)
+            let attachment = XCTAttachment(image: UIImage(cgImage: image))
+            attachment.name = "settings-selection-" + code
+            attachment.lifetime = .keepAlways
+            add(attachment)
+            let upperArm = try upperArmPosition(image, blue: true, rightToLeft: rtl)
+            XCTAssertGreaterThan(upperArm, 0.58, "The selection check keeps its native shape in \(code)")
         }
     }
 
@@ -71,16 +91,13 @@ import OathNativeRefresh
         attachment.lifetime = .keepAlways
         add(attachment)
         let upperArm = try upperArmPosition(try XCTUnwrap(image.cgImage))
-        if rtl {
-            XCTAssertLessThan(upperArm, 0.42, "RTL check's long arm must point left on \(screen)")
-        } else {
-            XCTAssertGreaterThan(upperArm, 0.58, "LTR check's long arm must point right on \(screen)")
-        }
+        XCTAssertGreaterThan(upperArm, 0.58,
+            "The universal checkmark keeps its native right-facing long arm in both directions on \(screen)")
     }
 
     /// Independently measure the check's handedness from its rendered white
     /// pixels; don't assert a view property or duplicate the production modifier.
-    private func upperArmPosition(_ image: CGImage) throws -> Double {
+    private func upperArmPosition(_ image: CGImage, blue: Bool = false, rightToLeft: Bool? = nil) throws -> Double {
         let width = image.width, height = image.height
         var pixels = [UInt8](repeating: 0, count: width * height * 4)
         let space = try XCTUnwrap(CGColorSpace(name: CGColorSpace.sRGB))
@@ -96,13 +113,20 @@ import OathNativeRefresh
         for y in 0..<height {
             for x in 0..<width {
                 let offset = (y * width + x) * 4
-                if pixels[offset] > 200 && pixels[offset + 1] > 200 && pixels[offset + 2] > 200 {
+                let matches = blue
+                    ? pixels[offset + 2] > 160 && pixels[offset] < 100 && pixels[offset + 1] < 180
+                    : pixels[offset] > 200 && pixels[offset + 1] > 200 && pixels[offset + 2] > 200
+                if matches {
                     points.append((x, y))
                 }
             }
         }
         XCTAssertGreaterThan(points.count, 50, "The snapshot must contain a visible check")
         let minX = try XCTUnwrap(points.map(\.x).min()), maxX = try XCTUnwrap(points.map(\.x).max())
+        if let rightToLeft {
+            if rightToLeft { XCTAssertLessThan(maxX, width / 2, "RTL selection belongs on the left") }
+            else { XCTAssertGreaterThan(minX, width / 2, "LTR selection belongs on the right") }
+        }
         let minY = try XCTUnwrap(points.map(\.y).min()), maxY = try XCTUnwrap(points.map(\.y).max())
         let upper = points.filter { $0.y < minY + (maxY - minY) / 3 }
         XCTAssertFalse(upper.isEmpty)

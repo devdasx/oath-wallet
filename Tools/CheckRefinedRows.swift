@@ -98,6 +98,33 @@ extension EnvironmentValues {
                 }
             }
         }
-        print("Passed \(checks) production row sizing and visible fiat checks (host fonts; no simulator)")
+        for width: CGFloat in [320, 393, 440] {
+            for rtl in [false, true] {
+                for price in ["$0.62", "Price Untracked", "Preis wird nicht erfasst"] {
+                    let subtitle = AnyView(Label(price, systemImage: "exclamationmark.circle"))
+                    let row = OathRefinedListRow(title: "THORChain", subtitle: price, value: "$84.11",
+                        primaryFontWeight: .medium, detail: "136.18908816 RUNE",
+                        emphasizesBalanceSubtitle: true, customSubtitle: subtitle, emphasizesBalanceDetail: true
+                    ) { size in Color.blue.frame(width: size, height: size) }
+                    .frame(width: width).background(.white)
+                    .environment(\.colorScheme, .light)
+                    .environment(\.layoutDirection, rtl ? .rightToLeft : .leftToRight)
+                    let renderer = ImageRenderer(content: row)
+                    renderer.scale = 3
+                    guard let image = renderer.cgImage else { preconditionFailure("Asset price row failed to render") }
+                    precondition(image.width == Int(width * 3), "Asset price row overflows viewport")
+                    let request = VNRecognizeTextRequest()
+                    request.recognitionLevel = .accurate
+                    request.usesLanguageCorrection = false
+                    try VNImageRequestHandler(cgImage: image).perform([request])
+                    let text = (request.results ?? []).compactMap { $0.topCandidates(1).first?.string }.joined(separator: " ")
+                    precondition(text.contains("84.11") && text.contains("136.18908816") && text.contains("RUNE"),
+                        "Asset balances disappear or truncate: width=\(width), RTL=\(rtl), price=\(price): \(text)")
+                    if price == "Price Untracked" { precondition(text.contains(price), "Untracked action must remain readable") }
+                    checks += 1
+                }
+            }
+        }
+        print("Passed \(checks) production row sizing and visible amount/price checks (host fonts; no simulator)")
     }
 }

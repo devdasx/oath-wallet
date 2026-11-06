@@ -5,12 +5,15 @@ import OathDatabase
 @main struct CheckHomePortfolio {
     static func holding(_ index: Int, amount: String = "123456789", timestamp: Double = 1,
                         network: String = "ethereum", activity: Int = 0, pending: Int = 0,
-                        native: Bool = false, account: String? = nil) throws -> Holding {
-        let json: [String: Any] = ["accountID": account ?? "fixture-" + network, "networkID": network,
+                        native: Bool = false, account: String? = nil, price: String? = "12.5",
+                        rate: String? = "1", priceTimestamp: Double? = nil) throws -> Holding {
+        var json: [String: Any] = ["accountID": account ?? "fixture-" + network, "networkID": network,
             "address": "public-fixture", "assetID": "asset-\(index)", "reference": native ? "native" : "token-\(index)",
             "name": "Token \(index)", "symbol": "T\(index)", "decimals": 8, "amountAtomic": amount,
-            "balanceObservedAt": timestamp, "usdPrice": "12.5", "exchangeRate": "1",
-            "priceObservedAt": timestamp, "priceSource": "fixture", "transactionCount": activity, "pendingTransactionCount": pending]
+            "balanceObservedAt": timestamp,
+            "priceObservedAt": priceTimestamp ?? timestamp, "priceSource": "fixture", "transactionCount": activity, "pendingTransactionCount": pending]
+        json["usdPrice"] = price
+        json["exchangeRate"] = rate
         return try JSONDecoder().decode(Holding.self, from: JSONSerialization.data(withJSONObject: json))
     }
 
@@ -29,6 +32,32 @@ import OathDatabase
     }
 
     @MainActor static func main() async throws {
+        let priceBuilder = OathHomePortfolioBuilder()
+        func quote(_ value: String?, _ time: Double, amount: String = "123456789", rate: String? = "1") throws -> Holding {
+            try holding(1, amount: amount, price: value, rate: rate, priceTimestamp: time)
+        }
+        let saved = try await priceBuilder.build(input([quote("12.5", 1)]))
+        precondition(saved.rows[0].unitPrice == "$12.50")
+        let lower = try await priceBuilder.build(input([quote("12.4", 2)]))
+        precondition(lower.rows[0].unitPrice == "$12.40")
+        let same = try await priceBuilder.build(input([quote("12.4", 3)]))
+        precondition(same.rows == lower.rows && same.formattedRowCount == 0,
+                     "Equal-price observations preserve visible rows and cached formatting")
+        let higher = try await priceBuilder.build(input([quote("12.6", 4)]))
+        precondition(higher.rows[0].unitPrice == "$12.60")
+        let missing = try await priceBuilder.build(input([quote(nil, 5)]))
+        precondition(missing.rows[0].unitPrice == nil)
+        let recovered = try await priceBuilder.build(input([quote("12.5", 6)]))
+        precondition(recovered.rows[0].unitPrice == "$12.50")
+        let noFX = try await priceBuilder.build(input([quote("12.5", 6, rate: nil)]))
+        precondition(noFX.rows[0].unitPrice == nil, "Never label a USD price as another currency")
+        let switchedWallet = try await priceBuilder.build(input([quote("10", 7)], wallet: "different"))
+        precondition(switchedWallet.rows[0].unitPrice == "$10.00")
+        for invalid in [nil, "NaN", "0", "-1"] as [String?] {
+            let result = try await priceBuilder.build(input([quote(invalid, 9)]))
+            precondition(result.rows[0].unitPrice == nil, "Missing/invalid quotes are untracked, never zero-price assets")
+        }
+        print("PASS: unit prices, cached equal quotes, missing/invalid quotes, recovery and wallet changes")
         let treeBuilder = OathHomePortfolioBuilder()
         for network in ["chiliz", "polkadot", "filecoin", "sei", "zerog", "iotex"] {
             let token = try holding(7, network: network)

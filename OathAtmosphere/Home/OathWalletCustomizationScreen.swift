@@ -104,7 +104,7 @@ struct OathWalletCustomizationScreen: View {
                         Circle().fill(color(for: hex))
                             .overlay(Circle().strokeBorder(.white.opacity(colorHex == hex ? 0.9 : 0.25), lineWidth: colorHex == hex ? 2 : 1))
                             .overlay {
-                                if colorHex == hex { Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true).font(.system(size: 20, weight: .semibold)).foregroundStyle(.white) }
+                                if colorHex == hex { Image(systemName: "checkmark").font(.system(size: 20, weight: .semibold)).foregroundStyle(.white) }
                             }
                             .frame(width: 44, height: 44)
                             .padding(2)

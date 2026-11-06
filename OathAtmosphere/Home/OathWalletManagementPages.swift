@@ -421,7 +421,7 @@ struct OathWalletListIcon: View {
         OathWalletSymbol(colorHex: colorHex, size: size)
             .overlay(alignment: .bottomTrailing) {
                 if isActive {
-                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
+                    Image(systemName: "checkmark")
                         .font(.system(size: size * 0.22, weight: .bold))
                         .foregroundStyle(.white)
                         .frame(width: size * 0.44, height: size * 0.44)

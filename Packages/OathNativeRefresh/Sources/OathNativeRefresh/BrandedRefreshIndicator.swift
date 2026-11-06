@@ -18,7 +18,6 @@ struct BrandedRefreshIndicator: View {
         ZStack {
             if phase == .succeeded || phase == .acknowledged {
                 Image(systemName: "checkmark")
-                    .flipsForRightToLeftLayoutDirection(true)
                     .font(.system(size: 28, weight: .semibold))
                     .foregroundStyle(.white)
                     .transition(replacement)

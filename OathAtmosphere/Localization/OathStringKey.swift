@@ -424,6 +424,7 @@ enum OathStringKey: String, CaseIterable, Sendable {
     case assetPrice = "asset.price"
     case assetPriceLabel = "asset.price_label"
     case assetPriceUnavailable = "asset.price_unavailable"
+    case assetPriceUntrackedDetail = "asset.price_untracked_detail"
     case assetMarketLoading = "asset.market_loading"
     case assetChart24h = "asset.chart_24h"
     case assetChartCurrency = "asset.chart_currency"

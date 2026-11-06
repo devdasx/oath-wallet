@@ -13,7 +13,7 @@ struct OathWCXrplCompletion: View {
     var body: some View {
         OathWCResultContent(identity: identity) {
             VStack(spacing: 18) {
-                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock").flipsForRightToLeftLayoutDirection(confirmed)
+                Image(systemName: confirmed ? "checkmark.circle" : failed ? "exclamationmark.circle" : "clock")
                     .font(.system(size: 52)).foregroundStyle(failed ? Color.red : OathOnboardingColors.blue)
                 Text(strings.text(confirmed ? .wcTransactionConfirmed : failed ? .wcTransactionFailed : checking ? .sendChecking : .wcTransactionPending))
                     .oathFont(.title2, weight: .semibold)

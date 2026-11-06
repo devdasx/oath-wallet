@@ -259,7 +259,7 @@ struct OathWalletConnectSheet: View {
                 ScrollView {
                     VStack(spacing: 18) {
                         if service.connectedTopic != nil {
-                            Image(systemName: "checkmark.circle.fill").flipsForRightToLeftLayoutDirection(true).font(.system(size: 52)).foregroundStyle(OathOnboardingColors.blue)
+                            Image(systemName: "checkmark.circle.fill").font(.system(size: 52)).foregroundStyle(OathOnboardingColors.blue)
                             Text(strings.text(.scannerWCConnected)).oathFont(.title2, weight: .semibold)
                             Text(strings.text(.scannerWCConnectedDetail)).oathFont(.subheadline).foregroundStyle(.secondary).multilineTextAlignment(.center)
                         }

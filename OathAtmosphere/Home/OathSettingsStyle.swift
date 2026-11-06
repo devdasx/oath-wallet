@@ -18,10 +18,12 @@ struct OathSettingsIcon: View {
     let symbol: String
     var color: Color = Color(uiColor: .label)
     @ScaledMetric(relativeTo: .body) private var size = 38.0
+    @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
-        Image(systemName: symbol)
-            .flipsForRightToLeftLayoutDirection(symbol == "checkmark.circle" || symbol == "checkmark.circle.fill")
+        // Text-alignment symbols name physical edges and do not automatically
+        // mirror. Choose the matching text edge; universal marks stay native.
+        Image(systemName: symbol == "text.alignleft" && layoutDirection == .rightToLeft ? "text.alignright" : symbol)
             .font(.system(size: size * 0.54, weight: .regular))
             .foregroundStyle(color)
             .frame(width: size, height: size)
@@ -86,7 +88,7 @@ struct OathSettingsRow: View {
                 ProgressView()
             } else {
                 if isSelected {
-                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
+                    Image(systemName: "checkmark")
                         .font(.body.weight(.semibold))
                         .foregroundStyle(OathOnboardingColors.blue)
                         .accessibilityHidden(true)
@@ -98,13 +100,13 @@ struct OathSettingsRow: View {
                         .foregroundStyle(Color(uiColor: .secondaryLabel))
                         .accessibilityHidden(true)
                 case .selection(let selected):
-                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
+                    Image(systemName: "checkmark")
                         .font(.body.weight(.semibold))
                         .foregroundStyle(OathOnboardingColors.blue)
                         .opacity(selected ? 1 : 0)
                         .accessibilityHidden(true)
                 case .completed:
-                    Image(systemName: "checkmark").flipsForRightToLeftLayoutDirection(true)
+                    Image(systemName: "checkmark")
                         .font(.body.weight(.semibold))
                         .foregroundStyle(.green)
                         .accessibilityHidden(true)

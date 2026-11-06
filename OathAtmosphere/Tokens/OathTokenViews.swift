@@ -186,11 +186,14 @@ struct OathTokenSearchResults: View {
                     OathRefinedListRow(title: strings.invariant(token.symbol),
                         subtitle: strings.invariant(token.name),
                         value: String(format.fiat(.unavailable).characters),
+                        primaryFontWeight: .medium,
                         detail: strings.invariant(format.nativeSummary(nil, ticker: token.symbol)),
                         showsSeparator: hasSavedMatches || token.id != model.results.first?.id,
                         concealsAmounts: balancesHidden,
                         titleBadgeAsset: token.network.chain.logoAsset,
-                        assetNetworkName: strings.invariant(token.network.chain.name)) { size in
+                        assetNetworkName: strings.invariant(token.network.chain.name),
+                        showsAssetNetworkBadge: !token.isNativeRepresentation,
+                        emphasizesBalanceDetail: true) { size in
                             OathBadgedAssetLogo(networkID: token.network.id, isNative: token.isNativeRepresentation,
                                 source: token.logoURL?.absoluteString, symbol: token.symbol,
                                 identity: token.artworkIdentity, size: size, showsChainBadge: false)

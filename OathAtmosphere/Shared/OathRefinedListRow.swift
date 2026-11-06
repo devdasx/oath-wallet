@@ -34,8 +34,12 @@ struct OathRefinedListRow<Icon: View>: View {
     // Asset pickers/search show symbol + network above the full asset name,
     // with both balances in the trailing column. History keeps its own layout.
     var assetNetworkName: String? = nil
+    // Native coins retain the picker columns without a redundant network badge.
+    var showsAssetNetworkBadge = true
     // Rich transaction titles reuse the same row metrics and amount column.
     var customTitle: AnyView? = nil
+    var customSubtitle: AnyView? = nil
+    var emphasizesBalanceDetail = false
     @ViewBuilder let icon: (CGFloat) -> Icon
 
     @Environment(\.dynamicTypeSize) private var typeSize
@@ -93,19 +97,26 @@ struct OathRefinedListRow<Icon: View>: View {
     private var identity: some View {
         VStack(alignment: .leading, spacing: 5) {
             titleLabel
-            Text(verbatim: subtitle)
-                .oathFont(.caption, weight: emphasizesBalanceSubtitle ? .medium : .regular,
-                          size: emphasizesBalanceSubtitle ? balanceSubtitleSize : nil)
-                .foregroundStyle(.secondary)
-                .oathBalanceConcealed(concealsSubtitle)
+            subtitleLabel
         }
         .multilineTextAlignment(.leading)
         .fixedSize(horizontal: false, vertical: true)
     }
 
+    private var subtitleLabel: some View {
+        Group {
+            if let customSubtitle { customSubtitle }
+            else { Text(verbatim: subtitle) }
+        }
+        .oathFont(.caption, weight: emphasizesBalanceSubtitle ? .medium : .regular,
+                  size: emphasizesBalanceSubtitle ? balanceSubtitleSize : nil)
+        .foregroundStyle(.secondary)
+        .oathBalanceConcealed(concealsSubtitle)
+    }
+
     private var titleLabel: some View {
         HStack(spacing: 6) {
-            if assetNetworkName == nil, let titleBadgeAsset {
+            if showsAssetNetworkBadge, assetNetworkName == nil, let titleBadgeAsset {
                 OathNetworkLogo(asset: titleBadgeAsset, size: titleBadgeSize)
                     .fixedSize()
                     .accessibilityHidden(true)
@@ -117,7 +128,7 @@ struct OathRefinedListRow<Icon: View>: View {
             .oathFont(.callout, weight: primaryFontWeight)
             .foregroundStyle(.primary)
             .truncationMode(.tail)
-            if let assetNetworkName {
+            if showsAssetNetworkBadge, let assetNetworkName {
                 HStack(spacing: 4) {
                     if let titleBadgeAsset {
                         OathNetworkLogo(asset: titleBadgeAsset, size: titleBadgeSize)
@@ -166,25 +177,43 @@ struct OathRefinedListRow<Icon: View>: View {
                     // remaining space to the expanding transaction title.
                     .layoutPriority(1)
             }
-            HStack(spacing: 12) {
-                Text(verbatim: subtitle)
-                    .oathFont(.caption)
-                    .foregroundStyle(.secondary)
-                    .oathBalanceConcealed(concealsSubtitle)
-                    .fixedSize()
-                Spacer(minLength: 0)
-                if let detail {
-                    Text(verbatim: detail)
-                        .oathFont(.caption)
-                        .foregroundStyle(.secondary)
-                        .monospacedDigit()
-                        .truncationMode(.middle)
-                        .oathBalanceConcealed(concealsAmounts)
+            if customSubtitle != nil {
+                // A long translated warning and an exact token quantity must
+                // remain readable on compact screens. Keep each below its
+                // corresponding primary label, adding a line only when needed.
+                ViewThatFits(in: .horizontal) {
+                    HStack(spacing: 12) {
+                        subtitleLabel.fixedSize()
+                        Spacer(minLength: 0)
+                        detailLabel.fixedSize()
+                    }
+                    VStack(alignment: .leading, spacing: 5) {
+                        subtitleLabel.lineLimit(nil).fixedSize(horizontal: false, vertical: true)
+                        detailLabel.frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                }
+            } else {
+                HStack(spacing: 12) {
+                    subtitleLabel.fixedSize()
+                    Spacer(minLength: 0)
+                    detailLabel
                 }
             }
         }
         .lineLimit(1)
         .minimumScaleFactor(0.85)
+    }
+
+    @ViewBuilder private var detailLabel: some View {
+        if let detail {
+            Text(verbatim: detail)
+                .oathFont(.caption, weight: emphasizesBalanceDetail ? .medium : .regular,
+                          size: emphasizesBalanceDetail ? balanceSubtitleSize : nil)
+                .foregroundStyle(.secondary)
+                .monospacedDigit()
+                .truncationMode(.middle)
+                .oathBalanceConcealed(concealsAmounts)
+        }
     }
 
     private func amounts(alignment: HorizontalAlignment) -> some View {
@@ -194,7 +223,8 @@ struct OathRefinedListRow<Icon: View>: View {
                 .foregroundStyle(.primary)
             if let detail {
                 Text(verbatim: detail)
-                    .oathFont(.caption)
+                    .oathFont(.caption, weight: emphasizesBalanceDetail ? .medium : .regular,
+                              size: emphasizesBalanceDetail ? balanceSubtitleSize : nil)
                     .foregroundStyle(.secondary)
             }
         }

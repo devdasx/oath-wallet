@@ -360,7 +360,6 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
                 copiedKey = copyID
             } label: {
                 Image(systemName: copiedKey == copyID ? "checkmark" : "doc.on.doc")
-                    .flipsForRightToLeftLayoutDirection(copiedKey == copyID)
                     .foregroundStyle(copiedKey == copyID ? OathOnboardingColors.blue : Color(uiColor: .secondaryLabel))
                     .font(.system(size: 17, weight: .regular))
                     .frame(width: 44, height: 44).contentShape(Rectangle())

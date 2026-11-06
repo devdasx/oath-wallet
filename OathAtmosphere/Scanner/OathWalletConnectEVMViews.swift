@@ -427,6 +427,7 @@ struct OathWCTokenAccessSummary: View {
     let identity: ContractIdentity?
     var compact = false
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
     private var checkedIdentity: ContractIdentity? {
         identity.flatMap { $0.network == networkID && $0.address == reference ? $0 : nil }
     }
@@ -438,7 +439,7 @@ struct OathWCTokenAccessSummary: View {
             Text(isUnlimited ? strings.text(.permissionUnlimited)
                 : decimals.flatMap { OathSendAmount.units(amount, decimals: $0) } ?? amount)
                 .oathFont(compact ? .title3 : .largeTitle, weight: .semibold).minimumScaleFactor(0.6).lineLimit(2)
-                .environment(\.layoutDirection, .leftToRight)
+                .environment(\.layoutDirection, isUnlimited ? layoutDirection : .leftToRight)
             if !compact || (decimals == nil && !isUnlimited) {
                 Text(strings.text(decimals == nil && !isUnlimited ? .wcRawAmount : .wcConfirmedLimit))
                     .oathFont(.subheadline).foregroundStyle(.secondary)
@@ -531,7 +532,7 @@ private struct OathWCEVMCompletionStatus: View {
     }
     var body: some View {
         VStack(spacing: 18) {
-            Image(systemName: symbol).flipsForRightToLeftLayoutDirection(confirmed)
+            Image(systemName: symbol)
                 .font(.system(size: 56)).foregroundStyle(failed ? Color.red : OathOnboardingColors.blue)
             Text(strings.text(title))
                 .oathFont(.title2, weight: .semibold)
