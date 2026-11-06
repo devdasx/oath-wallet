@@ -7,8 +7,17 @@ public struct WalletConnectSolanaReview: Sendable, Equatable {
         public var amount: UInt64 { increase ? after - before : before - after }
     }
     public let fee: UInt64, programs: [String], changes: [Change], slot: UInt64
+    public let delegations: [Delegation]
     public let inspectedAccounts: Int, totalWritableAccounts: Int
     public var incomplete: Bool { inspectedAccounts < totalWritableAccounts }
+
+    /// Slot advancement alone does not change consent. Permissions do, even
+    /// when the transaction's balances, fee and top-level programs are identical.
+    public func matchesConsent(_ other: Self) -> Bool {
+        fee == other.fee && programs == other.programs && changes == other.changes &&
+        delegations == other.delegations && inspectedAccounts == other.inspectedAccounts &&
+        totalWritableAccounts == other.totalWritableAccounts
+    }
 }
 
 extension SolanaSendClient {
@@ -40,9 +49,10 @@ extension SolanaSendClient {
         keys += loadedWritable + loadedReadonly
         guard Set(keys).count == keys.count else { throw SolanaSendError.malformed }
         let allWritable = tx.writable.sorted().map { keys[$0] } + loadedWritable
-        // RPC simulation account return lists are limited. Always include the
-        // signer first and disclose partial inspection instead of inventing totals.
-        let addresses = Array(([owner] + allWritable.filter { $0 != owner }).prefix(64))
+        // Never silently omit a writable account: a CPI can change its delegate
+        // without moving tokens or naming the Token Program at the top level.
+        let addresses = [owner] + allWritable.filter { $0 != owner }
+        guard addresses.count <= 64 else { throw SolanaSendError.unsupportedToken }
         let before = try await rpc("getMultipleAccounts", [.array(addresses.map(SolanaJSON.string)), .object(["encoding": .string("base64"), "commitment": .string("confirmed"), "minContextSlot": .number(String(minimumSlot))])])
         guard let slot = before["context"]["slot"].integer, slot >= minimumSlot, let accounts = before["value"].array, accounts.count == addresses.count else { throw SolanaSendError.malformed }
         let simulation = try await rpc("simulateTransaction", [.string(tx.bytes.base64EncodedString()), .object([
@@ -51,6 +61,10 @@ extension SolanaSendClient {
             "accounts": .object(["encoding": .string("base64"), "addresses": .array(addresses.map(SolanaJSON.string))])])])
         guard case .object(let value) = simulation["value"], value["err"] == .null else { throw SolanaSendError.simulationFailed }
         guard let after = simulation["value"]["accounts"].array, after.count == addresses.count else { throw SolanaSendError.malformed }
+        let preTokens = try accounts.map(Self.walletConnectTokenState)
+        let postTokens = try after.map(Self.walletConnectTokenState)
+        let delegations = try WalletConnectSolanaReview.reviewDelegations(transaction: tx, keys: keys,
+            addresses: addresses, before: preTokens, after: postTokens)
         let feeResponse = try await rpc("getFeeForMessage", [.string(tx.message.base64EncodedString()), config])
         guard let fee = feeResponse["value"].integer, fee > 0, fee <= 10_000_000 else { throw SolanaSendError.feeTooHigh }
         var totals: [String: (UInt64, UInt64)] = [:]
@@ -67,35 +81,32 @@ extension SolanaSendClient {
                 let end = after[i].isNull ? 0 : after[i]["lamports"].integer
                 guard let end else { throw SolanaSendError.malformed }; totals["native"] = (start, end)
             }
-            let pre = Self.walletConnectToken(accounts[i], owner: owner), post = Self.walletConnectToken(after[i], owner: owner)
-            if let pre { var t = totals[pre.0, default: (0,0)]; t.0 = try add(pre.1, to: t.0); totals[pre.0] = t }
-            if let post { var t = totals[post.0, default: (0,0)]; t.1 = try add(post.1, to: t.1); totals[post.0] = t }
+            if let pre = preTokens[i], pre.owner == owner {
+                var t = totals[pre.mint, default: (0,0)]; t.0 = try add(pre.amount, to: t.0); totals[pre.mint] = t
+            }
+            if let post = postTokens[i], post.owner == owner {
+                var t = totals[post.mint, default: (0,0)]; t.1 = try add(post.amount, to: t.1); totals[post.mint] = t
+            }
+        }
+        var precisions: [String: Int] = ["native": 9]
+        let changedMints = totals.keys.filter { totals[$0]!.0 != totals[$0]!.1 }
+        for mint in Set(changedMints + delegations.map(\.mint)).sorted() where mint != "native" {
+            let account = try await rpc("getAccountInfo", [.string(mint), .object(["encoding": .string("base64"), "commitment": .string("confirmed"), "minContextSlot": .number(String(slot))])])["value"]
+            if let decimals = Self.walletConnectMintDecimals(account) { precisions[mint] = decimals }
         }
         var changes = [WalletConnectSolanaReview.Change]()
         for mint in totals.keys.sorted() {
             let value = totals[mint]!
             guard value.0 != value.1 else { continue }
-            var decimals: Int? = mint == "native" ? 9 : nil
-            if mint != "native" {
-                let account = try await rpc("getAccountInfo", [.string(mint), .object(["encoding": .string("base64"), "commitment": .string("confirmed")])])["value"]
-                if [SolanaIdentity.tokenProgram, SolanaIdentity.token2022Program].contains(account["owner"].string ?? ""),
-                   let data = Self.walletConnectAccountBytes(account), data.count >= 82 { decimals = Int(data[44]) }
-            }
-            changes.append(.init(reference: mint, before: value.0, after: value.1, decimals: decimals))
+            changes.append(.init(reference: mint, before: value.0, after: value.1, decimals: precisions[mint]))
         }
         return .init(fee: fee, programs: Array(Set(tx.instructions.map { keys[$0.program] })).sorted(), changes: changes,
-                     slot: slot, inspectedAccounts: allWritable.filter { addresses.contains($0) }.count, totalWritableAccounts: allWritable.count)
+                     slot: slot, delegations: delegations.map { $0.withDecimals(precisions[$0.mint]) },
+                     inspectedAccounts: allWritable.count, totalWritableAccounts: allWritable.count)
     }
-    private static func walletConnectAccountBytes(_ json: SolanaJSON) -> Data? {
+    static func walletConnectAccountBytes(_ json: SolanaJSON) -> Data? {
         guard let parts = json["data"].array, parts.count == 2, parts[1].string == "base64", let value = parts[0].string else { return nil }
         return Data(base64Encoded: value)
-    }
-    private static func walletConnectToken(_ json: SolanaJSON, owner: String) -> (String, UInt64)? {
-        guard [SolanaIdentity.tokenProgram, SolanaIdentity.token2022Program].contains(json["owner"].string ?? ""),
-              let data = walletConnectAccountBytes(json), data.count >= 165,
-              SolanaSendCrypto.encode(data.subdata(in: 32..<64)) == owner else { return nil }
-        let amount = data[64..<72].enumerated().reduce(UInt64(0)) { $0 | UInt64($1.element) << (8 * $1.offset) }
-        return (SolanaSendCrypto.encode(data.prefix(32)), amount)
     }
     public func walletConnectSubmit(_ bytes: Data, request: WalletConnectSolanaRequest) async throws -> String {
         guard network == request.network, request.broadcasts, request.transactions.count == 1 else { throw SolanaSendError.wrongNetwork }

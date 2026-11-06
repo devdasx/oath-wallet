@@ -24,6 +24,24 @@ struct OathWCSolanaReview: View {
                         OathSettingsFooter { Text(strings.text(.wcSolanaDurableNonce)) }
                         OathWCValue(title: strings.text(.wcSolanaNonceAccount), value: nonce.address, leftToRight: true)
                     }
+                    ForEach(Array(review.delegations.enumerated()), id: \.offset) { _, delegation in
+                        OathSettingsRow(title: strings.text(.permissionDelegate), accessory: .none,
+                            subtitle: identities[delegation.mint]?.name)
+                        OathWCValue(title: strings.text(.wcSolanaTokenAccount), value: delegation.tokenAccount, leftToRight: true)
+                        OathWCValue(title: strings.text(.permissionContract), value: delegation.mint, leftToRight: true)
+                        allowance(delegation.before, title: .permissionAccess, delegation: delegation)
+                        ForEach(Array(delegation.requested.enumerated()), id: \.offset) { _, requested in
+                            allowance(requested, title: .wcConfirmedLimit, delegation: delegation)
+                        }
+                        allowance(delegation.after, title: .permissionAfter, delegation: delegation)
+                        if ([delegation.after].compactMap { $0 } + delegation.requested).contains(where: { $0.amount > 0 }) {
+                            OathSettingsFooter { Text(strings.text(.wcSolanaDelegateWarning)) }
+                        }
+                        if delegation.after?.unlimited == true || delegation.requested.contains(where: \.unlimited) {
+                            OathSettingsFooter { Text(strings.text(.wcUnlimitedDetail)) }
+                        }
+                        OathSettingsSectionRule()
+                    }
                     ForEach(Array(review.changes.enumerated()), id: \.offset) { _, change in
                         let token = identities[change.reference]
                         let symbol = change.reference == "native" ? "SOL" : token?.symbol ?? ""
@@ -64,13 +82,26 @@ struct OathWCSolanaReview: View {
             guard request.network == .mainnet else { return }
             await OathDiagnostics.$chain.withValue("solana") {
                 await OathDiagnostics.$operationID.withValue(UUID()) {
-                    for reference in Set(reviews.flatMap(\.changes).map(\.reference)).sorted().prefix(16) where reference != "native" {
+                    for reference in Set(reviews.flatMap(\.changes).map(\.reference) + reviews.flatMap(\.delegations).map(\.mint)).sorted().prefix(16) where reference != "native" {
                         if let identity = await OathDiagnostics.attemptOptional("walletconnect_solana_metadata", body: {
                             try await OathPermissionService.shared.identity(network: "solana", address: reference, asset: true)
                         }), !Task.isCancelled, identity.network == "solana" { identities[reference] = identity }
                     }
                 }
             }
+        }
+    }
+    @ViewBuilder private func allowance(_ allowance: WalletConnectSolanaReview.Allowance?, title: OathStringKey,
+                                        delegation: WalletConnectSolanaReview.Delegation) -> some View {
+        OathSettingsFooter { Text(strings.text(title)) }
+        if let allowance {
+            let units = delegation.decimals.flatMap { OathSendAmount.units(String(allowance.amount), decimals: $0) }
+            let amount = units.map { $0 + " " + (identities[delegation.mint]?.symbol ?? "") }
+                ?? (String(allowance.amount) + " · " + strings.text(.wcRawAmount))
+            OathWCValue(title: strings.text(.permissionSpender), value: allowance.delegate, leftToRight: true)
+            OathWCValue(title: strings.text(allowance.unlimited ? .permissionUnlimited : .permissionLimited), value: amount, leftToRight: true)
+        } else {
+            OathSettingsRow(title: strings.text(.permissionNone), accessory: .none)
         }
     }
 }

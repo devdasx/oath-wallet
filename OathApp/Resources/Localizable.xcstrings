@@ -474184,6 +474184,700 @@
           }
         }
       }
+    },
+    "wcSolanaTokenAccount" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token account"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "代币账户"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टोकन खाता"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuenta de tokens"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compte de jetons"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حساب الرموز"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "টোকেন অ্যাকাউন্ট"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conta de tokens"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conta de tokens"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Счёт токенов"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ٹوکن اکاؤنٹ"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akun token"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akaun token"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token-Konto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トークンアカウント"
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Akaunti ya tokeni"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टोकन खाते"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "టోకెన్ ఖాతా"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token hesabı"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டோக்கன் கணக்கு"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "代幣帳戶"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản token"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "토큰 계정"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حساب توکن"
+          }
+        },
+        "ha" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asusun token"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "บัญชีโทเคน"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ટોકન ખાતું"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਟੋਕਨ ਖਾਤਾ"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account ng token"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conto token"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto tokenów"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рахунок токенів"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ടോക്കൺ അക്കൗണ്ട്"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಟೋಕನ್ ಖಾತೆ"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଟୋକନ୍ ଖାତା"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "တိုကင်အကောင့်"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenrekening"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cont de tokenuri"
+          }
+        },
+        "am" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "የቶከን መለያ"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token hisobi"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ٽوڪن کاتو"
+          }
+        },
+        "yo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Àkọọ́lẹ̀ tókìn"
+          }
+        },
+        "ne" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "टोकन खाता"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ටෝකන් ගිණුම"
+          }
+        },
+        "km" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "គណនីថូខឹន"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenový účet"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenový účet"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Račun žetonov"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Račun tokena"
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ტოკენების ანგარიში"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Λογαριασμός token"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenkonto"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenszámla"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "חשבון טוקנים"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenkonto"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Token-tili"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tokenkonto"
+          }
+        }
+      }
+    },
+    "wcSolanaDelegateWarning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Approving a delegate lets that address transfer or burn tokens up to the allowance without another approval from you. Reject the request if you do not trust this address."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "授权委托地址后，该地址无需再次获得你的批准，即可在授权额度内转移或销毁代币。如果你不信任此地址，请拒绝请求。"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "किसी प्रतिनिधि को मंज़ूरी देने पर वह पता आपकी दोबारा मंज़ूरी के बिना निर्धारित सीमा तक टोकन ट्रांसफ़र या बर्न कर सकता है। यदि आपको इस पते पर भरोसा नहीं है, तो अनुरोध अस्वीकार करें।"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al aprobar un delegado, esa dirección puede transferir o quemar tokens hasta el límite autorizado sin otra aprobación tuya. Rechaza la solicitud si no confías en esta dirección."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autoriser un délégué permet à cette adresse de transférer ou de détruire des jetons dans la limite autorisée, sans nouvelle approbation de votre part. Refusez la demande si vous ne faites pas confiance à cette adresse."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عند الموافقة على مفوّض، يمكن لذلك العنوان نقل الرموز أو حرقها حتى الحد المسموح به دون موافقة أخرى منك. ارفض الطلب إذا كنت لا تثق بهذا العنوان."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "কোনো প্রতিনিধিকে অনুমোদন দিলে সেই ঠিকানা আপনার আর কোনো অনুমোদন ছাড়াই নির্ধারিত সীমা পর্যন্ত টোকেন স্থানান্তর বা বার্ন করতে পারে। এই ঠিকানাকে বিশ্বাস না করলে অনুরোধটি প্রত্যাখ্যান করুন।"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ao aprovar um delegado, esse endereço pode transferir ou queimar tokens até o limite autorizado sem outra aprovação sua. Rejeite a solicitação se não confiar nesse endereço."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ao aprovar um delegado, esse endereço pode transferir ou queimar tokens até ao limite autorizado sem outra aprovação sua. Rejeite o pedido se não confiar neste endereço."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Одобрив делегата, вы разрешаете этому адресу переводить или сжигать токены в пределах установленного лимита без вашего повторного одобрения. Отклоните запрос, если не доверяете этому адресу."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کسی نمائندے کو منظوری دینے سے وہ پتہ آپ کی دوبارہ منظوری کے بغیر مقررہ حد تک ٹوکن منتقل یا برن کر سکتا ہے۔ اگر آپ کو اس پتے پر اعتماد نہیں ہے تو درخواست مسترد کریں۔"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyetujui delegasi memungkinkan alamat tersebut mentransfer atau membakar token hingga batas izin tanpa persetujuan lain dari Anda. Tolak permintaan jika Anda tidak memercayai alamat ini."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meluluskan wakil membolehkan alamat itu memindahkan atau membakar token sehingga had kebenaran tanpa kelulusan lain daripada anda. Tolak permintaan jika anda tidak mempercayai alamat ini."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn du einen Bevollmächtigten genehmigst, kann diese Adresse ohne weitere Zustimmung von dir Token bis zum erlaubten Limit übertragen oder vernichten. Lehne die Anfrage ab, wenn du dieser Adresse nicht vertraust."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "委任先を承認すると、そのアドレスはあなたの追加承認なしに、許可された上限までトークンを送信またはバーンできます。このアドレスを信頼できない場合は、リクエストを拒否してください。"
+          }
+        },
+        "sw" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuidhinisha mwakilishi huruhusu anwani hiyo kuhamisha au kuchoma tokeni hadi kikomo kilichoidhinishwa bila idhini nyingine kutoka kwako. Kataa ombi ikiwa huiamini anwani hii."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रतिनिधीला मंजुरी दिल्यावर तो पत्ता तुमची पुन्हा मंजुरी न घेता परवानगीच्या मर्यादेपर्यंत टोकन हस्तांतरित किंवा बर्न करू शकतो. या पत्त्यावर विश्वास नसल्यास विनंती नाकारा."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ప్రతినిధిని ఆమోదిస్తే, ఆ చిరునామా మీ నుంచి మరో ఆమోదం లేకుండానే అనుమతించిన పరిమితి వరకు టోకెన్‌లను బదిలీ చేయవచ్చు లేదా బర్న్ చేయవచ్చు. ఈ చిరునామాను నమ్మకపోతే అభ్యర్థనను తిరస్కరించండి."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir temsilciyi onaylamak, o adresin sizden başka bir onay almadan izin verilen sınıra kadar token aktarmasına veya yakmasına olanak tanır. Bu adrese güvenmiyorsanız isteği reddedin."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ஒரு பிரதிநிதியை அங்கீகரித்தால், அந்த முகவரி உங்களிடமிருந்து மீண்டும் ஒப்புதல் பெறாமலேயே அனுமதிக்கப்பட்ட வரம்பு வரை டோக்கன்களை மாற்றவோ எரிக்கவோ முடியும். இந்த முகவரியை நம்பவில்லை என்றால் கோரிக்கையை நிராகரிக்கவும்."
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "授權委託地址後，該地址無需再次獲得你的批准，即可在授權額度內轉移或銷毀代幣。如果你不信任此地址，請拒絕請求。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phê duyệt bên được ủy quyền cho phép địa chỉ đó chuyển hoặc đốt token trong hạn mức cho phép mà không cần bạn phê duyệt lần nữa. Hãy từ chối yêu cầu nếu bạn không tin tưởng địa chỉ này."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위임자를 승인하면 해당 주소는 추가 승인 없이 허용 한도까지 토큰을 전송하거나 소각할 수 있습니다. 이 주소를 신뢰하지 않는다면 요청을 거부하세요."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "با تأیید نماینده، آن آدرس می‌تواند بدون تأیید دوبارهٔ شما تا سقف مجاز توکن‌ها را منتقل کند یا بسوزاند. اگر به این آدرس اعتماد ندارید، درخواست را رد کنید."
+          }
+        },
+        "ha" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amincewa da wakili yana ba wannan adireshin damar tura ko ƙona token har zuwa iyakar da aka ba da izini ba tare da sake neman amincewarka ba. Ƙi buƙatar idan ba ka yarda da wannan adireshin ba."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "การอนุมัติผู้รับมอบสิทธิ์ทำให้ที่อยู่นั้นโอนหรือเผาโทเคนได้ตามวงเงินที่อนุญาตโดยไม่ต้องขออนุมัติจากคุณอีก ปฏิเสธคำขอหากคุณไม่ไว้วางใจที่อยู่นี้"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "પ્રતિનિધિને મંજૂરી આપવાથી તે સરનામું તમારી ફરી મંજૂરી લીધા વિના નક્કી કરેલી મર્યાદા સુધી ટોકન ટ્રાન્સફર અથવા બર્ન કરી શકે છે. આ સરનામા પર વિશ્વાસ ન હોય તો વિનંતી નકારી કાઢો."
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਪ੍ਰਤੀਨਿਧੀ ਨੂੰ ਮਨਜ਼ੂਰੀ ਦੇਣ ਨਾਲ ਉਹ ਪਤਾ ਤੁਹਾਡੀ ਮੁੜ ਮਨਜ਼ੂਰੀ ਤੋਂ ਬਿਨਾਂ ਨਿਰਧਾਰਤ ਹੱਦ ਤੱਕ ਟੋਕਨ ਟ੍ਰਾਂਸਫਰ ਜਾਂ ਬਰਨ ਕਰ ਸਕਦਾ ਹੈ। ਜੇ ਤੁਹਾਨੂੰ ਇਸ ਪਤੇ ਉੱਤੇ ਭਰੋਸਾ ਨਹੀਂ ਹੈ ਤਾਂ ਬੇਨਤੀ ਰੱਦ ਕਰੋ।"
+          }
+        },
+        "fil" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kapag inaprubahan ang isang delegado, maaaring maglipat o magsunog ng mga token ang address na iyon hanggang sa pinahintulutang limitasyon nang walang panibagong pag-apruba mo. Tanggihan ang kahilingan kung hindi mo pinagkakatiwalaan ang address na ito."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Approvando un delegato, consenti a quell’indirizzo di trasferire o bruciare token fino al limite autorizzato senza un’altra tua approvazione. Rifiuta la richiesta se non ti fidi di questo indirizzo."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatwierdzenie pełnomocnika pozwala temu adresowi przesyłać lub spalać tokeny do przyznanego limitu bez kolejnej zgody z Twojej strony. Odrzuć żądanie, jeśli nie ufasz temu adresowi."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Схваливши делегата, ви дозволяєте цій адресі переказувати або спалювати токени в межах установленого ліміту без вашого повторного схвалення. Відхиліть запит, якщо не довіряєте цій адресі."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ഒരു പ്രതിനിധിയെ അംഗീകരിച്ചാൽ, നിങ്ങളുടെ മറ്റൊരു അനുമതി കൂടാതെ അനുവദിച്ച പരിധി വരെ ടോക്കണുകൾ കൈമാറാനോ ബേൺ ചെയ്യാനോ ആ വിലാസത്തിന് കഴിയും. ഈ വിലാസത്തെ വിശ്വസിക്കുന്നില്ലെങ്കിൽ അഭ്യർത്ഥന നിരസിക്കുക."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಪ್ರತಿನಿಧಿಯನ್ನು ಅನುಮೋದಿಸಿದರೆ, ಆ ವಿಳಾಸವು ನಿಮ್ಮ ಮತ್ತೊಂದು ಅನುಮೋದನೆಯಿಲ್ಲದೆ ಅನುಮತಿಸಿದ ಮಿತಿಯವರೆಗೆ ಟೋಕನ್‌ಗಳನ್ನು ವರ್ಗಾಯಿಸಬಹುದು ಅಥವಾ ಬರ್ನ್ ಮಾಡಬಹುದು. ಈ ವಿಳಾಸವನ್ನು ನಂಬದಿದ್ದರೆ ವಿನಂತಿಯನ್ನು ತಿರಸ್ಕರಿಸಿ."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଜଣେ ପ୍ରତିନିଧିଙ୍କୁ ଅନୁମୋଦନ କଲେ, ସେହି ଠିକଣା ଆପଣଙ୍କର ପୁନଃ ଅନୁମୋଦନ ବିନା ଅନୁମତିପ୍ରାପ୍ତ ସୀମା ପର୍ଯ୍ୟନ୍ତ ଟୋକନ୍ ସ୍ଥାନାନ୍ତର କିମ୍ବା ବର୍ନ କରିପାରିବ। ଏହି ଠିକଣାକୁ ବିଶ୍ୱାସ ନ କଲେ ଅନୁରୋଧଟି ପ୍ରତ୍ୟାଖ୍ୟାନ କରନ୍ତୁ।"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ကိုယ်စားလှယ်ကို ခွင့်ပြုလိုက်လျှင် ထိုလိပ်စာသည် သင့်ထံမှ ထပ်မံခွင့်ပြုချက်မယူဘဲ သတ်မှတ်ထားသောပမာဏအထိ တိုကင်များကို လွှဲပြောင်းနိုင် သို့မဟုတ် ဖျက်ဆီးနိုင်သည်။ ဤလိပ်စာကို မယုံကြည်ပါက တောင်းဆိုမှုကို ငြင်းပယ်ပါ။"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Als je een gemachtigde goedkeurt, kan dat adres zonder nieuwe toestemming van jou tokens overdragen of verbranden tot de toegestane limiet. Wijs het verzoek af als je dit adres niet vertrouwt."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aprobarea unui delegat permite acelei adrese să transfere sau să ardă tokenuri până la limita autorizată, fără o nouă aprobare din partea ta. Respinge cererea dacă nu ai încredere în această adresă."
+          }
+        },
+        "am" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ለተወካይ ፈቃድ መስጠት ያ አድራሻ ከእርስዎ ሌላ ፈቃድ ሳይጠይቅ እስከተፈቀደው ገደብ ድረስ ቶከኖችን እንዲያስተላልፍ ወይም እንዲያቃጥል ያስችለዋል። ይህን አድራሻ ካላመኑት ጥያቄውን ውድቅ ያድርጉ።"
+          }
+        },
+        "uz" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vakilni tasdiqlash ushbu manzilga sizning boshqa tasdig‘ingizsiz ruxsat etilgan limitgacha tokenlarni o‘tkazish yoki yoqish imkonini beradi. Bu manzilga ishonmasangiz, so‘rovni rad eting."
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نمائندي کي منظوري ڏيڻ سان اهو پتو توهان جي ٻي منظوري کان سواءِ مقرر حد تائين ٽوڪن منتقل يا ساڙي سگهي ٿو. جيڪڏهن توهان کي هن پتي تي ڀروسو نه آهي ته درخواست رد ڪريو."
+          }
+        },
+        "yo" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fífọwọ́ sí aṣojú gba àdírẹ́sì yẹn láyè láti gbé tàbí sun àwọn tókìn dé iye tí a yọ̀ǹda láì gba àṣẹ mìíràn lọ́wọ́ rẹ. Kọ ìbéèrè náà bí o kò bá gbẹ́kẹ̀ lé àdírẹ́sì yìí."
+          }
+        },
+        "ne" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रतिनिधिलाई स्वीकृति दिँदा उक्त ठेगानाले तपाईंको अर्को स्वीकृति बिना तोकिएको सीमासम्म टोकन पठाउन वा बर्न गर्न सक्छ। यस ठेगानामा विश्वास छैन भने अनुरोध अस्वीकार गर्नुहोस्।"
+          }
+        },
+        "si" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "නියෝජිතයෙකු අනුමත කිරීමෙන් එම ලිපිනයට ඔබගේ නැවත අනුමැතියකින් තොරව අවසර දුන් සීමාව දක්වා ටෝකන් මාරු කිරීමට හෝ දහනය කිරීමට හැකිය. මෙම ලිපිනය විශ්වාස නොකරන්නේ නම් ඉල්ලීම ප්‍රතික්ෂේප කරන්න."
+          }
+        },
+        "km" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ការអនុម័តអ្នកតំណាងអនុញ្ញាតឱ្យអាសយដ្ឋាននោះផ្ទេរ ឬដុតថូខឹនរហូតដល់កម្រិតដែលបានអនុញ្ញាត ដោយមិនចាំបាច់មានការអនុម័តពីអ្នកម្តងទៀត។ បដិសេធសំណើនេះ ប្រសិនបើអ្នកមិនទុកចិត្តអាសយដ្ឋាននេះ។"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schválením pověřence umožníte této adrese převádět nebo pálit tokeny do povoleného limitu bez vašeho dalšího souhlasu. Pokud této adrese nedůvěřujete, žádost odmítněte."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schválením zástupcu umožníte tejto adrese prevádzať alebo spaľovať tokeny do povoleného limitu bez vášho ďalšieho súhlasu. Ak tejto adrese nedôverujete, žiadosť odmietnite."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odobritev pooblaščenca temu naslovu omogoča prenos ali sežig žetonov do dovoljene omejitve brez vaše ponovne odobritve. Zahtevo zavrnite, če temu naslovu ne zaupate."
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odobravanje opunomoćenika toj adresi omogućuje prijenos ili spaljivanje tokena do dopuštenog ograničenja bez vašeg ponovnog odobrenja. Odbijte zahtjev ako ne vjerujete toj adresi."
+          }
+        },
+        "ka" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "დელეგატის დამტკიცება ამ მისამართს უფლებას აძლევს, ნებადართული ლიმიტის ფარგლებში გადარიცხოს ან დაწვას ტოკენები თქვენი დამატებითი თანხმობის გარეშე. უარყავით მოთხოვნა, თუ ამ მისამართს არ ენდობით."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Η έγκριση ενός αντιπροσώπου επιτρέπει σε αυτή τη διεύθυνση να μεταφέρει ή να καταστρέφει token μέχρι το εγκεκριμένο όριο, χωρίς άλλη έγκρισή σας. Απορρίψτε το αίτημα αν δεν εμπιστεύεστε αυτή τη διεύθυνση."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Om du godkänner ett ombud kan den adressen överföra eller bränna token upp till den tillåtna gränsen utan ytterligare godkännande från dig. Avvisa begäran om du inte litar på adressen."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egy meghatalmazott jóváhagyásával az adott cím további jóváhagyásod nélkül utalhat át vagy égethet el tokeneket az engedélyezett keretig. Utasítsd el a kérést, ha nem bízol ebben a címben."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אישור נציג מאפשר לכתובת הזו להעביר או לשרוף טוקנים עד לתקרה המורשית ללא אישור נוסף ממך. יש לדחות את הבקשה אם אין לך אמון בכתובת הזו."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis du godkender en fuldmægtig, kan den adresse overføre eller brænde tokens op til den tilladte grænse uden yderligere godkendelse fra dig. Afvis anmodningen, hvis du ikke stoler på adressen."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valtuutetun hyväksyminen antaa kyseiselle osoitteelle luvan siirtää tai polttaa tokeneita sallittuun rajaan asti ilman uutta hyväksyntääsi. Hylkää pyyntö, jos et luota tähän osoitteeseen."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hvis du godkjenner en fullmektig, kan den adressen overføre eller brenne tokener opp til den tillatte grensen uten ny godkjenning fra deg. Avvis forespørselen hvis du ikke stoler på adressen."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -109,9 +109,10 @@ final class WalletConnectSolanaTests: XCTestCase {
             var bytes = try SolanaSendCrypto.decode(mint) + SolanaSendCrypto.decode(request.account)
             bytes += Data((0..<8).map { UInt8(truncatingIfNeeded: amount >> ($0 * 8)) })
             bytes += Data(repeating: 0, count: 165 - bytes.count)
+            bytes[108] = 1
             return .object(["owner": .string(SolanaIdentity.token2022Program), "data": .array([.string(bytes.base64EncodedString()), .string("base64")])])
         }
-        var mintBytes = Data(repeating: 0, count: 82); mintBytes[44] = 6
+        var mintBytes = Data(repeating: 0, count: 82); mintBytes[44] = 6; mintBytes[45] = 1
         let transport = SolanaWCResponses([
             "isBlockhashValid": .object(["value": .bool(true)]),
             "getMultipleAccounts": .object(["context": .object(["slot": .number("123")]), "value": .array([native(100_000), try token(3_000_000)])]),

@@ -1315,7 +1315,7 @@ import OathBitcoin
                 }
                 let latest = try await client.walletConnectReview(input)
                 guard authorized(item.request, walletID: item.walletID, account: item.account), pendingRequest?.operationID == item.operationID else { throw CancellationError() }
-                guard zip(latest, reviews).allSatisfy({ $0.fee == $1.fee && $0.changes == $1.changes && $0.programs == $1.programs }), latest.count == reviews.count else {
+                guard zip(latest, reviews).allSatisfy({ $0.matchesConsent($1) }), latest.count == reviews.count else {
                     pendingRequest?.payload = .solana(input, latest); throw ReviewFailure.updated
                 }
                 let signed = try await session.vault.signWalletConnectSolana(walletID: item.walletID, accountID: record.id, request: input, digits: digits, reason: reason)

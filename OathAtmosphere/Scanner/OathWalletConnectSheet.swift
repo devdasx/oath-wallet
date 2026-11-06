@@ -302,7 +302,7 @@ struct OathWalletConnectSheet: View {
         case .polkadot(let request, _): request.message == nil ? .wcSignTransaction : .scannerWCSign
         case .tron(let request, _): request.message == nil ? .wcSignTransaction : .scannerWCSign
         case .ton(let request, _): request.broadcasts ? .wcSubmitTransaction : .wcSignData
-        case .solana(let request, _): request.message != nil ? .scannerWCSign : request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
+        case .solana(let request, let reviews): request.message != nil ? .scannerWCSign : reviews.contains(where: { !$0.delegations.isEmpty }) ? .wcReviewApproval : request.broadcasts ? .wcSubmitTransaction : .wcSignTransaction
         case .thorchain(_, let review): review.swap == nil ? .wcSignTransaction : .wcConfirmSwap
         case .evm(let request, _): OathWCEVMReview.isAccessReview(request) ? .wcReviewApproval : .wcSubmitTransaction
         case .networkSwitch: .wcSwitchNetwork

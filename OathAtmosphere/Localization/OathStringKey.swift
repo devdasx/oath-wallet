@@ -104,6 +104,8 @@ enum OathStringKey: String, CaseIterable, Sendable {
     case wcSendingDetail
     case wcConfirmedLimit
     case wcUnlimitedDetail
+    case wcSolanaTokenAccount
+    case wcSolanaDelegateWarning
 
     case wcPreparingDetail
     case wcSignInTitle
