@@ -1,6 +1,6 @@
 {
   "name": "Oath Wallet",
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "facts": {
     "name": "Oath Wallet",
     "slogan": "A wallet, not a marketplace.",
@@ -56,7 +56,7 @@
     {
       "id": "bitcoin-address-types",
       "name": "Bitcoin address options",
-      "summary": "Compatible Bitcoin wallets support Taproot, Native SegWit, nested SegWit and Legacy, depending on the imported material. Capabilities vary by network. Oath 5.0.0 does not support Silent Payments receiving or discovery; see the Silent Payments guide before relying on that feature."
+      "summary": "Compatible Bitcoin wallets support Taproot, Native SegWit, nested SegWit and Legacy, depending on the imported material. Capabilities vary by network. Oath 5.0.2 does not support Silent Payments receiving or discovery; see the Silent Payments guide before relying on that feature."
     },
     {
       "id": "evm-access",
@@ -88,7 +88,7 @@
     {
       "category": "Getting started",
       "q": "Can I create my own recovery phrase with dice?",
-      "a": "The 5.0.0 source creates standard wallets with a 12-word BIP39 phrase. The earlier dice, coin-flip and typed-digit creation controls are not included in this release."
+      "a": "The 5.0.2 source creates standard wallets with a 12-word BIP39 phrase. The earlier dice, coin-flip and typed-digit creation controls are not included in this release."
     },
     {
       "category": "Backup & recovery",
@@ -103,12 +103,12 @@
     {
       "category": "Encrypted backups",
       "q": "How does backup password restore work?",
-      "a": "Eligible iCloud backups need both the .oathbackup file and the separate password used to encrypt it. The app passcode or Apple Account access alone cannot decrypt it. Electrum and aezeed wallets need manual recovery material in 5.0.0."
+      "a": "Eligible iCloud backups need both the .oathbackup file and the separate password used to encrypt it. The app passcode or Apple Account access alone cannot decrypt it. Electrum and aezeed wallets need manual recovery material in 5.0.2."
     },
     {
       "category": "Encrypted backups",
       "q": "Is a backup password a replacement for my recovery phrase?",
-      "a": "Eligible iCloud backups need both the .oathbackup file and the separate password used to encrypt it. The app passcode or Apple Account access alone cannot decrypt it. Electrum and aezeed wallets need manual recovery material in 5.0.0."
+      "a": "Eligible iCloud backups need both the .oathbackup file and the separate password used to encrypt it. The app passcode or Apple Account access alone cannot decrypt it. Electrum and aezeed wallets need manual recovery material in 5.0.2."
     },
     {
       "category": "Sending & receiving",
@@ -123,7 +123,7 @@
     {
       "category": "Sending & receiving",
       "q": "Which address type should I use for Bitcoin?",
-      "a": "Native SegWit (bc1q) and Taproot (bc1p) are efficient Bitcoin address options. The best choice depends on sender compatibility and how your coins will be spent. Nested SegWit and Legacy are also available where supported by the imported material. Silent Payments receiving and discovery are not supported in 5.0.0."
+      "a": "Native SegWit (bc1q) and Taproot (bc1p) are efficient Bitcoin address options. The best choice depends on sender compatibility and how your coins will be spent. Nested SegWit and Legacy are also available where supported by the imported material. Silent Payments receiving and discovery are not supported in 5.0.2."
     },
     {
       "category": "Security",

@@ -12,14 +12,14 @@ Most crypto apps want you to trade. Oath wants you to own. No tickers shouting, 
 ## What Oath supports
 
 - Keep wallet credentials on your device and sign transactions locally.
-- Create a recovery phrase, or use physical entropy with care.
+- Create a new wallet with a 12-word BIP39 recovery phrase.
 - Restore supported wallet formats; keep any extra BIP-39 passphrase.
 - Use optional password-encrypted iCloud backup with its matching backup file.
 - Choose supported Bitcoin address types and inspect EVM approvals.
 - Review network fees before confirming a transaction.
 - Read the [public source and security scope](https://oathwallet.org/security).
 
-Capabilities depend on the network and release. Silent Payments receiving and discovery are not supported in 4.1.14.
+Capabilities depend on the network and release. Silent Payments receiving and discovery are not supported in 5.0.2.
 
 ## App Store reviews
 
@@ -94,6 +94,14 @@ Explore send, receive and compatible dApp guidance for each network. Gram is the
 
 [Oath on TON App](https://ton.app/app/oath-wallet)
 <!-- oath-network-links:end -->
+
+<!-- oath-transfer-entry:start -->
+## The right token. The right network.
+
+Match the exact token, check its receiving network and find the fee asset before you send. Start with USDT or USDC, or find your token in Oath’s catalog.
+
+[Prepare a transfer](https://oathwallet.org/networks/choose-token-network#prepare-transfer) · [Find your token](https://oathwallet.org/tokens)
+<!-- oath-transfer-entry:end -->
 
 <!-- oath-questions:start -->
 ## Self-custody, explained

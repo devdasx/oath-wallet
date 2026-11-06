@@ -18,7 +18,7 @@ Each review result retains its tested source revision. Older articles, tags and 
 
 Help instructions carry their applicable app version and authored update dates. Source excerpts cover 5.0.2 (104), reviewed 2026-11-05; this is not an independent audit or proof of App Store availability.
 
-- [Choose a USDT or USDC Network | Oath Wallet](https://oathwallet.org/networks/choose-token-network.md): Compare USDT and USDC entries in Oath’s released catalog. Match the sender’s network, exact token identity and fee asset before transferring.
+- [Prepare a Crypto Transfer | Token, Network & Fees | Oath](https://oathwallet.org/networks/choose-token-network.md): Prepare a token transfer with Oath. Start with USDT or USDC, or open any catalog token’s checklist to compare its exact identity, receiving network and fee requirements.
 - [Which Coin Pays My Crypto Network Fee? | Oath Wallet](https://oathwallet.org/networks/fees.md): Find the fee asset and account requirements for Oath’s supported networks. Understand TRX, ETH, SOL and Bitcoin fees before sending.
 - [Check and revoke token approvals](https://oathwallet.org/features/revoke-token-approvals.md): Check discovered token approvals in Oath for iPhone. Review supported EVM, TRON and Solana access, estimate network fees and verify supported revocations.
 - [Encrypted iCloud wallet backup](https://oathwallet.org/features/icloud-wallet-backup.md): Back up eligible Oath wallets to iCloud Drive with password encryption. Learn what is supported, how to confirm uploads and what you need to restore.

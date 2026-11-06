@@ -90,6 +90,28 @@ for(const [url,name]of [['https://oathwallet.org/','Oath Wallet'],['https://arti
 }
 console.log(`Verified all three site identities, rating markup, ${decisionGuides.pages.length} decision guides and ${priorityPaths.length} enriched priority pages.`);
 
+const {transferURL,transferPath}=await import('../src/transfer-preparation.js');
+for(const path of ['/transfer-preparation.js','/decision-guides.css']){
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200);assert.equal(await response.text(),await readFile(new URL('../public'+path,import.meta.url),'utf8'),path+' differs from this commit');
+}
+for(const network of Object.values(tokens.networks)){
+ const asset=network.featured[0];
+ const response=await fetch('https://oathwallet.org'+transferURL(asset),{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200,asset.path);assert.match(response.headers.get('x-robots-tag'),/noindex/);
+ const html=await response.text();
+ assert.ok(html.includes(`data-transfer-path="${asset.path}"><p`),asset.path+' is not preselected');
+ assert.ok(html.includes(`href="https://oathwallet.org${transferPath}"`));
+}
+for(const path of ['/','/features']){
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)}),html=await response.text();
+ assert.doesNotMatch(html,/4\.1\.14|use physical entropy|addEntropy/);
+ if(path==='/')assert.ok(html.includes('networks/choose-token-network#prepare-transfer'));
+}
+const tokenEntry=await fetch('https://oathwallet.org/tokens/usdc/base',{signal:AbortSignal.timeout(20000)});
+assert.ok((await tokenEntry.text()).includes('choose-token-network?token=usdc&amp;network=base#prepare-transfer'));
+console.log(`Verified transfer preparation across ${Object.keys(tokens.networks).length} networks, exact token links, current copy and published tool assets.`);
+
 for(const path of ['/assets/home-preview/wallet-motion.js','/assets/home-preview/cobalt.webp','/Oath App Home.dc.html']){
  const response=await fetch('https://oathwallet.org'+encodeURI(path),{signal:AbortSignal.timeout(20000)});
  assert.equal(response.status,200,path);
