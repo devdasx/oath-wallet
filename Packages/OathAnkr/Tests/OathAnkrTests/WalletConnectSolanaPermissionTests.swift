@@ -223,13 +223,13 @@ private actor PermissionTransport: AnkrTransport {
         let result: SolanaJSON
         switch method {
         case "getGenesisHash": result = .string(SolanaSendNetwork.devnet.genesis)
-        case "isBlockhashValid": result = .object(["value": .bool(true)])
-        case "getAccountInfo": result = .object(["value": infos[params[0].string ?? ""] ?? .null])
+        case "isBlockhashValid": result = .object(["context": .object(["slot": .number("123")]), "value": .bool(true)])
+        case "getAccountInfo": result = .object(["context": .object(["slot": .number("123")]), "value": infos[params[0].string ?? ""] ?? .null])
         case "getMultipleAccounts":
             result = .object(["context": .object(["slot": .number("123")]), "value": .array((params[0].array ?? []).map { before[$0.string ?? ""] ?? .null })])
         case "simulateTransaction":
-            result = .object(["value": .object(["err": .null, "accounts": .array((params[1]["accounts"]["addresses"].array ?? []).map { after[$0.string ?? ""] ?? .null })])])
-        case "getFeeForMessage": result = .object(["value": .number("5000")])
+            result = .object(["context": .object(["slot": .number("123")]), "value": .object(["err": .null, "accounts": .array((params[1]["accounts"]["addresses"].array ?? []).map { after[$0.string ?? ""] ?? .null })])])
+        case "getFeeForMessage": result = .object(["context": .object(["slot": .number("123")]), "value": .number("5000")])
         default: XCTFail("Unexpected method \(method)"); throw SolanaSendError.malformed
         }
         return (try JSONEncoder().encode(SolanaJSON.object(["jsonrpc": .string("2.0"), "id": json["id"], "result": result])), 200)
