@@ -18,6 +18,9 @@ Each review result retains its tested source revision. Older articles, tags and 
 
 Help instructions carry their applicable app version and authored update dates. Source excerpts cover 5.0.2 (104), reviewed 2026-11-05; this is not an independent audit or proof of App Store availability.
 
+- [Check and revoke token approvals](https://oathwallet.org/features/revoke-token-approvals.md): Check discovered token approvals in Oath for iPhone. Review supported EVM, TRON and Solana access, estimate network fees and verify supported revocations.
+- [Encrypted iCloud wallet backup](https://oathwallet.org/features/icloud-wallet-backup.md): Back up eligible Oath wallets to iCloud Drive with password encryption. Learn what is supported, how to confirm uploads and what you need to restore.
+- [Connect to dApps with WalletConnect](https://oathwallet.org/features/walletconnect.md): Use WalletConnect with Oath on iPhone. Review the dApp, wallet, networks and permissions, then approve supported requests individually.
 - [Bitcoin wallet: send, receive and dApp connections](https://oathwallet.org/networks/bitcoin.md): Receive native BTC with your Oath address and review your Bitcoin network fee before sending.
 - [Ethereum wallet: send, receive and dApp connections](https://oathwallet.org/networks/ethereum.md): Receive, send and manage assets on Ethereum with Oath for iPhone and iPad. Keep your network, address and fee details in view.
 - [Solana wallet: send, receive and dApp connections](https://oathwallet.org/networks/solana.md): Keep SOL and supported Solana tokens together, with receiving, sending and compatible dApp connections.

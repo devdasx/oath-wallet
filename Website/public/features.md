@@ -2,6 +2,15 @@
 
 Everything you need. Nothing you don’t.
 
+<!-- oath-feature-pages:start -->
+## Explore a feature
+
+- [Check and revoke token approvals](/features/revoke-token-approvals): See which discovered permissions can still use your assets. Review the wallet, network and approved address, then remove supported access from Oath.
+- [Encrypted iCloud wallet backup](/features/icloud-wallet-backup): Create password-encrypted backups of eligible wallets in your iCloud Drive. Keep the backup password and an independent recovery copy so you have a way back to your wallet.
+- [Connect to dApps with WalletConnect](/features/walletconnect): Connect Oath to a compatible dApp using its WalletConnect QR code or app link. Choose the wallet and networks you intend to share, then review each later request in Oath.
+
+<!-- oath-feature-pages:end -->
+
 ## 01. Create or import a recovery phrase
 
 New wallets use BIP39. Import supported BIP39, Electrum and aezeed phrases in their original format. Electrum and aezeed recover supported Bitcoin accounts and require manual recovery backups; they are not eligible for iCloud backup in 4.1.14.

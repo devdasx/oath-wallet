@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://oathwallet.org/</loc><lastmod>2026-10-31</lastmod></url>
-  <url><loc>https://oathwallet.org/features</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://oathwallet.org/features</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://oathwallet.org/press</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://oathwallet.org/terms</loc><lastmod>2026-10-27</lastmod></url>
   <url><loc>https://oathwallet.org/privacy</loc><lastmod>2026-10-27</lastmod></url>
@@ -51,4 +51,7 @@
   <url><loc>https://oathwallet.org/networks/taiko</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://oathwallet.org/networks/telos</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://oathwallet.org/networks/x-layer</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://oathwallet.org/features/revoke-token-approvals</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://oathwallet.org/features/icloud-wallet-backup</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://oathwallet.org/features/walletconnect</loc><lastmod>2026-11-06</lastmod></url>
 </urlset>
