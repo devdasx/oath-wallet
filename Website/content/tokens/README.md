@@ -8,7 +8,7 @@ The accepted snapshot is `source.json.gz`. It is extracted from the app revision
 
 - `npm run predeploy` builds from the last accepted snapshot, without contacting token providers. Generated data lives in ignored `public/token-data/{version}/` shards; the version includes the renderer, styles and shared navigation.
 - `npm run refresh:tokens` reads the approved Git source, validates the snapshot and existing URL ledger, then builds and tests. Invalid snapshots never replace the source file. Commit the accepted snapshot, ledger, manifest and generated tracked website files together.
-- The **Refresh released website catalog** GitHub workflow runs on explicit dispatch or changes to approved release evidence/distribution. It proposes a PR and dispatches Website checks. After review and merge, the existing **Deploy website** workflow publishes. No periodic refresh or alternate hosting path is used.
+- The **Refresh released website catalog** GitHub workflow runs on explicit dispatch or changes to approved release evidence/distribution. It publishes a review branch, dispatches Website checks and attempts to open a PR. If repository policy prevents automatic PR creation, its run summary provides the comparison link; no permissions are expanded. After review and merge, the existing **Deploy website** workflow publishes. No periodic refresh or alternate hosting path is used.
 - A catalog-source update in an unreleased app branch does not change the public website.
 
 ## Rendering and discovery
