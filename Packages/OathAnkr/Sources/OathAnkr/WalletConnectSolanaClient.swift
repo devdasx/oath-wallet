@@ -47,6 +47,11 @@ extension SolanaSendClient {
         }
         keys += loadedWritable + loadedReadonly
         guard Set(keys).count == keys.count else { throw SolanaSendError.malformed }
+        // Stake instructions can transfer withdrawal authority without changing
+        // the connected wallet's balance. They require a dedicated review.
+        guard !tx.instructions.contains(where: { keys[$0.program] == Self.walletConnectStakeProgram }) else {
+            throw SolanaSendError.unsupportedToken
+        }
         let allWritable = tx.writable.sorted().map { keys[$0] } + loadedWritable
         // Never silently omit a writable account: a CPI can change its delegate
         // without moving tokens or naming the Token Program at the top level.
@@ -64,6 +69,9 @@ extension SolanaSendClient {
         guard let simulationSlot = simulation["context"]["slot"].integer else { throw SolanaSendError.malformed }
         guard case .object(let fields) = simulated, fields["err"] == .null else { throw SolanaSendError.simulationFailed }
         guard let after = simulated["accounts"].array, after.count == addresses.count else { throw SolanaSendError.malformed }
+        // Also cover stake changes performed through another program (CPI).
+        // Checking top-level program identifiers alone cannot establish consent.
+        try Self.walletConnectValidateStakeSnapshots(before: accounts, after: after)
         let preTokens = try accounts.map(Self.walletConnectTokenState)
         let postTokens = try after.map(Self.walletConnectTokenState)
         let delegations = try WalletConnectSolanaReview.reviewDelegations(transaction: tx, keys: keys,
