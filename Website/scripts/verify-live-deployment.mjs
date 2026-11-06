@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {tokenPageTitle} from '../src/token-titles.js';
+import {escapeHTML} from '../src/tokens.js';
 
 const urls = ['https://oathwallet.org/', 'https://oathwallet.org/security',
   'https://articles.oathwallet.org/', 'https://help.oathwallet.org/'];
@@ -24,6 +26,24 @@ assert.equal(search.status,200);assert.ok(search.headers.get('x-robots-tag')?.in
 const tokenDocuments=await fetch('https://oathwallet.org/tokens/documents.json',{signal:AbortSignal.timeout(20000)});
 assert.equal(tokenDocuments.status,200);assert.equal((await tokenDocuments.json()).documents.length,100);
 console.log(`Verified catalog ${tokens.version}: ${tokens.count} identities; ${tokens.samples.length} live samples covering every token network, search and bounded discovery.`);
+
+const titleSamples=Object.values(tokens.networks).map(n=>[n.featured[0].path,n.featured[0],n]);
+for(const slug of ['usdt','usdc']){
+ const shard=(await import('node:crypto')).createHash('sha256').update(slug).digest('hex').slice(0,2);
+ const data=JSON.parse(await (await import('node:fs/promises')).readFile(new URL('../public'+tokens.prefix+'/coins/'+shard+'.json',import.meta.url),'utf8'));
+ const coin=data[slug];titleSamples.push(['/tokens/'+slug,coin]);
+ for(const asset of coin.assets)titleSamples.push([asset.path,asset,tokens.networks[asset.network]]);
+}
+for(let offset=0;offset<titleSamples.length;offset+=5)await Promise.all(titleSamples.slice(offset,offset+5).map(async([path,asset,network])=>{
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});assert.equal(response.status,200,path);
+ const html=await response.text(),title=tokenPageTitle(asset,network),escaped=escapeHTML(title);
+ assert.equal(html.match(/<title>(.*?)<\/title>/s)?.[1],escaped,path+' title differs from this commit');
+ assert.ok(html.includes(`<meta property="og:title" content="${escaped}">`),path+' social title');
+ assert.ok(html.includes(`<meta name="twitter:title" content="${escaped}">`),path+' Twitter title');
+ const graph=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
+ assert.equal(graph['@graph'][0].name,title,path+' structured title');
+}));
+console.log(`Verified ${titleSamples.length} live title checks across every token network and every USDT/USDC page, including social and structured metadata.`);
 
 // Compare the deployed text with the Markdown generated from this checkout.
 const {documents,documentText} = await import('../src/agent-content.js');

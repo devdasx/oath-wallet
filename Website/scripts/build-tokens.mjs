@@ -1,5 +1,6 @@
 import {artworkSnapshot,attachArtwork} from './token-artwork.mjs';
 import {tokenArtwork} from '../src/token-artwork.js';
+import {qualifyTokenTitles,qualifyOverviewTitles} from './token-titles.mjs';
 import {readFile,writeFile,mkdir,rm,rename,readdir} from 'node:fs/promises';
 import {gunzipSync} from 'node:zlib';
 import {buildSiteChrome} from './build-help-chrome.mjs';
@@ -14,8 +15,8 @@ const ledgerFile=new URL('content/tokens/routes.json',base);
 let previous;
 try{previous=readLedger(JSON.parse(await readFile(ledgerFile)));}catch(e){if(e.code!=='ENOENT')throw e;}
 const {ledger,rows:baseRows}=assignRoutes(source,previous);
-const artwork=await artworkSnapshot(), rows=attachArtwork(baseRows,artwork);
-const template=await Promise.all(['src/artwork-manifest.json','src/token-artwork.js','public/token-artwork.css','src/tokens.js','src/transfer-preparation.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
+const artwork=await artworkSnapshot(), rows=qualifyTokenTitles(attachArtwork(baseRows,artwork),source.networks);
+const template=await Promise.all(['src/token-titles.js','scripts/token-titles.mjs','src/artwork-manifest.json','src/token-artwork.js','public/token-artwork.css','src/tokens.js','src/transfer-preparation.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
 const version=digest(JSON.stringify({source,ledger,template})).slice(0,16), prefix=`/token-data/${version}`;
 const stage=new URL('public/token-data-next/',base);
 await rm(stage,{recursive:true,force:true});await mkdir(stage,{recursive:true});
@@ -27,6 +28,7 @@ for(const row of rows){
   if(!byNetwork.has(row.network))byNetwork.set(row.network,[]);
   byNetwork.get(row.network).push(row);byPath.set(row.path,row);
 }
+qualifyOverviewTitles([...coins.values()]);
 const order=(a,b)=>a.name.localeCompare(b.name,'en')||a.symbol.localeCompare(b.symbol,'en')||(a.path||a.slug).localeCompare(b.path||b.slug,'en');
 const summaries=[...coins.values()].sort(order).map(c=>({name:c.name,symbol:c.symbol,slug:c.slug,artwork:c.assets.find(a=>a.artwork)?.artwork,path:c.assets.length===1?c.assets[0].path:'/tokens/'+c.slug,networks:c.assets.map(a=>a.network)}));
 const shards={};
