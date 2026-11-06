@@ -34,6 +34,7 @@ struct OathWCStellarReview: View {
     let request: WalletConnectStellarRequest
     let review: WalletConnectStellarReview
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
     var body: some View {
         VStack(spacing: 0) {
             OathSettingsRow(title: request.network.walletConnectName, accessory: .none, networkLogo: "network-stellar")
@@ -45,20 +46,25 @@ struct OathWCStellarReview: View {
             OathWCValue(title: strings.text(.wcMaximumFee), value: (OathSendAmount.units(String(review.details.fee), decimals: 7) ?? "—") + " XLM", leftToRight: true)
             ForEach(Array(review.details.operations.enumerated()), id: \.offset) { _, operation in
                 Divider()
-                Text(readable(operation)).oathFont(.body).textSelection(.enabled)
+                detailsText(operation).oathFont(.body)
                     .frame(maxWidth: .infinity, alignment: .leading).padding(20)
             }
             if review.details.memo != "\"none\"" {
-                Text(readable(review.details.memo)).oathFont(.body).textSelection(.enabled).padding(20)
+                detailsText(review.details.memo).oathFont(.body).padding(20)
             }
             DisclosureGroup {
-                Text(readable(review.details.transaction)).oathFont(.caption).textSelection(.enabled)
+                detailsText(review.details.transaction).oathFont(.caption)
                     .frame(maxWidth: .infinity, alignment: .leading)
             } label: { Text(strings.text(.wcTransactionData)) }.padding(20)
-        }.environment(\.layoutDirection, .leftToRight)
+        }
     }
-    private func readable(_ json: String) -> String {
-        guard let data = json.data(using: .utf8), let value = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) else { return json }
+    private func detailsText(_ json: String) -> some View {
+        let content = readable(json)
+        return Text(content.text).textSelection(.enabled)
+            .environment(\.layoutDirection, content.localized ? layoutDirection : .leftToRight)
+    }
+    private func readable(_ json: String) -> (text: String, localized: Bool) {
+        guard let data = json.data(using: .utf8), let value = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) else { return (json, false) }
         if let operation = value as? [String: Any], let body = operation["body"] as? [String: Any],
            let payment = body["payment"] as? [String: Any], let amount = payment["amount"] as? String,
            let destination = payment["destination"] as? String {
@@ -71,17 +77,18 @@ struct OathWCStellarReview: View {
                 issuer = credit["issuer"] as? String
             }
             if let asset {
-                var lines = [(OathSendAmount.units(amount, decimals: 7) ?? amount) + " " + asset,
-                             strings.text(.transactionTo) + ": " + destination]
+                var lines = [strings.invariant((OathSendAmount.units(amount, decimals: 7) ?? amount) + " " + asset),
+                             strings.text(.transactionTo) + ": " + strings.invariant(destination)]
                 if let source = operation["source_account"] as? String {
-                    lines.append(strings.text(.transactionFrom) + ": " + source)
+                    lines.append(strings.text(.transactionFrom) + ": " + strings.invariant(source))
                 }
-                if let issuer { lines.append(strings.text(.multisigStellarIssuer) + ": " + issuer) }
-                return lines.joined(separator: "\n")
+                if let issuer { lines.append(strings.text(.multisigStellarIssuer) + ": " + strings.invariant(issuer)) }
+                return (lines.joined(separator: "\n"), true)
             }
         }
         guard JSONSerialization.isValidJSONObject(value), let pretty = try? JSONSerialization.data(withJSONObject: value, options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]),
-              let text = String(data: pretty, encoding: .utf8) else { return json }
-        return text
+              let text = String(data: pretty, encoding: .utf8) else { return (json, false) }
+        // Preserve copyable JSON bytes; only the text view has fixed direction.
+        return (text, false)
     }
 }

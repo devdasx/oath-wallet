@@ -399,7 +399,7 @@ struct OathWCSpenderRow: View {
                 OathDAppLogo(icons: brand.map { [$0.iconURL] } ?? [], size: 28)
                 Text(verbatim: brand?.name ?? checkedIdentity?.name ?? strings.text(.permissionUnknown))
                     .oathFont(.body, weight: .semibold).multilineTextAlignment(.trailing)
-                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
+                Image(systemName: "chevron.forward").font(.footnote.weight(.semibold)).foregroundStyle(.tertiary)
             }.foregroundStyle(.primary).padding(20).contentShape(Rectangle())
         }.buttonStyle(OathSettingsRowButtonStyle())
             .accessibilityIdentifier("walletconnect.transaction.spender")
@@ -427,6 +427,7 @@ struct OathWCTokenAccessSummary: View {
     let identity: ContractIdentity?
     var compact = false
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
     private var checkedIdentity: ContractIdentity? {
         identity.flatMap { $0.network == networkID && $0.address == reference ? $0 : nil }
     }
@@ -438,7 +439,7 @@ struct OathWCTokenAccessSummary: View {
             Text(isUnlimited ? strings.text(.permissionUnlimited)
                 : decimals.flatMap { OathSendAmount.units(amount, decimals: $0) } ?? amount)
                 .oathFont(compact ? .title3 : .largeTitle, weight: .semibold).minimumScaleFactor(0.6).lineLimit(2)
-                .environment(\.layoutDirection, .leftToRight)
+                .environment(\.layoutDirection, isUnlimited ? layoutDirection : .leftToRight)
             if !compact || (decimals == nil && !isUnlimited) {
                 Text(strings.text(decimals == nil && !isUnlimited ? .wcRawAmount : .wcConfirmedLimit))
                     .oathFont(.subheadline).foregroundStyle(.secondary)
@@ -557,7 +558,7 @@ struct OathWCGasPage: View {
             OathWCValue(title: strings.text(.tokenNetwork), value: TronSendNetwork(walletConnectChain: network)?.walletConnectName ?? TonSendNetwork(walletConnectChain: network)?.walletConnectName ?? OathImportChain(rawValue: network)?.name ?? network, leftToRight: true)
             NavigationLink {
                 OathWCReceiveGas(network: network, address: address, close: close)
-            } label: { OathSettingsRow(title: strings.text(.receive), icon: "arrow.down.left") }
+            } label: { OathSettingsRow(title: strings.text(.receive), icon: "arrow.down.backward") }
                 .buttonStyle(OathSettingsRowButtonStyle()).accessibilityIdentifier("walletconnect.gas.receive")
         }.toolbar {
             ToolbarItem(placement: .topBarTrailing) {

@@ -55,7 +55,9 @@ struct OathCloudRestorePasswordPage: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             if model.phase == .completed {
-                Label(strings.text(.restoreComplete), systemImage: "checkmark.circle.fill")
+                Label { Text(strings.text(.restoreComplete)) } icon: {
+                    Image(systemName: "checkmark.circle.fill")
+                }
                     .foregroundStyle(.green).frame(maxWidth: .infinity).padding(.vertical, 44)
             } else if model.busy {
                 ProgressView(value: model.downloadProgress) {

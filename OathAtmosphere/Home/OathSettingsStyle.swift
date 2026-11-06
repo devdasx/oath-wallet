@@ -18,9 +18,12 @@ struct OathSettingsIcon: View {
     let symbol: String
     var color: Color = Color(uiColor: .label)
     @ScaledMetric(relativeTo: .body) private var size = 38.0
+    @Environment(\.layoutDirection) private var layoutDirection
 
     var body: some View {
-        Image(systemName: symbol)
+        // Text-alignment symbols name physical edges and do not automatically
+        // mirror. Choose the matching text edge; universal marks stay native.
+        Image(systemName: symbol == "text.alignleft" && layoutDirection == .rightToLeft ? "text.alignright" : symbol)
             .font(.system(size: size * 0.54, weight: .regular))
             .foregroundStyle(color)
             .frame(width: size, height: size)

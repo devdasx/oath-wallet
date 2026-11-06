@@ -224,7 +224,7 @@ struct OathWCSwapSummary: View {
                 HStack(alignment: .top, spacing: 12) {
                     asset(route.input, title: .wcTokenIn)
                         .accessibilityIdentifier("walletconnect.swap.input.\(index)")
-                    Image(systemName: "arrow.right").font(.title3).foregroundStyle(.secondary)
+                    Image(systemName: "arrow.forward").font(.title3).foregroundStyle(.secondary)
                         .padding(.top, 28).accessibilityHidden(true)
                     asset(route.output, title: .wcTokenOut)
                         .accessibilityIdentifier("walletconnect.swap.output.\(index)")

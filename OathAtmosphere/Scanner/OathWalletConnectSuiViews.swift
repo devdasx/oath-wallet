@@ -20,19 +20,21 @@ struct OathWCSuiReview: View {
                 }
                 ForEach(Array(review.changes.enumerated()),id:\.offset) { _, change in
                     Text(changeText(change,review:review)).oathFont(.body).textSelection(.enabled)
+                        .environment(\.layoutDirection, .leftToRight)
                         .frame(maxWidth:.infinity,alignment:.leading).padding(20)
                 }
                 NavigationLink {
                     OathWCContent {
                         ForEach(Array(review.details.enumerated()),id:\.offset) { _, detail in
                             Text(detail).font(.system(.footnote,design:.monospaced)).textSelection(.enabled)
+                                .environment(\.layoutDirection, .leftToRight)
                                 .frame(maxWidth:.infinity,alignment:.leading).padding(20)
                         }
                     }.navigationTitle(strings.text(.wcSignData)).navigationBarTitleDisplayMode(.inline)
                 } label: { OathSettingsRow(title:strings.text(.wcSignData),icon:"text.alignleft") }
                     .buttonStyle(OathSettingsRowButtonStyle())
                 OathSettingsFooter { Text(strings.text(.wcCallWarning)) }
-            }.environment(\.layoutDirection,.leftToRight)
+            }
         }
     }
     private func changeText(_ row:String,review:WalletConnectSuiReview) -> String {

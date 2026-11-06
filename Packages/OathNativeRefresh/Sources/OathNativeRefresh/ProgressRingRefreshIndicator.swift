@@ -78,7 +78,6 @@ private struct RingPresentation: View {
                 Image(systemName: state.cycle.phase == .failed ? "exclamationmark" : "checkmark")
                     .font(.system(size: 24, weight: .medium))
                     .foregroundStyle(Color(uiColor: state.tint))
-                    .flipsForRightToLeftLayoutDirection(state.cycle.phase != .failed)
                     .frame(width: 28, height: 28)
                     .accessibilityIdentifier(state.cycle.phase == .failed
                         ? "refresh.ring.failure" : "refresh.ring.success")
@@ -91,7 +90,8 @@ private struct RingPresentation: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         // UIHostingConfiguration starts a separate SwiftUI environment. Carry
-        // the app's language through so checkmark mirroring follows that language.
+        // the app's language through for directional content and labels.
+        // Universal marks such as the checkmark keep their native orientation.
         .environment(\.layoutDirection, state.layoutDirection)
         .environment(\.locale, state.locale)
         .accessibilityElement(children: .contain)

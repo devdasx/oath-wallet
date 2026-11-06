@@ -1092,6 +1092,7 @@ struct OathSendReviewDetail<Value: View>: View {
 private struct OathSendFeePlaceholder: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.oathLocalizer) private var strings
     @ScaledMetric(relativeTo: .body) private var height = 20.0
 
@@ -1105,7 +1106,8 @@ private struct OathSendFeePlaceholder: View {
                                        startPoint: .leading, endPoint: .trailing)
                             .frame(width: geometry.size.width * 0.6)
                             .phaseAnimator([false, true]) { content, across in
-                                content.offset(x: across ? geometry.size.width : -geometry.size.width * 0.6)
+                                content.offset(x: (layoutDirection == .rightToLeft ? -1 : 1) *
+                                    (across ? geometry.size.width : -geometry.size.width * 0.6))
                             } animation: { across in
                                 .linear(duration: across ? 1.2 : 0)
                             }

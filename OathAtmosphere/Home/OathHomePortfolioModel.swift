@@ -41,11 +41,13 @@ struct OathHomeAssetPresentation: Equatable, Identifiable, Sendable {
     let nativeSummary: String
     let nativeFull: String
     let fiat: String
+    let unitPrice: String?
     var id: String { holding.id }
 
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.holding.hasSameHomeContent(as: rhs.holding) && lhs.nativeSummary == rhs.nativeSummary &&
-        lhs.nativeFull == rhs.nativeFull && lhs.fiat == rhs.fiat
+        lhs.nativeFull == rhs.nativeFull && lhs.fiat == rhs.fiat &&
+        lhs.unitPrice == rhs.unitPrice
     }
 }
 
@@ -116,12 +118,15 @@ actor OathHomePortfolioBuilder {
             if reusable, let previous = cache[holding.id], previous.holding.hasSameHomeContent(as: holding) {
                 next[holding.id] = previous
             } else {
+                let price = holding.price.flatMap { Decimal(string: $0, locale: Locale(identifier: "en_US_POSIX")) }
+                    .flatMap { !$0.isNaN && $0 > 0 ? $0 : nil }
                 let amounts = OathAssetAmounts(native: holding.nativeDisplayValue, fiat: holding.fiatDisplayValue,
                                                currencyCode: input.currency)
                 next[holding.id] = OathHomeAssetPresentation(holding: holding,
                     nativeSummary: format.nativeSummary(amounts.native, ticker: holding.symbol),
                     nativeFull: format.native(amounts.native, ticker: holding.symbol),
-                    fiat: String(format.fiat(amounts).characters))
+                    fiat: String(format.fiat(amounts).characters),
+                    unitPrice: price.map { format.money($0) })
                 formatted += 1
             }
         }

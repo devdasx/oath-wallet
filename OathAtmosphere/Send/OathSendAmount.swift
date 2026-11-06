@@ -221,7 +221,11 @@ struct OathSendAmountFormat {
     }
 
     func amountParts(_ input: String, fiat: Bool, symbol: String, decimals: Int, belowFiatMinimum: Bool = false) -> (prefix: String, number: String, suffix: String) {
-        if fiat && belowFiatMinimum { return ("< " + prefix, number("0.01"), suffix) }
+        if fiat && belowFiatMinimum {
+            // These are presentation parts, not input. Keep '<' mathematical
+            // even when the native currency prefix contains an RTL mark.
+            return ("\u{2066}< \u{2068}" + prefix, number("0.01"), suffix + "\u{2069}\u{2069}")
+        }
         let placeholder = fiat || decimals == 0 ? "0" : "0." + String(repeating: "0", count: min(3, decimals))
         let value = number(input.isEmpty ? placeholder : input)
         return fiat ? (prefix, value, suffix) : ("", value, " " + symbol)

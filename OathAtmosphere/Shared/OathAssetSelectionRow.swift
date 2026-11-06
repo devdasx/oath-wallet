@@ -16,10 +16,13 @@ struct OathAssetSelectionRow: View {
         OathRefinedListRow(title: strings.invariant(holding.symbol),
             subtitle: strings.invariant(holding.name),
             value: String(format.fiat(amounts).characters),
+            primaryFontWeight: .medium,
             detail: strings.invariant(format.nativeSummary(amounts.native, ticker: holding.symbol)),
             showsSeparator: showsSeparator,
             titleBadgeAsset: chain?.logoAsset,
-            assetNetworkName: strings.invariant(chain?.name ?? holding.networkID)) { size in
+            assetNetworkName: strings.invariant(chain?.name ?? holding.networkID),
+            showsAssetNetworkBadge: holding.reference != "native",
+            emphasizesBalanceDetail: true) { size in
                 OathSendLogo(holding: holding, size: size, showsChainBadge: false)
             }
             .accessibilityLabel([holding.symbol, holding.name, chain?.name,

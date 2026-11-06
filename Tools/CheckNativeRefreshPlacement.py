@@ -30,6 +30,11 @@ def main():
         work = Path(temporary)
         shutil.copytree(root / "Tools/NativeRefreshPlacement", work / "Fixture",
                         ignore=shutil.ignore_patterns("._*"))
+        # Exercise the actual shared selection row used by the balance-period
+        # sheet, without compiling wallet or account services into this fixture.
+        settings = (root / "OathAtmosphere/Home/OathSettingsStyle.swift").read_text()
+        settings = settings.split("enum OathWalletCreationOptions", 1)[0].replace("import OathTokenImages", "")
+        (work / "SettingsRows.swift").write_text(settings)
         spec = {
             "name": "RefreshPlacement", "options": {"deploymentTarget": {"iOS": "26.0"}},
             "packages": {"OathNativeRefresh": {"path": str(root / "Packages/OathNativeRefresh")}},
@@ -47,7 +52,7 @@ def main():
                     "dependencies": [{"target": "RefreshPlacement"}],
                     "settings": {"base": {"PRODUCT_BUNDLE_IDENTIFIER": "org.oathwallet.refresh-placement.tests"}}},
                 "DirectionTests": {
-                    "type": "bundle.unit-test", "platform": "iOS", "sources": ["Fixture/DirectionTests.swift"],
+                    "type": "bundle.unit-test", "platform": "iOS", "sources": ["Fixture/DirectionTests.swift", "Fixture/SettingsSupport.swift", "SettingsRows.swift"],
                     "dependencies": [{"target": "RefreshPlacement"}, {"package": "OathNativeRefresh"}],
                     "settings": {"base": {"PRODUCT_BUNDLE_IDENTIFIER": "org.oathwallet.refresh-direction.tests"}}}
             },

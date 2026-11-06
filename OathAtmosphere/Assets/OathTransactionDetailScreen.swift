@@ -64,7 +64,7 @@ struct OathTransactionDetailScreen: View {
                             share = OathTransactionSharePayload(items: [explorerURL])
                         }
                         .accessibilityIdentifier("transaction.shareLink")
-                        OathButton(strings.text(.transactionViewExplorer), systemImage: "arrow.up.right.square") {
+                        OathButton(strings.text(.transactionViewExplorer), systemImage: "arrow.up.forward.square") {
                             openURL(explorerURL)
                         }
                         .accessibilityIdentifier("transaction.explorer")
@@ -203,6 +203,7 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
     @ViewBuilder let header: () -> Header
     @ViewBuilder let supplement: () -> Supplement
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.dynamicTypeSize) private var typeSize
     @State private var copiedKey: String?
@@ -334,6 +335,7 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
             VStack(alignment: .trailing, spacing: 4) {
                 HStack(spacing: 6) {
                     Text(value).lineLimit(1).truncationMode(.middle)
+                        .environment(\.layoutDirection, .leftToRight)
                         .foregroundStyle(ownership == .unrecognized ? Color.secondary : Color.primary)
                         .accessibilityLabel(value)
                     if ownership == .change {
@@ -366,7 +368,7 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
             .accessibilityLabel(strings.text(key == OathStringKey.assetTransactionID.rawValue || key == OathStringKey.transactionReplacement.rawValue ? .assetCopyTransaction : .copyAddress))
             .accessibilityValue(copiedKey == copyID ? strings.text(.addressCopied) : "")
             .accessibilityIdentifier("transaction.copy.\(key)")
-        }.environment(\.layoutDirection, .leftToRight)
+        }
     }
 
     @ViewBuilder private func addressGroup(isInput: Bool, rows: [TransactionEndpoint]) -> some View {
@@ -391,7 +393,7 @@ struct OathTransactionReceiptContent<Header: View, Supplement: View>: View {
                                 .multilineTextAlignment(.trailing)
                             Image(systemName: "chevron.forward")
                                 .font(.footnote.weight(.semibold)).foregroundStyle(.secondary)
-                                .rotationEffect(.degrees(expanded ? 90 : 0))
+                                .rotationEffect(.degrees(expanded ? (layoutDirection == .rightToLeft ? -90 : 90) : 0))
                                 .accessibilityHidden(true)
                         }
                     }
@@ -526,6 +528,7 @@ struct OathTransactionReceiptLogo: View {
     var artwork: ArtworkImage?
     var onResolved: ((ArtworkImage) -> Void)? = nil
     @Environment(\.oathLocalizer) private var strings
+    @Environment(\.layoutDirection) private var layoutDirection
     private var badge: OathTransactionBadge { .init(state: state, direction: direction) }
     private var badgeColor: Color {
         switch badge.tone {
@@ -554,7 +557,7 @@ struct OathTransactionReceiptLogo: View {
                     Circle().fill(badgeColor.opacity(0.1))
                 }
                 .overlay { Circle().strokeBorder(Color(uiColor: OathSurfaceColors.groupedCanvas), lineWidth: 3) }
-                .offset(x: 4, y: 4)
+                .offset(x: layoutDirection == .rightToLeft ? -4 : 4, y: 4)
         }
         .padding(4)
         .accessibilityElement(children: .ignore)
@@ -591,8 +594,8 @@ struct OathTransactionBadge: Equatable {
         case "reorged": symbol = "arrow.counterclockwise"; tone = .warning
         case "confirmed":
             switch direction {
-            case "incoming": symbol = "arrow.down.left"; tone = .positive
-            case "outgoing": symbol = "arrow.up.right"; tone = .neutral
+            case "incoming": symbol = "arrow.down.backward"; tone = .positive
+            case "outgoing": symbol = "arrow.up.forward"; tone = .neutral
             default: symbol = "arrow.left.arrow.right"; tone = .neutral
             }
         default: symbol = "clock"; tone = .neutral
@@ -655,7 +658,7 @@ enum OathAssetHistoryFormatting {
         case "canceled", "failed": "xmark"
         case "replaced": "arrow.triangle.2.circlepath"
         case "reorged": "clock"
-        default: entry.displayDirection == "incoming" ? "arrow.down.left" : entry.displayDirection == "outgoing" ? "arrow.up.right" : "arrow.left.arrow.right"
+        default: entry.displayDirection == "incoming" ? "arrow.down.backward" : entry.displayDirection == "outgoing" ? "arrow.up.forward" : "arrow.left.arrow.right"
         }
     }
     static func amount(_ entry: HistoryEntry, holding: Holding) -> String {
@@ -664,12 +667,10 @@ enum OathAssetHistoryFormatting {
                state: entry.state, direction: entry.displayDirection)
     }
     static func amount(atomic: String, decimals: Int, symbol: String, state: String, direction: String) -> String {
-        let quantity = OathAssetAmountFormat.boundedUnits((try? AtomicAmount(atomic).units(decimals: decimals)) ?? "—")
         let prefix = sign(state: state, direction: direction, amount: atomic)
-        if quantity.hasPrefix("< ") {
-            return (prefix == "−" ? "> −" : "< " + prefix) + quantity.dropFirst(2) + " " + symbol
-        }
-        return prefix + quantity + " " + symbol
+        let quantity = OathAssetAmountFormat.boundedUnits(
+            (try? AtomicAmount(atomic).units(decimals: decimals)) ?? "—", sign: prefix)
+        return quantity + " " + symbol
     }
     static func fiat(_ entry: HistoryEntry, holding: Holding, currency: String, locale: Locale) -> String? {
         guard let atomic = entry.displayAmountAtomic else { return nil }

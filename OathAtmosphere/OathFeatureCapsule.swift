@@ -60,7 +60,6 @@ struct OathFeatureCapsule: View {
             if let symbol = displayedFeature.symbol {
                 Image(systemName: symbol)
                     .symbolRenderingMode(.monochrome)
-                    .flipsForRightToLeftLayoutDirection(displayedFeature == .send || displayedFeature == .receive)
                     .id(displayedFeature)
                     .transition(.blurReplace)
                     .accessibilityHidden(true)
@@ -94,8 +93,8 @@ struct OathFeatureCapsule: View {
 
         var symbol: String? {
             switch self {
-            case .send: "arrow.up.right"
-            case .receive: "arrow.down.left"
+            case .send: "arrow.up.forward"
+            case .receive: "arrow.down.backward"
             case .pay: "qrcode.viewfinder"
             case .request: "arrow.down.message"
             case .selfCustody: nil

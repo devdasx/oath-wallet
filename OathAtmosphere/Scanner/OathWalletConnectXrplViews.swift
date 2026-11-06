@@ -60,8 +60,9 @@ struct OathWCXrplReview: View {
             Divider()
             Text(review.transaction["TransactionType"].string ?? "").oathFont(.title2, weight: .semibold).padding(20)
             Text(transactionText).oathFont(.body).textSelection(.enabled)
+                .environment(\.layoutDirection, .leftToRight)
                 .frame(maxWidth: .infinity, alignment: .leading).padding(20)
-        }.environment(\.layoutDirection, .leftToRight)
+        }
     }
     private func memoText(_ hex: String) -> String {
         // Non-text memos retain their exact hex representation.
