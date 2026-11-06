@@ -40,5 +40,9 @@ jobs:
           git commit -m 'Refresh website from the approved app catalog'
           git push origin "$branch"
           printf '%s\n' 'Regenerates the token website from the pinned, Apple-approved app distribution record. Stable identities and URL history are preserved; malformed or regrouped identities stop the refresh.' '' 'Validation: website build and unit tests passed. The normal Website checks workflow is dispatched for this branch. Publication follows the existing Deploy website workflow after merge.' > /tmp/token-refresh-body.txt
-          gh pr create --base main --head "$branch" --title 'Refresh the released website token catalog' --body-file /tmp/token-refresh-body.txt
           gh workflow run website-checks.yml --ref "$branch"
+          # Some repositories prohibit GITHUB_TOKEN from opening pull requests.
+          # Preserve that security setting and provide the checked review branch.
+          if ! gh pr create --base main --head "$branch" --title 'Refresh the released website token catalog' --body-file /tmp/token-refresh-body.txt; then
+            printf '%s\n' 'The validated refresh branch was pushed and Website checks were dispatched. Automatic PR creation was unavailable; open the comparison below to review it. Production is unchanged until a PR is merged.' "https://github.com/${GITHUB_REPOSITORY}/compare/main...${branch}?expand=1" >> "$GITHUB_STEP_SUMMARY"
+          fi

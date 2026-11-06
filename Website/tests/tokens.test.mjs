@@ -21,6 +21,15 @@ const environment=()=>({ASSETS:{async fetch(req){try{const p=new URL(req.url).pa
 const env=environment();
 const get=(path,options)=>worker.fetch(new Request(main+path,options),env);
 
+test('priority stablecoin guidance keeps the selected token on each network',async()=>{
+ for(const [symbol,network]of [['USDT','solana'],['USDT','tron'],['USDC','solana'],['USDC','base']]){
+  const html=await(await get('/tokens/'+symbol.toLowerCase()+'/'+network)).text();
+  const guide=html.match(/<section><h2>Choose the right [\s\S]*?<\/section>/)?.[0];
+  assert.ok(guide);assert.ok(guide.includes(`For ${symbol} on `));
+  assert.ok(!guide.includes('For '+(symbol==='USDT'?'USDC':'USDT')+' on '));
+ }
+});
+
 test('edge cache keeps search and Markdown separate and survives asset read failures',async()=>{
  const previous=globalThis.caches,stored=new Map(),pending=[];
  globalThis.caches={default:{async match(key){return stored.get(key.url)?.clone();},async put(key,response){stored.set(key.url,response.clone());}}};
