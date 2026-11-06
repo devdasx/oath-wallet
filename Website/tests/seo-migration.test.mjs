@@ -92,5 +92,6 @@ test('homepage answers are crawlable, linked and preserved in the enhanced desig
  assert.equal((html.match(/<!-- oath-self-custody:start -->/g)||[]).length,1);
  const product=schemas(html).find(s=>s['@type']==='MobileApplication');
  assert.equal(product.aggregateRating,undefined);assert.equal(product.review,undefined);
- assert.match(html,/38 US ratings/);assert.match(html,/US App Store/);
+ const rating=JSON.parse(await readFile(new URL('../public/oath-data.json',import.meta.url))).facts.app_store_rating;
+ assert.ok(html.includes(`${rating.count} US ratings`));assert.match(html,/US App Store/);
 });

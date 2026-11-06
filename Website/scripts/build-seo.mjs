@@ -16,6 +16,22 @@ const questions=JSON.parse(await readFile(new URL('../content/self-custody-quest
 const data=JSON.parse(await read('oath-data.json'));
 const release=JSON.parse(await read('release-status.json'));
 if(data.facts.app_version!==release.version || data.facts.app_build!==release.build)throw Error('Current product facts disagree with the published release record');
+const rating=data.facts.app_store_rating;
+if(!Number.isFinite(rating.value)||rating.value<1||rating.value>5||!Number.isInteger(rating.count)||rating.count<1||!/^\d{4}-\d{2}-\d{2}$/.test(rating.checked_on))throw Error('Invalid attributed App Store rating snapshot');
+const ratingDate=new Intl.DateTimeFormat('en-US',{month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(rating.checked_on+'T00:00:00Z'));
+function productMetadata(node){
+ node.name='Oath: Crypto & Bitcoin Wallet';
+ node.softwareVersion=release.version;
+ node.operatingSystem='iOS, iPadOS';
+ node.featureList=data.features.map(f=>f.name);
+ node.softwareHelp='https://help.oathwallet.org/';
+ // codeRepository belongs to SoftwareSourceCode, not MobileApplication.
+ node.subjectOf={'@type':'SoftwareSourceCode','@id':data.facts.source_code+'#source',name:'Oath Wallet public source',url:data.facts.source_code,codeRepository:data.facts.source_code};
+ delete node.codeRepository;
+ // Imported App Store ratings remain attributed, dated visible content.
+ delete node.aggregateRating;
+ delete node.review;
+}
 
 // Current product metadata comes from the same reviewed facts as agent discovery.
 // Historical articles and screenshot versions keep their original provenance.
@@ -23,12 +39,26 @@ let features=await read('features.html');
 features=features.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,raw)=>{
  const schema=JSON.parse(raw);
  for(const node of schema['@graph']||[]){
-  if(node['@type']==='MobileApplication'){node.softwareVersion=release.version;node.featureList=data.features.map(f=>f.name);node.softwareHelp='https://help.oathwallet.org/';}
+  if(node['@type']==='MobileApplication')productMetadata(node);
   if(node['@type']==='ItemList'&&node.name==='Oath features')node.itemListElement=data.features.map((f,i)=>({'@type':'ListItem',position:i+1,name:f.name,description:f.summary}));
  }
  return `<script type="application/ld+json">${json(schema)}</script>`;
 });
 await write('features.html',features);
+
+// Keep one identified WebPage for Security, retaining its genuine editorial date.
+let security=await read('security.html');
+security=security.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,raw)=>{
+ const schema=JSON.parse(raw),graph=schema['@graph']||[];
+ const page=graph.find(n=>n['@id']==='https://oathwallet.org/security');
+ if(page){
+  const duplicate=graph.find(n=>n!==page&&n['@type']==='WebPage'&&n.url===page.url);
+  if(duplicate?.dateModified&&!page.dateModified)page.dateModified=duplicate.dateModified;
+  schema['@graph']=graph.filter(n=>n===page||n['@type']!=='WebPage'||n.url!==page.url);
+ }
+ return `<script type="application/ld+json">${json(schema)}</script>`;
+});
+await write('security.html',security);
 
 // Preserve the designed homepage; provide the same useful answers before and
 // after enhancement. Do not add FAQ rich-result markup: this is not a health
@@ -57,18 +87,14 @@ home=home.replace(/<title>[\s\S]*?<\/title>/,`<title>${title}</title>`)
  .replace(/(<meta (?:name|property)="(?:description|og:description|twitter:description)" content=")[^"]*"/g,`$1${description}"`)
  .replace(/(<meta property="og:site_name" content=")[^"]*"/,'$1Oath Wallet"')
  .replace(/(<meta (?:property|name)="(?:og:title|twitter:title)" content=")[^"]*"/g,`$1${title}"`)
- .replaceAll('37 US ratings','38 US ratings').replace(/Rating checked (?:September 28|October 20), 2026/g,'Rating checked October 27, 2026');
+ .replace(/(<span\b[^>]*font:400 clamp\(96px,14vw,200px\)[^>]*>)[\d.]+(<\/span>)/g,`$1${rating.value.toFixed(1)}$2`)
+ .replace(/\d+ US ratings/g,`${rating.count} US ratings`)
+ .replace(/Rating checked [A-Z][a-z]+ \d{1,2}, \d{4}/g,`Rating checked ${ratingDate}`);
 home=home.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,raw)=>{
  const schema=JSON.parse(raw);
  for(const node of schema['@graph']||[]) {
   if(node['@type']==='WebPage'){node.name=title;node.description=description;}
-  if(node['@type']==='MobileApplication'){
-   node.name='Oath: Crypto & Bitcoin Wallet';node.softwareVersion=data.facts.app_version;
-   // App Store ratings remain attributed, dated visible content, not imported review markup.
-   delete node.aggregateRating;
-   delete node.review;
-   node.softwareHelp='https://help.oathwallet.org/';
-  }
+  if(node['@type']==='MobileApplication')productMetadata(node);
  }
  return `<script type="application/ld+json">${json(schema)}</script>`;
 });
@@ -77,7 +103,7 @@ let markdown=await read('index.md');
 markdown=markdown.replace(transferBlock,'');
 markdown+='\n'+transferStart+'\n## The right token. The right network.\n\nMatch the exact token, check its receiving network and find the fee asset before you send. Start with USDT or USDC, or find your token in Oath’s catalog.\n\n[Prepare a transfer](https://oathwallet.org/networks/choose-token-network#prepare-transfer) · [Find your token](https://oathwallet.org/tokens)\n'+transferEnd+'\n';
 markdown=markdown.replace(/\n<!-- oath-questions:start -->[\s\S]*?<!-- oath-questions:end -->\n?/g,'')
- .replace('from 37 ratings','from 38 ratings').replace(/checked (?:September 28|October 20), 2026 on the App Store/g,'checked October 27, 2026 on the App Store');
+ .replace(/Rated \*\*[\d.]+ out of 5\*\* from \d+ ratings in the US App Store · checked [A-Z][a-z]+ \d{1,2}, \d{4} on the App Store\./,`Rated **${rating.value.toFixed(1)} out of 5** from ${rating.count} ratings in the US App Store · checked ${ratingDate} on the App Store.`);
 markdown+='\n<!-- oath-questions:start -->\n## Self-custody, explained\n\n'+questions.map(q=>`### ${q.question}\n\n${q.answer}\n\n[${q.label}](${q.url})`).join('\n\n')+'\n<!-- oath-questions:end -->\n';
 await write('index.md',markdown);
 const homePage=data.pages.find(p=>p.url==='https://oathwallet.org/');

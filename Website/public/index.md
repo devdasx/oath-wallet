@@ -23,7 +23,7 @@ Capabilities depend on the network and release. Silent Payments receiving and di
 
 ## App Store reviews
 
-Rated **4.8 out of 5** from 38 ratings in the US App Store · checked October 30, 2026 on the App Store.
+Rated **4.9 out of 5** from 37 ratings in the US App Store · checked November 6, 2026 on the App Store.
 
 - “Impressed with the Security” — deebs.h: The interface is clean, easy to use, and it gives me confidence that privacy and security are taken seriously.
 - “Love It” — Idwador iomp: Fast, secure, easy to use, and very reliable. Highly recommended!

@@ -23,10 +23,11 @@
     "account": "No account, email, phone number or KYC is required to use Oath.",
     "confirm": "Transactions are authorized after reviewing the amount, destination, network and estimated fee. The final network fee and confirmation depend on the chain.",
     "app_store_rating": {
-      "value": 4.8,
-      "count": 38,
+      "value": 4.9,
+      "count": 37,
       "source": "Apple App Store (US)",
-      "checked_on": "2026-10-27"
+      "checked_on": "2026-11-06",
+      "source_url": "https://itunes.apple.com/lookup?id=6780187283&country=us"
     },
     "source_version": "5.0.2 (104)",
     "app_version": "5.0.2",

@@ -21,6 +21,18 @@ Catalog inclusion is discovery evidence, not issuer verification or tested sendi
 
 Token titles use `{Full name} ({Symbol}) Wallet on {Network}: Send & Receive on iPhone | Oath`; multi-network overviews omit the individual network. The released catalog supplies the name: repeated symbols are omitted, and wrapped/bridged qualifiers remain intact. Long identities keep their full name and symbol while surrounding wording is shortened toward an editorial target of 100 characters (not a Google limit). Different identities with otherwise identical titles get distinct public-reference excerpts; ambiguous overview groups use their catalog asset IDs. URL identities do not change. Page titles, Open Graph, Twitter and WebPage structured names share one formatter. Visible headings, descriptions, page content and layout retain their existing presentation. The send/receive wording describes the guide's topics; existing capability restrictions and catalog-inclusion qualifications remain in the page.
 
+## Directory discovery
+
+Every directory's first page includes a collapsed, keyboard-accessible index
+linking directly to every paginated page, labeled with its first and last token
+names. The compact `directory/index.json` and `networks/{network}/index.json`
+chunks are generated from the same sorted rows as the pages. All links exist
+in initial HTML, independent of JavaScript. Search results omit this index and
+remain `noindex`; ordinary pages retain their own canonical URLs. Directory
+structured data lists the visible entries with their overall positions and
+the full collection count. Token detail metadata identifies an asset by its
+network and exact contract, mint or other chain reference, never its symbol alone.
+
 ## Token artwork
 
 `artwork.json.gz` is an accepted artwork-only snapshot tied to the released catalog revision and source hash. It combines the seed's explicit images, bundled app details (asset ID plus exact network reference), published CoinGecko/GlueX token lists and the app's GeckoTerminal batch fallback. Network and canonical contract/mint/issuer/reference determine every match; symbols never determine artwork. No provider names, decimals, verification flags or financial metadata enter the catalog through this process.

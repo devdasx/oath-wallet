@@ -16,7 +16,7 @@ let previous;
 try{previous=readLedger(JSON.parse(await readFile(ledgerFile)));}catch(e){if(e.code!=='ENOENT')throw e;}
 const {ledger,rows:baseRows}=assignRoutes(source,previous);
 const artwork=await artworkSnapshot(), rows=qualifyTokenTitles(attachArtwork(baseRows,artwork),source.networks);
-const template=await Promise.all(['src/token-titles.js','scripts/token-titles.mjs','src/artwork-manifest.json','src/token-artwork.js','public/token-artwork.css','src/tokens.js','src/transfer-preparation.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
+const template=await Promise.all(['scripts/build-tokens.mjs','src/token-titles.js','scripts/token-titles.mjs','src/artwork-manifest.json','src/token-artwork.js','public/token-artwork.css','src/tokens.js','src/transfer-preparation.js','src/seo-guidance.js','content/priority-guidance.json','public/seo-guidance.css','public/tokens.css','public/Oath Header.dc.html','public/Oath Footer.dc.html'].map(p=>readFile(new URL(p,base),'utf8')));
 const version=digest(JSON.stringify({source,ledger,template})).slice(0,16), prefix=`/token-data/${version}`;
 const stage=new URL('public/token-data-next/',base);
 await rm(stage,{recursive:true,force:true});await mkdir(stage,{recursive:true});
@@ -39,6 +39,10 @@ for(const coin of coins.values()){
 for(const [id,data]of Object.entries(shards))await put(`coins/${id}.json`,data);
 const pageSize=50, allURLs=[];
 const addURL=(path,kind,network)=>allURLs.push({path,kind,...network?{network}:{}});
+// Each directory exposes a small page index in its initial HTML. Crawlers and
+// keyboard users can reach the final page without walking hundreds of Next links.
+const pageIndex=entries=>Array.from({length:Math.ceil(entries.length/pageSize)},(_,i)=>({page:i+1,first:entries[i*pageSize].name,last:entries[Math.min((i+1)*pageSize,entries.length)-1].name}));
+await put('directory/index.json',pageIndex(summaries));
 for(let offset=0;offset<summaries.length;offset+=pageSize){
   const page=1+offset/pageSize;await put(`directory/${page}.json`,summaries.slice(offset,offset+pageSize));
   addURL('/tokens'+(page===1?'':`?page=${page}`),'directory');
@@ -50,6 +54,7 @@ for(const n of source.networks){
   const ranked=(source.featured[n.id]||[]).map(f=>assets.find(a=>identity(a)===f.id || (n.group==='EVM'&&identity(a)===f.id.toLowerCase()))).filter(Boolean);
   const featured=[...ranked,...assets.filter(a=>!ranked.includes(a))].slice(0,12);
   networkInfo[n.id]={...n,count:assets.length,pages:Math.ceil(assets.length/pageSize),featured};
+  await put(`networks/${n.slug}/index.json`,pageIndex(assets));
   for(let offset=0;offset<assets.length;offset+=pageSize){
     const page=1+offset/pageSize;await put(`networks/${n.slug}/${page}.json`,assets.slice(offset,offset+pageSize));
     addURL(`/networks/${n.slug}/tokens`+(page===1?'':`?page=${page}`),'network-directory',n.id);

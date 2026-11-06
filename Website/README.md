@@ -208,11 +208,26 @@ Reference: https://developers.openai.com/api/docs/bots
 
 After deployment run `python3 scripts/check-search-crawlers.py`. It verifies all
 sitemap URLs against robots rules and samples three pages per host using search,
-user-retrieval and browser User-Agents (27 page requests). It checks HTTP status,
+user-retrieval and browser User-Agents (90 page requests across Google, Bing,
+Apple, OpenAI, Anthropic, Perplexity and a browser). It checks HTTP status,
 content type, challenges, indexability and readable HTML. Requests come from the
 runner, not OpenAI's IPs, so this proves public access only. Confirm verified-bot
 access separately in Cloudflare logs. Neither check guarantees indexing, a
 citation, a recommendation, or ranking. Run `audit-search.py` for the full site.
+
+`scripts/seo-organic-report.sql` groups existing hostname-only referrals by
+search engine and AI service, with aggregate outbound App Store clicks. It adds
+no tracking fields. Missing referrers remain unattributed; Google and Bing AI
+answers cannot be separated from ordinary search by these referrers. Clicks
+are not installs, and referrals do not count all AI citations or recommendations.
+
+The attributed US App Store rating snapshot lives in
+`public/oath-data.json` (`facts.app_store_rating`). Update its value, count,
+check date and official source together after verifying Apple. `build:seo`
+uses that snapshot for the visible homepage and Markdown; it does not fetch
+Apple during deployment or add imported review/rating structured data.
+Homepage and features product metadata share the same released facts. Keep
+historical guide versions and review dates intact when updating those facts.
 
 ## Current release documentation
 
