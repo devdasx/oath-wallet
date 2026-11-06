@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Ethereum
+
+Native coin: ETH. 6065 catalog token entries.
+
+- [Tether (USDT) on Ethereum](https://oathwallet.org/tokens/usdt/ethereum)
+- [USDC (USDC) on Ethereum](https://oathwallet.org/tokens/usdc/ethereum)
+- [Dai (DAI) on Ethereum](https://oathwallet.org/tokens/dai/ethereum)
+- [Wrapped Bitcoin (WBTC) on Ethereum](https://oathwallet.org/tokens/wrapped-bitcoin/ethereum)
+- [Chainlink (LINK) on Ethereum](https://oathwallet.org/tokens/chainlink/ethereum)
+- [Uniswap (UNI) on Ethereum](https://oathwallet.org/tokens/uniswap/ethereum)
+- [Aave (AAVE) on Ethereum](https://oathwallet.org/tokens/aave/ethereum)
+- [Ethena USDe (USDE) on Ethereum](https://oathwallet.org/tokens/ethena-usde/ethereum)
+- [PayPal USD (PYUSD) on Ethereum](https://oathwallet.org/tokens/paypal-usd/ethereum)
+- [WETH (WETH) on Ethereum](https://oathwallet.org/tokens/weth/ethereum)
+- [🌻ᔕᒪᑌGᒪOᖇᗪ🌻 (SLUGLORD) on Ethereum](https://oathwallet.org/tokens/g-o/ethereum)
+- [$AIBOT IYI (AIB) on Ethereum](https://oathwallet.org/tokens/aibot-iyi/ethereum)
+
+[Browse all Ethereum tokens](https://oathwallet.org/networks/ethereum/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on NEAR Protocol
+
+Native coin: NEAR. 82 catalog token entries.
+
+- [Tether (USDT) on NEAR Protocol](https://oathwallet.org/tokens/usdt/near)
+- [Rainbow Bridged USDC (Near) (USDC.E) on NEAR Protocol](https://oathwallet.org/tokens/usdc-rainbow-bridge/near)
+- [Ref Finance (REF) on NEAR Protocol](https://oathwallet.org/tokens/ref-finance/near)
+- [Aurora (AURORA) on NEAR Protocol](https://oathwallet.org/tokens/aurora-near/near)
+- [LiNEAR Protocol Staked NEAR (LINEAR) on NEAR Protocol](https://oathwallet.org/tokens/linear-protocol/near)
+- [Staked NEAR (STNEAR) on NEAR Protocol](https://oathwallet.org/tokens/staked-near/near)
+- [SWEAT (SWEAT) on NEAR Protocol](https://oathwallet.org/tokens/sweatcoin/near)
+- [NEKO (NEKO) on NEAR Protocol](https://oathwallet.org/tokens/neko/near)
+- [Omnity Convertible Token (OCT) on NEAR Protocol](https://oathwallet.org/tokens/octopus-network/near)
+- [1MillionNFTs (1MIL) on NEAR Protocol](https://oathwallet.org/tokens/1million-nfts/near)
+- [Aave (AAVE) on NEAR Protocol](https://oathwallet.org/tokens/aave/near)
+- [Allbridge Bridged SOL (Near Protocol) (SOL) on NEAR Protocol](https://oathwallet.org/tokens/allbridge-bridged-sol-near-protocol/near)
+
+[Browse all NEAR Protocol tokens](https://oathwallet.org/networks/near/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

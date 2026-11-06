@@ -5,6 +5,7 @@ import evidence from '../content/release-evidence.json' with {type:'json'};
 import distribution from '../../releases/5.0.2-distribution.json' with {type:'json'};
 import {migrateArticleLinks} from './article-host.js';
 import {articleRoutes} from './article-routes.js';
+export const tokenDiscovery={url:'https://oathwallet.org/tokens',documents:'https://oathwallet.org/tokens/documents.json',page_size:100,scope:'Released discovery catalog; inclusion is not issuer verification or tested sending.'};
 const main='https://oathwallet.org', support='https://help.oathwallet.org', articles='https://articles.oathwallet.org';
 const pages=['index','features','about','networks','press','security','bug-bounty','terms','privacy'];
 const articlePath=p=>p.replace(/\/articles(?=\/|$)/,'')||'/';
@@ -32,7 +33,7 @@ export const statusText=()=>`Current release: Oath Wallet ${currentStatus.versio
 const link=d=>`- [${d.title}](${d.markdown_url})${d.summary?': '+d.summary:''}`;
 export function guide(origin) {
  const docs=documents.filter(d=>origin===main || new URL(d.url).origin===origin);
- return `# Oath Wallet — public documentation\n\nOfficial product information only. Never submit recovery phrases, private keys, passcodes or wallet data to these interfaces.\n\nRead-only MCP: ${main}/mcp\nDocument index: ${main}/agent-documents.json\nApp Store: ${facts.facts.download}\nPublic source and releases: ${facts.facts.source_code}\n\n${statusText()}\nHelp instructions carry their applicable app version and authored update dates. Source excerpts cover ${evidence.version} (${evidence.build}), reviewed ${evidence.reviewed_on}; this is not an independent audit or proof of App Store availability.\n\n${docs.map(link).join('\n')}\n\nFull text: ${main}/llms-full.txt\n`;
+ return `# Oath Wallet — public documentation\n\nOfficial product information only. Never submit recovery phrases, private keys, passcodes or wallet data to these interfaces.\n\nRead-only MCP: ${main}/mcp\nDocument index: ${main}/agent-documents.json\nToken catalog: ${main}/tokens\nPaginated token documents: ${main}/tokens/documents.json\nApp Store: ${facts.facts.download}\nPublic source and releases: ${facts.facts.source_code}\n\n${statusText()}\nHelp instructions carry their applicable app version and authored update dates. Source excerpts cover ${evidence.version} (${evidence.build}), reviewed ${evidence.reviewed_on}; this is not an independent audit or proof of App Store availability.\n\n${docs.map(link).join('\n')}\n\nFull text: ${main}/llms-full.txt\n`;
 }
 export async function documentText(d,env,asset) {
  let body;
@@ -75,7 +76,7 @@ export async function handleAgentContent(request,env) {
  } else if(u.pathname==='/release-status.json') {
   body=JSON.stringify(currentStatus);headers['Content-Type']='application/json; charset=utf-8';headers['X-Robots-Tag']='noindex';
  } else if(u.pathname==='/agent-documents.json') {
-  body=JSON.stringify({schema_version:1,current_status:currentStatus,source_evidence:evidenceScope,documents:documents.filter(d=>u.origin===main||new URL(d.url).origin===u.origin).map(publicDocument)});headers['Content-Type']='application/json; charset=utf-8';headers['X-Robots-Tag']='noindex';
+  body=JSON.stringify({schema_version:1,current_status:currentStatus,source_evidence:evidenceScope,token_catalog:tokenDiscovery,documents:documents.filter(d=>u.origin===main||new URL(d.url).origin===u.origin).map(publicDocument)});headers['Content-Type']='application/json; charset=utf-8';headers['X-Robots-Tag']='noindex';
  } else {
   const d=documents.find(d=>d.markdown_url===u.origin+u.pathname || d.url===u.origin+u.pathname);
   if(!d)return null;

@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on TRON
+
+Native coin: TRX. 94 catalog token entries.
+
+- [Tether (USDT) on TRON](https://oathwallet.org/tokens/usdt/tron)
+- [USDD (USDD) on TRON](https://oathwallet.org/tokens/usdd/tron)
+- [JUST (JST) on TRON](https://oathwallet.org/tokens/just/tron)
+- [Sun Token (SUN) on TRON](https://oathwallet.org/tokens/sun-token/tron)
+- [BitTorrent (BTT) on TRON](https://oathwallet.org/tokens/bittorrent/tron)
+- [WINkLink (WIN) on TRON](https://oathwallet.org/tokens/wink/tron)
+- [AINFT (NFT) on TRON](https://oathwallet.org/tokens/apenft/tron)
+- [TrueUSD (TUSD) on TRON](https://oathwallet.org/tokens/true-usd/tron)
+- [HTX DAO (HTX) on TRON](https://oathwallet.org/tokens/htx-dao/tron)
+- [USD1 (USD1) on TRON](https://oathwallet.org/tokens/usd1-wlfi/tron)
+- [4TB Coin (4TB) on TRON](https://oathwallet.org/tokens/4tb-coin/tron)
+- [A7A5 (A7A5) on TRON](https://oathwallet.org/tokens/a7a5/tron)
+
+[Browse all TRON tokens](https://oathwallet.org/networks/tron/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

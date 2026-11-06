@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on X Layer
+
+Native coin: OKB. 791 catalog token entries.
+
+- [Polygon Hermez Bridged USDC (X Layer) (USDC) on X Layer](https://oathwallet.org/tokens/polygon-hermez-bridged-usdc-x-layer/x-layer)
+- [Polygon Hermez Bridged USDT (x Layer) (USDT) on X Layer](https://oathwallet.org/tokens/polygon-hermez-bridged-usdt-x-layer/x-layer)
+- [PayPal USD (PYUSD) on X Layer](https://oathwallet.org/tokens/paypal-usd/x-layer)
+- [Wrapped OKB (WOKB) on X Layer](https://oathwallet.org/tokens/wrapped-okb/x-layer)
+- [x Layer Bridged WETH (x Layer) (WETH) on X Layer](https://oathwallet.org/tokens/bridged-wrapped-ether-x-layer/x-layer)
+- [OKX Wrapped ETH (XETH) on X Layer](https://oathwallet.org/tokens/okx-wrapped-eth/x-layer)
+- [OKX Wrapped SOL (XSOL) on X Layer](https://oathwallet.org/tokens/okx-wrapped-sol/x-layer)
+- [OKX Wrapped BTC (XBTC) on X Layer](https://oathwallet.org/tokens/okx-wrapped-btc/x-layer)
+- [Satoshi Stablecoin (SATUSD) on X Layer](https://oathwallet.org/tokens/satoshi-stablecoin/x-layer)
+- [Frax Staked frxUSD (SFRXUSD) on X Layer](https://oathwallet.org/tokens/staked-frax-usd/x-layer)
+- [3M xStock (MMMX) on X Layer](https://oathwallet.org/tokens/3m-xstock/x-layer)
+- [3x Short Semiconductor ETF xStock (SOXSX) on X Layer](https://oathwallet.org/tokens/3x-short-semiconductor-etf-xstock/x-layer)
+
+[Browse all X Layer tokens](https://oathwallet.org/networks/x-layer/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

@@ -9,7 +9,7 @@ const read=p=>readFile(new URL(p,root),'utf8');
 const env={ASSETS:{async fetch(req){try{return new Response(await readFile(new URL('.'+new URL(req.url).pathname,root)));}catch{return new Response('Missing',{status:404});}}}};
 
 test('every catalog network has a crawlable guide, real logo and canonical route',async()=>{
- const titles=new Set();const descriptions=new Set();const sitemap=await read('sitemap.xml');
+ const titles=new Set();const descriptions=new Set();const sitemap=await read('sitemaps/pages.xml');
  assert.equal(catalog.networks.length,42);
  assert.equal(new Set(catalog.networks.map(n=>n.slug)).size,42);
  for(const n of catalog.networks){

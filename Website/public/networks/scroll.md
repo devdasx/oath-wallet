@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Scroll
+
+Native coin: ETH. 40 catalog token entries.
+
+- [Scroll (SCR) on Scroll](https://oathwallet.org/tokens/scroll/scroll)
+- [Bridged USD Coin (Scroll) (USDC) on Scroll](https://oathwallet.org/tokens/bridged-usd-coin-scroll/scroll)
+- [Scroll Bridged USDT (Scroll) (USDT) on Scroll](https://oathwallet.org/tokens/bridged-tether-scroll/scroll)
+- [Bridged Wrapped Ether (Scroll) (WETH) on Scroll](https://oathwallet.org/tokens/bridged-wrapped-ether-scroll/scroll)
+- [Bridged Wrapped Bitcoin (Scroll) (WBTC) on Scroll](https://oathwallet.org/tokens/bridged-wrapped-bitcoin-scroll/scroll)
+- [Bridged Wrapped Lido Staked Ether (Scroll) (WSTETH) on Scroll](https://oathwallet.org/tokens/bridged-wrapped-lido-staked-ether-scroll/scroll)
+- [StakeStone ETH (STONE) on Scroll](https://oathwallet.org/tokens/stakestone-ether/scroll)
+- [Wrapped eETH (WEETH) on Scroll](https://oathwallet.org/tokens/wrapped-eeth/scroll)
+- [Ethena USDe (USDE) on Scroll](https://oathwallet.org/tokens/ethena-usde/scroll)
+- [Chainlink (LINK) on Scroll](https://oathwallet.org/tokens/chainlink/scroll)
+- [abcNURI (ABCNURI) on Scroll](https://oathwallet.org/tokens/abcnuri/scroll)
+- [Ankr Network (ANKR) on Scroll](https://oathwallet.org/tokens/ankr/scroll)
+
+[Browse all Scroll tokens](https://oathwallet.org/networks/scroll/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Arbitrum
+
+Native coin: ETH. 3172 catalog token entries.
+
+- [USDC (USDC) on Arbitrum](https://oathwallet.org/tokens/usdc/arbitrum)
+- [USDT0 (USDT0) on Arbitrum](https://oathwallet.org/tokens/usdt0/arbitrum)
+- [Arbitrum (ARB) on Arbitrum](https://oathwallet.org/tokens/arbitrum/arbitrum)
+- [Arbitrum Bridged WBTC (Arbitrum One) (WBTC) on Arbitrum](https://oathwallet.org/tokens/arbitrum-bridged-wbtc-arbitrum-one/arbitrum)
+- [Arbitrum Bridged WETH (Arbitrum One) (WETH) on Arbitrum](https://oathwallet.org/tokens/arbitrum-bridged-weth-arbitrum-one/arbitrum)
+- [Chainlink (LINK) on Arbitrum](https://oathwallet.org/tokens/chainlink/arbitrum)
+- [GMX (GMX) on Arbitrum](https://oathwallet.org/tokens/gmx/arbitrum)
+- [Pendle (PENDLE) on Arbitrum](https://oathwallet.org/tokens/pendle/arbitrum)
+- [MakerDAO Arbitrum Bridged DAI (Arbitrum One) (DAI) on Arbitrum](https://oathwallet.org/tokens/makerdao-arbitrum-bridged-dai-arbitrum-one/arbitrum)
+- [Camelot Token (GRAIL) on Arbitrum](https://oathwallet.org/tokens/camelot-token/arbitrum)
+- [0xBitcoin (0XBTC) on Arbitrum](https://oathwallet.org/tokens/oxbitcoin/arbitrum)
+- [1-800-Flowers.Com Inc aStock (AFLWS) on Arbitrum](https://oathwallet.org/tokens/1-800-flowers-com-inc-astock/arbitrum)
+
+[Browse all Arbitrum tokens](https://oathwallet.org/networks/arbitrum/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

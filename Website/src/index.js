@@ -1,3 +1,4 @@
+import { cachedTokens } from './tokens.js';
 import networkCatalog from '../content/networks.json' with {type:'json'};
 import { handleRetiredArticle } from './retired-articles.js';
 import { handleAgentContent, addAgentDiscovery } from './agent-content.js';
@@ -15,7 +16,7 @@ const hstsPolicy = 'max-age=31536000; includeSubDomains; preload';
 
 export default {
   async scheduled(_event, env, ctx) { ctx.waitUntil(newsletterScheduled(env)); },
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     let response;
     const special = handleRetiredArticle(request) || await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
     const newsletter = special || await handleNewsletter(request, env);
@@ -25,7 +26,7 @@ export default {
       try { response = await handleAnalytics(request, env); }
       catch { response = new Response(null, {status: 503, headers: {'Cache-Control': 'no-store'}}); }
     } else {
-      response = await serveRequest(request, env);
+      response = await serveRequest(request, env, ctx);
       if (response.ok && response.headers.get('Content-Type')?.includes('text/html')) {
         const headers = new Headers(response.headers); headers.delete('Content-Length'); headers.delete('ETag');
         const html = migrateSupportLinks(migrateArticleLinks(await response.text()));
@@ -44,7 +45,7 @@ export default {
   }
 };
 
-async function serveRequest(request, env) {
+async function serveRequest(request, env, ctx) {
   const url = new URL(request.url);
   const isProductionHost = url.hostname === 'oathwallet.org' || url.hostname === 'www.oathwallet.org';
   // Upgrade on the same host before applying the canonical www redirect.
@@ -56,6 +57,12 @@ async function serveRequest(request, env) {
     url.hostname = 'oathwallet.org';
     return Response.redirect(url.href, 301);
   }
+
+  const tokens = await cachedTokens(request, env, ctx);
+  if (tokens) return tokens;
+  // Search Console found this historical asset folder as a 404. The public
+  // press page is its useful destination; individual downloads stay intact.
+  if (/^\/assets\/press\/2026-10\/?$/.test(url.pathname)) return Response.redirect('https://oathwallet.org/press',308);
 
   // The Help Center replaced this page. A redirect transfers the old URL's
   // signals; serving different content with the Help Center canonical did not.
@@ -119,6 +126,7 @@ async function serveRequest(request, env) {
     const headers=new Headers(asset.headers); headers.delete('Content-Length'); headers.delete('ETag'); headers.set('Access-Control-Allow-Origin','*');
     if(url.pathname.endsWith('.md')) { headers.set('Content-Type','text/markdown; charset=utf-8'); headers.set('Link', `<https://oathwallet.org${url.pathname === '/index.md' ? '/' : url.pathname.slice(0,-3)}>; rel="canonical"`); }
     if (url.pathname === '/llms.txt' || url.pathname === '/llms-full.txt') headers.set('X-Robots-Tag','noindex');
+    if (/^\/assets\/press\/[^/]+\/[^/]+\.txt$/.test(url.pathname)) { headers.set('X-Robots-Tag','noindex');headers.set('Link','<https://oathwallet.org/press>; rel="canonical"'); }
     return new Response(migrateArticleLinks(await asset.text()),{status:asset.status,headers});
   }
   const response = new Response(asset.body, asset);

@@ -20,7 +20,7 @@ test('bug bounty is reachable, discoverable and agrees with its published policy
  for(const id of ['rewards','scope','rules','report','questions'])assert.ok(html.includes(`id="${id}"`));
  assert.match(html,/https:\/\/github.com\/OathWallet\/oath-wallet\/security\/advisories\/new/);
  assert.doesNotMatch(html,/<form\b|<input\b|<textarea\b/,'never collect vulnerability contents in a public form');
- assert.ok((await read('sitemap.xml')).includes('https://oathwallet.org/bug-bounty</loc>'));
+ assert.ok((await read('sitemaps/pages.xml')).includes('https://oathwallet.org/bug-bounty</loc>'));
  assert.ok(documents.some(d=>d.url==='https://oathwallet.org/bug-bounty'));
  assert.ok((await read('.well-known/security.txt')).includes('Policy: https://oathwallet.org/bug-bounty'));
  for(const alias of ['/bug-bounty/','/bug-bounty.html']){

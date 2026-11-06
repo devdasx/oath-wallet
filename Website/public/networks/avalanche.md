@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Avalanche C-Chain
+
+Native coin: AVAX. 698 catalog token entries.
+
+- [USDC (USDC) on Avalanche C-Chain](https://oathwallet.org/tokens/usdc/avalanche)
+- [Tether (USDT) on Avalanche C-Chain](https://oathwallet.org/tokens/usdt/avalanche)
+- [Wrapped AVAX (WAVAX) on Avalanche C-Chain](https://oathwallet.org/tokens/wrapped-avax/avalanche)
+- [Lombard Bridged BTC (BTC.B) on Avalanche C-Chain](https://oathwallet.org/tokens/bitcoin-avalanche-bridged-btc-b/avalanche)
+- [JOE (JOE) on Avalanche C-Chain](https://oathwallet.org/tokens/joe/avalanche)
+- [Chainlink (LINK) on Avalanche C-Chain](https://oathwallet.org/tokens/chainlink/avalanche)
+- [Aave (AAVE) on Avalanche C-Chain](https://oathwallet.org/tokens/aave/avalanche)
+- [BENQI Liquid Staked AVAX (SAVAX) on Avalanche C-Chain](https://oathwallet.org/tokens/benqi-liquid-staked-avax/avalanche)
+- [BENQI (QI) on Avalanche C-Chain](https://oathwallet.org/tokens/benqi/avalanche)
+- [Pangolin (PNG) on Avalanche C-Chain](https://oathwallet.org/tokens/pangolin/avalanche)
+- [1INCH (1INCH) on Avalanche C-Chain](https://oathwallet.org/tokens/1inch/avalanche)
+- [2x Bitcoin Strategy ETF (Dinari Tokenized ETF) (BITX) on Avalanche C-Chain](https://oathwallet.org/tokens/2x-bitcoin-strategy-etf-dinari-tokenized-etf/avalanche)
+
+[Browse all Avalanche C-Chain tokens](https://oathwallet.org/networks/avalanche/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

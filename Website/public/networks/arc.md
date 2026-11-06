@@ -45,3 +45,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Arc
+
+Native coin: USDC. 85 catalog token entries.
+
+- [EURC (EURC) on Arc](https://oathwallet.org/tokens/euro-coin/arc)
+- [Chainlink (LINK) on Arc](https://oathwallet.org/tokens/chainlink/arc)
+- [Arc Bridged WETH (Arc) (WETH) on Arc](https://oathwallet.org/tokens/arc-bridged-weth-arc/arc)
+- [Virtuals Protocol (VIRTUAL) on Arc](https://oathwallet.org/tokens/virtual-protocol/arc)
+- [Matrixdock Gold (XAUM) on Arc](https://oathwallet.org/tokens/matrixdock-gold/arc)
+- [AllUnity EUR (EURAU) on Arc](https://oathwallet.org/tokens/allunity-eur/arc)
+- [AllUnity CHF (CHFAU) on Arc](https://oathwallet.org/tokens/allunity-chf/arc)
+- [Stablecorp QCAD (QCAD) on Arc](https://oathwallet.org/tokens/stablecorp-qcad/arc)
+- [KRW1 (KRW1) on Arc](https://oathwallet.org/tokens/krw1/arc)
+- [$SOLD (SOLD) on Arc](https://oathwallet.org/tokens/sold/arc)
+- [3.141592653589793238462643383279 (PI) on Arc](https://oathwallet.org/tokens/3-141592653589793238462643383279/arc)
+- [ACAT (ACAT) on Arc](https://oathwallet.org/tokens/acat/arc)
+
+[Browse all Arc tokens](https://oathwallet.org/networks/arc/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

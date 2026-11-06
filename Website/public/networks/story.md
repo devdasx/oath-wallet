@@ -48,3 +48,19 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Story
+
+Native coin: IP. 7 catalog token entries.
+
+- [Wrapped IP (WIP) on Story](https://oathwallet.org/tokens/wrapped-ip/story)
+- [Stargate Bridged USDC (USDC.E) on Story](https://oathwallet.org/tokens/stargate-bridged-usdc/story)
+- [Stargate Bridged WETH (WETH) on Story](https://oathwallet.org/tokens/stargate-bridged-weth/story)
+- [Aria (ARIAIP) on Story](https://oathwallet.org/tokens/aria-2/story)
+- [Evil Larry (LARRY) on Story](https://oathwallet.org/tokens/evil-larry/story)
+- [IPPY (IPPY) on Story](https://oathwallet.org/tokens/ippy/story)
+- [LYRA (LYRA) on Story](https://oathwallet.org/tokens/lyra-3/story)
+
+[Browse all Story tokens](https://oathwallet.org/networks/story/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

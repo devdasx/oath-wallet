@@ -1,0 +1,44 @@
+name: Refresh released website catalog
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['Website/content/release-evidence.json', 'releases/*-distribution.json']
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+concurrency:
+  group: website-token-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: Website/package-lock.json
+      - name: Regenerate only from an approved distribution record
+        working-directory: Website
+        run: npm ci && npm run refresh:tokens
+      - name: Propose the validated catalog update
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add Website
+          if git diff --cached --quiet; then echo 'Released catalog is unchanged.'; exit 0; fi
+          branch="codex/released-token-catalog-${GITHUB_RUN_ID}"
+          git switch -c "$branch"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Refresh website from the approved app catalog'
+          git push origin "$branch"
+          printf '%s\n' 'Regenerates the token website from the pinned, Apple-approved app distribution record. Stable identities and URL history are preserved; malformed or regrouped identities stop the refresh.' '' 'Validation: website build and unit tests passed. The normal Website checks workflow is dispatched for this branch. Publication follows the existing Deploy website workflow after merge.' > /tmp/token-refresh-body.txt
+          gh pr create --base main --head "$branch" --title 'Refresh the released website token catalog' --body-file /tmp/token-refresh-body.txt
+          gh workflow run website-checks.yml --ref "$branch"

@@ -45,3 +45,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Aptos
+
+Native coin: APT. 61 catalog token entries.
+
+- [USDC (USDC) on Aptos](https://oathwallet.org/tokens/usdc/aptos)
+- [Tether (USDT) on Aptos](https://oathwallet.org/tokens/usdt/aptos)
+- [Thala (THL) on Aptos](https://oathwallet.org/tokens/thala/aptos)
+- [Gui Inu (GUI) on Aptos](https://oathwallet.org/tokens/gui-inu/aptos)
+- [Cellana Finance (CELL) on Aptos](https://oathwallet.org/tokens/cellena-finance/aptos)
+- [Move Dollar (MOD) on Aptos](https://oathwallet.org/tokens/move-dollar/aptos)
+- [Amnis Staked Aptos Coin (STAPT) on Aptos](https://oathwallet.org/tokens/amnis-staked-aptos-coin/aptos)
+- [Tortuga Staked Aptos (TAPT) on Aptos](https://oathwallet.org/tokens/tortuga-staked-aptos/aptos)
+- [Wrapped Bitcoin (WBTC) on Aptos](https://oathwallet.org/tokens/wrapped-bitcoin/aptos)
+- [Ondo US Dollar Yield (USDY) on Aptos](https://oathwallet.org/tokens/ondo-us-dollar-yield/aptos)
+- [ABEL Finance (ABEL) on Aptos](https://oathwallet.org/tokens/abel-finance/aptos)
+- [aBTC (ABTC) on Aptos](https://oathwallet.org/tokens/abtc/aptos)
+
+[Browse all Aptos tokens](https://oathwallet.org/networks/aptos/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

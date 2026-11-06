@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on XRP Ledger
+
+Native coin: XRP. 37 catalog token entries.
+
+- [Ripple USD (RLUSD) on XRP Ledger](https://oathwallet.org/tokens/ripple-usd/xrp-ledger)
+- [USDC (USDC) on XRP Ledger](https://oathwallet.org/tokens/usdc/xrp-ledger)
+- [EUR CoinVertible (EURCV) on XRP Ledger](https://oathwallet.org/tokens/societe-generale-forge-eurcv/xrp-ledger)
+- [Australian Digital Dollar (AUDD) on XRP Ledger](https://oathwallet.org/tokens/novatti-australian-digital-dollar/xrp-ledger)
+- [Sologenic (SOLO) on XRP Ledger](https://oathwallet.org/tokens/solo-coin/xrp-ledger)
+- [OpenEden TBILL (TBILL) on XRP Ledger](https://oathwallet.org/tokens/openeden-tbill/xrp-ledger)
+- [AmericaFirst (AMERICAFIRST) on XRP Ledger](https://oathwallet.org/tokens/americafirst/xrp-ledger)
+- [AURA (AURA) on XRP Ledger](https://oathwallet.org/tokens/aura-3/xrp-ledger)
+- [BANX Network (BXE) on XRP Ledger](https://oathwallet.org/tokens/banxchange/xrp-ledger)
+- [Bear Bull (BRB) on XRP Ledger](https://oathwallet.org/tokens/bear-bull/xrp-ledger)
+- [Bear Champ (BCHAMP) on XRP Ledger](https://oathwallet.org/tokens/bear-champ/xrp-ledger)
+- [BEARXRPL (BEAR) on XRP Ledger](https://oathwallet.org/tokens/bearxrpl/xrp-ledger)
+
+[Browse all XRP Ledger tokens](https://oathwallet.org/networks/xrp-ledger/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

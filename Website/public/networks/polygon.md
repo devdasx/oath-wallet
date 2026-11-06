@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Polygon
+
+Native coin: POL. 854 catalog token entries.
+
+- [USDT0 (USDT0) on Polygon](https://oathwallet.org/tokens/usdt0/polygon)
+- [USDC (USDC) on Polygon](https://oathwallet.org/tokens/usdc/polygon)
+- [Polygon PoS Bridged WETH (Polygon POS) (WETH) on Polygon](https://oathwallet.org/tokens/polygon-pos-bridged-weth-polygon-pos/polygon)
+- [Polygon Bridged WBTC (Polygon POS) (WBTC) on Polygon](https://oathwallet.org/tokens/polygon-bridged-wbtc-polygon-pos/polygon)
+- [Polygon PoS Bridged DAI (Polygon POS) (DAI) on Polygon](https://oathwallet.org/tokens/polygon-pos-bridged-dai-polygon-pos/polygon)
+- [Chainlink (LINK) on Polygon](https://oathwallet.org/tokens/chainlink/polygon)
+- [Aave (AAVE) on Polygon](https://oathwallet.org/tokens/aave/polygon)
+- [Quickswap (QUICK) on Polygon](https://oathwallet.org/tokens/quickswap/polygon)
+- [Aavegotchi (GHST) on Polygon](https://oathwallet.org/tokens/aavegotchi/polygon)
+- [Wrapped POL (WPOL) on Polygon](https://oathwallet.org/tokens/wmatic/polygon)
+- [$DEZ (DEZ) on Polygon](https://oathwallet.org/tokens/dez/polygon)
+- [0xBitcoin (0XBTC) on Polygon](https://oathwallet.org/tokens/oxbitcoin/polygon)
+
+[Browse all Polygon tokens](https://oathwallet.org/networks/polygon/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

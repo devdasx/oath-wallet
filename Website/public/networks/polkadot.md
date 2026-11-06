@@ -48,3 +48,16 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Polkadot
+
+Native coin: DOT. 4 catalog token entries.
+
+- [USDC (USDC) on Polkadot](https://oathwallet.org/tokens/usdc/polkadot)
+- [Tether (USDt) on Polkadot](https://oathwallet.org/tokens/usdt/polkadot)
+- [Gavun Wud (WUD) on Polkadot](https://oathwallet.org/tokens/gavun-wud/polkadot)
+- [My Paqman Coin (MPC) on Polkadot](https://oathwallet.org/tokens/my-paqman-coin/polkadot)
+
+[Browse all Polkadot tokens](https://oathwallet.org/networks/polkadot/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

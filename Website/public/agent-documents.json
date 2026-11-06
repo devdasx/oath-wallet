@@ -37,6 +37,12 @@
     "scope": "Pinned source excerpts, not an independent audit or confirmation of the current App Store version.",
     "app_store_url": "https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283"
   },
+  "token_catalog": {
+    "url": "https://oathwallet.org/tokens",
+    "documents": "https://oathwallet.org/tokens/documents.json",
+    "page_size": 100,
+    "scope": "Released discovery catalog; inclusion is not issuer verification or tested sending."
+  },
   "documents": [
     {
       "url": "https://oathwallet.org/networks/bitcoin",

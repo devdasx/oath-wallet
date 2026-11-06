@@ -10,8 +10,13 @@ const env = { ASSETS: { async fetch(req) {
   try { return new Response(await readFile(new URL('.' + new URL(req.url).pathname, publicURL))); }
   catch { return new Response('Missing', { status: 404 }); }
 } } };
+test('reported press folder points to the press page and downloadable text stays out of search',async()=>{
+ const folder=await worker.fetch(new Request('https://oathwallet.org/assets/press/2026-10/'),env);
+ assert.equal(folder.status,308);assert.equal(folder.headers.get('Location'),'https://oathwallet.org/press');
+ for(const name of ['brand-guide','press-facts']){const r=await worker.fetch(new Request('https://oathwallet.org/assets/press/2026-10/'+name+'.txt'),env);assert.equal(r.status,200);assert.equal(r.headers.get('X-Robots-Tag'),'noindex');assert.ok(r.headers.get('Link').includes('/press>'));}
+});
 test('main search sitemap excludes moved articles, support and machine representations', async () => {
-  const xml = await readFile(new URL('sitemap.xml', publicURL), 'utf8');
+  const xml = await readFile(new URL('sitemaps/pages.xml', publicURL), 'utf8');
   const urls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
   const paths = ['/', '/features', '/press', '/terms', '/privacy', '/security', '/bug-bounty', '/about', '/networks', ...catalog.networks.map(n => '/networks/'+n.slug)];
   const expectedURLs = await Promise.all(paths.map(async path => {

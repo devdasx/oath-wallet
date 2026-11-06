@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Solana
+
+Native coin: SOL. 7465 catalog token entries.
+
+- [USDC (USDC) on Solana](https://oathwallet.org/tokens/usdc/solana)
+- [Tether (USDT) on Solana](https://oathwallet.org/tokens/usdt/solana)
+- [Jupiter (JUP) on Solana](https://oathwallet.org/tokens/jupiter-exchange-solana/solana)
+- [Jito (JTO) on Solana](https://oathwallet.org/tokens/jito-governance-token/solana)
+- [PayPal USD (PYUSD) on Solana](https://oathwallet.org/tokens/paypal-usd/solana)
+- [Bonk (BONK) on Solana](https://oathwallet.org/tokens/bonk/solana)
+- [Raydium (RAY) on Solana](https://oathwallet.org/tokens/raydium/solana)
+- [Render (RENDER) on Solana](https://oathwallet.org/tokens/render-token/solana)
+- [Pyth Network (PYTH) on Solana](https://oathwallet.org/tokens/pyth-network/solana)
+- [dogwifhat (WIF) on Solana](https://oathwallet.org/tokens/dogwifcoin/solana)
+- [.png (.PNG) on Solana](https://oathwallet.org/tokens/png/solana)
+- ["　" ("　") on Solana](https://oathwallet.org/tokens/6/solana)
+
+[Browse all Solana tokens](https://oathwallet.org/networks/solana/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

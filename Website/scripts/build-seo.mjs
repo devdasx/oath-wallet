@@ -98,7 +98,8 @@ archive=archive.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/scrip
 await write('articles.html',archive);
 
 // The main sitemap must not retain moved support or article URLs.
-const oldSitemap=await read('sitemap.xml');
+const currentSitemap=await read('sitemap.xml');
+const oldSitemap=currentSitemap.includes('<sitemapindex')?await read('sitemaps/pages.xml'):currentSitemap;
 const mainPaths=['/','/features','/press','/terms','/privacy','/security','/bug-bounty','/about','/networks',...networkCatalog.networks.map(n=>'/networks/'+n.slug)];
 const dates=new Map([...oldSitemap.matchAll(/<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>[\s\S]*?<\/url>/g)].map(m=>[m[1],m[2]]));
 dates.set('https://oathwallet.org/press','2026-10-31');
