@@ -12,7 +12,7 @@ for(const host of ['oathwallet.org','help.oathwallet.org','articles.oathwallet.o
     assert.equal(response.status,200);
     assert.match(response.headers.get('Content-Type'),/^text\/plain/);
     const body=await response.text();
-    for(const agent of ['OAI-SearchBot','ChatGPT-User','*']) {
+    for(const agent of ['OAI-SearchBot','ChatGPT-User','Bingbot','*']) {
       assert.ok(body.includes(`User-agent: ${agent}\nAllow: /\n`));
     }
     assert.ok(body.includes(`Sitemap: https://${host}/sitemap.xml`));

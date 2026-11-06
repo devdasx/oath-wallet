@@ -290,3 +290,15 @@ favicon SVG/PNG/ICO, touch icon, install icons and press app-icon downloads.
 Header, footer, homepage, splash, Help Center and press previews use this source.
 The source hash versions logo URLs so each change also refreshes browser caches.
 Do not edit generated logo copies or introduce separate light/dark logo designs.
+
+## Bing and IndexNow
+
+The GitHub deployment notifies IndexNow only after production checks pass.
+It includes the main catalog, Help Center and Articles, with separate batches
+of at most 10,000 URLs per host. Public ownership files are served on each host.
+Successful content hashes are cached between production runs; changed and
+removed URLs are submitted, while unchanged pages are skipped. Cache eviction
+causes a complete resubmission, not missing coverage. Failed submissions leave
+the previous successful state intact. Use `npm run notify:search -- --dry-run`
+to review the inventory without submitting. Submit each host's sitemap in Bing
+Webmaster Tools separately; accepted notifications do not establish indexing.
