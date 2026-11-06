@@ -1,0 +1,107 @@
+{
+  "checkedAt": "2026-11-06T10:37:55.076Z",
+  "version": "5.0.2",
+  "build": 104,
+  "sourceCommit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+  "walletCore": "4.8.4",
+  "method": "Released-source path comparison plus upstream Wallet Core WASM public fixtures. This does not execute the iOS app importer.",
+  "checks": [
+    "ethereum: released default matches upstream registry",
+    "ethereum: explicit path reproduces default address",
+    "ethereum: published passphrase vector",
+    "ethereum: additional passphrase isolates the account",
+    "bitcoin: released default matches upstream registry",
+    "bitcoin: explicit path reproduces default address",
+    "bitcoin: published passphrase vector",
+    "bitcoin: additional passphrase isolates the account",
+    "tron: released default matches upstream registry",
+    "tron: explicit path reproduces default address",
+    "tron: published passphrase vector",
+    "tron: additional passphrase isolates the account",
+    "MetaMask: first ordinary EVM address",
+    "MetaMask: second account is distinct",
+    "MetaMask: individual key reproduces second account",
+    "Solana: released app exposes both explicit account conventions",
+    "Solana: Trust Wallet path reproduces upstream default",
+    "Solana: Phantom and Trust Wallet paths are distinct"
+  ],
+  "sources": [
+    {
+      "path": "OathAtmosphere/Wallet/OathWalletEngine.swift",
+      "sha256": "cdd37ba5790ca3c09eab2b0b03e5a5e83d6b47cc3ea66293de02c2b1376ea946"
+    },
+    {
+      "path": "OathAtmosphere/Wallet/OathPrivateKeyImport.swift",
+      "sha256": "2a51be5e62564f51edc7a45d6c7ed1ad4323ea94b502b1f05842ddab6d4c6297"
+    },
+    {
+      "path": "OathAtmosphere/Wallet/OathSolanaWallet.swift",
+      "sha256": "4a2fc4bd1431eb8a8419bb797a1b9132dcb88c3ce79215d83002f0ac2092a685"
+    },
+    {
+      "path": "OathAtmosphere/Wallet/OathBitcoinWallet.swift",
+      "sha256": "0dabdeaddc025a7bf95281f293151ec16f4885a398a763bd3c7a3b43789bddf9"
+    },
+    {
+      "path": "OathAtmosphere/Import/OathRecoveryPhraseScreen.swift",
+      "sha256": "6dc77cd30deafb02fe9aac2ea3a739e30ff9103f371ae09ecd33f2b234f0fdc4"
+    },
+    {
+      "path": "OathAtmosphere/Home/OathWalletSheets.swift",
+      "sha256": "5c1d734ec239965415dbdf62bdc80fbb59b888c06ac93d9314a168b6783c4e0d"
+    },
+    {
+      "path": "OathAtmosphere/Wallet/OathPassphraseWalletModel.swift",
+      "sha256": "8892486ce68d12ddcd8b500847ce5d9fb9038dc728ba827552191985a629e881"
+    },
+    {
+      "path": "Packages/OathDatabase/Sources/OathDatabase/SolanaReceive.swift",
+      "sha256": "b70d4d1920fb40726e82d31edd2a1f94cc9ef09c88017d104bd3ebbb5ec64672"
+    },
+    {
+      "path": "Packages/WalletCore/registry-4.8.4.json",
+      "sha256": "9b6d3202e009dc5634531b84b4590d3d3fe6d08f1205f93f8eaae98444017240"
+    },
+    {
+      "path": "Packages/OathBitcoin/Sources/OathBitcoin/ElectrumBitcoin.swift",
+      "sha256": "00691116e5c22730202ce9195cb2a2799f633b0c632ba0b8c58c4d0f36fd3f9e"
+    },
+    {
+      "path": "Packages/OathBitcoin/Sources/OathBitcoin/BitcoinKeys.swift",
+      "sha256": "46409993aff29ae73145be05008d33d921fd378acba8f0fd39f69fe9afd57697"
+    },
+    {
+      "path": "Packages/OathBitcoin/Sources/OathBitcoin/ElectrumMnemonic.swift",
+      "sha256": "9d7fc824e7321e6e8ad48f152950ed2fbe9900766b8550311181cf41d9bda64a"
+    },
+    {
+      "path": "Packages/OathBitcoin/Tests/OathBitcoinTests/ElectrumMnemonicTests.swift",
+      "sha256": "aed75b8bbd9f33af2c608c661a1b3d77342934a579a54e750d1eb49d98219c2d"
+    },
+    {
+      "path": "Packages/OathBitcoin/Tests/OathBitcoinTests/Fixtures/electrum-reference.json",
+      "sha256": "333205bec2cd51c50551f5ea266eac5590be54d9dbe6f2ca558ba62deafb2427"
+    },
+    {
+      "path": "LocalizationTests/OathWalletEngineTests.swift",
+      "sha256": "602ec5342539e380af743b7a6a2e683c635963a0ad1bb8cb2e6e42544b751321"
+    }
+  ],
+  "electrumFixtureInventory": {
+    "fixtures": 22,
+    "addresses": 132,
+    "kinds": [
+      "2fa",
+      "2fa_segwit",
+      "old",
+      "segwit",
+      "standard"
+    ]
+  },
+  "notPerformed": [
+    "iOS runtime or simulator tests",
+    "physical device tests",
+    "live funded transfers",
+    "all source-wallet versions or configurations"
+  ]
+}

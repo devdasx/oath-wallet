@@ -244,6 +244,9 @@ Help instructions carry their applicable app version and authored update dates. 
 - [أزمة البذور الضعيفة في Coldcard: التعقيد ليس مرادفًا للأمن](https://articles.oathwallet.org/ar/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md)
 - [Khủng hoảng seed yếu của Coldcard: Phức tạp không đồng nghĩa với bảo mật](https://articles.oathwallet.org/vi/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md)
 - [Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call](https://articles.oathwallet.org/bitget-388-million-hack-self-custody.md)
+- [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath.md)
+- [Restore an Electrum Bitcoin Wallet on iPhone](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone.md)
+- [Use an Existing MetaMask Wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath.md)
 - [Binance Lost $6.3 Billion. Who Signed the Withdrawals?](https://articles.oathwallet.org/binance-withdrawals-who-signed.md)
 
 Full text: https://oathwallet.org/llms-full.txt

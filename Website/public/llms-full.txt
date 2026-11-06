@@ -3567,6 +3567,12 @@ Everything you need. Nothing you don’t.
 - [Encrypted iCloud wallet backup](https://oathwallet.org/features/icloud-wallet-backup): Create password-encrypted backups of eligible wallets in your iCloud Drive. Keep the backup password and an independent recovery copy so you have a way back to your wallet.
 - [Connect to dApps with WalletConnect](https://oathwallet.org/features/walletconnect): Connect Oath to a compatible dApp using its WalletConnect QR code or app link. Choose the wallet and networks you intend to share, then review each later request in Oath.
 
+## Wallet migration and compatibility
+
+- [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath): Check the first EVM, Bitcoin and TRON accounts, and choose the matching Solana path.
+- [Use an Existing MetaMask Wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath): Restore the first phrase-derived EVM account or an individual software account key.
+- [Restore an Electrum Bitcoin Wallet on iPhone](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone): Identify the Electrum seed format, extension and Bitcoin recovery scope.
+
 <!-- oath-feature-pages:end -->
 
 ## 01. Create or import a recovery phrase
@@ -8861,6 +8867,24 @@ Canonical: https://articles.oathwallet.org/
 
 Current product guidance and dated editorial archives.
 
+## [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
+
+Import compatible Trust Wallet accounts on iPhone. Check EVM, Bitcoin, TRON and Solana paths, supported assets and recovery limits before you switch.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
+## [Restore an Electrum Bitcoin Wallet on iPhone](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+
+Restore supported Electrum Bitcoin seeds in Oath. Check Standard, SegWit and old seed formats, extensions, change addresses and recovery limits.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
+## [Use an Existing MetaMask Wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath)
+
+Use a compatible MetaMask EVM account in Oath on iPhone. Compare phrase and private-key imports, additional accounts, networks and asset compatibility.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
 ## [Binance Lost $6.3 Billion. Who Signed the Withdrawals?](https://articles.oathwallet.org/binance-withdrawals-who-signed)
 
 Most of the money moved in about twenty minutes. The blockchain recorded valid instructions. The harder question was who had the power to give them.
@@ -13870,6 +13894,204 @@ A balance is reassuring. The authority to use it is what makes it yours in pract
 - [Bybit: preliminary investigation update, February 26, 2025](https://www.bybit.com/en/press/post/bybit-confirms-security-integrity-amid-safe-wallet-incident-no-compromise-in-infrastructure-blt9986889e919da8d2).
 - [SEC investor bulletin: crypto asset custody basics](https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/crypto-asset-custody-basics-retail-investors-investor-bulletin-0).
 - [Ledger: December 2023 Connect Kit security incident report](https://www.ledger.com/blog/security-incident-report).
+
+---
+
+Canonical: https://articles.oathwallet.org/move-from-trust-wallet-to-oath
+Updated: 2026-11-06T10:29:34Z
+
+# Move from Trust Wallet to Oath
+
+Import compatible Trust Wallet accounts on iPhone. Check EVM, Bitcoin, TRON and Solana paths, supported assets and recovery limits before you switch.
+
+You can use a compatible Trust Wallet recovery phrase in Oath without sending your coins anywhere. Oath derives the supported accounts from the same recovery material. The assets stay on their original networks, and Trust Wallet can still access them.
+
+This guide covers the account conventions below in Oath 5.0.2 (104). It does not promise that every wallet, account or asset shown in Trust Wallet will appear in Oath.
+
+## Check your starting wallet
+
+Use this route for a software wallet whose original BIP39 recovery phrase you control. A wallet you previously imported into Trust Wallet may follow another application's account rules. Its presence in Trust Wallet does not change those rules.
+
+A watch-only address does not contain signing keys. A hardware-connected account belongs to the hardware wallet; keep its recovery phrase on the hardware recovery route. A Trust Wallet cloud backup file is not an Oath backup file.
+
+Never enter recovery words or private keys into this website, a support conversation or an online conversion tool. Enter them only in the wallet app's import screen on your own device.
+
+## Verified account compatibility
+
+The paths below identify account zero and, where applicable, its first receiving address. They are a technical reference, not text to enter into the recovery-phrase field.
+
+| Starting account | Oath recovery scope | What to check |
+| --- | --- | --- |
+| Ethereum and ordinary EVM accounts | The first account at `m/44'/60'/0'/0/0`, on Oath's enabled EVM networks | Compare the full address and the exact network. An identical address does not bridge funds. |
+| Bitcoin Native SegWit | Account zero at `m/84'/0'/0'`, including receiving and change branches | Match a known address and address type. This is BTC, not BCH or a wrapped Bitcoin token. |
+| TRON | The first account at `m/44'/195'/0'/0/0` | Compare the TRON address. TRC20 assets remain on TRON. |
+| Solana using Trust Wallet's convention | Account zero at `m/44'/501'/0'` | In Oath, choose the Trust Wallet address path in Solana Receive. The default Phantom path gives a different address. |
+
+Other networks and non-default account indexes are outside this guide's verified scope. Check the [supported networks](https://oathwallet.org/networks) and the original account details before relying on recovery. The [token catalog](https://oathwallet.org/tokens) describes discovery entries; inclusion does not prove that every token action has been tested.
+
+## Import the recovery phrase
+
+1. In Trust Wallet, identify the wallet and record its public receiving addresses for the networks you use. Use its own recovery instructions to access your original backup. Keep the original wallet available.
+2. Open Oath and choose **Import wallet**. If Oath already contains a wallet, open **Settings → Wallets** and choose the import action.
+3. Enter the original recovery words in order. Use the BIP39 format for this guide if Oath asks you to choose a format. Do not replace words or translate them.
+4. Complete Oath's setup and choose a recognizable wallet name. If the original wallet used an additional BIP39 passphrase, restore that exact passphrase wallet before checking its addresses. The app unlock password is a different thing; see the [passphrase guide](https://articles.oathwallet.org/add-bip39-passphrase-oath-wallet).
+5. Open Receive for each original network and compare the full public address. For Solana, open the address-path control in Receive and choose **Trust Wallet**, then return to the asset screen. See the [Solana path instructions](https://help.oathwallet.org/articles/solana-address-path).
+6. Allow supported balances and history to refresh. Confirm each account separately before relying on it for receiving or sending.
+
+For the basic import controls, see [Import a recovery phrase](https://help.oathwallet.org/articles/import-recovery-phrase). Changing the Solana path selects a different account from the same phrase; it does not transfer SOL or tokens between those accounts.
+
+## Which assets and settings carry over?
+
+At a matching address, native coins and tokens remain owned by the same on-chain account. Oath can display and operate on supported assets according to that network's capabilities. Check a token's network and contract or mint, rather than its symbol alone. ETH on Base and ETH on Ethereum are separate balances.
+
+Custom token lists, account labels, contacts, notification settings and connected dApp sessions are app settings; this phrase import does not copy them. Existing on-chain approvals remain in force. Importing also does not withdraw staking positions, close DeFi positions or guarantee that an NFT or position is visible in Oath. Keep the original interface available for anything outside Oath's supported scope.
+
+Import itself is not an on-chain transaction and has no network fee. Sending later requires the relevant network's fee asset or resources. Check the fee shown in Oath before confirming.
+
+## If an address or balance is different
+
+A valid phrase can still open the wrong account. Check the selected wallet, original language and word order, any additional passphrase, account index and address path. On Solana, check the Trust Wallet path first. For Bitcoin, compare a known historical address: a wallet can show a new receiving address while still belonging to the same account.
+
+If the address matches but a token is missing, check its exact network, contract or mint and Oath's available discovery and send capabilities. An empty screen does not prove the funds are gone. Do not send more funds to test an unexplained address mismatch or remove your original recovery copy.
+
+## Moving to a new recovery phrase instead
+
+Importing keeps the same keys. If you want a wallet with new keys, create a new wallet in Oath, back it up, verify its receiving address and transfer each supported asset on the correct network. That is a separate on-chain operation with fees. A small transfer first can confirm the destination before a larger one. Importing a compromised phrase does not make it safe again.
+
+## What we verified
+
+Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca). We compared the released account paths with [Trust Wallet Core 4.8.4's registry](https://github.com/trustwallet/wallet-core/blob/4.8.4/registry.json), ran public address vectors with that version's host library, and checked Oath's [Solana path selection](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/Packages/OathDatabase/Sources/OathDatabase/SolanaReceive.swift). These checks establish the stated derivation compatibility, not a live transfer test or a test of every Trust Wallet release.
+
+[Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Use a MetaMask wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath) · [Restore an Electrum Bitcoin wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+
+---
+
+Canonical: https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone
+Updated: 2026-11-06T10:29:34Z
+
+# Restore an Electrum Bitcoin Wallet on iPhone
+
+Restore supported Electrum Bitcoin seeds in Oath. Check Standard, SegWit and old seed formats, extensions, change addresses and recovery limits.
+
+Oath can restore supported Electrum Bitcoin seed formats on iPhone. This guide covers ordinary Electrum Standard, native SegWit and old-format deterministic seeds in Oath 5.0.2 (104). Recovery rebuilds the Bitcoin account; it does not move BTC to a new address or restore everything stored in an Electrum wallet file.
+
+Before starting, identify the original wallet's seed type and whether it used a seed extension. Keep your Electrum installation, wallet file and independent recovery copy available until you have checked recovery.
+
+## Electrum seeds are a distinct format
+
+Electrum's [seed-version documentation](https://electrum.readthedocs.io/en/latest/seedphrase.html) explains how its seed format identifies the wallet derivation. A phrase generated by Electrum is not automatically BIP39, even when its words look familiar. Older Electrum seeds use a separate encoding again.
+
+Electrum can also open a BIP39 wallet imported from another application. That does not turn the phrase into an Electrum-generated seed. Such a wallet needs its original BIP39 passphrase, account path and script type; it is outside the verified Electrum-seed combinations below.
+
+## Verified recovery scope
+
+| Original Electrum wallet | Scope covered here | What stays separate |
+| --- | --- | --- |
+| Standard deterministic seed | Bitcoin legacy addresses, receiving and change branches | Uses Electrum derivation, not BIP44 account paths. |
+| Native SegWit deterministic seed | Bitcoin native SegWit addresses, receiving and change branches | Uses Electrum's `m/0'` root, not the BIP84 account-zero root. |
+| Old-format deterministic seed | Legacy Bitcoin receiving and change addresses | Old seeds do not accept a seed extension in this recovery route. |
+| Standard or SegWit seed with an extension | The corresponding extended seed wallet | The original extension is required; the wallet-file password is different. |
+
+Two-factor/TrustedCoin and custom multisig recovery are outside this guide's verified instructions. Oath has separate two-factor recovery code, but this guide does not establish preservation of its original cosigner or two-factor protection. Watch-only wallets, imported individual-key wallets, hardware wallets and custom scripts also need their own recovery material and review. Do not treat their wallet-file password as a seed.
+
+## Restore the wallet in Oath
+
+1. In the original Electrum wallet, identify the wallet type and note public receiving and change addresses that have been used. Confirm whether the seed was generated by Electrum or imported as BIP39.
+2. Open Oath and choose **Import wallet**, or open **Settings → Wallets** to add it alongside an existing wallet.
+3. Enter the original Electrum words in order. If Oath offers more than one matching format, explicitly choose **Electrum**. Read the detected seed-type information and resolve validation errors from your original backup rather than guessing replacements.
+4. Complete setup and name the wallet. For a supported Standard or SegWit seed that used an extension, open that wallet's settings and choose **Add Password** to restore the extension-derived wallet. Enter and confirm the original extension, then open that resulting wallet. Do not substitute your Electrum file-encryption password or Oath app passcode.
+5. Let Bitcoin discovery refresh. Compare known addresses and available transaction history with Electrum. Check receiving and change activity, not just the newest receiving address shown by one app.
+6. Keep the original recovery copy until the accounts and funds you need are accounted for. Check the network fee and destination before any later send.
+
+Enter private recovery material only in the app. Do not paste a seed, extension or wallet file into this website, support messages, an online checker or a conversion service. See the [general import guide](https://articles.oathwallet.org/recovery-phrase-private-key-icloud-iphone-transfer-import) for the distinction between recovery phrases, keys and Oath backup files.
+
+## What is recovered, and what is not?
+
+This recovery is Bitcoin-only. It does not recover other coins, Bitcoin Cash forks, wrapped BTC on other chains or unrelated keys merely because they appeared beside the original wallet. Matching keys give access to their corresponding Bitcoin outputs; displayed balances and transaction history still depend on discovery providers.
+
+The phrase alone does not recreate Lightning channel state, custom labels, contacts, invoice records, frozen-coin choices, plugins or arbitrary metadata from the Electrum wallet file. A seed-only import must not be treated as Lightning-channel recovery. Keep the original software and any channel backups for that separate process.
+
+Oath 5.0.2 excludes Electrum wallets from its encrypted iCloud export flow. Keep a separate offline backup of the original seed and, where required, the extension. An Oath app passcode does not replace those recovery materials. See [Oath's backup scope](https://oathwallet.org/features/icloud-wallet-backup).
+
+## Why might the balance look incomplete?
+
+First confirm the seed format and original extension. Standard, SegWit and BIP39 derivations can produce different wallets from apparently similar inputs. A different current receiving address can also be normal: Bitcoin wallets rotate addresses.
+
+Then compare known historical receiving and change addresses. Discovery scans bounded ranges; addresses after long unused gaps, custom derivations and imported keys are not proven recovered just because the seed was accepted. Provider failures or delayed responses can also leave data incomplete. Keep the original wallet, and resolve the discrepancy before assuming all funds have been found.
+
+There is no Bitcoin network fee for importing a seed. Sending BTC afterward requires an on-chain transaction and its fee. If your goal is new keys, create and back up a new wallet and transfer BTC to its verified address. Restoring the old seed keeps the old wallet's keys and access.
+
+## What we verified
+
+Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca). We ran its [Electrum host tests](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/Packages/OathBitcoin/Tests/OathBitcoinTests/ElectrumMnemonicTests.swift): five checks passed, and the opt-in Bitcoin Core funding/transfer check was skipped. The public reference suite compares 132 receive/change addresses across 22 fixtures and also tests extension isolation and bounded discovery. The suite includes additional seed types beyond the ordinary-wallet instructions in this guide.
+
+These are offline recovery and source checks. They are not an iPhone runtime test, a live funded transfer or a guarantee that every historical Electrum wallet configuration will recover through this route.
+
+[Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Oath Bitcoin network guide](https://oathwallet.org/networks/bitcoin) · [Move from Trust Wallet](https://articles.oathwallet.org/move-from-trust-wallet-to-oath) · [Use a MetaMask wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath)
+
+---
+
+Canonical: https://articles.oathwallet.org/use-metamask-wallet-in-oath
+Updated: 2026-11-06T10:29:34Z
+
+# Use an Existing MetaMask Wallet in Oath
+
+Use a compatible MetaMask EVM account in Oath on iPhone. Compare phrase and private-key imports, additional accounts, networks and asset compatibility.
+
+Oath can derive the first ordinary EVM account from a compatible MetaMask Secret Recovery Phrase. You can also import an individual EVM private key for a software account. Both routes access an existing address; they do not send funds, change networks or remove MetaMask's access.
+
+This guide covers ordinary EVM accounts in Oath 5.0.2 (104). MetaMask can contain several kinds of accounts, so identify the account you actually need before importing anything.
+
+## Choose the right import route
+
+| Your MetaMask account | Verified route in this guide | Important limit |
+| --- | --- | --- |
+| First EVM account derived from its Secret Recovery Phrase | Import the original BIP39 phrase | Oath's default EVM path is `m/44'/60'/0'/0/0`. Verify the address; a displayed account name is not proof of its derivation. |
+| A later ordinary software EVM account, or a separately imported EVM key | Import that account's private key using Ethereum & EVM | Recovers that one address on supported EVM networks, not the other accounts behind a phrase. |
+| Hardware-connected account | Outside this software-import guide | Keep the hardware wallet's recovery phrase on its hardware recovery route. |
+| Smart accounts, multisig wallets, delegated account behavior, Snaps or non-EVM accounts | Outside this guide's verified scope | Possessing an EVM signing key does not establish compatibility with the account's additional contract logic or other networks. |
+
+MetaMask documents its [default phrase derivation path](https://support.metamask.io/configure/wallet/importing-a-seed-phrase-from-another-wallet-software-derivation-path/). Its [account restoration guidance](https://support.metamask.io/configure/accounts/how-to-add-missing-accounts-after-restoring-with-secret-recovery-phrase/) also distinguishes phrase-derived accounts from separately imported and hardware accounts. A phrase from one wallet does not include an unrelated imported key.
+
+## Import the first phrase-derived EVM account
+
+1. In MetaMask, identify the original phrase-backed account and record its full public address. Keep MetaMask and your existing recovery backup available.
+2. Open Oath and choose **Import wallet**, or use **Settings → Wallets** if Oath is already set up.
+3. Enter the original Secret Recovery Phrase in order. Choose BIP39 if the app asks for the format. Never enter it into this website, chat, support or an online checker.
+4. Complete setup and name the wallet. If the original recovery material required an additional BIP39 passphrase, restore that exact passphrase wallet using Oath's [passphrase guide](https://articles.oathwallet.org/add-bip39-passphrase-oath-wallet). MetaMask's unlock password is not a BIP39 passphrase.
+5. Open Ethereum Receive in Oath and compare the full address with MetaMask. Then check each enabled EVM network where that address holds assets.
+
+Read [Import a recovery phrase](https://help.oathwallet.org/articles/import-recovery-phrase) for the Oath controls. A Google, Apple or Telegram sign-in, MetaMask password, JSON keystore or browser profile is not an input for this Oath phrase-import route.
+
+## Handle Account 2, Account 3 and imported keys separately
+
+Do not assume importing the phrase into Oath will list all MetaMask accounts. This guide verifies the first EVM account for phrase import. Later MetaMask accounts use different keys; their displayed names may also have been changed.
+
+For an ordinary software EVM account whose private key you can export from MetaMask, use the [official private-key export instructions](https://support.metamask.io/configure/accounts/how-to-export-an-accounts-private-key/). In Oath, choose **Import private key**, select **Ethereum & EVM**, and enter the original key in the app. Complete setup and compare the full address. Oath accepts the EVM hexadecimal key format with or without its `0x` prefix. Keep the key out of websites, messages and screenshots.
+
+This imports one account. It does not add a recovery phrase, restore sibling accounts or import MetaMask's encrypted JSON file. Do not export a hardware wallet's seed to use this route. See [Oath's private-key import guide](https://help.oathwallet.org/articles/import-private-key).
+
+## Which assets remain accessible?
+
+At the same ordinary EVM address, the native coin and tokens stay on their original chain. Check [Oath's network directory](https://oathwallet.org/networks) and [token catalog](https://oathwallet.org/tokens) for available scope. A USDC balance on Base does not become USDC on Ethereum, and matching symbols do not establish matching contracts.
+
+Token visibility, NFT support and staking or DeFi interfaces are separate from key compatibility. Oath may not display or provide actions for every position associated with an address. Keep an appropriate original interface for those positions. Existing token approvals and any account delegation persist on-chain; importing does not revoke them or undo contract behavior.
+
+The import does not copy custom RPC settings, manually added token lists, address-book names, local activity labels or connected dApp sessions. Establish new sessions for supported dApps through [WalletConnect in Oath](https://oathwallet.org/features/walletconnect). Review [token approvals](https://oathwallet.org/features/revoke-token-approvals) separately.
+
+## Empty account or wrong address?
+
+First check that you selected the intended wallet and account. A later MetaMask account will not match Oath's first phrase-derived account. Check the original phrase, any additional passphrase and whether the source account was separately imported or hardware-connected.
+
+If the address matches, check the exact chain and token contract, then allow available balances to refresh. Provider discovery can be incomplete. Do not treat missing display data as proof that a transfer or recovery failed, and do not remove your original wallet until you have checked all the accounts you need.
+
+There is no network fee to derive an address from recovery material. Later sends and supported approval revocations are on-chain operations and require the network's fee asset. If you want new keys, create and back up a new Oath wallet and make separate, verified transfers; importing the old phrase keeps the old keys.
+
+## What we verified
+
+Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca). Source review covers the [default EVM derivation](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/OathAtmosphere/Wallet/OathWalletEngine.swift) and [private-key import](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/OathAtmosphere/Wallet/OathPrivateKeyImport.swift). Offline public vectors check the first EVM address, distinguish the next account, and reproduce that account's address from its individual key. This is derivation evidence, not a live transfer test or verification of smart-account behavior.
+
+[Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Move from Trust Wallet](https://articles.oathwallet.org/move-from-trust-wallet-to-oath) · [Restore an Electrum Bitcoin wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
 
 ---
 
