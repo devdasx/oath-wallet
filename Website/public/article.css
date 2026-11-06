@@ -9,3 +9,12 @@
 
 /* Oath blue covers: show the full artwork in hero and related cards. */
 .cover img,.related-grid img{aspect-ratio:1200/630;object-fit:contain;max-height:none}
+/* Keep comparison columns readable and horizontally keyboard-scrollable on small screens. */
+.article-body{min-width:0}
+.article-body .oath-readable-table{max-width:100%;overflow-x:auto;margin:24px 0;overscroll-behavior-x:contain}
+.article-body .oath-readable-table:focus-visible{outline:2px solid #7798ff;outline-offset:4px}
+.article-body .oath-readable-table table{display:table;width:100%;min-width:680px;overflow:visible;overflow-wrap:normal}
+.article-body .oath-readable-table th,.article-body .oath-readable-table td{min-width:145px;vertical-align:top}
+.article-body .oath-readable-table code{overflow-wrap:normal}
+.article-table-hint{display:none}
+@media(max-width:700px){.article-body .article-table-hint{display:block;font-size:14px;color:var(--quiet);margin-bottom:8px}}

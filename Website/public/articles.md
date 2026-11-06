@@ -2,6 +2,24 @@
 
 Current product guidance and dated editorial archives.
 
+## [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
+
+Import compatible Trust Wallet accounts on iPhone. Check EVM, Bitcoin, TRON and Solana paths, supported assets and recovery limits before you switch.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
+## [Restore an Electrum Bitcoin Wallet on iPhone](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+
+Restore supported Electrum Bitcoin seeds in Oath. Check Standard, SegWit and old seed formats, extensions, change addresses and recovery limits.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
+## [Use an Existing MetaMask Wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath)
+
+Use a compatible MetaMask EVM account in Oath on iPhone. Compare phrase and private-key imports, additional accounts, networks and asset compatibility.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
 ## [Binance Lost $6.3 Billion. Who Signed the Withdrawals?](https://articles.oathwallet.org/binance-withdrawals-who-signed)
 
 Most of the money moved in about twenty minutes. The blockchain recorded valid instructions. The harder question was who had the power to give them.

@@ -1,0 +1,29 @@
+{
+  "version": "5.0.2",
+  "build": 104,
+  "sourceCommit": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+  "checkedAt": "2026-11-06",
+  "guides": [
+    {
+      "slug": "move-from-trust-wallet-to-oath",
+      "label": "Trust Wallet",
+      "title": "Move from Trust Wallet to Oath",
+      "excerpt": "Import compatible Trust Wallet accounts on iPhone. Check EVM, Bitcoin, TRON and Solana paths, supported assets and recovery limits before you switch.",
+      "summary": "Check the first EVM, Bitcoin and TRON accounts, and choose the matching Solana path."
+    },
+    {
+      "slug": "use-metamask-wallet-in-oath",
+      "label": "MetaMask",
+      "title": "Use an Existing MetaMask Wallet in Oath",
+      "excerpt": "Use a compatible MetaMask EVM account in Oath on iPhone. Compare phrase and private-key imports, additional accounts, networks and asset compatibility.",
+      "summary": "Restore the first phrase-derived EVM account or an individual software account key."
+    },
+    {
+      "slug": "restore-electrum-bitcoin-wallet-on-iphone",
+      "label": "Electrum",
+      "title": "Restore an Electrum Bitcoin Wallet on iPhone",
+      "excerpt": "Restore supported Electrum Bitcoin seeds in Oath. Check Standard, SegWit and old seed formats, extensions, change addresses and recovery limits.",
+      "summary": "Identify the Electrum seed format, extension and Bitcoin recovery scope."
+    }
+  ]
+}

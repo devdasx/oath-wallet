@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-06",
+  "website_tests": {
+    "passed": 132,
+    "failed": 0
+  },
+  "electrum_release_host_tests": {
+    "executed": 6,
+    "passed": 5,
+    "skipped": 1,
+    "failed": 0,
+    "skipped_scope": "Opt-in local Bitcoin Core funded recovery/transfers"
+  },
+  "diagnostics_host_tests": {
+    "executed": 121,
+    "passed": 119,
+    "skipped": 2,
+    "failed": 0
+  },
+  "generic_ios_compilation": "passed",
+  "deployment_dry_run": "passed",
+  "public_release_validation": "passed",
+  "diagnostics_coverage": "passed",
+  "secret_scan": "passed",
+  "browser": {
+    "mobile_width": 390,
+    "desktop_width": 1728,
+    "pages_reviewed": [
+      "Trust Wallet",
+      "MetaMask",
+      "Electrum",
+      "Features hub"
+    ],
+    "table_keyboard_scroll": "verified",
+    "no_document_horizontal_overflow": "verified on the three guides at 390px",
+    "without_javascript": "Electrum guide: all 7 sections and 6 import steps available"
+  },
+  "not_performed": [
+    "Simulator tests",
+    "Physical-device tests",
+    "Live funded migrations",
+    "Every source-wallet version/configuration"
+  ]
+}

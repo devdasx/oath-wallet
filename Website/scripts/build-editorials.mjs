@@ -2,6 +2,7 @@
 import {readFile, writeFile, readdir, mkdir, rm, copyFile, lstat} from 'node:fs/promises';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
 import {archiveRoutes} from '../src/article-routes.js';
 import retired from '../content/retired-articles.json' with {type:'json'};
 import {escape, renderMarkdown} from './markdown.mjs';
@@ -11,6 +12,7 @@ const publicDir = join(web, 'public');
 const source = join(web, 'content/articles');
 const origin = 'https://articles.oathwallet.org';
 const read = path => readFile(path, 'utf8');
+const articleStyleVersion = createHash('sha256').update(await read(join(publicDir,'article.css'))).digest('hex').slice(0,12);
 const json = value => JSON.stringify(value, null, 2) + '\n';
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const reserved = new Set(['articles','assets','feed','help','index','support','privacy','press','security','features','about','terms','networks', ...retired.articles.flatMap(a => [a.slug, ...a.aliases])]);
@@ -46,6 +48,7 @@ async function compile(slug) {
   if (!markdown || /^# /m.test(markdown)) throw Error(slug + ': supply a body with section headings (##), and the title in metadata');
   const sections = [];
   const body = renderMarkdown(markdown, (alt, name) => '<p><img loading="lazy" alt="'+escape(alt)+'" src="'+asset(name)+'"></p>')
+    .replaceAll('<div class="oath-readable-table">', '<p class="article-table-hint">Scroll sideways to read the full table.</p><div class="oath-readable-table" role="region" aria-label="Article table" tabindex="0">')
     .replace(/<h2>(.*?)<\/h2>/g, (_, label) => {
       const id = 'section-' + (sections.length + 1);
       sections.push('<li><a href="#'+id+'">'+label.replace(/<[^>]*>/g,'')+'</a></li>');
@@ -69,7 +72,7 @@ async function compile(slug) {
   const original = meta.original_url ? '<a href="'+h(meta.original_url)+'">Original publication</a>' : '';
   const page = `<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title} — Oath Wallet</title><meta name="description" content="${description}"><link rel="canonical" href="${url}"><link rel="alternate" hreflang="en" href="${url}"><link rel="alternate" hreflang="x-default" href="${url}"><link rel="alternate" type="text/markdown" href="${url}.md">
-<link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="/article.css">
+<link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="/article.css?v=${articleStyleVersion}">
 <meta property="og:type" content="article"><meta property="og:site_name" content="Oath Wallet"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${url}"><meta property="og:image" content="${cover}"><meta property="og:image:alt" content="${h(meta.cover_alt)}"><meta property="article:published_time" content="${published}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@OathWallet">
 <script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script></head><body>
 <a class="skip" href="#content">Skip to article</a><!-- oath-shared-header:start --><!-- oath-shared-header:end -->

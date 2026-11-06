@@ -9,6 +9,12 @@ Everything you need. Nothing you don’t.
 - [Encrypted iCloud wallet backup](/features/icloud-wallet-backup): Create password-encrypted backups of eligible wallets in your iCloud Drive. Keep the backup password and an independent recovery copy so you have a way back to your wallet.
 - [Connect to dApps with WalletConnect](/features/walletconnect): Connect Oath to a compatible dApp using its WalletConnect QR code or app link. Choose the wallet and networks you intend to share, then review each later request in Oath.
 
+## Wallet migration and compatibility
+
+- [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath): Check the first EVM, Bitcoin and TRON accounts, and choose the matching Solana path.
+- [Use an Existing MetaMask Wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath): Restore the first phrase-derived EVM account or an individual software account key.
+- [Restore an Electrum Bitcoin Wallet on iPhone](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone): Identify the Electrum seed format, extension and Bitcoin recovery scope.
+
 <!-- oath-feature-pages:end -->
 
 ## 01. Create or import a recovery phrase
