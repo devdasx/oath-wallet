@@ -11,7 +11,7 @@ test('bug bounty is reachable, discoverable and agrees with its published policy
  const r=await worker.fetch(new Request('https://oathwallet.org/bug-bounty'),env);
  assert.equal(r.status,200);const html=await r.text();
  assert.equal((html.match(/<h1\b/g)||[]).length,1);
- for(const [name,amount] of [['low','$0'],['medium','$0'],['high','$100'],['critical','$10,000']]){
+ for(const [name,amount] of [['low','$0'],['medium','$0'],['high','$500'],['critical','$10,000']]){
   assert.ok(html.includes(`data-severity="${name}"`));
   const card=html.split(`data-severity="${name}"`)[1].split('</article>')[0];
   assert.ok(card.includes(`<div class="bounty-amount">${amount}</div>`));

@@ -1,6 +1,6 @@
 # Oath Wallet Bug Bounty
 
-Program v1.2. Updated 2026-11-06.
+Program v1.3. Updated 2026-11-06.
 
 Bounty program opens December 1, 2026 · 00:00 UTC. Private security reports remain welcome before launch.
 
@@ -26,7 +26,7 @@ Example: An exploitable access-control or application vulnerability affecting li
 
 CVSS 4.0–6.9 (reference only).
 
-### High: $100
+### High: $500
 
 Substantial compromise of confidentiality, integrity or availability.
 

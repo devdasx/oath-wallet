@@ -1,13 +1,13 @@
 {
   "updated": "2026-11-06",
-  "version": "1.2",
+  "version": "1.3",
   "startsAt": "2026-12-01T00:00:00Z",
   "reportURL": "https://github.com/OathWallet/oath-wallet/security/advisories/new",
   "email": "care@oathwallet.org",
   "rewards": [
     {"name":"Low","amount":0,"range":"CVSS 0.1–3.9","description":"Limited security impact. Useful findings that strengthen the details.","example":"A narrowly constrained information exposure with no sensitive wallet data or meaningful privilege gain."},
     {"name":"Medium","amount":0,"range":"CVSS 4.0–6.9","description":"A meaningful security weakness with limited impact or significant prerequisites.","example":"An exploitable access-control or application vulnerability affecting limited non-public data, without exposing signing keys or enabling unauthorized transfers."},
-    {"name":"High","amount":100,"range":"CVSS 7.0–8.9","description":"Substantial compromise of confidentiality, integrity or availability.","example":"A practical bypass of an important security boundary, significant sensitive-data exposure, or a serious signing flaw requiring constrained conditions."},
+    {"name":"High","amount":500,"range":"CVSS 7.0–8.9","description":"Substantial compromise of confidentiality, integrity or availability.","example":"A practical bypass of an important security boundary, significant sensitive-data exposure, or a serious signing flaw requiring constrained conditions."},
     {"name":"Critical","amount":10000,"range":"CVSS 9.0–10.0","description":"A direct, severe threat to wallet keys or user funds.","example":"A reproducible flaw that permits unauthorized signing, extraction of protected private keys, or irreversible loss of funds under realistic conditions. Demonstrate it only with test assets."}
   ],
   "scope": [
