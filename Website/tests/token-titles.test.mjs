@@ -74,7 +74,9 @@ test('page titles, social previews and structured metadata agree across networks
     const graph=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
     assert.equal(graph['@graph'][0].name,title,path);
     assert.ok(html.includes(`<link rel="canonical" href="${origin+path}">`));
-    assert.ok(html.includes(escapeHTML(tokenLabel(asset))));
+    const heading=network?`${asset.name} (${asset.symbol}) on ${network.name}`:`${asset.name} (${asset.symbol}) wallet for iPhone`;
+    assert.ok(html.includes(`<h1>${escapeHTML(heading)}</h1>`),path+' visible heading changed');
+    if(network)assert.ok(html.includes('check its network and prepare to receive it on iPhone or iPad.'),path+' visible introduction changed');
     assert.ok(html.includes('does not mean issuer verification, safety approval or individually tested sending'));
   }
 });
