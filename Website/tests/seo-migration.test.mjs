@@ -1,3 +1,4 @@
+import {brandVersion} from '../src/brand.js';
 import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import features from '../content/features.json' with {type:'json'};
 import networks from '../content/networks.json' with {type:'json'};
@@ -59,7 +60,7 @@ test('article media and the published security reference remain reachable after 
  }
 });
 test('article migration does not confuse the og directory with a language or corrupt the archive image',async()=>{
- const image='https://oathwallet.org/og/articles.png';
+ const image=`https://oathwallet.org/og/articles.png?v=${brandVersion}`;
  assert.equal(migrateArticleLinks(image),image);
  const imageResponse=await worker.fetch(new Request(image),env);
  assert.equal(imageResponse.status,200);

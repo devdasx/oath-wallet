@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import AppKit
 
 @main struct CheckBrandedRefresh {
     static func main() {
@@ -52,24 +53,29 @@ import SwiftUI
         cycle.pull(distance: 200, isDragging: true)
         expect(cycle.phase == .pulling, "A fast pull still waits for the native event")
 
-        // Compare the generated path against the SVG's two analytic stroke
-        // masks, independently of the path operations used to build it.
-        let rect = CGRect(x: 82, y: 222, width: 860, height: 580)
+        // Compare the actual SwiftUI outline to the approved shipping PNG,
+        // independent of the SVG-to-Swift generator. Ignore antialiased edges.
+        let icon = NSBitmapImageRep(data: try! Data(contentsOf: URL(fileURLWithPath:
+            "OathApp/Assets.xcassets/AppIcon.appiconset/AppIcon.png")))!
+        let rect = CGRect(x: 138, y: 260, width: 748, height: 504.465087890625)
         let mark = OathRefreshMark().path(in: rect)
-        expect(abs(mark.boundingRect.width - 860) < 0.1 && abs(mark.boundingRect.height - 580) < 0.1,
-               "The original logo viewBox is preserved")
-        for y in stride(from: 228.0, to: 798.0, by: 9.0) {
-            for x in stride(from: 88.0, to: 938.0, by: 9.0) {
-                let left = hypot(x - 372, y - 512), right = hypot(x - 652, y - 512)
-                // Exclude only the antialiased boundaries of the original SVG.
-                guard [left, right].allSatisfy({ r in [148.0, 170, 290, 312].allSatisfy { abs(r - $0) > 0.5 } }),
-                      abs(y - 512) > 0.5 else { continue }
-                let a = (170...290).contains(left) && !(y >= 512 && (148...312).contains(right))
-                let b = (170...290).contains(right) && !(y <= 512 && (148...312).contains(left))
-                expect(mark.contains(CGPoint(x: x, y: y)) == (a || b),
-                       "SVG mismatch at \(x),\(y); radii \(left),\(right); expected \(a || b)")
+        expect(abs(mark.boundingRect.width - rect.width) < 0.01, "Approved logo width")
+        expect(abs(mark.boundingRect.height - rect.height) < 0.01, "Approved logo height")
+        func isWhite(_ x: Int, _ y: Int) -> Bool {
+            let color = icon.colorAt(x: x, y: y)!.usingColorSpace(.deviceRGB)!
+            return min(color.redComponent, color.greenComponent, color.blueComponent) > 0.98
+        }
+        for y in stride(from: 2, to: 1022, by: 6) {
+            for x in stride(from: 2, to: 1022, by: 6) {
+                let expected = isWhite(x, y)
+                guard [-2, 0, 2].allSatisfy({ dx in
+                    [-2, 0, 2].allSatisfy { dy in isWhite(x + dx, y + dy) == expected }
+                }) else { continue }
+                expect(mark.contains(CGPoint(x: Double(x) + 0.5, y: Double(y) + 0.5)) == expected,
+                       "Approved icon silhouette mismatch at \(x),\(y)")
             }
         }
+        expect(OathRefreshMark().path(in: .zero).isEmpty, "Empty layout is safe")
         print("Passed \(checks) branded refresh lifecycle and SVG geometry checks")
     }
 }

@@ -13,7 +13,7 @@ test('press page works without hydration and every asset download is present',as
  assert.doesNotMatch(html,/<template|support\.js|oath-server-content/);
  assert.match(html,/oath-shared-header:start/);assert.match(html,/oath-shared-footer:start/);
  for(const id of ['assets','product','story','guidelines','permissions','contact','leadership'])assert.ok(html.includes(`id="${id}"`));
- const downloads=[...html.matchAll(/href="([^"#]+)" download/g)].map(m=>m[1]);assert.ok(downloads.length>=15);
+ const downloads=[...html.matchAll(/href="([^"#]+)" download/g)].map(m=>m[1]);assert.ok(downloads.length>=13);
  for(const href of downloads){const b=await readFile(new URL('.'+href.split('?')[0],root));assert.ok(b.length,href);}
  for(const text of ['Clear space','Minimum size','Editorial coverage','Impersonation','Brand rights'])assert.ok(html.includes(text));
  const sample='/assets/press/2026-10/oath-app-icon.svg?v=press-edition';assert.equal(brandUrls(sample),sample,'website brand aliases must not rewrite curated press assets');
@@ -41,4 +41,12 @@ test('copy controls provide success and denied-clipboard feedback',async()=>{
  runInNewContext(code,{document:{getElementById:id=>id==='press-copy-status'?status:{textContent:'  About Oath  '},querySelectorAll:()=>[b]},navigator:{clipboard},setTimeout:()=>0,clearTimeout(){}});
  await click();assert.equal(copied,'About Oath');assert.equal(status.textContent,'Press text copied.');b.dataset={copyValue:'#247BFF'};await click();assert.equal(copied,'#247BFF');
  clipboard.writeText=async()=>{throw Error('denied')};await click();assert.match(status.textContent,/Select the visible text/);
+});
+
+test('retired wordmark URLs contain only the approved standalone marks', async () => {
+ for (const tone of ['ink','white']) {
+  assert.deepEqual(await readFile(new URL(`oath-wordmark-${tone}.png`,dir)), await readFile(new URL(`oath-mark-${tone}.png`,dir)));
+ }
+ const manifest = JSON.parse(await readFile(new URL('manifest.json',dir),'utf8'));
+ assert.ok(manifest.files.every(item => !item.name.startsWith('oath-wordmark-')));
 });

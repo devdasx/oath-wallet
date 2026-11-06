@@ -148,7 +148,7 @@ import OathBitcoin
             // Both entry points use the same consent/authentication path. This
             // advertises relay-based mobile linking, not Link Mode transport.
             let metadata = AppMetadata(name: "Oath Wallet", description: OathLocalizer.current.text(.wcWalletDescription),
-                url: OathWalletLink.universal, icons: ["https://oathwallet.org/wallet-logo.png"],
+                url: OathWalletLink.universal, icons: ["https://oathwallet.org/wallet-logo.png?v=e4c5dfe6ee7e"],
                 redirect: try AppMetadata.Redirect(native: OathWalletLink.native, universal: OathWalletLink.universal, linkMode: false))
             Pair.configure(metadata: metadata)
             Sign.configure(crypto: OathWCCrypto())
