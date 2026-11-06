@@ -9,7 +9,6 @@
     "predeploy": "npm run build:brand && npm run build:artwork && npm run build:press && npm run build:bounty && npm run build:footer-networks && npm run build:networks && npm run build:help-chrome && npm run build:walkthroughs && npm run build:articles && npm run build:features && npm run build:decisions && npm run build:seo && npm run build:search && npm run build:site-chrome && npm run build:tokens && npm run build:agents && npm run build:images",
     "build:seo": "node scripts/build-seo.mjs",
     "deploy": "wrangler deploy",
-    "postdeploy": "node scripts/submit-indexnow.mjs",
     "notify:search": "node scripts/submit-indexnow.mjs",
     "test": "node --test tests/*.test.mjs",
     "check": "node scripts/check-site.mjs",

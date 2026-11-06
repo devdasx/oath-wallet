@@ -1,4 +1,9 @@
 {
   "host": "oathwallet.org",
-  "key": "7d93de9ae34be367679f8751b73eaa75"
+  "key": "7d93de9ae34be367679f8751b73eaa75",
+  "hosts": [
+    "oathwallet.org",
+    "help.oathwallet.org",
+    "articles.oathwallet.org"
+  ]
 }

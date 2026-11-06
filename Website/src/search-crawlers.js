@@ -12,6 +12,9 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
 User-agent: *
 Allow: /
 

@@ -8,7 +8,7 @@ import urllib.robotparser
 import xml.etree.ElementTree as ET
 
 HOSTS = ['oathwallet.org', 'help.oathwallet.org', 'articles.oathwallet.org']
-AGENTS = ['OAI-SearchBot', 'ChatGPT-User', 'Mozilla/5.0']
+AGENTS = ['OAI-SearchBot', 'ChatGPT-User', 'bingbot', 'Mozilla/5.0']
 
 
 def get(url, agent):
@@ -24,7 +24,7 @@ def check(host):
         status, headers, text, final = get(origin + '/robots.txt', agent)
         assert status == 200 and final == origin + '/robots.txt'
         assert 'text/plain' in headers.get('Content-Type', '')
-        for named_agent in ['OAI-SearchBot', 'ChatGPT-User']:
+        for named_agent in ['OAI-SearchBot', 'ChatGPT-User', 'Bingbot']:
             assert f'User-agent: {named_agent}\nAllow: /\n' in text, host + ': missing explicit search permission'
         robots = urllib.robotparser.RobotFileParser()
         robots.parse(text.splitlines())
@@ -45,7 +45,7 @@ def check(host):
             assert status == 200 and 'text/html' in headers.get('Content-Type', '')
             assert headers.get('cf-mitigated') != 'challenge', url
             assert 'noindex' not in headers.get('X-Robots-Tag', '').lower(), url
-            assert not re.search(r'<meta\b[^>]*name=["\'](?:robots|OAI-SearchBot)["\'][^>]*content=["\'][^"\']*noindex', html, re.I), url
+            assert not re.search(r'<meta\b[^>]*name=["\'](?:robots|OAI-SearchBot|bingbot)["\'][^>]*content=["\'][^"\']*noindex', html, re.I), url
             assert re.search(r'<h1[\s>]', html, re.I), url
             checked += 1
     return {'host': host, 'page_requests_passed': checked, 'sitemap_urls_allowed': len(urls)}
@@ -54,4 +54,4 @@ def check(host):
 if __name__ == '__main__':
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
         results = list(pool.map(check, HOSTS))
-    print(json.dumps({'results': results, 'scope': 'Requests originate from this runner, not OpenAI IPs. This does not prove verified-bot WAF access or indexing.'}, indent=2))
+    print(json.dumps({'results': results, 'scope': 'Requests originate from this runner, not verified search-engine IPs. This does not prove verified-bot WAF access or indexing.'}, indent=2))

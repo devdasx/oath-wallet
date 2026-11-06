@@ -1,3 +1,4 @@
+import {handleSearchVerification} from './search-verification.js';
 import {handleArtwork} from './artwork-route.js';
 import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import { cachedTokens } from './tokens.js';
@@ -22,7 +23,7 @@ export default {
   async scheduled(_event, env, ctx) { ctx.waitUntil(newsletterScheduled(env)); },
   async fetch(request, env, ctx) {
     let response;
-    const special = handleRetiredArticle(request) || await handleTransferPreparation(request, env) || await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
+    const special = await handleSearchVerification(request, env) || handleRetiredArticle(request) || await handleTransferPreparation(request, env) || await handleAgentContent(request, env) || await handleOusd(request, env) || handleWalletLinks(request) || await handleHelp(request, env) || await handleArticleHost(request, env);
     const newsletter = special || await handleNewsletter(request, env);
     if (newsletter) {
       response = newsletter;
