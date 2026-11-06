@@ -42,6 +42,11 @@ for(let offset=0;offset<titleSamples.length;offset+=5)await Promise.all(titleSam
  assert.ok(html.includes(`<meta name="twitter:title" content="${escaped}">`),path+' Twitter title');
  const graph=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1]);
  assert.equal(graph['@graph'][0].name,title,path+' structured title');
+ if(network){
+  const identity=graph['@graph'][0].about?.identifier;
+  assert.equal(identity?.propertyID,asset.network,path+' structured network');
+  assert.equal(identity?.value,asset.reference,path+' structured token identity');
+ }
 }));
 console.log(`Verified ${titleSamples.length} live title checks across every token network and every USDT/USDC page, including social and structured metadata.`);
 
@@ -126,7 +131,16 @@ for(const network of Object.values(tokens.networks)){
 for(const path of ['/','/features']){
  const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)}),html=await response.text();
  assert.doesNotMatch(html,/4\.1\.14|use physical entropy|addEntropy/);
+ const nodes=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const schema=JSON.parse(m[1]);return schema['@graph']||[schema];});
+ const app=nodes.find(n=>n['@type']==='MobileApplication');
+ assert.equal(app.name,'Oath: Crypto & Bitcoin Wallet');assert.equal(app.softwareVersion,catalog.facts.app_version);
+ assert.equal(app.operatingSystem,'iOS, iPadOS');assert.deepEqual(app.featureList,catalog.features.map(f=>f.name));
+ assert.equal(app.codeRepository,undefined);assert.equal(app.subjectOf['@type'],'SoftwareSourceCode');assert.equal(app.subjectOf.codeRepository,catalog.facts.source_code);
  if(path==='/')assert.ok(html.includes('networks/choose-token-network#prepare-transfer'));
+ if(path==='/'){
+  const rating=catalog.facts.app_store_rating,date=new Intl.DateTimeFormat('en-US',{month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(rating.checked_on+'T00:00:00Z'));
+  assert.ok(html.includes(`${rating.count} US ratings`)&&html.includes(`${rating.value.toFixed(1)} out of 5`)&&html.includes(`Rating checked ${date}`),'Published rating snapshot differs from this commit');
+ }
 }
 const tokenEntry=await fetch('https://oathwallet.org/tokens/usdc/base',{signal:AbortSignal.timeout(20000)});
 assert.ok((await tokenEntry.text()).includes('choose-token-network?token=usdc&amp;network=base#prepare-transfer'));
@@ -146,7 +160,7 @@ console.log('Verified the published homepage artwork and bounded animation rende
 // Check the shipped artwork integration and representative real image responses.
 const {default:artwork}=await import('../src/artwork-manifest.json',{with:{type:'json'}});
 const {imageType}=await import('../src/artwork-route.js');
-for(const path of ['/token-artwork.css','/token-artwork.js']){
+for(const path of ['/tokens.css','/token-artwork.css','/token-artwork.js']){
  const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});
  assert.equal(response.status,200);assert.equal(await response.text(),await readFile(new URL('../public'+path,import.meta.url),'utf8'),path+' differs from this commit');
 }
@@ -174,3 +188,23 @@ for(const [path,required]of imageSamples){
 }
 assert.equal((await fetch('https://oathwallet.org/token-artwork/unknown',{signal:AbortSignal.timeout(20000)})).status,404);
 console.log(`Verified artwork version ${artwork.version}: ${artwork.entries} identity matches; ${actualImages} live image samples, ${fallbacks} working fallbacks; all token surfaces and priority stablecoin images.`);
+
+// Check the compact browse index on every network without fetching every token.
+const directoryChecks=[{path:'/tokens',data:'directory',pages:tokens.pages,total:tokens.coinCount},...Object.values(tokens.networks).map(n=>({path:'/networks/'+n.slug+'/tokens',data:'networks/'+n.slug,pages:n.pages,total:n.count}))];
+for(let offset=0;offset<directoryChecks.length;offset+=5)await Promise.all(directoryChecks.slice(offset,offset+5).map(async directory=>{
+ const response=await fetch('https://oathwallet.org'+directory.path,{signal:AbortSignal.timeout(20000)});assert.equal(response.status,200);
+ const html=await response.text(),index=JSON.parse(await readFile(new URL('../public'+tokens.prefix+'/'+directory.data+'/index.json',import.meta.url),'utf8'));
+ const navigation=html.match(/<nav aria-label="All catalog pages">(.*?)<\/nav>/s)?.[1];
+ if(directory.pages>1){
+  assert.ok(navigation,directory.path+' missing page navigation');
+  assert.equal((navigation.match(/<a href=/g)||[]).length,directory.pages);
+  for(const p of index){
+   assert.ok(navigation.includes(`href="${directory.path+(p.page>1?'?page='+p.page:'')}"`),directory.path+' page '+p.page);
+   assert.ok(navigation.includes(escapeHTML(p.first)+' – '+escapeHTML(p.last)),directory.path+' name range');
+  }
+ }else assert.equal(navigation,undefined);
+ const page=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'][0];
+ assert.equal(page['@type'],'CollectionPage');assert.equal(page.mainEntity.numberOfItems,directory.total);
+ assert.equal(page.mainEntity.itemListElement.length,Math.min(50,directory.total));
+}));
+console.log(`Verified direct page browsing and collection metadata for all ${directoryChecks.length} catalog directories.`);
