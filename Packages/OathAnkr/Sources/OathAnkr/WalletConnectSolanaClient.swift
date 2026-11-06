@@ -112,6 +112,7 @@ extension SolanaSendClient {
         guard network == request.network, request.broadcasts, request.transactions.count == 1 else { throw SolanaSendError.wrongNetwork }
         let transaction = request.transactions[0]
         try transaction.verifySigned(bytes, requireAll: true)
+        let bytes = Data(bytes)
         let expected = SolanaSendCrypto.encode(bytes.subdata(in: transaction.signatureOffset..<transaction.signatureOffset+64))
         let result = try await rpc("sendTransaction", [.string(bytes.base64EncodedString()), .object([
             "encoding": .string("base64"), "skipPreflight": .bool(false), "preflightCommitment": .string("confirmed"),

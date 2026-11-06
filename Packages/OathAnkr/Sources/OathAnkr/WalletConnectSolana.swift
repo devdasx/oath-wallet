@@ -131,6 +131,9 @@ public struct WalletConnectSolanaTransaction: Sendable, Equatable {
     }
     public init(bytes: Data, account: String) throws {
         guard bytes.count <= 1232 else { throw SolanaSendError.malformed }
+        // Wire offsets are relative to the transaction, while Data slices can
+        // retain a nonzero startIndex from their parent buffer.
+        let bytes = Data(bytes)
         var r = Reader(bytes: Array(bytes))
         let signatures = try r.short(); guard (1...19).contains(signatures) else { throw SolanaSendError.malformed }
         signatureCount = signatures; signatureOffset = r.offset
@@ -183,6 +186,7 @@ public struct WalletConnectSolanaTransaction: Sendable, Equatable {
     public func verifySigned(_ signed: Data, requireAll: Bool) throws {
         let parsed = try Self(bytes: signed, account: keys[signerIndex])
         guard parsed.message == message, parsed.signatureCount == signatureCount else { throw SolanaSendError.changed }
+        let signed = parsed.bytes
         for i in 0..<signatureCount {
             let range = signatureOffset + i * 64 ..< signatureOffset + (i + 1) * 64
             if requireAll || i == signerIndex { guard signed[range].contains(where: { $0 != 0 }) else { throw SolanaSendError.signing } }
