@@ -22,3 +22,9 @@ source/screenshot provenance and critical limits are checked by the unit suite.
 The deployment verifier compares live feature HTML, Markdown, CSS and image
 bytes with the publishing commit. Responsive, keyboard and no-JavaScript browser
 checks must still be performed for layout changes.
+
+Cloudflare's public-document compatibility rule is separate from Git deployment.
+When adding a feature route, include its exact HTML and Markdown paths in the
+existing main-site GET/HEAD path list, following `../README.md`. Do not expand
+it to all requests or disable other security controls. The existing default-client
+production check catches omissions; keep that check enabled.

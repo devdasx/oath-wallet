@@ -255,6 +255,14 @@ restrictions and all other security controls remain unchanged. The deployment
 check now tests every Markdown document and release metadata with a default
 Python client User-Agent, in addition to the identified documentation checker.
 
+On 2026-11-06 the new feature pages exposed the same default-client restriction.
+The existing main-site exact-path set was extended with these six public paths:
+`/features/revoke-token-approvals`, `/features/icloud-wallet-backup`,
+`/features/walletconnect`, and their `.md` representations. The rule still applies
+only to GET/HEAD on its listed public hosts and paths; no other security setting
+was changed. New feature routes must be checked with both identified and default
+clients before declaring a deployment complete.
+
 ### Shared website logo
 
 Edit `content/brand/oath-logo.svg` to update Oath's logo. `npm run build:brand`
