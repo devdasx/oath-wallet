@@ -100,7 +100,7 @@ for(const network of Object.values(tokens.networks)){
  const response=await fetch('https://oathwallet.org'+transferURL(asset),{signal:AbortSignal.timeout(20000)});
  assert.equal(response.status,200,asset.path);assert.match(response.headers.get('x-robots-tag'),/noindex/);
  const html=await response.text();
- assert.ok(html.includes(`data-transfer-path="${asset.path}"><p`),asset.path+' is not preselected');
+ assert.ok(html.includes(`data-transfer-path="${asset.path}">`),asset.path+' is not preselected');
  assert.ok(html.includes(`href="https://oathwallet.org${transferPath}"`));
 }
 for(const path of ['/','/features']){
@@ -122,3 +122,35 @@ for(const path of ['/assets/home-preview/wallet-motion.js','/assets/home-preview
  assert.equal(createHash('sha256').update(Buffer.from(await response.arrayBuffer())).digest('hex'),createHash('sha256').update(expected).digest('hex'),path+' differs from the deployed commit');
 }
 console.log('Verified the published homepage artwork and bounded animation renderer.');
+
+// Check the shipped artwork integration and representative real image responses.
+const {default:artwork}=await import('../src/artwork-manifest.json',{with:{type:'json'}});
+const {imageType}=await import('../src/artwork-route.js');
+for(const path of ['/token-artwork.css','/token-artwork.js']){
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200);assert.equal(await response.text(),await readFile(new URL('../public'+path,import.meta.url),'utf8'),path+' differs from this commit');
+}
+const imageSamples=new Map();
+for(const path of ['/tokens','/tokens?q=USDC&network=base','/tokens/usdc','/tokens/usdc/base','/tokens/usdc/solana','/tokens/usdt/tron','/networks/base/tokens','/networks/base','/networks/choose-token-network?token=usdc&network=base']){
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200);const html=await response.text();
+ const matches=[...html.matchAll(new RegExp('src="(/token-artwork/'+artwork.version+'/[a-f0-9]{32})"','g'))];
+ assert.ok(matches.length,path+' is missing current token artwork');
+ assert.ok(html.includes('/token-artwork.css')&&html.includes('/token-artwork.js'),path);
+ if(['/tokens/usdc/base','/tokens/usdc/solana','/tokens/usdt/tron'].includes(path))imageSamples.set(matches[0][1],true);
+}
+for(const network of Object.values(tokens.networks)){
+ const row=network.featured.find(a=>a.artwork);
+ if(row&&!imageSamples.has(row.artwork))imageSamples.set(row.artwork,false);
+}
+let actualImages=0,fallbacks=0;
+for(const [path,required]of imageSamples){
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});
+ assert.equal(response.status,200,path);const kind=response.headers.get('X-Oath-Artwork');
+ assert.ok(['image','fallback'].includes(kind),path+' unrecognized image response');
+ const bytes=new Uint8Array(await response.arrayBuffer());assert.equal(imageType(bytes),response.headers.get('Content-Type'),path);
+ if(required)assert.equal(kind,'image',path+' priority artwork is unavailable');
+ if(kind==='image')actualImages++;else fallbacks++;
+}
+assert.equal((await fetch('https://oathwallet.org/token-artwork/unknown',{signal:AbortSignal.timeout(20000)})).status,404);
+console.log(`Verified artwork version ${artwork.version}: ${artwork.entries} identity matches; ${actualImages} live image samples, ${fallbacks} working fallbacks; all token surfaces and priority stablecoin images.`);

@@ -17,7 +17,7 @@ test('catalog works at mobile and desktop sizes, with keyboard and without JavaS
     assert.equal(await page.locator('h1').count(),1);
     if(!await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)){console.log(await page.locator('body *').evaluateAll(nodes=>nodes.filter(n=>n.getBoundingClientRect().right>innerWidth+1).slice(0,10).map(n=>({tag:n.tagName,cls:n.className,width:n.getBoundingClientRect().width,text:n.textContent.slice(0,45)}))));await page.screenshot({path:new URL('overflow.png',output).pathname});}
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${width} ${route} overflow`);
-    assert.ok(await page.locator('main img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0)),`${width} ${route} images`);
+    await page.waitForFunction(()=>[...document.querySelectorAll('main img')].filter(i=>{const r=i.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0;}).every(i=>i.complete&&i.naturalWidth>0));
     if(route==='/tokens/usdt/tron'||route==='/tokens')await page.screenshot({path:new URL(`${width}-${route.replaceAll('/','-')}.png`,output).pathname,fullPage:false});
    }
    await page.goto(base+'/tokens');

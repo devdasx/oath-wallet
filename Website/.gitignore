@@ -37,3 +37,6 @@ release-app/
 # Reproducible token build artifacts; the accepted source and route ledger are versioned.
 public/token-data/
 public/token-data-next/
+
+# Accepted artwork metadata is tracked; these shards are rebuilt offline.
+public/token-artwork-data/
