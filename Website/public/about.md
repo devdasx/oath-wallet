@@ -33,7 +33,21 @@ Public source does not establish an independent security audit or prove that a p
 
 ## Product guides and corrections
 
-Oath Editorial is the byline used for Oath’s product guides. These articles are product documentation, not independent security reviews. Updated guides identify the reviewed source release and label older screenshots. For corrections, use the support page; report sensitive vulnerabilities through the private GitHub channel.
+Oath Editorial is the team byline for Oath’s product documentation, not an independent product review or security certification.
+
+### What a reviewed guide means
+
+Capability claims are checked against the named release. Compatibility guides explain the account formats checked, the evidence and its limits. Source review, host tests and completed live transactions are distinct evidence. Original app captures retain their version and sample-data labels. A catalog listing is discovery evidence, not issuer verification or a safety endorsement.
+
+### Updates and corrections
+
+Modification dates reflect content changes, not deployments. Historical screenshots and records keep their original scope. Read the [release history](https://articles.oathwallet.org/oath-wallet-release-history).
+
+For a correction, email [care@oathwallet.org](mailto:care@oathwallet.org) with the page URL and issue, never recovery credentials. Follow the [security policy](https://github.com/OathWallet/oath-wallet/security/policy) for vulnerabilities.
+
+### For reviewers and ecosystem directories
+
+Use the [press kit](https://oathwallet.org/press), [network guides](https://oathwallet.org/networks), [feature scope](https://oathwallet.org/features) and [security evidence](https://oathwallet.org/security). Link to the specific capability and retain its network and release restrictions. A listing does not imply a partnership or security endorsement.
 
 ## Help and vulnerability reports
 

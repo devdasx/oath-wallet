@@ -1,3 +1,4 @@
+import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import { cachedTokens } from './tokens.js';
 import featureCatalog from '../content/features.json' with {type:'json'};
 import networkCatalog from '../content/networks.json' with {type:'json'};
@@ -12,7 +13,7 @@ import { articleRoutes } from './article-routes.js';
 import { handleNewsletter, newsletterScheduled } from './newsletter.js';
 import { handleOusd } from './ousd.js';
 
-const pageNames = new Set(['features', 'articles', 'support', 'press', 'terms', 'privacy', 'security', 'bug-bounty', 'about', 'networks', ...networkCatalog.networks.map(n => 'networks/' + n.slug), ...featureCatalog.features.map(f => f.path.slice(1))]);
+const pageNames = new Set([...decisionGuides.pages.map(p=>p.path.slice(1)), 'features', 'articles', 'support', 'press', 'terms', 'privacy', 'security', 'bug-bounty', 'about', 'networks', ...networkCatalog.networks.map(n => 'networks/' + n.slug), ...featureCatalog.features.map(f => f.path.slice(1))]);
 const hstsPolicy = 'max-age=31536000; includeSubDomains; preload';
 
 export default {

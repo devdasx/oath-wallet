@@ -64,3 +64,28 @@ for(const feature of features.features){
  assert.equal(createHash('sha256').update(Buffer.from(await image.arrayBuffer())).digest('hex'),feature.image.sha256);
  console.log('Verified published feature and original screenshot: '+url);
 }
+
+// SEO changes must be visible in the publishing commit's initial HTML.
+const {default:decisionGuides}=await import('../content/decision-guides.json',{with:{type:'json'}});
+const {default:priority}=await import('../content/priority-guidance.json',{with:{type:'json'}});
+const {priorityHTML}=await import('../src/seo-guidance.js');
+for(const p of decisionGuides.pages){
+ const url='https://oathwallet.org'+p.path,r=await fetch(url,{signal:AbortSignal.timeout(20000)});
+ assert.equal(r.status,200,url);const html=await r.text(),expected=await readFile(new URL('../public'+p.path+'.html',import.meta.url),'utf8');
+ assert.equal(html.match(/<main\b[\s\S]*?<\/main>/)?.[0],expected.match(/<main\b[\s\S]*?<\/main>/)?.[0],url+' differs from this commit');
+ assert.ok(html.includes('<link rel="canonical" href="'+url+'">'));assert.ok(!r.headers.get('x-robots-tag')?.includes('noindex'));
+}
+const priorityPaths=Object.keys(priority.pages);
+for(let offset=0;offset<priorityPaths.length;offset+=4)await Promise.all(priorityPaths.slice(offset,offset+4).map(async path=>{
+ const response=await fetch('https://oathwallet.org'+path,{signal:AbortSignal.timeout(20000)});assert.equal(response.status,200,path);assert.ok((await response.text()).includes(priorityHTML(path)),path+' is missing current practical guidance');
+}));
+for(const [url,name]of [['https://oathwallet.org/','Oath Wallet'],['https://articles.oathwallet.org/','Oath Wallet Articles'],['https://help.oathwallet.org/','Oath Wallet Help']]){
+ const r=await fetch(url,{signal:AbortSignal.timeout(20000)});assert.equal(r.status,200);const html=await r.text();
+ assert.ok(html.includes('property="og:site_name" content="'+name+'"'),url+' site name');
+ const nodes=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(m=>{const value=JSON.parse(m[1]);return value['@graph']||[value];});
+ assert.equal(nodes.find(n=>n['@type']==='WebSite')?.name,name,url+' structured site name');
+ if(url==='https://oathwallet.org/'){
+  const app=nodes.find(n=>n['@type']==='MobileApplication');assert.ok(app);assert.equal(app.aggregateRating,undefined);assert.equal(app.review,undefined);
+ }
+}
+console.log(`Verified all three site identities, rating markup, ${decisionGuides.pages.length} decision guides and ${priorityPaths.length} enriched priority pages.`);

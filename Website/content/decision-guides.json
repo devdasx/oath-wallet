@@ -1,0 +1,7 @@
+{
+  "updated": "2026-11-06",
+  "pages": [
+    {"path":"/networks/choose-token-network","title":"Choose a USDT or USDC Network | Oath Wallet","heading":"Which network should I use?","description":"Compare USDT and USDC entries in Oath’s released catalog. Match the sender’s network, exact token identity and fee asset before transferring."},
+    {"path":"/networks/fees","title":"Which Coin Pays My Crypto Network Fee? | Oath Wallet","heading":"Find your network’s fee asset.","description":"Find the fee asset and account requirements for Oath’s supported networks. Understand TRX, ETH, SOL and Bitcoin fees before sending."}
+  ]
+}

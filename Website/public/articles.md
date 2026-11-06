@@ -2,6 +2,12 @@
 
 Current product guidance and dated editorial archives.
 
+## [Oath Wallet release history and current version](https://articles.oathwallet.org/oath-wallet-release-history)
+
+Read the confirmed Oath release record, what changed in version 5.0.2 and where to find version-specific wallet guides.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
 ## [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
 
 Import compatible Trust Wallet accounts on iPhone. Check EVM, Bitcoin, TRON and Solana paths, supported assets and recovery limits before you switch.

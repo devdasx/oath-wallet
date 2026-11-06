@@ -53,3 +53,16 @@ Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/Oa
 These are offline recovery and source checks. They are not an iPhone runtime test, a live funded transfer or a guarantee that every historical Electrum wallet configuration will recover through this route.
 
 [Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Oath Bitcoin network guide](https://oathwallet.org/networks/bitcoin) · [Move from Trust Wallet](https://articles.oathwallet.org/move-from-trust-wallet-to-oath) · [Use a MetaMask wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath)
+
+## Check the account in Oath
+
+![Bitcoin Receive in Oath](oath-receive.webp)
+
+Oath 4.0.3 app screenshot with sample data. The address options depend on the imported wallet. This older capture illustrates the Bitcoin screen; it is not evidence of a live Electrum recovery.
+
+## After checking compatibility
+
+- [Bitcoin address and transfer guidance](https://oathwallet.org/networks/bitcoin)
+- [Check backup-format restrictions](https://oathwallet.org/features/icloud-wallet-backup)
+- [Find the network fee asset](https://oathwallet.org/networks/fees)
+- [Read current release information](https://articles.oathwallet.org/oath-wallet-release-history)

@@ -1,0 +1,572 @@
+{
+  "updated": "2026-11-06",
+  "version": "5.0.2",
+  "build": 104,
+  "pages": {
+    "/networks/tron": {
+      "title": "When a transfer needs a closer look",
+      "questions": [
+        {
+          "q": "Can USDT pay the TRON network fee?",
+          "a": "Oath’s ordinary TRC-20 send flow uses TRON resources, with TRX charges when resources are insufficient. Holding USDT alone does not guarantee you can send it. Recipient account requirements can also affect the estimate."
+        },
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that TRX is available on TRON, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/use-tron",
+          "label": "TRON account and resource guidance"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-chain-tron.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Use TRON in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "b7582af6a9f3a5ff6245673843544d923bba80fca2bab9c6600a2b9659d5cfd3"
+      }
+    },
+    "/tokens/usdt/tron": {
+      "title": "Before your next transfer",
+      "questions": [
+        {
+          "q": "Can USDT pay the TRON network fee?",
+          "a": "Oath’s ordinary TRC-20 send flow uses TRON resources, with TRX charges when resources are insufficient. Holding USDT alone does not guarantee you can send it. Recipient account requirements can also affect the estimate."
+        },
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that TRX is available on TRON, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/use-tron",
+          "label": "TRON account and resource guidance"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-chain-tron.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Use TRON in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "b7582af6a9f3a5ff6245673843544d923bba80fca2bab9c6600a2b9659d5cfd3"
+      }
+    },
+    "/networks/base": {
+      "title": "When a transfer needs a closer look",
+      "questions": [
+        {
+          "q": "Can ETH on Ethereum pay a Base fee?",
+          "a": "No. For Oath’s ordinary Base send flow, keep ETH on Base. The same public address can exist on both networks, but their balances and transactions are separate."
+        },
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that ETH is available on Base, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-05-receive.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Receive crypto with a QR code in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "8e0ca56059a82ac4c010553a0fdcff1676a30be70180ae024ba62a3b864fece5"
+      }
+    },
+    "/tokens/usdc/base": {
+      "title": "Before your next transfer",
+      "questions": [
+        {
+          "q": "Can ETH on Ethereum pay a Base fee?",
+          "a": "No. For Oath’s ordinary Base send flow, keep ETH on Base. The same public address can exist on both networks, but their balances and transactions are separate."
+        },
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that ETH is available on Base, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-05-receive.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Receive crypto with a QR code in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "8e0ca56059a82ac4c010553a0fdcff1676a30be70180ae024ba62a3b864fece5"
+      }
+    },
+    "/networks/solana": {
+      "title": "When a transfer needs a closer look",
+      "questions": [
+        {
+          "q": "Why can the first token transfer cost more?",
+          "a": "A transfer can require a recipient token account to be created as well as a transaction fee. Review the SOL requirements in Oath; there is no single fixed amount that fits every token and recipient."
+        },
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that SOL is available on Solana, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/solana-address-path",
+          "label": "Check Phantom or Trust Wallet account paths"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-chain-solana.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Use Solana in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "95688fbd547200865a166aff017e027561521c10819e49bcfd0ef64914a9f0a9"
+      }
+    },
+    "/tokens/usdc/solana": {
+      "title": "Before your next transfer",
+      "questions": [
+        {
+          "q": "Why can the first token transfer cost more?",
+          "a": "A transfer can require a recipient token account to be created as well as a transaction fee. Review the SOL requirements in Oath; there is no single fixed amount that fits every token and recipient."
+        },
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that SOL is available on Solana, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/solana-address-path",
+          "label": "Check Phantom or Trust Wallet account paths"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-chain-solana.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Use Solana in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "95688fbd547200865a166aff017e027561521c10819e49bcfd0ef64914a9f0a9"
+      }
+    },
+    "/networks/ethereum": {
+      "title": "When a transfer needs a closer look",
+      "questions": [
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that ETH is available on Ethereum, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-05-receive.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Receive crypto with a QR code in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "8e0ca56059a82ac4c010553a0fdcff1676a30be70180ae024ba62a3b864fece5"
+      }
+    },
+    "/tokens/usdc/ethereum": {
+      "title": "Before your next transfer",
+      "questions": [
+        {
+          "q": "Why is my token balance available but Send cannot continue?",
+          "a": "A token balance and the network fee balance are separate. Check that ETH is available on Ethereum, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee."
+        },
+        {
+          "q": "The sender says it is complete. Where is my transfer?",
+          "a": "Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath."
+        },
+        {
+          "q": "What if I selected the wrong network?",
+          "a": "Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-05-receive.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Receive crypto with a QR code in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "8e0ca56059a82ac4c010553a0fdcff1676a30be70180ae024ba62a3b864fece5"
+      }
+    },
+    "/networks/bitcoin": {
+      "title": "Match your Bitcoin account and address",
+      "questions": [
+        {
+          "q": "Which Bitcoin address should I use?",
+          "a": "Choose a format supported by both the sender and your imported wallet. Taproot, Native SegWit, wrapped SegWit and Legacy are Bitcoin address choices, not different coins. The choices available in Oath depend on your recovery material."
+        },
+        {
+          "q": "Why does my receiving address change?",
+          "a": "A supported Bitcoin account can derive multiple receiving and change addresses. Compare an earlier address and its transaction history when checking recovery; a new receiving address alone does not establish an account mismatch."
+        },
+        {
+          "q": "Can I receive a Lightning payment here?",
+          "a": "This guide is for on-chain BTC. A Lightning invoice, Bitcoin Cash address or wrapped BTC token is a different destination or asset."
+        }
+      ],
+      "links": [
+        {
+          "url": "https://help.oathwallet.org/articles/bitcoin-address-types",
+          "label": "Choose a Bitcoin address type"
+        },
+        {
+          "url": "https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone",
+          "label": "Restore a compatible Electrum wallet"
+        },
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        }
+      ],
+      "image": {
+        "path": "/help/assets/guide-receive-bitcoin.webp",
+        "version": "Oath 4.0.3",
+        "alt": "Choose a Bitcoin address type in Oath",
+        "caption": "Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.",
+        "sha256": "25a590596593bd97a31650be6627e71c2540d2337190858b6cd72b15cc5bbf53"
+      }
+    },
+    "/tokens/usdt": {
+      "title": "Choose the route before sharing an address",
+      "questions": [
+        {
+          "q": "Which network should I choose?",
+          "a": "Use a network supported by both the sender and the receiving account. Open its exact token page, compare the contract or mint, and check the fee asset for a later send. A lower advertised withdrawal fee does not establish compatibility."
+        },
+        {
+          "q": "Are all versions and bridges equivalent?",
+          "a": "No. Entries are grouped by the catalog’s asset ID. Compare the exact identity with current issuer information. A familiar symbol does not prove issuance, redemption eligibility or bridge backing."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        }
+      ]
+    },
+    "/tokens/usdc": {
+      "title": "Choose the route before sharing an address",
+      "questions": [
+        {
+          "q": "Which network should I choose?",
+          "a": "Use a network supported by both the sender and the receiving account. Open its exact token page, compare the contract or mint, and check the fee asset for a later send. A lower advertised withdrawal fee does not establish compatibility."
+        },
+        {
+          "q": "Are all versions and bridges equivalent?",
+          "a": "No. Entries are grouped by the catalog’s asset ID. Compare the exact identity with current issuer information. A familiar symbol does not prove issuance, redemption eligibility or bridge backing."
+        }
+      ],
+      "links": [
+        {
+          "url": "/networks/choose-token-network",
+          "label": "Choose a network for USDT or USDC"
+        },
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/receive-crypto",
+          "label": "Follow the receiving instructions"
+        }
+      ]
+    },
+    "/features/revoke-token-approvals": {
+      "title": "If a permission still appears",
+      "questions": [
+        {
+          "q": "What should I check after revoking?",
+          "a": "Read the transaction outcome and refresh Token access. A pending or failed operation is not a confirmed removal. Discovery can be partial or delayed, and some account-control entries are outside ordinary token revocation."
+        },
+        {
+          "q": "Should I also disconnect the dApp?",
+          "a": "Review the WalletConnect session separately. Disconnecting stops that session’s future requests; it does not cancel an on-chain allowance. Revocation and session management solve different problems."
+        }
+      ],
+      "links": [
+        {
+          "url": "https://help.oathwallet.org/articles/revoke-token-access",
+          "label": "Troubleshoot a token revocation"
+        },
+        {
+          "url": "/features/walletconnect",
+          "label": "Review and disconnect dApp sessions"
+        },
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/transaction-status",
+          "label": "Check pending, confirmed or failed activity"
+        }
+      ]
+    },
+    "/features/icloud-wallet-backup": {
+      "title": "Check recovery before you need it",
+      "questions": [
+        {
+          "q": "The file is listed, but restore does not complete. What next?",
+          "a": "Use the Apple Account that holds the file and the password for that specific backup. An app passcode or passkey does not decrypt the backup. Follow the troubleshooting guide and preserve the original recovery material."
+        },
+        {
+          "q": "Will every wallet format use this backup route?",
+          "a": "No. Check the supported scope above. Electrum and aezeed wallets are excluded in this reviewed release. Preserve their original recovery material and use the matching recovery guide."
+        }
+      ],
+      "links": [
+        {
+          "url": "https://help.oathwallet.org/articles/icloud-troubleshooting",
+          "label": "Troubleshoot iCloud backup and restore"
+        },
+        {
+          "url": "https://help.oathwallet.org/articles/restore-icloud",
+          "label": "Restore an eligible Oath backup"
+        },
+        {
+          "url": "https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone",
+          "label": "Check Electrum recovery compatibility"
+        },
+        {
+          "url": "https://articles.oathwallet.org/move-from-trust-wallet-to-oath",
+          "label": "Import a compatible Trust Wallet account"
+        }
+      ]
+    },
+    "/features/walletconnect": {
+      "title": "When a dApp will not connect",
+      "questions": [
+        {
+          "q": "The dApp shows only browser-extension wallets. Can Oath connect?",
+          "a": "The dApp needs a compatible WalletConnect or mobile app-link flow. Oath cannot make an extension-only connection option work. Check the dApp’s supported mobile wallets and exact network."
+        },
+        {
+          "q": "Does connecting permit every future transaction?",
+          "a": "A session and a signing request have separate reviews. Read the website, account, network and requested action each time. Disconnect a session you no longer use and review token approvals separately."
+        }
+      ],
+      "links": [
+        {
+          "url": "https://help.oathwallet.org/articles/walletconnect-solana",
+          "label": "Check Solana dApp and test-network scope"
+        },
+        {
+          "url": "/features/revoke-token-approvals",
+          "label": "Review token approvals separately"
+        },
+        {
+          "url": "/networks",
+          "label": "Find network-specific connection guidance"
+        },
+        {
+          "url": "/networks/fees",
+          "label": "Find the fee asset for your network"
+        }
+      ]
+    }
+  }
+}

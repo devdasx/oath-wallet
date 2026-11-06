@@ -78,7 +78,7 @@ test('every catalog identity and route is unique, pinned, escaped and in the sit
   assert.ok(m.content.includes(escapeHTML(a.reference)));
   assert.match(m.content,/not your receiving address/);
   assert.ok(m.title.includes(manifest.networks[a.network].name));
-  for(const [,path]of m.content.matchAll(/href="(\/[^"#]*)"/g))assert.ok(routeSet.has(path)||core.has(path),a.path+' links to '+path);
+  for(const [,path]of m.content.matchAll(/href="(\/[^"#]*)"/g))assert.ok(all.has(path)||core.has(path),a.path+' links to '+path);
   if(a.decimals==null||a.network==='xrpl')assert.ok(!m.content.includes('Catalog decimals'));
  }
  for(const c of Object.values(coins))assert.equal(routeSet.has('/tokens/'+c.slug),c.assets.length>1);

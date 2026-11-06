@@ -45,6 +45,22 @@
   },
   "documents": [
     {
+      "url": "https://oathwallet.org/networks/choose-token-network",
+      "markdown_url": "https://oathwallet.org/networks/choose-token-network.md",
+      "title": "Choose a USDT or USDC Network | Oath Wallet",
+      "summary": "Compare USDT and USDC entries in Oath’s released catalog. Match the sender’s network, exact token identity and fee asset before transferring.",
+      "kind": "decision-guide",
+      "updated_at": "2026-11-06"
+    },
+    {
+      "url": "https://oathwallet.org/networks/fees",
+      "markdown_url": "https://oathwallet.org/networks/fees.md",
+      "title": "Which Coin Pays My Crypto Network Fee? | Oath Wallet",
+      "summary": "Find the fee asset and account requirements for Oath’s supported networks. Understand TRX, ETH, SOL and Bitcoin fees before sending.",
+      "kind": "decision-guide",
+      "updated_at": "2026-11-06"
+    },
+    {
       "url": "https://oathwallet.org/features/revoke-token-approvals",
       "markdown_url": "https://oathwallet.org/features/revoke-token-approvals.md",
       "title": "Check and revoke token approvals",
@@ -2117,11 +2133,20 @@
       "kind": "article"
     },
     {
+      "url": "https://articles.oathwallet.org/oath-wallet-release-history",
+      "markdown_url": "https://articles.oathwallet.org/oath-wallet-release-history.md",
+      "title": "Oath Wallet release history and current version",
+      "summary": "",
+      "updated_at": "2026-11-06T11:11:26Z",
+      "published_at": "2026-11-06T11:11:26Z",
+      "kind": "article"
+    },
+    {
       "url": "https://articles.oathwallet.org/move-from-trust-wallet-to-oath",
       "markdown_url": "https://articles.oathwallet.org/move-from-trust-wallet-to-oath.md",
       "title": "Move from Trust Wallet to Oath",
       "summary": "",
-      "updated_at": "2026-11-06T10:29:34Z",
+      "updated_at": "2026-11-06T11:11:26Z",
       "published_at": "2026-11-06T10:29:34Z",
       "kind": "article"
     },
@@ -2130,7 +2155,7 @@
       "markdown_url": "https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone.md",
       "title": "Restore an Electrum Bitcoin Wallet on iPhone",
       "summary": "",
-      "updated_at": "2026-11-06T10:29:34Z",
+      "updated_at": "2026-11-06T11:11:26Z",
       "published_at": "2026-11-06T10:29:34Z",
       "kind": "article"
     },
@@ -2139,7 +2164,7 @@
       "markdown_url": "https://articles.oathwallet.org/use-metamask-wallet-in-oath.md",
       "title": "Use an Existing MetaMask Wallet in Oath",
       "summary": "",
-      "updated_at": "2026-11-06T10:29:34Z",
+      "updated_at": "2026-11-06T11:11:26Z",
       "published_at": "2026-11-06T10:29:34Z",
       "kind": "article"
     },

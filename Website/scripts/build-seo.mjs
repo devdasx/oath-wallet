@@ -1,3 +1,5 @@
+import priorityGuidance from '../content/priority-guidance.json' with {type:'json'};
+import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 // Canonical metadata and visible navigation for the existing three-site layout.
 // Does not rewrite editorial dates to the build time or manufacture translations.
 import {readFile,writeFile} from 'node:fs/promises';
@@ -41,7 +43,9 @@ home=home.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(
   if(node['@type']==='WebPage'){node.name=title;node.description=description;}
   if(node['@type']==='MobileApplication'){
    node.name='Oath: Crypto & Bitcoin Wallet';node.softwareVersion=data.facts.app_version;
-   node.aggregateRating={...node.aggregateRating,ratingValue:'4.8',ratingCount:'38'};
+   // App Store ratings remain attributed, dated visible content, not imported review markup.
+   delete node.aggregateRating;
+   delete node.review;
    node.softwareHelp='https://help.oathwallet.org/';
   }
  }
@@ -69,9 +73,10 @@ for(const [route,file] of Object.entries(articleRoutes).filter(([,v])=>typeof v=
  const post=JSON.parse(schemaMatch[1]);
  const canonical=articleURL(route);
  const breadcrumb={'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[
-  {'@type':'ListItem',position:1,name:'Oath articles',item:ARTICLE_ORIGIN+'/'},
+  {'@type':'ListItem',position:1,name:'Oath Wallet Articles',item:ARTICLE_ORIGIN+'/'},
   {'@type':'ListItem',position:2,name:post.headline,item:canonical}
  ]};
+ html=html.replace(/(<meta property="og:site_name" content=")[^"]*"/g,'$1Oath Wallet Articles"');
  html=html.replace(/<!-- oath-breadcrumb-schema:start -->[\s\S]*?<!-- oath-breadcrumb-schema:end -->/g,'')
   .replace('</head>',`<!-- oath-breadcrumb-schema:start --><script type="application/ld+json">${json(breadcrumb)}</script><!-- oath-breadcrumb-schema:end --></head>`);
  if(!html.includes('aria-label="Breadcrumb"')){
@@ -88,7 +93,7 @@ const publishedArticles=JSON.parse(await read('oath-data.json')).articles;
 archive=archive.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,(_,raw)=>{
  const schema=JSON.parse(raw);
  for(const node of schema['@graph']||[]) {
-  if(node['@type']==='WebSite'){node['@id']=ARTICLE_ORIGIN+'/#site';node.url=ARTICLE_ORIGIN+'/';node.name='Oath articles';node.alternateName='Oath Wallet articles';}
+  if(node['@type']==='WebSite'){node['@id']=ARTICLE_ORIGIN+'/#site';node.url=ARTICLE_ORIGIN+'/';node.name='Oath Wallet Articles';node.alternateName='Oath Articles';}
   if(node['@type']==='WebPage')node.isPartOf={'@id':ARTICLE_ORIGIN+'/#site'};
   if(node['@type']==='Blog')node.blogPost=publishedArticles.filter(a=>a.locale==='en').map(a=>({
    '@type':'BlogPosting',headline:a.title,url:new URL(a.url).origin===ARTICLE_ORIGIN?a.url:articleURL(new URL(a.url).pathname),datePublished:a.published_at
@@ -96,16 +101,18 @@ archive=archive.replace(/<script type="application\/ld\+json">([\s\S]*?)<\/scrip
  }
  return `<script type="application/ld+json">${json(schema)}</script>`;
 });
+archive=archive.replace(/(<meta property="og:site_name" content=")[^"]*"/g,'$1Oath Wallet Articles"');
 await write('articles.html',archive);
 
 // The main sitemap must not retain moved support or article URLs.
 const currentSitemap=await read('sitemap.xml');
 const oldSitemap=currentSitemap.includes('<sitemapindex')?await read('sitemaps/pages.xml'):currentSitemap;
-const mainPaths=['/','/features','/press','/terms','/privacy','/security','/bug-bounty','/about','/networks',...networkCatalog.networks.map(n=>'/networks/'+n.slug),...featureCatalog.features.map(f=>f.path)];
+const mainPaths=[...decisionGuides.pages.map(p=>p.path),'/','/features','/press','/terms','/privacy','/security','/bug-bounty','/about','/networks',...networkCatalog.networks.map(n=>'/networks/'+n.slug),...featureCatalog.features.map(f=>f.path)];
 const dates=new Map([...oldSitemap.matchAll(/<url>[\s\S]*?<loc>([^<]+)<\/loc>[\s\S]*?<lastmod>([^<]+)<\/lastmod>[\s\S]*?<\/url>/g)].map(m=>[m[1],m[2]]));
 dates.set('https://oathwallet.org/press','2026-10-31');
 for (const path of mainPaths) {
- if(path==='/features'||path.startsWith('/features/')) dates.set('https://oathwallet.org'+path,featureCatalog.reviewed);
+ if(decisionGuides.pages.some(p=>p.path===path)||priorityGuidance.pages[path]||path==='/about') dates.set('https://oathwallet.org'+path,'2026-11-06');
+ else if(path==='/features'||path.startsWith('/features/')) dates.set('https://oathwallet.org'+path,featureCatalog.reviewed);
  else if(path==='/bug-bounty') dates.set('https://oathwallet.org'+path,'2026-10-31');
  else if(path==='/' || path.startsWith('/networks')) dates.set('https://oathwallet.org'+path,networkCatalog.reviewed);
  else if(!dates.has('https://oathwallet.org'+path)) dates.set('https://oathwallet.org'+path,'2026-10-27');

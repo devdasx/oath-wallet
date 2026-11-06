@@ -18,6 +18,8 @@ Each review result retains its tested source revision. Older articles, tags and 
 
 Help instructions carry their applicable app version and authored update dates. Source excerpts cover 5.0.2 (104), reviewed 2026-11-05; this is not an independent audit or proof of App Store availability.
 
+- [Choose a USDT or USDC Network | Oath Wallet](https://oathwallet.org/networks/choose-token-network.md): Compare USDT and USDC entries in Oath’s released catalog. Match the sender’s network, exact token identity and fee asset before transferring.
+- [Which Coin Pays My Crypto Network Fee? | Oath Wallet](https://oathwallet.org/networks/fees.md): Find the fee asset and account requirements for Oath’s supported networks. Understand TRX, ETH, SOL and Bitcoin fees before sending.
 - [Check and revoke token approvals](https://oathwallet.org/features/revoke-token-approvals.md): Check discovered token approvals in Oath for iPhone. Review supported EVM, TRON and Solana access, estimate network fees and verify supported revocations.
 - [Encrypted iCloud wallet backup](https://oathwallet.org/features/icloud-wallet-backup.md): Back up eligible Oath wallets to iCloud Drive with password encryption. Learn what is supported, how to confirm uploads and what you need to restore.
 - [Connect to dApps with WalletConnect](https://oathwallet.org/features/walletconnect.md): Use WalletConnect with Oath on iPhone. Review the dApp, wallet, networks and permissions, then approve supported requests individually.
@@ -244,6 +246,7 @@ Help instructions carry their applicable app version and authored update dates. 
 - [أزمة البذور الضعيفة في Coldcard: التعقيد ليس مرادفًا للأمن](https://articles.oathwallet.org/ar/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md)
 - [Khủng hoảng seed yếu của Coldcard: Phức tạp không đồng nghĩa với bảo mật](https://articles.oathwallet.org/vi/coldcard-weak-seed-crisis-complexity-verifiable-wallet-security.md)
 - [Your Crypto, Their Permission: The $388 Million Bitget Wake-Up Call](https://articles.oathwallet.org/bitget-388-million-hack-self-custody.md)
+- [Oath Wallet release history and current version](https://articles.oathwallet.org/oath-wallet-release-history.md)
 - [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath.md)
 - [Restore an Electrum Bitcoin Wallet on iPhone](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone.md)
 - [Use an Existing MetaMask Wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath.md)

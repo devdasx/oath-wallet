@@ -1,3 +1,4 @@
+import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import features from '../content/features.json' with {type:'json'};
 import networks from '../content/networks.json' with {type:'json'};
 import test from 'node:test';
@@ -22,7 +23,7 @@ test('old support URLs permanently redirect to the canonical Help Center',async(
  }
  const sitemap=await(await worker.fetch(new Request('https://oathwallet.org/sitemaps/pages.xml'),env)).text();
  assert.doesNotMatch(sitemap,/\/support|\/articles|articles\.oathwallet/);
- assert.equal([...sitemap.matchAll(/<loc>/g)].length,9 + networks.networks.length + features.features.length);
+ assert.equal([...sitemap.matchAll(/<loc>/g)].length,9 + networks.networks.length + features.features.length + decisionGuides.pages.length);
 });
 test('article sitemap covers canonical editions with real modification dates and correct Markdown canonicals',async()=>{
  const sitemap=await(await handleArticleHost(new Request('https://articles.oathwallet.org/sitemap.xml'),env)).text();
@@ -89,5 +90,6 @@ test('homepage answers are crawlable, linked and preserved in the enhanced desig
  assert.doesNotMatch(readable,/&lt;!--/);
  assert.equal((html.match(/<!-- oath-self-custody:start -->/g)||[]).length,1);
  const product=schemas(html).find(s=>s['@type']==='MobileApplication');
- assert.equal(product.aggregateRating.ratingCount,'38');assert.match(html,/38 US ratings/);
+ assert.equal(product.aggregateRating,undefined);assert.equal(product.review,undefined);
+ assert.match(html,/38 US ratings/);assert.match(html,/US App Store/);
 });

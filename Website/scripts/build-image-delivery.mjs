@@ -4,6 +4,8 @@ import sharp from 'sharp';
 const root=new URL('../public/',import.meta.url);
 const directories=['assets/networks/','assets/home-preview/'];
 const widths=[56,112,168];
+// Keep the original artwork; publish a two-density poster for the 440px preview.
+await sharp(new URL('assets/home-preview/cobalt.jpg',root).pathname).resize({width:880,withoutEnlargement:true}).webp({quality:85,effort:6}).toFile(new URL('assets/home-preview/cobalt.webp',root).pathname);
 const variants=new Map();
 for(const directory of directories){
  await mkdir(new URL(directory+'responsive/',root),{recursive:true});
@@ -27,7 +29,7 @@ for(const file of await files(root)){
   const src=tag.match(/\bsrc="([^"]+)"/)?.[1], width=Number(tag.match(/\bwidth="(\d+)"/)?.[1]);
   if(!variants.has(src)||!width||width>56)return tag;
   // The shared footer is emitted verbatim by another builder and remains its source of truth.
-  if(/class="oath-footer-/.test(tag))return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'');
+  if(/class="oath-footer-/.test(tag))return tag;
   // Larger hero marks retain the original full-resolution source.
   return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace(/\s*\/?>(?=$)/,` srcset="${variants.get(src)}" sizes="${width}px">`);
  });

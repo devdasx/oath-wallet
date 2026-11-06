@@ -73,6 +73,26 @@ No. Wait for completion for the relevant wallet. Account, storage or network pro
 - [Restore from an encrypted file](https://help.oathwallet.org/articles/restore-icloud)
 - [Apple: set up iCloud Drive](https://support.apple.com/en-gb/118443)
 
+
+
+## Check recovery before you need it
+
+### The file is listed, but restore does not complete. What next?
+
+Use the Apple Account that holds the file and the password for that specific backup. An app passcode or passkey does not decrypt the backup. Follow the troubleshooting guide and preserve the original recovery material.
+
+### Will every wallet format use this backup route?
+
+No. Check the supported scope above. Electrum and aezeed wallets are excluded in this reviewed release. Preserve their original recovery material and use the matching recovery guide.
+
+- [Troubleshoot iCloud backup and restore](https://help.oathwallet.org/articles/icloud-troubleshooting)
+- [Restore an eligible Oath backup](https://help.oathwallet.org/articles/restore-icloud)
+- [Check Electrum recovery compatibility](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+- [Import a compatible Trust Wallet account](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
+
 ## Release and source details
 
 Feature scope reviewed for Oath 5.0.2 (104) on 2026-11-06. Screens show Oath 4.0.3; appearance can differ in newer versions.

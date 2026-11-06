@@ -1,3 +1,4 @@
+import decisionGuides from '../content/decision-guides.json' with {type:'json'};
 import featureCatalog from '../content/features.json' with {type:'json'};
 import networkCatalog from '../content/networks.json' with {type:'json'};
 import help from './help/content.json' with {type:'json'};
@@ -11,6 +12,7 @@ const main='https://oathwallet.org', support='https://help.oathwallet.org', arti
 const pages=['index','features','about','networks','press','security','bug-bounty','terms','privacy'];
 const articlePath=p=>p.replace(/\/articles(?=\/|$)/,'')||'/';
 export const documents=[
+ ...decisionGuides.pages.map(p=>({url:main+p.path,markdown_url:main+p.path+'.md',title:p.title,summary:p.description,kind:'decision-guide',file:p.path+'.md',updated_at:decisionGuides.updated})),
  ...featureCatalog.features.map(f=>({url:main+f.path,markdown_url:main+f.path+'.md',title:f.name,summary:f.description,kind:'feature',file:f.path+'.md',updated_at:featureCatalog.reviewed,app_version:featureCatalog.version})),
  ...networkCatalog.networks.map(n=>({url:main+'/networks/'+n.slug,markdown_url:main+'/networks/'+n.slug+'.md',title:n.name+' wallet: send, receive and dApp connections',summary:n.intro,kind:'network',file:'/networks/'+n.slug+'.md',updated_at:networkCatalog.reviewed})),
  ...pages.map(p=>({url:main+(p==='index'?'/':'/'+p),markdown_url:main+'/'+p+'.md',title:p==='index'?'Oath Wallet':p[0].toUpperCase()+p.slice(1),kind:'page',file:'/'+p+'.md'})),
@@ -82,7 +84,7 @@ export async function handleAgentContent(request,env) {
  } else {
   const d=documents.find(d=>d.markdown_url===u.origin+u.pathname || d.url===u.origin+u.pathname);
   if(!d)return null;
-  if(d.kind==='feature')headers['X-Robots-Tag']='noindex';
+  if(['feature','decision-guide'].includes(d.kind))headers['X-Robots-Tag']='noindex';
   const negotiated=d.url===u.origin+u.pathname;
   if(negotiated&&!wantsMarkdown(request.headers.get('Accept')||''))return null;
   const asset=d.file?await env.ASSETS.fetch(new Request(main+d.file)):undefined;

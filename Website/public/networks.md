@@ -50,3 +50,7 @@ Gram is the native coin of the TON blockchain, formerly known as Toncoin.
 ## Source and availability
 
 This 42-network catalog was checked 2026-10-31 against [the public app source](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift). Availability can differ between app releases.
+
+## Plan a transfer
+
+[Choose a USDT or USDC network](https://oathwallet.org/networks/choose-token-network) · [Find your fee asset](https://oathwallet.org/networks/fees)

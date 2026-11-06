@@ -57,3 +57,16 @@ Importing keeps the same keys. If you want a wallet with new keys, create a new 
 Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca). We compared the released account paths with [Trust Wallet Core 4.8.4's registry](https://github.com/trustwallet/wallet-core/blob/4.8.4/registry.json), ran public address vectors with that version's host library, and checked Oath's [Solana path selection](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/Packages/OathDatabase/Sources/OathDatabase/SolanaReceive.swift). These checks establish the stated derivation compatibility, not a live transfer test or a test of every Trust Wallet release.
 
 [Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Use a MetaMask wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath) · [Restore an Electrum Bitcoin wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+
+## Check the account in Oath
+
+![Oath receiving screen with sample data](oath-receive.webp)
+
+Oath 4.0.3 app screenshot with sample data. Compare the network and full receiving address in the app. This older capture illustrates Receive; it does not show a completed migration.
+
+## After checking compatibility
+
+- [Solana account and transfer guidance](https://oathwallet.org/networks/solana)
+- [Choose the network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Find the network fee asset](https://oathwallet.org/networks/fees)
+- [Read current release information](https://articles.oathwallet.org/oath-wallet-release-history)

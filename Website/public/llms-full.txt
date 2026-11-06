@@ -7,6 +7,768 @@ Each review result retains its tested source revision. Older articles, tags and 
 
 ---
 
+Canonical: https://oathwallet.org/networks/choose-token-network
+Updated: 2026-11-06
+
+[Home](https://oathwallet.org/) / [Networks](https://oathwallet.org/networks) / Choose a token network
+
+Oath Wallet · Transfer preparation
+
+# Which network should I use?
+
+Compare USDT and USDC entries in Oath’s released catalog. Match the sender’s network, exact token identity and fee asset before transferring.
+
+[Get Oath for iPhone](https://apps.apple.com/app/id6780187283)
+
+- Start with the sender. Open its available withdrawal networks for the exact token. If your intended network is not offered, do not use another network’s address as a substitute.
+- Match the receiving account. In Oath, open Receive on the same network. Compare the exact contract or mint on the token page below and with the issuer’s current information.
+- Plan for a later send. Check the native fee asset and any account requirements. Fees alone do not determine compatibility.
+- Check before confirming. Compare the full receiving address, network and token at the sender. A small first transfer can help verify the route.These are entries from the released catalog’s USDT and USDC asset groups. Other bridged tokens may be listed separately. No selection here moves funds, bridges tokens, connects a wallet or establishes what an exchange supports.
+
+Aptos · USDT
+
+## Tether on Aptos
+
+Fee asset: APT on Aptos
+
+Receive on Aptos using your selected account. Match the asset type as well as the network when receiving a token.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/aptos)
+
+[Read Aptos fee requirements](https://oathwallet.org/networks/fees#aptos)
+
+Aptos · USDC
+
+## USDC on Aptos
+
+Fee asset: APT on Aptos
+
+Receive on Aptos using your selected account. Match the asset type as well as the network when receiving a token.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/aptos)
+
+[Read Aptos fee requirements](https://oathwallet.org/networks/fees#aptos)
+
+Arbitrum · USDC
+
+## USDC on Arbitrum
+
+Fee asset: ETH on Arbitrum
+
+Use Arbitrum One for this account. ARB is a token; ETH pays the network fee.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/arbitrum)
+
+[Read Arbitrum fee requirements](https://oathwallet.org/networks/fees#arbitrum)
+
+Avalanche C-Chain · USDT
+
+## Tether on Avalanche C-Chain
+
+Fee asset: AVAX on Avalanche C-Chain
+
+This account uses Avalanche C-Chain. Do not select X-Chain or P-Chain for this address.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/avalanche)
+
+[Read Avalanche C-Chain fee requirements](https://oathwallet.org/networks/fees#avalanche)
+
+Avalanche C-Chain · USDC
+
+## USDC on Avalanche C-Chain
+
+Fee asset: AVAX on Avalanche C-Chain
+
+This account uses Avalanche C-Chain. Do not select X-Chain or P-Chain for this address.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/avalanche)
+
+[Read Avalanche C-Chain fee requirements](https://oathwallet.org/networks/fees#avalanche)
+
+Base · USDC
+
+## USDC on Base
+
+Fee asset: ETH on Base
+
+Use the Base network for deposits and withdrawals. ETH on Base is separate from ETH on Ethereum.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/base)
+
+[Read Base fee requirements](https://oathwallet.org/networks/fees#base)
+
+Celo · USDT
+
+## Tether on Celo
+
+Fee asset: CELO on Celo
+
+Use the Celo network and review the fee asset selected by the app.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/celo)
+
+[Read Celo fee requirements](https://oathwallet.org/networks/fees#celo)
+
+Celo · USDC
+
+## USDC on Celo
+
+Fee asset: CELO on Celo
+
+Use the Celo network and review the fee asset selected by the app.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/celo)
+
+[Read Celo fee requirements](https://oathwallet.org/networks/fees#celo)
+
+Ethereum · USDC
+
+## USDC on Ethereum
+
+Fee asset: ETH on Ethereum
+
+Use Ethereum mainnet for this account. ETH on another network must be received on that network instead.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/ethereum)
+
+[Read Ethereum fee requirements](https://oathwallet.org/networks/fees#ethereum)
+
+Ethereum · USDT
+
+## Tether on Ethereum
+
+Fee asset: ETH on Ethereum
+
+Use Ethereum mainnet for this account. ETH on another network must be received on that network instead.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/ethereum)
+
+[Read Ethereum fee requirements](https://oathwallet.org/networks/fees#ethereum)
+
+HyperEVM · USDC
+
+## USDC on HyperEVM
+
+Fee asset: HYPE on HyperEVM
+
+This account uses HyperEVM, not HyperCore exchange balances or deposits.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/hyperevm)
+
+[Read HyperEVM fee requirements](https://oathwallet.org/networks/fees#hyperevm)
+
+Monad · USDC
+
+## USDC on Monad
+
+Fee asset: MON on Monad
+
+Select Monad and match the token contract before receiving assets.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/monad)
+
+[Read Monad fee requirements](https://oathwallet.org/networks/fees#monad)
+
+NEAR Protocol · USDC
+
+## USDC on NEAR Protocol
+
+Fee asset: NEAR on NEAR Protocol
+
+Share the exact account identifier shown in Receive. Confirm whether the destination expects a named NEAR account or an implicit account.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/near)
+
+[Read NEAR Protocol fee requirements](https://oathwallet.org/networks/fees#near)
+
+NEAR Protocol · USDT
+
+## Tether on NEAR Protocol
+
+Fee asset: NEAR on NEAR Protocol
+
+Share the exact account identifier shown in Receive. Confirm whether the destination expects a named NEAR account or an implicit account.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/near)
+
+[Read NEAR Protocol fee requirements](https://oathwallet.org/networks/fees#near)
+
+Optimism · USDC
+
+## USDC on Optimism
+
+Fee asset: ETH on Optimism
+
+Use OP Mainnet. OP is a token; ETH is the network fee asset.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/optimism)
+
+[Read Optimism fee requirements](https://oathwallet.org/networks/fees#optimism)
+
+Polkadot · USDC
+
+## USDC on Polkadot
+
+Fee asset: DOT on Polkadot
+
+Check the selected Polkadot network and address. Relay-chain and Asset Hub balances are not interchangeable.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/polkadot)
+
+[Read Polkadot fee requirements](https://oathwallet.org/networks/fees#polkadot)
+
+Polkadot · USDt
+
+## Tether on Polkadot
+
+Fee asset: DOT on Polkadot
+
+Check the selected Polkadot network and address. Relay-chain and Asset Hub balances are not interchangeable.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/polkadot)
+
+[Read Polkadot fee requirements](https://oathwallet.org/networks/fees#polkadot)
+
+Polygon · USDC
+
+## USDC on Polygon
+
+Fee asset: POL on Polygon
+
+Use Polygon PoS. POL pays the network fee; Polygon zkEVM is a different chain.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/polygon)
+
+[Read Polygon fee requirements](https://oathwallet.org/networks/fees#polygon)
+
+Sei · USDC
+
+## USDC on Sei
+
+Fee asset: SEI on Sei
+
+This account uses Sei EVM. Confirm the receiving service accepts the EVM address and network.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/sei)
+
+[Read Sei fee requirements](https://oathwallet.org/networks/fees#sei)
+
+Solana · USDC
+
+## USDC on Solana
+
+Fee asset: SOL on Solana
+
+Use the Solana address in Receive. Match a token by its mint and network, not its symbol alone.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/solana)
+
+[Read Solana fee requirements](https://oathwallet.org/networks/fees#solana)
+
+Solana · USDT
+
+## Tether on Solana
+
+Fee asset: SOL on Solana
+
+Use the Solana address in Receive. Match a token by its mint and network, not its symbol alone.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/solana)
+
+[Read Solana fee requirements](https://oathwallet.org/networks/fees#solana)
+
+Stellar · USDC
+
+## USDC on Stellar
+
+Fee asset: XLM on Stellar
+
+For an exchange deposit, include the memo exactly as required by the recipient. An address alone may not identify your exchange account.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/stellar)
+
+[Read Stellar fee requirements](https://oathwallet.org/networks/fees#stellar)
+
+Sui Network · USDC
+
+## USDC on Sui Network
+
+Fee asset: SUI on Sui Network
+
+Share the Sui receiving address. For tokens, match the full coin type rather than relying on a name or icon.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/sui)
+
+[Read Sui Network fee requirements](https://oathwallet.org/networks/fees#sui)
+
+Gram · USDT
+
+## Tether on Gram
+
+Fee asset: GRAM on Gram
+
+Choose Gram in Receive and share the TON address shown in Oath. Confirm the sender supports the address format and add a comment if the receiving service requires one.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/gram)
+
+[Read Gram fee requirements](https://oathwallet.org/networks/fees#gram)
+
+TRON · USDT
+
+## Tether on TRON
+
+Fee asset: TRX on TRON
+
+Choose TRON and confirm the token contract. A TRC-20 deposit must use TRON, even when the same token also exists elsewhere.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdt/tron)
+
+[Read TRON fee requirements](https://oathwallet.org/networks/fees#tron)
+
+Unichain · USDC
+
+## USDC on Unichain
+
+Fee asset: ETH on Unichain
+
+ETH on Unichain stays on Unichain unless you use a separate bridge or swap.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/unichain)
+
+[Read Unichain fee requirements](https://oathwallet.org/networks/fees#unichain)
+
+X Layer · USDC
+
+## USDC on X Layer
+
+Fee asset: OKB on X Layer
+
+Choose X Layer explicitly. OKB pays its native network fee.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/x-layer)
+
+[Read X Layer fee requirements](https://oathwallet.org/networks/fees#x-layer)
+
+XRP Ledger · USDC
+
+## USDC on XRP Ledger
+
+Fee asset: XRP on XRP Ledger
+
+A destination tag may be mandatory when sending to an exchange. Use the exact tag provided by the recipient.
+
+[Check the exact token identity and receiving steps](https://oathwallet.org/tokens/usdc/xrp-ledger)
+
+[Read XRP Ledger fee requirements](https://oathwallet.org/networks/fees#xrp-ledger)
+
+## If the network or token does not match
+
+Stop before sending. An identical EVM address does not join balances across networks. Importing the same keys does not bridge tokens. A matching symbol does not establish that two contracts are the same asset.
+
+If a transfer has already been broadcast, keep its public transaction ID and check the exact network, destination and token in the explorer. A completed exchange withdrawal request is not necessarily a confirmed on-chain transfer. Contact the receiving service about its recovery scope when needed.
+
+[Read Oath’s receiving instructions](https://help.oathwallet.org/articles/receive-crypto) · [Check wallet import compatibility](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
+
+## Check the primary sources
+
+- [Tether supported protocols](https://tether.to/en/supported-protocols/)
+- [Circle USDC contract addresses](https://developers.circle.com/stablecoins/usdc-contract-addresses)
+
+Catalog scope: Oath 5.0.2 (104), snapshot 2026-10-30. Catalog inclusion describes discovery; it is not issuer verification, a safety endorsement or a test of every transfer. Sender support and issuer availability can change.
+
+Guidance updated 2026-11-06. [How Oath reviews product guidance](https://oathwallet.org/about#editorial) · [Released catalog source](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/Packages/OathAnkr/Sources/OathAnkr/Resources/TokenDiscoverySeed.json).
+
+[Choose a USDT or USDC network](https://oathwallet.org/networks/choose-token-network)[Find the fee asset](https://oathwallet.org/networks/fees)[Browse all tokens](https://oathwallet.org/tokens)[Check a transfer’s status](https://help.oathwallet.org/articles/transaction-status)
+
+---
+
+Canonical: https://oathwallet.org/networks/fees
+Updated: 2026-11-06
+
+[Home](https://oathwallet.org/) / [Networks](https://oathwallet.org/networks) / Fee assets
+
+Oath Wallet · Transfer preparation
+
+# Find your network’s fee asset.
+
+Find the fee asset and account requirements for Oath’s supported networks. Understand TRX, ETH, SOL and Bitcoin fees before sending.
+
+[Get Oath for iPhone](https://apps.apple.com/app/id6780187283)
+
+Check the fee asset for the exact network. USDT and USDC token balances generally do not replace it; a network that uses USDC as its native fee asset is identified below. ETH on Ethereum cannot pay a Base transaction, even if the account address is identical.
+
+This is a fee-asset reference, not a live price quote. Network conditions, transaction size, contract execution and account creation can change the final requirement. Read the estimate in Oath before confirming.
+
+## Bitcoin
+
+BTC native fee asset
+
+Bitcoin fees depend on transaction size and selected inputs. Max accounts for the fee. This is on-chain Bitcoin, not a Lightning invoice.
+
+[Read the Bitcoin guide](https://oathwallet.org/networks/bitcoin)
+
+## Ethereum
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Ethereum guide](https://oathwallet.org/networks/ethereum)
+
+## Solana
+
+SOL native fee asset
+
+Keep SOL for fees and any required token-account creation. Review the fee and remaining balance before confirming.
+
+[Read the Solana guide](https://oathwallet.org/networks/solana)
+
+## Gram
+
+GRAM native fee asset
+
+Keep Gram for network fees and any wallet-contract activation. For a jetton, check its master contract; a token named GRAM is not necessarily the native coin.
+
+[Read the Gram guide](https://oathwallet.org/networks/gram)
+
+## THORChain
+
+RUNE native fee asset
+
+Review any memo, destination and fee carefully. A cross-chain swap is a separate dApp action, not an ordinary transfer to another chain.
+
+[Read the THORChain guide](https://oathwallet.org/networks/thorchain)
+
+## BNB Smart Chain
+
+BNB native fee asset
+
+Keep BNB available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the BNB Smart Chain guide](https://oathwallet.org/networks/bnb-smart-chain)
+
+## Polygon
+
+POL native fee asset
+
+Keep POL available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Polygon guide](https://oathwallet.org/networks/polygon)
+
+## Arbitrum
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Arbitrum guide](https://oathwallet.org/networks/arbitrum)
+
+## Base
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Base guide](https://oathwallet.org/networks/base)
+
+## Optimism
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Optimism guide](https://oathwallet.org/networks/optimism)
+
+## Avalanche C-Chain
+
+AVAX native fee asset
+
+Keep AVAX available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Avalanche C-Chain guide](https://oathwallet.org/networks/avalanche)
+
+## TRON
+
+TRX native fee asset
+
+TRON uses bandwidth and energy. A token transfer may consume TRX when resources are insufficient; review the estimate first.
+
+[Read the TRON guide](https://oathwallet.org/networks/tron)
+
+## XRP Ledger
+
+XRP native fee asset
+
+XRP Ledger accounts retain a network reserve. Issued assets can require a trustline; the total balance may exceed the spendable balance.
+
+[Read the XRP Ledger guide](https://oathwallet.org/networks/xrp-ledger)
+
+## NEAR Protocol
+
+NEAR native fee asset
+
+NEAR can be needed for fees and storage. Token balances and the amount available to send may differ when storage is required.
+
+[Read the NEAR Protocol guide](https://oathwallet.org/networks/near)
+
+## Sui Network
+
+SUI native fee asset
+
+SUI pays network fees. Review the transfer and selected asset; coin objects and gas requirements affect what can be sent.
+
+[Read the Sui Network guide](https://oathwallet.org/networks/sui)
+
+## Aptos
+
+APT native fee asset
+
+Keep APT available for network fees when transferring supported assets.
+
+[Read the Aptos guide](https://oathwallet.org/networks/aptos)
+
+## Polkadot
+
+DOT native fee asset
+
+Keep enough DOT for applicable fees and account requirements. Check the chain and asset before confirming an Asset Hub transfer.
+
+[Read the Polkadot guide](https://oathwallet.org/networks/polkadot)
+
+## Stellar
+
+XLM native fee asset
+
+Stellar accounts have reserve requirements. Issued assets can require a trustline; check the recipient and the available balance.
+
+[Read the Stellar guide](https://oathwallet.org/networks/stellar)
+
+## Litecoin
+
+LTC native fee asset
+
+Litecoin transaction fees depend on the inputs and transaction size. Leave enough LTC for the fee or review the calculated Max.
+
+[Read the Litecoin guide](https://oathwallet.org/networks/litecoin)
+
+## Dogecoin
+
+DOGE native fee asset
+
+Review the full DOGE destination and network fee. Small balances can be affected by the number of transaction inputs.
+
+[Read the Dogecoin guide](https://oathwallet.org/networks/dogecoin)
+
+## Bitcoin Cash
+
+BCH native fee asset
+
+Review the BCH amount, destination and network fee. A familiar address format does not make a Bitcoin transfer compatible.
+
+[Read the Bitcoin Cash guide](https://oathwallet.org/networks/bitcoin-cash)
+
+## Arc
+
+USDC native fee asset
+
+Keep USDC available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Arc guide](https://oathwallet.org/networks/arc)
+
+## Fantom
+
+FTM native fee asset
+
+Keep FTM available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Fantom guide](https://oathwallet.org/networks/fantom)
+
+## Flare
+
+FLR native fee asset
+
+Keep FLR available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Flare guide](https://oathwallet.org/networks/flare)
+
+## Gnosis
+
+xDAI native fee asset
+
+Keep xDAI available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Gnosis guide](https://oathwallet.org/networks/gnosis)
+
+## Linea
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Linea guide](https://oathwallet.org/networks/linea)
+
+## Chiliz
+
+CHZ native fee asset
+
+Keep CHZ available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Chiliz guide](https://oathwallet.org/networks/chiliz)
+
+## IoTeX
+
+IOTX native fee asset
+
+Keep IOTX available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the IoTeX guide](https://oathwallet.org/networks/iotex)
+
+## 0G
+
+0G native fee asset
+
+Keep 0G available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the 0G guide](https://oathwallet.org/networks/0g)
+
+## Sei
+
+SEI native fee asset
+
+Keep SEI available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Sei guide](https://oathwallet.org/networks/sei)
+
+## Filecoin
+
+FIL native fee asset
+
+Keep FIL available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Filecoin guide](https://oathwallet.org/networks/filecoin)
+
+## Celo
+
+CELO native fee asset
+
+Keep CELO available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Celo guide](https://oathwallet.org/networks/celo)
+
+## Monad
+
+MON native fee asset
+
+Keep MON available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Monad guide](https://oathwallet.org/networks/monad)
+
+## Unichain
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Unichain guide](https://oathwallet.org/networks/unichain)
+
+## HyperEVM
+
+HYPE native fee asset
+
+Keep HYPE available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the HyperEVM guide](https://oathwallet.org/networks/hyperevm)
+
+## Robinhood Chain
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Robinhood Chain guide](https://oathwallet.org/networks/robinhood-chain)
+
+## Scroll
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Scroll guide](https://oathwallet.org/networks/scroll)
+
+## Somnia
+
+SOMI native fee asset
+
+Keep SOMI available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Somnia guide](https://oathwallet.org/networks/somnia)
+
+## Story
+
+IP native fee asset
+
+Keep IP available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Story guide](https://oathwallet.org/networks/story)
+
+## Taiko
+
+ETH native fee asset
+
+Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Taiko guide](https://oathwallet.org/networks/taiko)
+
+## Telos
+
+TLOS native fee asset
+
+Keep TLOS available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the Telos guide](https://oathwallet.org/networks/telos)
+
+## X Layer
+
+OKB native fee asset
+
+Keep OKB available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.
+
+[Read the X Layer guide](https://oathwallet.org/networks/x-layer)
+
+## Before adding a fee balance
+
+### TRON: TRX and resources
+
+TRC-20 transfers use Energy and Bandwidth; insufficient resources can require TRX. Recipient activation can add requirements. The fee for a simple TRX transfer is not a reliable estimate for sending USDT.
+
+### Base and Ethereum: separate ETH balances
+
+Keep ETH on the network where you intend to send. Base’s fee can include both execution and data-publication costs. Do not assume Oath offers a sponsored fee just because another dApp does.
+
+### Solana: SOL and token accounts
+
+Keep SOL for transaction fees and any required token-account creation. A displayed token quantity does not establish that the fee requirements are covered.
+
+### Bitcoin: BTC and transaction size
+
+The fee depends on the transaction’s size and selected inputs. Use Oath’s fee review and Max calculation; there is no fixed fee that applies to every send.
+
+[Understand Max and spendable balance](https://help.oathwallet.org/articles/send-max-and-fees) · [Read a recorded transaction fee](https://help.oathwallet.org/articles/network-fee)
+
+## Check the primary sources
+
+- [TRON resource model](https://developers.tron.network/docs/resource-model)
+- [Base network fees](https://docs.base.org/specifications/transactions/network-fees)
+- [Solana transaction fees](https://solana.com/docs/core/fees)
+
+Catalog scope: Oath 5.0.2 (104), snapshot 2026-10-30. Catalog inclusion describes discovery; it is not issuer verification, a safety endorsement or a test of every transfer. Sender support and issuer availability can change.
+
+Guidance updated 2026-11-06. [How Oath reviews product guidance](https://oathwallet.org/about#editorial) · [Released catalog source](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/Packages/OathAnkr/Sources/OathAnkr/Resources/TokenDiscoverySeed.json).
+
+[Choose a USDT or USDC network](https://oathwallet.org/networks/choose-token-network)[Find the fee asset](https://oathwallet.org/networks/fees)[Browse all tokens](https://oathwallet.org/tokens)[Check a transfer’s status](https://help.oathwallet.org/articles/transaction-status)
+
+---
+
 Canonical: https://oathwallet.org/features/revoke-token-approvals
 Updated: 2026-11-06
 Applies to app version: 5.0.2
@@ -90,6 +852,26 @@ Yes, supported revocations require the relevant network fee asset. Review the ac
 - [Revoke one permission](https://help.oathwallet.org/articles/revoke-token-access)
 - [Review a batch](https://help.oathwallet.org/articles/bulk-revoke-access)
 - [Understand scan coverage](https://help.oathwallet.org/articles/permission-coverage)
+
+
+
+
+## If a permission still appears
+
+### What should I check after revoking?
+
+Read the transaction outcome and refresh Token access. A pending or failed operation is not a confirmed removal. Discovery can be partial or delayed, and some account-control entries are outside ordinary token revocation.
+
+### Should I also disconnect the dApp?
+
+Review the WalletConnect session separately. Disconnecting stops that session’s future requests; it does not cancel an on-chain allowance. Revocation and session management solve different problems.
+
+- [Troubleshoot a token revocation](https://help.oathwallet.org/articles/revoke-token-access)
+- [Review and disconnect dApp sessions](https://oathwallet.org/features/walletconnect)
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
 
 
 ## Release and source details
@@ -191,6 +973,26 @@ No. Wait for completion for the relevant wallet. Account, storage or network pro
 - [Keep the right backup password](https://help.oathwallet.org/articles/backup-password)
 - [Restore from an encrypted file](https://help.oathwallet.org/articles/restore-icloud)
 - [Apple: set up iCloud Drive](https://support.apple.com/en-gb/118443)
+
+
+
+## Check recovery before you need it
+
+### The file is listed, but restore does not complete. What next?
+
+Use the Apple Account that holds the file and the password for that specific backup. An app passcode or passkey does not decrypt the backup. Follow the troubleshooting guide and preserve the original recovery material.
+
+### Will every wallet format use this backup route?
+
+No. Check the supported scope above. Electrum and aezeed wallets are excluded in this reviewed release. Preserve their original recovery material and use the matching recovery guide.
+
+- [Troubleshoot iCloud backup and restore](https://help.oathwallet.org/articles/icloud-troubleshooting)
+- [Restore an eligible Oath backup](https://help.oathwallet.org/articles/restore-icloud)
+- [Check Electrum recovery compatibility](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+- [Import a compatible Trust Wallet account](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
 
 ## Release and source details
 
@@ -297,6 +1099,26 @@ No. Compatibility depends on the network, wallet account and action requested by
 - [Review token access separately](https://help.oathwallet.org/articles/revoke-token-access)
 
 
+
+
+## When a dApp will not connect
+
+### The dApp shows only browser-extension wallets. Can Oath connect?
+
+The dApp needs a compatible WalletConnect or mobile app-link flow. Oath cannot make an extension-only connection option work. Check the dApp’s supported mobile wallets and exact network.
+
+### Does connecting permit every future transaction?
+
+A session and a signing request have separate reviews. Read the website, account, network and requested action each time. Disconnect a session you no longer use and review token approvals separately.
+
+- [Check Solana dApp and test-network scope](https://help.oathwallet.org/articles/walletconnect-solana)
+- [Review token approvals separately](https://oathwallet.org/features/revoke-token-approvals)
+- [Find network-specific connection guidance](https://oathwallet.org/networks)
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
+
 ## Release and source details
 
 Feature scope reviewed for Oath 5.0.2 (104) on 2026-11-06. Screens show Oath 4.0.3; appearance can differ in newer versions.
@@ -371,6 +1193,32 @@ Features depend on the app version, network, wallet type and the service you con
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
 
+
+## Match your Bitcoin account and address
+
+### Which Bitcoin address should I use?
+
+Choose a format supported by both the sender and your imported wallet. Taproot, Native SegWit, wrapped SegWit and Legacy are Bitcoin address choices, not different coins. The choices available in Oath depend on your recovery material.
+
+### Why does my receiving address change?
+
+A supported Bitcoin account can derive multiple receiving and change addresses. Compare an earlier address and its transaction history when checking recovery; a new receiving address alone does not establish an account mismatch.
+
+### Can I receive a Lightning payment here?
+
+This guide is for on-chain BTC. A Lightning invoice, Bitcoin Cash address or wrapped BTC token is a different destination or asset.
+
+- [Choose a Bitcoin address type](https://help.oathwallet.org/articles/bitcoin-address-types)
+- [Restore a compatible Electrum wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+
+![Choose a Bitcoin address type in Oath](https://oathwallet.org/help/assets/guide-receive-bitcoin.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
 ---
 
 Canonical: https://oathwallet.org/networks/ethereum
@@ -426,6 +1274,32 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+
+## When a transfer needs a closer look
+
+### Why is my token balance available but Send cannot continue?
+
+A token balance and the network fee balance are separate. Check that ETH is available on Ethereum, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee.
+
+### The sender says it is complete. Where is my transfer?
+
+Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath.
+
+### What if I selected the wrong network?
+
+Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support.
+
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Choose a network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+- [Follow the receiving instructions](https://help.oathwallet.org/articles/receive-crypto)
+
+![Receive crypto with a QR code in Oath](https://oathwallet.org/help/assets/guide-05-receive.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
 
 <!-- token-catalog:start -->
 ## Tokens on Ethereum
@@ -503,6 +1377,37 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+
+## When a transfer needs a closer look
+
+### Why can the first token transfer cost more?
+
+A transfer can require a recipient token account to be created as well as a transaction fee. Review the SOL requirements in Oath; there is no single fixed amount that fits every token and recipient.
+
+### Why is my token balance available but Send cannot continue?
+
+A token balance and the network fee balance are separate. Check that SOL is available on Solana, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee.
+
+### The sender says it is complete. Where is my transfer?
+
+Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath.
+
+### What if I selected the wrong network?
+
+Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support.
+
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Choose a network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+- [Follow the receiving instructions](https://help.oathwallet.org/articles/receive-crypto)
+- [Check Phantom or Trust Wallet account paths](https://help.oathwallet.org/articles/solana-address-path)
+
+![Use Solana in Oath](https://oathwallet.org/help/assets/guide-chain-solana.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
 
 <!-- token-catalog:start -->
 ## Tokens on Solana
@@ -959,6 +1864,36 @@ Features depend on the app version, network, wallet type and the service you con
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
 
+
+## When a transfer needs a closer look
+
+### Can ETH on Ethereum pay a Base fee?
+
+No. For Oath’s ordinary Base send flow, keep ETH on Base. The same public address can exist on both networks, but their balances and transactions are separate.
+
+### Why is my token balance available but Send cannot continue?
+
+A token balance and the network fee balance are separate. Check that ETH is available on Base, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee.
+
+### The sender says it is complete. Where is my transfer?
+
+Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath.
+
+### What if I selected the wrong network?
+
+Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support.
+
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Choose a network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+- [Follow the receiving instructions](https://help.oathwallet.org/articles/receive-crypto)
+
+![Receive crypto with a QR code in Oath](https://oathwallet.org/help/assets/guide-05-receive.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
+
 <!-- token-catalog:start -->
 ## Tokens on Base
 
@@ -1189,6 +2124,37 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+
+## When a transfer needs a closer look
+
+### Can USDT pay the TRON network fee?
+
+Oath’s ordinary TRC-20 send flow uses TRON resources, with TRX charges when resources are insufficient. Holding USDT alone does not guarantee you can send it. Recipient account requirements can also affect the estimate.
+
+### Why is my token balance available but Send cannot continue?
+
+A token balance and the network fee balance are separate. Check that TRX is available on TRON, then read Oath’s estimate and any account requirements. A balance on another network cannot pay this transaction’s fee.
+
+### The sender says it is complete. Where is my transfer?
+
+Ask for the public transaction ID and the exact network. Check the destination and token identifier in that network’s explorer. A withdrawal request is not the same as a confirmed on-chain transfer. If the explorer confirms the correct transfer, refresh the matching account in Oath.
+
+### What if I selected the wrong network?
+
+Stop and check the original transaction before sending again. A matching address is not proof of recovery. Contact the receiving service for its supported recovery process; never provide recovery credentials to support.
+
+- [Find the fee asset for your network](https://oathwallet.org/networks/fees)
+- [Choose a network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Check pending, confirmed or failed activity](https://help.oathwallet.org/articles/transaction-status)
+- [Follow the receiving instructions](https://help.oathwallet.org/articles/receive-crypto)
+- [TRON account and resource guidance](https://help.oathwallet.org/articles/use-tron)
+
+![Use TRON in Oath](https://oathwallet.org/help/assets/guide-chain-tron.webp)
+
+Oath 4.0.3. Existing app capture with sample data. Appearance can differ in newer releases; this image is not a completed transfer.
+
+Product guidance for Oath 5.0.2 (104); updated 2026-11-06. [How we review guides](https://oathwallet.org/about#editorial).
 
 <!-- token-catalog:start -->
 ## Tokens on TRON
@@ -3661,7 +4627,21 @@ Public source does not establish an independent security audit or prove that a p
 
 ## Product guides and corrections
 
-Oath Editorial is the byline used for Oath’s product guides. These articles are product documentation, not independent security reviews. Updated guides identify the reviewed source release and label older screenshots. For corrections, use the support page; report sensitive vulnerabilities through the private GitHub channel.
+Oath Editorial is the team byline for Oath’s product documentation, not an independent product review or security certification.
+
+### What a reviewed guide means
+
+Capability claims are checked against the named release. Compatibility guides explain the account formats checked, the evidence and its limits. Source review, host tests and completed live transactions are distinct evidence. Original app captures retain their version and sample-data labels. A catalog listing is discovery evidence, not issuer verification or a safety endorsement.
+
+### Updates and corrections
+
+Modification dates reflect content changes, not deployments. Historical screenshots and records keep their original scope. Read the [release history](https://articles.oathwallet.org/oath-wallet-release-history).
+
+For a correction, email [care@oathwallet.org](mailto:care@oathwallet.org) with the page URL and issue, never recovery credentials. Follow the [security policy](https://github.com/OathWallet/oath-wallet/security/policy) for vulnerabilities.
+
+### For reviewers and ecosystem directories
+
+Use the [press kit](https://oathwallet.org/press), [network guides](https://oathwallet.org/networks), [feature scope](https://oathwallet.org/features) and [security evidence](https://oathwallet.org/security). Link to the specific capability and retain its network and release restrictions. A listing does not imply a partnership or security endorsement.
 
 ## Help and vulnerability reports
 
@@ -3729,6 +4709,10 @@ Gram is the native coin of the TON blockchain, formerly known as Toncoin.
 ## Source and availability
 
 This 42-network catalog was checked 2026-10-31 against [the public app source](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift). Availability can differ between app releases.
+
+## Plan a transfer
+
+[Choose a USDT or USDC network](https://oathwallet.org/networks/choose-token-network) · [Find your fee asset](https://oathwallet.org/networks/fees)
 
 ---
 
@@ -8867,6 +9851,12 @@ Canonical: https://articles.oathwallet.org/
 
 Current product guidance and dated editorial archives.
 
+## [Oath Wallet release history and current version](https://articles.oathwallet.org/oath-wallet-release-history)
+
+Read the confirmed Oath release record, what changed in version 5.0.2 and where to find version-specific wallet guides.
+
+English · Published 2026-11-06 · Updated 2026-11-06
+
 ## [Move from Trust Wallet to Oath](https://articles.oathwallet.org/move-from-trust-wallet-to-oath)
 
 Import compatible Trust Wallet accounts on iPhone. Check EVM, Bitcoin, TRON and Solana paths, supported assets and recovery limits before you switch.
@@ -13897,8 +14887,45 @@ A balance is reassuring. The authority to use it is what makes it yours in pract
 
 ---
 
+Canonical: https://articles.oathwallet.org/oath-wallet-release-history
+Updated: 2026-11-06T11:11:26Z
+
+# Oath Wallet release history and current version
+
+Read the confirmed Oath release record, what changed in version 5.0.2 and where to find version-specific wallet guides.
+
+This page separates confirmed App Store distribution from source-code releases. A GitHub tag or prerelease does not, by itself, mean an update is available in the App Store.
+
+## Current confirmed release: 5.0.2 (104)
+
+The [distribution record](https://github.com/OathWallet/oath-wallet/blob/main/releases/5.0.2-distribution.json) records Ready for Distribution, confirmed on November 5, 2026. Check the [official App Store page](https://apps.apple.com/app/id6780187283) for availability on your device and in your storefront.
+
+The [5.0.2 release notes](https://github.com/OathWallet/oath-wallet/blob/main/releases/5.0.2.md) describe these changes:
+
+- Transaction receipts distinguish transferred assets and network fees in their native units. Bitcoin receipts identify wallet-owned inputs and change.
+- A repair corrects affected Solana history dates, including cached receipts, without changing balances or transaction data.
+- Asset search and selection show symbols, full names, network badges and balances more clearly.
+- Native system typography is used across supported languages, and completed iCloud backup status stays visible.
+- Reliability work covers interrupted imports, encrypted backup handling, transaction journals and validation of supported signing requests.
+
+Read [transaction status](https://help.oathwallet.org/articles/transaction-status), [network fee requirements](https://oathwallet.org/networks/fees), [encrypted iCloud backup](https://oathwallet.org/features/icloud-wallet-backup) and [WalletConnect scope](https://oathwallet.org/features/walletconnect) for the practical details. The [security page](https://oathwallet.org/security) explains the evidence and its limitations.
+
+## Earlier source releases
+
+The public records for [5.0.1](https://github.com/OathWallet/oath-wallet/blob/main/releases/5.0.1.md), [5.0.0](https://github.com/OathWallet/oath-wallet/blob/main/releases/5.0.0.md) and [4.1.15](https://github.com/OathWallet/oath-wallet/blob/main/releases/4.1.15.md) preserve their changes and verification scope. They are historical source records, not a claim that every intermediate build was distributed by Apple.
+
+Older help screenshots retain the version in which they were captured. An older capture can explain a workflow without representing the exact appearance of the current app.
+
+## How we maintain this record
+
+Oath Wallet maintains this page from the repository's release and distribution records. We add an App Store release only when distribution evidence is recorded; we keep source checks, runtime checks and independent security review distinct. This page was reviewed on November 6, 2026.
+
+For a correction, send the page URL and a description through [Oath support](https://help.oathwallet.org/). Do not send recovery words, keys or backup passwords. See [our product-documentation policy](https://oathwallet.org/about#editorial).
+
+---
+
 Canonical: https://articles.oathwallet.org/move-from-trust-wallet-to-oath
-Updated: 2026-11-06T10:29:34Z
+Updated: 2026-11-06T11:11:26Z
 
 # Move from Trust Wallet to Oath
 
@@ -13964,10 +14991,23 @@ Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/Oa
 
 [Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Use a MetaMask wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath) · [Restore an Electrum Bitcoin wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
 
+## Check the account in Oath
+
+![Oath receiving screen with sample data](https://articles.oathwallet.org/assets/articles/editorials/move-from-trust-wallet-to-oath/oath-receive.webp)
+
+Oath 4.0.3 app screenshot with sample data. Compare the network and full receiving address in the app. This older capture illustrates Receive; it does not show a completed migration.
+
+## After checking compatibility
+
+- [Solana account and transfer guidance](https://oathwallet.org/networks/solana)
+- [Choose the network for USDT or USDC](https://oathwallet.org/networks/choose-token-network)
+- [Find the network fee asset](https://oathwallet.org/networks/fees)
+- [Read current release information](https://articles.oathwallet.org/oath-wallet-release-history)
+
 ---
 
 Canonical: https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone
-Updated: 2026-11-06T10:29:34Z
+Updated: 2026-11-06T11:11:26Z
 
 # Restore an Electrum Bitcoin Wallet on iPhone
 
@@ -14029,10 +15069,23 @@ These are offline recovery and source checks. They are not an iPhone runtime tes
 
 [Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Oath Bitcoin network guide](https://oathwallet.org/networks/bitcoin) · [Move from Trust Wallet](https://articles.oathwallet.org/move-from-trust-wallet-to-oath) · [Use a MetaMask wallet in Oath](https://articles.oathwallet.org/use-metamask-wallet-in-oath)
 
+## Check the account in Oath
+
+![Bitcoin Receive in Oath](https://articles.oathwallet.org/assets/articles/editorials/restore-electrum-bitcoin-wallet-on-iphone/oath-receive.webp)
+
+Oath 4.0.3 app screenshot with sample data. The address options depend on the imported wallet. This older capture illustrates the Bitcoin screen; it is not evidence of a live Electrum recovery.
+
+## After checking compatibility
+
+- [Bitcoin address and transfer guidance](https://oathwallet.org/networks/bitcoin)
+- [Check backup-format restrictions](https://oathwallet.org/features/icloud-wallet-backup)
+- [Find the network fee asset](https://oathwallet.org/networks/fees)
+- [Read current release information](https://articles.oathwallet.org/oath-wallet-release-history)
+
 ---
 
 Canonical: https://articles.oathwallet.org/use-metamask-wallet-in-oath
-Updated: 2026-11-06T10:29:34Z
+Updated: 2026-11-06T11:11:26Z
 
 # Use an Existing MetaMask Wallet in Oath
 
@@ -14092,6 +15145,20 @@ There is no network fee to derive an address from recovery material. Later sends
 Checked November 6, 2026 against [Oath 5.0.2 (104) source](https://github.com/OathWallet/oath-wallet/tree/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca). Source review covers the [default EVM derivation](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/OathAtmosphere/Wallet/OathWalletEngine.swift) and [private-key import](https://github.com/OathWallet/oath-wallet/blob/7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca/OathAtmosphere/Wallet/OathPrivateKeyImport.swift). Offline public vectors check the first EVM address, distinguish the next account, and reproduce that account's address from its individual key. This is derivation evidence, not a live transfer test or verification of smart-account behavior.
 
 [Get Oath for iPhone](https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283) · [Move from Trust Wallet](https://articles.oathwallet.org/move-from-trust-wallet-to-oath) · [Restore an Electrum Bitcoin wallet](https://articles.oathwallet.org/restore-electrum-bitcoin-wallet-on-iphone)
+
+## Check the account in Oath
+
+![Oath receiving screen with sample data](https://articles.oathwallet.org/assets/articles/editorials/use-metamask-wallet-in-oath/oath-receive.webp)
+
+Oath 4.0.3 app screenshot with sample data. Check the exact network as well as the full address. This older capture does not establish that every MetaMask account was imported.
+
+## After checking compatibility
+
+- [Ethereum account and fee guidance](https://oathwallet.org/networks/ethereum)
+- [Base account and fee guidance](https://oathwallet.org/networks/base)
+- [Review existing token approvals](https://oathwallet.org/features/revoke-token-approvals)
+- [Find the network fee asset](https://oathwallet.org/networks/fees)
+- [Read current release information](https://articles.oathwallet.org/oath-wallet-release-history)
 
 ---
 
