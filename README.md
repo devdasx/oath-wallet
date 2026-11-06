@@ -2,7 +2,7 @@
 
 A native multichain wallet for iPhone and iPad.
 
-**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization, restored-wallet compatibility, asset unit prices, clearer price-coverage guidance, wallet switching, tiny-amount comparisons and right-to-left wallet and transaction presentation. Receive sheets use a consistent Close action, with native Back navigation inside the flow. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
+**Prerelease: 5.0.3 (105).** This source preview improves scanner review, network recovery, history synchronization, restored-wallet compatibility, asset unit prices, clearer price-coverage guidance, wallet switching, tiny-amount comparisons and right-to-left wallet and transaction presentation. Receive sheets use a consistent Close action, with native Back navigation inside the flow. Solana WalletConnect rejects incomplete nonce responses instead of treating them as proof of transaction expiry. The Apple-approved release remains **5.0.2 (104)**. Build 105 has not been uploaded to App Store Connect.
 
 [Published security review and remaining scope](https://github.com/OathWallet/oath-wallet-security-review) · [Current release metadata](https://oathwallet.org/release-status.json)
 
@@ -21,6 +21,7 @@ A native multichain wallet for iPhone and iPad.
 - XRP recovers an advancing recent-history window; THORChain refreshes finish cancelling earlier history work before starting a new generation.
 - Restored wallets retain legacy passphrase metadata even when their passphrase is empty. Existing encrypted wallet formats remain readable.
 - Retains the Solana WalletConnect delegate-approval review fix, including explicit allowance and unlimited-approval warnings.
+- Solana WalletConnect rejects missing nonce-account values as malformed provider responses, preserving the distinction between an unavailable response and an explicitly closed account.
 - Improves optional token artwork, native status-bar handling and expected authentication-error classification.
 - Refresh completion and selection checkmarks keep their native shape in every language; directional layout follows the app’s selected language.
 - Tiny fiat balances and fees preserve the mathematical meaning of their comparison signs in both left-to-right and right-to-left text.
