@@ -1,13 +1,13 @@
 {
-  "updated": "2026-11-01",
-  "version": "1.1",
+  "updated": "2026-11-06",
+  "version": "1.2",
   "startsAt": "2026-12-01T00:00:00Z",
   "reportURL": "https://github.com/OathWallet/oath-wallet/security/advisories/new",
   "email": "care@oathwallet.org",
   "rewards": [
     {"name":"Low","amount":0,"range":"CVSS 0.1–3.9","description":"Limited security impact. Useful findings that strengthen the details.","example":"A narrowly constrained information exposure with no sensitive wallet data or meaningful privilege gain."},
-    {"name":"Medium","amount":250,"range":"CVSS 4.0–6.9","description":"A meaningful security weakness with limited impact or significant prerequisites.","example":"An exploitable access-control or application vulnerability affecting limited non-public data, without exposing signing keys or enabling unauthorized transfers."},
-    {"name":"High","amount":1000,"range":"CVSS 7.0–8.9","description":"Substantial compromise of confidentiality, integrity or availability.","example":"A practical bypass of an important security boundary, significant sensitive-data exposure, or a serious signing flaw requiring constrained conditions."},
+    {"name":"Medium","amount":0,"range":"CVSS 4.0–6.9","description":"A meaningful security weakness with limited impact or significant prerequisites.","example":"An exploitable access-control or application vulnerability affecting limited non-public data, without exposing signing keys or enabling unauthorized transfers."},
+    {"name":"High","amount":100,"range":"CVSS 7.0–8.9","description":"Substantial compromise of confidentiality, integrity or availability.","example":"A practical bypass of an important security boundary, significant sensitive-data exposure, or a serious signing flaw requiring constrained conditions."},
     {"name":"Critical","amount":10000,"range":"CVSS 9.0–10.0","description":"A direct, severe threat to wallet keys or user funds.","example":"A reproducible flaw that permits unauthorized signing, extraction of protected private keys, or irreversible loss of funds under realistic conditions. Demonstrate it only with test assets."}
   ],
   "scope": [
@@ -32,7 +32,7 @@
     "Submit an original, reproducible security issue affecting an in-scope target. Explain the attacker’s prerequisites, the violated security boundary and the demonstrated impact.",
     "The first actionable report of a unique issue is eligible. Multiple symptoms of one root cause are assessed together, not paid separately. Findings from work already commissioned and paid for by Oath are not paid again under this program.",
     "Follow the testing rules and applicable law. If the ownership of a target or the safety of a test is unclear, ask before testing. This program does not authorize access to third-party systems.",
-    "Oath validates the report and confirms its final severity with the researcher. Eligible accepted findings receive the listed USD reward for that severity; Low findings have no monetary reward. Informational reports are not paid. Submission alone does not establish eligibility.",
+    "Oath validates the report and confirms its final severity with the researcher. Eligible accepted findings receive the listed USD reward for that severity; Low and Medium findings have no monetary reward. Informational reports are not paid. Submission alone does not establish eligibility.",
     "Payment arrangements and any necessary payment-compliance information are handled privately after acceptance. Do not include payment details or identity documents in the initial report. Oath will never ask for a payment, recovery phrase or private key to release a bounty."
   ],
   "process": [
@@ -43,7 +43,7 @@
   ],
   "faq": [
     {"question":"How is severity decided?","answer":"We assess demonstrated impact, exploitability, required privileges, user interaction and affected users. FIRST’s CVSS v4.0 ranges provide a reference, not an automatic payout calculation. Include a vector if helpful; Oath confirms the final category with an explanation. A theoretical maximum impact is not the same as a reproducible exploit."},
-    {"question":"Do Low findings receive a reward?","answer":"Low findings have a $0 monetary reward. We still welcome actionable reports that improve Oath. Informational feedback is also welcome, but is not eligible for payment."},
+    {"question":"Do Low and Medium findings receive a reward?","answer":"Low and Medium findings have a $0 monetary reward. We still welcome actionable reports that improve Oath. Informational feedback is also welcome, but is not eligible for payment."},
     {"question":"Can I submit without a GitHub account?","answer":"Yes. Email care@oathwallet.org with the subject “Security report — Oath”. Start with a non-sensitive summary and ask for a private transfer route if your evidence needs one. Never send real recovery material, unredacted personal data or executable attachments."},
     {"question":"Can I test with a funded wallet?","answer":"Use a disposable wallet with no real funds. Demonstrate financial impact locally or on a testnet using test assets. Do not move, freeze or recover anyone else’s assets, even to prove a vulnerability."},
     {"question":"Is this a guarantee of legal immunity?","answer":"No. The permitted activities are limited to the scope and testing rules above. This page cannot authorize activity on third-party systems or waive another party’s rights. Ask us privately before any test whose authorization is unclear."},
