@@ -31,7 +31,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git add Website
+          # These unrelated social previews can vary with the runner's image libraries.
+          git add Website ':!Website/public/og/press.png' ':!Website/public/og/bug-bounty.png'
           if git diff --cached --quiet; then echo 'Released catalog is unchanged.'; exit 0; fi
           branch="codex/released-token-catalog-${GITHUB_RUN_ID}"
           git switch -c "$branch"
