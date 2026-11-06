@@ -28,6 +28,7 @@ A native multichain wallet for iPhone and iPad.
 - Wallet setup, settings, history and WalletConnect review use directional symbols and layout while keeping addresses and raw transaction data left-to-right.
 - Asset rows show a unit price alongside the wallet’s fiat value and native quantity. Missing price coverage has a localized “Price Untracked” explanation. Public unit prices stay visible when balances are concealed.
 - Switching wallets returns Home to the selected wallet’s balance header; updates to the same wallet preserve its scroll position.
+- WalletConnect connection errors explain the cause and next step in all 57 supported languages, including expired codes, offline connections and unsupported requests. Price-coverage and Polkadot import/receive guidance is also updated.
 
 Cronos infrastructure is included for compatibility testing but remains disabled in the app. It is not advertised as an enabled network.
 
