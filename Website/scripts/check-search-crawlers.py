@@ -8,7 +8,8 @@ import urllib.robotparser
 import xml.etree.ElementTree as ET
 
 HOSTS = ['oathwallet.org', 'help.oathwallet.org', 'articles.oathwallet.org']
-AGENTS = ['OAI-SearchBot', 'ChatGPT-User', 'bingbot', 'Mozilla/5.0']
+AGENTS = ['Googlebot', 'bingbot', 'Applebot', 'OAI-SearchBot', 'ChatGPT-User',
+          'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Mozilla/5.0']
 
 
 def get(url, agent):
@@ -45,10 +46,11 @@ def check(host):
             assert status == 200 and 'text/html' in headers.get('Content-Type', '')
             assert headers.get('cf-mitigated') != 'challenge', url
             assert 'noindex' not in headers.get('X-Robots-Tag', '').lower(), url
-            assert not re.search(r'<meta\b[^>]*name=["\'](?:robots|OAI-SearchBot|bingbot)["\'][^>]*content=["\'][^"\']*noindex', html, re.I), url
+            assert final == url, url + ': unexpected redirect'
+            assert not re.search(r'<meta\b[^>]*name=["\'](?:robots|' + re.escape(agent) + r')["\'][^>]*content=["\'][^"\']*noindex', html, re.I), url
             assert re.search(r'<h1[\s>]', html, re.I), url
             checked += 1
-    return {'host': host, 'page_requests_passed': checked, 'sitemap_urls_allowed': len(urls)}
+    return {'host': host, 'agents': AGENTS, 'page_requests_passed': checked, 'sitemap_urls_allowed_per_agent': len(urls)}
 
 
 if __name__ == '__main__':

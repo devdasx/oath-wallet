@@ -123,6 +123,43 @@ test('rendering, canonical and Markdown work across every network and page type'
  }
 });
 
+test('every catalog page is directly discoverable with accurate name ranges and canonical links',async()=>{
+ const directories=[{path:'/tokens',data:'directory',pages:manifest.pages,total:manifest.coinCount},...Object.values(manifest.networks).map(n=>({path:'/networks/'+n.slug+'/tokens',data:'networks/'+n.slug,pages:n.pages,total:n.count}))];
+ for(const directory of directories){
+  const indexText=await read(`${manifest.prefix}/${directory.data}/index.json`),index=JSON.parse(indexText);
+  assert.equal(index.length,directory.pages);assert.ok(Buffer.byteLength(indexText)<100_000,'page index must stay compact');
+  const html=await(await get(directory.path)).text();
+  const navigation=html.match(/<nav aria-label="All catalog pages">(.*?)<\/nav>/s)?.[1];
+  if(directory.pages>1)assert.ok(navigation,directory.path);
+  else assert.equal(navigation,undefined);
+  for(const [i,entry]of index.entries()){
+   const page=i+1,rows=JSON.parse(await read(`${manifest.prefix}/${directory.data}/${page}.json`));
+   assert.deepEqual(entry,{page,first:rows[0].name,last:rows.at(-1).name});
+   const path=directory.path+(page>1?'?page='+page:'');assert.ok(routeSet.has(path));
+   if(navigation){assert.ok(navigation.includes(`href="${path}"`),path);assert.ok(navigation.includes(escapeHTML(entry.first)+' – '+escapeHTML(entry.last)),path);}
+  }
+  for(const page of new Set([1,directory.pages])){
+   const path=directory.path+(page>1?'?page='+page:''),response=await(await get(path)).text();
+   const model=JSON.parse(response.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'][0];
+   const entries=JSON.parse(await read(`${manifest.prefix}/${directory.data}/${page}.json`));
+   assert.equal(model['@type'],'CollectionPage');assert.equal(model.url,main+path);assert.equal(model.mainEntity.numberOfItems,directory.total);
+   assert.deepEqual(model.mainEntity.itemListElement.map(a=>a.url),entries.map(a=>main+a.path));
+   assert.equal(model.mainEntity.itemListElement[0].position,(page-1)*50+1);
+  }
+ }
+ const search=await(await get('/tokens?q=USDT')).text();assert.doesNotMatch(search,/aria-label="All catalog pages"/);assert.doesNotMatch(search,/"@type":"CollectionPage"/);
+ const page=await(await get('/tokens?page=3')).text();assert.match(page,/href="\/tokens">First<\/a>/);assert.ok(page.includes(`href="/tokens?page=${manifest.pages}">Last</a>`));
+});
+
+test('token structured identity retains the chain and exact identifier, including escaped names',async()=>{
+ for(const path of manifest.samples.filter(p=>p.split('/').length===4)){
+  const html=await(await get(path)).text(),model=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'][0];
+  const entry=rows.find(a=>a.path===path);assert.ok(entry);
+  assert.equal(model.about.identifier.propertyID,entry.network);assert.equal(model.about.identifier.value,entry.reference);
+  assert.ok(html.includes(escapeHTML(entry.reference)));assert.equal(model.about['@id'],main+path+'#asset');
+ }
+});
+
 test('search, filters, pagination and unknown pages have deliberate indexing behavior',async()=>{
  for(const path of ['/tokens/no-such-token','/tokens/constructor','/tokens/usdt/no-such-network','/tokens/usdt/base-extra','/networks/bitcoin/tokens','/networks/cronos/tokens','/tokens?page=0','/tokens?page=999999','/tokens?page=1.5','/tokens/documents.json?page=999999'])assert.equal((await get(path)).status,404,path);
  for(const [path,target]of [['/tokens/','/tokens'],['/tokens?page=1','/tokens'],['/tokens?network=base','/networks/base/tokens']]){const r=await get(path);assert.equal(r.status,308);assert.equal(r.headers.get('Location'),main+target);}

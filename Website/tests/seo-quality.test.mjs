@@ -11,6 +11,7 @@ import priority from '../content/priority-guidance.json' with {type:'json'};
 import guides from '../content/decision-guides.json' with {type:'json'};
 import networks from '../content/networks.json' with {type:'json'};
 import manifest from '../src/tokens-manifest.json' with {type:'json'};
+import facts from '../public/oath-data.json' with {type:'json'};
 import {documents} from '../src/agent-content.js';
 const root=new URL('../public/',import.meta.url),origin='https://oathwallet.org';
 const read=p=>readFile(new URL('.'+p,root),'utf8');
@@ -23,8 +24,27 @@ test('site names agree and imported App Store ratings are not review markup',asy
  for(const [html,name]of [[main,'Oath Wallet'],[await read('/articles.html'),'Oath Wallet Articles'],[helpHome(help),'Oath Wallet Help']]){
   assert.ok(html.includes(`property="og:site_name" content="${name}"`));assert.equal(nodes(html).find(n=>n['@type']==='WebSite').name,name);
  }
- const app=nodes(main).find(n=>n['@type']==='MobileApplication');assert.equal(app.aggregateRating,undefined);assert.equal(app.review,undefined);assert.match(main,/US App Store.*checked October 30, 2026/s);
+ const app=nodes(main).find(n=>n['@type']==='MobileApplication');assert.equal(app.aggregateRating,undefined);assert.equal(app.review,undefined);
+ const rating=facts.facts.app_store_rating,date=new Intl.DateTimeFormat('en-US',{month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(rating.checked_on+'T00:00:00Z'));
+ assert.ok(main.includes(`${rating.count} US ratings`));assert.ok(main.includes(`Rating checked ${date}`));
+ assert.ok(main.includes(`${rating.value.toFixed(1)} out of 5`));
+ assert.ok((await read('/index.md')).includes(`Rated **${rating.value.toFixed(1)} out of 5** from ${rating.count} ratings in the US App Store · checked ${date}`));
  const token=await(await get('/tokens/usdc/base')).text();assert.equal(nodes(token).find(n=>n['@type']==='WebPage').isPartOf['@id'],origin+'/#site');assert.match(token,/property="og:site_name" content="Oath Wallet"/);
+});
+test('product metadata agrees across pages and source code uses its correct schema type',async()=>{
+ const products=await Promise.all(['/index.html','/features.html'].map(async path=>nodes(await read(path)).find(n=>n['@type']==='MobileApplication')));
+ for(const app of products){
+  assert.equal(app.name,'Oath: Crypto & Bitcoin Wallet');assert.equal(app.softwareVersion,facts.facts.app_version);assert.equal(app.operatingSystem,'iOS, iPadOS');
+  assert.deepEqual(app.featureList,facts.features.map(f=>f.name));assert.equal(app.codeRepository,undefined);
+  assert.equal(app.subjectOf['@type'],'SoftwareSourceCode');assert.equal(app.subjectOf.codeRepository,facts.facts.source_code);
+  assert.equal(app.aggregateRating,undefined);assert.equal(app.review,undefined);
+ }
+ const security=nodes(await read('/security.html')).filter(n=>n['@type']==='WebPage'&&n.url===origin+'/security');
+ assert.equal(security.length,1);assert.equal(security[0]['@id'],origin+'/security');assert.equal(security[0].dateModified,'2026-11-02');
+ // A dated source review is not retroactively relabeled as a newer app version.
+ assert.ok(help.articles.every(a=>a.app_version));
+ assert.match(helpHome(help),/Each guide identifies the Oath version it covers/);
+ assert.match(await read('/security.html'),/id="source-correspondence"/);
 });
 test('every priority page has complete HTML and Markdown guidance with original images',async()=>{
  for(const [path,p]of Object.entries(priority.pages)){
