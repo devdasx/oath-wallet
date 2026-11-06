@@ -160,12 +160,10 @@ private struct OathReceiveFlow: View {
             .toolbar {
                 if path.isEmpty {
                     ToolbarItem(placement: .topBarLeading) {
-                        OathButton(feedback: .dismiss, action: { dismiss() }) {
-                            Label(strings.text(startsWithAddress ? .close : .back),
-                                  systemImage: startsWithAddress ? "xmark" : "chevron.backward")
-                        }
-                        .labelStyle(.iconOnly).oathNeutralControl()
-                        .accessibilityIdentifier(startsWithAddress ? "receive.close" : "receive.back")
+                        // Both entry points are sheet roots. Only pushed
+                        // destinations use the NavigationStack's native Back.
+                        OathCloseButton { dismiss() }
+                            .accessibilityIdentifier("receive.close")
                     }
                 }
             }
