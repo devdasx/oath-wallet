@@ -19,7 +19,7 @@ test('old support URLs permanently redirect to the canonical Help Center',async(
   const r=await worker.fetch(new Request('https://oathwallet.org'+path+'?from=old'),env);
   assert.equal(r.status,308);assert.equal(r.headers.get('Location'),'https://help.oathwallet.org/?from=old');
  }
- const sitemap=await(await worker.fetch(new Request('https://oathwallet.org/sitemap.xml'),env)).text();
+ const sitemap=await(await worker.fetch(new Request('https://oathwallet.org/sitemaps/pages.xml'),env)).text();
  assert.doesNotMatch(sitemap,/\/support|\/articles|articles\.oathwallet/);
  assert.equal([...sitemap.matchAll(/<loc>/g)].length,9 + networks.networks.length);
 });

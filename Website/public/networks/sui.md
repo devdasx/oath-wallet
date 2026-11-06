@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Sui Network
+
+Native coin: SUI. 159 catalog token entries.
+
+- [USDC (USDC) on Sui Network](https://oathwallet.org/tokens/usdc/sui)
+- [DeepBook (DEEP) on Sui Network](https://oathwallet.org/tokens/deep/sui)
+- [Cetus Protocol (CETUS) on Sui Network](https://oathwallet.org/tokens/cetus-protocol/sui)
+- [NAVI Protocol (NAVX) on Sui Network](https://oathwallet.org/tokens/navi/sui)
+- [Scallop (SCA) on Sui Network](https://oathwallet.org/tokens/scallop-2/sui)
+- [Bucket Protocol BUCK Stablecoin (BUCK) on Sui Network](https://oathwallet.org/tokens/bucket-protocol-buck-stablecoin/sui)
+- [Aftermath Staked SUI (AFSUI) on Sui Network](https://oathwallet.org/tokens/aftermath-staked-sui/sui)
+- [Haedal Staked SUI (HASUI) on Sui Network](https://oathwallet.org/tokens/haedal-staked-sui/sui)
+- [Wormhole Bridged USDT (USDT) on Sui Network](https://oathwallet.org/tokens/tether-usd-wormhole-from-ethereum/sui)
+- [Ondo US Dollar Yield (USDY) on Sui Network](https://oathwallet.org/tokens/ondo-us-dollar-yield/sui)
+- [Agent S (S) on Sui Network](https://oathwallet.org/tokens/agent-s/sui)
+- [Aida (AIDA) on Sui Network](https://oathwallet.org/tokens/aida-2/sui)
+
+[Browse all Sui Network tokens](https://oathwallet.org/networks/sui/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

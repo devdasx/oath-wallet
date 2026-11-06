@@ -48,3 +48,21 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Telos
+
+Native coin: TLOS. 9 catalog token entries.
+
+- [Wrapped Telos (WTLOS) on Telos](https://oathwallet.org/tokens/wrapped-telos/telos)
+- [Stargate Bridged WETH (WETH) on Telos](https://oathwallet.org/tokens/stargate-bridged-weth/telos)
+- [Wrapped Bitcoin (WBTC) on Telos](https://oathwallet.org/tokens/wrapped-bitcoin/telos)
+- [ApeSwap (BANANA) on Telos](https://oathwallet.org/tokens/apeswap-finance/telos)
+- [Stargate Bridged USDC (USDC.E) on Telos](https://oathwallet.org/tokens/stargate-bridged-usdc/telos)
+- [Wrapped POL (WPOL) on Telos](https://oathwallet.org/tokens/wmatic/telos)
+- [Wrapped Fantom (WFTM) on Telos](https://oathwallet.org/tokens/wrapped-fantom/telos)
+- [Elk Finance (ELK) on Telos](https://oathwallet.org/tokens/elk-finance/telos)
+- [Destiny World (DECO) on Telos](https://oathwallet.org/tokens/destiny-world/telos)
+
+[Browse all Telos tokens](https://oathwallet.org/networks/telos/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

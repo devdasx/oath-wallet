@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Fantom
+
+Native coin: FTM. 135 catalog token entries.
+
+- [Wrapped Fantom (WFTM) on Fantom](https://oathwallet.org/tokens/wrapped-fantom/fantom)
+- [Axelar Bridged USDC (AXLUSDC) on Fantom](https://oathwallet.org/tokens/axlusdc/fantom)
+- [Curve DAO (CRV) on Fantom](https://oathwallet.org/tokens/curve-dao-token/fantom)
+- [Aave (AAVE) on Fantom](https://oathwallet.org/tokens/aave/fantom)
+- [Aave CRV (ACRV) on Fantom](https://oathwallet.org/tokens/aave-crv/fantom)
+- [Aave DAI (ADAI) on Fantom](https://oathwallet.org/tokens/aave-dai/fantom)
+- [Aave LINK (ALINK) on Fantom](https://oathwallet.org/tokens/aave-link/fantom)
+- [Aave USDT (AUSDT) on Fantom](https://oathwallet.org/tokens/aave-usdt/fantom)
+- [Aave WBTC (AWBTC) on Fantom](https://oathwallet.org/tokens/aave-wbtc/fantom)
+- [Aave WETH (AWETH) on Fantom](https://oathwallet.org/tokens/aave-weth/fantom)
+- [Alchemix USD (ALUSD) on Fantom](https://oathwallet.org/tokens/alchemix-usd/fantom)
+- [Allbridge Zero (ABR0) on Fantom](https://oathwallet.org/tokens/allbridge/fantom)
+
+[Browse all Fantom tokens](https://oathwallet.org/networks/fantom/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Flare
+
+Native coin: FLR. 27 catalog token entries.
+
+- [Wrapped Flare (WFLR) on Flare](https://oathwallet.org/tokens/wrapped-flare/flare)
+- [USDT0 (USDT0) on Flare](https://oathwallet.org/tokens/usdt0/flare)
+- [Stargate Bridged USDC (USDC.E) on Flare](https://oathwallet.org/tokens/stargate-bridged-usdc/flare)
+- [Apsis (APS) on Flare](https://oathwallet.org/tokens/apsis/flare)
+- [BUGO (BUGO) on Flare](https://oathwallet.org/tokens/bugo/flare)
+- [Cyclo cysFLR (CYSFLR) on Flare](https://oathwallet.org/tokens/cyclo-cysflr/flare)
+- [Cyclo cyWETH (CYWETH) on Flare](https://oathwallet.org/tokens/cyclo-cyweth/flare)
+- [Ēnosys (HLN) on Flare](https://oathwallet.org/tokens/enosys/flare)
+- [Enosys Loans CDP (CDP) on Flare](https://oathwallet.org/tokens/enosys-loans-cdp/flare)
+- [Enosys USDT (EUSDT) on Flare](https://oathwallet.org/tokens/enosys-usdt/flare)
+- [Firelight Staked XRP (STXRP) on Flare](https://oathwallet.org/tokens/firelight-staked-xrp/flare)
+- [Flare Bridged XRP (Flare) (FXRP) on Flare](https://oathwallet.org/tokens/flare-bridged-xrp-flare/flare)
+
+[Browse all Flare tokens](https://oathwallet.org/networks/flare/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

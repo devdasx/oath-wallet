@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Taiko
+
+Native coin: ETH. 14 catalog token entries.
+
+- [Taiko (TAIKO) on Taiko](https://oathwallet.org/tokens/taiko/taiko)
+- [Taiko Bridged USDC (Taiko) (USDC) on Taiko](https://oathwallet.org/tokens/taiko-bridged-usdc-taiko/taiko)
+- [Stargate Bridged USDT (USDT) on Taiko](https://oathwallet.org/tokens/stargate-bridged-usdt/taiko)
+- [Wrapped ETH (Taiko) (WETH) on Taiko](https://oathwallet.org/tokens/wrapped-eth-taiko/taiko)
+- [Chainlink (LINK) on Taiko](https://oathwallet.org/tokens/chainlink/taiko)
+- [crvUSD (CRVUSD) on Taiko](https://oathwallet.org/tokens/crvusd/taiko)
+- [Solv Protocol BTC (SOLVBTC) on Taiko](https://oathwallet.org/tokens/solv-btc/taiko)
+- [Solv Protocol Staked BTC (XSOLVBTC) on Taiko](https://oathwallet.org/tokens/solv-protocol-solvbtc-bbn/taiko)
+- [Stargate Bridged USDC (USDC.E) on Taiko](https://oathwallet.org/tokens/stargate-bridged-usdc/taiko)
+- [Minterest (MINTY) on Taiko](https://oathwallet.org/tokens/minterest/taiko)
+- [Lorenzo stBTC (STBTC) on Taiko](https://oathwallet.org/tokens/lorenzo-stbtc/taiko)
+- [Merlin's Seal BTC (M-BTC) on Taiko](https://oathwallet.org/tokens/merlin-s-seal-btc/taiko)
+
+[Browse all Taiko tokens](https://oathwallet.org/networks/taiko/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

@@ -1,0 +1,4640 @@
+{
+  "format": 1,
+  "version": "cb6756aa42c7cb7c",
+  "prefix": "/token-data/cb6756aa42c7cb7c",
+  "pageSize": 50,
+  "count": 32135,
+  "coinCount": 20017,
+  "hubCount": 3855,
+  "pages": 401,
+  "source": {
+    "version": "5.0.2",
+    "build": 104,
+    "revision": "7ffd0f449c3312d9fafd01eda59c6b9eb813f9ca",
+    "sha256": "14e3293bba3a0049ad8fdfcf38f75950447939d8c41e13b9c8646d9754ce9330",
+    "date": "2026-10-30"
+  },
+  "networks": {
+    "ethereum": {
+      "id": "ethereum",
+      "slug": "ethereum",
+      "name": "Ethereum",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 1,
+      "headline": "Ethereum, in your wallet.",
+      "intro": "Receive, send and manage assets on Ethereum with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use Ethereum mainnet for this account. ETH on another network must be received on that network instead.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Ethereum dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/ethereum.webp",
+      "sourceIconSHA256": "4d4c74a1ddf04267b8209d180e91d50618dfb77d2349eb30128c4ec1447d2f32",
+      "count": 6065,
+      "pages": 122,
+      "featured": [
+        {
+          "name": "Tether",
+          "symbol": "USDT",
+          "reference": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          "network": "ethereum",
+          "coinID": "tether",
+          "slug": "usdt",
+          "path": "/tokens/usdt/ethereum"
+        },
+        {
+          "symbol": "USDC",
+          "reference": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "name": "USDC",
+          "coinID": "usd-coin",
+          "network": "ethereum",
+          "slug": "usdc",
+          "path": "/tokens/usdc/ethereum"
+        },
+        {
+          "reference": "0x6b175474e89094c44da98b954eedeac495271d0f",
+          "name": "Dai",
+          "coinID": "dai",
+          "network": "ethereum",
+          "symbol": "DAI",
+          "slug": "dai",
+          "path": "/tokens/dai/ethereum"
+        },
+        {
+          "network": "ethereum",
+          "coinID": "wrapped-bitcoin",
+          "name": "Wrapped Bitcoin",
+          "symbol": "WBTC",
+          "reference": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599",
+          "slug": "wrapped-bitcoin",
+          "path": "/tokens/wrapped-bitcoin/ethereum"
+        },
+        {
+          "network": "ethereum",
+          "reference": "0x514910771af9ca656af840dff83e8264ecf986ca",
+          "name": "Chainlink",
+          "symbol": "LINK",
+          "coinID": "chainlink",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/ethereum"
+        },
+        {
+          "reference": "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984",
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "network": "ethereum",
+          "coinID": "uniswap",
+          "slug": "uniswap",
+          "path": "/tokens/uniswap/ethereum"
+        },
+        {
+          "network": "ethereum",
+          "coinID": "aave",
+          "reference": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+          "name": "Aave",
+          "symbol": "AAVE",
+          "slug": "aave",
+          "path": "/tokens/aave/ethereum"
+        },
+        {
+          "reference": "0x4c9edd5852cd905f086c759e8383e09bff1e68b3",
+          "coinID": "ethena-usde",
+          "symbol": "USDE",
+          "network": "ethereum",
+          "name": "Ethena USDe",
+          "slug": "ethena-usde",
+          "path": "/tokens/ethena-usde/ethereum"
+        },
+        {
+          "reference": "0x6c3ea9036406852006290770bedfcaba0e23a0e8",
+          "symbol": "PYUSD",
+          "network": "ethereum",
+          "coinID": "paypal-usd",
+          "name": "PayPal USD",
+          "slug": "paypal-usd",
+          "path": "/tokens/paypal-usd/ethereum"
+        },
+        {
+          "symbol": "WETH",
+          "network": "ethereum",
+          "coinID": "weth",
+          "reference": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "name": "WETH",
+          "slug": "weth",
+          "path": "/tokens/weth/ethereum"
+        },
+        {
+          "symbol": "SLUGLORD",
+          "coinID": "g-o",
+          "name": "🌻ᔕᒪᑌGᒪOᖇᗪ🌻",
+          "network": "ethereum",
+          "reference": "0x5791254f5d7a4d7ce4dda0391ce15812b65ac2a2",
+          "slug": "g-o",
+          "path": "/tokens/g-o/ethereum"
+        },
+        {
+          "network": "ethereum",
+          "reference": "0x78f5823bbea7bbce98091e60beeef8df31cc9f54",
+          "coinID": "aibot-iyi",
+          "name": "$AIBOT IYI",
+          "symbol": "AIB",
+          "slug": "aibot-iyi",
+          "path": "/tokens/aibot-iyi/ethereum"
+        }
+      ]
+    },
+    "solana": {
+      "id": "solana",
+      "slug": "solana",
+      "name": "Solana",
+      "symbol": "SOL",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "Solana, without the noise.",
+      "intro": "Keep SOL and supported Solana tokens together, with receiving, sending and compatible dApp connections.",
+      "receive": "Use the Solana address in Receive. Match a token by its mint and network, not its symbol alone.",
+      "send": "Keep SOL for fees and any required token-account creation. Review the fee and remaining balance before confirming.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Solana dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app. A website that only detects browser extensions may not offer a compatible mobile connection.",
+      "icon": "/assets/networks/solana.webp",
+      "sourceIconSHA256": "bf761db091ff2e5ea3a491b82bdb998f9c90fd3daa3fece58c8eaa6e52efe26b",
+      "count": 7465,
+      "pages": 150,
+      "featured": [
+        {
+          "network": "solana",
+          "coinID": "usd-coin",
+          "symbol": "USDC",
+          "reference": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "name": "USDC",
+          "slug": "usdc",
+          "path": "/tokens/usdc/solana"
+        },
+        {
+          "network": "solana",
+          "reference": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+          "name": "Tether",
+          "symbol": "USDT",
+          "coinID": "tether",
+          "slug": "usdt",
+          "path": "/tokens/usdt/solana"
+        },
+        {
+          "network": "solana",
+          "reference": "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+          "coinID": "jupiter-exchange-solana",
+          "name": "Jupiter",
+          "symbol": "JUP",
+          "slug": "jupiter-exchange-solana",
+          "path": "/tokens/jupiter-exchange-solana/solana"
+        },
+        {
+          "network": "solana",
+          "coinID": "jito-governance-token",
+          "name": "Jito",
+          "symbol": "JTO",
+          "reference": "jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL",
+          "slug": "jito-governance-token",
+          "path": "/tokens/jito-governance-token/solana"
+        },
+        {
+          "coinID": "paypal-usd",
+          "network": "solana",
+          "symbol": "PYUSD",
+          "name": "PayPal USD",
+          "reference": "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo",
+          "slug": "paypal-usd",
+          "path": "/tokens/paypal-usd/solana"
+        },
+        {
+          "name": "Bonk",
+          "symbol": "BONK",
+          "network": "solana",
+          "reference": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+          "coinID": "bonk",
+          "slug": "bonk",
+          "path": "/tokens/bonk/solana"
+        },
+        {
+          "reference": "4k3Dyjzvzp8eMZWUXbBCjEvwSkkk59S5iCNLY3QrkX6R",
+          "name": "Raydium",
+          "network": "solana",
+          "coinID": "raydium",
+          "symbol": "RAY",
+          "slug": "raydium",
+          "path": "/tokens/raydium/solana"
+        },
+        {
+          "symbol": "RENDER",
+          "reference": "rndrizKT3MK1iimdxRdWabcF7Zg7AR5T4nud4EkHBof",
+          "coinID": "render-token",
+          "name": "Render",
+          "network": "solana",
+          "slug": "render-token",
+          "path": "/tokens/render-token/solana"
+        },
+        {
+          "coinID": "pyth-network",
+          "symbol": "PYTH",
+          "network": "solana",
+          "reference": "HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3",
+          "name": "Pyth Network",
+          "slug": "pyth-network",
+          "path": "/tokens/pyth-network/solana"
+        },
+        {
+          "name": "dogwifhat",
+          "symbol": "WIF",
+          "reference": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+          "network": "solana",
+          "coinID": "dogwifcoin",
+          "slug": "dogwifcoin",
+          "path": "/tokens/dogwifcoin/solana"
+        },
+        {
+          "reference": "58mWi7CzpsRjrDsv61BN1ynpNLoGHUbxAUeec141pump",
+          "name": ".png",
+          "coinID": "png",
+          "symbol": ".PNG",
+          "network": "solana",
+          "slug": "png",
+          "path": "/tokens/png/solana"
+        },
+        {
+          "symbol": "\"　\"",
+          "name": "\"　\"",
+          "network": "solana",
+          "reference": "9qriMjPPAJTMCtfQnz7Mo9BsV2jAWTr2ff7yc3JWpump",
+          "coinID": "-6",
+          "slug": "6",
+          "path": "/tokens/6/solana"
+        }
+      ]
+    },
+    "ton": {
+      "id": "ton",
+      "slug": "gram",
+      "name": "Gram",
+      "symbol": "GRAM",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "Gram, in your wallet.",
+      "intro": "Send and receive Gram on iPhone and iPad with Oath Wallet. Gram (GRAM) is the native coin of the TON blockchain, formerly called Toncoin.",
+      "receive": "Choose Gram in Receive and share the TON address shown in Oath. Confirm the sender supports the address format and add a comment if the receiving service requires one.",
+      "send": "Keep Gram for network fees and any wallet-contract activation. For a jetton, check its master contract; a token named GRAM is not necessarily the native coin.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Gram dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app. WalletConnect and TON Connect are different protocols. This guide does not claim TON Connect support.",
+      "icon": "/assets/networks/ton.webp",
+      "sourceIconSHA256": "00866bebb24d66c7d4499d9c9d12504cd0f555c357aff5636b5d55f3bb11a1c8",
+      "count": 941,
+      "pages": 19,
+      "featured": [
+        {
+          "coinID": "1rus-btc25",
+          "name": "@BTC25",
+          "symbol": "@BTC25",
+          "network": "ton",
+          "reference": "0:bbae71c7b4c5412b28621a701bb58225cc6c52d1d7e2dd96c7131157d0b622f5",
+          "slug": "1rus-btc25",
+          "path": "/tokens/1rus-btc25/gram"
+        },
+        {
+          "network": "ton",
+          "reference": "0:1d15bca749497322587f2387d7b9869eaf7aef6344c6d012be35067e63cef5a5",
+          "coinID": "ton-mixer",
+          "name": "$TON Mixer",
+          "symbol": "MIXER",
+          "slug": "ton-mixer",
+          "path": "/tokens/ton-mixer/gram"
+        },
+        {
+          "network": "ton",
+          "reference": "0:1e7efbd8cbc6914c981bb12a6bc1620100a3ddfc04dc4c1528df4458907c25d4",
+          "coinID": "zer0zer0",
+          "name": "00 Token",
+          "symbol": "00",
+          "slug": "zer0zer0",
+          "path": "/tokens/zer0zer0/gram"
+        },
+        {
+          "network": "ton",
+          "symbol": "1RUSD",
+          "reference": "0:53d847b82f1e70f6e23ba0c972e6ea5736cdc00562ff170935ba233be2064219",
+          "coinID": "1rus-dao",
+          "name": "1RUS DAO",
+          "slug": "1rus-dao",
+          "path": "/tokens/1rus-dao/gram"
+        },
+        {
+          "symbol": "MMMX",
+          "network": "ton",
+          "coinID": "3m-xstock",
+          "reference": "0:3f85ae7551c7d576517d887716d6f2b47f6a17311a32d21be2601636b1825ae2",
+          "name": "3M xStock",
+          "slug": "3m-xstock",
+          "path": "/tokens/3m-xstock/gram"
+        },
+        {
+          "network": "ton",
+          "symbol": "SOXSX",
+          "name": "3x Short Semiconductor ETF xStock",
+          "reference": "0:6d2bee26564954d6afda23cb0fc5ae6dd753bedbdde6adbf0cd5b8679c3ad6c4",
+          "coinID": "3x-short-semiconductor-etf-xstock",
+          "slug": "3x-short-semiconductor-etf-xstock",
+          "path": "/tokens/3x-short-semiconductor-etf-xstock/gram"
+        },
+        {
+          "symbol": "ABBVX",
+          "reference": "0:6505b63301e708fd20d2c4babbec89f3e246c77cae5a740b7f6d6e12adaca469",
+          "network": "ton",
+          "coinID": "abbvie-xstock",
+          "name": "AbbVie xStock",
+          "slug": "abbvie-xstock",
+          "path": "/tokens/abbvie-xstock/gram"
+        },
+        {
+          "network": "ton",
+          "reference": "0:2e91b550068168d47056617011d1b38b20c9b3b4a73319f07dca94d2578e5e9b",
+          "coinID": "abrdn-physical-palladium-shares-xstock",
+          "name": "abrdn Physical Palladium Shares xStock",
+          "symbol": "PALLX",
+          "slug": "abrdn-physical-palladium-shares-xstock",
+          "path": "/tokens/abrdn-physical-palladium-shares-xstock/gram"
+        },
+        {
+          "reference": "0:c24abc2b64f7b8656f8e054d6fc716a54710dea332a5fe653d3a7863f9a994c0",
+          "name": "abrdn Physical Platinum Shares xStock",
+          "symbol": "PPLTX",
+          "network": "ton",
+          "coinID": "abrdn-physical-platinum-shares-xstock",
+          "slug": "abrdn-physical-platinum-shares-xstock",
+          "path": "/tokens/abrdn-physical-platinum-shares-xstock/gram"
+        },
+        {
+          "network": "ton",
+          "symbol": "ACTON",
+          "name": "Acton",
+          "reference": "0:6b13f8073488178981e8031b45305780d3bc4db585a959cedbaa48108784be6d",
+          "coinID": "acton",
+          "slug": "acton",
+          "path": "/tokens/acton/gram"
+        },
+        {
+          "name": "adDICted",
+          "reference": "0:0e2ce27d8e14b5466cc44306b209c0fff20959848de6ee534e7e83535213f84d",
+          "coinID": "addickted",
+          "symbol": "DIC",
+          "network": "ton",
+          "slug": "addickted",
+          "path": "/tokens/addickted/gram"
+        },
+        {
+          "reference": "0:e0179dc9d5518f5c62ce8057e5298595b948bfe58f40df6811ae83fa1d5b05ff",
+          "name": "Advanced Drainage Systems xStock",
+          "network": "ton",
+          "symbol": "WMSX",
+          "coinID": "advanced-drainage-systems-xstock",
+          "slug": "advanced-drainage-systems-xstock",
+          "path": "/tokens/advanced-drainage-systems-xstock/gram"
+        }
+      ]
+    },
+    "thorchain": {
+      "id": "thorchain",
+      "slug": "thorchain",
+      "name": "THORChain",
+      "symbol": "RUNE",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "THORChain, within reach.",
+      "intro": "Keep RUNE and supported THORChain assets in Oath, and connect to compatible THORChain dApps.",
+      "receive": "Use the THORChain address shown for your wallet. RUNE on THORChain is different from an asset represented on another network.",
+      "send": "Review any memo, destination and fee carefully. A cross-chain swap is a separate dApp action, not an ordinary transfer to another chain.",
+      "walletConnect": true,
+      "connection": "Connect to compatible THORChain dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/thorchain.webp",
+      "sourceIconSHA256": "8eca898a02db1f2aa8017d7aa0b0f22c0077ce4345d36b20f3569c44ee3774f1",
+      "count": 1,
+      "pages": 1,
+      "featured": [
+        {
+          "network": "thorchain",
+          "coinID": "rujira",
+          "name": "Rujira",
+          "decimals": 8,
+          "reference": "x/ruji",
+          "symbol": "RUJI",
+          "slug": "rujira",
+          "path": "/tokens/rujira/thorchain"
+        }
+      ]
+    },
+    "bnb": {
+      "id": "bnb",
+      "slug": "bnb-smart-chain",
+      "name": "BNB Smart Chain",
+      "symbol": "BNB",
+      "group": "EVM",
+      "chainId": 56,
+      "headline": "BNB Smart Chain, in your wallet.",
+      "intro": "Receive, send and manage assets on BNB Smart Chain with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Choose BNB Smart Chain (BEP-20), not the retired BNB Beacon Chain.",
+      "send": "Keep BNB available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible BNB Smart Chain dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/bnb.webp",
+      "sourceIconSHA256": "26b646e9c9a618dd8121a4ff5176699347d09bc7bb5a91ce974677b36629a70f",
+      "count": 4502,
+      "pages": 91,
+      "featured": [
+        {
+          "reference": "0x55d398326f99059ff775485246999027b3197955",
+          "coinID": "binance-bridged-usdt-bnb-smart-chain",
+          "symbol": "BSC-USD",
+          "network": "bnb",
+          "name": "Binance Bridged USDT (BNB Smart Chain)",
+          "slug": "binance-bridged-usdt-bnb-smart-chain",
+          "path": "/tokens/binance-bridged-usdt-bnb-smart-chain/bnb-smart-chain"
+        },
+        {
+          "name": "Binance Bridged USDC (BNB Smart Chain)",
+          "reference": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d",
+          "coinID": "binance-bridged-usdc-bnb-smart-chain",
+          "network": "bnb",
+          "symbol": "USDC",
+          "slug": "binance-bridged-usdc-bnb-smart-chain",
+          "path": "/tokens/binance-bridged-usdc-bnb-smart-chain/bnb-smart-chain"
+        },
+        {
+          "reference": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
+          "name": "PancakeSwap",
+          "coinID": "pancakeswap-token",
+          "symbol": "CAKE",
+          "network": "bnb",
+          "slug": "pancakeswap-token",
+          "path": "/tokens/pancakeswap-token/bnb-smart-chain"
+        },
+        {
+          "coinID": "binance-bitcoin",
+          "symbol": "BTCB",
+          "reference": "0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c",
+          "network": "bnb",
+          "name": "Binance Bitcoin",
+          "slug": "binance-bitcoin",
+          "path": "/tokens/binance-bitcoin/bnb-smart-chain"
+        },
+        {
+          "name": "Binance-Peg WETH",
+          "symbol": "WETH",
+          "reference": "0x2170ed0880ac9a755fd29b2688956bd959f933f8",
+          "network": "bnb",
+          "coinID": "binance-peg-weth",
+          "slug": "binance-peg-weth",
+          "path": "/tokens/binance-peg-weth/bnb-smart-chain"
+        },
+        {
+          "network": "bnb",
+          "name": "Venus",
+          "reference": "0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63",
+          "symbol": "XVS",
+          "coinID": "venus",
+          "slug": "venus",
+          "path": "/tokens/venus/bnb-smart-chain"
+        },
+        {
+          "name": "First Digital USD",
+          "symbol": "FDUSD",
+          "network": "bnb",
+          "reference": "0xc5f0f7b66764f6ec8c8dff7ba683102295e16409",
+          "coinID": "first-digital-usd",
+          "slug": "first-digital-usd",
+          "path": "/tokens/first-digital-usd/bnb-smart-chain"
+        },
+        {
+          "name": "Chainlink",
+          "coinID": "chainlink",
+          "reference": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd",
+          "network": "bnb",
+          "symbol": "LINK",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/bnb-smart-chain"
+        },
+        {
+          "name": "Uniswap",
+          "coinID": "uniswap",
+          "symbol": "UNI",
+          "network": "bnb",
+          "reference": "0xbf5140a22578168fd562dccf235e5d43a02ce9b1",
+          "slug": "uniswap",
+          "path": "/tokens/uniswap/bnb-smart-chain"
+        },
+        {
+          "reference": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+          "name": "Wrapped BNB",
+          "network": "bnb",
+          "symbol": "WBNB",
+          "coinID": "wbnb",
+          "slug": "wbnb",
+          "path": "/tokens/wbnb/bnb-smart-chain"
+        },
+        {
+          "symbol": "🔶",
+          "network": "bnb",
+          "reference": "0x1ea3ffc43ee291a4373418286e9b001aebe14444",
+          "name": "🔶",
+          "coinID": "-8",
+          "slug": "8",
+          "path": "/tokens/8/bnb-smart-chain"
+        },
+        {
+          "symbol": "🤌",
+          "coinID": "money-sign",
+          "network": "bnb",
+          "reference": "0xf3f780e892fbe10ff0cde02316246722e3954444",
+          "name": "🤌 (Money Sign)",
+          "slug": "money-sign",
+          "path": "/tokens/money-sign/bnb-smart-chain"
+        }
+      ]
+    },
+    "polygon": {
+      "id": "polygon",
+      "slug": "polygon",
+      "name": "Polygon",
+      "symbol": "POL",
+      "group": "EVM",
+      "chainId": 137,
+      "headline": "Polygon, in your wallet.",
+      "intro": "Receive, send and manage assets on Polygon with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use Polygon PoS. POL pays the network fee; Polygon zkEVM is a different chain.",
+      "send": "Keep POL available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Polygon dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/polygon.webp",
+      "sourceIconSHA256": "17a54a64fffadc71ef506f836f74f7cb015601c2528129cae03ff7b3c8078f7b",
+      "count": 854,
+      "pages": 18,
+      "featured": [
+        {
+          "symbol": "USDT0",
+          "network": "polygon",
+          "coinID": "usdt0",
+          "reference": "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+          "name": "USDT0",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/polygon"
+        },
+        {
+          "name": "USDC",
+          "network": "polygon",
+          "reference": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+          "coinID": "usd-coin",
+          "symbol": "USDC",
+          "slug": "usdc",
+          "path": "/tokens/usdc/polygon"
+        },
+        {
+          "symbol": "WETH",
+          "name": "Polygon PoS Bridged WETH (Polygon POS)",
+          "network": "polygon",
+          "reference": "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+          "coinID": "polygon-pos-bridged-weth-polygon-pos",
+          "slug": "polygon-pos-bridged-weth-polygon-pos",
+          "path": "/tokens/polygon-pos-bridged-weth-polygon-pos/polygon"
+        },
+        {
+          "network": "polygon",
+          "name": "Polygon Bridged WBTC (Polygon POS)",
+          "reference": "0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6",
+          "symbol": "WBTC",
+          "coinID": "polygon-bridged-wbtc-polygon-pos",
+          "slug": "polygon-bridged-wbtc-polygon-pos",
+          "path": "/tokens/polygon-bridged-wbtc-polygon-pos/polygon"
+        },
+        {
+          "network": "polygon",
+          "reference": "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063",
+          "symbol": "DAI",
+          "name": "Polygon PoS Bridged DAI (Polygon POS)",
+          "coinID": "polygon-pos-bridged-dai-polygon-pos",
+          "slug": "polygon-pos-bridged-dai-polygon-pos",
+          "path": "/tokens/polygon-pos-bridged-dai-polygon-pos/polygon"
+        },
+        {
+          "reference": "0x53e0bca35ec356bd5dddfebbd1fc0fd03fabad39",
+          "symbol": "LINK",
+          "name": "Chainlink",
+          "coinID": "chainlink",
+          "network": "polygon",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/polygon"
+        },
+        {
+          "network": "polygon",
+          "name": "Aave",
+          "symbol": "AAVE",
+          "reference": "0xd6df932a45c0f255f85145f286ea0b292b21c90b",
+          "coinID": "aave",
+          "slug": "aave",
+          "path": "/tokens/aave/polygon"
+        },
+        {
+          "network": "polygon",
+          "reference": "0xb5c064f955d8e7f38fe0460c556a72987494ee17",
+          "symbol": "QUICK",
+          "coinID": "quickswap",
+          "name": "Quickswap",
+          "slug": "quickswap",
+          "path": "/tokens/quickswap/polygon"
+        },
+        {
+          "network": "polygon",
+          "coinID": "aavegotchi",
+          "reference": "0x385eeac5cb85a38a9a07a70c73e0a3271cfb54a7",
+          "name": "Aavegotchi",
+          "symbol": "GHST",
+          "slug": "aavegotchi",
+          "path": "/tokens/aavegotchi/polygon"
+        },
+        {
+          "reference": "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
+          "name": "Wrapped POL",
+          "symbol": "WPOL",
+          "coinID": "wmatic",
+          "network": "polygon",
+          "slug": "wmatic",
+          "path": "/tokens/wmatic/polygon"
+        },
+        {
+          "network": "polygon",
+          "name": "$DEZ",
+          "symbol": "DEZ",
+          "reference": "0xdc4f4ed9872571d5ec8986a502a0d88f3a175f1e",
+          "coinID": "dez",
+          "slug": "dez",
+          "path": "/tokens/dez/polygon"
+        },
+        {
+          "coinID": "oxbitcoin",
+          "reference": "0x71b821aa52a49f32eed535fca6eb5aa130085978",
+          "name": "0xBitcoin",
+          "symbol": "0XBTC",
+          "network": "polygon",
+          "slug": "oxbitcoin",
+          "path": "/tokens/oxbitcoin/polygon"
+        }
+      ]
+    },
+    "arbitrum": {
+      "id": "arbitrum",
+      "slug": "arbitrum",
+      "name": "Arbitrum",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 42161,
+      "headline": "Arbitrum, in your wallet.",
+      "intro": "Receive, send and manage assets on Arbitrum with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use Arbitrum One for this account. ARB is a token; ETH pays the network fee.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Arbitrum dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/arbitrum.webp",
+      "sourceIconSHA256": "72b48d6daa73515ea0e4640af9b59e506adc6a11d6925d503cbd1ae5f6a11756",
+      "count": 3172,
+      "pages": 64,
+      "featured": [
+        {
+          "network": "arbitrum",
+          "name": "USDC",
+          "reference": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+          "symbol": "USDC",
+          "coinID": "usd-coin",
+          "slug": "usdc",
+          "path": "/tokens/usdc/arbitrum"
+        },
+        {
+          "coinID": "usdt0",
+          "network": "arbitrum",
+          "name": "USDT0",
+          "symbol": "USDT0",
+          "reference": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/arbitrum"
+        },
+        {
+          "coinID": "arbitrum",
+          "reference": "0x912ce59144191c1204e64559fe8253a0e49e6548",
+          "name": "Arbitrum",
+          "network": "arbitrum",
+          "symbol": "ARB",
+          "slug": "arbitrum",
+          "path": "/tokens/arbitrum/arbitrum"
+        },
+        {
+          "coinID": "arbitrum-bridged-wbtc-arbitrum-one",
+          "network": "arbitrum",
+          "reference": "0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f",
+          "symbol": "WBTC",
+          "name": "Arbitrum Bridged WBTC (Arbitrum One)",
+          "slug": "arbitrum-bridged-wbtc-arbitrum-one",
+          "path": "/tokens/arbitrum-bridged-wbtc-arbitrum-one/arbitrum"
+        },
+        {
+          "coinID": "arbitrum-bridged-weth-arbitrum-one",
+          "symbol": "WETH",
+          "network": "arbitrum",
+          "reference": "0x82af49447d8a07e3bd95bd0d56f35241523fbab1",
+          "name": "Arbitrum Bridged WETH (Arbitrum One)",
+          "slug": "arbitrum-bridged-weth-arbitrum-one",
+          "path": "/tokens/arbitrum-bridged-weth-arbitrum-one/arbitrum"
+        },
+        {
+          "reference": "0xf97f4df75117a78c1a5a0dbb814af92458539fb4",
+          "network": "arbitrum",
+          "name": "Chainlink",
+          "coinID": "chainlink",
+          "symbol": "LINK",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/arbitrum"
+        },
+        {
+          "coinID": "gmx",
+          "network": "arbitrum",
+          "name": "GMX",
+          "symbol": "GMX",
+          "reference": "0xfc5a1a6eb076a2c7ad06ed22c90d7e710e35ad0a",
+          "slug": "gmx",
+          "path": "/tokens/gmx/arbitrum"
+        },
+        {
+          "reference": "0x0c880f6761f1af8d9aa9c466984b80dab9a8c9e8",
+          "coinID": "pendle",
+          "network": "arbitrum",
+          "name": "Pendle",
+          "symbol": "PENDLE",
+          "slug": "pendle",
+          "path": "/tokens/pendle/arbitrum"
+        },
+        {
+          "reference": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+          "coinID": "makerdao-arbitrum-bridged-dai-arbitrum-one",
+          "network": "arbitrum",
+          "name": "MakerDAO Arbitrum Bridged DAI (Arbitrum One)",
+          "symbol": "DAI",
+          "slug": "makerdao-arbitrum-bridged-dai-arbitrum-one",
+          "path": "/tokens/makerdao-arbitrum-bridged-dai-arbitrum-one/arbitrum"
+        },
+        {
+          "network": "arbitrum",
+          "coinID": "camelot-token",
+          "reference": "0x3d9907f9a368ad0a51be60f7da3b97cf940982d8",
+          "name": "Camelot Token",
+          "symbol": "GRAIL",
+          "slug": "camelot-token",
+          "path": "/tokens/camelot-token/arbitrum"
+        },
+        {
+          "coinID": "oxbitcoin",
+          "name": "0xBitcoin",
+          "symbol": "0XBTC",
+          "network": "arbitrum",
+          "reference": "0x7cb16cb78ea464ad35c8a50abf95dff3c9e09d5d",
+          "slug": "oxbitcoin",
+          "path": "/tokens/oxbitcoin/arbitrum"
+        },
+        {
+          "coinID": "1-800-flowers-com-inc-astock",
+          "network": "arbitrum",
+          "reference": "0x3a013978cbd3ed7b270c92009e6a6d1be8e6ac25",
+          "name": "1-800-Flowers.Com Inc aStock",
+          "symbol": "AFLWS",
+          "slug": "1-800-flowers-com-inc-astock",
+          "path": "/tokens/1-800-flowers-com-inc-astock/arbitrum"
+        }
+      ]
+    },
+    "base": {
+      "id": "base",
+      "slug": "base",
+      "name": "Base",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 8453,
+      "headline": "Base, in your wallet.",
+      "intro": "Receive, send and manage assets on Base with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use the Base network for deposits and withdrawals. ETH on Base is separate from ETH on Ethereum.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Base dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/base.webp",
+      "sourceIconSHA256": "3313ec07390f6bb0b9f31f2bda89e80d48aaaa61a928acb91dca1767741871ac",
+      "count": 2924,
+      "pages": 59,
+      "featured": [
+        {
+          "network": "base",
+          "coinID": "usd-coin",
+          "symbol": "USDC",
+          "name": "USDC",
+          "reference": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+          "slug": "usdc",
+          "path": "/tokens/usdc/base"
+        },
+        {
+          "network": "base",
+          "name": "Coinbase Wrapped BTC",
+          "symbol": "CBBTC",
+          "reference": "0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf",
+          "coinID": "coinbase-wrapped-btc",
+          "slug": "coinbase-wrapped-btc",
+          "path": "/tokens/coinbase-wrapped-btc/base"
+        },
+        {
+          "reference": "0x2ae3f1ec7f1f5012cfeab0185bfc7aa3cf0dec22",
+          "name": "Coinbase Wrapped Staked ETH",
+          "coinID": "coinbase-wrapped-staked-eth",
+          "symbol": "CBETH",
+          "network": "base",
+          "slug": "coinbase-wrapped-staked-eth",
+          "path": "/tokens/coinbase-wrapped-staked-eth/base"
+        },
+        {
+          "reference": "0x940181a94a35a4569e4529a3cdfb74e38fd98631",
+          "symbol": "AERO",
+          "name": "Aerodrome Finance",
+          "network": "base",
+          "coinID": "aerodrome-finance",
+          "slug": "aerodrome-finance",
+          "path": "/tokens/aerodrome-finance/base"
+        },
+        {
+          "reference": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
+          "coinID": "degen-base",
+          "symbol": "DEGEN",
+          "name": "Degen",
+          "network": "base",
+          "slug": "degen-base",
+          "path": "/tokens/degen-base/base"
+        },
+        {
+          "reference": "0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b",
+          "network": "base",
+          "coinID": "virtual-protocol",
+          "name": "Virtuals Protocol",
+          "symbol": "VIRTUAL",
+          "slug": "virtual-protocol",
+          "path": "/tokens/virtual-protocol/base"
+        },
+        {
+          "symbol": "EURC",
+          "network": "base",
+          "reference": "0x60a3e35cc302bfa44cb288bc5a4f316fdb1adb42",
+          "name": "EURC",
+          "coinID": "euro-coin",
+          "slug": "euro-coin",
+          "path": "/tokens/euro-coin/base"
+        },
+        {
+          "reference": "0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842",
+          "coinID": "morpho",
+          "name": "Morpho",
+          "symbol": "MORPHO",
+          "network": "base",
+          "slug": "morpho",
+          "path": "/tokens/morpho/base"
+        },
+        {
+          "coinID": "l2-standard-bridged-dai-base",
+          "reference": "0x50c5725949a6f0c72e6c4a641f24049a917db0cb",
+          "name": "L2 Standard Bridged DAI (Base)",
+          "network": "base",
+          "symbol": "DAI",
+          "slug": "l2-standard-bridged-dai-base",
+          "path": "/tokens/l2-standard-bridged-dai-base/base"
+        },
+        {
+          "reference": "0x4200000000000000000000000000000000000006",
+          "network": "base",
+          "name": "L2 Standard Bridged WETH (Base)",
+          "coinID": "l2-standard-bridged-weth-base",
+          "symbol": "WETH",
+          "slug": "l2-standard-bridged-weth-base",
+          "path": "/tokens/l2-standard-bridged-weth-base/base"
+        },
+        {
+          "name": "/onchain",
+          "reference": "0xfef2d7b013b88fec2bfe4d2fee0aeb719af73481",
+          "network": "base",
+          "coinID": "onchain",
+          "symbol": "ONCHAIN",
+          "slug": "onchain",
+          "path": "/tokens/onchain/base"
+        },
+        {
+          "name": "$BRAINS - your greed is my fuel 🤯🧠 by Virtuals",
+          "network": "base",
+          "reference": "0xf25b7dd973e30dcf219fbed7bd336b9ab5a05dd9",
+          "coinID": "brains-your-greed-is-my-fuel-by-virtuals",
+          "symbol": "BRAINS",
+          "slug": "brains-your-greed-is-my-fuel-by-virtuals",
+          "path": "/tokens/brains-your-greed-is-my-fuel-by-virtuals/base"
+        }
+      ]
+    },
+    "optimism": {
+      "id": "optimism",
+      "slug": "optimism",
+      "name": "Optimism",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 10,
+      "headline": "Optimism, in your wallet.",
+      "intro": "Receive, send and manage assets on Optimism with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use OP Mainnet. OP is a token; ETH is the network fee asset.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Optimism dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/optimism.webp",
+      "sourceIconSHA256": "97b8588999713c3f770d0a62cf9f06fdb628c4886c71dfdb1550eab226af60c9",
+      "count": 973,
+      "pages": 20,
+      "featured": [
+        {
+          "reference": "0x4200000000000000000000000000000000000042",
+          "coinID": "optimism",
+          "name": "Optimism",
+          "network": "optimism",
+          "symbol": "OP",
+          "slug": "optimism",
+          "path": "/tokens/optimism/optimism"
+        },
+        {
+          "symbol": "USDC",
+          "reference": "0x0b2c639c533813f4aa9d7837caf62653d097ff85",
+          "name": "USDC",
+          "coinID": "usd-coin",
+          "network": "optimism",
+          "slug": "usdc",
+          "path": "/tokens/usdc/optimism"
+        },
+        {
+          "coinID": "bridged-usdt",
+          "network": "optimism",
+          "reference": "0x94b008aa00579c1307b0ef2c499ad98a8ce58e58",
+          "name": "Bridged USDT",
+          "symbol": "USDT",
+          "slug": "bridged-usdt",
+          "path": "/tokens/bridged-usdt/optimism"
+        },
+        {
+          "coinID": "makerdao-optimism-bridged-dai-optimism",
+          "reference": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
+          "symbol": "DAI",
+          "network": "optimism",
+          "name": "MakerDAO Optimism Bridged DAI (Optimism)",
+          "slug": "makerdao-optimism-bridged-dai-optimism",
+          "path": "/tokens/makerdao-optimism-bridged-dai-optimism/optimism"
+        },
+        {
+          "reference": "0x4200000000000000000000000000000000000006",
+          "coinID": "l2-standard-bridged-weth-optimism",
+          "name": "L2 Standard Bridged WETH (Optimism)",
+          "network": "optimism",
+          "symbol": "WETH",
+          "slug": "l2-standard-bridged-weth-optimism",
+          "path": "/tokens/l2-standard-bridged-weth-optimism/optimism"
+        },
+        {
+          "name": "Wrapped Bitcoin",
+          "coinID": "wrapped-bitcoin",
+          "reference": "0x68f180fcce6836688e9084f035309e29bf0a2095",
+          "symbol": "WBTC",
+          "network": "optimism",
+          "slug": "wrapped-bitcoin",
+          "path": "/tokens/wrapped-bitcoin/optimism"
+        },
+        {
+          "name": "Synthetix",
+          "symbol": "SNX",
+          "network": "optimism",
+          "coinID": "havven",
+          "reference": "0x8700daec35af8ff88c16bdf0418774cb3d7599b4",
+          "slug": "havven",
+          "path": "/tokens/havven/optimism"
+        },
+        {
+          "coinID": "velodrome-finance",
+          "network": "optimism",
+          "reference": "0x9560e827af36c94d2ac33a39bce1fe78631088db",
+          "name": "Velodrome Finance",
+          "symbol": "VELO",
+          "slug": "velodrome-finance",
+          "path": "/tokens/velodrome-finance/optimism"
+        },
+        {
+          "name": "Superbridge Bridged wstETH (Optimism)",
+          "coinID": "superbridge-bridged-wsteth-optimism",
+          "network": "optimism",
+          "reference": "0x1f32b1c2345538c0c6f582fcb022739c4a194ebb",
+          "symbol": "WSTETH",
+          "slug": "superbridge-bridged-wsteth-optimism",
+          "path": "/tokens/superbridge-bridged-wsteth-optimism/optimism"
+        },
+        {
+          "name": "Liquity USD",
+          "symbol": "LUSD",
+          "network": "optimism",
+          "coinID": "liquity-usd",
+          "reference": "0xc40f949f8a4e094d1b49a23ea9241d289b7b2819",
+          "slug": "liquity-usd",
+          "path": "/tokens/liquity-usd/optimism"
+        },
+        {
+          "reference": "0xe0bb0d3de8c10976511e5030ca403dbf4c25165b",
+          "coinID": "oxbitcoin",
+          "name": "0xBitcoin",
+          "network": "optimism",
+          "symbol": "0XBTC",
+          "slug": "oxbitcoin",
+          "path": "/tokens/oxbitcoin/optimism"
+        },
+        {
+          "network": "optimism",
+          "coinID": "1inch",
+          "symbol": "1INCH",
+          "reference": "0xad42d013ac31486b73b6b059e748172994736426",
+          "name": "1INCH",
+          "slug": "1inch",
+          "path": "/tokens/1inch/optimism"
+        }
+      ]
+    },
+    "avalanche": {
+      "id": "avalanche",
+      "slug": "avalanche",
+      "name": "Avalanche C-Chain",
+      "symbol": "AVAX",
+      "group": "EVM",
+      "chainId": 43114,
+      "headline": "Avalanche C-Chain, in your wallet.",
+      "intro": "Receive, send and manage assets on Avalanche C-Chain with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This account uses Avalanche C-Chain. Do not select X-Chain or P-Chain for this address.",
+      "send": "Keep AVAX available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Avalanche C-Chain dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/avalanche.webp",
+      "sourceIconSHA256": "a1dfe62d980a5561f1186aa923369706874508482985dd060a4d712e0c732097",
+      "count": 698,
+      "pages": 14,
+      "featured": [
+        {
+          "network": "avalanche",
+          "name": "USDC",
+          "symbol": "USDC",
+          "reference": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+          "coinID": "usd-coin",
+          "slug": "usdc",
+          "path": "/tokens/usdc/avalanche"
+        },
+        {
+          "network": "avalanche",
+          "coinID": "tether",
+          "symbol": "USDT",
+          "reference": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
+          "name": "Tether",
+          "slug": "usdt",
+          "path": "/tokens/usdt/avalanche"
+        },
+        {
+          "network": "avalanche",
+          "name": "Wrapped AVAX",
+          "symbol": "WAVAX",
+          "reference": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+          "coinID": "wrapped-avax",
+          "slug": "wrapped-avax",
+          "path": "/tokens/wrapped-avax/avalanche"
+        },
+        {
+          "symbol": "BTC.B",
+          "reference": "0x152b9d0fdc40c096757f570a51e494bd4b943e50",
+          "coinID": "bitcoin-avalanche-bridged-btc-b",
+          "network": "avalanche",
+          "name": "Lombard Bridged BTC",
+          "slug": "bitcoin-avalanche-bridged-btc-b",
+          "path": "/tokens/bitcoin-avalanche-bridged-btc-b/avalanche"
+        },
+        {
+          "coinID": "joe",
+          "name": "JOE",
+          "symbol": "JOE",
+          "network": "avalanche",
+          "reference": "0x6e84a6216ea6dacc71ee8e6b0a5b7322eebc0fdd",
+          "slug": "joe",
+          "path": "/tokens/joe/avalanche"
+        },
+        {
+          "name": "Chainlink",
+          "coinID": "chainlink",
+          "reference": "0x5947bb275c521040051d82396192181b413227a3",
+          "network": "avalanche",
+          "symbol": "LINK",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/avalanche"
+        },
+        {
+          "name": "Aave",
+          "network": "avalanche",
+          "reference": "0x63a72806098bd3d9520cc43356dd78afe5d386d9",
+          "coinID": "aave",
+          "symbol": "AAVE",
+          "slug": "aave",
+          "path": "/tokens/aave/avalanche"
+        },
+        {
+          "network": "avalanche",
+          "name": "BENQI Liquid Staked AVAX",
+          "reference": "0x2b2c81e08f1af8835a78bb2a90ae924ace0ea4be",
+          "coinID": "benqi-liquid-staked-avax",
+          "symbol": "SAVAX",
+          "slug": "benqi-liquid-staked-avax",
+          "path": "/tokens/benqi-liquid-staked-avax/avalanche"
+        },
+        {
+          "reference": "0x8729438eb15e2c8b576fcc6aecda6a148776c0f5",
+          "network": "avalanche",
+          "name": "BENQI",
+          "symbol": "QI",
+          "coinID": "benqi",
+          "slug": "benqi",
+          "path": "/tokens/benqi/avalanche"
+        },
+        {
+          "name": "Pangolin",
+          "network": "avalanche",
+          "reference": "0x60781c2586d68229fde47564546784ab3faca982",
+          "coinID": "pangolin",
+          "symbol": "PNG",
+          "slug": "pangolin",
+          "path": "/tokens/pangolin/avalanche"
+        },
+        {
+          "coinID": "1inch",
+          "name": "1INCH",
+          "symbol": "1INCH",
+          "network": "avalanche",
+          "reference": "0xd501281565bf7789224523144fe5d98e8b28f267",
+          "slug": "1inch",
+          "path": "/tokens/1inch/avalanche"
+        },
+        {
+          "network": "avalanche",
+          "symbol": "BITX",
+          "reference": "0xe16e62ba2679a23880990cf7c8c5673302609b63",
+          "name": "2x Bitcoin Strategy ETF (Dinari Tokenized ETF)",
+          "coinID": "2x-bitcoin-strategy-etf-dinari-tokenized-etf",
+          "slug": "2x-bitcoin-strategy-etf-dinari-tokenized-etf",
+          "path": "/tokens/2x-bitcoin-strategy-etf-dinari-tokenized-etf/avalanche"
+        }
+      ]
+    },
+    "tron": {
+      "id": "tron",
+      "slug": "tron",
+      "name": "TRON",
+      "symbol": "TRX",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "TRON, made familiar.",
+      "intro": "Manage TRX and supported TRC-20 assets with clear send and receive details.",
+      "receive": "Choose TRON and confirm the token contract. A TRC-20 deposit must use TRON, even when the same token also exists elsewhere.",
+      "send": "TRON uses bandwidth and energy. A token transfer may consume TRX when resources are insufficient; review the estimate first.",
+      "walletConnect": true,
+      "connection": "Connect to compatible TRON dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/tron.webp",
+      "sourceIconSHA256": "aa5cae3e2939a46134ec5122d92552158578bf367633c50aad95453ab217d18a",
+      "count": 94,
+      "pages": 2,
+      "featured": [
+        {
+          "coinID": "tether",
+          "name": "Tether",
+          "symbol": "USDT",
+          "reference": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+          "network": "tron",
+          "slug": "usdt",
+          "path": "/tokens/usdt/tron"
+        },
+        {
+          "network": "tron",
+          "symbol": "USDD",
+          "reference": "TXDk8mbtRbXeYuMNS83CfKPaYYT8XWv9Hz",
+          "coinID": "usdd",
+          "name": "USDD",
+          "slug": "usdd",
+          "path": "/tokens/usdd/tron"
+        },
+        {
+          "symbol": "JST",
+          "name": "JUST",
+          "reference": "TCFLL5dx5ZJdKnWuesXxi1VPwjLVmWZZy9",
+          "coinID": "just",
+          "network": "tron",
+          "slug": "just",
+          "path": "/tokens/just/tron"
+        },
+        {
+          "coinID": "sun-token",
+          "name": "Sun Token",
+          "symbol": "SUN",
+          "reference": "TSSMHYeV2uE9qYH95DqyoCuNCzEL1NvU3S",
+          "network": "tron",
+          "slug": "sun-token",
+          "path": "/tokens/sun-token/tron"
+        },
+        {
+          "symbol": "BTT",
+          "name": "BitTorrent",
+          "reference": "TAFjULxiVgT4qWk6UZwjqwZXTSaGaqnVp4",
+          "coinID": "bittorrent",
+          "network": "tron",
+          "slug": "bittorrent",
+          "path": "/tokens/bittorrent/tron"
+        },
+        {
+          "coinID": "wink",
+          "name": "WINkLink",
+          "symbol": "WIN",
+          "reference": "TLa2f6VPqDgRE67v1736s7bJ8Ray5wYjU7",
+          "network": "tron",
+          "slug": "wink",
+          "path": "/tokens/wink/tron"
+        },
+        {
+          "symbol": "NFT",
+          "name": "AINFT",
+          "reference": "TFczxzPhnThNSqr5by8tvxsdCFRRz6cPNq",
+          "coinID": "apenft",
+          "network": "tron",
+          "slug": "apenft",
+          "path": "/tokens/apenft/tron"
+        },
+        {
+          "network": "tron",
+          "symbol": "TUSD",
+          "reference": "TUpMhErZL2fhh4sVNULAbNKLokS4GjC1F4",
+          "coinID": "true-usd",
+          "name": "TrueUSD",
+          "slug": "true-usd",
+          "path": "/tokens/true-usd/tron"
+        },
+        {
+          "network": "tron",
+          "symbol": "HTX",
+          "reference": "TUPM7K8REVzD2UdV4R5fe5M8XbnR2DdoJ6",
+          "coinID": "htx-dao",
+          "name": "HTX DAO",
+          "slug": "htx-dao",
+          "path": "/tokens/htx-dao/tron"
+        },
+        {
+          "coinID": "usd1-wlfi",
+          "name": "USD1",
+          "symbol": "USD1",
+          "reference": "TPFqcBAaaUMCSVRCqPaQ9QnzKhmuoLR6Rc",
+          "network": "tron",
+          "slug": "usd1-wlfi",
+          "path": "/tokens/usd1-wlfi/tron"
+        },
+        {
+          "coinID": "4tb-coin",
+          "name": "4TB Coin",
+          "symbol": "4TB",
+          "reference": "TQgcDvhr6c1EUDnFxiAmuYpBewT3uJSnHF",
+          "network": "tron",
+          "slug": "4tb-coin",
+          "path": "/tokens/4tb-coin/tron"
+        },
+        {
+          "coinID": "a7a5",
+          "name": "A7A5",
+          "symbol": "A7A5",
+          "reference": "TLeVfrdym8RoJreJ23dAGyfJDygRtiWKBZ",
+          "network": "tron",
+          "slug": "a7a5",
+          "path": "/tokens/a7a5/tron"
+        }
+      ]
+    },
+    "xrpl": {
+      "id": "xrpl",
+      "slug": "xrp-ledger",
+      "name": "XRP Ledger",
+      "symbol": "XRP",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "XRP, ready when you are.",
+      "intro": "Receive XRP, manage supported XRP Ledger assets and review outgoing transfers in Oath.",
+      "receive": "A destination tag may be mandatory when sending to an exchange. Use the exact tag provided by the recipient.",
+      "send": "XRP Ledger accounts retain a network reserve. Issued assets can require a trustline; the total balance may exceed the spendable balance.",
+      "walletConnect": true,
+      "connection": "Connect to compatible XRP Ledger dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/xrpl.webp",
+      "sourceIconSHA256": "a8bd1c04b695d4a33d8f8bcbec30540e7fec81f13874e657e60b83d3f47446b1",
+      "count": 37,
+      "pages": 1,
+      "featured": [
+        {
+          "symbol": "RLUSD",
+          "coinID": "ripple-usd",
+          "name": "Ripple USD",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "524C555344000000000000000000000000000000.rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+          "slug": "ripple-usd",
+          "path": "/tokens/ripple-usd/xrp-ledger"
+        },
+        {
+          "symbol": "USDC",
+          "coinID": "usd-coin",
+          "name": "USDC",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "5553444300000000000000000000000000000000.rGm7WCVp9gb4jZHWTEtGUr4dd74z2XuWhE",
+          "slug": "usdc",
+          "path": "/tokens/usdc/xrp-ledger"
+        },
+        {
+          "name": "EUR CoinVertible",
+          "decimals": 96,
+          "reference": "4555524356000000000000000000000000000000.rUNaS5sqRuxZz6V7rBGhoSaZiVYA3ut4UL",
+          "coinID": "societe-generale-forge-eurcv",
+          "symbol": "EURCV",
+          "network": "xrpl",
+          "slug": "societe-generale-forge-eurcv",
+          "path": "/tokens/societe-generale-forge-eurcv/xrp-ledger"
+        },
+        {
+          "name": "Australian Digital Dollar",
+          "decimals": 96,
+          "reference": "4155444400000000000000000000000000000000.rUN5Zxt3K1AnMRJgEWywDJT8QDMMeLH5ok",
+          "coinID": "novatti-australian-digital-dollar",
+          "symbol": "AUDD",
+          "network": "xrpl",
+          "slug": "novatti-australian-digital-dollar",
+          "path": "/tokens/novatti-australian-digital-dollar/xrp-ledger"
+        },
+        {
+          "symbol": "SOLO",
+          "coinID": "solo-coin",
+          "name": "Sologenic",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "534F4C4F00000000000000000000000000000000.rsoLo2S1kiGeCcn6hCUXVrCpGMWLrRrLZz",
+          "slug": "solo-coin",
+          "path": "/tokens/solo-coin/xrp-ledger"
+        },
+        {
+          "symbol": "TBILL",
+          "coinID": "openeden-tbill",
+          "name": "OpenEden TBILL",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "TBL.rJNE2NNz83GJYtWVLwMvchDWEon3huWnFn",
+          "slug": "openeden-tbill",
+          "path": "/tokens/openeden-tbill/xrp-ledger"
+        },
+        {
+          "name": "AmericaFirst",
+          "decimals": 96,
+          "reference": "416D657269636146697273740000000000000000.r4GD2HMVKJWhfzvgHcUL6frneuUACAzqwo",
+          "coinID": "americafirst",
+          "symbol": "AMERICAFIRST",
+          "network": "xrpl",
+          "slug": "americafirst",
+          "path": "/tokens/americafirst/xrp-ledger"
+        },
+        {
+          "symbol": "AURA",
+          "coinID": "aura-3",
+          "name": "AURA",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "6175726100000000000000000000000000000000.rpjuvqrH37RGzb88UVibzCQYSNrM9FxJDy",
+          "slug": "aura-3",
+          "path": "/tokens/aura-3/xrp-ledger"
+        },
+        {
+          "symbol": "BXE",
+          "coinID": "banxchange",
+          "name": "BANX Network",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "BXE.rM1J2Mc2eCSFpCz5QXxhDG2KWkGQWgy87r",
+          "slug": "banxchange",
+          "path": "/tokens/banxchange/xrp-ledger"
+        },
+        {
+          "symbol": "BRB",
+          "coinID": "bear-bull",
+          "name": "Bear Bull",
+          "decimals": 96,
+          "network": "xrpl",
+          "reference": "BRB.rUkuT9TCDTP2oeAPsrCN7XKcHZfdvHvFkG",
+          "slug": "bear-bull",
+          "path": "/tokens/bear-bull/xrp-ledger"
+        },
+        {
+          "name": "Bear Champ",
+          "decimals": 96,
+          "reference": "424348414D500000000000000000000000000000.rhYhn7s6z4HAfuJm7ehuSE7wxepRoUPwpi",
+          "coinID": "bear-champ",
+          "symbol": "BCHAMP",
+          "network": "xrpl",
+          "slug": "bear-champ",
+          "path": "/tokens/bear-champ/xrp-ledger"
+        },
+        {
+          "name": "BEARXRPL",
+          "decimals": 96,
+          "reference": "4245415200000000000000000000000000000000.rBEARGUAsyu7tUw53rufQzFdWmJHpJEqFW",
+          "coinID": "bearxrpl",
+          "symbol": "BEAR",
+          "network": "xrpl",
+          "slug": "bearxrpl",
+          "path": "/tokens/bearxrpl/xrp-ledger"
+        }
+      ]
+    },
+    "near": {
+      "id": "near",
+      "slug": "near",
+      "name": "NEAR Protocol",
+      "symbol": "NEAR",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "A home for your NEAR.",
+      "intro": "Receive NEAR and supported tokens, send from Oath and review compatible dApp requests.",
+      "receive": "Share the exact account identifier shown in Receive. Confirm whether the destination expects a named NEAR account or an implicit account.",
+      "send": "NEAR can be needed for fees and storage. Token balances and the amount available to send may differ when storage is required.",
+      "walletConnect": true,
+      "connection": "Connect to compatible NEAR Protocol dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/near.webp",
+      "sourceIconSHA256": "d307d016cf422455bf241d0d777e21a0e31e0cc78b02e657d1a626fb21fe324d",
+      "count": 82,
+      "pages": 2,
+      "featured": [
+        {
+          "symbol": "USDT",
+          "network": "near",
+          "reference": "usdt.tether-token.near",
+          "name": "Tether",
+          "coinID": "tether",
+          "slug": "usdt",
+          "path": "/tokens/usdt/near"
+        },
+        {
+          "name": "Rainbow Bridged USDC (Near)",
+          "coinID": "usdc-rainbow-bridge",
+          "network": "near",
+          "reference": "a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.factory.bridge.near",
+          "symbol": "USDC.E",
+          "slug": "usdc-rainbow-bridge",
+          "path": "/tokens/usdc-rainbow-bridge/near"
+        },
+        {
+          "symbol": "REF",
+          "network": "near",
+          "reference": "token.v2.ref-finance.near",
+          "name": "Ref Finance",
+          "coinID": "ref-finance",
+          "slug": "ref-finance",
+          "path": "/tokens/ref-finance/near"
+        },
+        {
+          "name": "Aurora",
+          "coinID": "aurora-near",
+          "network": "near",
+          "reference": "aaaaaa20d9e0e2461697782ef11675f668207961.factory.bridge.near",
+          "symbol": "AURORA",
+          "slug": "aurora-near",
+          "path": "/tokens/aurora-near/near"
+        },
+        {
+          "symbol": "LINEAR",
+          "coinID": "linear-protocol",
+          "reference": "linear-protocol.near",
+          "name": "LiNEAR Protocol Staked NEAR",
+          "network": "near",
+          "slug": "linear-protocol",
+          "path": "/tokens/linear-protocol/near"
+        },
+        {
+          "symbol": "STNEAR",
+          "coinID": "staked-near",
+          "reference": "meta-pool.near",
+          "name": "Staked NEAR",
+          "network": "near",
+          "slug": "staked-near",
+          "path": "/tokens/staked-near/near"
+        },
+        {
+          "symbol": "SWEAT",
+          "network": "near",
+          "reference": "token.sweat",
+          "name": "SWEAT",
+          "coinID": "sweatcoin",
+          "slug": "sweatcoin",
+          "path": "/tokens/sweatcoin/near"
+        },
+        {
+          "symbol": "NEKO",
+          "coinID": "neko",
+          "reference": "ftv2.nekotoken.near",
+          "name": "NEKO",
+          "network": "near",
+          "slug": "neko",
+          "path": "/tokens/neko/near"
+        },
+        {
+          "symbol": "OCT",
+          "coinID": "octopus-network",
+          "reference": "f5cfbc74057c610c8ef151a439252680ac68c6dc.factory.bridge.near",
+          "name": "Omnity Convertible Token",
+          "network": "near",
+          "slug": "octopus-network",
+          "path": "/tokens/octopus-network/near"
+        },
+        {
+          "name": "1MillionNFTs",
+          "coinID": "1million-nfts",
+          "network": "near",
+          "reference": "a4ef4b0b23c1fc81d3f9ecf93510e64f58a4a016.factory.bridge.near",
+          "symbol": "1MIL",
+          "slug": "1million-nfts",
+          "path": "/tokens/1million-nfts/near"
+        },
+        {
+          "name": "Aave",
+          "coinID": "aave",
+          "network": "near",
+          "reference": "7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9.factory.bridge.near",
+          "symbol": "AAVE",
+          "slug": "aave",
+          "path": "/tokens/aave/near"
+        },
+        {
+          "symbol": "SOL",
+          "coinID": "allbridge-bridged-sol-near-protocol",
+          "reference": "sol.token.a11bd.near",
+          "name": "Allbridge Bridged SOL (Near Protocol)",
+          "network": "near",
+          "slug": "allbridge-bridged-sol-near-protocol",
+          "path": "/tokens/allbridge-bridged-sol-near-protocol/near"
+        }
+      ]
+    },
+    "sui": {
+      "id": "sui",
+      "slug": "sui",
+      "name": "Sui Network",
+      "symbol": "SUI",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "Your Sui, clearly arranged.",
+      "intro": "Manage SUI and supported Sui assets, with local transaction review and compatible dApp connections.",
+      "receive": "Share the Sui receiving address. For tokens, match the full coin type rather than relying on a name or icon.",
+      "send": "SUI pays network fees. Review the transfer and selected asset; coin objects and gas requirements affect what can be sent.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Sui Network dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app. A Sui Wallet Standard-only website is not automatically compatible with WalletConnect.",
+      "icon": "/assets/networks/sui.webp",
+      "sourceIconSHA256": "406409b06af50461220abd727744b9f0848e4e4906f247d131e63eee1322e49e",
+      "count": 159,
+      "pages": 4,
+      "featured": [
+        {
+          "reference": "0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC",
+          "symbol": "USDC",
+          "network": "sui",
+          "name": "USDC",
+          "coinID": "usd-coin",
+          "slug": "usdc",
+          "path": "/tokens/usdc/sui"
+        },
+        {
+          "reference": "0xdeeb7a4662eec9f2f3def03fb937a663dddaa2e215b8078a284d026b7946c270::deep::DEEP",
+          "symbol": "DEEP",
+          "network": "sui",
+          "name": "DeepBook",
+          "coinID": "deep",
+          "slug": "deep",
+          "path": "/tokens/deep/sui"
+        },
+        {
+          "name": "Cetus Protocol",
+          "symbol": "CETUS",
+          "network": "sui",
+          "coinID": "cetus-protocol",
+          "reference": "0x6864a6f921804860930db6ddbe2e16acdf8504495ea7481637a1c8b9a8fe54b::cetus::CETUS",
+          "slug": "cetus-protocol",
+          "path": "/tokens/cetus-protocol/sui"
+        },
+        {
+          "reference": "0xa99b8952d4f7d947ea77fe0ecdcc9e5fc0bcab2841d6e2a5aa00c3044e5544b5::navx::NAVX",
+          "name": "NAVI Protocol",
+          "symbol": "NAVX",
+          "network": "sui",
+          "coinID": "navi",
+          "slug": "navi",
+          "path": "/tokens/navi/sui"
+        },
+        {
+          "name": "Scallop",
+          "symbol": "SCA",
+          "network": "sui",
+          "coinID": "scallop-2",
+          "reference": "0x7016aae72cfc67f2fadf55769c0a7dd54291a583b63051a5ed71081cce836ac6::sca::SCA",
+          "slug": "scallop-2",
+          "path": "/tokens/scallop-2/sui"
+        },
+        {
+          "reference": "0xce7ff77a83ea0cb6fd39bd8748e2ec89a3f41e8efdc3f4eb123e0ca37b184db2::buck::BUCK",
+          "symbol": "BUCK",
+          "network": "sui",
+          "name": "Bucket Protocol BUCK Stablecoin",
+          "coinID": "bucket-protocol-buck-stablecoin",
+          "slug": "bucket-protocol-buck-stablecoin",
+          "path": "/tokens/bucket-protocol-buck-stablecoin/sui"
+        },
+        {
+          "network": "sui",
+          "coinID": "aftermath-staked-sui",
+          "name": "Aftermath Staked SUI",
+          "reference": "0xf325ce1300e8dac124071d3152c5c5ee6174914f8bc2161e88329cf579246efc::afsui::AFSUI",
+          "symbol": "AFSUI",
+          "slug": "aftermath-staked-sui",
+          "path": "/tokens/aftermath-staked-sui/sui"
+        },
+        {
+          "reference": "0xbde4ba4c2e274a60ce15c1cfff9e5c42e41654ac8b6d906a57efa4bd3c29f47d::hasui::HASUI",
+          "symbol": "HASUI",
+          "network": "sui",
+          "name": "Haedal Staked SUI",
+          "coinID": "haedal-staked-sui",
+          "slug": "haedal-staked-sui",
+          "path": "/tokens/haedal-staked-sui/sui"
+        },
+        {
+          "reference": "0xc060006111016b8a020ad5b33834984a437aaa7d3c74c18e09a95d48aceab08c::coin::COIN",
+          "symbol": "USDT",
+          "network": "sui",
+          "name": "Wormhole Bridged USDT",
+          "coinID": "tether-usd-wormhole-from-ethereum",
+          "slug": "tether-usd-wormhole-from-ethereum",
+          "path": "/tokens/tether-usd-wormhole-from-ethereum/sui"
+        },
+        {
+          "reference": "0x960b531667636f39e85867775f52f6b1f220a058c4de786905bdf761e06a56bb::usdy::USDY",
+          "name": "Ondo US Dollar Yield",
+          "symbol": "USDY",
+          "network": "sui",
+          "coinID": "ondo-us-dollar-yield",
+          "slug": "ondo-us-dollar-yield",
+          "path": "/tokens/ondo-us-dollar-yield/sui"
+        },
+        {
+          "reference": "0xea65bb5a79ff34ca83e2995f9ff6edd0887b08da9b45bf2e31f930d3efb82866::s::S",
+          "symbol": "S",
+          "network": "sui",
+          "name": "Agent S",
+          "coinID": "agent-s",
+          "slug": "agent-s",
+          "path": "/tokens/agent-s/sui"
+        },
+        {
+          "reference": "0xcee208b8ae33196244b389e61ffd1202e7a1ae06c8ec210d33402ff649038892::aida::AIDA",
+          "symbol": "AIDA",
+          "network": "sui",
+          "name": "Aida",
+          "coinID": "aida-2",
+          "slug": "aida-2",
+          "path": "/tokens/aida-2/sui"
+        }
+      ]
+    },
+    "aptos": {
+      "id": "aptos",
+      "slug": "aptos",
+      "name": "Aptos",
+      "symbol": "APT",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "Aptos, always within reach.",
+      "intro": "Manage APT and supported Aptos assets in a native iPhone and iPad wallet.",
+      "receive": "Receive on Aptos using your selected account. Match the asset type as well as the network when receiving a token.",
+      "send": "Keep APT available for network fees when transferring supported assets.",
+      "walletConnect": false,
+      "connection": "Aptos send and receive support does not include a supported dApp connection route in this guide. Use Oath for transfers; do not import your recovery phrase into a website to connect.",
+      "icon": "/assets/networks/aptos.webp",
+      "sourceIconSHA256": "10929309c7290beba3d251c8c33e24d29f5fe26b42a7d742d64b683d435b3943",
+      "count": 61,
+      "pages": 2,
+      "featured": [
+        {
+          "name": "USDC",
+          "network": "aptos",
+          "reference": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+          "symbol": "USDC",
+          "coinID": "usd-coin",
+          "slug": "usdc",
+          "path": "/tokens/usdc/aptos"
+        },
+        {
+          "coinID": "tether",
+          "symbol": "USDT",
+          "name": "Tether",
+          "network": "aptos",
+          "reference": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
+          "slug": "usdt",
+          "path": "/tokens/usdt/aptos"
+        },
+        {
+          "coinID": "thala",
+          "symbol": "THL",
+          "name": "Thala",
+          "network": "aptos",
+          "reference": "0x7fd500c11216f0fe3095d0c4b8aa4d64a4e2e04f83758462f2b127255643615::thl_coin::THL",
+          "slug": "thala",
+          "path": "/tokens/thala/aptos"
+        },
+        {
+          "name": "Gui Inu",
+          "network": "aptos",
+          "reference": "0xe4ccb6d39136469f376242c31b34d10515c8eaaa38092f804db8e08a8f53c5b2::assets_v1::EchoCoin002",
+          "symbol": "GUI",
+          "coinID": "gui-inu",
+          "slug": "gui-inu",
+          "path": "/tokens/gui-inu/aptos"
+        },
+        {
+          "coinID": "cellena-finance",
+          "symbol": "CELL",
+          "name": "Cellana Finance",
+          "network": "aptos",
+          "reference": "0x2ebb2ccac5e027a87fa0e2e5f656a3a4238d6a48d93ec9b610d570fc0aa0df12",
+          "slug": "cellena-finance",
+          "path": "/tokens/cellena-finance/aptos"
+        },
+        {
+          "coinID": "move-dollar",
+          "symbol": "MOD",
+          "name": "Move Dollar",
+          "network": "aptos",
+          "reference": "0x6f986d146e4a90b828d8c12c14b6f4e003fdff11a8eecceceb63744363eaac01::mod_coin::MOD",
+          "slug": "move-dollar",
+          "path": "/tokens/move-dollar/aptos"
+        },
+        {
+          "coinID": "amnis-staked-aptos-coin",
+          "symbol": "STAPT",
+          "name": "Amnis Staked Aptos Coin",
+          "network": "aptos",
+          "reference": "0x111ae3e5bc816a5e63c2da97d0aa3886519e0cd5e4b046659fa35796bd11542a::stapt_token::StakedApt",
+          "slug": "amnis-staked-aptos-coin",
+          "path": "/tokens/amnis-staked-aptos-coin/aptos"
+        },
+        {
+          "coinID": "tortuga-staked-aptos",
+          "symbol": "TAPT",
+          "name": "Tortuga Staked Aptos",
+          "network": "aptos",
+          "reference": "0x84d7aeef42d38a5ffc3ccef853e1b82e4958659d16a7de736a29c55fbbeb0114::staked_aptos_coin::StakedAptosCoin",
+          "slug": "tortuga-staked-aptos",
+          "path": "/tokens/tortuga-staked-aptos/aptos"
+        },
+        {
+          "coinID": "wrapped-bitcoin",
+          "symbol": "WBTC",
+          "name": "Wrapped Bitcoin",
+          "network": "aptos",
+          "reference": "0x68844a0d7f2587e726ad0579f3d640865bb4162c08a4589eeda3f9689ec52a3d",
+          "slug": "wrapped-bitcoin",
+          "path": "/tokens/wrapped-bitcoin/aptos"
+        },
+        {
+          "name": "Ondo US Dollar Yield",
+          "network": "aptos",
+          "reference": "0xcfea864b32833f157f042618bd845145256b1bf4c0da34a7013b76e42daa53cc",
+          "symbol": "USDY",
+          "coinID": "ondo-us-dollar-yield",
+          "slug": "ondo-us-dollar-yield",
+          "path": "/tokens/ondo-us-dollar-yield/aptos"
+        },
+        {
+          "coinID": "abel-finance",
+          "symbol": "ABEL",
+          "name": "ABEL Finance",
+          "network": "aptos",
+          "reference": "0x7c0322595a73b3fc53bb166f5783470afeb1ed9f46d1176db62139991505dc61::abel_coin::AbelCoin",
+          "slug": "abel-finance",
+          "path": "/tokens/abel-finance/aptos"
+        },
+        {
+          "name": "aBTC",
+          "network": "aptos",
+          "reference": "0xf599112bc3a5b6092469890d6a2f353f485a6193c9d36626b480704467d3f4c8",
+          "symbol": "ABTC",
+          "coinID": "abtc",
+          "slug": "abtc",
+          "path": "/tokens/abtc/aptos"
+        }
+      ]
+    },
+    "polkadot": {
+      "id": "polkadot",
+      "slug": "polkadot",
+      "name": "Polkadot",
+      "symbol": "DOT",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "Polkadot, with you.",
+      "intro": "Manage DOT and supported Asset Hub assets in Oath on iPhone and iPad.",
+      "receive": "Check the selected Polkadot network and address. Relay-chain and Asset Hub balances are not interchangeable.",
+      "send": "Keep enough DOT for applicable fees and account requirements. Check the chain and asset before confirming an Asset Hub transfer.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Polkadot dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/polkadot.webp",
+      "sourceIconSHA256": "438d27dba2ff3469eb6f61115f288abdc5ca66adf7ae6542db67d773cce16148",
+      "count": 4,
+      "pages": 1,
+      "featured": [
+        {
+          "coinID": "usd-coin",
+          "network": "polkadot",
+          "name": "USDC",
+          "reference": "assets:1337",
+          "symbol": "USDC",
+          "decimals": 6,
+          "logo": "https://coin-images.coingecko.com/coins/images/6319/small/USDC.png?1769615602",
+          "slug": "usdc",
+          "path": "/tokens/usdc/polkadot"
+        },
+        {
+          "coinID": "tether",
+          "symbol": "USDt",
+          "name": "Tether",
+          "network": "polkadot",
+          "reference": "assets:1984",
+          "decimals": 6,
+          "logo": "https://coin-images.coingecko.com/coins/images/325/small/Tether.png?1696501661",
+          "slug": "usdt",
+          "path": "/tokens/usdt/polkadot"
+        },
+        {
+          "coinID": "gavun-wud",
+          "network": "polkadot",
+          "name": "Gavun Wud",
+          "reference": "assets:1000085",
+          "symbol": "WUD",
+          "slug": "gavun-wud",
+          "path": "/tokens/gavun-wud/polkadot"
+        },
+        {
+          "coinID": "my-paqman-coin",
+          "network": "polkadot",
+          "name": "My Paqman Coin",
+          "reference": "assets:50000103",
+          "symbol": "MPC",
+          "slug": "my-paqman-coin",
+          "path": "/tokens/my-paqman-coin/polkadot"
+        }
+      ]
+    },
+    "stellar": {
+      "id": "stellar",
+      "slug": "stellar",
+      "name": "Stellar",
+      "symbol": "XLM",
+      "group": "Native network",
+      "chainId": null,
+      "headline": "Stellar, in your pocket.",
+      "intro": "Receive and send XLM and supported Stellar assets from Oath.",
+      "receive": "For an exchange deposit, include the memo exactly as required by the recipient. An address alone may not identify your exchange account.",
+      "send": "Stellar accounts have reserve requirements. Issued assets can require a trustline; check the recipient and the available balance.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Stellar dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/stellar.webp",
+      "sourceIconSHA256": "f99e214f583b2cff524a4e295add6213d3ccd2d8388e3bc46ae001efc7c40b43",
+      "count": 53,
+      "pages": 2,
+      "featured": [
+        {
+          "symbol": "USDC",
+          "reference": "CCW67TSZV3SSS2HXMBQ5JFGCKJNXKZM7UQUWUZPUTHXSTZLEO7SJMI75",
+          "coinID": "usd-coin",
+          "network": "stellar",
+          "name": "USDC",
+          "slug": "usdc",
+          "path": "/tokens/usdc/stellar"
+        },
+        {
+          "symbol": "PYUSD",
+          "reference": "CCCRWH6Q3FNP3I2I57BDLM5AFAT7O6OF6GKQOC6SSJNDAVRZ57SPHGU2",
+          "coinID": "paypal-usd",
+          "network": "stellar",
+          "name": "PayPal USD",
+          "slug": "paypal-usd",
+          "path": "/tokens/paypal-usd/stellar"
+        },
+        {
+          "symbol": "AFR",
+          "reference": "CCG27OZ5AV4WUXS6XTECWAXEY5UOMEFI2CWFA3LHZGBTLYZWTJF3MJYQ",
+          "decimals": 7,
+          "coinID": "afreum",
+          "network": "stellar",
+          "name": "Afreum",
+          "slug": "afreum",
+          "path": "/tokens/afreum/stellar"
+        },
+        {
+          "reference": "CB44W727WSLHPXJ47A6DHF5D34RKWSOZAMEDXO3CF5TEEEQ2ZX4V3VRI",
+          "network": "stellar",
+          "coinID": "allunity-eur",
+          "symbol": "EURAU",
+          "name": "AllUnity EUR",
+          "slug": "allunity-eur",
+          "path": "/tokens/allunity-eur/stellar"
+        },
+        {
+          "reference": "CAUIKL3IYGMERDRUN6YSCLWVAKIFG5Q4YJHUKM4S4NJZQIA3BAS6OJPK",
+          "network": "stellar",
+          "decimals": 7,
+          "coinID": "aquarius",
+          "symbol": "AQUA",
+          "name": "Aquarius",
+          "slug": "aquarius",
+          "path": "/tokens/aquarius/stellar"
+        },
+        {
+          "reference": "CACXKRVCW7I6CWX6RS6ANFDKVCOUI2PB6LTDUROL3J3FMJCRZ4ZLQRF6",
+          "network": "stellar",
+          "decimals": 7,
+          "coinID": "novatti-australian-digital-dollar",
+          "symbol": "AUDD",
+          "name": "Australian Digital Dollar",
+          "slug": "novatti-australian-digital-dollar",
+          "path": "/tokens/novatti-australian-digital-dollar/stellar"
+        },
+        {
+          "symbol": "BLND",
+          "reference": "CD25MNVTZDL4Y3XBCPCJXGXATV5WUHHOWMYFF4YBEGU5FCPGMYTVG5JY",
+          "decimals": 7,
+          "coinID": "blend",
+          "network": "stellar",
+          "name": "Blend",
+          "slug": "blend",
+          "path": "/tokens/blend/stellar"
+        },
+        {
+          "symbol": "BRZ",
+          "reference": "CCPC3VEOLDJRSS6ZUGYC2MHKVC37CLAYVQH2T7KMVVTKX6QJTZK6ZLN2",
+          "decimals": 7,
+          "coinID": "brz",
+          "network": "stellar",
+          "name": "Brazilian Digital",
+          "slug": "brz",
+          "path": "/tokens/brz/stellar"
+        },
+        {
+          "symbol": "C1USD",
+          "reference": "CDF4FG4AAN6G2A2MCT7PK2NLEWYGZBRGTITJVQRHNTC2MVWGA5R42KV7",
+          "decimals": 7,
+          "coinID": "c1usd",
+          "network": "stellar",
+          "name": "Currency One USD",
+          "slug": "c1usd",
+          "path": "/tokens/c1usd/stellar"
+        },
+        {
+          "reference": "CC64WBDGS6QQP22QTTIACYIXT3WF7BBQEYOQPLTP7GTKYY7PZ74QYGSL",
+          "network": "stellar",
+          "coinID": "defi-janus-henderson-anemoy-aaa-clo-fund",
+          "symbol": "DEJAAA",
+          "name": "DeFi Janus Henderson Anemoy AAA CLO Fund",
+          "slug": "defi-janus-henderson-anemoy-aaa-clo-fund",
+          "path": "/tokens/defi-janus-henderson-anemoy-aaa-clo-fund/stellar"
+        },
+        {
+          "reference": "CAL6ER2TI6CTRAY6BFXWNWA7WTYXUXTQCHUBCIBU5O6KM3HJFG6Z6VXV",
+          "network": "stellar",
+          "decimals": 7,
+          "coinID": "cetes",
+          "symbol": "CETES",
+          "name": "Etherfuse CETES",
+          "slug": "cetes",
+          "path": "/tokens/cetes/stellar"
+        },
+        {
+          "symbol": "GILTS",
+          "reference": "CCQNEBGX5RJQGNLQ25C67DZLOSNM4NFQBANUS3ASALF2X552BSIQ6XCE",
+          "decimals": 7,
+          "coinID": "etherfuse-gilts",
+          "network": "stellar",
+          "name": "Etherfuse GILTS",
+          "slug": "etherfuse-gilts",
+          "path": "/tokens/etherfuse-gilts/stellar"
+        }
+      ]
+    },
+    "arc": {
+      "id": "arc",
+      "slug": "arc",
+      "name": "Arc",
+      "symbol": "USDC",
+      "group": "EVM",
+      "chainId": 5042,
+      "headline": "Arc, in your wallet.",
+      "intro": "Receive, send and manage assets on Arc with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Arc uses USDC for native transaction fees. Its separate transfer path does not currently expose WalletConnect transaction signing.",
+      "send": "Keep USDC available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": false,
+      "connection": "Arc send and receive support does not include a supported dApp connection route in this guide. Use Oath for transfers; do not import your recovery phrase into a website to connect.",
+      "icon": "/assets/networks/arc.webp",
+      "sourceIconSHA256": "0c2cbc11c131905357c8d8a035b763789bb59730b1f435b20ad551cfeacc2147",
+      "count": 85,
+      "pages": 2,
+      "featured": [
+        {
+          "coinID": "euro-coin",
+          "reference": "0xbef5f6d51cb62b58e6a8f77868681825c6fe21c1",
+          "name": "EURC",
+          "symbol": "EURC",
+          "network": "arc",
+          "slug": "euro-coin",
+          "path": "/tokens/euro-coin/arc"
+        },
+        {
+          "symbol": "LINK",
+          "reference": "0x76a443768a5e3b8d1aed0105fc250877841deb40",
+          "coinID": "chainlink",
+          "name": "Chainlink",
+          "network": "arc",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/arc"
+        },
+        {
+          "symbol": "WETH",
+          "reference": "0x128cc466b61f542da60c70e3aa11c10e19b84edb",
+          "coinID": "arc-bridged-weth-arc",
+          "name": "Arc Bridged WETH (Arc)",
+          "network": "arc",
+          "slug": "arc-bridged-weth-arc",
+          "path": "/tokens/arc-bridged-weth-arc/arc"
+        },
+        {
+          "coinID": "virtual-protocol",
+          "reference": "0x8c4252c87081c88c6ad57d6dd97e1cafebf842b7",
+          "name": "Virtuals Protocol",
+          "symbol": "VIRTUAL",
+          "network": "arc",
+          "slug": "virtual-protocol",
+          "path": "/tokens/virtual-protocol/arc"
+        },
+        {
+          "symbol": "XAUM",
+          "reference": "0x178b01f61cbea1d2a5581fe1621be607835ec349",
+          "coinID": "matrixdock-gold",
+          "name": "Matrixdock Gold",
+          "network": "arc",
+          "slug": "matrixdock-gold",
+          "path": "/tokens/matrixdock-gold/arc"
+        },
+        {
+          "symbol": "EURAU",
+          "reference": "0x4933a85b5b5466fbaf179f72d3de273c287ec2c2",
+          "coinID": "allunity-eur",
+          "name": "AllUnity EUR",
+          "network": "arc",
+          "slug": "allunity-eur",
+          "path": "/tokens/allunity-eur/arc"
+        },
+        {
+          "coinID": "allunity-chf",
+          "reference": "0xc6df1b92a6ae61a27059c41e541a91ce8dcb1605",
+          "name": "AllUnity CHF",
+          "symbol": "CHFAU",
+          "network": "arc",
+          "slug": "allunity-chf",
+          "path": "/tokens/allunity-chf/arc"
+        },
+        {
+          "coinID": "stablecorp-qcad",
+          "reference": "0xd70c2fa4232e054b373efaea98e4138511c2a309",
+          "name": "Stablecorp QCAD",
+          "symbol": "QCAD",
+          "network": "arc",
+          "slug": "stablecorp-qcad",
+          "path": "/tokens/stablecorp-qcad/arc"
+        },
+        {
+          "symbol": "KRW1",
+          "reference": "0x303dbb88ba14626c7a927e983b73267c575315f7",
+          "coinID": "krw1",
+          "name": "KRW1",
+          "network": "arc",
+          "slug": "krw1",
+          "path": "/tokens/krw1/arc"
+        },
+        {
+          "symbol": "SOLD",
+          "reference": "0x2a7a8c69a7462a2737a3b41188bc7a36d5555f2f",
+          "coinID": "sold",
+          "name": "$SOLD",
+          "network": "arc",
+          "slug": "sold",
+          "path": "/tokens/sold/arc"
+        },
+        {
+          "symbol": "PI",
+          "reference": "0x30ac39dec8a854c5fd03aa429e3bef32a7e4c84a",
+          "coinID": "3-141592653589793238462643383279",
+          "name": "3.141592653589793238462643383279",
+          "network": "arc",
+          "slug": "3-141592653589793238462643383279",
+          "path": "/tokens/3-141592653589793238462643383279/arc"
+        },
+        {
+          "name": "ACAT",
+          "reference": "0xf80457274fa646c7a8e0942d48be703864ef3d01",
+          "symbol": "ACAT",
+          "coinID": "acat",
+          "network": "arc",
+          "slug": "acat",
+          "path": "/tokens/acat/arc"
+        }
+      ]
+    },
+    "fantom": {
+      "id": "fantom",
+      "slug": "fantom",
+      "name": "Fantom",
+      "symbol": "FTM",
+      "group": "EVM",
+      "chainId": 250,
+      "headline": "Fantom, in your wallet.",
+      "intro": "Receive, send and manage assets on Fantom with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This account is for Fantom Opera. Do not assume a Sonic transfer is supported by an Opera address.",
+      "send": "Keep FTM available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Fantom dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/fantom.webp",
+      "sourceIconSHA256": "d03c93ea5170e5ea006aec25489687f931f4c76cf854c7eee8345e8056f9c080",
+      "count": 135,
+      "pages": 3,
+      "featured": [
+        {
+          "reference": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+          "symbol": "WFTM",
+          "coinID": "wrapped-fantom",
+          "network": "fantom",
+          "name": "Wrapped Fantom",
+          "slug": "wrapped-fantom",
+          "path": "/tokens/wrapped-fantom/fantom"
+        },
+        {
+          "reference": "0x1b6382dbdea11d97f24495c9a90b7c88469134a4",
+          "symbol": "AXLUSDC",
+          "coinID": "axlusdc",
+          "network": "fantom",
+          "name": "Axelar Bridged USDC",
+          "slug": "axlusdc",
+          "path": "/tokens/axlusdc/fantom"
+        },
+        {
+          "reference": "0x1e4f97b9f9f913c46f1632781732927b9019c68b",
+          "symbol": "CRV",
+          "coinID": "curve-dao-token",
+          "network": "fantom",
+          "name": "Curve DAO",
+          "slug": "curve-dao-token",
+          "path": "/tokens/curve-dao-token/fantom"
+        },
+        {
+          "reference": "0x6a07a792ab2965c72a5b8088d3a069a7ac3a993b",
+          "coinID": "aave",
+          "name": "Aave",
+          "symbol": "AAVE",
+          "network": "fantom",
+          "slug": "aave",
+          "path": "/tokens/aave/fantom"
+        },
+        {
+          "reference": "0x513c7e3a9c69ca3e22550ef58ac1c0088e918fff",
+          "coinID": "aave-crv",
+          "name": "Aave CRV",
+          "symbol": "ACRV",
+          "network": "fantom",
+          "slug": "aave-crv",
+          "path": "/tokens/aave-crv/fantom"
+        },
+        {
+          "name": "Aave DAI",
+          "reference": "0x82e64f49ed5ec1bc6e43dad4fc8af9bb3a2312ee",
+          "symbol": "ADAI",
+          "network": "fantom",
+          "coinID": "aave-dai",
+          "slug": "aave-dai",
+          "path": "/tokens/aave-dai/fantom"
+        },
+        {
+          "reference": "0x191c10aa4af7c30e871e70c95db0e4eb77237530",
+          "symbol": "ALINK",
+          "coinID": "aave-link",
+          "network": "fantom",
+          "name": "Aave LINK",
+          "slug": "aave-link",
+          "path": "/tokens/aave-link/fantom"
+        },
+        {
+          "reference": "0x6ab707aca953edaefbc4fd23ba73294241490620",
+          "coinID": "aave-usdt",
+          "name": "Aave USDT",
+          "symbol": "AUSDT",
+          "network": "fantom",
+          "slug": "aave-usdt",
+          "path": "/tokens/aave-usdt/fantom"
+        },
+        {
+          "reference": "0x078f358208685046a11c85e8ad32895ded33a249",
+          "symbol": "AWBTC",
+          "coinID": "aave-wbtc",
+          "network": "fantom",
+          "name": "Aave WBTC",
+          "slug": "aave-wbtc",
+          "path": "/tokens/aave-wbtc/fantom"
+        },
+        {
+          "name": "Aave WETH",
+          "symbol": "AWETH",
+          "network": "fantom",
+          "reference": "0xe50fa9b3c56ffb159cb0fca61f5c9d750e8128c8",
+          "coinID": "aave-weth",
+          "slug": "aave-weth",
+          "path": "/tokens/aave-weth/fantom"
+        },
+        {
+          "name": "Alchemix USD",
+          "reference": "0xb67fa6defce4042070eb1ae1511dcd6dcc6a532e",
+          "symbol": "ALUSD",
+          "network": "fantom",
+          "coinID": "alchemix-usd",
+          "slug": "alchemix-usd",
+          "path": "/tokens/alchemix-usd/fantom"
+        },
+        {
+          "reference": "0x543acd673960041eee1305500893260f1887b679",
+          "coinID": "allbridge",
+          "name": "Allbridge Zero",
+          "symbol": "ABR0",
+          "network": "fantom",
+          "slug": "allbridge",
+          "path": "/tokens/allbridge/fantom"
+        }
+      ]
+    },
+    "flare": {
+      "id": "flare",
+      "slug": "flare",
+      "name": "Flare",
+      "symbol": "FLR",
+      "group": "EVM",
+      "chainId": 14,
+      "headline": "Flare, in your wallet.",
+      "intro": "Receive, send and manage assets on Flare with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use Flare mainnet. Songbird is a different network.",
+      "send": "Keep FLR available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Flare dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/flare.webp",
+      "sourceIconSHA256": "866b1a9553e7d88cc17e0ef2d4fed588c5870bebea537044c78b3c66e037fbef",
+      "count": 27,
+      "pages": 1,
+      "featured": [
+        {
+          "reference": "0x1d80c49bbbcd1c0911346656b529df9e5c2f783d",
+          "symbol": "WFLR",
+          "name": "Wrapped Flare",
+          "coinID": "wrapped-flare",
+          "network": "flare",
+          "slug": "wrapped-flare",
+          "path": "/tokens/wrapped-flare/flare"
+        },
+        {
+          "reference": "0xe7cd86e13ac4309349f30b3435a9d337750fc82d",
+          "symbol": "USDT0",
+          "name": "USDT0",
+          "coinID": "usdt0",
+          "network": "flare",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/flare"
+        },
+        {
+          "reference": "0xfbda5f676cb37624f28265a144a48b0d6e87d3b6",
+          "symbol": "USDC.E",
+          "name": "Stargate Bridged USDC",
+          "coinID": "stargate-bridged-usdc",
+          "network": "flare",
+          "slug": "stargate-bridged-usdc",
+          "path": "/tokens/stargate-bridged-usdc/flare"
+        },
+        {
+          "reference": "0xff56eb5b1a7faa972291117e5e9565da29bc808d",
+          "symbol": "APS",
+          "name": "Apsis",
+          "coinID": "apsis",
+          "network": "flare",
+          "slug": "apsis",
+          "path": "/tokens/apsis/flare"
+        },
+        {
+          "reference": "0x6c1490729ce19e809cf9f7e3e223c0490833de02",
+          "symbol": "BUGO",
+          "name": "BUGO",
+          "coinID": "bugo",
+          "network": "flare",
+          "slug": "bugo",
+          "path": "/tokens/bugo/flare"
+        },
+        {
+          "reference": "0x19831cfb53a0dbead9866c43557c1d48dff76567",
+          "symbol": "CYSFLR",
+          "name": "Cyclo cysFLR",
+          "coinID": "cyclo-cysflr",
+          "network": "flare",
+          "slug": "cyclo-cysflr",
+          "path": "/tokens/cyclo-cysflr/flare"
+        },
+        {
+          "reference": "0xd8bf1d2720e9ffd01a2f9a2efc3e101a05b852b4",
+          "symbol": "CYWETH",
+          "name": "Cyclo cyWETH",
+          "coinID": "cyclo-cyweth",
+          "network": "flare",
+          "slug": "cyclo-cyweth",
+          "path": "/tokens/cyclo-cyweth/flare"
+        },
+        {
+          "name": "Ēnosys",
+          "symbol": "HLN",
+          "network": "flare",
+          "reference": "0x140d8d3649ec605cf69018c627fb44ccc76ec89f",
+          "coinID": "enosys",
+          "slug": "enosys",
+          "path": "/tokens/enosys/flare"
+        },
+        {
+          "reference": "0x6cd3a5ba46fa254d4d2e3c2b37350ae337e94a0f",
+          "symbol": "CDP",
+          "name": "Enosys Loans CDP",
+          "coinID": "enosys-loans-cdp",
+          "network": "flare",
+          "slug": "enosys-loans-cdp",
+          "path": "/tokens/enosys-loans-cdp/flare"
+        },
+        {
+          "reference": "0x96b41289d90444b8add57e6f265db5ae8651df29",
+          "symbol": "EUSDT",
+          "name": "Enosys USDT",
+          "coinID": "enosys-usdt",
+          "network": "flare",
+          "slug": "enosys-usdt",
+          "path": "/tokens/enosys-usdt/flare"
+        },
+        {
+          "reference": "0x4c18ff3c89632c3dd62e796c0afa5c07c4c1b2b3",
+          "symbol": "STXRP",
+          "name": "Firelight Staked XRP",
+          "coinID": "firelight-staked-xrp",
+          "network": "flare",
+          "slug": "firelight-staked-xrp",
+          "path": "/tokens/firelight-staked-xrp/flare"
+        },
+        {
+          "reference": "0xad552a648c74d49e10027ab8a618a3ad4901c5be",
+          "symbol": "FXRP",
+          "name": "Flare Bridged XRP (Flare)",
+          "coinID": "flare-bridged-xrp-flare",
+          "network": "flare",
+          "slug": "flare-bridged-xrp-flare",
+          "path": "/tokens/flare-bridged-xrp-flare/flare"
+        }
+      ]
+    },
+    "gnosis": {
+      "id": "gnosis",
+      "slug": "gnosis",
+      "name": "Gnosis",
+      "symbol": "xDAI",
+      "group": "EVM",
+      "chainId": 100,
+      "headline": "Gnosis, in your wallet.",
+      "intro": "Receive, send and manage assets on Gnosis with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Native xDAI pays Gnosis Chain fees; GNO is a separate token.",
+      "send": "Keep xDAI available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Gnosis dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/gnosis.webp",
+      "sourceIconSHA256": "3570536318b353a8d3589f4c2bc776a1e4e2054ab5cffb22bf7f7d6bfa03f5cb",
+      "count": 111,
+      "pages": 3,
+      "featured": [
+        {
+          "reference": "0xddafbb505ad214d7b80b1f830fccc89b60fb7a83",
+          "coinID": "gnosis-xdai-bridged-usdc-gnosis",
+          "name": "Gnosis xDAI Bridged USDC (Gnosis)",
+          "symbol": "USDC",
+          "network": "gnosis",
+          "slug": "gnosis-xdai-bridged-usdc-gnosis",
+          "path": "/tokens/gnosis-xdai-bridged-usdc-gnosis/gnosis"
+        },
+        {
+          "reference": "0x4ecaba5870353805a9f068101a40e0f32ed605c6",
+          "network": "gnosis",
+          "name": "xDai Bridged USDT (Gnosis)",
+          "coinID": "gnosis-xdai-bridged-usdt-gnosis",
+          "symbol": "USDT",
+          "slug": "gnosis-xdai-bridged-usdt-gnosis",
+          "path": "/tokens/gnosis-xdai-bridged-usdt-gnosis/gnosis"
+        },
+        {
+          "network": "gnosis",
+          "reference": "0x9c58bacc331c9aa871afd802db6379a98e80cedb",
+          "name": "Gnosis",
+          "coinID": "gnosis",
+          "symbol": "GNO",
+          "slug": "gnosis",
+          "path": "/tokens/gnosis/gnosis"
+        },
+        {
+          "reference": "0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1",
+          "network": "gnosis",
+          "name": "Gnosis xDai Bridged WETH (Gnosis Chain)",
+          "coinID": "gnosis-xdai-bridged-weth-gnosis-chain",
+          "symbol": "WETH",
+          "slug": "gnosis-xdai-bridged-weth-gnosis-chain",
+          "path": "/tokens/gnosis-xdai-bridged-weth-gnosis-chain/gnosis"
+        },
+        {
+          "network": "gnosis",
+          "reference": "0x8e5bbbb09ed1ebde8674cda39a0c169401db4252",
+          "name": "Gnosis xDai Bridged WBTC (Gnosis Chain)",
+          "coinID": "gnosis-xdai-bridged-wbtc-gnosis-chain",
+          "symbol": "WBTC",
+          "slug": "gnosis-xdai-bridged-wbtc-gnosis-chain",
+          "path": "/tokens/gnosis-xdai-bridged-wbtc-gnosis-chain/gnosis"
+        },
+        {
+          "reference": "0x420ca0f9b9b604ce0fd9c18ef134c705e5fa3430",
+          "network": "gnosis",
+          "name": "Monerium EUR emoney",
+          "coinID": "monerium-eur-money-2",
+          "symbol": "EURE",
+          "slug": "monerium-eur-money-2",
+          "path": "/tokens/monerium-eur-money-2/gnosis"
+        },
+        {
+          "network": "gnosis",
+          "reference": "0xaf204776c7245bf4147c2612bf6e5972ee483701",
+          "name": "Savings xDAI",
+          "coinID": "savings-xdai",
+          "symbol": "SDAI",
+          "slug": "savings-xdai",
+          "path": "/tokens/savings-xdai/gnosis"
+        },
+        {
+          "network": "gnosis",
+          "reference": "0x7ef541e2a22058048904fe5744f9c7e4c57af717",
+          "name": "Balancer",
+          "coinID": "balancer",
+          "symbol": "BAL",
+          "slug": "balancer",
+          "path": "/tokens/balancer/gnosis"
+        },
+        {
+          "reference": "0x177127622c4a00f3d409b75571e12cb3c8973d3c",
+          "symbol": "COW",
+          "name": "CoW Protocol",
+          "coinID": "cow-protocol",
+          "network": "gnosis",
+          "slug": "cow-protocol",
+          "path": "/tokens/cow-protocol/gnosis"
+        },
+        {
+          "reference": "0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
+          "coinID": "xdai",
+          "name": "XDAI",
+          "symbol": "XDAI",
+          "network": "gnosis",
+          "slug": "xdai",
+          "path": "/tokens/xdai/gnosis"
+        },
+        {
+          "reference": "0x4291f029b9e7acb02d49428458cf6fceac545f81",
+          "network": "gnosis",
+          "name": "1Hive Water",
+          "coinID": "1hive-water",
+          "symbol": "WATER",
+          "slug": "1hive-water",
+          "path": "/tokens/1hive-water/gnosis"
+        },
+        {
+          "reference": "0xd0dd6cef72143e22cced4867eb0d5f2328715533",
+          "coinID": "aave-v3-dai",
+          "name": "Aave v3 DAI",
+          "symbol": "ADAI",
+          "network": "gnosis",
+          "slug": "aave-v3-dai",
+          "path": "/tokens/aave-v3-dai/gnosis"
+        }
+      ]
+    },
+    "linea": {
+      "id": "linea",
+      "slug": "linea",
+      "name": "Linea",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 59144,
+      "headline": "Linea, in your wallet.",
+      "intro": "Receive, send and manage assets on Linea with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Choose Linea explicitly when withdrawing ETH or tokens from another service.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Linea dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/linea.webp",
+      "sourceIconSHA256": "97026ad775188f790b3422aad4c2fd09aede96a182843438e2e12577e4c9bdf3",
+      "count": 85,
+      "pages": 2,
+      "featured": [
+        {
+          "coinID": "linea",
+          "name": "Linea",
+          "symbol": "LINEA",
+          "network": "linea",
+          "reference": "0x1789e0043623282d5dcc7f213d703c6d8bafbb04",
+          "slug": "linea",
+          "path": "/tokens/linea/linea"
+        },
+        {
+          "coinID": "bridged-usd-coin-linea",
+          "name": "Linea Bridged USDC (Linea)",
+          "symbol": "USDC",
+          "network": "linea",
+          "reference": "0x176211869ca2b568f2a7d4ee941e073a821ee1ff",
+          "slug": "bridged-usd-coin-linea",
+          "path": "/tokens/bridged-usd-coin-linea/linea"
+        },
+        {
+          "network": "linea",
+          "reference": "0xa219439258ca9da29e9cc4ce5596924745e12b93",
+          "coinID": "bridged-tether-linea",
+          "symbol": "USDT",
+          "name": "Linea Bridged USDT (Linea)",
+          "slug": "bridged-tether-linea",
+          "path": "/tokens/bridged-tether-linea/linea"
+        },
+        {
+          "reference": "0xe5d7c2a44ffddf6b295a15c148167daaaf5cf34f",
+          "symbol": "WETH",
+          "network": "linea",
+          "coinID": "wrapped-ether-linea",
+          "name": "Bridged Wrapped Ether (Linea)",
+          "slug": "wrapped-ether-linea",
+          "path": "/tokens/wrapped-ether-linea/linea"
+        },
+        {
+          "coinID": "linea-bridged-wbtc-linea",
+          "name": "Linea Bridged WBTC (Linea)",
+          "symbol": "WBTC",
+          "network": "linea",
+          "reference": "0x3aab2285ddcddad8edf438c1bab47e1a9d05a9b4",
+          "slug": "linea-bridged-wbtc-linea",
+          "path": "/tokens/linea-bridged-wbtc-linea/linea"
+        },
+        {
+          "network": "linea",
+          "reference": "0xa18152629128738a5c081eb226335fed4b9c95e9",
+          "coinID": "chainlink",
+          "symbol": "LINK",
+          "name": "Chainlink",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/linea"
+        },
+        {
+          "network": "linea",
+          "reference": "0x4af15ec2a0bd43db75dd04e62faa3b8ef36b00d5",
+          "coinID": "bridged-dai-stablecoin-linea",
+          "symbol": "DAI",
+          "name": "Bridged Dai Stablecoin (Linea)",
+          "slug": "bridged-dai-stablecoin-linea",
+          "path": "/tokens/bridged-dai-stablecoin-linea/linea"
+        },
+        {
+          "reference": "0xb5bedd42000b71fdde22d3ee8a79bd49a568fc8f",
+          "symbol": "WSTETH",
+          "network": "linea",
+          "coinID": "linea-bridged-wsteth-linea",
+          "name": "Linea Bridged wstETH (Linea)",
+          "slug": "linea-bridged-wsteth-linea",
+          "path": "/tokens/linea-bridged-wsteth-linea/linea"
+        },
+        {
+          "network": "linea",
+          "reference": "0x78354f8dccb269a615a7e0a24f9b0718fdc3c7a7",
+          "coinID": "zerolend",
+          "symbol": "ZERO",
+          "name": "ZeroLend",
+          "slug": "zerolend",
+          "path": "/tokens/zerolend/linea"
+        },
+        {
+          "reference": "0xaaaac83751090c6ea42379626435f805ddf54dc8",
+          "symbol": "NILE",
+          "network": "linea",
+          "coinID": "nile",
+          "name": "Nile",
+          "slug": "nile",
+          "path": "/tokens/nile/linea"
+        },
+        {
+          "coinID": "1inch",
+          "name": "1INCH",
+          "symbol": "1INCH",
+          "network": "linea",
+          "reference": "0x10f04e61bd6019d6c9b0bf4907e805a64b92ee3e",
+          "slug": "1inch",
+          "path": "/tokens/1inch/linea"
+        },
+        {
+          "coinID": "3a-lending-protocol",
+          "name": "3A",
+          "symbol": "A3A",
+          "network": "linea",
+          "reference": "0x3d4b2132ed4ea0aa93903713a4de9f98e625a5c7",
+          "slug": "3a-lending-protocol",
+          "path": "/tokens/3a-lending-protocol/linea"
+        }
+      ]
+    },
+    "chiliz": {
+      "id": "chiliz",
+      "slug": "chiliz",
+      "name": "Chiliz",
+      "symbol": "CHZ",
+      "group": "EVM",
+      "chainId": 88888,
+      "headline": "Chiliz, in your wallet.",
+      "intro": "Receive, send and manage assets on Chiliz with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use Chiliz Chain rather than an Ethereum deployment of a token with the same symbol.",
+      "send": "Keep CHZ available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Chiliz dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/chiliz.webp",
+      "sourceIconSHA256": "fce57b493293ac8fca3ba5c1bfa81722570be4f5b24de7dbc0d89f652f7251cc",
+      "count": 63,
+      "pages": 2,
+      "featured": [
+        {
+          "coinID": "wrapped-chiliz-kayen",
+          "network": "chiliz",
+          "name": "Wrapped Chiliz (Kayen)",
+          "reference": "0x677f7e16c7dd57be1d4c8ad1244883214953dc47",
+          "symbol": "WCHZ",
+          "slug": "wrapped-chiliz-kayen",
+          "path": "/tokens/wrapped-chiliz-kayen/chiliz"
+        },
+        {
+          "coinID": "paris-saint-germain-fan-token",
+          "network": "chiliz",
+          "name": "Paris Saint-Germain Fan Token",
+          "reference": "0xfe1d4a935df7a4a52f835f6104c97af9d72217f2",
+          "symbol": "PSG",
+          "slug": "paris-saint-germain-fan-token",
+          "path": "/tokens/paris-saint-germain-fan-token/chiliz"
+        },
+        {
+          "coinID": "fc-barcelona-fan-token",
+          "network": "chiliz",
+          "name": "FC Barcelona Fan Token",
+          "reference": "0x1589248b4b61ed472cc21ca1f2114d93ab6910d5",
+          "symbol": "BAR",
+          "slug": "fc-barcelona-fan-token",
+          "path": "/tokens/fc-barcelona-fan-token/chiliz"
+        },
+        {
+          "coinID": "juventus-fan-token",
+          "network": "chiliz",
+          "name": "Juventus Fan Token",
+          "reference": "0xeaf368dadc22524def47e8a1c26bfc17ac16e6f5",
+          "symbol": "JUV",
+          "slug": "juventus-fan-token",
+          "path": "/tokens/juventus-fan-token/chiliz"
+        },
+        {
+          "coinID": "ac-milan-fan-token",
+          "network": "chiliz",
+          "name": "AC Milan Fan Token",
+          "reference": "0x062f6004fd0bf204d272ff115e5b84f7a01489d1",
+          "symbol": "ACM",
+          "slug": "ac-milan-fan-token",
+          "path": "/tokens/ac-milan-fan-token/chiliz"
+        },
+        {
+          "coinID": "alanyaspor-fan-token",
+          "network": "chiliz",
+          "name": "Alanyaspor Fan Token",
+          "reference": "0x3b60f483fe311fc063b50a67bf327f96b76696e6",
+          "symbol": "ALA",
+          "slug": "alanyaspor-fan-token",
+          "path": "/tokens/alanyaspor-fan-token/chiliz"
+        },
+        {
+          "coinID": "alfa-romeo-racing-orlen-fan-token",
+          "network": "chiliz",
+          "name": "Alfa Romeo Racing ORLEN Fan Token",
+          "reference": "0xe64c9d1471cfb5e7b03c998ac8137b441c60af6d",
+          "symbol": "SAUBER",
+          "slug": "alfa-romeo-racing-orlen-fan-token",
+          "path": "/tokens/alfa-romeo-racing-orlen-fan-token/chiliz"
+        },
+        {
+          "coinID": "alliance-fan-token",
+          "network": "chiliz",
+          "name": "Alliance Fan Token",
+          "reference": "0x109b738569a04ea31ca06b47af06cfdda87adf48",
+          "symbol": "ALL",
+          "slug": "alliance-fan-token",
+          "path": "/tokens/alliance-fan-token/chiliz"
+        },
+        {
+          "coinID": "argentine-football-association-fan-token",
+          "network": "chiliz",
+          "name": "Argentine Football Association Fan Token",
+          "reference": "0x4394886b1eec08fe88681462914702dc99d97eb7",
+          "symbol": "ARG",
+          "slug": "argentine-football-association-fan-token",
+          "path": "/tokens/argentine-football-association-fan-token/chiliz"
+        },
+        {
+          "coinID": "arsenal-fan-token",
+          "network": "chiliz",
+          "name": "Arsenal Fan Token",
+          "reference": "0x76088f3ed5dc655de9295d93868ec1eec654a615",
+          "symbol": "AFC",
+          "slug": "arsenal-fan-token",
+          "path": "/tokens/arsenal-fan-token/chiliz"
+        },
+        {
+          "coinID": "as-monaco-fan-token",
+          "network": "chiliz",
+          "name": "AS Monaco Fan Token",
+          "reference": "0x57f3d2382025cf5d6c3b126dce0360d9cf3aff49",
+          "symbol": "ASM",
+          "slug": "as-monaco-fan-token",
+          "path": "/tokens/as-monaco-fan-token/chiliz"
+        },
+        {
+          "coinID": "as-roma-fan-token",
+          "network": "chiliz",
+          "name": "AS Roma Fan Token",
+          "reference": "0x0ac7bf9783ca1dcd86a39b5a2607160d29256eb0",
+          "symbol": "ASR",
+          "slug": "as-roma-fan-token",
+          "path": "/tokens/as-roma-fan-token/chiliz"
+        }
+      ]
+    },
+    "iotex": {
+      "id": "iotex",
+      "slug": "iotex",
+      "name": "IoTeX",
+      "symbol": "IOTX",
+      "group": "EVM",
+      "chainId": 4689,
+      "headline": "IoTeX, in your wallet.",
+      "intro": "Receive, send and manage assets on IoTeX with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This page covers the IoTeX EVM account. Confirm the recipient supports the address format displayed by Oath.",
+      "send": "Keep IOTX available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible IoTeX dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/iotex.webp",
+      "sourceIconSHA256": "0feaba528db9f37ad51d550bff7c52ffc32a3c0d32129d24c3ae09306e172c3f",
+      "count": 22,
+      "pages": 1,
+      "featured": [
+        {
+          "coinID": "wrapped-iotex",
+          "network": "iotex",
+          "name": "Wrapped IoTex",
+          "reference": "0xa00744882684c3e4747faefd68d283ea44099d03",
+          "symbol": "WIOTX",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/17923/thumb/Njsdvvpv_400x400.jpg?1696517443",
+          "slug": "wrapped-iotex",
+          "path": "/tokens/wrapped-iotex/iotex"
+        },
+        {
+          "coinID": "ioeth",
+          "network": "iotex",
+          "name": "ioETH",
+          "reference": "0x0258866edaf84d6081df17660357ab20a07d0c80",
+          "symbol": "IOETH",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/19342/thumb/io1qfvgvmk6lpxkpqwlzanqx4atyzs86ryqjnfuad.png?1696518783",
+          "slug": "ioeth",
+          "path": "/tokens/ioeth/iotex"
+        },
+        {
+          "coinID": "iousdc",
+          "network": "iotex",
+          "name": "Bridged USD Coin (IoTeX)",
+          "reference": "0x3b2bf2b523f54c4e454f08aa286d03115aff326c",
+          "symbol": "IOUSDC",
+          "decimals": 6,
+          "logo": "https://assets.coingecko.com/coins/images/19346/thumb/io18v4l9dfr74xyu320pz4zsmgrz9d07vnvy20yrh.png?1696518787",
+          "slug": "iousdc",
+          "path": "/tokens/iousdc/iotex"
+        },
+        {
+          "coinID": "iousdt",
+          "network": "iotex",
+          "name": "iotube Bridged USDT (IoTeX)",
+          "reference": "0x6fbcdc1169b5130c59e72e51ed68a84841c98cd1",
+          "symbol": "IOUSDT",
+          "decimals": 6,
+          "logo": "https://assets.coingecko.com/coins/images/19345/thumb/io1d77dcytfk5fsck089eg7669gfpqunrx35ue5ln.png?1696518786",
+          "slug": "iousdt",
+          "path": "/tokens/iousdt/iotex"
+        },
+        {
+          "coinID": "bridged-usdt",
+          "network": "iotex",
+          "name": "Bridged USDT",
+          "reference": "0x3cdb7c48e70b854ed2fa392e21687501d84b3afc",
+          "symbol": "USDT",
+          "decimals": 6,
+          "logo": "https://assets.coingecko.com/coins/images/35001/thumb/logo.png?1706959346",
+          "slug": "bridged-usdt",
+          "path": "/tokens/bridged-usdt/iotex"
+        },
+        {
+          "coinID": "cyclone-protocol",
+          "network": "iotex",
+          "name": "Cyclone Protocol",
+          "reference": "0x4d7b88403aa2f502bf289584160db01ca442426c",
+          "symbol": "CYC",
+          "slug": "cyclone-protocol",
+          "path": "/tokens/cyclone-protocol/iotex"
+        },
+        {
+          "coinID": "depins",
+          "network": "iotex",
+          "name": "DePINs",
+          "reference": "0x2716789482ea21b15ee9bb6c07dc8251150f36f6",
+          "symbol": "DEPINS",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/52026/thumb/depins.png?1732355695",
+          "slug": "depins",
+          "path": "/tokens/depins/iotex"
+        },
+        {
+          "coinID": "dimo",
+          "network": "iotex",
+          "name": "DIMO",
+          "reference": "0x61db9b084326d2251ccb0252c18fd9b0e887ca4f",
+          "symbol": "DIMO",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/28383/thumb/square_coin_720.png?1732072773",
+          "slug": "dimo",
+          "path": "/tokens/dimo/iotex"
+        },
+        {
+          "coinID": "drop-wireless-infrastructure",
+          "network": "iotex",
+          "name": "Drop Wireless Infrastructure",
+          "reference": "0xa7108637552cec7e8c2dd08a9cd995caff8b4280",
+          "symbol": "DWIN",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/31695/thumb/icon_png.png?1696530513",
+          "slug": "drop-wireless-infrastructure",
+          "path": "/tokens/drop-wireless-infrastructure/iotex"
+        },
+        {
+          "coinID": "game-fantasy-token",
+          "network": "iotex",
+          "name": "Game Fantasy",
+          "reference": "0x17df9fbfc1cdab0f90eddc318c4f6fcada730cf2",
+          "symbol": "GFT",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/19135/thumb/gft.png?1696518587",
+          "slug": "game-fantasy-token",
+          "path": "/tokens/game-fantasy-token/iotex"
+        },
+        {
+          "coinID": "iobusd",
+          "network": "iotex",
+          "name": "ioBUSD",
+          "reference": "0xacee9b11cd4b3f57e58880277ac72c8c41abe4e4",
+          "symbol": "IOBUSD",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/19254/thumb/io14nhfkywdfvl40evgsqnh43ev33q6he8yez8c8a.png?1696518699",
+          "slug": "iobusd",
+          "path": "/tokens/iobusd/iotex"
+        },
+        {
+          "coinID": "iotex-bridged-busd-iotex",
+          "network": "iotex",
+          "name": "IoTeX Bridged BUSD (IoTeX)",
+          "reference": "0x84abcb2832be606341a50128aeb1db43aa017449",
+          "symbol": "BUSD",
+          "decimals": 18,
+          "logo": "https://assets.coingecko.com/coins/images/36881/thumb/busd.png?1772613737",
+          "slug": "iotex-bridged-busd-iotex",
+          "path": "/tokens/iotex-bridged-busd-iotex/iotex"
+        }
+      ]
+    },
+    "zerog": {
+      "id": "zerog",
+      "slug": "0g",
+      "name": "0G",
+      "symbol": "0G",
+      "group": "EVM",
+      "chainId": 16661,
+      "headline": "0G, in your wallet.",
+      "intro": "Receive, send and manage assets on 0G with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use the 0G mainnet EVM network, chain ID 16661, rather than a test network.",
+      "send": "Keep 0G available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible 0G dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/zerog.webp",
+      "sourceIconSHA256": "cbbc3402891ea9b4935499104e4940aa591c79f37002a3818ea4830181041a0e",
+      "count": 8,
+      "pages": 1,
+      "featured": [
+        {
+          "coinID": "wrapped-0g",
+          "network": "zerog",
+          "name": "Wrapped 0G",
+          "reference": "0x1cd0690ff9a693f5ef2dd976660a8dafc81a109c",
+          "symbol": "W0G",
+          "slug": "wrapped-0g",
+          "path": "/tokens/wrapped-0g/0g"
+        },
+        {
+          "coinID": "xswap-bridged-usdc-0g",
+          "network": "zerog",
+          "name": "XSwap Bridged USDC (0G)",
+          "reference": "0x1f3aa82227281ca364bfb3d253b0f1af1da6473e",
+          "symbol": "USDC.E",
+          "slug": "xswap-bridged-usdc-0g",
+          "path": "/tokens/xswap-bridged-usdc-0g/0g"
+        },
+        {
+          "coinID": "stargate-bridged-weth",
+          "network": "zerog",
+          "name": "Stargate Bridged WETH",
+          "reference": "0x564770837ef8bbf077cfe54e5f6106538c815b22",
+          "symbol": "WETH",
+          "slug": "stargate-bridged-weth",
+          "path": "/tokens/stargate-bridged-weth/0g"
+        },
+        {
+          "coinID": "0g-wrapped-wbtc-0g",
+          "network": "zerog",
+          "name": "0G Wrapped WBTC (0G)",
+          "reference": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+          "symbol": "WBTC",
+          "slug": "0g-wrapped-wbtc-0g",
+          "path": "/tokens/0g-wrapped-wbtc-0g/0g"
+        },
+        {
+          "coinID": "ascend-staked-0g",
+          "network": "zerog",
+          "name": "Ascend Staked 0G",
+          "reference": "0x4b3c2f55fa67679b382c979a082df1b32079b4cb",
+          "symbol": "A0G",
+          "slug": "ascend-staked-0g",
+          "path": "/tokens/ascend-staked-0g/0g"
+        },
+        {
+          "coinID": "gimo-staked-0g",
+          "network": "zerog",
+          "name": "Gimo Staked 0G",
+          "reference": "0x7bbc63d01ca42491c3e084c941c3e86e55951404",
+          "symbol": "ST0G",
+          "slug": "gimo-staked-0g",
+          "path": "/tokens/gimo-staked-0g/0g"
+        },
+        {
+          "coinID": "infinite-ai",
+          "network": "zerog",
+          "name": "Infinite AI",
+          "reference": "0xc77fbd3824cc68e612b26114d176879addc29463",
+          "symbol": "IAI",
+          "slug": "infinite-ai",
+          "path": "/tokens/infinite-ai/0g"
+        },
+        {
+          "coinID": "midas-medge",
+          "network": "zerog",
+          "name": "Midas mEDGE",
+          "reference": "0xa1027783fc183a150126b094037a5eb2f5db30ba",
+          "symbol": "MEDGE",
+          "slug": "midas-medge",
+          "path": "/tokens/midas-medge/0g"
+        }
+      ]
+    },
+    "sei": {
+      "id": "sei",
+      "slug": "sei",
+      "name": "Sei",
+      "symbol": "SEI",
+      "group": "EVM",
+      "chainId": 1329,
+      "headline": "Sei, in your wallet.",
+      "intro": "Receive, send and manage assets on Sei with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This account uses Sei EVM. Confirm the receiving service accepts the EVM address and network.",
+      "send": "Keep SEI available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Sei dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/sei.webp",
+      "sourceIconSHA256": "e59924e64c0e92acc2b9c65d1ecbc8ed212d0fb7a863bdd5d836031c9c824185",
+      "count": 38,
+      "pages": 1,
+      "featured": [
+        {
+          "coinID": "usd-coin",
+          "network": "sei",
+          "name": "USDC",
+          "reference": "0xe15fc38f6d8c56af07bbcbe3baf5708a2bf42392",
+          "symbol": "USDC",
+          "slug": "usdc",
+          "path": "/tokens/usdc/sei"
+        },
+        {
+          "coinID": "wrapped-sei",
+          "network": "sei",
+          "name": "Wrapped SEI",
+          "reference": "0xe30fedd158a2e3b13e9badaeabafc5516e95e8c7",
+          "symbol": "WSEI",
+          "slug": "wrapped-sei",
+          "path": "/tokens/wrapped-sei/sei"
+        },
+        {
+          "coinID": "usdt0",
+          "network": "sei",
+          "name": "USDT0",
+          "reference": "0x9151434b16b9763660705744891fa906f660ecc5",
+          "symbol": "USDT0",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/sei"
+        },
+        {
+          "coinID": "wrapped-bitcoin",
+          "network": "sei",
+          "name": "Wrapped Bitcoin",
+          "reference": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+          "symbol": "WBTC",
+          "slug": "wrapped-bitcoin",
+          "path": "/tokens/wrapped-bitcoin/sei"
+        },
+        {
+          "coinID": "bedrock-btc",
+          "network": "sei",
+          "name": "Bedrock BTC",
+          "reference": "0x93919784c523f39cacaa98ee0a9d96c3f32b593e",
+          "symbol": "BRBTC",
+          "slug": "bedrock-btc",
+          "path": "/tokens/bedrock-btc/sei"
+        },
+        {
+          "coinID": "bitbat-token",
+          "network": "sei",
+          "name": "BitBat Token",
+          "reference": "0x443ac9f358226f5f48f2cd10bc0121e7a6176323",
+          "symbol": "BAT",
+          "slug": "bitbat-token",
+          "path": "/tokens/bitbat-token/sei"
+        },
+        {
+          "coinID": "chainlink",
+          "network": "sei",
+          "name": "Chainlink",
+          "reference": "0x71052bae71c25c78e37fd12e5ff1101a71d9018f",
+          "symbol": "LINK",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/sei"
+        },
+        {
+          "coinID": "chips-2",
+          "network": "sei",
+          "name": "Chips",
+          "reference": "0xbd82f3bfe1df0c84faec88a22ebc34c9a86595dc",
+          "symbol": "CHIPS",
+          "slug": "chips-2",
+          "path": "/tokens/chips-2/sei"
+        },
+        {
+          "coinID": "dragonswap",
+          "network": "sei",
+          "name": "DragonSwap",
+          "reference": "0x0a526e425809aea71eb279d24ae22dee6c92a4fe",
+          "symbol": "DRG",
+          "slug": "dragonswap",
+          "path": "/tokens/dragonswap/sei"
+        },
+        {
+          "coinID": "evolve-eusd",
+          "network": "sei",
+          "name": "Evolve eUSD",
+          "reference": "0xf2282e641cd3ceeafd4e24663d409fcb68edc1df",
+          "symbol": "EUSD",
+          "slug": "evolve-eusd",
+          "path": "/tokens/evolve-eusd/sei"
+        },
+        {
+          "coinID": "fiamma-btc",
+          "network": "sei",
+          "name": "Fiamma BTC",
+          "reference": "0x60c230c38af6d86b0277a98a1caeaa345a7b061f",
+          "symbol": "FIABTC",
+          "slug": "fiamma-btc",
+          "path": "/tokens/fiamma-btc/sei"
+        },
+        {
+          "coinID": "fishwar",
+          "network": "sei",
+          "name": "Fishwar",
+          "reference": "0x805679729df385815c57c24b20f4161bd34b655f",
+          "symbol": "FISHW",
+          "slug": "fishwar",
+          "path": "/tokens/fishwar/sei"
+        }
+      ]
+    },
+    "filecoin": {
+      "id": "filecoin",
+      "slug": "filecoin",
+      "name": "Filecoin",
+      "symbol": "FIL",
+      "group": "EVM",
+      "chainId": 314,
+      "headline": "Filecoin, in your wallet.",
+      "intro": "Receive, send and manage assets on Filecoin with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This account uses Filecoin EVM. Confirm that the destination accepts the address format shown by Oath; do not assume every Filecoin address type is interchangeable.",
+      "send": "Keep FIL available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Filecoin dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/filecoin.webp",
+      "sourceIconSHA256": "3fca38d2f7834b3dc1b8c2b0d3bb4cdc492a5a4b1b0f487aba4d12daec9b16c1",
+      "count": 6,
+      "pages": 1,
+      "featured": [
+        {
+          "coinID": "wrapped-fil",
+          "network": "filecoin",
+          "name": "Wrapped FIL",
+          "reference": "0x60e1773636cf5e4a227d9ac24f20feca034ee25a",
+          "symbol": "WFIL",
+          "slug": "wrapped-fil",
+          "path": "/tokens/wrapped-fil/filecoin"
+        },
+        {
+          "coinID": "usdfc",
+          "network": "filecoin",
+          "name": "USDFC",
+          "reference": "0x80b98d3aa09ffff255c3ba4a241111ff1262f045",
+          "symbol": "USDFC",
+          "slug": "usdfc",
+          "path": "/tokens/usdfc/filecoin"
+        },
+        {
+          "coinID": "axlusdc",
+          "network": "filecoin",
+          "name": "Axelar Bridged USDC",
+          "reference": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
+          "symbol": "AXLUSDC",
+          "slug": "axlusdc",
+          "path": "/tokens/axlusdc/filecoin"
+        },
+        {
+          "coinID": "axlweth",
+          "network": "filecoin",
+          "name": "Axelar Wrapped Ether",
+          "reference": "0xb829b68f57cc546da7e5806a929e53be32a4625d",
+          "symbol": "AXLETH",
+          "slug": "axlweth",
+          "path": "/tokens/axlweth/filecoin"
+        },
+        {
+          "coinID": "celer-bridged-usdc-filecoin",
+          "network": "filecoin",
+          "name": "Celer Bridged USDC (Filecoin)",
+          "reference": "0x2421db204968a367cc2c866cd057fa754cb84edf",
+          "symbol": "USDC",
+          "slug": "celer-bridged-usdc-filecoin",
+          "path": "/tokens/celer-bridged-usdc-filecoin/filecoin"
+        },
+        {
+          "coinID": "filecoin-bridged-weth-filecoin",
+          "network": "filecoin",
+          "name": "Filecoin Bridged WETH (Filecoin)",
+          "reference": "0x522b61755b5ff8176b2931da7bf1a5f9414eb710",
+          "symbol": "WETH",
+          "slug": "filecoin-bridged-weth-filecoin",
+          "path": "/tokens/filecoin-bridged-weth-filecoin/filecoin"
+        }
+      ]
+    },
+    "celo": {
+      "id": "celo",
+      "slug": "celo",
+      "name": "Celo",
+      "symbol": "CELO",
+      "group": "EVM",
+      "chainId": 42220,
+      "headline": "Celo, in your wallet.",
+      "intro": "Receive, send and manage assets on Celo with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use the Celo network and review the fee asset selected by the app.",
+      "send": "Keep CELO available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Celo dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/celo.webp",
+      "sourceIconSHA256": "097f3d9bf6ddb304ec98040a5a89f61b519d9840e3ab9f4ba6f3fac765a0a0f2",
+      "count": 63,
+      "pages": 2,
+      "featured": [
+        {
+          "symbol": "USDT",
+          "coinID": "tether",
+          "network": "celo",
+          "reference": "0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e",
+          "name": "Tether",
+          "slug": "usdt",
+          "path": "/tokens/usdt/celo"
+        },
+        {
+          "coinID": "usd-coin",
+          "symbol": "USDC",
+          "reference": "0xceba9300f2b948710d2653dd7b07f33a8b32118c",
+          "name": "USDC",
+          "network": "celo",
+          "slug": "usdc",
+          "path": "/tokens/usdc/celo"
+        },
+        {
+          "symbol": "ABR0",
+          "coinID": "allbridge",
+          "network": "celo",
+          "reference": "0x6e512bfc33be36f2666754e996ff103ad1680cc9",
+          "name": "Allbridge Zero",
+          "slug": "allbridge",
+          "path": "/tokens/allbridge/celo"
+        },
+        {
+          "network": "celo",
+          "reference": "0x0dc4f92879b7670e5f4e4e6e3c801d229129d90d",
+          "coinID": "argentine-peso",
+          "name": "Argentine Peso",
+          "symbol": "WARS",
+          "slug": "argentine-peso",
+          "path": "/tokens/argentine-peso/celo"
+        },
+        {
+          "symbol": "OLAS",
+          "coinID": "autonolas",
+          "network": "celo",
+          "reference": "0xacffae8e57ec6e394eb1b41939a8cf7892dbdc51",
+          "name": "Autonolas",
+          "slug": "autonolas",
+          "path": "/tokens/autonolas/celo"
+        },
+        {
+          "coinID": "axlusdc",
+          "symbol": "AXLUSDC",
+          "reference": "0xeb466342c4d449bc9f53a865d5cb90586f405215",
+          "name": "Axelar Bridged USDC",
+          "network": "celo",
+          "slug": "axlusdc",
+          "path": "/tokens/axlusdc/celo"
+        },
+        {
+          "symbol": "CHAR",
+          "coinID": "biochar",
+          "network": "celo",
+          "reference": "0x50e85c754929840b58614f48e29c64bc78c58345",
+          "name": "Biochar",
+          "slug": "biochar",
+          "path": "/tokens/biochar/celo"
+        },
+        {
+          "coinID": "brazilian-real",
+          "symbol": "WBRL",
+          "reference": "0xd76f5faf6888e24d9f04bf92a0c8b921fe4390e0",
+          "name": "Brazilian real",
+          "network": "celo",
+          "slug": "brazilian-real",
+          "path": "/tokens/brazilian-real/celo"
+        },
+        {
+          "symbol": "USDCET",
+          "coinID": "usd-coin-wormhole-from-ethereum",
+          "network": "celo",
+          "reference": "0x37f750b7cc259a2f741af45294f6a16572cf5cad",
+          "name": "Bridged USD Coin (Wormhole Ethereum)",
+          "slug": "usd-coin-wormhole-from-ethereum",
+          "path": "/tokens/usd-coin-wormhole-from-ethereum/celo"
+        },
+        {
+          "coinID": "bridged-wbtc",
+          "symbol": "WBTC",
+          "reference": "0xd629eb00deced2a080b7ec630ef6ac117e614f1b",
+          "name": "Bridged WBTC",
+          "network": "celo",
+          "slug": "bridged-wbtc",
+          "path": "/tokens/bridged-wbtc/celo"
+        },
+        {
+          "coinID": "brla-digital-brla",
+          "symbol": "BRLA",
+          "reference": "0xfecb3f7c54e2caae9dc6ac9060a822d47e053760",
+          "name": "BRLA Digital BRLA",
+          "network": "celo",
+          "slug": "brla-digital-brla",
+          "path": "/tokens/brla-digital-brla/celo"
+        },
+        {
+          "symbol": "WBTC",
+          "coinID": "celo-bridged-wbtc-celo",
+          "network": "celo",
+          "reference": "0x8ac2901dd8a1f17a1a4768a6ba4c3751e3995b2d",
+          "name": "Celo Bridged WBTC (Celo)",
+          "slug": "celo-bridged-wbtc-celo",
+          "path": "/tokens/celo-bridged-wbtc-celo/celo"
+        }
+      ]
+    },
+    "monad": {
+      "id": "monad",
+      "slug": "monad",
+      "name": "Monad",
+      "symbol": "MON",
+      "group": "EVM",
+      "chainId": 143,
+      "headline": "Monad, in your wallet.",
+      "intro": "Receive, send and manage assets on Monad with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Select Monad and match the token contract before receiving assets.",
+      "send": "Keep MON available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Monad dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/monad.webp",
+      "sourceIconSHA256": "1acbed30772c68b4993f31516532d1ac8ae03fdf708aa6055d2d273e77630159",
+      "count": 196,
+      "pages": 4,
+      "featured": [
+        {
+          "reference": "0x3bd359c1119da7da1d913d1c4d2b7c461115433a",
+          "coinID": "wrapped-monad",
+          "symbol": "WMON",
+          "network": "monad",
+          "name": "Wrapped MON",
+          "slug": "wrapped-monad",
+          "path": "/tokens/wrapped-monad/monad"
+        },
+        {
+          "coinID": "usd-coin",
+          "name": "USDC",
+          "symbol": "USDC",
+          "reference": "0x754704bc059f8c67012fed69bc8a327a5aafb603",
+          "network": "monad",
+          "slug": "usdc",
+          "path": "/tokens/usdc/monad"
+        },
+        {
+          "symbol": "USDT0",
+          "coinID": "usdt0",
+          "network": "monad",
+          "reference": "0xe7cd86e13ac4309349f30b3435a9d337750fc82d",
+          "name": "USDT0",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/monad"
+        },
+        {
+          "reference": "0x3a013978cbd3ed7b270c92009e6a6d1be8e6ac25",
+          "coinID": "1-800-flowers-com-inc-astock",
+          "symbol": "AFLWS",
+          "network": "monad",
+          "name": "1-800-Flowers.Com Inc aStock",
+          "slug": "1-800-flowers-com-inc-astock",
+          "path": "/tokens/1-800-flowers-com-inc-astock/monad"
+        },
+        {
+          "reference": "0x3842751a46d23b41a47e702473dff316e6237777",
+          "coinID": "143-token",
+          "symbol": "143",
+          "network": "monad",
+          "name": "143",
+          "slug": "143-token",
+          "path": "/tokens/143-token/monad"
+        },
+        {
+          "network": "monad",
+          "symbol": "AAMD",
+          "coinID": "advanced-micro-devices-astock",
+          "reference": "0xbdf82c0dafcf73834d10639c0f0bf14b84808c43",
+          "name": "Advanced Micro Devices aStock",
+          "slug": "advanced-micro-devices-astock",
+          "path": "/tokens/advanced-micro-devices-astock/monad"
+        },
+        {
+          "coinID": "agua-global-carry-vault",
+          "symbol": "AGUAUSDCGC",
+          "name": "Agua Global Carry Vault",
+          "network": "monad",
+          "reference": "0x2abc42250154752273a4560e875c858623f83ecc",
+          "slug": "agua-global-carry-vault",
+          "path": "/tokens/agua-global-carry-vault/monad"
+        },
+        {
+          "coinID": "alloca",
+          "symbol": "ALLOCA",
+          "name": "Alloca",
+          "network": "monad",
+          "reference": "0x1ad7052bb331a0529c1981c3ec2bc4663498a110",
+          "slug": "alloca",
+          "path": "/tokens/alloca/monad"
+        },
+        {
+          "network": "monad",
+          "symbol": "AGOOGL",
+          "coinID": "alphabet-astock",
+          "reference": "0xbde676cdf5564ef64ccd8555aa9b56867d8d1ad5",
+          "name": "Alphabet aStock",
+          "slug": "alphabet-astock",
+          "path": "/tokens/alphabet-astock/monad"
+        },
+        {
+          "reference": "0x06f272082339a90e81e1dcb8ab892fd1a8c5e4c0",
+          "symbol": "AAMZN",
+          "network": "monad",
+          "coinID": "amazon-astock",
+          "name": "Amazon aStock",
+          "slug": "amazon-astock",
+          "path": "/tokens/amazon-astock/monad"
+        },
+        {
+          "reference": "0x3ec7310937281ca4bf89d5bb11704be9b7ff7777",
+          "coinID": "anago",
+          "symbol": "ANAGO",
+          "network": "monad",
+          "name": "ANAGO",
+          "slug": "anago",
+          "path": "/tokens/anago/monad"
+        },
+        {
+          "coinID": "anemoy-tokenized-apollo-diversified-credit-fund",
+          "symbol": "ACRDX",
+          "name": "Anemoy Tokenized Apollo Diversified Credit Fund",
+          "network": "monad",
+          "reference": "0x2fabf1c784b8583d63c00c5c9c0377d8cf1a3245",
+          "slug": "anemoy-tokenized-apollo-diversified-credit-fund",
+          "path": "/tokens/anemoy-tokenized-apollo-diversified-credit-fund/monad"
+        }
+      ]
+    },
+    "unichain": {
+      "id": "unichain",
+      "slug": "unichain",
+      "name": "Unichain",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 130,
+      "headline": "Unichain, in your wallet.",
+      "intro": "Receive, send and manage assets on Unichain with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "ETH on Unichain stays on Unichain unless you use a separate bridge or swap.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Unichain dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/unichain.webp",
+      "sourceIconSHA256": "6e6ab93e148cfb61985294900802dcdcbbba3b25ba1fa2bf9078b855098e8d5a",
+      "count": 39,
+      "pages": 1,
+      "featured": [
+        {
+          "network": "unichain",
+          "symbol": "USDC",
+          "reference": "0x078d782b760474a361dda0af3839290b0ef57ad6",
+          "coinID": "usd-coin",
+          "name": "USDC",
+          "slug": "usdc",
+          "path": "/tokens/usdc/unichain"
+        },
+        {
+          "name": "USDT0",
+          "symbol": "USDT0",
+          "reference": "0x9151434b16b9763660705744891fa906f660ecc5",
+          "network": "unichain",
+          "coinID": "usdt0",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/unichain"
+        },
+        {
+          "network": "unichain",
+          "symbol": "WETH",
+          "reference": "0x4200000000000000000000000000000000000006",
+          "coinID": "unichain-bridged-weth-unichain",
+          "name": "Unichain Bridged WETH (Unichain)",
+          "slug": "unichain-bridged-weth-unichain",
+          "path": "/tokens/unichain-bridged-weth-unichain/unichain"
+        },
+        {
+          "name": "Uniswap",
+          "symbol": "UNI",
+          "reference": "0x8f187aa05619a017077f5308904739877ce9ea21",
+          "network": "unichain",
+          "coinID": "uniswap",
+          "slug": "uniswap",
+          "path": "/tokens/uniswap/unichain"
+        },
+        {
+          "name": "1INCH",
+          "symbol": "1INCH",
+          "reference": "0xbe41cde1c5e75a7b6c2c70466629878aa9acd06e",
+          "network": "unichain",
+          "coinID": "1inch",
+          "slug": "1inch",
+          "path": "/tokens/1inch/unichain"
+        },
+        {
+          "name": "Abe",
+          "symbol": "ABE",
+          "reference": "0xabe69c550ea6ec22bed4b92614511c4f31bb0f64",
+          "network": "unichain",
+          "coinID": "abe-2",
+          "slug": "abe-2",
+          "path": "/tokens/abe-2/unichain"
+        },
+        {
+          "name": "Bedrock BTC",
+          "symbol": "BRBTC",
+          "reference": "0xa161132371c94299d215915d4cbc3b629e2059be",
+          "network": "unichain",
+          "coinID": "bedrock-btc",
+          "slug": "bedrock-btc",
+          "path": "/tokens/bedrock-btc/unichain"
+        },
+        {
+          "name": "BetSwirl",
+          "symbol": "BETS",
+          "reference": "0x94025780a1ab58868d9b2dbbb775f44b32e8e6e5",
+          "network": "unichain",
+          "coinID": "betswirl",
+          "slug": "betswirl",
+          "path": "/tokens/betswirl/unichain"
+        },
+        {
+          "name": "Bonk",
+          "symbol": "BONK",
+          "reference": "0xbbe97f3522101e5b6976cbf77376047097ba837f",
+          "network": "unichain",
+          "coinID": "bonk",
+          "slug": "bonk",
+          "path": "/tokens/bonk/unichain"
+        },
+        {
+          "name": "Catex",
+          "symbol": "CATX",
+          "reference": "0x756ee6857f915a2b5366f2ef56d8d13857aef8ad",
+          "network": "unichain",
+          "coinID": "catex-2",
+          "slug": "catex-2",
+          "path": "/tokens/catex-2/unichain"
+        },
+        {
+          "name": "Chainlink",
+          "symbol": "LINK",
+          "reference": "0xef66491eab4bbb582c57b14778afd8dfb70d8a1a",
+          "network": "unichain",
+          "coinID": "chainlink",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/unichain"
+        },
+        {
+          "name": "dogwifhat",
+          "symbol": "WIF",
+          "reference": "0x97fadb3d000b953360fd011e173f12cddb5d70fa",
+          "network": "unichain",
+          "coinID": "dogwifcoin",
+          "slug": "dogwifcoin",
+          "path": "/tokens/dogwifcoin/unichain"
+        }
+      ]
+    },
+    "hyperevm": {
+      "id": "hyperevm",
+      "slug": "hyperevm",
+      "name": "HyperEVM",
+      "symbol": "HYPE",
+      "group": "EVM",
+      "chainId": 999,
+      "headline": "HyperEVM, in your wallet.",
+      "intro": "Receive, send and manage assets on HyperEVM with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This account uses HyperEVM, not HyperCore exchange balances or deposits.",
+      "send": "Keep HYPE available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible HyperEVM dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/hyperevm.webp",
+      "sourceIconSHA256": "ad1c77ba37727a4a3238f8d59ab705b20f3d7a2e0f67a53ab6c421ed40719a2c",
+      "count": 920,
+      "pages": 19,
+      "featured": [
+        {
+          "name": "Wrapped HYPE",
+          "symbol": "WHYPE",
+          "reference": "0x5555555555555555555555555555555555555555",
+          "network": "hyperevm",
+          "coinID": "wrapped-hype",
+          "slug": "wrapped-hype",
+          "path": "/tokens/wrapped-hype/hyperevm"
+        },
+        {
+          "name": "USDC",
+          "coinID": "usd-coin",
+          "network": "hyperevm",
+          "symbol": "USDC",
+          "reference": "0xb88339cb7199b77e23db6e890353e22632ba630f",
+          "slug": "usdc",
+          "path": "/tokens/usdc/hyperevm"
+        },
+        {
+          "name": "USDT0",
+          "coinID": "usdt0",
+          "network": "hyperevm",
+          "symbol": "USDT0",
+          "reference": "0xb8ce59fc3717ada4c02eadf9682a9e934f625ebb",
+          "slug": "usdt0",
+          "path": "/tokens/usdt0/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "reference": "0x707c6bc22b6cf83b930b0a68c3bb20a94836de71",
+          "coinID": "3m-xstock",
+          "name": "3M xStock",
+          "symbol": "MMMX",
+          "slug": "3m-xstock",
+          "path": "/tokens/3m-xstock/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "reference": "0x0782a5fae365eba67a6f6b688e415211c618f8d4",
+          "symbol": "SOXSX",
+          "name": "3x Short Semiconductor ETF xStock",
+          "coinID": "3x-short-semiconductor-etf-xstock",
+          "slug": "3x-short-semiconductor-etf-xstock",
+          "path": "/tokens/3x-short-semiconductor-etf-xstock/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "symbol": "PALLON",
+          "name": "abrdn Physical Palladium Shares ETF (Ondo Tokenized ETF)",
+          "reference": "0x5ff6e08a0bdbc1ff11004ffb62b7ac7cdcf101bd",
+          "coinID": "abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks",
+          "slug": "abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks",
+          "path": "/tokens/abrdn-physical-palladium-shares-etf-ondo-tokenized-stocks/hyperevm"
+        },
+        {
+          "name": "abrdn Physical Platinum Shares ETF (Ondo Tokenized)",
+          "coinID": "abrdn-physical-platinum-shares-etf-ondo-tokenized",
+          "network": "hyperevm",
+          "symbol": "PPLTON",
+          "reference": "0xb4c0eaf28ae7f667d9dabaa995f7a6e75e094770",
+          "slug": "abrdn-physical-platinum-shares-etf-ondo-tokenized",
+          "path": "/tokens/abrdn-physical-platinum-shares-etf-ondo-tokenized/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "reference": "0xf70ebb75cb588798b742ba0ff50db8f200e724d9",
+          "coinID": "adecoagro-dinari-tokenized-stock",
+          "name": "Adecoagro (Dinari Tokenized Stock)",
+          "symbol": "AGRO",
+          "slug": "adecoagro-dinari-tokenized-stock",
+          "path": "/tokens/adecoagro-dinari-tokenized-stock/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "coinID": "advanced-drainage-systems-xstock",
+          "reference": "0x81f87eaf62c1ac8e5e55c5c5e014e1b7d99fec1b",
+          "name": "Advanced Drainage Systems xStock",
+          "symbol": "WMSX",
+          "slug": "advanced-drainage-systems-xstock",
+          "path": "/tokens/advanced-drainage-systems-xstock/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "reference": "0xf90653ea8c2f1dbd69c8ce6d4360a4c31d867534",
+          "coinID": "advanced-energy-industries-xstock",
+          "name": "Advanced Energy Industries xStock",
+          "symbol": "AEISX",
+          "slug": "advanced-energy-industries-xstock",
+          "path": "/tokens/advanced-energy-industries-xstock/hyperevm"
+        },
+        {
+          "reference": "0xdb0245163fda906f27dc5813d2d2b51673c33bde",
+          "network": "hyperevm",
+          "name": "Affirm xStock",
+          "coinID": "affirm-xstock",
+          "symbol": "AFRMX",
+          "slug": "affirm-xstock",
+          "path": "/tokens/affirm-xstock/hyperevm"
+        },
+        {
+          "network": "hyperevm",
+          "reference": "0xfbcda977c2991ecfb3bf4d7af2848e5510081b8f",
+          "coinID": "aflac-xstock",
+          "name": "Aflac xStock",
+          "symbol": "AFLX",
+          "slug": "aflac-xstock",
+          "path": "/tokens/aflac-xstock/hyperevm"
+        }
+      ]
+    },
+    "robinhood": {
+      "id": "robinhood",
+      "slug": "robinhood-chain",
+      "name": "Robinhood Chain",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 4663,
+      "headline": "Robinhood Chain, in your wallet.",
+      "intro": "Receive, send and manage assets on Robinhood Chain with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This network account is separate from a Robinhood brokerage or exchange account. Check current network availability in the app.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Robinhood Chain dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/robinhood.webp",
+      "sourceIconSHA256": "619c4da03cbbd6877375116bb479ae1ecd8cb63a4f91c3b7563f9fad655938d5",
+      "count": 1385,
+      "pages": 28,
+      "featured": [
+        {
+          "reference": "0x0bd7d308f8e1639fab988df18a8011f41eacad73",
+          "symbol": "WETH",
+          "name": "Robinhood Wrapped ETH (Robinhood Chain)",
+          "coinID": "robinhood-wrapped-eth-robinhood-chain",
+          "network": "robinhood",
+          "slug": "robinhood-wrapped-eth-robinhood-chain",
+          "path": "/tokens/robinhood-wrapped-eth-robinhood-chain/robinhood-chain"
+        },
+        {
+          "network": "robinhood",
+          "name": "🪶 (Feather)",
+          "coinID": "feather-2",
+          "symbol": "🪶",
+          "reference": "0xa870f8c7cae9705194a141b0c2964b6c79ee3742",
+          "slug": "feather-2",
+          "path": "/tokens/feather-2/robinhood-chain"
+        },
+        {
+          "reference": "0x6365fd27ddefc42f50895994b67b04fab5f08d5e",
+          "coinID": "1-is-all-you-need-2",
+          "network": "robinhood",
+          "name": "$1 is all you need",
+          "symbol": "$1",
+          "slug": "1-is-all-you-need-2",
+          "path": "/tokens/1-is-all-you-need-2/robinhood-chain"
+        },
+        {
+          "reference": "0x3a013978cbd3ed7b270c92009e6a6d1be8e6ac25",
+          "symbol": "AFLWS",
+          "name": "1-800-Flowers.Com Inc aStock",
+          "network": "robinhood",
+          "coinID": "1-800-flowers-com-inc-astock",
+          "slug": "1-800-flowers-com-inc-astock",
+          "path": "/tokens/1-800-flowers-com-inc-astock/robinhood-chain"
+        },
+        {
+          "network": "robinhood",
+          "coinID": "1inch",
+          "symbol": "1INCH",
+          "reference": "0x1755c2910c126ee1b0cf1e08a307dc9e787285a0",
+          "name": "1INCH",
+          "slug": "1inch",
+          "path": "/tokens/1inch/robinhood-chain"
+        },
+        {
+          "name": "4663",
+          "coinID": "4663-token-2",
+          "symbol": "4663",
+          "network": "robinhood",
+          "reference": "0xfbe42ef178bf43b51f51699f1974f6b0aad4beb2",
+          "slug": "4663-token-2",
+          "path": "/tokens/4663-token-2/robinhood-chain"
+        },
+        {
+          "name": "4663",
+          "symbol": "4663",
+          "coinID": "4663-token",
+          "reference": "0xd4052415613b34af236024b895574c467f65b6dd",
+          "network": "robinhood",
+          "slug": "4663-token",
+          "path": "/tokens/4663-token/robinhood-chain"
+        },
+        {
+          "symbol": "4AI",
+          "coinID": "4ai",
+          "network": "robinhood",
+          "reference": "0xc305c433c315ce5a9e6fc750fedae3f6fc66bbc1",
+          "name": "4AI",
+          "slug": "4ai",
+          "path": "/tokens/4ai/robinhood-chain"
+        },
+        {
+          "symbol": "6",
+          "name": "6",
+          "reference": "0xb245a0e4bcf6f7961b68785d54ccdf51eac906c1",
+          "coinID": "6-token",
+          "network": "robinhood",
+          "slug": "6-token",
+          "path": "/tokens/6-token/robinhood-chain"
+        },
+        {
+          "reference": "0x385307be7df9b45f55f8be72e0cf8b36466813ee",
+          "symbol": "9E9",
+          "name": "9e9.world",
+          "network": "robinhood",
+          "coinID": "9e9-world",
+          "slug": "9e9-world",
+          "path": "/tokens/9e9-world/robinhood-chain"
+        },
+        {
+          "reference": "0x223e93b1bed7de244445db2dea4c7900e8045acc",
+          "coinID": "9to5",
+          "network": "robinhood",
+          "name": "9TO5",
+          "symbol": "9TO5",
+          "slug": "9to5",
+          "path": "/tokens/9to5/robinhood-chain"
+        },
+        {
+          "reference": "0x385f4f8ae47651ce5f58f5265395a669f8281e18",
+          "symbol": "AMC",
+          "name": "A Meme Coin",
+          "network": "robinhood",
+          "coinID": "a-meme-coin",
+          "slug": "a-meme-coin",
+          "path": "/tokens/a-meme-coin/robinhood-chain"
+        }
+      ]
+    },
+    "scroll": {
+      "id": "scroll",
+      "slug": "scroll",
+      "name": "Scroll",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 534352,
+      "headline": "Scroll, in your wallet.",
+      "intro": "Receive, send and manage assets on Scroll with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use Scroll for the transfer. SCR is a token; ETH pays network fees.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Scroll dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/scroll.webp",
+      "sourceIconSHA256": "4787fd162ca1f5ded86767b700e6cccc38d4c532834eb088c9f092d3fb7511fa",
+      "count": 40,
+      "pages": 1,
+      "featured": [
+        {
+          "reference": "0xd29687c813d741e2f938f4ac377128810e217b1b",
+          "symbol": "SCR",
+          "coinID": "scroll",
+          "name": "Scroll",
+          "network": "scroll",
+          "slug": "scroll",
+          "path": "/tokens/scroll/scroll"
+        },
+        {
+          "symbol": "USDC",
+          "coinID": "bridged-usd-coin-scroll",
+          "name": "Bridged USD Coin (Scroll)",
+          "reference": "0x06efdbff2a14a7c8e15944d1f4a48f9f95f663a4",
+          "network": "scroll",
+          "slug": "bridged-usd-coin-scroll",
+          "path": "/tokens/bridged-usd-coin-scroll/scroll"
+        },
+        {
+          "reference": "0xf55bec9cafdbe8730f096aa55dad6d22d44099df",
+          "symbol": "USDT",
+          "coinID": "bridged-tether-scroll",
+          "name": "Scroll Bridged USDT (Scroll)",
+          "network": "scroll",
+          "slug": "bridged-tether-scroll",
+          "path": "/tokens/bridged-tether-scroll/scroll"
+        },
+        {
+          "symbol": "WETH",
+          "coinID": "bridged-wrapped-ether-scroll",
+          "name": "Bridged Wrapped Ether (Scroll)",
+          "reference": "0x5300000000000000000000000000000000000004",
+          "network": "scroll",
+          "slug": "bridged-wrapped-ether-scroll",
+          "path": "/tokens/bridged-wrapped-ether-scroll/scroll"
+        },
+        {
+          "symbol": "WBTC",
+          "coinID": "bridged-wrapped-bitcoin-scroll",
+          "name": "Bridged Wrapped Bitcoin (Scroll)",
+          "reference": "0x3c1bca5a656e69edcd0d4e36bebb3fcdaca60cf1",
+          "network": "scroll",
+          "slug": "bridged-wrapped-bitcoin-scroll",
+          "path": "/tokens/bridged-wrapped-bitcoin-scroll/scroll"
+        },
+        {
+          "reference": "0xf610a9dfb7c89644979b4a0f27063e9e7d7cda32",
+          "symbol": "WSTETH",
+          "coinID": "bridged-wrapped-lido-staked-ether-scroll",
+          "name": "Bridged Wrapped Lido Staked Ether (Scroll)",
+          "network": "scroll",
+          "slug": "bridged-wrapped-lido-staked-ether-scroll",
+          "path": "/tokens/bridged-wrapped-lido-staked-ether-scroll/scroll"
+        },
+        {
+          "reference": "0x80137510979822322193fc997d400d5a6c747bf7",
+          "symbol": "STONE",
+          "coinID": "stakestone-ether",
+          "name": "StakeStone ETH",
+          "network": "scroll",
+          "slug": "stakestone-ether",
+          "path": "/tokens/stakestone-ether/scroll"
+        },
+        {
+          "symbol": "WEETH",
+          "coinID": "wrapped-eeth",
+          "name": "Wrapped eETH",
+          "reference": "0x01f0a31698c4d065659b9bdc21b3610292a1c506",
+          "network": "scroll",
+          "slug": "wrapped-eeth",
+          "path": "/tokens/wrapped-eeth/scroll"
+        },
+        {
+          "reference": "0x5d3a1ff2b6bab83b63cd9ad0787074081a52ef34",
+          "symbol": "USDE",
+          "coinID": "ethena-usde",
+          "name": "Ethena USDe",
+          "network": "scroll",
+          "slug": "ethena-usde",
+          "path": "/tokens/ethena-usde/scroll"
+        },
+        {
+          "reference": "0x548c6944cba02b9d1c0570102c89de64d258d3ac",
+          "symbol": "LINK",
+          "coinID": "chainlink",
+          "name": "Chainlink",
+          "network": "scroll",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/scroll"
+        },
+        {
+          "symbol": "ABCNURI",
+          "coinID": "abcnuri",
+          "name": "abcNURI",
+          "reference": "0x330c43d22bd65a60ffea93a197f04e87faa27b70",
+          "network": "scroll",
+          "slug": "abcnuri",
+          "path": "/tokens/abcnuri/scroll"
+        },
+        {
+          "reference": "0xdf474b7109b73b7d57926d43598d5934131136b2",
+          "symbol": "ANKR",
+          "coinID": "ankr",
+          "name": "Ankr Network",
+          "network": "scroll",
+          "slug": "ankr",
+          "path": "/tokens/ankr/scroll"
+        }
+      ]
+    },
+    "somnia": {
+      "id": "somnia",
+      "slug": "somnia",
+      "name": "Somnia",
+      "symbol": "SOMI",
+      "group": "EVM",
+      "chainId": 5031,
+      "headline": "Somnia, in your wallet.",
+      "intro": "Receive, send and manage assets on Somnia with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Match Somnia mainnet at both ends of the transfer.",
+      "send": "Keep SOMI available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Somnia dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/somnia.webp",
+      "sourceIconSHA256": "87c7d10aa34e1d8725bb35c7e82c776bb0bdb572094ad313d7d57d6cdbf09fa6",
+      "count": 6,
+      "pages": 1,
+      "featured": [
+        {
+          "reference": "0x046ede9564a72571df6f5e44d0405360c0f4dcab",
+          "network": "somnia",
+          "coinID": "wrapped-somi",
+          "symbol": "WSOMI",
+          "name": "Wrapped SOMI",
+          "slug": "wrapped-somi",
+          "path": "/tokens/wrapped-somi/somnia"
+        },
+        {
+          "reference": "0x28bec7e30e6faee657a03e19bf1128aad7632a00",
+          "network": "somnia",
+          "coinID": "stargate-bridged-usdc",
+          "symbol": "USDC.E",
+          "name": "Stargate Bridged USDC",
+          "slug": "stargate-bridged-usdc",
+          "path": "/tokens/stargate-bridged-usdc/somnia"
+        },
+        {
+          "reference": "0x67b302e35aef5eee8c32d934f5856869ef428330",
+          "network": "somnia",
+          "coinID": "stargate-bridged-usdt",
+          "symbol": "USDT",
+          "name": "Stargate Bridged USDT",
+          "slug": "stargate-bridged-usdt",
+          "path": "/tokens/stargate-bridged-usdt/somnia"
+        },
+        {
+          "reference": "0x936ab8c674bcb567cd5deb85d8a216494704e9d8",
+          "network": "somnia",
+          "coinID": "stargate-bridged-weth",
+          "symbol": "WETH",
+          "name": "Stargate Bridged WETH",
+          "slug": "stargate-bridged-weth",
+          "path": "/tokens/stargate-bridged-weth/somnia"
+        },
+        {
+          "reference": "0xc063b29cd6b30885783b505ae180b3079e0a2154",
+          "network": "somnia",
+          "coinID": "nia-2",
+          "symbol": "NIA",
+          "name": "Nia",
+          "slug": "nia-2",
+          "path": "/tokens/nia-2/somnia"
+        },
+        {
+          "reference": "0x00000022da000002656c64d9ea6011ea952d008a",
+          "network": "somnia",
+          "coinID": "usd-somnia",
+          "symbol": "USDSO",
+          "name": "USD Somnia",
+          "slug": "usd-somnia",
+          "path": "/tokens/usd-somnia/somnia"
+        }
+      ]
+    },
+    "story": {
+      "id": "story",
+      "slug": "story",
+      "name": "Story",
+      "symbol": "IP",
+      "group": "EVM",
+      "chainId": 1514,
+      "headline": "Story, in your wallet.",
+      "intro": "Receive, send and manage assets on Story with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Oath’s Story account uses chain ID 1514. Check current network and service availability before transferring; a renamed or migrated ecosystem is not automatically the same destination.",
+      "send": "Keep IP available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Story dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/story.webp",
+      "sourceIconSHA256": "7688168f6d53bef3f2afb2543ebc6c7ba3283a1c918c699dce12f52f821aeba0",
+      "count": 7,
+      "pages": 1,
+      "featured": [
+        {
+          "symbol": "WIP",
+          "reference": "0x1514000000000000000000000000000000000000",
+          "coinID": "wrapped-ip",
+          "network": "story",
+          "name": "Wrapped IP",
+          "slug": "wrapped-ip",
+          "path": "/tokens/wrapped-ip/story"
+        },
+        {
+          "symbol": "USDC.E",
+          "reference": "0xf1815bd50389c46847f0bda824ec8da914045d14",
+          "coinID": "stargate-bridged-usdc",
+          "network": "story",
+          "name": "Stargate Bridged USDC",
+          "slug": "stargate-bridged-usdc",
+          "path": "/tokens/stargate-bridged-usdc/story"
+        },
+        {
+          "symbol": "WETH",
+          "reference": "0xbab93b7ad7fe8692a878b95a8e689423437cc500",
+          "coinID": "stargate-bridged-weth",
+          "network": "story",
+          "name": "Stargate Bridged WETH",
+          "slug": "stargate-bridged-weth",
+          "path": "/tokens/stargate-bridged-weth/story"
+        },
+        {
+          "symbol": "ARIAIP",
+          "reference": "0xc9cbbd8f211300dd0e7a3933b7aeedac6f61dd52",
+          "coinID": "aria-2",
+          "network": "story",
+          "name": "Aria",
+          "slug": "aria-2",
+          "path": "/tokens/aria-2/story"
+        },
+        {
+          "symbol": "LARRY",
+          "reference": "0x693c7acf65e52c71bafe555bc22d69cb7f8a78a2",
+          "coinID": "evil-larry",
+          "network": "story",
+          "name": "Evil Larry",
+          "slug": "evil-larry",
+          "path": "/tokens/evil-larry/story"
+        },
+        {
+          "symbol": "IPPY",
+          "reference": "0x543374350269cce6651358769512875faa4cccff",
+          "coinID": "ippy",
+          "network": "story",
+          "name": "IPPY",
+          "slug": "ippy",
+          "path": "/tokens/ippy/story"
+        },
+        {
+          "symbol": "LYRA",
+          "reference": "0xa4f5c615f72ddeb2220471694fff1c0c3de051e1",
+          "coinID": "lyra-3",
+          "network": "story",
+          "name": "LYRA",
+          "slug": "lyra-3",
+          "path": "/tokens/lyra-3/story"
+        }
+      ]
+    },
+    "taiko": {
+      "id": "taiko",
+      "slug": "taiko",
+      "name": "Taiko",
+      "symbol": "ETH",
+      "group": "EVM",
+      "chainId": 167000,
+      "headline": "Taiko, in your wallet.",
+      "intro": "Receive, send and manage assets on Taiko with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Use the Taiko network. TAIKO is a token; ETH pays network fees.",
+      "send": "Keep ETH available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Taiko dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/taiko.webp",
+      "sourceIconSHA256": "45f47a95df018020b1fa3ed7ff54437d07c9fd6bd01a701ccb2b0c89a08e81ac",
+      "count": 14,
+      "pages": 1,
+      "featured": [
+        {
+          "network": "taiko",
+          "coinID": "taiko",
+          "name": "Taiko",
+          "reference": "0xa9d23408b9ba935c230493c40c73824df71a0975",
+          "symbol": "TAIKO",
+          "slug": "taiko",
+          "path": "/tokens/taiko/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "taiko-bridged-usdc-taiko",
+          "name": "Taiko Bridged USDC (Taiko)",
+          "reference": "0x07d83526730c7438048d55a4fc0b850e2aab6f0b",
+          "symbol": "USDC",
+          "slug": "taiko-bridged-usdc-taiko",
+          "path": "/tokens/taiko-bridged-usdc-taiko/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "stargate-bridged-usdt",
+          "name": "Stargate Bridged USDT",
+          "reference": "0x9c2dc7377717603eb92b2655c5f2e7997a4945bd",
+          "symbol": "USDT",
+          "slug": "stargate-bridged-usdt",
+          "path": "/tokens/stargate-bridged-usdt/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "wrapped-eth-taiko",
+          "name": "Wrapped ETH (Taiko)",
+          "reference": "0xa51894664a773981c6c112c43ce576f315d5b1b6",
+          "symbol": "WETH",
+          "slug": "wrapped-eth-taiko",
+          "path": "/tokens/wrapped-eth-taiko/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "chainlink",
+          "name": "Chainlink",
+          "reference": "0x917a3964c37993e99a47c779beb5db1e9d13804d",
+          "symbol": "LINK",
+          "slug": "chainlink",
+          "path": "/tokens/chainlink/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "crvusd",
+          "name": "crvUSD",
+          "reference": "0xc8f4518ed4bab9a972808a493107926ce8237068",
+          "symbol": "CRVUSD",
+          "slug": "crvusd",
+          "path": "/tokens/crvusd/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "solv-btc",
+          "name": "Solv Protocol BTC",
+          "reference": "0x541fd749419ca806a8bc7da8ac23d346f2df8b77",
+          "symbol": "SOLVBTC",
+          "slug": "solv-btc",
+          "path": "/tokens/solv-btc/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "solv-protocol-solvbtc-bbn",
+          "name": "Solv Protocol Staked BTC",
+          "reference": "0xcc0966d8418d412c599a6421b760a847eb169a8c",
+          "symbol": "XSOLVBTC",
+          "slug": "solv-protocol-solvbtc-bbn",
+          "path": "/tokens/solv-protocol-solvbtc-bbn/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "stargate-bridged-usdc",
+          "name": "Stargate Bridged USDC",
+          "reference": "0x19e26b0638bf63aa9fa4d14c6baf8d52ebe86c5c",
+          "symbol": "USDC.E",
+          "slug": "stargate-bridged-usdc",
+          "path": "/tokens/stargate-bridged-usdc/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "minterest",
+          "name": "Minterest",
+          "reference": "0x2bd26ba2ef62ff90f807365c2bf363fb3bee9979",
+          "symbol": "MINTY",
+          "slug": "minterest",
+          "path": "/tokens/minterest/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "lorenzo-stbtc",
+          "name": "Lorenzo stBTC",
+          "reference": "0xf6718b2701d4a6498ef77d7c152b2137ab28b8a3",
+          "symbol": "STBTC",
+          "slug": "lorenzo-stbtc",
+          "path": "/tokens/lorenzo-stbtc/taiko"
+        },
+        {
+          "network": "taiko",
+          "coinID": "merlin-s-seal-btc",
+          "name": "Merlin's Seal BTC",
+          "reference": "0xf7fb2df9280eb0a76427dc3b34761db8b1441a49",
+          "symbol": "M-BTC",
+          "slug": "merlin-s-seal-btc",
+          "path": "/tokens/merlin-s-seal-btc/taiko"
+        }
+      ]
+    },
+    "telos": {
+      "id": "telos",
+      "slug": "telos",
+      "name": "Telos",
+      "symbol": "TLOS",
+      "group": "EVM",
+      "chainId": 40,
+      "headline": "Telos, in your wallet.",
+      "intro": "Receive, send and manage assets on Telos with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "This account is Telos EVM, not Telos Zero or an Antelope account.",
+      "send": "Keep TLOS available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible Telos dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/telos.webp",
+      "sourceIconSHA256": "ee0f0a788d1781b9563773a3b2e085c861958a9c8561c992e40fb449fe029ebf",
+      "count": 9,
+      "pages": 1,
+      "featured": [
+        {
+          "network": "telos",
+          "coinID": "wrapped-telos",
+          "name": "Wrapped Telos",
+          "reference": "0xd102ce6a4db07d247fcc28f366a623df0938ca9e",
+          "symbol": "WTLOS",
+          "slug": "wrapped-telos",
+          "path": "/tokens/wrapped-telos/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "stargate-bridged-weth",
+          "name": "Stargate Bridged WETH",
+          "reference": "0xbab93b7ad7fe8692a878b95a8e689423437cc500",
+          "symbol": "WETH",
+          "slug": "stargate-bridged-weth",
+          "path": "/tokens/stargate-bridged-weth/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "wrapped-bitcoin",
+          "name": "Wrapped Bitcoin",
+          "reference": "0x7627b27594bc71e6ab0fce755ae8931eb1e12dac",
+          "symbol": "WBTC",
+          "slug": "wrapped-bitcoin",
+          "path": "/tokens/wrapped-bitcoin/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "apeswap-finance",
+          "name": "ApeSwap",
+          "reference": "0x667fd83e24ca1d935d36717d305d54fa0cac991c",
+          "symbol": "BANANA",
+          "slug": "apeswap-finance",
+          "path": "/tokens/apeswap-finance/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "stargate-bridged-usdc",
+          "name": "Stargate Bridged USDC",
+          "reference": "0xf1815bd50389c46847f0bda824ec8da914045d14",
+          "symbol": "USDC.E",
+          "slug": "stargate-bridged-usdc",
+          "path": "/tokens/stargate-bridged-usdc/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "wmatic",
+          "name": "Wrapped POL",
+          "reference": "0x332730a4f6e03d9c55829435f10360e13cfa41ff",
+          "symbol": "WPOL",
+          "slug": "wmatic",
+          "path": "/tokens/wmatic/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "wrapped-fantom",
+          "name": "Wrapped Fantom",
+          "reference": "0xc1be9a4d5d45beeacae296a7bd5fadbfc14602c4",
+          "symbol": "WFTM",
+          "slug": "wrapped-fantom",
+          "path": "/tokens/wrapped-fantom/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "elk-finance",
+          "name": "Elk Finance",
+          "reference": "0xeeeeeb57642040be42185f49c52f7e9b38f8eeee",
+          "symbol": "ELK",
+          "slug": "elk-finance",
+          "path": "/tokens/elk-finance/telos"
+        },
+        {
+          "network": "telos",
+          "coinID": "destiny-world",
+          "name": "Destiny World",
+          "reference": "0x7e1cfe10949a6086a28c38aa4a43fdeab34f198a",
+          "symbol": "DECO",
+          "slug": "destiny-world",
+          "path": "/tokens/destiny-world/telos"
+        }
+      ]
+    },
+    "xlayer": {
+      "id": "xlayer",
+      "slug": "x-layer",
+      "name": "X Layer",
+      "symbol": "OKB",
+      "group": "EVM",
+      "chainId": 196,
+      "headline": "X Layer, in your wallet.",
+      "intro": "Receive, send and manage assets on X Layer with Oath for iPhone and iPad. Keep your network, address and fee details in view.",
+      "receive": "Choose X Layer explicitly. OKB pays its native network fee.",
+      "send": "Keep OKB available for network fees. For tokens, check the contract and amount, then review the destination and estimated fee in Oath.",
+      "walletConnect": true,
+      "connection": "Connect to compatible X Layer dApps through WalletConnect. The website must request a network and signing method supported by Oath. Review every connection and signing request in the app.",
+      "icon": "/assets/networks/xlayer.webp",
+      "sourceIconSHA256": "a113198643ccb266b886c04e64aab340b18bff47ed81c2d06281caaac6aabd51",
+      "count": 791,
+      "pages": 16,
+      "featured": [
+        {
+          "network": "xlayer",
+          "name": "Polygon Hermez Bridged USDC (X Layer)",
+          "symbol": "USDC",
+          "coinID": "polygon-hermez-bridged-usdc-x-layer",
+          "reference": "0x74b7f16337b8972027f6196a17a631ac6de26d22",
+          "slug": "polygon-hermez-bridged-usdc-x-layer",
+          "path": "/tokens/polygon-hermez-bridged-usdc-x-layer/x-layer"
+        },
+        {
+          "symbol": "USDT",
+          "network": "xlayer",
+          "coinID": "polygon-hermez-bridged-usdt-x-layer",
+          "reference": "0x1e4a5963abfd975d8c9021ce480b42188849d41d",
+          "name": "Polygon Hermez Bridged USDT (x Layer)",
+          "slug": "polygon-hermez-bridged-usdt-x-layer",
+          "path": "/tokens/polygon-hermez-bridged-usdt-x-layer/x-layer"
+        },
+        {
+          "coinID": "paypal-usd",
+          "network": "xlayer",
+          "name": "PayPal USD",
+          "reference": "0x87b4a8176b3df6b71e26cc095edcaf4db07506b4",
+          "symbol": "PYUSD",
+          "slug": "paypal-usd",
+          "path": "/tokens/paypal-usd/x-layer"
+        },
+        {
+          "name": "Wrapped OKB",
+          "network": "xlayer",
+          "symbol": "WOKB",
+          "coinID": "wrapped-okb",
+          "reference": "0xe538905cf8410324e03a5a23c1c177a474d59b2b",
+          "slug": "wrapped-okb",
+          "path": "/tokens/wrapped-okb/x-layer"
+        },
+        {
+          "coinID": "bridged-wrapped-ether-x-layer",
+          "reference": "0x5a77f1443d16ee5761d310e38b62f77f726bc71c",
+          "name": "x Layer Bridged WETH (x Layer)",
+          "network": "xlayer",
+          "symbol": "WETH",
+          "slug": "bridged-wrapped-ether-x-layer",
+          "path": "/tokens/bridged-wrapped-ether-x-layer/x-layer"
+        },
+        {
+          "name": "OKX Wrapped ETH",
+          "network": "xlayer",
+          "symbol": "XETH",
+          "coinID": "okx-wrapped-eth",
+          "reference": "0xe7b000003a45145decf8a28fc755ad5ec5ea025a",
+          "slug": "okx-wrapped-eth",
+          "path": "/tokens/okx-wrapped-eth/x-layer"
+        },
+        {
+          "coinID": "okx-wrapped-sol",
+          "reference": "0x505000008de8748dbd4422ff4687a4fc9beba15b",
+          "name": "OKX Wrapped SOL",
+          "network": "xlayer",
+          "symbol": "XSOL",
+          "slug": "okx-wrapped-sol",
+          "path": "/tokens/okx-wrapped-sol/x-layer"
+        },
+        {
+          "symbol": "XBTC",
+          "name": "OKX Wrapped BTC",
+          "reference": "0xb7c00000bcdeef966b20b3d884b98e64d2b06b4f",
+          "coinID": "okx-wrapped-btc",
+          "network": "xlayer",
+          "slug": "okx-wrapped-btc",
+          "path": "/tokens/okx-wrapped-btc/x-layer"
+        },
+        {
+          "reference": "0xcef6c74ce218c0e1f48ca2430635d0a65cd3737a",
+          "name": "Satoshi Stablecoin",
+          "symbol": "SATUSD",
+          "network": "xlayer",
+          "coinID": "satoshi-stablecoin",
+          "slug": "satoshi-stablecoin",
+          "path": "/tokens/satoshi-stablecoin/x-layer"
+        },
+        {
+          "coinID": "staked-frax-usd",
+          "name": "Frax Staked frxUSD",
+          "symbol": "SFRXUSD",
+          "network": "xlayer",
+          "reference": "0x5bff88ca1442c2496f7e475e9e7786383bc070c0",
+          "slug": "staked-frax-usd",
+          "path": "/tokens/staked-frax-usd/x-layer"
+        },
+        {
+          "network": "xlayer",
+          "name": "3M xStock",
+          "symbol": "MMMX",
+          "coinID": "3m-xstock",
+          "reference": "0x707c6bc22b6cf83b930b0a68c3bb20a94836de71",
+          "slug": "3m-xstock",
+          "path": "/tokens/3m-xstock/x-layer"
+        },
+        {
+          "reference": "0x0782a5fae365eba67a6f6b688e415211c618f8d4",
+          "coinID": "3x-short-semiconductor-etf-xstock",
+          "symbol": "SOXSX",
+          "network": "xlayer",
+          "name": "3x Short Semiconductor ETF xStock",
+          "slug": "3x-short-semiconductor-etf-xstock",
+          "path": "/tokens/3x-short-semiconductor-etf-xstock/x-layer"
+        }
+      ]
+    }
+  },
+  "nativeOnly": [
+    "bitcoin",
+    "bitcoincash",
+    "dogecoin",
+    "litecoin"
+  ],
+  "enabled": [
+    "aptos",
+    "arbitrum",
+    "arc",
+    "avalanche",
+    "base",
+    "bitcoin",
+    "bitcoincash",
+    "bnb",
+    "dogecoin",
+    "iotex",
+    "zerog",
+    "sei",
+    "chiliz",
+    "filecoin",
+    "ethereum",
+    "fantom",
+    "flare",
+    "gnosis",
+    "hyperevm",
+    "celo",
+    "monad",
+    "unichain",
+    "linea",
+    "litecoin",
+    "near",
+    "optimism",
+    "polygon",
+    "robinhood",
+    "scroll",
+    "solana",
+    "somnia",
+    "story",
+    "polkadot",
+    "stellar",
+    "sui",
+    "taiko",
+    "telos",
+    "thorchain",
+    "ton",
+    "tron",
+    "xlayer",
+    "xrpl"
+  ],
+  "samples": [
+    "/tokens/usdt/ethereum",
+    "/tokens/usdc/solana",
+    "/tokens/1rus-btc25/gram",
+    "/tokens/rujira/thorchain",
+    "/tokens/binance-bridged-usdt-bnb-smart-chain/bnb-smart-chain",
+    "/tokens/usdt0/polygon",
+    "/tokens/usdc/arbitrum",
+    "/tokens/usdc/base",
+    "/tokens/optimism/optimism",
+    "/tokens/usdc/avalanche",
+    "/tokens/usdt/tron",
+    "/tokens/ripple-usd/xrp-ledger",
+    "/tokens/usdt/near",
+    "/tokens/usdc/sui",
+    "/tokens/usdc/aptos",
+    "/tokens/usdc/polkadot",
+    "/tokens/usdc/stellar",
+    "/tokens/euro-coin/arc",
+    "/tokens/wrapped-fantom/fantom",
+    "/tokens/wrapped-flare/flare",
+    "/tokens/gnosis-xdai-bridged-usdc-gnosis/gnosis",
+    "/tokens/linea/linea",
+    "/tokens/wrapped-chiliz-kayen/chiliz",
+    "/tokens/wrapped-iotex/iotex",
+    "/tokens/wrapped-0g/0g",
+    "/tokens/usdc/sei",
+    "/tokens/wrapped-fil/filecoin",
+    "/tokens/usdt/celo",
+    "/tokens/wrapped-monad/monad",
+    "/tokens/usdc/unichain",
+    "/tokens/wrapped-hype/hyperevm",
+    "/tokens/robinhood-wrapped-eth-robinhood-chain/robinhood-chain",
+    "/tokens/scroll/scroll",
+    "/tokens/wrapped-somi/somnia",
+    "/tokens/wrapped-ip/story",
+    "/tokens/taiko/taiko",
+    "/tokens/wrapped-telos/telos",
+    "/tokens/polygon-hermez-bridged-usdc-x-layer/x-layer",
+    "/tokens/usdt",
+    "/tokens/usdc",
+    "/tokens/usdt/tron",
+    "/tokens/usdc/base",
+    "/tokens/usdc/solana"
+  ],
+  "documents": "/tokens/documents.json",
+  "documentPages": 371
+}

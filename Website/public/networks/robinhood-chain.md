@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Robinhood Chain
+
+Native coin: ETH. 1385 catalog token entries.
+
+- [Robinhood Wrapped ETH (Robinhood Chain) (WETH) on Robinhood Chain](https://oathwallet.org/tokens/robinhood-wrapped-eth-robinhood-chain/robinhood-chain)
+- [🪶 (Feather) (🪶) on Robinhood Chain](https://oathwallet.org/tokens/feather-2/robinhood-chain)
+- [$1 is all you need ($1) on Robinhood Chain](https://oathwallet.org/tokens/1-is-all-you-need-2/robinhood-chain)
+- [1-800-Flowers.Com Inc aStock (AFLWS) on Robinhood Chain](https://oathwallet.org/tokens/1-800-flowers-com-inc-astock/robinhood-chain)
+- [1INCH (1INCH) on Robinhood Chain](https://oathwallet.org/tokens/1inch/robinhood-chain)
+- [4663 (4663) on Robinhood Chain](https://oathwallet.org/tokens/4663-token-2/robinhood-chain)
+- [4663 (4663) on Robinhood Chain](https://oathwallet.org/tokens/4663-token/robinhood-chain)
+- [4AI (4AI) on Robinhood Chain](https://oathwallet.org/tokens/4ai/robinhood-chain)
+- [6 (6) on Robinhood Chain](https://oathwallet.org/tokens/6-token/robinhood-chain)
+- [9e9.world (9E9) on Robinhood Chain](https://oathwallet.org/tokens/9e9-world/robinhood-chain)
+- [9TO5 (9TO5) on Robinhood Chain](https://oathwallet.org/tokens/9to5/robinhood-chain)
+- [A Meme Coin (AMC) on Robinhood Chain](https://oathwallet.org/tokens/a-meme-coin/robinhood-chain)
+
+[Browse all Robinhood Chain tokens](https://oathwallet.org/networks/robinhood-chain/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

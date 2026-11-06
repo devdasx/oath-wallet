@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Gnosis
+
+Native coin: xDAI. 111 catalog token entries.
+
+- [Gnosis xDAI Bridged USDC (Gnosis) (USDC) on Gnosis](https://oathwallet.org/tokens/gnosis-xdai-bridged-usdc-gnosis/gnosis)
+- [xDai Bridged USDT (Gnosis) (USDT) on Gnosis](https://oathwallet.org/tokens/gnosis-xdai-bridged-usdt-gnosis/gnosis)
+- [Gnosis (GNO) on Gnosis](https://oathwallet.org/tokens/gnosis/gnosis)
+- [Gnosis xDai Bridged WETH (Gnosis Chain) (WETH) on Gnosis](https://oathwallet.org/tokens/gnosis-xdai-bridged-weth-gnosis-chain/gnosis)
+- [Gnosis xDai Bridged WBTC (Gnosis Chain) (WBTC) on Gnosis](https://oathwallet.org/tokens/gnosis-xdai-bridged-wbtc-gnosis-chain/gnosis)
+- [Monerium EUR emoney (EURE) on Gnosis](https://oathwallet.org/tokens/monerium-eur-money-2/gnosis)
+- [Savings xDAI (SDAI) on Gnosis](https://oathwallet.org/tokens/savings-xdai/gnosis)
+- [Balancer (BAL) on Gnosis](https://oathwallet.org/tokens/balancer/gnosis)
+- [CoW Protocol (COW) on Gnosis](https://oathwallet.org/tokens/cow-protocol/gnosis)
+- [XDAI (XDAI) on Gnosis](https://oathwallet.org/tokens/xdai/gnosis)
+- [1Hive Water (WATER) on Gnosis](https://oathwallet.org/tokens/1hive-water/gnosis)
+- [Aave v3 DAI (ADAI) on Gnosis](https://oathwallet.org/tokens/aave-v3-dai/gnosis)
+
+[Browse all Gnosis tokens](https://oathwallet.org/networks/gnosis/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

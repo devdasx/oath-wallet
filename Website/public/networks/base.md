@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Base
+
+Native coin: ETH. 2924 catalog token entries.
+
+- [USDC (USDC) on Base](https://oathwallet.org/tokens/usdc/base)
+- [Coinbase Wrapped BTC (CBBTC) on Base](https://oathwallet.org/tokens/coinbase-wrapped-btc/base)
+- [Coinbase Wrapped Staked ETH (CBETH) on Base](https://oathwallet.org/tokens/coinbase-wrapped-staked-eth/base)
+- [Aerodrome Finance (AERO) on Base](https://oathwallet.org/tokens/aerodrome-finance/base)
+- [Degen (DEGEN) on Base](https://oathwallet.org/tokens/degen-base/base)
+- [Virtuals Protocol (VIRTUAL) on Base](https://oathwallet.org/tokens/virtual-protocol/base)
+- [EURC (EURC) on Base](https://oathwallet.org/tokens/euro-coin/base)
+- [Morpho (MORPHO) on Base](https://oathwallet.org/tokens/morpho/base)
+- [L2 Standard Bridged DAI (Base) (DAI) on Base](https://oathwallet.org/tokens/l2-standard-bridged-dai-base/base)
+- [L2 Standard Bridged WETH (Base) (WETH) on Base](https://oathwallet.org/tokens/l2-standard-bridged-weth-base/base)
+- [/onchain (ONCHAIN) on Base](https://oathwallet.org/tokens/onchain/base)
+- [$BRAINS - your greed is my fuel 🤯🧠 by Virtuals (BRAINS) on Base](https://oathwallet.org/tokens/brains-your-greed-is-my-fuel-by-virtuals/base)
+
+[Browse all Base tokens](https://oathwallet.org/networks/base/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

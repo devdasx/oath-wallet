@@ -48,3 +48,18 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Filecoin
+
+Native coin: FIL. 6 catalog token entries.
+
+- [Wrapped FIL (WFIL) on Filecoin](https://oathwallet.org/tokens/wrapped-fil/filecoin)
+- [USDFC (USDFC) on Filecoin](https://oathwallet.org/tokens/usdfc/filecoin)
+- [Axelar Bridged USDC (AXLUSDC) on Filecoin](https://oathwallet.org/tokens/axlusdc/filecoin)
+- [Axelar Wrapped Ether (AXLETH) on Filecoin](https://oathwallet.org/tokens/axlweth/filecoin)
+- [Celer Bridged USDC (Filecoin) (USDC) on Filecoin](https://oathwallet.org/tokens/celer-bridged-usdc-filecoin/filecoin)
+- [Filecoin Bridged WETH (Filecoin) (WETH) on Filecoin](https://oathwallet.org/tokens/filecoin-bridged-weth-filecoin/filecoin)
+
+[Browse all Filecoin tokens](https://oathwallet.org/networks/filecoin/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

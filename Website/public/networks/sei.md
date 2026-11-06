@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Sei
+
+Native coin: SEI. 38 catalog token entries.
+
+- [USDC (USDC) on Sei](https://oathwallet.org/tokens/usdc/sei)
+- [Wrapped SEI (WSEI) on Sei](https://oathwallet.org/tokens/wrapped-sei/sei)
+- [USDT0 (USDT0) on Sei](https://oathwallet.org/tokens/usdt0/sei)
+- [Wrapped Bitcoin (WBTC) on Sei](https://oathwallet.org/tokens/wrapped-bitcoin/sei)
+- [Bedrock BTC (BRBTC) on Sei](https://oathwallet.org/tokens/bedrock-btc/sei)
+- [BitBat Token (BAT) on Sei](https://oathwallet.org/tokens/bitbat-token/sei)
+- [Chainlink (LINK) on Sei](https://oathwallet.org/tokens/chainlink/sei)
+- [Chips (CHIPS) on Sei](https://oathwallet.org/tokens/chips-2/sei)
+- [DragonSwap (DRG) on Sei](https://oathwallet.org/tokens/dragonswap/sei)
+- [Evolve eUSD (EUSD) on Sei](https://oathwallet.org/tokens/evolve-eusd/sei)
+- [Fiamma BTC (FIABTC) on Sei](https://oathwallet.org/tokens/fiamma-btc/sei)
+- [Fishwar (FISHW) on Sei](https://oathwallet.org/tokens/fishwar/sei)
+
+[Browse all Sei tokens](https://oathwallet.org/networks/sei/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

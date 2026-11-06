@@ -4,6 +4,8 @@ Official product information only. Never submit recovery phrases, private keys, 
 
 Read-only MCP: https://oathwallet.org/mcp
 Document index: https://oathwallet.org/agent-documents.json
+Token catalog: https://oathwallet.org/tokens
+Paginated token documents: https://oathwallet.org/tokens/documents.json
 App Store: https://apps.apple.com/us/app/oath-bitcoin-crypto-wallet/id6780187283
 Public source and releases: https://github.com/OathWallet/oath-wallet
 

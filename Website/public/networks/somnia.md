@@ -48,3 +48,18 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Somnia
+
+Native coin: SOMI. 6 catalog token entries.
+
+- [Wrapped SOMI (WSOMI) on Somnia](https://oathwallet.org/tokens/wrapped-somi/somnia)
+- [Stargate Bridged USDC (USDC.E) on Somnia](https://oathwallet.org/tokens/stargate-bridged-usdc/somnia)
+- [Stargate Bridged USDT (USDT) on Somnia](https://oathwallet.org/tokens/stargate-bridged-usdt/somnia)
+- [Stargate Bridged WETH (WETH) on Somnia](https://oathwallet.org/tokens/stargate-bridged-weth/somnia)
+- [Nia (NIA) on Somnia](https://oathwallet.org/tokens/nia-2/somnia)
+- [USD Somnia (USDSO) on Somnia](https://oathwallet.org/tokens/usd-somnia/somnia)
+
+[Browse all Somnia tokens](https://oathwallet.org/networks/somnia/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on IoTeX
+
+Native coin: IOTX. 22 catalog token entries.
+
+- [Wrapped IoTex (WIOTX) on IoTeX](https://oathwallet.org/tokens/wrapped-iotex/iotex)
+- [ioETH (IOETH) on IoTeX](https://oathwallet.org/tokens/ioeth/iotex)
+- [Bridged USD Coin (IoTeX) (IOUSDC) on IoTeX](https://oathwallet.org/tokens/iousdc/iotex)
+- [iotube Bridged USDT (IoTeX) (IOUSDT) on IoTeX](https://oathwallet.org/tokens/iousdt/iotex)
+- [Bridged USDT (USDT) on IoTeX](https://oathwallet.org/tokens/bridged-usdt/iotex)
+- [Cyclone Protocol (CYC) on IoTeX](https://oathwallet.org/tokens/cyclone-protocol/iotex)
+- [DePINs (DEPINS) on IoTeX](https://oathwallet.org/tokens/depins/iotex)
+- [DIMO (DIMO) on IoTeX](https://oathwallet.org/tokens/dimo/iotex)
+- [Drop Wireless Infrastructure (DWIN) on IoTeX](https://oathwallet.org/tokens/drop-wireless-infrastructure/iotex)
+- [Game Fantasy (GFT) on IoTeX](https://oathwallet.org/tokens/game-fantasy-token/iotex)
+- [ioBUSD (IOBUSD) on IoTeX](https://oathwallet.org/tokens/iobusd/iotex)
+- [IoTeX Bridged BUSD (IoTeX) (BUSD) on IoTeX](https://oathwallet.org/tokens/iotex-bridged-busd-iotex/iotex)
+
+[Browse all IoTeX tokens](https://oathwallet.org/networks/iotex/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

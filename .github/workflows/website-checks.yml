@@ -3,6 +3,7 @@ on:
   pull_request:
     paths: ['Website/**', 'Distribution/**', '.github/workflows/**', 'Tools/ValidatePublicRelease.py']
   workflow_call:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:

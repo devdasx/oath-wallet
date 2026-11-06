@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Unichain
+
+Native coin: ETH. 39 catalog token entries.
+
+- [USDC (USDC) on Unichain](https://oathwallet.org/tokens/usdc/unichain)
+- [USDT0 (USDT0) on Unichain](https://oathwallet.org/tokens/usdt0/unichain)
+- [Unichain Bridged WETH (Unichain) (WETH) on Unichain](https://oathwallet.org/tokens/unichain-bridged-weth-unichain/unichain)
+- [Uniswap (UNI) on Unichain](https://oathwallet.org/tokens/uniswap/unichain)
+- [1INCH (1INCH) on Unichain](https://oathwallet.org/tokens/1inch/unichain)
+- [Abe (ABE) on Unichain](https://oathwallet.org/tokens/abe-2/unichain)
+- [Bedrock BTC (BRBTC) on Unichain](https://oathwallet.org/tokens/bedrock-btc/unichain)
+- [BetSwirl (BETS) on Unichain](https://oathwallet.org/tokens/betswirl/unichain)
+- [Bonk (BONK) on Unichain](https://oathwallet.org/tokens/bonk/unichain)
+- [Catex (CATX) on Unichain](https://oathwallet.org/tokens/catex-2/unichain)
+- [Chainlink (LINK) on Unichain](https://oathwallet.org/tokens/chainlink/unichain)
+- [dogwifhat (WIF) on Unichain](https://oathwallet.org/tokens/dogwifcoin/unichain)
+
+[Browse all Unichain tokens](https://oathwallet.org/networks/unichain/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

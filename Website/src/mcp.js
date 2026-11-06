@@ -1,4 +1,5 @@
-import { documents, publicDocument, documentText, searchHelp, evidenceScope, currentStatus, statusText } from './agent-content.js';
+import { documents, publicDocument, documentText, searchHelp, evidenceScope, currentStatus, statusText, tokenDiscovery } from './agent-content.js';
+import {handleTokens} from './tokens.js';
 import { migrateArticleLinks } from './article-host.js';
 // Cloudflare implementation of the supplied read-only PHP MCP endpoint.
 // Public answers and resources are read from the same assets as the website.
@@ -48,9 +49,13 @@ async function callTool(name, args, env) {
       Object.entries(args).some(([k, v]) => typeof v !== 'string' || (schema.properties[k].enum && !schema.properties[k].enum.includes(v)))) {
     return toolError('Arguments do not match this tool’s input schema.');
   }
-  if (name === 'list_documents') return structured({documents:documents.map(publicDocument),current_status:currentStatus,source_evidence:evidenceScope}, 'Official documentation index.');
+  if (name === 'list_documents') return structured({documents:documents.map(publicDocument),current_status:currentStatus,source_evidence:evidenceScope,token_catalog:tokenDiscovery}, 'Official documentation index.');
   if (name === 'read_document') {
     const d=documents.find(d=>d.url===args.url||d.markdown_url===args.url);
+    if(!d && typeof args.url==='string' && /^https:\/\/oathwallet\.org\/(?:tokens(?:[/.?]|$)|networks\/[a-z0-9-]+\/tokens(?:[.?]|$))/.test(args.url)){
+      const r=await handleTokens(new Request(args.url,{headers:{Accept:'text/markdown'}}),env);
+      if(r?.ok)return structured({url:args.url,text:await r.text()},'Official token catalog document.');
+    }
     return d ? structured({...publicDocument(d),text:await documentText(d,env)}, 'Official document.') : toolError('Unknown document. Use list_documents.');
   }
   if (name === 'get_release_status') return structured(currentStatus, 'Current release facts with separate review scope.');

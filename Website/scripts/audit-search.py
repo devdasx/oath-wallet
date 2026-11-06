@@ -3,6 +3,7 @@ Uses Python's standard library and curl (no browser sessions or credentials).
 """
 import concurrent.futures
 import datetime
+from sitemaps import collect_sitemaps
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -73,13 +74,22 @@ def audit(url):
 def main():
     output=Path(sys.argv[1]) if len(sys.argv)>1 else Path('/tmp/oath-production-search-audit.json')
     sitemaps=[];urls=[]
+    def sitemap_text(url):
+        status,final,_,_,body=fetch(url)
+        if status!=200 or final!=url: raise ValueError('Sitemap failed: '+url)
+        return body
     for host in HOSTS:
-        url='https://'+host+'/sitemap.xml';status,_,_,_,body=fetch(url)
-        if status!=200: raise SystemExit('Sitemap failed: '+url)
-        entries=[x.text for x in ET.fromstring(body).iter() if x.tag.endswith('}loc')]
-        sitemaps.append({'url':url,'status':status,'pages':len(entries)})
-        urls+=entries
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: pages=list(pool.map(audit,dict.fromkeys(urls)))
+        entries,reports=collect_sitemaps('https://'+host+'/sitemap.xml',sitemap_text)
+        urls+=entries;sitemaps+=reports
+    manifest=json.loads((Path(__file__).parent.parent/'src/tokens-manifest.json').read_text())
+    catalog=lambda url: urlsplit(url).path.startswith('/tokens') or urlsplit(url).path.endswith('/tokens')
+    selected=[u for u in urls if not catalog(u)]
+    samples=manifest['samples']+['/tokens','/tokens?page='+str(manifest['pages'])]
+    for n in manifest['networks'].values():
+        samples+=['/networks/'+n['slug']+'/tokens','/networks/'+n['slug']+'/tokens?page='+str(n['pages'])] if n['pages']>1 else ['/networks/'+n['slug']+'/tokens']
+    selected+=['https://oathwallet.org'+p for p in samples]
+    if any(u not in urls for u in selected): raise ValueError('Audit sample missing from sitemap')
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: pages=list(pool.map(audit,dict.fromkeys(selected)))
     known={p['url'] for p in pages};by_url={p['url']:p for p in pages}; targets=set()
     for page in pages:
         for alternate in page.get('alternates',[]):
@@ -89,14 +99,16 @@ def main():
         resources=page.get('links',[])+[i['src'] for i in page.get('images',[])]+[page.get('social_image')]
         for link in filter(None,resources):
             target=urljoin(page['url'],link).split('#')[0]
-            if urlsplit(target).hostname in HOSTS and target not in known: targets.add(target)
+            # Exhaustive catalog links are validated offline. Live catalog coverage is
+            # bounded to the explicit samples from every network and page type.
+            if urlsplit(target).hostname in HOSTS and target not in known and not catalog(target): targets.add(target)
     def check(url):
         try: status,final,*_=fetch(url,True);return {'url':url,'status':status,'final':final}
         except Exception as error:return {'url':url,'status':0,'error':str(error)}
     with concurrent.futures.ThreadPoolExecutor(max_workers=6) as pool: resources=list(pool.map(check,sorted(targets)))
     bad_pages=[p for p in pages if p['issues']];bad_resources=[r for r in resources if r['status']!=200]
-    result={'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sitemaps':sitemaps,'sitemap_entries':len(urls),'unique_pages':len(known),'pages':pages,'resources':resources}
+    result={'checked_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sitemaps':sitemaps,'sitemap_entries':len(urls),'scope':'All core/help/articles; bounded catalog samples per network. Exhaustive catalog validation runs offline.','unique_pages':len(known),'pages':pages,'resources':resources}
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
-    print(json.dumps({'sitemaps':sitemaps,'unique_pages':len(known),'duplicate_sitemap_entries':len(urls)-len(known),'page_issues':[{k:p[k] for k in ('url','issues')} for p in bad_pages],'resource_checks':len(resources),'resource_issues':bad_resources,'output':str(output)},indent=2))
-    raise SystemExit(bool(bad_pages or bad_resources or len(urls)!=len(known)))
+    print(json.dumps({'sitemaps':sitemaps,'unique_pages':len(known),'duplicate_sitemap_entries':len(urls)-len(set(urls)),'page_issues':[{k:p[k] for k in ('url','issues')} for p in bad_pages],'resource_checks':len(resources),'resource_issues':bad_resources,'output':str(output)},indent=2))
+    raise SystemExit(bool(bad_pages or bad_resources or len(urls)!=len(set(urls))))
 if __name__=='__main__': main()

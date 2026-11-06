@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on BNB Smart Chain
+
+Native coin: BNB. 4502 catalog token entries.
+
+- [Binance Bridged USDT (BNB Smart Chain) (BSC-USD) on BNB Smart Chain](https://oathwallet.org/tokens/binance-bridged-usdt-bnb-smart-chain/bnb-smart-chain)
+- [Binance Bridged USDC (BNB Smart Chain) (USDC) on BNB Smart Chain](https://oathwallet.org/tokens/binance-bridged-usdc-bnb-smart-chain/bnb-smart-chain)
+- [PancakeSwap (CAKE) on BNB Smart Chain](https://oathwallet.org/tokens/pancakeswap-token/bnb-smart-chain)
+- [Binance Bitcoin (BTCB) on BNB Smart Chain](https://oathwallet.org/tokens/binance-bitcoin/bnb-smart-chain)
+- [Binance-Peg WETH (WETH) on BNB Smart Chain](https://oathwallet.org/tokens/binance-peg-weth/bnb-smart-chain)
+- [Venus (XVS) on BNB Smart Chain](https://oathwallet.org/tokens/venus/bnb-smart-chain)
+- [First Digital USD (FDUSD) on BNB Smart Chain](https://oathwallet.org/tokens/first-digital-usd/bnb-smart-chain)
+- [Chainlink (LINK) on BNB Smart Chain](https://oathwallet.org/tokens/chainlink/bnb-smart-chain)
+- [Uniswap (UNI) on BNB Smart Chain](https://oathwallet.org/tokens/uniswap/bnb-smart-chain)
+- [Wrapped BNB (WBNB) on BNB Smart Chain](https://oathwallet.org/tokens/wbnb/bnb-smart-chain)
+- [🔶 (🔶) on BNB Smart Chain](https://oathwallet.org/tokens/8/bnb-smart-chain)
+- [🤌 (Money Sign) (🤌) on BNB Smart Chain](https://oathwallet.org/tokens/money-sign/bnb-smart-chain)
+
+[Browse all BNB Smart Chain tokens](https://oathwallet.org/networks/bnb-smart-chain/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

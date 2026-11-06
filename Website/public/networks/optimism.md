@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Optimism
+
+Native coin: ETH. 973 catalog token entries.
+
+- [Optimism (OP) on Optimism](https://oathwallet.org/tokens/optimism/optimism)
+- [USDC (USDC) on Optimism](https://oathwallet.org/tokens/usdc/optimism)
+- [Bridged USDT (USDT) on Optimism](https://oathwallet.org/tokens/bridged-usdt/optimism)
+- [MakerDAO Optimism Bridged DAI (Optimism) (DAI) on Optimism](https://oathwallet.org/tokens/makerdao-optimism-bridged-dai-optimism/optimism)
+- [L2 Standard Bridged WETH (Optimism) (WETH) on Optimism](https://oathwallet.org/tokens/l2-standard-bridged-weth-optimism/optimism)
+- [Wrapped Bitcoin (WBTC) on Optimism](https://oathwallet.org/tokens/wrapped-bitcoin/optimism)
+- [Synthetix (SNX) on Optimism](https://oathwallet.org/tokens/havven/optimism)
+- [Velodrome Finance (VELO) on Optimism](https://oathwallet.org/tokens/velodrome-finance/optimism)
+- [Superbridge Bridged wstETH (Optimism) (WSTETH) on Optimism](https://oathwallet.org/tokens/superbridge-bridged-wsteth-optimism/optimism)
+- [Liquity USD (LUSD) on Optimism](https://oathwallet.org/tokens/liquity-usd/optimism)
+- [0xBitcoin (0XBTC) on Optimism](https://oathwallet.org/tokens/oxbitcoin/optimism)
+- [1INCH (1INCH) on Optimism](https://oathwallet.org/tokens/1inch/optimism)
+
+[Browse all Optimism tokens](https://oathwallet.org/networks/optimism/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

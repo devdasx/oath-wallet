@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Celo
+
+Native coin: CELO. 63 catalog token entries.
+
+- [Tether (USDT) on Celo](https://oathwallet.org/tokens/usdt/celo)
+- [USDC (USDC) on Celo](https://oathwallet.org/tokens/usdc/celo)
+- [Allbridge Zero (ABR0) on Celo](https://oathwallet.org/tokens/allbridge/celo)
+- [Argentine Peso (WARS) on Celo](https://oathwallet.org/tokens/argentine-peso/celo)
+- [Autonolas (OLAS) on Celo](https://oathwallet.org/tokens/autonolas/celo)
+- [Axelar Bridged USDC (AXLUSDC) on Celo](https://oathwallet.org/tokens/axlusdc/celo)
+- [Biochar (CHAR) on Celo](https://oathwallet.org/tokens/biochar/celo)
+- [Brazilian real (WBRL) on Celo](https://oathwallet.org/tokens/brazilian-real/celo)
+- [Bridged USD Coin (Wormhole Ethereum) (USDCET) on Celo](https://oathwallet.org/tokens/usd-coin-wormhole-from-ethereum/celo)
+- [Bridged WBTC (WBTC) on Celo](https://oathwallet.org/tokens/bridged-wbtc/celo)
+- [BRLA Digital BRLA (BRLA) on Celo](https://oathwallet.org/tokens/brla-digital-brla/celo)
+- [Celo Bridged WBTC (Celo) (WBTC) on Celo](https://oathwallet.org/tokens/celo-bridged-wbtc-celo/celo)
+
+[Browse all Celo tokens](https://oathwallet.org/networks/celo/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

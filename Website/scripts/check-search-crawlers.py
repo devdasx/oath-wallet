@@ -1,5 +1,6 @@
 """Read-only search access smoke check; does not impersonate a verified bot IP."""
 import concurrent.futures
+from sitemaps import collect_sitemaps
 import json
 import re
 import urllib.request
@@ -28,8 +29,11 @@ def check(host):
         robots = urllib.robotparser.RobotFileParser()
         robots.parse(text.splitlines())
         assert origin + '/sitemap.xml' in robots.site_maps()
-        status, headers, xml, final = get(origin + '/sitemap.xml', agent)
-        urls = [node.text for node in ET.fromstring(xml).iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+        def sitemap_text(url):
+            status,headers,body,final=get(url,agent)
+            assert status==200 and final==url
+            return body
+        urls, _ = collect_sitemaps(origin+'/sitemap.xml',sitemap_text)
         assert urls, host + ': empty sitemap'
         for url in urls:
             assert url.startswith(origin + '/'), 'Unexpected sitemap host'

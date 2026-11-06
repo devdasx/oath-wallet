@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Stellar
+
+Native coin: XLM. 53 catalog token entries.
+
+- [USDC (USDC) on Stellar](https://oathwallet.org/tokens/usdc/stellar)
+- [PayPal USD (PYUSD) on Stellar](https://oathwallet.org/tokens/paypal-usd/stellar)
+- [Afreum (AFR) on Stellar](https://oathwallet.org/tokens/afreum/stellar)
+- [AllUnity EUR (EURAU) on Stellar](https://oathwallet.org/tokens/allunity-eur/stellar)
+- [Aquarius (AQUA) on Stellar](https://oathwallet.org/tokens/aquarius/stellar)
+- [Australian Digital Dollar (AUDD) on Stellar](https://oathwallet.org/tokens/novatti-australian-digital-dollar/stellar)
+- [Blend (BLND) on Stellar](https://oathwallet.org/tokens/blend/stellar)
+- [Brazilian Digital (BRZ) on Stellar](https://oathwallet.org/tokens/brz/stellar)
+- [Currency One USD (C1USD) on Stellar](https://oathwallet.org/tokens/c1usd/stellar)
+- [DeFi Janus Henderson Anemoy AAA CLO Fund (DEJAAA) on Stellar](https://oathwallet.org/tokens/defi-janus-henderson-anemoy-aaa-clo-fund/stellar)
+- [Etherfuse CETES (CETES) on Stellar](https://oathwallet.org/tokens/cetes/stellar)
+- [Etherfuse GILTS (GILTS) on Stellar](https://oathwallet.org/tokens/etherfuse-gilts/stellar)
+
+[Browse all Stellar tokens](https://oathwallet.org/networks/stellar/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

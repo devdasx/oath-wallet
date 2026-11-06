@@ -33,3 +33,7 @@ release-output/
 release-app/
 .env
 *.log
+
+# Reproducible token build artifacts; the accepted source and route ledger are versioned.
+public/token-data/
+public/token-data-next/

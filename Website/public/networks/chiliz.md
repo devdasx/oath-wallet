@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Chiliz
+
+Native coin: CHZ. 63 catalog token entries.
+
+- [Wrapped Chiliz (Kayen) (WCHZ) on Chiliz](https://oathwallet.org/tokens/wrapped-chiliz-kayen/chiliz)
+- [Paris Saint-Germain Fan Token (PSG) on Chiliz](https://oathwallet.org/tokens/paris-saint-germain-fan-token/chiliz)
+- [FC Barcelona Fan Token (BAR) on Chiliz](https://oathwallet.org/tokens/fc-barcelona-fan-token/chiliz)
+- [Juventus Fan Token (JUV) on Chiliz](https://oathwallet.org/tokens/juventus-fan-token/chiliz)
+- [AC Milan Fan Token (ACM) on Chiliz](https://oathwallet.org/tokens/ac-milan-fan-token/chiliz)
+- [Alanyaspor Fan Token (ALA) on Chiliz](https://oathwallet.org/tokens/alanyaspor-fan-token/chiliz)
+- [Alfa Romeo Racing ORLEN Fan Token (SAUBER) on Chiliz](https://oathwallet.org/tokens/alfa-romeo-racing-orlen-fan-token/chiliz)
+- [Alliance Fan Token (ALL) on Chiliz](https://oathwallet.org/tokens/alliance-fan-token/chiliz)
+- [Argentine Football Association Fan Token (ARG) on Chiliz](https://oathwallet.org/tokens/argentine-football-association-fan-token/chiliz)
+- [Arsenal Fan Token (AFC) on Chiliz](https://oathwallet.org/tokens/arsenal-fan-token/chiliz)
+- [AS Monaco Fan Token (ASM) on Chiliz](https://oathwallet.org/tokens/as-monaco-fan-token/chiliz)
+- [AS Roma Fan Token (ASR) on Chiliz](https://oathwallet.org/tokens/as-roma-fan-token/chiliz)
+
+[Browse all Chiliz tokens](https://oathwallet.org/networks/chiliz/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->

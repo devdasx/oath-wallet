@@ -48,3 +48,24 @@ Features depend on the app version, network, wallet type and the service you con
 [Network catalog](https://github.com/OathWallet/oath-wallet/blob/1e99ef95c504c3ac5e7788f507096c518cfece5c/OathAtmosphere/Import/OathImportCatalog.swift) · Updated 2026-10-31. Source review is not confirmation of App Store availability.
 
 [Get Oath for iPhone and iPad](https://apps.apple.com/app/id6780187283) · [All networks](https://oathwallet.org/networks)
+
+<!-- token-catalog:start -->
+## Tokens on Linea
+
+Native coin: ETH. 85 catalog token entries.
+
+- [Linea (LINEA) on Linea](https://oathwallet.org/tokens/linea/linea)
+- [Linea Bridged USDC (Linea) (USDC) on Linea](https://oathwallet.org/tokens/bridged-usd-coin-linea/linea)
+- [Linea Bridged USDT (Linea) (USDT) on Linea](https://oathwallet.org/tokens/bridged-tether-linea/linea)
+- [Bridged Wrapped Ether (Linea) (WETH) on Linea](https://oathwallet.org/tokens/wrapped-ether-linea/linea)
+- [Linea Bridged WBTC (Linea) (WBTC) on Linea](https://oathwallet.org/tokens/linea-bridged-wbtc-linea/linea)
+- [Chainlink (LINK) on Linea](https://oathwallet.org/tokens/chainlink/linea)
+- [Bridged Dai Stablecoin (Linea) (DAI) on Linea](https://oathwallet.org/tokens/bridged-dai-stablecoin-linea/linea)
+- [Linea Bridged wstETH (Linea) (WSTETH) on Linea](https://oathwallet.org/tokens/linea-bridged-wsteth-linea/linea)
+- [ZeroLend (ZERO) on Linea](https://oathwallet.org/tokens/zerolend/linea)
+- [Nile (NILE) on Linea](https://oathwallet.org/tokens/nile/linea)
+- [1INCH (1INCH) on Linea](https://oathwallet.org/tokens/1inch/linea)
+- [3A (A3A) on Linea](https://oathwallet.org/tokens/3a-lending-protocol/linea)
+
+[Browse all Linea tokens](https://oathwallet.org/networks/linea/tokens). Catalog inclusion is not issuer verification or individually tested sending.
+<!-- token-catalog:end -->
