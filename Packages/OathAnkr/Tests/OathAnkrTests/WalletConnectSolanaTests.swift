@@ -114,11 +114,11 @@ final class WalletConnectSolanaTests: XCTestCase {
         }
         var mintBytes = Data(repeating: 0, count: 82); mintBytes[44] = 6; mintBytes[45] = 1
         let transport = SolanaWCResponses([
-            "isBlockhashValid": .object(["value": .bool(true)]),
+            "isBlockhashValid": .object(["context": .object(["slot": .number("123")]), "value": .bool(true)]),
             "getMultipleAccounts": .object(["context": .object(["slot": .number("123")]), "value": .array([native(100_000), try token(3_000_000)])]),
-            "simulateTransaction": .object(["value": .object(["err": .null, "accounts": .array([native(95_000), try token(2_000_000)])])]),
-            "getFeeForMessage": .object(["value": .number("5000")]),
-            "getAccountInfo": .object(["value": .object(["owner": .string(SolanaIdentity.token2022Program), "data": .array([.string(mintBytes.base64EncodedString()), .string("base64")])])])
+            "simulateTransaction": .object(["context": .object(["slot": .number("123")]), "value": .object(["err": .null, "accounts": .array([native(95_000), try token(2_000_000)])])]),
+            "getFeeForMessage": .object(["context": .object(["slot": .number("123")]), "value": .number("5000")]),
+            "getAccountInfo": .object(["context": .object(["slot": .number("123")]), "value": .object(["owner": .string(SolanaIdentity.token2022Program), "data": .array([.string(mintBytes.base64EncodedString()), .string("base64")])])])
         ])
         let review = try await SolanaSendClient(network: .devnet, transport: transport).walletConnectReview(request)[0]
         XCTAssertEqual(review.fee, 5000); XCTAssertFalse(review.incomplete)
@@ -133,15 +133,15 @@ final class WalletConnectSolanaTests: XCTestCase {
     func testSponsoredSignerMayHaveNoNativeAccountAndSimulationFailureStopsReview() async throws {
         let request = try input(vectors()[0])
         let responses: [String: SolanaJSON] = [
-            "isBlockhashValid": .object(["value": .bool(true)]),
+            "isBlockhashValid": .object(["context": .object(["slot": .number("123")]), "value": .bool(true)]),
             "getMultipleAccounts": .object(["context": .object(["slot": .number("1")]), "value": .array([.null, .null])]),
-            "simulateTransaction": .object(["value": .object(["err": .null, "accounts": .array([.null, .null])])]),
-            "getFeeForMessage": .object(["value": .number("5000")])
+            "simulateTransaction": .object(["context": .object(["slot": .number("123")]), "value": .object(["err": .null, "accounts": .array([.null, .null])])]),
+            "getFeeForMessage": .object(["context": .object(["slot": .number("123")]), "value": .number("5000")])
         ]
         let review = try await SolanaSendClient(network: .devnet, transport: SolanaWCResponses(responses)).walletConnectReview(request)[0]
         XCTAssertTrue(review.changes.isEmpty)
         var failed = responses
-        failed["simulateTransaction"] = .object(["value": .object(["err": .string("InstructionError")])])
+        failed["simulateTransaction"] = .object(["context": .object(["slot": .number("123")]), "value": .object(["err": .string("InstructionError")])])
         let transport = SolanaWCResponses(failed)
         do { _ = try await SolanaSendClient(network: .devnet, transport: transport).walletConnectReview(request); XCTFail() }
         catch { XCTAssertEqual(error as? SolanaSendError, .simulationFailed) }
@@ -172,7 +172,7 @@ final class WalletConnectSolanaTests: XCTestCase {
             (.object(["err": .null, "confirmationStatus": .string("finalized")]), .confirmed),
             (.object(["err": .string("InstructionError")]), .failed)]
         for (value, expected) in cases {
-            let transport = SolanaWCResponses(["getSignatureStatuses": .object(["value": .array([value])])])
+            let transport = SolanaWCResponses(["getSignatureStatuses": .object(["context": .object(["slot": .number("123")]), "value": .array([value])])])
             let observed = try await SolanaSendClient(network: .devnet, transport: transport).walletConnectStatus(signature)
             XCTAssertEqual(observed, expected)
         }
@@ -205,7 +205,7 @@ private actor SolanaWCTransport: AnkrTransport {
         let json = try JSONDecoder().decode(SolanaJSON.self, from: request.httpBody!), method = json["method"].string!
         calls.append(method)
         XCTAssertEqual(request.url?.host, "api.devnet.solana.com")
-        let result: SolanaJSON = method == "getGenesisHash" ? .string(genesis) : .object(["value": .bool(false)])
+        let result: SolanaJSON = method == "getGenesisHash" ? .string(genesis) : .object(["context": .object(["slot": .number("123")]), "value": .bool(false)])
         return (try JSONEncoder().encode(SolanaJSON.object(["jsonrpc": .string("2.0"), "id": .number("1"), "result": result])), 200)
     }
 }

@@ -30,12 +30,11 @@ extension SolanaSendClient {
         return reviews
     }
     private func walletConnectReview(_ tx: WalletConnectSolanaTransaction, owner: String, minimumSlot: UInt64) async throws -> WalletConnectSolanaReview {
-        let config: SolanaJSON = .object(["commitment": .string("confirmed"), "minContextSlot": .number(String(minimumSlot))])
         guard try await walletConnectTransactionValid(tx, minimumSlot: minimumSlot) else { throw SolanaSendError.expired }
         var keys = tx.keys, loadedWritable = [String](), loadedReadonly = [String]()
         for lookup in tx.lookups {
             let result = try await rpc("getAccountInfo", [.string(lookup.address), .object(["encoding": .string("base64"), "commitment": .string("confirmed"), "minContextSlot": .number(String(minimumSlot))])])
-            let value = result["value"]
+            let value = try self.value(result, slot: minimumSlot)
             guard value["owner"].string == "AddressLookupTab1e1111111111111111111111111", let bytes = Self.walletConnectAccountBytes(value),
                   bytes.count >= 56, (bytes.count - 56) % 32 == 0, bytes.prefix(4) == Data([1,0,0,0]) else { throw SolanaSendError.malformed }
             for (indices, write) in [(lookup.writable, true), (lookup.readonly, false)] {
@@ -59,14 +58,18 @@ extension SolanaSendClient {
             "encoding": .string("base64"), "commitment": .string("confirmed"), "sigVerify": .bool(false),
             "replaceRecentBlockhash": .bool(false), "minContextSlot": .number(String(slot)),
             "accounts": .object(["encoding": .string("base64"), "addresses": .array(addresses.map(SolanaJSON.string))])])])
-        guard case .object(let value) = simulation["value"], value["err"] == .null else { throw SolanaSendError.simulationFailed }
-        guard let after = simulation["value"]["accounts"].array, after.count == addresses.count else { throw SolanaSendError.malformed }
+        // Each dependent response must report at least the requested slot.
+        // Sending minContextSlot alone does not validate its response.
+        let simulated = try value(simulation, slot: slot)
+        guard let simulationSlot = simulation["context"]["slot"].integer else { throw SolanaSendError.malformed }
+        guard case .object(let fields) = simulated, fields["err"] == .null else { throw SolanaSendError.simulationFailed }
+        guard let after = simulated["accounts"].array, after.count == addresses.count else { throw SolanaSendError.malformed }
         let preTokens = try accounts.map(Self.walletConnectTokenState)
         let postTokens = try after.map(Self.walletConnectTokenState)
         let delegations = try WalletConnectSolanaReview.reviewDelegations(transaction: tx, keys: keys,
             addresses: addresses, before: preTokens, after: postTokens)
-        let feeResponse = try await rpc("getFeeForMessage", [.string(tx.message.base64EncodedString()), config])
-        guard let fee = feeResponse["value"].integer, fee > 0, fee <= 10_000_000 else { throw SolanaSendError.feeTooHigh }
+        let feeResponse = try await rpc("getFeeForMessage", [.string(tx.message.base64EncodedString()), config(simulationSlot)])
+        guard let fee = try value(feeResponse, slot: simulationSlot).integer, fee > 0, fee <= 10_000_000 else { throw SolanaSendError.feeTooHigh }
         var totals: [String: (UInt64, UInt64)] = [:]
         func add(_ value: UInt64, to existing: UInt64) throws -> UInt64 {
             let sum = value.addingReportingOverflow(existing); guard !sum.overflow else { throw SolanaSendError.malformed }; return sum.partialValue
@@ -91,7 +94,8 @@ extension SolanaSendClient {
         var precisions: [String: Int] = ["native": 9]
         let changedMints = totals.keys.filter { totals[$0]!.0 != totals[$0]!.1 }
         for mint in Set(changedMints + delegations.map(\.mint)).sorted() where mint != "native" {
-            let account = try await rpc("getAccountInfo", [.string(mint), .object(["encoding": .string("base64"), "commitment": .string("confirmed"), "minContextSlot": .number(String(slot))])])["value"]
+            let response = try await rpc("getAccountInfo", [.string(mint), .object(["encoding": .string("base64"), "commitment": .string("confirmed"), "minContextSlot": .number(String(simulationSlot))])])
+            let account = try value(response, slot: simulationSlot)
             if let decimals = Self.walletConnectMintDecimals(account) { precisions[mint] = decimals }
         }
         var changes = [WalletConnectSolanaReview.Change]()
@@ -101,7 +105,7 @@ extension SolanaSendClient {
             changes.append(.init(reference: mint, before: value.0, after: value.1, decimals: precisions[mint]))
         }
         return .init(fee: fee, programs: Array(Set(tx.instructions.map { keys[$0.program] })).sorted(), changes: changes,
-                     slot: slot, delegations: delegations.map { $0.withDecimals(precisions[$0.mint]) },
+                     slot: simulationSlot, delegations: delegations.map { $0.withDecimals(precisions[$0.mint]) },
                      inspectedAccounts: allWritable.count, totalWritableAccounts: allWritable.count)
     }
     static func walletConnectAccountBytes(_ json: SolanaJSON) -> Data? {
@@ -122,14 +126,14 @@ extension SolanaSendClient {
     public func walletConnectBlockhashValid(_ blockhash: String) async throws -> Bool {
         guard SolanaIdentity.isAddress(blockhash) else { throw SolanaSendError.malformed }
         let result = try await rpc("isBlockhashValid", [.string(blockhash), .object(["commitment": .string("confirmed")])])
-        guard case .bool(let valid) = result["value"] else { throw SolanaSendError.malformed }; return valid
+        guard case .bool(let valid) = try value(result, slot: 0) else { throw SolanaSendError.malformed }; return valid
     }
     public func walletConnectTransactionValid(_ transaction: WalletConnectSolanaTransaction, minimumSlot: UInt64 = 0, finalized: Bool = false) async throws -> Bool {
         let config: SolanaJSON = .object(["commitment": .string(finalized ? "finalized" : "confirmed"),
             "minContextSlot": .number(String(minimumSlot)), "encoding": .string("base64")])
         guard let nonce = try transaction.durableNonce() else {
             let result = try await rpc("isBlockhashValid", [.string(transaction.blockhash), config])
-            guard case .bool(let valid) = result["value"] else { throw SolanaSendError.malformed }
+            guard case .bool(let valid) = try value(result, slot: minimumSlot) else { throw SolanaSendError.malformed }
             return valid
         }
         let result = try await rpc("getAccountInfo", [.string(nonce.address), config])

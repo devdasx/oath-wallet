@@ -45,11 +45,11 @@ private struct ConsentRegressionRPC: AnkrTransport {
         let result: SolanaJSON
         switch json["method"].string {
         case "getGenesisHash": result = .string(SolanaSendNetwork.devnet.genesis)
-        case "isBlockhashValid": result = .object(["value": .bool(true)])
+        case "isBlockhashValid": result = .object(["context": .object(["slot": .number("123")]), "value": .bool(true)])
         case "getMultipleAccounts": result = .object(["context": .object(["slot": .number("123")]), "value": .array([.object(["lamports": .number("100000")]), token(false)])])
-        case "simulateTransaction": result = .object(["value": .object(["err": .null, "accounts": .array([.object(["lamports": .number("95000")]), token(true)])])])
-        case "getFeeForMessage": result = .object(["value": .number("5000")])
-        case "getAccountInfo": result = .object(["value": .null]) // use exact base units
+        case "simulateTransaction": result = .object(["context": .object(["slot": .number("123")]), "value": .object(["err": .null, "accounts": .array([.object(["lamports": .number("95000")]), token(true)])])])
+        case "getFeeForMessage": result = .object(["context": .object(["slot": .number("123")]), "value": .number("5000")])
+        case "getAccountInfo": result = .object(["context": .object(["slot": .number("123")]), "value": .null]) // use exact base units
         default: XCTFail("Unexpected request"); throw SolanaSendError.malformed
         }
         return (try JSONEncoder().encode(SolanaJSON.object(["jsonrpc": .string("2.0"), "id": json["id"], "result": result])), 200)

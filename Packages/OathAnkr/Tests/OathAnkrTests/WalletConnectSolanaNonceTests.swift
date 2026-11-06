@@ -121,8 +121,8 @@ private actor NonceResponses: AnkrTransport {
         case "getGenesisHash": result = .string(SolanaSendNetwork.devnet.genesis)
         case "getAccountInfo": result = .object(["context": .object(["slot": .number("123")]), "value": account])
         case "getMultipleAccounts": result = .object(["context": .object(["slot": .number("123")]), "value": .array([native, .null, .null])])
-        case "simulateTransaction": result = .object(["value": .object(["err": .null, "accounts": .array([native, .null, .null])])])
-        case "getFeeForMessage": result = .object(["value": .number("5000")])
+        case "simulateTransaction": result = .object(["context": .object(["slot": .number("123")]), "value": .object(["err": .null, "accounts": .array([native, .null, .null])])])
+        case "getFeeForMessage": result = .object(["context": .object(["slot": .number("123")]), "value": .number("5000")])
         default: XCTFail("Unexpected nonce RPC"); throw SolanaSendError.malformed
         }
         return (try JSONEncoder().encode(SolanaJSON.object(["jsonrpc": .string("2.0"), "id": .number("1"), "result": result])), 200)
