@@ -26,6 +26,34 @@ private struct UnavailableDirectory: AnkrTransport {
 }
 
 @MainActor final class TokenLookupTests: XCTestCase {
+    func testPortfolioFactoriesDoNotRequireAlchemyForUnichainOrHyperEVM() async throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let database = try await OathDatabase.open(at: folder.appendingPathComponent("wallet.sqlite"))
+        // An unusable optional key must not break routes that do not use it.
+        let configuration = OathTokenRPCConfiguration(ankrKey: "fixture", alchemyKey: "invalid key")
+        XCTAssertNoThrow(try configuration.makeIndexedEVMSynchronizer(database: database, chain: .unichain))
+        XCTAssertNoThrow(try configuration.makeHyperEVMSynchronizer(database: database))
+        XCTAssertThrowsError(try configuration.makeIndexedEVMSynchronizer(database: database, chain: .monad)) {
+            XCTAssertEqual($0 as? AnkrError, .configurationMissing)
+        }
+    }
+
+    func testPortfolioFactoriesStillRequireValidPrimaryCredentials() async throws {
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        defer { try? FileManager.default.removeItem(at: folder) }
+        let database = try await OathDatabase.open(at: folder.appendingPathComponent("wallet.sqlite"))
+        for key in ["", "invalid key"] {
+            let configuration = OathTokenRPCConfiguration(ankrKey: key, alchemyKey: "fixture")
+            XCTAssertThrowsError(try configuration.makeIndexedEVMSynchronizer(database: database, chain: .unichain)) {
+                XCTAssertEqual($0 as? AnkrError, .configurationMissing)
+            }
+            XCTAssertThrowsError(try configuration.makeHyperEVMSynchronizer(database: database)) {
+                XCTAssertEqual($0 as? AnkrError, .configurationMissing)
+            }
+        }
+    }
+
     private let publicToken = "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
     private let noToken = "0x0000000000000000000000000000000000000000"
     private func service(_ mode: String) -> OathTokenService {

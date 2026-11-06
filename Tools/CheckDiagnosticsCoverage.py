@@ -102,6 +102,8 @@ for root in roots:
                 continue  # Only rejected draft fields; SQLite, revision and network configuration failures still report.
             if file.name == 'OathPermissionReview.swift' and 'diagnostics: permission-preparation-feedback' in body and 'self.error=Self.message(error)' in body:
                 continue  # PermissionPreparation reports before rethrow; the view only presents the unchanged error.
+            if file.relative_to(ROOT).as_posix() == 'OathAtmosphere/Send/OathEVMSendModel.swift' and 'diagnostics: evm-preparation-feedback' in body and 'failureMessage = Self.message(error)' in body:
+                continue  # EVMSendPreparation reports quote failures; typed balance requirements reach this UI unchanged.
             if file.name == 'OathXrplSendModel.swift' and 'diagnostics: xrpl-preparation-feedback' in body and 'failureMessage = Self.message(error)' in body:
                 continue  # XrplSendPreparation reports unexpected failures; the model presents the original error unchanged.
             if file.name == 'UTXOFeeProvider.swift' and any(marker in body for marker in (

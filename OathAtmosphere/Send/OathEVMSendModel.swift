@@ -31,7 +31,10 @@ import OathDiagnostics
                 guard generation == token, !Task.isCancelled, session.isUnlocked else { return }
                 quote = value; busy = false
             } catch {
-                OathDiagnostics.record(error,component:"evm_send",operation:"prepare",context:["chain":network.rawValue,"stage":"quote"])
+                // diagnostics: evm-preparation-feedback
+                // EVMSendPreparation reports unexpected quote failures with
+                // chain/operation ID. This catch also presents expected balance
+                // requirements unchanged, without reporting them again.
                 guard generation == token, !Task.isCancelled else { return }
                 busy = false; needsRefresh = true
                 failureMessage = Self.message(error)

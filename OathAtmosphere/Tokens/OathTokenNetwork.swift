@@ -164,10 +164,14 @@ struct OathTokenRPCConfiguration: Sendable {
         try ArcSynchronizer(database: database, indexKey: envioKey, alchemyAPIKey: alchemyKey)
     }
     func makeIndexedEVMSynchronizer(database: OathDatabase, chain: IndexedEVMChain) throws -> IndexedEVMSynchronizer {
-        try IndexedEVMSynchronizer(database: database, chain: chain, apiKey: ankrKey, alchemyAPIKey: alchemyKey)
+        // Unichain uses the configured ANKR RPC only. Its Blockscout index
+        // remains responsible for address-wide token discovery and history.
+        try IndexedEVMSynchronizer(database: database, chain: chain, apiKey: ankrKey,
+                                   alchemyAPIKey: chain == .unichain ? nil : alchemyKey)
     }
     func makeHyperEVMSynchronizer(database: OathDatabase) throws -> HyperEVMSynchronizer {
-        try HyperEVMSynchronizer(database: database, apiKey: ankrKey, alchemyAPIKey: alchemyKey)
+        // HyperEVM uses ANKR RPC with HypurrScan indexing; no Alchemy fallback.
+        try HyperEVMSynchronizer(database: database, apiKey: ankrKey)
     }
     func makeRobinhoodSynchronizer(database: OathDatabase) throws -> RobinhoodSynchronizer {
         try RobinhoodSynchronizer(database: database, apiKey: ankrKey, blockscoutKey: blockscoutKey, alchemyAPIKey: alchemyKey)

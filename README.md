@@ -14,6 +14,8 @@ A native multichain wallet for iPhone and iPad.
 
 - Scanned addresses show their validated networks and logos, with clearer review actions and left-to-right address presentation.
 - EVM send quotes can recover from a stale provider using a fresh, chain-verified fallback; broadcast retry rules remain unchanged.
+- EVM quote preparation preserves insufficient-balance guidance without duplicate error records, and discards cancelled or stale completion results.
+- Unichain and HyperEVM portfolio synchronization uses the configured ANKR RPC with each chain's existing indexer, without depending on Alchemy configuration.
 - Story uses its dedicated RPC and explorer history path. Celo history uses smaller pages and individual receipt checks.
 - NEAR history handles repeated indexed transaction versions without double-counting fees, and respects bounded rate-limit retry delays.
 - XRP recovers an advancing recent-history window; THORChain refreshes finish cancelling earlier history work before starting a new generation.

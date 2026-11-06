@@ -71,24 +71,17 @@ actor OathEVMSendService {
     func quote(network:EVMSendNetwork,walletID: String, accountID: String, assetID: String, reference: String,
                recipient: String, amount: String, decimals: Int, maximum: Bool, vault: OathWalletVault) async throws -> OathEVMQuote {
         guard OathImportChain(rawValue: network.rawValue)?.isEnabled == true else { throw EVMSendError.wrongNetwork }
-        return try await OathDiagnostics.$chain.withValue(network.rawValue) {
-            try await OathDiagnostics.$operationID.withValue(UUID()) {
-                do {
-                    let database = try await vault.database()
-                    guard let account = try await database.accounts(walletID:walletID).first(where:{$0.id == accountID && $0.networkID == network.rawValue}) else { throw EVMSendError.wrongOwner }
-                    if let policy = try await vault.evmMultisigPolicy(walletID: walletID) {
-                        guard try await database.evmSendReservations(network: network, sender: account.address).isEmpty else { throw EVMSendError.busy }
-                        let plan = try await connection(network).quoteMultisig(policy: policy, recipient: recipient, reference: reference, decimals: decimals, amount: amount, maximum: maximum)
-                        return .init(walletID: walletID, accountID: accountID, assetID: assetID, plan: plan)
-                    }
-                    let reservations=try await database.evmSendReservations(network:network,sender:account.address)
-                    let plan = try await connection(network).quote(sender:account.address,recipient:recipient,reference:reference,decimals:decimals,amount:amount,maximum:maximum,reservations:reservations)
-                    return .init(walletID:walletID,accountID:accountID,assetID:assetID,plan:plan)
-                } catch {
-                    OathDiagnostics.record(error,component:"evm_send",operation:"quote",context:["chain":network.rawValue,"stage":"quote"])
-                    throw error
-                }
+        return try await EVMSendPreparation.run(network: network) {
+            let database = try await vault.database()
+            guard let account = try await database.accounts(walletID:walletID).first(where:{$0.id == accountID && $0.networkID == network.rawValue}) else { throw EVMSendError.wrongOwner }
+            if let policy = try await vault.evmMultisigPolicy(walletID: walletID) {
+                guard try await database.evmSendReservations(network: network, sender: account.address).isEmpty else { throw EVMSendError.busy }
+                let plan = try await connection(network).quoteMultisig(policy: policy, recipient: recipient, reference: reference, decimals: decimals, amount: amount, maximum: maximum)
+                return .init(walletID: walletID, accountID: accountID, assetID: assetID, plan: plan)
             }
+            let reservations=try await database.evmSendReservations(network:network,sender:account.address)
+            let plan = try await connection(network).quote(sender:account.address,recipient:recipient,reference:reference,decimals:decimals,amount:amount,maximum:maximum,reservations:reservations)
+            return .init(walletID:walletID,accountID:accountID,assetID:assetID,plan:plan)
         }
     }
 
