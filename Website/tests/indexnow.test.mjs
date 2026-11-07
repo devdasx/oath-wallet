@@ -13,12 +13,13 @@ const env={ASSETS:{async fetch(req){
   catch{return new Response('Missing',{status:404});}
 }}};
 
-test('each public host serves Bing and IndexNow ownership files, never HTML fallbacks',async()=>{
-  for(const host of config.hosts)for(const path of ['/BingSiteAuth.xml',`/${config.key}.txt`]){
+test('each public host serves Bing, Yandex and IndexNow ownership files without page transformations',async()=>{
+  for(const host of config.hosts)for(const path of ['/BingSiteAuth.xml','/yandex_c0e2f76d0a57a2e5.html',`/${config.key}.txt`]){
     const url=`https://${host}${path}`;
     const response=await worker.fetch(new Request(url),env);
     assert.equal(response.status,200);
     assert.match(response.headers.get('X-Robots-Tag'),/noindex/);
+    if(path.endsWith('.html')) assert.equal(response.headers.get('Content-Type'),'text/html; charset=utf-8');
     assert.equal(await response.text(),await readFile(new URL('../public'+path,import.meta.url),'utf8'));
     const head=await worker.fetch(new Request(url,{method:'HEAD'}),env);
     assert.equal(head.status,200);assert.equal(await head.text(),'');
