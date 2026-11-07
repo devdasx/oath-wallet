@@ -14,7 +14,7 @@ const env={ASSETS:{async fetch(req){
 }}};
 
 test('each public host serves Bing, Yandex and IndexNow ownership files without page transformations',async()=>{
-  for(const host of config.hosts)for(const path of ['/BingSiteAuth.xml','/yandex_c0e2f76d0a57a2e5.html',`/${config.key}.txt`]){
+  for(const host of config.hosts)for(const path of ['/BingSiteAuth.xml','/yandex_c0e2f76d0a57a2e5.html', '/yandex_650043df6dfe689a.html', '/yandex_cc4674c827ce2f19.html',`/${config.key}.txt`]){
     const url=`https://${host}${path}`;
     const response=await worker.fetch(new Request(url),env);
     assert.equal(response.status,200);
