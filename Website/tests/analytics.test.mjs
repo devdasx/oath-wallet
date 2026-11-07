@@ -24,7 +24,7 @@ test('invalid visitor cookie cannot forge an existing browser identity',async()=
  assert.equal(result.fresh,true);assert.notEqual(result.id,id);
 });
 test('privacy signals and bots are excluded without touching upstream',async()=>{
- for(const extra of [{'sec-gpc':'1'},{dnt:'1'},{'user-agent':'Googlebot'}]){
+ for(const extra of [{'sec-gpc':'1'},{dnt:'1'},{'user-agent':'Googlebot'},{'user-agent':'Mozilla/5.0 (compatible; Google-InspectionTool/1.0;)'}]){
   const req=new Request('https://oathwallet.org/_events',{method:'POST',headers:{origin:'https://oathwallet.org',...extra},body:'{}'});
   assert.equal((await handleAnalytics(req,{})).status,202);
  }
