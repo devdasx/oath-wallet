@@ -3,6 +3,9 @@
   if (location.hostname !== 'oathwallet.org' || window.__oathVisitorEventsLoaded) return;
   window.__oathVisitorEventsLoaded = true;
   let pending = Promise.resolve();
+  // Crawler rendering is not a visitor event. Skip the request before creating
+  // a session; the server also excludes these agents for older cached clients.
+  if (/bot|crawler|spider|headless|preview|facebookexternalhit|curl|wget|google-inspectiontool/i.test(navigator.userAgent || '')) return;
   if (navigator.globalPrivacyControl || navigator.doNotTrack === '1' || window.doNotTrack === '1') return;
   let current;
   const session = () => {

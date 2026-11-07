@@ -1,6 +1,8 @@
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const cookieName = '__Host-oath_visitor';
-const bot = /bot|crawler|spider|headless|preview|facebookexternalhit|curl|wget/i;
+// Keep the client exclusion in visitor-events.js aligned. This is measurement
+// filtering only; public page access never depends on a crawler's user agent.
+const bot = /bot|crawler|spider|headless|preview|facebookexternalhit|curl|wget|google-inspectiontool/i;
 export function classifyAgent(ua = '') {
   return { browser: /Edg\//.test(ua) ? 'Edge' : /Firefox|FxiOS/.test(ua) ? 'Firefox' : /Chrome|CriOS/.test(ua) ? 'Chrome' : /Safari/.test(ua) ? 'Safari' : 'Other',
     os: /iPhone|iPad/.test(ua) ? 'iOS' : /Android/.test(ua) ? 'Android' : /Windows/.test(ua) ? 'Windows' : /Macintosh/.test(ua) ? 'macOS' : /Linux/.test(ua) ? 'Linux' : 'Other',
